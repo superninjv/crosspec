@@ -56,7 +56,7 @@ function renderTemplate(
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => vars[key] ?? "");
 }
 
-export const onRequestGet: PagesFunction<Env> = async ({ params, env }) => {
+const handler: PagesFunction<Env> = async ({ params, env }) => {
   const vertical = String(params.vertical ?? "");
   const sku = String(params.sku ?? "");
   const affiliates = VERTICALS[vertical];
@@ -90,3 +90,6 @@ export const onRequestGet: PagesFunction<Env> = async ({ params, env }) => {
 
   return Response.redirect(target, 302);
 };
+
+export const onRequestGet = handler;
+export const onRequestHead = handler;
