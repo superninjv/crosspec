@@ -15,10 +15,6 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 
 **Build-phase items only. No more research/triage items without explicit founder request.**
 
-- [ ] **Copy-link button for shareable configs** — DoD: button near the form that copies `location.href` to clipboard and shows a brief "Link copied" confirmation. Makes the just-shipped hash-sync feature discoverable — without a visible button, users have to know to grab the URL bar. Session 4 2026-04-22.
-
-- [ ] **Affiliate clickout via Pages Functions** — DoD: `/go/:vertical/:sku` resolves through a Cloudflare Pages Function that looks up the SKU in `verticals/<vertical>/affiliates.json`, 302-redirects to the affiliate URL if present, falls back to an Amazon search URL if not. All product-card CTAs stop 404'ing. Real affiliate IDs can be slotted into the JSON later without code changes. Session 4 2026-04-22.
-
 - [ ] **Affiliate partner applications for smart home** — DoD: applications submitted to SwitchBot (Awin, 6-15%/60d — highest-value anchor), TP-Link Tapo (direct 10%), Govee (Impact, 5-10%), Philips Hue/Signify (Awin/Partnerize), Aqara (Awin UK, Sovrn US). Track approval state in `~/notes/projects/crosspec-affiliate-status.md`. Amazon Associates fallback for anything not approved or SKU-missing. Parallel with build — can start today while MVP is being written.
 
 - [ ] **EEAT author page** — DoD: one-page author bio for Jack (named, LinkedIn linked, 1-paragraph credibility hook — Home Assistant setup, Matter/Thread hands-on experience, or equivalent). Required day-one per hard rule. Lives at `crosspec.com/about` or similar. Short — one page, one photo, one LinkedIn link. 30 min.
@@ -26,6 +22,12 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 - [ ] **Community-first acquisition plan (post-ship)** — DoD: short list of where to post the v0.1 configurator once it's live — r/homeautomation, r/smarthome, r/matterandthread, HA Discord + community forum, relevant subreddits for specific ecosystems. NOT a launch plan with hype — a genuine "I made this thing that might help" post from the EEAT author account. Written up in `~/notes/projects/crosspec-community-plan.md`. 45 min.
 
 ## Recent completions
+
+- 2026-04-22 — **OG + Twitter meta + canonical links.** Shared URLs on Reddit / Discord / HA forum now get proper previews. `Layout.astro` emits `og:title/description/url/site_name`, `twitter:card`, and a `rel=canonical` on every page. URL comes from `Astro.url.pathname` so `crosspec.com/<route>/` is the canonical regardless of which host served it.
+
+- 2026-04-22 — **Affiliate clickout via Pages Functions.** `functions/go/[vertical]/[sku].ts` looks up SKU in `verticals/<vertical>/affiliates.json.products`, substitutes `{{merchant_sku}}` + `{{affiliate_tag}}` into the merchant's `link_template`, 302s. No product match → Amazon search fallback. Handles GET + HEAD. Merchant tags read from `MERCHANT_TAG_*` env bindings on the Pages project (none set yet — all clicks currently hit untagged Amazon search, which is expected).
+
+- 2026-04-22 — **Copy-link button + shareable URLs via hash.** Configurator state (ecosystem + wants) persists in `location.hash` via `encodeInputs/decodeInputs` (URLSearchParams form). On load → decode hash → populate form → re-solve. On form change → `history.replaceState` with new hash. `hashchange` listener re-reads on paste. Copy-link button near the form copies `location.href` and shows "Link copied" for 2s. Directly implements direction.md's "saved configurator URLs as long-tail UGC" acquisition strategy.
 
 - 2026-04-22 — **Interactive configurator shipped.** `/smart-home` page now has a working form (ecosystem radio + device-type checkboxes) and clickable example chips that keyword-match the text, populate the form, and re-solve client-side. `engine/ui/render.ts` renders solver output → HTML string; re-render happens on any form change. Closed the "Tools, not content" hard-rule gap (page no longer advertises "v0.2 coming"). 8 tests for render + matchExample.
 
