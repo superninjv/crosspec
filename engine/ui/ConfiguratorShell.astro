@@ -1,0 +1,121 @@
+---
+import ProductCard from "./ProductCard.astro";
+import ReasoningChain from "./ReasoningChain.astro";
+import type { Solution } from "@engine/solver";
+
+interface Props {
+  vertical: string;
+  headline: string;
+  subheadline: string;
+  examples: string[];
+  solution: Solution;
+}
+
+const { vertical, headline, subheadline, examples, solution } = Astro.props;
+const motionPicks = solution.picks.filter((p) => p.entity.type === "motion_sensor");
+const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
+---
+<section class="hero">
+  <h1>{headline}</h1>
+  <p class="sub">{subheadline}</p>
+
+  <div class="examples">
+    {examples.map((q) => (
+      <button type="button" class="chip" disabled>{q}</button>
+    ))}
+  </div>
+  <p class="chip-note">
+    Interactive chat lands in v0.2. v0.1 shows a worked example below — same
+    engine, same solver, same provenance.
+  </p>
+</section>
+
+<section class="result">
+  <h2>
+    Worked example: <code>ecosystem = {solution.inputs.ecosystem}</code>,
+    <code>wants = [{solution.inputs.wants.join(", ")}]</code>
+  </h2>
+
+  {solution.warnings.length > 0 && (
+    <div class="warnings">
+      <strong>Heads up:</strong>
+      <ul>{solution.warnings.map((w) => <li>{w}</li>)}</ul>
+    </div>
+  )}
+
+  {bulbPicks.length > 0 && (
+    <>
+      <h3>Smart bulbs</h3>
+      <div class="grid">
+        {bulbPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+      </div>
+    </>
+  )}
+
+  {motionPicks.length > 0 && (
+    <>
+      <h3>Motion sensors</h3>
+      <div class="grid">
+        {motionPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+      </div>
+    </>
+  )}
+
+  <p class="hub-summary">
+    Hubs needed across this selection:
+    <strong>
+      {solution.hubs_required.length > 0
+        ? solution.hubs_required.join(", ")
+        : "none"}
+    </strong>
+  </p>
+
+  <ReasoningChain steps={solution.reasoning_chain} />
+</section>
+<style>
+  .hero h1 { font-size: 1.85rem; line-height: 1.2; margin: 0 0 0.5rem; }
+  .hero .sub { color: var(--muted); margin: 0 0 1rem; }
+  .examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  .chip {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    cursor: not-allowed;
+  }
+  .chip-note {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin: 0.25rem 0 1.5rem;
+  }
+  .result h2 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
+  .result h2 code {
+    background: #efece2;
+    padding: 0.05rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+  .result h3 { margin: 1.25rem 0 0.5rem; font-size: 1rem; }
+  .grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .warnings {
+    background: #fff8e0;
+    border: 1px solid #f0d97a;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .warnings ul { margin: 0.25rem 0 0 1rem; padding: 0; }
+  .hub-summary { margin-top: 1rem; font-size: 0.9rem; }
+</style>

@@ -1,0 +1,26 @@
+{
+  "name": "crosspec",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Multi-vertical configurator hub. Engine + first vertical (smart home).",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^4.0.0",
+    "astro": "^5.0.0",
+    "preact": "^10.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

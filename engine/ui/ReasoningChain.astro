@@ -1,0 +1,55 @@
+---
+import type { ReasoningStep } from "@engine/solver";
+
+interface Props {
+  steps: ReasoningStep[];
+}
+const { steps } = Astro.props;
+---
+<details class="reasoning" open>
+  <summary>How we picked these ({steps.length} reasoning steps)</summary>
+  <ol>
+    {steps.map((s) => (
+      <li>
+        <p class="step">{s.step}</p>
+        <p class="rationale">{s.rationale}</p>
+        <p class="sources">
+          {s.sources.map((src) => (
+            <a href={src.url} rel="nofollow" target="_blank">
+              {src.name} ({src.ingest_date})
+            </a>
+          ))}
+        </p>
+      </li>
+    ))}
+  </ol>
+</details>
+<style>
+  .reasoning {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .reasoning summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .reasoning ol {
+    padding-left: 1.25rem;
+    margin: 1rem 0 0;
+  }
+  .reasoning li { margin-bottom: 0.85rem; }
+  .step { margin: 0; font-weight: 600; font-size: 0.92rem; }
+  .rationale { margin: 0.15rem 0; font-size: 0.88rem; color: var(--fg); }
+  .sources {
+    margin: 0.15rem 0 0;
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .sources a { color: var(--muted); text-decoration: underline; }
+</style>

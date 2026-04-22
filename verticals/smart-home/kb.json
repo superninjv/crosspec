@@ -1,9 +1,436 @@
 {
   "version": "0.1",
   "vertical": "smart-home",
-  "status": "stub — populated in commit 2",
-  "sources": [],
-  "entities": [],
-  "constraints": [],
-  "goals": []
+  "data_quality": "v0.1 best-effort population from cited public sources. Each entity's compat claims trace to source_ids on its attributes. Verification pass required before production launch — this dataset is sized to prove the engine end-to-end, not for general consumer trust.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "Home Assistant integrations registry",
+      "url": "https://www.home-assistant.io/integrations/",
+      "ingest_date": "2026-04-21",
+      "scope": "Used to confirm that an integration ships with HA core, indicating supported control path."
+    },
+    {
+      "id": 1,
+      "name": "CSA Matter Certified Products Database",
+      "url": "https://csa-iot.org/csa-iot_products/",
+      "ingest_date": "2026-04-21",
+      "scope": "Used to confirm a device's Matter certification (and therefore native interop with HomeKit, Google Home, Alexa, and HA via Matter)."
+    },
+    {
+      "id": 2,
+      "name": "Zigbee2MQTT supported devices",
+      "url": "https://www.zigbee2mqtt.io/supported-devices/",
+      "ingest_date": "2026-04-21",
+      "scope": "Used to confirm that a Zigbee device works in Home Assistant via Z2M without the vendor's hub."
+    },
+    {
+      "id": 3,
+      "name": "Manufacturer product documentation",
+      "url": "https://www.philips-hue.com/, https://www.aqara.com/, https://www.eve.com/, https://www.nanoleaf.me/, https://www.tp-link.com/us/tapo/, https://us.govee.com/, https://www.ikea.com/, https://www.switchbot.com/, https://www.lifx.com/, https://www.meross.com/, https://www.wyze.com/, https://sonoff.tech/",
+      "ingest_date": "2026-04-21",
+      "scope": "Used to confirm vendor-claimed ecosystem support (HomeKit, Google Home, Alexa) and whether a hub is required for that ecosystem path."
+    }
+  ],
+  "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+  "entities": [
+    {
+      "id": "hue_motion_indoor",
+      "type": "motion_sensor",
+      "name": "Philips Hue Motion Sensor (indoor)",
+      "sku": "philips_hue_motion_sensor",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "SML001",
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "power": "battery_aaa",
+        "indoor_outdoor": "indoor",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "aqara_motion_p1",
+      "type": "motion_sensor",
+      "name": "Aqara Motion Sensor P1",
+      "sku": "aqara_motion_sensor_p1",
+      "attributes": {
+        "brand": "aqara",
+        "model": "RTCGQ14LM",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub_or_zigbee_coordinator",
+        "ecosystems_via_aqara_hub": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "power": "battery_cr2450",
+        "indoor_outdoor": "indoor",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "eve_motion_matter",
+      "type": "motion_sensor",
+      "name": "Eve Motion (Matter)",
+      "sku": "eve_motion_matter",
+      "attributes": {
+        "brand": "eve",
+        "model": "20EBR9901",
+        "protocol": "thread_matter",
+        "requires_hub": "thread_border_router_plus_matter_controller",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "power": "battery_aa",
+        "indoor_outdoor": "indoor_outdoor_ipx3",
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "switchbot_motion",
+      "type": "motion_sensor",
+      "name": "SwitchBot Motion Sensor",
+      "sku": "switchbot_motion_sensor",
+      "attributes": {
+        "brand": "switchbot",
+        "model": "W1101500",
+        "protocol": "bluetooth_le",
+        "requires_hub": "switchbot_hub_2_or_mini_with_matter",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "power": "battery_aaa",
+        "indoor_outdoor": "indoor",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "sonoff_snzb03",
+      "type": "motion_sensor",
+      "name": "Sonoff SNZB-03 Zigbee Motion Sensor",
+      "sku": "sonoff_snzb03",
+      "attributes": {
+        "brand": "sonoff",
+        "model": "SNZB-03",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "ecosystems": ["home_assistant"],
+        "power": "battery_cr2450",
+        "indoor_outdoor": "indoor",
+        "note": "Native cloud ecosystem support (HomeKit/Google/Alexa) requires the eWeLink Bridge or pass-through from HA.",
+        "source_ids": [2, 3]
+      }
+    },
+    {
+      "id": "ikea_tradfri_motion",
+      "type": "motion_sensor",
+      "name": "IKEA TRÅDFRI Motion Sensor",
+      "sku": "ikea_tradfri_motion",
+      "attributes": {
+        "brand": "ikea",
+        "model": "E1745",
+        "protocol": "zigbee",
+        "requires_hub": "tradfri_gateway_or_zigbee_coordinator",
+        "ecosystems_via_gateway": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "power": "battery_cr2032",
+        "indoor_outdoor": "indoor",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "wyze_sense_motion_v2",
+      "type": "motion_sensor",
+      "name": "Wyze Sense Motion Sensor v2",
+      "sku": "wyze_sense_motion_v2",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WSPIRMSV2",
+        "protocol": "915mhz_proprietary",
+        "requires_hub": "wyze_sense_hub",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "power": "battery_cr2450",
+        "indoor_outdoor": "indoor",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "govee_motion_h5121",
+      "type": "motion_sensor",
+      "name": "Govee Motion Sensor (WiFi)",
+      "sku": "govee_motion_h5121",
+      "attributes": {
+        "brand": "govee",
+        "model": "H5121",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "power": "battery_aaa",
+        "indoor_outdoor": "indoor",
+        "source_ids": [0, 3]
+      }
+    },
+
+    {
+      "id": "hue_white_a19",
+      "type": "smart_bulb",
+      "name": "Philips Hue White A19 (E26)",
+      "sku": "philips_hue_white_a19",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "LWA001",
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "color": "tunable_white_off",
+        "lumens": 800,
+        "base": "e26",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "hue_color_a19",
+      "type": "smart_bulb",
+      "name": "Philips Hue White and Color A19 (E26)",
+      "sku": "philips_hue_color_a19",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "LCA001",
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "color": "rgb_full",
+        "lumens": 800,
+        "base": "e26",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "lifx_a19",
+      "type": "smart_bulb",
+      "name": "LIFX A19 1100 lumens",
+      "sku": "lifx_a19",
+      "attributes": {
+        "brand": "lifx",
+        "model": "LBE32E26US",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "color": "rgb_full",
+        "lumens": 1100,
+        "base": "e26",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tapo_l530e",
+      "type": "smart_bulb",
+      "name": "TP-Link Tapo L530E (Color)",
+      "sku": "tapo_l530e",
+      "attributes": {
+        "brand": "tapo",
+        "model": "L530E",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_via_matter_firmware": ["homekit"],
+        "color": "rgb_full",
+        "lumens": 806,
+        "base": "e26",
+        "note": "HomeKit support arrives via Matter-over-WiFi after the firmware update is applied; not present out of box on early manufacturing batches.",
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "govee_h6008",
+      "type": "smart_bulb",
+      "name": "Govee A19 RGBWW Smart Bulb",
+      "sku": "govee_h6008",
+      "attributes": {
+        "brand": "govee",
+        "model": "H6008",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "color": "rgb_full",
+        "lumens": 800,
+        "base": "e26",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "nanoleaf_essentials_a19",
+      "type": "smart_bulb",
+      "name": "Nanoleaf Essentials A19 (Matter/Thread)",
+      "sku": "nanoleaf_essentials_a19",
+      "attributes": {
+        "brand": "nanoleaf",
+        "model": "NL45-0800WT240E26",
+        "protocol": "thread_matter",
+        "requires_hub": "thread_border_router_plus_matter_controller",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "color": "rgbww_full",
+        "lumens": 800,
+        "base": "e26",
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "aqara_t1_bulb",
+      "type": "smart_bulb",
+      "name": "Aqara LED Bulb T1 (tunable white)",
+      "sku": "aqara_t1_bulb",
+      "attributes": {
+        "brand": "aqara",
+        "model": "LEDLBT1-L01",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub_or_zigbee_coordinator",
+        "ecosystems_via_aqara_hub": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "color": "tunable_white",
+        "lumens": 806,
+        "base": "e26",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "ikea_tradfri_bulb",
+      "type": "smart_bulb",
+      "name": "IKEA TRÅDFRI E26 White Bulb",
+      "sku": "ikea_tradfri_bulb",
+      "attributes": {
+        "brand": "ikea",
+        "model": "LED1949C5",
+        "protocol": "zigbee",
+        "requires_hub": "tradfri_gateway_or_zigbee_coordinator",
+        "ecosystems_via_gateway": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "color": "tunable_white",
+        "lumens": 806,
+        "base": "e26",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "wyze_bulb_color",
+      "type": "smart_bulb",
+      "name": "Wyze Bulb Color",
+      "sku": "wyze_bulb_color",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WLPA19C",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "color": "rgb_full",
+        "lumens": 1100,
+        "base": "e26",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "meross_msl120b",
+      "type": "smart_bulb",
+      "name": "Meross Smart WiFi LED Bulb (HomeKit-native)",
+      "sku": "meross_msl120b",
+      "attributes": {
+        "brand": "meross",
+        "model": "MSL120B",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "color": "rgb_full",
+        "lumens": 810,
+        "base": "e26",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "sengled_smart_a19",
+      "type": "smart_bulb",
+      "name": "Sengled Smart LED Multicolor A19",
+      "sku": "sengled_smart_a19",
+      "attributes": {
+        "brand": "sengled",
+        "model": "E12-N1E",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "sengled_hub_or_zigbee_coordinator",
+        "ecosystems_via_sengled_hub": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "color": "rgb_full",
+        "lumens": 800,
+        "base": "e26",
+        "source_ids": [0, 2, 3]
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "C1_zigbee_requires_hub",
+      "kind": "requires",
+      "when": { "protocol": "zigbee" },
+      "then": { "requires_hub": "any_zigbee_coordinator" },
+      "rationale": "Zigbee is a mesh protocol that needs a coordinator (vendor hub like Hue Bridge / Aqara Hub / TRÅDFRI Gateway, or a generic Zigbee coordinator like SkyConnect / Conbee II / Sonoff ZBDongle paired to Home Assistant). No Zigbee device speaks directly to a phone or speaker.",
+      "source_id": 2
+    },
+    {
+      "id": "C2_zigbee_3_0_inherits_C1",
+      "kind": "requires",
+      "when": { "protocol": "zigbee_3_0" },
+      "then": { "requires_hub": "any_zigbee_coordinator" },
+      "rationale": "Zigbee 3.0 is a Zigbee variant — same hub requirement as C1.",
+      "source_id": 2
+    },
+    {
+      "id": "C3_thread_requires_border_router",
+      "kind": "requires",
+      "when": { "protocol": "thread_matter" },
+      "then": { "requires_hub": "thread_border_router" },
+      "rationale": "Thread is a low-power mesh that talks to the rest of the network via a Thread Border Router. HomePod mini, Apple TV 4K (Wi-Fi+Ethernet), Google Nest Hub (2nd gen), Echo (4th gen), Eero Pro 6E, and SkyConnect can all act as one.",
+      "source_id": 1
+    },
+    {
+      "id": "C4_matter_requires_controller",
+      "kind": "requires",
+      "when": { "protocol": "thread_matter" },
+      "then": { "requires_hub": "matter_controller" },
+      "rationale": "Matter devices need a controller in the chosen ecosystem (Apple Home Hub for HomeKit, Google Home / Nest Hub for Google, Echo for Alexa, the Matter integration in Home Assistant). The border router and the controller are often the same physical device.",
+      "source_id": 1
+    },
+    {
+      "id": "C5_wifi_2_4ghz_no_hub",
+      "kind": "implies",
+      "when": { "protocol": "wifi_2_4ghz" },
+      "then": { "requires_hub": "none" },
+      "rationale": "Wi-Fi smart devices join the household 2.4 GHz network directly. No hub. Trade-off: Wi-Fi devices add to AP client count and use more power than Zigbee/Thread mesh devices.",
+      "source_id": 3
+    },
+    {
+      "id": "C6_ecosystem_filter",
+      "kind": "requires",
+      "when": { "user_ecosystem": "<input>" },
+      "then": { "entity.attributes.ecosystems": "must include user_ecosystem" },
+      "rationale": "An entity is only a valid recommendation for a chosen ecosystem if that ecosystem appears in its supported list. Whether the path is direct, via vendor hub, or via Matter is captured per-entity in `ecosystems_via_*` attributes.",
+      "source_id": 3
+    }
+  ],
+  "goals": [
+    {
+      "id": "G1_max_native_compat",
+      "prompt": "Prefer entities that work natively in the chosen ecosystem with the fewest hops.",
+      "objective": "maximize",
+      "target": "ecosystems.includes(user_ecosystem) && requires_hub == 'none'"
+    },
+    {
+      "id": "G2_min_hub_count",
+      "prompt": "Across all selected entities, minimize the number of distinct hubs the user has to own.",
+      "objective": "minimize",
+      "target": "distinct(entity.attributes.requires_hub) excluding 'none'"
+    },
+    {
+      "id": "G3_prefer_matter",
+      "prompt": "When two entities are equally compatible, prefer Matter-certified ones — they survive ecosystem switches without re-buying.",
+      "objective": "maximize",
+      "target": "entity.attributes.protocol == 'thread_matter' || entity.attributes.ecosystems_via_matter_firmware"
+    }
+  ]
 }

@@ -1,0 +1,19 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "baseUrl": ".",
+    "paths": {
+      "@engine/*": ["engine/*"],
+      "@verticals/*": ["verticals/*"]
+    },
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": false,
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "target": "ES2022"
+  },
+  "include": ["src/**/*", "engine/**/*", "verticals/**/*.json", "*.config.*"],
+  "exclude": ["node_modules", "dist", ".astro"]
+}

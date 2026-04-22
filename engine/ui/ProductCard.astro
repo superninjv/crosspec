@@ -1,0 +1,88 @@
+---
+import type { PickedEntity } from "@engine/solver";
+
+interface Props {
+  pick: PickedEntity;
+  vertical: string;
+}
+
+const { pick, vertical } = Astro.props;
+const { entity, hub_required, native_in_ecosystem } = pick;
+const sku = entity.sku ?? entity.id;
+const affiliateHref = `/go/${vertical}/${sku}`;
+
+const ecosystems = (entity.attributes.ecosystems ?? []) as string[];
+---
+<article class="product-card">
+  <header>
+    <h3>{entity.name}</h3>
+    <span class={`badge ${native_in_ecosystem ? "ok" : "warn"}`}>
+      {native_in_ecosystem ? "native" : "via bridge"}
+    </span>
+  </header>
+  <dl class="specs">
+    {entity.attributes.brand && (<><dt>Brand</dt><dd>{entity.attributes.brand}</dd></>)}
+    {entity.attributes.model && (<><dt>Model</dt><dd>{entity.attributes.model}</dd></>)}
+    {entity.attributes.protocol && (<><dt>Protocol</dt><dd>{entity.attributes.protocol}</dd></>)}
+    <dt>Hub</dt><dd>{hub_required === "none" ? "no hub required" : hub_required}</dd>
+    <dt>Ecosystems</dt><dd>{ecosystems.join(", ") || "—"}</dd>
+  </dl>
+  <a class="cta" href={affiliateHref} rel="sponsored nofollow">
+    Find via affiliate
+  </a>
+  <p class="attrib">
+    Sources: {(entity.attributes.source_ids ?? []).map((s) => `#${s}`).join(", ")}
+    &middot; ingest 2026-04-21
+  </p>
+</article>
+<style>
+  .product-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .product-card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .product-card h3 { margin: 0; font-size: 1.05rem; }
+  .badge {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge.ok { background: #d6f0e3; color: #0b6e4f; }
+  .badge.warn { background: #fff3d6; color: #7a5b00; }
+  .specs {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 0.75rem;
+    row-gap: 0.2rem;
+    margin: 0.25rem 0;
+    font-size: 0.85rem;
+  }
+  .specs dt { color: var(--muted); }
+  .specs dd { margin: 0; }
+  .cta {
+    align-self: flex-start;
+    background: var(--accent);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .attrib {
+    margin: 0.25rem 0 0;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+</style>

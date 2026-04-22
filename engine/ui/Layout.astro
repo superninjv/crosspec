@@ -1,0 +1,74 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "Crosspec — vertical configurator hub." } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="brand">crosspec</a>
+      <nav>
+        <a href="/smart-home">Smart Home</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer class="site-footer">
+      <p>
+        Compatibility data sourced from public registries (cited per recommendation).
+        crosspec earns affiliate commission on qualifying purchases — this does not
+        change product ranking.
+      </p>
+    </footer>
+    <style is:global>
+      :root {
+        --fg: #111;
+        --muted: #555;
+        --bg: #fafaf7;
+        --accent: #0b6e4f;
+        --card: #fff;
+        --border: #e2e0d8;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+      }
+      .site-header, .site-footer {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 1rem;
+        align-items: baseline;
+      }
+      .site-footer {
+        border-bottom: none;
+        border-top: 1px solid var(--border);
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .site-header .brand {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        color: var(--fg);
+      }
+      .site-header nav { margin-left: auto; display: flex; gap: 1rem; }
+      .site-header nav a, .site-header .brand { color: var(--fg); }
+      a { color: var(--accent); }
+      main { padding: 1.5rem 1.25rem; max-width: 920px; margin: 0 auto; }
+    </style>
+  </body>
+</html>
