@@ -89,7 +89,12 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
   import { solve } from "@engine/solver";
   import type { KnowledgeBase, UserInputs } from "@engine/solver";
   import kbRaw from "@verticals/smart-home/kb.json";
-  import { matchExample, renderSolutionHTML } from "@engine/ui/render";
+  import {
+    matchExample,
+    renderSolutionHTML,
+    encodeInputs,
+    decodeInputs,
+  } from "@engine/ui/render";
 
   const kb = kbRaw as KnowledgeBase;
   const form = document.getElementById("configurator-form") as HTMLFormElement | null;
@@ -104,13 +109,52 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
       return { ecosystem, wants, picks_per_type: 3 };
     }
 
-    function rerender() {
-      const inputs = readForm();
+    function populateForm(inputs: UserInputs) {
+      for (const input of form!.querySelectorAll<HTMLInputElement>(
+        'input[name="ecosystem"]',
+      )) {
+        input.checked = input.value === inputs.ecosystem;
+      }
+      for (const input of form!.querySelectorAll<HTMLInputElement>(
+        'input[name="wants"]',
+      )) {
+        input.checked = inputs.wants.includes(input.value);
+      }
+    }
+
+    function render(inputs: UserInputs) {
       const [solution] = solve(kb, inputs);
       result!.innerHTML = renderSolutionHTML(solution, vertical);
     }
 
-    form.addEventListener("change", rerender);
+    function syncHash(inputs: UserInputs) {
+      const next = "#" + encodeInputs(inputs);
+      if (location.hash !== next) {
+        history.replaceState(null, "", next);
+      }
+    }
+
+    function onFormChange() {
+      const inputs = readForm();
+      render(inputs);
+      syncHash(inputs);
+    }
+
+    const fromHash = decodeInputs(location.hash);
+    if (fromHash) {
+      populateForm(fromHash);
+      render(fromHash);
+    }
+
+    form.addEventListener("change", onFormChange);
+
+    window.addEventListener("hashchange", () => {
+      const inputs = decodeInputs(location.hash);
+      if (inputs) {
+        populateForm(inputs);
+        render(inputs);
+      }
+    });
 
     document
       .querySelectorAll<HTMLButtonElement>(".chip[data-example]")
@@ -118,17 +162,9 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
         btn.addEventListener("click", () => {
           const match = matchExample(btn.dataset.example ?? "");
           if (!match) return;
-          for (const input of form.querySelectorAll<HTMLInputElement>(
-            'input[name="ecosystem"]',
-          )) {
-            input.checked = input.value === match.ecosystem;
-          }
-          for (const input of form.querySelectorAll<HTMLInputElement>(
-            'input[name="wants"]',
-          )) {
-            input.checked = match.wants.includes(input.value);
-          }
-          rerender();
+          populateForm(match);
+          render(match);
+          syncHash(match);
         });
       });
   }

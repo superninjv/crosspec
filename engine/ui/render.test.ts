@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { matchExample, renderSolutionHTML } from "./render.js";
+import {
+  matchExample,
+  renderSolutionHTML,
+  encodeInputs,
+  decodeInputs,
+} from "./render.js";
 import { solve } from "../solver/index.js";
 import type { KnowledgeBase } from "../solver/index.js";
 import kbRaw from "../../verticals/smart-home/kb.json" with { type: "json" };
@@ -76,5 +81,47 @@ describe("renderSolutionHTML", () => {
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).not.toContain("<script>alert(1)</script>");
     expect(html).toContain("&lt;script&gt;");
+  });
+});
+
+describe("encodeInputs / decodeInputs", () => {
+  it("round-trips a typical config", () => {
+    const inputs = {
+      ecosystem: "homekit",
+      wants: ["smart_bulb", "motion_sensor"],
+      picks_per_type: 3,
+    };
+    const encoded = encodeInputs(inputs);
+    const decoded = decodeInputs("#" + encoded);
+    expect(decoded).toEqual(inputs);
+  });
+
+  it("produces a human-readable hash", () => {
+    const encoded = encodeInputs({
+      ecosystem: "alexa",
+      wants: ["smart_bulb"],
+      picks_per_type: 3,
+    });
+    expect(encoded).toBe("ecosystem=alexa&wants=smart_bulb");
+  });
+
+  it("returns null for empty or missing hash", () => {
+    expect(decodeInputs("")).toBeNull();
+    expect(decodeInputs("#")).toBeNull();
+  });
+
+  it("returns null when ecosystem is missing", () => {
+    expect(decodeInputs("#wants=smart_bulb")).toBeNull();
+  });
+
+  it("returns null when wants is missing or empty", () => {
+    expect(decodeInputs("#ecosystem=homekit")).toBeNull();
+    expect(decodeInputs("#ecosystem=homekit&wants=")).toBeNull();
+  });
+
+  it("accepts a leading # or not", () => {
+    const withHash = decodeInputs("#ecosystem=homekit&wants=smart_bulb");
+    const without = decodeInputs("ecosystem=homekit&wants=smart_bulb");
+    expect(withHash).toEqual(without);
   });
 });

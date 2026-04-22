@@ -124,3 +124,24 @@ export function matchExample(text: string): UserInputs | null {
   if (wants.length === 0) return null;
   return { ecosystem, wants, picks_per_type: 3 };
 }
+
+export function encodeInputs(inputs: UserInputs): string {
+  const p = new URLSearchParams();
+  p.set("ecosystem", inputs.ecosystem);
+  if (inputs.wants.length > 0) p.set("wants", inputs.wants.join(","));
+  return p.toString();
+}
+
+export function decodeInputs(hash: string): UserInputs | null {
+  const stripped = hash.startsWith("#") ? hash.slice(1) : hash;
+  if (!stripped) return null;
+  const p = new URLSearchParams(stripped);
+  const ecosystem = p.get("ecosystem");
+  if (!ecosystem) return null;
+  const wants = (p.get("wants") ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (wants.length === 0) return null;
+  return { ecosystem, wants, picks_per_type: 3 };
+}
