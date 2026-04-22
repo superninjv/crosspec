@@ -1,0 +1,69 @@
+{
+  "version": "0.1",
+  "vertical": "smart-home",
+  "status": "stub — populated in commit 2 once at least one affiliate is approved",
+  "fallback": "amazon_associates",
+  "merchants": {
+    "switchbot": {
+      "name": "SwitchBot",
+      "network": "awin",
+      "rate_pct": 10.0,
+      "cookie_days": 60,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_SWITCHBOT",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "tapo": {
+      "name": "TP-Link Tapo",
+      "network": "direct",
+      "rate_pct": 10.0,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_TAPO",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "govee": {
+      "name": "Govee",
+      "network": "impact",
+      "rate_pct": 7.5,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_GOVEE",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "hue": {
+      "name": "Philips Hue / Signify",
+      "network": "awin",
+      "rate_pct": null,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_HUE",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "aqara": {
+      "name": "Aqara",
+      "network": "awin",
+      "rate_pct": null,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_AQARA",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "amazon_associates": {
+      "name": "Amazon Associates",
+      "network": "amazon",
+      "rate_pct": 2.5,
+      "cookie_days": 1,
+      "link_template": "https://www.amazon.com/dp/{{merchant_sku}}?tag={{affiliate_tag}}",
+      "tag": "env:MERCHANT_TAG_AMAZON",
+      "applied_on": null,
+      "status": "fallback"
+    }
+  },
+  "products": {}
+}

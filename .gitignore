@@ -1,0 +1,23 @@
+# Local caches / generated state
+.code-review-graph/
+.DS_Store
+
+# Node / Astro
+node_modules/
+dist/
+.astro/
+.cache/
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+
+# Env / secrets — never commit affiliate tags or API keys
+.env
+.env.*
+!.env.example
+
+# Editor
+.vscode/
+.idea/
+*.swp
