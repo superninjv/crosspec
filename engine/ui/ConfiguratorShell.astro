@@ -41,6 +41,13 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
       <button type="button" class="chip" data-example={q}>{q}</button>
     ))}
   </div>
+
+  <div class="share">
+    <button type="button" id="copy-link" class="copy-btn">
+      <span class="copy-label">Copy link to this config</span>
+    </button>
+    <span id="copy-status" class="copy-status" role="status" aria-live="polite"></span>
+  </div>
 </form>
 
 <section id="result" class="result">
@@ -167,6 +174,24 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
           syncHash(match);
         });
       });
+
+    const copyBtn = document.getElementById("copy-link") as HTMLButtonElement | null;
+    const copyStatus = document.getElementById("copy-status");
+    if (copyBtn && copyStatus) {
+      copyBtn.addEventListener("click", async () => {
+        syncHash(readForm());
+        const url = location.href;
+        try {
+          await navigator.clipboard.writeText(url);
+          copyStatus.textContent = "Link copied";
+        } catch {
+          copyStatus.textContent = url;
+        }
+        setTimeout(() => {
+          if (copyStatus.textContent === "Link copied") copyStatus.textContent = "";
+        }, 2000);
+      });
+    }
   }
 </script>
 
@@ -238,6 +263,30 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
     border-color: var(--accent);
   }
   .chip:active { transform: translateY(1px); }
+
+  .share {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+  .copy-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.85rem;
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .copy-btn:hover { filter: brightness(1.08); }
+  .copy-btn:active { transform: translateY(1px); }
+  .copy-status {
+    font-size: 0.82rem;
+    color: var(--muted);
+    min-height: 1em;
+  }
 
   .result h2 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
   .result h2 code {

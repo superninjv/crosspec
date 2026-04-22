@@ -15,7 +15,9 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 
 **Build-phase items only. No more research/triage items without explicit founder request.**
 
-- [ ] **Shareable configurator URLs** — DoD: configurator state (ecosystem + wants) persists in `location.hash` so bookmarks, browser back/forward, and shared links all restore the same configuration. On load, read hash → populate form → re-solve. On any form change, write hash (using `history.replaceState` so back-button still leaves the page). Directly implements direction.md's "saved configurator URLs as long-tail UGC" acquisition strategy. Session 4 2026-04-22.
+- [ ] **Copy-link button for shareable configs** — DoD: button near the form that copies `location.href` to clipboard and shows a brief "Link copied" confirmation. Makes the just-shipped hash-sync feature discoverable — without a visible button, users have to know to grab the URL bar. Session 4 2026-04-22.
+
+- [ ] **Affiliate clickout via Pages Functions** — DoD: `/go/:vertical/:sku` resolves through a Cloudflare Pages Function that looks up the SKU in `verticals/<vertical>/affiliates.json`, 302-redirects to the affiliate URL if present, falls back to an Amazon search URL if not. All product-card CTAs stop 404'ing. Real affiliate IDs can be slotted into the JSON later without code changes. Session 4 2026-04-22.
 
 - [ ] **Affiliate partner applications for smart home** — DoD: applications submitted to SwitchBot (Awin, 6-15%/60d — highest-value anchor), TP-Link Tapo (direct 10%), Govee (Impact, 5-10%), Philips Hue/Signify (Awin/Partnerize), Aqara (Awin UK, Sovrn US). Track approval state in `~/notes/projects/crosspec-affiliate-status.md`. Amazon Associates fallback for anything not approved or SKU-missing. Parallel with build — can start today while MVP is being written.
 
