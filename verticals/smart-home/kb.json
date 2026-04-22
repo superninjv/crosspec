@@ -361,6 +361,94 @@
         "base": "e26",
         "source_ids": [0, 2, 3]
       }
+    },
+
+    {
+      "id": "tapo_p100",
+      "type": "smart_plug",
+      "name": "TP-Link Tapo P100 Smart Plug",
+      "sku": "tapo_p100",
+      "attributes": {
+        "brand": "tapo",
+        "model": "P100",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "plug",
+        "max_load_watts": 1875,
+        "note": "Non-Matter Wi-Fi plug. HomeKit is not supported on this SKU; pick the Matter-capable P125M if HomeKit matters.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tapo_p125m",
+      "type": "smart_plug",
+      "name": "TP-Link Tapo P125M (Matter Smart Plug)",
+      "sku": "tapo_p125m",
+      "attributes": {
+        "brand": "tapo",
+        "model": "P125M",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "matter_controller",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "plug_mini",
+        "max_load_watts": 1875,
+        "note": "Matter-over-Wi-Fi plug. Commissioned directly into any Matter controller — no Tapo cloud required once paired.",
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "amazon_smart_plug",
+      "type": "smart_plug",
+      "name": "Amazon Smart Plug",
+      "sku": "amazon_smart_plug",
+      "attributes": {
+        "brand": "amazon",
+        "model": "HB-P1701",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["alexa"],
+        "ecosystems_unsupported": ["homekit", "google_home", "home_assistant"],
+        "form_factor": "plug",
+        "max_load_watts": 1875,
+        "note": "Alexa-exclusive. No native HomeKit, Google Home, or Home Assistant integration. Only pick this if the household is committed to Alexa and values zero-config setup over cross-ecosystem reach.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "switchbot_plug_mini_w1901400",
+      "type": "smart_plug",
+      "name": "SwitchBot Plug Mini (W1901400)",
+      "sku": "switchbot_plug_mini",
+      "attributes": {
+        "brand": "switchbot",
+        "model": "W1901400",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "switchbot_hub_2_or_mini_with_matter",
+        "ecosystems_via_switchbot_hub_matter": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "plug_mini",
+        "max_load_watts": 1875,
+        "note": "Wi-Fi plug; HomeKit/Alexa/Google paths go through a SwitchBot Hub 2 or Hub Mini with Matter acting as a Matter bridge. Direct HA control via the SwitchBot integration.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "eve_energy_matter",
+      "type": "smart_plug",
+      "name": "Eve Energy (Matter)",
+      "sku": "eve_energy_matter",
+      "attributes": {
+        "brand": "eve",
+        "model": "20EBP8201",
+        "protocol": "thread_matter",
+        "requires_hub": "thread_border_router_plus_matter_controller",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "plug",
+        "max_load_watts": 1800,
+        "source_ids": [0, 1, 3]
+      }
     }
   ],
   "constraints": [

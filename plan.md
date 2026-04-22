@@ -15,6 +15,8 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 
 **Build-phase items only. No more research/triage items without explicit founder request.**
 
+- [ ] **Expand smart-home KB: smart_plug device type** — DoD: 4-6 smart plug entries added to `verticals/smart-home/kb.json.entities` with cited sources (HA integrations registry + vendor docs), `smart_plug` checkbox added to the ConfiguratorShell form, `plugPicks` render block added to both `engine/ui/ConfiguratorShell.astro` and `engine/ui/render.ts::renderSolutionHTML`, `TYPE_KEYWORDS` extended for plug queries, example chip added. Tests mirror existing `smart_bulb`/`motion_sensor` patterns — expect ~27 tests total. Minimum viable set: TP-Link Tapo P100, TP-Link Tapo P125M (Matter-over-WiFi), Amazon Smart Plug, SwitchBot Plug Mini W1901400.
+
 - [ ] **Affiliate partner applications for smart home** — DoD: applications submitted to SwitchBot (Awin, 6-15%/60d — highest-value anchor), TP-Link Tapo (direct 10%), Govee (Impact, 5-10%), Philips Hue/Signify (Awin/Partnerize), Aqara (Awin UK, Sovrn US). Track approval state in `~/notes/projects/crosspec-affiliate-status.md`. Amazon Associates fallback for anything not approved or SKU-missing. Parallel with build — can start today while MVP is being written.
 
 - [ ] **EEAT author page** — DoD: one-page author bio for Jack (named, LinkedIn linked, 1-paragraph credibility hook — Home Assistant setup, Matter/Thread hands-on experience, or equivalent). Required day-one per hard rule. Lives at `crosspec.com/about` or similar. Short — one page, one photo, one LinkedIn link. 30 min.

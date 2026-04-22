@@ -94,3 +94,37 @@ test("warns when picks span multiple distinct hubs", () => {
     expect(sol.warnings.some((w) => w.includes("distinct hubs"))).toBe(true);
   }
 });
+
+test("homekit + smart_plug returns >= 2 Matter-capable picks", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_plug"],
+    picks_per_type: 3,
+  });
+  const plugs = sol.picks.filter((p) => p.entity.type === "smart_plug");
+  expect(plugs.length).toBeGreaterThanOrEqual(2);
+  const ids = plugs.map((p) => p.entity.id);
+  expect(ids).toContain("eve_energy_matter");
+  expect(ids).toContain("tapo_p125m");
+});
+
+test("alexa ecosystem includes the Alexa-only Amazon Smart Plug", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "alexa",
+    wants: ["smart_plug"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  expect(ids).toContain("amazon_smart_plug");
+});
+
+test("homekit ecosystem filter excludes the Alexa-only Amazon Smart Plug and non-Matter Tapo P100", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_plug"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  expect(ids).not.toContain("amazon_smart_plug");
+  expect(ids).not.toContain("tapo_p100");
+});

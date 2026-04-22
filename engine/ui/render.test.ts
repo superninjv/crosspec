@@ -44,6 +44,20 @@ describe("matchExample", () => {
   it("returns null when device-type keyword is missing", () => {
     expect(matchExample("I use Apple HomeKit, what should I buy")).toBeNull();
   });
+
+  it("parses HomeKit + smart plug example", () => {
+    const m = matchExample(
+      "HomeKit household looking for a Matter smart plug",
+    );
+    expect(m?.ecosystem).toBe("homekit");
+    expect(m?.wants).toContain("smart_plug");
+  });
+
+  it("treats 'outlet' as a smart_plug synonym", () => {
+    const m = matchExample("Alexa user shopping for a smart outlet");
+    expect(m?.ecosystem).toBe("alexa");
+    expect(m?.wants).toContain("smart_plug");
+  });
 });
 
 describe("renderSolutionHTML", () => {
@@ -69,6 +83,17 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).toContain("No compatible devices");
+  });
+
+  it("renders a Smart plugs section when plug picks are present", () => {
+    const [solution] = solve(kb, {
+      ecosystem: "homekit",
+      wants: ["smart_plug"],
+      picks_per_type: 3,
+    });
+    const html = renderSolutionHTML(solution, "smart-home");
+    expect(html).toContain("<h3>Smart plugs</h3>");
+    expect(html).toContain('href="/go/smart-home/');
   });
 
   it("escapes HTML special characters in inputs", () => {

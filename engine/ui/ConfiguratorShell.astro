@@ -14,6 +14,7 @@ interface Props {
 const { vertical, headline, subheadline, examples, solution } = Astro.props;
 const motionPicks = solution.picks.filter((p) => p.entity.type === "motion_sensor");
 const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
+const plugPicks = solution.picks.filter((p) => p.entity.type === "smart_plug");
 ---
 <section class="hero">
   <h1>{headline}</h1>
@@ -33,6 +34,7 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
     <legend>What do you want to add?</legend>
     <label><input type="checkbox" name="wants" value="smart_bulb" checked /> Smart bulb</label>
     <label><input type="checkbox" name="wants" value="motion_sensor" checked /> Motion sensor</label>
+    <label><input type="checkbox" name="wants" value="smart_plug" /> Smart plug</label>
   </fieldset>
 
   <div class="examples">
@@ -67,6 +69,15 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
       <h3>Smart bulbs</h3>
       <div class="grid">
         {bulbPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+      </div>
+    </>
+  )}
+
+  {plugPicks.length > 0 && (
+    <>
+      <h3>Smart plugs</h3>
+      <div class="grid">
+        {plugPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
       </div>
     </>
   )}
