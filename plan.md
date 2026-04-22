@@ -15,8 +15,6 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 
 **Build-phase items only. No more research/triage items without explicit founder request.**
 
-- [ ] **Expand smart-home KB: smart_plug device type** — DoD: 4-6 smart plug entries added to `verticals/smart-home/kb.json.entities` with cited sources (HA integrations registry + vendor docs), `smart_plug` checkbox added to the ConfiguratorShell form, `plugPicks` render block added to both `engine/ui/ConfiguratorShell.astro` and `engine/ui/render.ts::renderSolutionHTML`, `TYPE_KEYWORDS` extended for plug queries, example chip added. Tests mirror existing `smart_bulb`/`motion_sensor` patterns — expect ~27 tests total. Minimum viable set: TP-Link Tapo P100, TP-Link Tapo P125M (Matter-over-WiFi), Amazon Smart Plug, SwitchBot Plug Mini W1901400.
-
 - [ ] **Affiliate partner applications for smart home** — DoD: applications submitted to SwitchBot (Awin, 6-15%/60d — highest-value anchor), TP-Link Tapo (direct 10%), Govee (Impact, 5-10%), Philips Hue/Signify (Awin/Partnerize), Aqara (Awin UK, Sovrn US). Track approval state in `~/notes/projects/crosspec-affiliate-status.md`. Amazon Associates fallback for anything not approved or SKU-missing. Parallel with build — can start today while MVP is being written.
 
 - [ ] **EEAT author page** — DoD: one-page author bio for Jack (named, LinkedIn linked, 1-paragraph credibility hook — Home Assistant setup, Matter/Thread hands-on experience, or equivalent). Required day-one per hard rule. Lives at `crosspec.com/about` or similar. Short — one page, one photo, one LinkedIn link. 30 min.
@@ -24,6 +22,8 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 - [ ] **Community-first acquisition plan (post-ship)** — DoD: short list of where to post the v0.1 configurator once it's live — r/homeautomation, r/smarthome, r/matterandthread, HA Discord + community forum, relevant subreddits for specific ecosystems. NOT a launch plan with hype — a genuine "I made this thing that might help" post from the EEAT author account. Written up in `~/notes/projects/crosspec-community-plan.md`. 45 min.
 
 ## Recent completions
+
+- 2026-04-22 — **smart_plug device type added to smart-home vertical.** KB expanded from 2 to 3 device types: 5 smart plug entries (Tapo P100, Tapo P125M Matter, Amazon Smart Plug, SwitchBot Plug Mini W1901400, Eve Energy Matter) with source citations matching the existing attribution table. ConfiguratorShell gains a smart_plug checkbox + plugPicks render block, `engine/ui/render.ts` mirrors in the hydrated client path, TYPE_KEYWORDS covers "smart plug"/"outlet", one plug example chip on /smart-home. Tests 21 → 27. Zero engine changes — the expansion proves the KB-and-UI-wrapper contract works. Slots left for adding a 4th type (smart lock, climate sensor, etc.) the same way.
 
 - 2026-04-22 — **OG + Twitter meta + canonical links.** Shared URLs on Reddit / Discord / HA forum now get proper previews. `Layout.astro` emits `og:title/description/url/site_name`, `twitter:card`, and a `rel=canonical` on every page. URL comes from `Astro.url.pathname` so `crosspec.com/<route>/` is the canonical regardless of which host served it.
 
