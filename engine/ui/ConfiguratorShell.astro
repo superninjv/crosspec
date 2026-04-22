@@ -18,22 +18,34 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
 <section class="hero">
   <h1>{headline}</h1>
   <p class="sub">{subheadline}</p>
-
-  <div class="examples">
-    {examples.map((q) => (
-      <button type="button" class="chip" disabled>{q}</button>
-    ))}
-  </div>
-  <p class="chip-note">
-    Interactive chat lands in v0.2. v0.1 shows a worked example below — same
-    engine, same solver, same provenance.
-  </p>
 </section>
 
-<section class="result">
+<form id="configurator-form" class="config-form" data-vertical={vertical}>
+  <fieldset>
+    <legend>Which ecosystem are you on?</legend>
+    <label><input type="radio" name="ecosystem" value="homekit" checked /> HomeKit (Apple)</label>
+    <label><input type="radio" name="ecosystem" value="alexa" /> Alexa (Amazon)</label>
+    <label><input type="radio" name="ecosystem" value="google_home" /> Google Home</label>
+    <label><input type="radio" name="ecosystem" value="home_assistant" /> Home Assistant</label>
+  </fieldset>
+
+  <fieldset>
+    <legend>What do you want to add?</legend>
+    <label><input type="checkbox" name="wants" value="smart_bulb" checked /> Smart bulb</label>
+    <label><input type="checkbox" name="wants" value="motion_sensor" checked /> Motion sensor</label>
+  </fieldset>
+
+  <div class="examples">
+    <span class="examples-label">Try an example:</span>
+    {examples.map((q) => (
+      <button type="button" class="chip" data-example={q}>{q}</button>
+    ))}
+  </div>
+</form>
+
+<section id="result" class="result">
   <h2>
-    Worked example: <code>ecosystem = {solution.inputs.ecosystem}</code>,
-    <code>wants = [{solution.inputs.wants.join(", ")}]</code>
+    Ecosystem: <code>{solution.inputs.ecosystem}</code> &middot; wants: <code>{solution.inputs.wants.join(", ")}</code>
   </h2>
 
   {solution.warnings.length > 0 && (
@@ -72,29 +84,125 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
 
   <ReasoningChain steps={solution.reasoning_chain} />
 </section>
+
+<script>
+  import { solve } from "@engine/solver";
+  import type { KnowledgeBase, UserInputs } from "@engine/solver";
+  import kbRaw from "@verticals/smart-home/kb.json";
+  import { matchExample, renderSolutionHTML } from "@engine/ui/render";
+
+  const kb = kbRaw as KnowledgeBase;
+  const form = document.getElementById("configurator-form") as HTMLFormElement | null;
+  const result = document.getElementById("result");
+  if (form && result) {
+    const vertical = form.dataset.vertical ?? "smart-home";
+
+    function readForm(): UserInputs {
+      const data = new FormData(form!);
+      const ecosystem = (data.get("ecosystem") as string) ?? "homekit";
+      const wants = data.getAll("wants") as string[];
+      return { ecosystem, wants, picks_per_type: 3 };
+    }
+
+    function rerender() {
+      const inputs = readForm();
+      const [solution] = solve(kb, inputs);
+      result!.innerHTML = renderSolutionHTML(solution, vertical);
+    }
+
+    form.addEventListener("change", rerender);
+
+    document
+      .querySelectorAll<HTMLButtonElement>(".chip[data-example]")
+      .forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const match = matchExample(btn.dataset.example ?? "");
+          if (!match) return;
+          for (const input of form.querySelectorAll<HTMLInputElement>(
+            'input[name="ecosystem"]',
+          )) {
+            input.checked = input.value === match.ecosystem;
+          }
+          for (const input of form.querySelectorAll<HTMLInputElement>(
+            'input[name="wants"]',
+          )) {
+            input.checked = match.wants.includes(input.value);
+          }
+          rerender();
+        });
+      });
+  }
+</script>
+
 <style>
   .hero h1 { font-size: 1.85rem; line-height: 1.2; margin: 0 0 0.5rem; }
-  .hero .sub { color: var(--muted); margin: 0 0 1rem; }
+  .hero .sub { color: var(--muted); margin: 0 0 1.25rem; }
+
+  .config-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin: 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .config-form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+  }
+  .config-form legend {
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .config-form label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .config-form input[type="radio"],
+  .config-form input[type="checkbox"] { accent-color: var(--accent); }
+
   .examples {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
+    gap: 0.45rem;
+    align-items: center;
+  }
+  .examples-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-right: 0.25rem;
   }
   .chip {
     background: white;
     border: 1px solid var(--border);
     border-radius: 999px;
-    padding: 0.4rem 0.85rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    cursor: not-allowed;
+    padding: 0.35rem 0.75rem;
+    font: inherit;
+    font-size: 0.8rem;
+    color: var(--fg);
+    cursor: pointer;
+    transition: background 0.1s ease, border-color 0.1s ease;
   }
-  .chip-note {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin: 0.25rem 0 1.5rem;
+  .chip:hover {
+    background: #f4f2ea;
+    border-color: var(--accent);
   }
+  .chip:active { transform: translateY(1px); }
+
   .result h2 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
   .result h2 code {
     background: #efece2;
@@ -118,4 +226,11 @@ const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
   }
   .warnings ul { margin: 0.25rem 0 0 1rem; padding: 0; }
   .hub-summary { margin-top: 1rem; font-size: 0.9rem; }
+  .empty {
+    background: #fff8e0;
+    border: 1px solid #f0d97a;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
 </style>
