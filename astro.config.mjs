@@ -7,4 +7,9 @@ export default defineConfig({
   build: {
     inlineStylesheets: "auto",
   },
+  vite: {
+    server: {
+      allowedHosts: ["crosspec.foundry.test"],
+    },
+  },
 });
