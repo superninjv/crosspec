@@ -19,11 +19,14 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 
 - [ ] **EEAT author page** — DoD: one-page author bio for Jack (named, 1-paragraph credibility hook — Home Assistant setup, Matter/Thread hands-on experience, or equivalent). Required day-one per hard rule. Lives at `crosspec.com/about`. Founder chose no LinkedIn link; credibility comes from the named-author + concrete hands-on claims alone. Scaffold shipped 2026-04-22 at commit `c742bf3`; LinkedIn-stripped follow-up this session.
 
-- [ ] **Set up foundry-01 dev fabric for crosspec** — DoD: `crosspec.foundry.test` serves `astro dev` live from `~/projects/crosspec` via mutagen sync → foundry systemd user unit → Caddy reverse proxy, matching the `synoros.foundry.test` / `pegeos.foundry.test` pattern. Adds `crosspec` to the existing dev fabric so local edits hot-reload on foundry instead of the workstation. Pick a free port, register mutagen sync, systemd user unit, Caddy site block, reload Caddy. No DNS config (wildcard).
 
 - [ ] **Community-first acquisition plan (post-ship)** — DoD: short list of where to post the v0.1 configurator once it's live — r/homeautomation, r/smarthome, r/matterandthread, HA Discord + community forum, relevant subreddits for specific ecosystems. NOT a launch plan with hype — a genuine "I made this thing that might help" post from the EEAT author account. Written up in `~/notes/projects/crosspec-community-plan.md`. 45 min.
 
 ## Recent completions
+
+- 2026-04-23 — **foundry-01 dev fabric wired for crosspec.** `crosspec.foundry.test` serves `astro dev --port 3005` live from the workstation via mutagen sync (`/home/jack/projects/crosspec` ↔ `jack@10.0.0.3:/srv/dev/crosspec`, ignoring `node_modules` / `dist` / `.astro`) + systemd user unit `crosspec-dev.service` + Caddy site block reverse-proxying `localhost:3005`. Local edits hot-reload on foundry. `astro.config.mjs` now lists `crosspec.foundry.test` in `vite.server.allowedHosts` — Vite's default host check rejects non-localhost proxied hostnames with 403.
+
+- 2026-04-22 — **EEAT author page live at `/about`.** Named author (Jack), 1-paragraph hands-on credibility hook (Home Assistant + Matter/Thread/Zigbee across Hue, Aqara, SwitchBot, Tapo, Eve), attribution / affiliate disclosure paragraph, no LinkedIn link (founder choice — credibility comes from the named-author + concrete claims). Commits `c742bf3` (scaffold) + `b8f0e27` (LinkedIn strip).
 
 - 2026-04-22 — **smart_plug device type added to smart-home vertical.** KB expanded from 2 to 3 device types: 5 smart plug entries (Tapo P100, Tapo P125M Matter, Amazon Smart Plug, SwitchBot Plug Mini W1901400, Eve Energy Matter) with source citations matching the existing attribution table. ConfiguratorShell gains a smart_plug checkbox + plugPicks render block, `engine/ui/render.ts` mirrors in the hydrated client path, TYPE_KEYWORDS covers "smart plug"/"outlet", one plug example chip on /smart-home. Tests 21 → 27. Zero engine changes — the expansion proves the KB-and-UI-wrapper contract works. Slots left for adding a 4th type (smart lock, climate sensor, etc.) the same way.
 
