@@ -63,6 +63,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
   const motionPicks = solution.picks.filter((p) => p.entity.type === "motion_sensor");
   const tempPicks = solution.picks.filter((p) => p.entity.type === "temperature_sensor");
   const contactPicks = solution.picks.filter((p) => p.entity.type === "contact_sensor");
+  const switchPicks = solution.picks.filter((p) => p.entity.type === "smart_switch");
 
   const warnings =
     solution.warnings.length > 0
@@ -99,6 +100,11 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
       ? `<h3>Door &amp; window sensors</h3><div class="grid">${contactPicks.map((p) => renderProductCard(p, vertical)).join("")}</div>`
       : "";
 
+  const switches =
+    switchPicks.length > 0
+      ? `<h3>Smart switches &amp; dimmers</h3><div class="grid">${switchPicks.map((p) => renderProductCard(p, vertical)).join("")}</div>`
+      : "";
+
   const hubs = `<p class="hub-summary">Hubs needed across this selection: <strong>${solution.hubs_required.length > 0 ? esc(solution.hubs_required.join(", ")) : "none"}</strong></p>`;
 
   const empty =
@@ -115,6 +121,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
     ${motions}
     ${temps}
     ${contacts}
+    ${switches}
     ${hubs}
     ${renderReasoning(solution.reasoning_chain)}`;
 }
@@ -152,6 +159,11 @@ const TYPE_KEYWORDS: [string, string][] = [
   ["contact sensor", "contact_sensor"],
   ["door sensor", "contact_sensor"],
   ["window sensor", "contact_sensor"],
+  ["smart switch", "smart_switch"],
+  ["light switch", "smart_switch"],
+  ["wall switch", "smart_switch"],
+  ["wall dimmer", "smart_switch"],
+  ["dimmer", "smart_switch"],
 ];
 
 export function matchExample(text: string): UserInputs | null {

@@ -671,6 +671,78 @@
         "note": "Cheapest Zigbee contact sensor that works via Zigbee2MQTT / ZHA in Home Assistant. Native cloud ecosystem support (HomeKit/Google/Alexa) requires the eWeLink Bridge or pass-through from HA.",
         "source_ids": [2, 3]
       }
+    },
+
+    {
+      "id": "lutron_caseta_diva",
+      "type": "smart_switch",
+      "name": "Lutron Caseta Diva Smart Dimmer (PD-6WCL)",
+      "sku": "lutron_caseta_diva",
+      "attributes": {
+        "brand": "lutron",
+        "model": "PD-6WCL",
+        "protocol": "lutron_clear_connect",
+        "requires_hub": "lutron_smart_bridge_pro_2",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "single_gang_dimmer",
+        "neutral_required": false,
+        "note": "Lutron Clear Connect runs on a dedicated proprietary RF mesh, not Wi-Fi or Zigbee — requires a Lutron Smart Bridge Pro 2 (L-BDG2-WH) as its hub. HomeKit / Google / Alexa integrate via that bridge. Home Assistant talks to the bridge via the lutron_caseta integration. No-neutral install supported.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "aqara_h1_no_neutral",
+      "type": "smart_switch",
+      "name": "Aqara Smart Wall Switch H1 US (No Neutral)",
+      "sku": "aqara_h1_no_neutral",
+      "attributes": {
+        "brand": "aqara",
+        "model": "WS-USC03",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub_or_zigbee_coordinator",
+        "ecosystems_via_aqara_hub": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "single_gang_paddle",
+        "neutral_required": false,
+        "note": "Zigbee 3.0 wall switch designed for homes without a neutral wire in the switch box — a common retrofit headache. HomeKit / Google / Alexa paths go through an Aqara hub (M2 / M3) acting as a Matter bridge; Home Assistant via Zigbee2MQTT or ZHA without the hub.",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "kasa_hs200",
+      "type": "smart_switch",
+      "name": "TP-Link Kasa HS200 Smart Wi-Fi Light Switch",
+      "sku": "kasa_hs200",
+      "attributes": {
+        "brand": "tp_link_kasa",
+        "model": "HS200",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "single_gang_paddle",
+        "neutral_required": true,
+        "note": "Wi-Fi paddle switch with no Matter firmware path — HomeKit is not supported on this SKU. Pick the Shelly Plus 1PM or Aqara H1 if HomeKit matters.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "shelly_plus_1pm",
+      "type": "smart_switch",
+      "name": "Shelly Plus 1PM (behind-switch relay)",
+      "sku": "shelly_plus_1pm",
+      "attributes": {
+        "brand": "shelly",
+        "model": "Plus 1PM",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "ecosystems_via_matter_firmware": ["homekit"],
+        "form_factor": "behind_switch_relay",
+        "neutral_required": true,
+        "note": "Single-channel Wi-Fi relay with power metering that installs behind the user's existing dumb toggle or paddle — no new faceplate required. Matter-over-Wi-Fi support landed on the Plus-gen firmware in 2024, giving it a HomeKit path via any Matter controller. Google / Alexa / HA work via native Shelly integrations directly.",
+        "source_ids": [0, 1, 3]
+      }
     }
   ],
   "constraints": [

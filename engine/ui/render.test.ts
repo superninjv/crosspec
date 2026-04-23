@@ -100,6 +100,20 @@ describe("matchExample", () => {
     expect(m?.ecosystem).toBe("home_assistant");
     expect(m?.wants).toContain("contact_sensor");
   });
+
+  it("parses HomeKit + smart switch / dimmer example", () => {
+    const m = matchExample(
+      "HomeKit no-neutral retrofit — smart dimmer that works with existing wiring",
+    );
+    expect(m?.ecosystem).toBe("homekit");
+    expect(m?.wants).toContain("smart_switch");
+  });
+
+  it("treats 'wall switch' as a smart_switch synonym", () => {
+    const m = matchExample("Home Assistant user wants a Zigbee wall switch");
+    expect(m?.ecosystem).toBe("home_assistant");
+    expect(m?.wants).toContain("smart_switch");
+  });
 });
 
 describe("renderSolutionHTML", () => {
@@ -168,6 +182,17 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).toContain("<h3>Door &amp; window sensors</h3>");
+    expect(html).toContain('href="/go/smart-home/');
+  });
+
+  it("renders a Smart switches & dimmers section when switch picks are present", () => {
+    const [solution] = solve(kb, {
+      ecosystem: "homekit",
+      wants: ["smart_switch"],
+      picks_per_type: 3,
+    });
+    const html = renderSolutionHTML(solution, "smart-home");
+    expect(html).toContain("<h3>Smart switches &amp; dimmers</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 

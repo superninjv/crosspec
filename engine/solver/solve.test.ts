@@ -247,3 +247,42 @@ test("contact_sensor with Thread+Matter ranks above Zigbee-via-hub alternative",
     expect(p2Idx).toBeLessThan(t1Idx);
   }
 });
+
+test("homekit + smart_switch returns >= 3 picks across Lutron, Zigbee-via-hub, and Matter-firmware paths", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_switch"],
+    picks_per_type: 5,
+  });
+  const switches = sol.picks.filter((p) => p.entity.type === "smart_switch");
+  expect(switches.length).toBeGreaterThanOrEqual(3);
+  const ids = switches.map((p) => p.entity.id);
+  expect(ids).toContain("lutron_caseta_diva");
+  expect(ids).toContain("aqara_h1_no_neutral");
+  expect(ids).toContain("shelly_plus_1pm");
+});
+
+test("homekit ecosystem filter excludes the non-Matter Wi-Fi Kasa HS200 switch", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_switch"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  expect(ids).not.toContain("kasa_hs200");
+});
+
+test("smart_switch with Matter firmware (Shelly) ranks above hub-dependent Lutron in HomeKit", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_switch"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  const shellyIdx = ids.indexOf("shelly_plus_1pm");
+  const lutronIdx = ids.indexOf("lutron_caseta_diva");
+  expect(shellyIdx).toBeGreaterThanOrEqual(0);
+  if (lutronIdx !== -1) {
+    expect(shellyIdx).toBeLessThan(lutronIdx);
+  }
+});
