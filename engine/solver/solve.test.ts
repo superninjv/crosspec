@@ -169,3 +169,42 @@ test("smart_lock + smart_plug combined query returns picks for both types", () =
   expect(locks.length).toBeGreaterThanOrEqual(2);
   expect(plugs.length).toBeGreaterThanOrEqual(2);
 });
+
+test("homekit + temperature_sensor returns >= 3 picks across Matter, Zigbee, and BLE paths", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["temperature_sensor"],
+    picks_per_type: 5,
+  });
+  const temps = sol.picks.filter((p) => p.entity.type === "temperature_sensor");
+  expect(temps.length).toBeGreaterThanOrEqual(3);
+  const ids = temps.map((p) => p.entity.id);
+  expect(ids).toContain("eve_weather_matter");
+  expect(ids).toContain("aqara_temp_humidity_t1");
+  expect(ids).toContain("switchbot_meter_plus");
+});
+
+test("homekit ecosystem filter excludes the HA-only Govee H5075 hygrometer", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["temperature_sensor"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  expect(ids).not.toContain("govee_hygrometer_h5075");
+});
+
+test("temperature_sensor with Thread+Matter ranks above BLE-only sensor", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["temperature_sensor"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  const eveIdx = ids.indexOf("eve_weather_matter");
+  const switchbotIdx = ids.indexOf("switchbot_meter_plus");
+  expect(eveIdx).toBeGreaterThanOrEqual(0);
+  if (switchbotIdx !== -1) {
+    expect(eveIdx).toBeLessThan(switchbotIdx);
+  }
+});

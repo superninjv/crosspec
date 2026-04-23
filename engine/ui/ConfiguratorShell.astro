@@ -16,6 +16,7 @@ const motionPicks = solution.picks.filter((p) => p.entity.type === "motion_senso
 const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
 const plugPicks = solution.picks.filter((p) => p.entity.type === "smart_plug");
 const lockPicks = solution.picks.filter((p) => p.entity.type === "smart_lock");
+const tempPicks = solution.picks.filter((p) => p.entity.type === "temperature_sensor");
 ---
 <section class="hero">
   <h1>{headline}</h1>
@@ -37,6 +38,7 @@ const lockPicks = solution.picks.filter((p) => p.entity.type === "smart_lock");
     <label><input type="checkbox" name="wants" value="motion_sensor" checked /> Motion sensor</label>
     <label><input type="checkbox" name="wants" value="smart_plug" /> Smart plug</label>
     <label><input type="checkbox" name="wants" value="smart_lock" /> Smart lock</label>
+    <label><input type="checkbox" name="wants" value="temperature_sensor" /> Temperature &amp; humidity</label>
   </fieldset>
 
   <div class="examples">
@@ -98,6 +100,15 @@ const lockPicks = solution.picks.filter((p) => p.entity.type === "smart_lock");
       <h3>Motion sensors</h3>
       <div class="grid">
         {motionPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+      </div>
+    </>
+  )}
+
+  {tempPicks.length > 0 && (
+    <>
+      <h3>Temperature &amp; humidity</h3>
+      <div class="grid">
+        {tempPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
       </div>
     </>
   )}
