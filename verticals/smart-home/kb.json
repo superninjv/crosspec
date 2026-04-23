@@ -449,6 +449,74 @@
         "max_load_watts": 1800,
         "source_ids": [0, 1, 3]
       }
+    },
+    {
+      "id": "aqara_u100_matter",
+      "type": "smart_lock",
+      "name": "Aqara Smart Lock U100 (Matter)",
+      "sku": "aqara_smart_lock_u100",
+      "attributes": {
+        "brand": "aqara",
+        "model": "AE-XM-JT0005U",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "deadbolt_retrofit_with_keypad",
+        "power": "battery_aa",
+        "apple_home_key": true,
+        "source_ids": [1, 3]
+      }
+    },
+    {
+      "id": "yale_assure_2_matter",
+      "type": "smart_lock",
+      "name": "Yale Assure 2 with Matter",
+      "sku": "yale_assure_2_matter",
+      "attributes": {
+        "brand": "yale",
+        "model": "YRD450-MAT",
+        "protocol": "thread_matter",
+        "requires_hub": "thread_border_router_plus_matter_controller",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "deadbolt_with_keypad",
+        "power": "battery_aa",
+        "apple_home_key": false,
+        "source_ids": [1, 3]
+      }
+    },
+    {
+      "id": "schlage_encode_plus",
+      "type": "smart_lock",
+      "name": "Schlage Encode Plus Smart Wi-Fi Deadbolt",
+      "sku": "schlage_encode_plus",
+      "attributes": {
+        "brand": "schlage",
+        "model": "BE499",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "deadbolt_with_keypad",
+        "power": "battery_aa",
+        "apple_home_key": true,
+        "source_ids": [1, 3]
+      }
+    },
+    {
+      "id": "august_wifi_4th_gen",
+      "type": "smart_lock",
+      "name": "August Wi-Fi Smart Lock (4th gen)",
+      "sku": "august_wifi_smart_lock_4",
+      "attributes": {
+        "brand": "august",
+        "model": "AUG-SL05-M02-S01",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "deadbolt_retrofit",
+        "power": "battery_cr123a",
+        "apple_home_key": false,
+        "source_ids": [0, 3]
+      }
     }
   ],
   "constraints": [

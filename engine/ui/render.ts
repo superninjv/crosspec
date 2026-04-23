@@ -59,6 +59,7 @@ function renderReasoning(steps: ReasoningStep[]): string {
 export function renderSolutionHTML(solution: Solution, vertical: string): string {
   const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
   const plugPicks = solution.picks.filter((p) => p.entity.type === "smart_plug");
+  const lockPicks = solution.picks.filter((p) => p.entity.type === "smart_lock");
   const motionPicks = solution.picks.filter((p) => p.entity.type === "motion_sensor");
 
   const warnings =
@@ -74,6 +75,11 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
   const plugs =
     plugPicks.length > 0
       ? `<h3>Smart plugs</h3><div class="grid">${plugPicks.map((p) => renderProductCard(p, vertical)).join("")}</div>`
+      : "";
+
+  const locks =
+    lockPicks.length > 0
+      ? `<h3>Smart locks</h3><div class="grid">${lockPicks.map((p) => renderProductCard(p, vertical)).join("")}</div>`
       : "";
 
   const motions =
@@ -93,6 +99,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
     ${empty}
     ${bulbs}
     ${plugs}
+    ${locks}
     ${motions}
     ${hubs}
     ${renderReasoning(solution.reasoning_chain)}`;
@@ -121,6 +128,9 @@ const TYPE_KEYWORDS: [string, string][] = [
   ["smart outlet", "smart_plug"],
   ["plug", "smart_plug"],
   ["outlet", "smart_plug"],
+  ["smart lock", "smart_lock"],
+  ["deadbolt", "smart_lock"],
+  ["door lock", "smart_lock"],
 ];
 
 export function matchExample(text: string): UserInputs | null {

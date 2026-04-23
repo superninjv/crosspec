@@ -20,6 +20,8 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 - [ ] **EEAT author page** — DoD: one-page author bio for Jack (named, 1-paragraph credibility hook — Home Assistant setup, Matter/Thread hands-on experience, or equivalent). Required day-one per hard rule. Lives at `crosspec.com/about`. Founder chose no LinkedIn link; credibility comes from the named-author + concrete hands-on claims alone. Scaffold shipped 2026-04-22 at commit `c742bf3`; LinkedIn-stripped follow-up this session.
 
 
+- [ ] **smart_lock device type (4th in smart-home vertical)** — DoD: 4 entries in `verticals/smart-home/kb.json` (Aqara U100 Matter, Yale Assure 2 Matter, Schlage Encode Plus Matter, August Wi-Fi Smart Lock 4th gen); ConfiguratorShell checkbox + lockPicks render section; `engine/ui/render.ts` filter + section string + TYPE_KEYWORDS (smart lock, deadbolt); one example chip on `/smart-home`; 3 solver tests + 3 render tests (27 → 33 green). Zero engine source changes — same 7-touchpoint slice as smart_plug.
+
 - [ ] **Community-first acquisition plan (post-ship)** — DoD: short list of where to post the v0.1 configurator once it's live — r/homeautomation, r/smarthome, r/matterandthread, HA Discord + community forum, relevant subreddits for specific ecosystems. NOT a launch plan with hype — a genuine "I made this thing that might help" post from the EEAT author account. Written up in `~/notes/projects/crosspec-community-plan.md`. 45 min.
 
 ## Recent completions

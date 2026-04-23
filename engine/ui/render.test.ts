@@ -58,6 +58,20 @@ describe("matchExample", () => {
     expect(m?.ecosystem).toBe("alexa");
     expect(m?.wants).toContain("smart_plug");
   });
+
+  it("parses HomeKit + smart lock example", () => {
+    const m = matchExample(
+      "I'm on Apple HomeKit and want a smart lock with Home Key",
+    );
+    expect(m?.ecosystem).toBe("homekit");
+    expect(m?.wants).toContain("smart_lock");
+  });
+
+  it("treats 'deadbolt' as a smart_lock synonym", () => {
+    const m = matchExample("Google Home user shopping for a Wi-Fi deadbolt");
+    expect(m?.ecosystem).toBe("google_home");
+    expect(m?.wants).toContain("smart_lock");
+  });
 });
 
 describe("renderSolutionHTML", () => {
@@ -93,6 +107,17 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).toContain("<h3>Smart plugs</h3>");
+    expect(html).toContain('href="/go/smart-home/');
+  });
+
+  it("renders a Smart locks section when lock picks are present", () => {
+    const [solution] = solve(kb, {
+      ecosystem: "homekit",
+      wants: ["smart_lock"],
+      picks_per_type: 3,
+    });
+    const html = renderSolutionHTML(solution, "smart-home");
+    expect(html).toContain("<h3>Smart locks</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 

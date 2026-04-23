@@ -128,3 +128,44 @@ test("homekit ecosystem filter excludes the Alexa-only Amazon Smart Plug and non
   expect(ids).not.toContain("amazon_smart_plug");
   expect(ids).not.toContain("tapo_p100");
 });
+
+test("homekit + smart_lock returns >= 3 picks across Matter and non-Matter", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_lock"],
+    picks_per_type: 5,
+  });
+  const locks = sol.picks.filter((p) => p.entity.type === "smart_lock");
+  expect(locks.length).toBeGreaterThanOrEqual(3);
+  const ids = locks.map((p) => p.entity.id);
+  expect(ids).toContain("schlage_encode_plus");
+  expect(ids).toContain("yale_assure_2_matter");
+  expect(ids).toContain("aqara_u100_matter");
+});
+
+test("smart_lock with Thread+Matter ranks above Wi-Fi-only non-Matter lock", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_lock"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  const yaleIdx = ids.indexOf("yale_assure_2_matter");
+  const augustIdx = ids.indexOf("august_wifi_4th_gen");
+  expect(yaleIdx).toBeGreaterThanOrEqual(0);
+  if (augustIdx !== -1) {
+    expect(yaleIdx).toBeLessThan(augustIdx);
+  }
+});
+
+test("smart_lock + smart_plug combined query returns picks for both types", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_lock", "smart_plug"],
+    picks_per_type: 3,
+  });
+  const locks = sol.picks.filter((p) => p.entity.type === "smart_lock");
+  const plugs = sol.picks.filter((p) => p.entity.type === "smart_plug");
+  expect(locks.length).toBeGreaterThanOrEqual(2);
+  expect(plugs.length).toBeGreaterThanOrEqual(2);
+});

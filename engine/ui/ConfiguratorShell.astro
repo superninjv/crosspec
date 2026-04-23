@@ -15,6 +15,7 @@ const { vertical, headline, subheadline, examples, solution } = Astro.props;
 const motionPicks = solution.picks.filter((p) => p.entity.type === "motion_sensor");
 const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
 const plugPicks = solution.picks.filter((p) => p.entity.type === "smart_plug");
+const lockPicks = solution.picks.filter((p) => p.entity.type === "smart_lock");
 ---
 <section class="hero">
   <h1>{headline}</h1>
@@ -35,6 +36,7 @@ const plugPicks = solution.picks.filter((p) => p.entity.type === "smart_plug");
     <label><input type="checkbox" name="wants" value="smart_bulb" checked /> Smart bulb</label>
     <label><input type="checkbox" name="wants" value="motion_sensor" checked /> Motion sensor</label>
     <label><input type="checkbox" name="wants" value="smart_plug" /> Smart plug</label>
+    <label><input type="checkbox" name="wants" value="smart_lock" /> Smart lock</label>
   </fieldset>
 
   <div class="examples">
@@ -78,6 +80,15 @@ const plugPicks = solution.picks.filter((p) => p.entity.type === "smart_plug");
       <h3>Smart plugs</h3>
       <div class="grid">
         {plugPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+      </div>
+    </>
+  )}
+
+  {lockPicks.length > 0 && (
+    <>
+      <h3>Smart locks</h3>
+      <div class="grid">
+        {lockPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
       </div>
     </>
   )}
