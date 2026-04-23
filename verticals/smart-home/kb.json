@@ -743,6 +743,88 @@
         "note": "Single-channel Wi-Fi relay with power metering that installs behind the user's existing dumb toggle or paddle — no new faceplate required. Matter-over-Wi-Fi support landed on the Plus-gen firmware in 2024, giving it a HomeKit path via any Matter controller. Google / Alexa / HA work via native Shelly integrations directly.",
         "source_ids": [0, 1, 3]
       }
+    },
+
+    {
+      "id": "switchbot_water_leak",
+      "type": "leak_sensor",
+      "name": "SwitchBot Water Leak Detector",
+      "sku": "switchbot_water_leak",
+      "attributes": {
+        "brand": "switchbot",
+        "model": "W1601500",
+        "protocol": "bluetooth_le",
+        "requires_hub": "switchbot_hub_2_or_mini_with_matter",
+        "ecosystems_via_switchbot_hub_matter": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "floor_probe",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2",
+        "audible_alarm_db": 100,
+        "note": "Bluetooth water leak detector with a 100 dB local alarm and IP67-rated probe. HomeKit / Google / Alexa paths go through a SwitchBot Hub 2 or Hub Mini (Matter) acting as a Matter bridge. Direct HA control via the SwitchBot integration.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "aqara_water_leak",
+      "type": "leak_sensor",
+      "name": "Aqara Water Leak Sensor",
+      "sku": "aqara_water_leak",
+      "attributes": {
+        "brand": "aqara",
+        "model": "SJCGQ11LM",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub_or_zigbee_coordinator",
+        "ecosystems_via_aqara_hub": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "floor_puck",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2032",
+        "audible_alarm_db": null,
+        "note": "IP67 Zigbee water leak puck — drop on the floor next to a water heater, sink, or dishwasher. HomeKit / Google / Alexa paths go through an Aqara hub (M2 / M3); HA via Zigbee2MQTT or ZHA without the hub. No local alarm on the puck itself — notifications via the hub / HA automations.",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "yolink_water_leak",
+      "type": "leak_sensor",
+      "name": "YoLink LoRa Water Leak Sensor",
+      "sku": "yolink_water_leak",
+      "attributes": {
+        "brand": "yolink",
+        "model": "YS7903-UC",
+        "protocol": "yolink_lora",
+        "requires_hub": "yolink_hub",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "floor_probe",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aaa",
+        "audible_alarm_db": 85,
+        "note": "Proprietary sub-GHz LoRa radio with quarter-mile range — trivially covers basements, detached garages, and outbuildings where Wi-Fi or Zigbee won't reach. Requires a YoLink hub; integrates with Alexa / Google via cloud, HA via the HACS yolink integration. No HomeKit path.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "shelly_flood",
+      "type": "leak_sensor",
+      "name": "Shelly Flood",
+      "sku": "shelly_flood",
+      "attributes": {
+        "brand": "shelly",
+        "model": "Flood",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "floor_puck",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr123a",
+        "audible_alarm_db": null,
+        "measures": ["water_presence", "temperature"],
+        "note": "Gen1 Wi-Fi water leak + temperature sensor — no Matter firmware on this SKU, so HomeKit is not supported. HA integrates natively via the Shelly integration; Google / Alexa via Shelly Cloud. Pick SwitchBot or Aqara if HomeKit matters.",
+        "source_ids": [0, 3]
+      }
     }
   ],
   "constraints": [

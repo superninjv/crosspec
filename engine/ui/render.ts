@@ -64,6 +64,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
   const tempPicks = solution.picks.filter((p) => p.entity.type === "temperature_sensor");
   const contactPicks = solution.picks.filter((p) => p.entity.type === "contact_sensor");
   const switchPicks = solution.picks.filter((p) => p.entity.type === "smart_switch");
+  const leakPicks = solution.picks.filter((p) => p.entity.type === "leak_sensor");
 
   const warnings =
     solution.warnings.length > 0
@@ -105,6 +106,11 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
       ? `<h3>Smart switches &amp; dimmers</h3><div class="grid">${switchPicks.map((p) => renderProductCard(p, vertical)).join("")}</div>`
       : "";
 
+  const leaks =
+    leakPicks.length > 0
+      ? `<h3>Water leak sensors</h3><div class="grid">${leakPicks.map((p) => renderProductCard(p, vertical)).join("")}</div>`
+      : "";
+
   const hubs = `<p class="hub-summary">Hubs needed across this selection: <strong>${solution.hubs_required.length > 0 ? esc(solution.hubs_required.join(", ")) : "none"}</strong></p>`;
 
   const empty =
@@ -122,6 +128,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
     ${temps}
     ${contacts}
     ${switches}
+    ${leaks}
     ${hubs}
     ${renderReasoning(solution.reasoning_chain)}`;
 }
@@ -164,6 +171,10 @@ const TYPE_KEYWORDS: [string, string][] = [
   ["wall switch", "smart_switch"],
   ["wall dimmer", "smart_switch"],
   ["dimmer", "smart_switch"],
+  ["water leak", "leak_sensor"],
+  ["leak sensor", "leak_sensor"],
+  ["flood sensor", "leak_sensor"],
+  ["water sensor", "leak_sensor"],
 ];
 
 export function matchExample(text: string): UserInputs | null {

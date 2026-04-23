@@ -286,3 +286,40 @@ test("smart_switch with Matter firmware (Shelly) ranks above hub-dependent Lutro
     expect(shellyIdx).toBeLessThan(lutronIdx);
   }
 });
+
+test("homekit + leak_sensor returns >= 2 picks across BLE-bridge and Zigbee-bridge paths", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["leak_sensor"],
+    picks_per_type: 5,
+  });
+  const leaks = sol.picks.filter((p) => p.entity.type === "leak_sensor");
+  expect(leaks.length).toBeGreaterThanOrEqual(2);
+  const ids = leaks.map((p) => p.entity.id);
+  expect(ids).toContain("switchbot_water_leak");
+  expect(ids).toContain("aqara_water_leak");
+});
+
+test("homekit ecosystem filter excludes the YoLink LoRa and non-Matter Shelly Flood leak sensors", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["leak_sensor"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  expect(ids).not.toContain("yolink_water_leak");
+  expect(ids).not.toContain("shelly_flood");
+});
+
+test("home_assistant + leak_sensor returns >= 3 picks across BLE, Zigbee, LoRa, and Wi-Fi paths", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "home_assistant",
+    wants: ["leak_sensor"],
+    picks_per_type: 5,
+  });
+  const leaks = sol.picks.filter((p) => p.entity.type === "leak_sensor");
+  expect(leaks.length).toBeGreaterThanOrEqual(3);
+  const ids = leaks.map((p) => p.entity.id);
+  expect(ids).toContain("shelly_flood");
+  expect(ids).toContain("yolink_water_leak");
+});
