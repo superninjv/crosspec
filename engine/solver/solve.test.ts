@@ -323,3 +323,42 @@ test("home_assistant + leak_sensor returns >= 3 picks across BLE, Zigbee, LoRa, 
   expect(ids).toContain("shelly_flood");
   expect(ids).toContain("yolink_water_leak");
 });
+
+test("homekit + thermostat returns >= 3 picks across native-HomeKit and Matter-firmware paths", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["thermostat"],
+    picks_per_type: 5,
+  });
+  const thermostats = sol.picks.filter((p) => p.entity.type === "thermostat");
+  expect(thermostats.length).toBeGreaterThanOrEqual(3);
+  const ids = thermostats.map((p) => p.entity.id);
+  expect(ids).toContain("ecobee_premium");
+  expect(ids).toContain("honeywell_t9");
+  expect(ids).toContain("google_nest_learning_4th_gen");
+});
+
+test("homekit ecosystem filter excludes the non-Matter Wyze Thermostat", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["thermostat"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  expect(ids).not.toContain("wyze_thermostat");
+});
+
+test("thermostat with Matter firmware (Nest 4th gen) outranks pure-Wi-Fi native-HomeKit Ecobee in HomeKit", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["thermostat"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  const nestIdx = ids.indexOf("google_nest_learning_4th_gen");
+  const ecobeeIdx = ids.indexOf("ecobee_premium");
+  expect(nestIdx).toBeGreaterThanOrEqual(0);
+  if (ecobeeIdx !== -1) {
+    expect(nestIdx).toBeLessThan(ecobeeIdx);
+  }
+});

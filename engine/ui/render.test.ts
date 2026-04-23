@@ -128,6 +128,20 @@ describe("matchExample", () => {
     expect(m?.ecosystem).toBe("homekit");
     expect(m?.wants).toContain("leak_sensor");
   });
+
+  it("parses HomeKit + thermostat example", () => {
+    const m = matchExample(
+      "HomeKit household replacing their thermostat — what plays nicely with Apple Home?",
+    );
+    expect(m?.ecosystem).toBe("homekit");
+    expect(m?.wants).toContain("thermostat");
+  });
+
+  it("treats 'smart thermostat' as a thermostat synonym", () => {
+    const m = matchExample("Google Home user shopping for a smart thermostat");
+    expect(m?.ecosystem).toBe("google_home");
+    expect(m?.wants).toContain("thermostat");
+  });
 });
 
 describe("renderSolutionHTML", () => {
@@ -218,6 +232,17 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).toContain("<h3>Water leak sensors</h3>");
+    expect(html).toContain('href="/go/smart-home/');
+  });
+
+  it("renders a Thermostats section when thermostat picks are present", () => {
+    const [solution] = solve(kb, {
+      ecosystem: "homekit",
+      wants: ["thermostat"],
+      picks_per_type: 3,
+    });
+    const html = renderSolutionHTML(solution, "smart-home");
+    expect(html).toContain("<h3>Thermostats</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 

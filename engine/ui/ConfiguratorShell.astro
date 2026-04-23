@@ -20,6 +20,7 @@ const tempPicks = solution.picks.filter((p) => p.entity.type === "temperature_se
 const contactPicks = solution.picks.filter((p) => p.entity.type === "contact_sensor");
 const switchPicks = solution.picks.filter((p) => p.entity.type === "smart_switch");
 const leakPicks = solution.picks.filter((p) => p.entity.type === "leak_sensor");
+const thermostatPicks = solution.picks.filter((p) => p.entity.type === "thermostat");
 ---
 <section class="hero">
   <h1>{headline}</h1>
@@ -45,6 +46,7 @@ const leakPicks = solution.picks.filter((p) => p.entity.type === "leak_sensor");
     <label><input type="checkbox" name="wants" value="contact_sensor" /> Door &amp; window sensor</label>
     <label><input type="checkbox" name="wants" value="smart_switch" /> Smart switch / dimmer</label>
     <label><input type="checkbox" name="wants" value="leak_sensor" /> Water leak sensor</label>
+    <label><input type="checkbox" name="wants" value="thermostat" /> Thermostat</label>
   </fieldset>
 
   <div class="examples">
@@ -142,6 +144,15 @@ const leakPicks = solution.picks.filter((p) => p.entity.type === "leak_sensor");
       <h3>Water leak sensors</h3>
       <div class="grid">
         {leakPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+      </div>
+    </>
+  )}
+
+  {thermostatPicks.length > 0 && (
+    <>
+      <h3>Thermostats</h3>
+      <div class="grid">
+        {thermostatPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
       </div>
     </>
   )}

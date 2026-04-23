@@ -825,6 +825,85 @@
         "note": "Gen1 Wi-Fi water leak + temperature sensor — no Matter firmware on this SKU, so HomeKit is not supported. HA integrates natively via the Shelly integration; Google / Alexa via Shelly Cloud. Pick SwitchBot or Aqara if HomeKit matters.",
         "source_ids": [0, 3]
       }
+    },
+
+    {
+      "id": "ecobee_premium",
+      "type": "thermostat",
+      "name": "Ecobee Smart Thermostat Premium",
+      "sku": "ecobee_premium",
+      "attributes": {
+        "brand": "ecobee",
+        "model": "EB-STATE6P-01",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "wall_mounted_touchscreen",
+        "c_wire_required": true,
+        "built_in_voice": ["alexa"],
+        "supports_remote_sensors": true,
+        "note": "Wi-Fi thermostat with native HomeKit, Alexa (built-in speaker/mic), Google Home, and SmartThings. Home Assistant integrates via the native ecobee integration. C-wire required for most installs; PEK adapter available. Ships with one SmartSensor in the box.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "honeywell_t9",
+      "type": "thermostat",
+      "name": "Honeywell Home T9 Smart Thermostat",
+      "sku": "honeywell_t9",
+      "attributes": {
+        "brand": "honeywell_home",
+        "model": "RCHT9610WFSW",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "wall_mounted_touchscreen",
+        "c_wire_required": true,
+        "built_in_voice": [],
+        "supports_remote_sensors": true,
+        "note": "Wi-Fi thermostat with HomeKit, Alexa, and Google. Supports up to 20 wireless remote room sensors (separate SKU C7189R1004) for true multi-zone averaging. Home Assistant integrates via the Total Connect Comfort cloud integration.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "google_nest_learning_4th_gen",
+      "type": "thermostat",
+      "name": "Google Nest Learning Thermostat (4th gen)",
+      "sku": "google_nest_learning_4th_gen",
+      "attributes": {
+        "brand": "google_nest",
+        "model": "GA03418-US",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "ecosystems_via_matter_firmware": ["homekit"],
+        "form_factor": "wall_mounted_circular",
+        "c_wire_required": false,
+        "built_in_voice": [],
+        "supports_remote_sensors": true,
+        "note": "2024 release — the first Nest Learning generation with Matter support, finally giving Google's marquee thermostat a HomeKit path (via any Matter controller). Google Home is the native control surface; Alexa via the Nest skill; Home Assistant via the Nest cloud integration or directly over Matter (local).",
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "wyze_thermostat",
+      "type": "thermostat",
+      "name": "Wyze Thermostat",
+      "sku": "wyze_thermostat",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WHTRMOSW1",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wall_mounted_rectangular",
+        "c_wire_required": false,
+        "built_in_voice": [],
+        "supports_remote_sensors": false,
+        "note": "Budget Wi-Fi thermostat (~$80). Alexa + Google native, HA via the HACS ha-wyzeapi integration (cloud-polled). No HomeKit and no Matter firmware path — pick Ecobee, Honeywell T9, or Nest 4th gen if HomeKit matters.",
+        "source_ids": [0, 3]
+      }
     }
   ],
   "constraints": [
