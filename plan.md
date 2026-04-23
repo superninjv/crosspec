@@ -17,14 +17,11 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 
 - [ ] **Affiliate partner applications for smart home** — DoD: applications submitted to SwitchBot (Awin, 6-15%/60d — highest-value anchor), TP-Link Tapo (direct 10%), Govee (Impact, 5-10%), Philips Hue/Signify (Awin/Partnerize), Aqara (Awin UK, Sovrn US). Track approval state in `~/notes/projects/crosspec-affiliate-status.md`. Amazon Associates fallback for anything not approved or SKU-missing. Parallel with build — can start today while MVP is being written.
 
-- [ ] **EEAT author page** — DoD: one-page author bio for Jack (named, 1-paragraph credibility hook — Home Assistant setup, Matter/Thread hands-on experience, or equivalent). Required day-one per hard rule. Lives at `crosspec.com/about`. Founder chose no LinkedIn link; credibility comes from the named-author + concrete hands-on claims alone. Scaffold shipped 2026-04-22 at commit `c742bf3`; LinkedIn-stripped follow-up this session.
-
-
-- [ ] **smart_lock device type (4th in smart-home vertical)** — DoD: 4 entries in `verticals/smart-home/kb.json` (Aqara U100 Matter, Yale Assure 2 Matter, Schlage Encode Plus Matter, August Wi-Fi Smart Lock 4th gen); ConfiguratorShell checkbox + lockPicks render section; `engine/ui/render.ts` filter + section string + TYPE_KEYWORDS (smart lock, deadbolt); one example chip on `/smart-home`; 3 solver tests + 3 render tests (27 → 33 green). Zero engine source changes — same 7-touchpoint slice as smart_plug.
-
 - [ ] **Community-first acquisition plan (post-ship)** — DoD: short list of where to post the v0.1 configurator once it's live — r/homeautomation, r/smarthome, r/matterandthread, HA Discord + community forum, relevant subreddits for specific ecosystems. NOT a launch plan with hype — a genuine "I made this thing that might help" post from the EEAT author account. Written up in `~/notes/projects/crosspec-community-plan.md`. 45 min.
 
 ## Recent completions
+
+- 2026-04-23 — **smart_lock device type added to smart-home vertical (4th device type).** 4 KB entries (Aqara U100 Matter wifi/HomeKey, Yale Assure 2 Matter thread/Matter, Schlage Encode Plus Matter wifi/HomeKey, August Wi-Fi 4th gen non-Matter wifi) covering Matter-over-Wi-Fi, Matter-over-Thread, and non-Matter protocol paths. ConfiguratorShell + `engine/ui/render.ts` grow matching `lockPicks` filter + "Smart locks" render section, TYPE_KEYWORDS covers "smart lock" / "deadbolt" / "door lock", one HomeKey example chip on /smart-home. Tests 27 → 33 green (3 solver + 3 render). Zero engine source changes — the 7-touchpoint slice contract holds for the third type in a row. Commit `e0bbdab`.
 
 - 2026-04-23 — **foundry-01 dev fabric wired for crosspec.** `crosspec.foundry.test` serves `astro dev --port 3005` live from the workstation via mutagen sync (`/home/jack/projects/crosspec` ↔ `jack@10.0.0.3:/srv/dev/crosspec`, ignoring `node_modules` / `dist` / `.astro`) + systemd user unit `crosspec-dev.service` + Caddy site block reverse-proxying `localhost:3005`. Local edits hot-reload on foundry. `astro.config.mjs` now lists `crosspec.foundry.test` in `vite.server.allowedHosts` — Vite's default host check rejects non-localhost proxied hostnames with 403.
 
