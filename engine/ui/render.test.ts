@@ -86,6 +86,20 @@ describe("matchExample", () => {
     expect(m?.ecosystem).toBe("homekit");
     expect(m?.wants).toContain("temperature_sensor");
   });
+
+  it("parses HomeKit + door and window sensor example", () => {
+    const m = matchExample(
+      "HomeKit household wants a Matter door and window sensor",
+    );
+    expect(m?.ecosystem).toBe("homekit");
+    expect(m?.wants).toContain("contact_sensor");
+  });
+
+  it("treats 'contact sensor' as a contact_sensor synonym", () => {
+    const m = matchExample("Home Assistant user adding a contact sensor");
+    expect(m?.ecosystem).toBe("home_assistant");
+    expect(m?.wants).toContain("contact_sensor");
+  });
 });
 
 describe("renderSolutionHTML", () => {
@@ -143,6 +157,17 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).toContain("<h3>Temperature &amp; humidity</h3>");
+    expect(html).toContain('href="/go/smart-home/');
+  });
+
+  it("renders a Door & window sensors section when contact picks are present", () => {
+    const [solution] = solve(kb, {
+      ecosystem: "homekit",
+      wants: ["contact_sensor"],
+      picks_per_type: 3,
+    });
+    const html = renderSolutionHTML(solution, "smart-home");
+    expect(html).toContain("<h3>Door &amp; window sensors</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 

@@ -596,6 +596,81 @@
         "note": "Direct BLE integration in Home Assistant via the govee_ble component — no cloud, no hub, HA-only. No native HomeKit / Google Home / Alexa path.",
         "source_ids": [0, 3]
       }
+    },
+
+    {
+      "id": "aqara_door_window_p2",
+      "type": "contact_sensor",
+      "name": "Aqara Door and Window Sensor P2 (Matter)",
+      "sku": "aqara_door_window_p2",
+      "attributes": {
+        "brand": "aqara",
+        "model": "MCCGQ14LM",
+        "protocol": "thread_matter",
+        "requires_hub": "thread_border_router_plus_matter_controller",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2032",
+        "note": "Matter-over-Thread — commissions directly into any Matter controller without the Aqara hub. Preferred pick when HomeKit + Google + Alexa + HA parity matters.",
+        "source_ids": [1, 3]
+      }
+    },
+    {
+      "id": "aqara_door_window_t1",
+      "type": "contact_sensor",
+      "name": "Aqara Door and Window Sensor T1",
+      "sku": "aqara_door_window_t1",
+      "attributes": {
+        "brand": "aqara",
+        "model": "MCCGQ11LM",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub_or_zigbee_coordinator",
+        "ecosystems_via_aqara_hub": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr1632",
+        "note": "Zigbee sensor — cheapest ecosystem path if an Aqara hub (or any Zigbee coordinator for HA via Z2M) is already on the network.",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "switchbot_contact_sensor",
+      "type": "contact_sensor",
+      "name": "SwitchBot Contact Sensor",
+      "sku": "switchbot_contact_sensor",
+      "attributes": {
+        "brand": "switchbot",
+        "model": "W1201500",
+        "protocol": "bluetooth_le",
+        "requires_hub": "switchbot_hub_2_or_mini_with_matter",
+        "ecosystems_via_switchbot_hub_matter": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "note": "Bluetooth sensor with built-in motion PIR. HomeKit / Google / Alexa paths require a SwitchBot Hub 2 or Hub Mini (Matter) acting as a Matter bridge. Direct HA control via the SwitchBot integration.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "sonoff_snzb04",
+      "type": "contact_sensor",
+      "name": "Sonoff SNZB-04 Zigbee Door/Window Sensor",
+      "sku": "sonoff_snzb04",
+      "attributes": {
+        "brand": "sonoff",
+        "model": "SNZB-04",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "ecosystems": ["home_assistant"],
+        "form_factor": "door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "note": "Cheapest Zigbee contact sensor that works via Zigbee2MQTT / ZHA in Home Assistant. Native cloud ecosystem support (HomeKit/Google/Alexa) requires the eWeLink Bridge or pass-through from HA.",
+        "source_ids": [2, 3]
+      }
     }
   ],
   "constraints": [

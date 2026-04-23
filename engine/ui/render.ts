@@ -62,6 +62,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
   const lockPicks = solution.picks.filter((p) => p.entity.type === "smart_lock");
   const motionPicks = solution.picks.filter((p) => p.entity.type === "motion_sensor");
   const tempPicks = solution.picks.filter((p) => p.entity.type === "temperature_sensor");
+  const contactPicks = solution.picks.filter((p) => p.entity.type === "contact_sensor");
 
   const warnings =
     solution.warnings.length > 0
@@ -93,6 +94,11 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
       ? `<h3>Temperature &amp; humidity</h3><div class="grid">${tempPicks.map((p) => renderProductCard(p, vertical)).join("")}</div>`
       : "";
 
+  const contacts =
+    contactPicks.length > 0
+      ? `<h3>Door &amp; window sensors</h3><div class="grid">${contactPicks.map((p) => renderProductCard(p, vertical)).join("")}</div>`
+      : "";
+
   const hubs = `<p class="hub-summary">Hubs needed across this selection: <strong>${solution.hubs_required.length > 0 ? esc(solution.hubs_required.join(", ")) : "none"}</strong></p>`;
 
   const empty =
@@ -108,6 +114,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
     ${locks}
     ${motions}
     ${temps}
+    ${contacts}
     ${hubs}
     ${renderReasoning(solution.reasoning_chain)}`;
 }
@@ -141,6 +148,10 @@ const TYPE_KEYWORDS: [string, string][] = [
   ["temperature sensor", "temperature_sensor"],
   ["humidity sensor", "temperature_sensor"],
   ["hygrometer", "temperature_sensor"],
+  ["door and window", "contact_sensor"],
+  ["contact sensor", "contact_sensor"],
+  ["door sensor", "contact_sensor"],
+  ["window sensor", "contact_sensor"],
 ];
 
 export function matchExample(text: string): UserInputs | null {

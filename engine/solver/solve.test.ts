@@ -208,3 +208,42 @@ test("temperature_sensor with Thread+Matter ranks above BLE-only sensor", () => 
     expect(eveIdx).toBeLessThan(switchbotIdx);
   }
 });
+
+test("homekit + contact_sensor returns >= 3 picks across Matter, Zigbee, and BLE paths", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["contact_sensor"],
+    picks_per_type: 5,
+  });
+  const contacts = sol.picks.filter((p) => p.entity.type === "contact_sensor");
+  expect(contacts.length).toBeGreaterThanOrEqual(3);
+  const ids = contacts.map((p) => p.entity.id);
+  expect(ids).toContain("aqara_door_window_p2");
+  expect(ids).toContain("aqara_door_window_t1");
+  expect(ids).toContain("switchbot_contact_sensor");
+});
+
+test("homekit ecosystem filter excludes the HA-only Sonoff SNZB-04", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["contact_sensor"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  expect(ids).not.toContain("sonoff_snzb04");
+});
+
+test("contact_sensor with Thread+Matter ranks above Zigbee-via-hub alternative", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["contact_sensor"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  const p2Idx = ids.indexOf("aqara_door_window_p2");
+  const t1Idx = ids.indexOf("aqara_door_window_t1");
+  expect(p2Idx).toBeGreaterThanOrEqual(0);
+  if (t1Idx !== -1) {
+    expect(p2Idx).toBeLessThan(t1Idx);
+  }
+});
