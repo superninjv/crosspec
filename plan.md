@@ -18,6 +18,7 @@ No branches in use yet — directory is fresh. Adopt `develop` → `main` patter
 - [ ] **Affiliate partner applications for smart home** — DoD: applications submitted to SwitchBot (Awin, 6-15%/60d — highest-value anchor), TP-Link Tapo (direct 10%), Govee (Impact, 5-10%), Philips Hue/Signify (Awin/Partnerize), Aqara (Awin UK, Sovrn US). Track approval state in `~/notes/projects/crosspec-affiliate-status.md`. Amazon Associates fallback for anything not approved or SKU-missing. Parallel with build — can start today while MVP is being written.
 
 - [ ] **EEAT author page** — DoD: one-page author bio for Jack (named, LinkedIn linked, 1-paragraph credibility hook — Home Assistant setup, Matter/Thread hands-on experience, or equivalent). Required day-one per hard rule. Lives at `crosspec.com/about` or similar. Short — one page, one photo, one LinkedIn link. 30 min.
+  - [ ] **Scaffold EEAT author page at /about with placeholder copy + LinkedIn slot** — code-side stub so founder only needs to fill LinkedIn URL + photo before launch push.
 
 - [ ] **Community-first acquisition plan (post-ship)** — DoD: short list of where to post the v0.1 configurator once it's live — r/homeautomation, r/smarthome, r/matterandthread, HA Discord + community forum, relevant subreddits for specific ecosystems. NOT a launch plan with hype — a genuine "I made this thing that might help" post from the EEAT author account. Written up in `~/notes/projects/crosspec-community-plan.md`. 45 min.
 

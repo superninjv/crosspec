@@ -1,0 +1,40 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+
+const title = "About Jack — crosspec";
+const description =
+  "Crosspec is built by Jack, a hands-on Home Assistant operator running Matter, Thread, and Zigbee devices across Hue, Aqara, SwitchBot, Tapo, and Eve.";
+---
+<Layout title={title} description={description} path="/about/">
+  <article class="about">
+    <h1>About Jack</h1>
+    <p class="lede">
+      I'm Jack. I built crosspec as a working tool after years of running
+      Home Assistant at home — a mixed-vendor setup spanning Matter, Thread,
+      and Zigbee devices from Philips Hue, Aqara, SwitchBot, TP-Link Tapo,
+      and Eve. The compatibility math for smart home is painful to do in
+      your head and worse to do on Reddit. Crosspec is the tool I wanted.
+    </p>
+
+    <p>
+      Every recommendation on this site is grounded in public registries
+      (Home Assistant integrations, Zigbee2MQTT device database, the CSA
+      Matter product database) with the source cited on the result. I don't
+      take payment to rank products higher; affiliate links are disclosed
+      and don't change the solver's output.
+    </p>
+
+    <!-- FOUNDER: replace LinkedIn URL and add a photo/headshot before launch push. -->
+    <p class="links">
+      <a href="https://www.linkedin.com/in/PLACEHOLDER" rel="me">LinkedIn</a>
+    </p>
+  </article>
+
+  <style>
+    .about { max-width: 640px; }
+    .about h1 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+    .about .lede { font-size: 1.05rem; }
+    .about p { margin: 0.75rem 0; }
+    .about .links { margin-top: 1.5rem; }
+  </style>
+</Layout>
