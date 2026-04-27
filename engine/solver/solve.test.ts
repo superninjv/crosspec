@@ -362,3 +362,47 @@ test("thermostat with Matter firmware (Nest 4th gen) outranks pure-Wi-Fi native-
     expect(nestIdx).toBeLessThan(ecobeeIdx);
   }
 });
+
+test("homekit + smart_shade returns >= 3 picks across Thread/Matter, Zigbee-via-hub, and BLE-via-bridge paths", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_shade"],
+    picks_per_type: 5,
+  });
+  const shades = sol.picks.filter((p) => p.entity.type === "smart_shade");
+  expect(shades.length).toBeGreaterThanOrEqual(3);
+  const ids = shades.map((p) => p.entity.id);
+  expect(ids).toContain("eve_motion_blinds");
+  expect(ids).toContain("aqara_roller_shade_driver_e1");
+  expect(ids).toContain("switchbot_curtain_3");
+});
+
+test("home_assistant + smart_shade returns all 4 picks (Thread/Matter, Zigbee, BLE, Tradfri-Zigbee)", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "home_assistant",
+    wants: ["smart_shade"],
+    picks_per_type: 5,
+  });
+  const shades = sol.picks.filter((p) => p.entity.type === "smart_shade");
+  expect(shades.length).toBeGreaterThanOrEqual(4);
+  const ids = shades.map((p) => p.entity.id);
+  expect(ids).toContain("eve_motion_blinds");
+  expect(ids).toContain("aqara_roller_shade_driver_e1");
+  expect(ids).toContain("switchbot_curtain_3");
+  expect(ids).toContain("ikea_fyrtur");
+});
+
+test("smart_shade with Thread+Matter (Eve MotionBlinds) ranks above BLE-via-bridge SwitchBot Curtain in HomeKit", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["smart_shade"],
+    picks_per_type: 5,
+  });
+  const ids = sol.picks.map((p) => p.entity.id);
+  const eveIdx = ids.indexOf("eve_motion_blinds");
+  const switchbotIdx = ids.indexOf("switchbot_curtain_3");
+  expect(eveIdx).toBeGreaterThanOrEqual(0);
+  if (switchbotIdx !== -1) {
+    expect(eveIdx).toBeLessThan(switchbotIdx);
+  }
+});

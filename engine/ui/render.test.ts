@@ -142,6 +142,20 @@ describe("matchExample", () => {
     expect(m?.ecosystem).toBe("google_home");
     expect(m?.wants).toContain("thermostat");
   });
+
+  it("parses HomeKit + smart shade / curtain example", () => {
+    const m = matchExample(
+      "HomeKit apartment — smart curtain that clips onto the existing rod, no rewiring",
+    );
+    expect(m?.ecosystem).toBe("homekit");
+    expect(m?.wants).toContain("smart_shade");
+  });
+
+  it("treats 'motorized blind' as a smart_shade synonym", () => {
+    const m = matchExample("Home Assistant user wants a motorized blind in the bedroom");
+    expect(m?.ecosystem).toBe("home_assistant");
+    expect(m?.wants).toContain("smart_shade");
+  });
 });
 
 describe("renderSolutionHTML", () => {
@@ -243,6 +257,17 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).toContain("<h3>Thermostats</h3>");
+    expect(html).toContain('href="/go/smart-home/');
+  });
+
+  it("renders a Smart shades & blinds section when shade picks are present", () => {
+    const [solution] = solve(kb, {
+      ecosystem: "homekit",
+      wants: ["smart_shade"],
+      picks_per_type: 3,
+    });
+    const html = renderSolutionHTML(solution, "smart-home");
+    expect(html).toContain("<h3>Smart shades &amp; blinds</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 

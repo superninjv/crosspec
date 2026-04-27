@@ -904,6 +904,78 @@
         "note": "Budget Wi-Fi thermostat (~$80). Alexa + Google native, HA via the HACS ha-wyzeapi integration (cloud-polled). No HomeKit and no Matter firmware path — pick Ecobee, Honeywell T9, or Nest 4th gen if HomeKit matters.",
         "source_ids": [0, 3]
       }
+    },
+
+    {
+      "id": "eve_motion_blinds",
+      "type": "smart_shade",
+      "name": "Eve MotionBlinds Smart Window Treatments (Matter)",
+      "sku": "eve_motion_blinds",
+      "attributes": {
+        "brand": "eve",
+        "model": "10EBJ8901",
+        "protocol": "thread_matter",
+        "requires_hub": "thread_border_router_plus_matter_controller",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "motorized_roller_shade",
+        "power": "rechargeable_battery_or_wired",
+        "note": "Matter-over-Thread motorized roller shade. Eve's MotionBlinds line ships pre-installed in custom-cut shades (Bali / Graber / etc. via select retailers). Commissions directly into any Matter controller — ecosystem-agnostic, no Eve cloud required.",
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "aqara_roller_shade_driver_e1",
+      "type": "smart_shade",
+      "name": "Aqara Roller Shade Driver E1",
+      "sku": "aqara_roller_shade_driver_e1",
+      "attributes": {
+        "brand": "aqara",
+        "model": "RSD-M01",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub_or_zigbee_coordinator",
+        "ecosystems_via_aqara_hub": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "chain_driver_retrofit",
+        "power": "rechargeable_battery_usb_c",
+        "note": "Bolts onto the bead chain of an existing roller shade — no new shade purchase required. Zigbee 3.0; HomeKit / Google / Alexa via an Aqara hub (M2 / M3) bridging to Matter, or HA directly via Zigbee2MQTT / ZHA without the hub.",
+        "source_ids": [0, 2, 3]
+      }
+    },
+    {
+      "id": "switchbot_curtain_3",
+      "type": "smart_shade",
+      "name": "SwitchBot Curtain 3",
+      "sku": "switchbot_curtain_3",
+      "attributes": {
+        "brand": "switchbot",
+        "model": "W2400000",
+        "protocol": "bluetooth_le",
+        "requires_hub": "switchbot_hub_2_or_mini_with_matter",
+        "ecosystems_via_switchbot_hub_matter": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "curtain_rod_clip_on",
+        "power": "rechargeable_battery_usb_c",
+        "note": "Clips onto an existing curtain rod and walks the curtain across — zero rewiring, zero new hardware on the wall, no shade replacement. Bluetooth direct or via SwitchBot Hub 2 / Mini (Matter) bridging to HomeKit / Google / Alexa. HA via the SwitchBot integration.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "ikea_fyrtur",
+      "type": "smart_shade",
+      "name": "IKEA FYRTUR Blackout Roller Blind",
+      "sku": "ikea_fyrtur",
+      "attributes": {
+        "brand": "ikea",
+        "model": "E2204",
+        "protocol": "zigbee",
+        "requires_hub": "tradfri_gateway_or_zigbee_coordinator",
+        "ecosystems_via_gateway": ["homekit", "google_home", "alexa"],
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "motorized_roller_blind",
+        "power": "rechargeable_battery_usb_c",
+        "note": "Cheapest motorized blackout shade in widespread availability. Comes pre-installed in fixed sizes — measure before ordering. Zigbee; HomeKit / Google / Alexa via the IKEA TRÅDFRI / DIRIGERA hub, HA via Zigbee2MQTT / ZHA without the hub.",
+        "source_ids": [0, 2, 3]
+      }
     }
   ],
   "constraints": [
