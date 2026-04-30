@@ -18,6 +18,9 @@ export interface EntityAttributes {
   ecosystems_via_matter_firmware?: string[];
   ecosystems_unsupported?: string[];
   source_ids: number[];
+  price_usd?: number;
+  price_source?: string;
+  price_ingest_date?: string;
   [k: string]: unknown;
 }
 

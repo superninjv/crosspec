@@ -6,7 +6,7 @@ interface Props {
 }
 const { steps } = Astro.props;
 ---
-<details class="reasoning" open>
+<details class="reasoning">
   <summary>How we picked these ({steps.length} reasoning steps)</summary>
   <ol>
     {steps.map((s) => (
@@ -15,9 +15,13 @@ const { steps } = Astro.props;
         <p class="rationale">{s.rationale}</p>
         <p class="sources">
           {s.sources.map((src) => (
-            <a href={src.url} rel="nofollow" target="_blank">
-              {src.name} ({src.ingest_date})
-            </a>
+            src.url && src.url.trim() !== "" ? (
+              <a href={src.url} rel="nofollow" target="_blank">
+                {src.name} ({src.ingest_date})
+              </a>
+            ) : (
+              <span class="source-cite">{src.name} ({src.ingest_date})</span>
+            )
           ))}
         </p>
       </li>

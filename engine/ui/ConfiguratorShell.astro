@@ -26,29 +26,39 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
 <section class="hero">
   <h1>{headline}</h1>
   <p class="sub">{subheadline}</p>
+  <ul class="trust-strip" aria-label="Data sources">
+    <li>Home Assistant integrations</li>
+    <li>CSA Matter products</li>
+    <li>Zigbee2MQTT devices</li>
+    <li>Vendor docs</li>
+  </ul>
 </section>
 
 <form id="configurator-form" class="config-form" data-vertical={vertical}>
-  <fieldset>
-    <legend>Which ecosystem are you on?</legend>
-    <label><input type="radio" name="ecosystem" value="homekit" checked /> HomeKit (Apple)</label>
-    <label><input type="radio" name="ecosystem" value="alexa" /> Alexa (Amazon)</label>
-    <label><input type="radio" name="ecosystem" value="google_home" /> Google Home</label>
-    <label><input type="radio" name="ecosystem" value="home_assistant" /> Home Assistant</label>
+  <fieldset class="ecosystem-row">
+    <legend>Ecosystem</legend>
+    <div class="segmented" role="radiogroup" aria-label="Ecosystem">
+      <label><input type="radio" name="ecosystem" value="homekit" checked /><span>HomeKit</span></label>
+      <label><input type="radio" name="ecosystem" value="alexa" /><span>Alexa</span></label>
+      <label><input type="radio" name="ecosystem" value="google_home" /><span>Google Home</span></label>
+      <label><input type="radio" name="ecosystem" value="home_assistant" /><span>Home Assistant</span></label>
+    </div>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="wants-row">
     <legend>What do you want to add?</legend>
-    <label><input type="checkbox" name="wants" value="smart_bulb" checked /> Smart bulb</label>
-    <label><input type="checkbox" name="wants" value="motion_sensor" checked /> Motion sensor</label>
-    <label><input type="checkbox" name="wants" value="smart_plug" /> Smart plug</label>
-    <label><input type="checkbox" name="wants" value="smart_lock" /> Smart lock</label>
-    <label><input type="checkbox" name="wants" value="temperature_sensor" /> Temperature &amp; humidity</label>
-    <label><input type="checkbox" name="wants" value="contact_sensor" /> Door &amp; window sensor</label>
-    <label><input type="checkbox" name="wants" value="smart_switch" /> Smart switch / dimmer</label>
-    <label><input type="checkbox" name="wants" value="leak_sensor" /> Water leak sensor</label>
-    <label><input type="checkbox" name="wants" value="thermostat" /> Thermostat</label>
-    <label><input type="checkbox" name="wants" value="smart_shade" /> Smart shade / blind</label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="wants" value="smart_bulb" checked /><span>Smart bulb</span></label>
+      <label><input type="checkbox" name="wants" value="motion_sensor" checked /><span>Motion sensor</span></label>
+      <label><input type="checkbox" name="wants" value="smart_plug" /><span>Smart plug</span></label>
+      <label><input type="checkbox" name="wants" value="smart_lock" /><span>Smart lock</span></label>
+      <label><input type="checkbox" name="wants" value="temperature_sensor" /><span>Temp &amp; humidity</span></label>
+      <label><input type="checkbox" name="wants" value="contact_sensor" /><span>Door &amp; window</span></label>
+      <label><input type="checkbox" name="wants" value="smart_switch" /><span>Switch / dimmer</span></label>
+      <label><input type="checkbox" name="wants" value="leak_sensor" /><span>Water leak</span></label>
+      <label><input type="checkbox" name="wants" value="thermostat" /><span>Thermostat</span></label>
+      <label><input type="checkbox" name="wants" value="smart_shade" /><span>Shade / blind</span></label>
+    </div>
   </fieldset>
 
   <div class="examples">
@@ -60,16 +70,25 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
 
   <div class="share">
     <button type="button" id="copy-link" class="copy-btn">
-      <span class="copy-label">Copy link to this config</span>
+      Copy link to this config
     </button>
     <span id="copy-status" class="copy-status" role="status" aria-live="polite"></span>
   </div>
 </form>
 
-<section id="result" class="result">
-  <h2>
+<section id="result" class="result" aria-live="polite">
+  <h2 class="result-meta">
     Ecosystem: <code>{solution.inputs.ecosystem}</code> &middot; wants: <code>{solution.inputs.wants.join(", ")}</code>
   </h2>
+
+  <div class="hub-callout" role="note">
+    <span class="hub-label">Hubs you'll need</span>
+    <strong>
+      {solution.hubs_required.length > 0
+        ? solution.hubs_required.join(", ")
+        : "None — all picks work without an extra hub"}
+    </strong>
+  </div>
 
   {solution.warnings.length > 0 && (
     <div class="warnings">
@@ -78,104 +97,113 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
     </div>
   )}
 
+  {solution.picks.length === 0 && (
+    <div class="empty">
+      <p><strong>No compatible devices in the current knowledge base for that selection.</strong></p>
+      <p>Try Home Assistant ecosystem (broadest support) or pick a different device type. <a href="#configurator-form">Edit selection ↑</a></p>
+    </div>
+  )}
+
   {bulbPicks.length > 0 && (
     <>
-      <h3>Smart bulbs</h3>
+      <h3>Smart bulbs <span class="count">{bulbPicks.length}</span></h3>
       <div class="grid">
-        {bulbPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {bulbPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
   {plugPicks.length > 0 && (
     <>
-      <h3>Smart plugs</h3>
+      <h3>Smart plugs <span class="count">{plugPicks.length}</span></h3>
       <div class="grid">
-        {plugPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {plugPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
   {lockPicks.length > 0 && (
     <>
-      <h3>Smart locks</h3>
+      <h3>Smart locks <span class="count">{lockPicks.length}</span></h3>
       <div class="grid">
-        {lockPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {lockPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
   {motionPicks.length > 0 && (
     <>
-      <h3>Motion sensors</h3>
+      <h3>Motion sensors <span class="count">{motionPicks.length}</span></h3>
       <div class="grid">
-        {motionPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {motionPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
   {tempPicks.length > 0 && (
     <>
-      <h3>Temperature &amp; humidity</h3>
+      <h3>Temperature &amp; humidity <span class="count">{tempPicks.length}</span></h3>
       <div class="grid">
-        {tempPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {tempPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
   {contactPicks.length > 0 && (
     <>
-      <h3>Door &amp; window sensors</h3>
+      <h3>Door &amp; window sensors <span class="count">{contactPicks.length}</span></h3>
       <div class="grid">
-        {contactPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {contactPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
   {switchPicks.length > 0 && (
     <>
-      <h3>Smart switches &amp; dimmers</h3>
+      <h3>Smart switches &amp; dimmers <span class="count">{switchPicks.length}</span></h3>
       <div class="grid">
-        {switchPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {switchPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
   {leakPicks.length > 0 && (
     <>
-      <h3>Water leak sensors</h3>
+      <h3>Water leak sensors <span class="count">{leakPicks.length}</span></h3>
       <div class="grid">
-        {leakPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {leakPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
   {thermostatPicks.length > 0 && (
     <>
-      <h3>Thermostats</h3>
+      <h3>Thermostats <span class="count">{thermostatPicks.length}</span></h3>
       <div class="grid">
-        {thermostatPicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {thermostatPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
   {shadePicks.length > 0 && (
     <>
-      <h3>Smart shades &amp; blinds</h3>
+      <h3>Smart shades &amp; blinds <span class="count">{shadePicks.length}</span></h3>
       <div class="grid">
-        {shadePicks.map((p) => <ProductCard pick={p} vertical={vertical} />)}
+        {shadePicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
       </div>
     </>
   )}
 
-  <p class="hub-summary">
-    Hubs needed across this selection:
-    <strong>
-      {solution.hubs_required.length > 0
-        ? solution.hubs_required.join(", ")
-        : "none"}
-    </strong>
-  </p>
+  {solution.picks.length > 0 && (
+    <p class="price-disclaimer">
+      Prices shown are <strong>indicative MSRP or recent retail</strong> at the date next to each price.
+      Click through to the merchant for current price and availability — values drift as ranges go on sale.
+    </p>
+  )}
+
+  {solution.picks.length > 0 && (
+    <p class="back-to-top"><a href="#configurator-form">↑ Edit selection</a></p>
+  )}
 
   <ReasoningChain steps={solution.reasoning_chain} />
 </section>
@@ -284,45 +312,158 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
 </script>
 
 <style>
-  .hero h1 { font-size: 1.85rem; line-height: 1.2; margin: 0 0 0.5rem; }
-  .hero .sub { color: var(--muted); margin: 0 0 1.25rem; }
+  .hero {
+    margin: 0.5rem 0 1.5rem;
+  }
+  .hero h1 {
+    font-size: 2.1rem;
+    line-height: 1.15;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .hero .sub {
+    color: var(--muted);
+    margin: 0 0 0.85rem;
+    font-size: 1.05rem;
+    max-width: 56ch;
+  }
+  .trust-strip {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .trust-strip li {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+  }
+  .trust-strip li::before {
+    content: "✓ ";
+    color: var(--accent);
+    font-weight: 700;
+  }
 
   .config-form {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
     margin: 0 0 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: 1.1rem;
+    box-shadow: 0 1px 2px rgba(11,78,55,0.04);
   }
   .config-form fieldset {
     border: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    align-items: center;
   }
   .config-form legend {
     font-weight: 600;
-    font-size: 0.85rem;
-    margin-right: 0.5rem;
+    font-size: 0.78rem;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
+    padding: 0;
+    margin-bottom: 0.5rem;
   }
-  .config-form label {
-    display: inline-flex;
-    align-items: center;
+
+  .segmented {
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.35rem;
-    font-size: 0.9rem;
-    cursor: pointer;
   }
-  .config-form input[type="radio"],
-  .config-form input[type="checkbox"] { accent-color: var(--accent); }
+  .segmented label {
+    cursor: pointer;
+    position: relative;
+  }
+  .segmented label input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+  }
+  .segmented label span {
+    display: inline-block;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.88rem;
+    background: var(--bg);
+    transition: background 0.1s ease, color 0.1s ease, border-color 0.1s ease;
+  }
+  .segmented label:hover span {
+    border-color: var(--accent);
+  }
+  .segmented label input:checked + span {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .segmented label input:focus-visible + span {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.4rem;
+  }
+  .checkbox-grid label {
+    cursor: pointer;
+    position: relative;
+  }
+  .checkbox-grid label input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+  }
+  .checkbox-grid label span {
+    display: block;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    background: var(--bg);
+    transition: background 0.1s ease, border-color 0.1s ease;
+  }
+  .checkbox-grid label span::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 0.5rem;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    vertical-align: -2px;
+    background: #fff;
+  }
+  .checkbox-grid label input:checked + span {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 600;
+  }
+  .checkbox-grid label input:checked + span::before {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 14px var(--accent);
+  }
+  .checkbox-grid label:hover span { border-color: var(--accent); }
+  .checkbox-grid label input:focus-visible + span {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 
   .examples {
     display: flex;
@@ -331,12 +472,15 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
     align-items: center;
   }
   .examples-label {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--muted);
     margin-right: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
   }
   .chip {
-    background: white;
+    background: #fff;
     border: 1px solid var(--border);
     border-radius: 999px;
     padding: 0.35rem 0.75rem;
@@ -347,7 +491,7 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
     transition: background 0.1s ease, border-color 0.1s ease;
   }
   .chip:hover {
-    background: #f4f2ea;
+    background: var(--accent-soft);
     border-color: var(--accent);
   }
   .chip:active { transform: translateY(1px); }
@@ -356,17 +500,17 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    margin-top: 0.25rem;
   }
   .copy-btn {
     background: var(--accent);
-    color: white;
+    color: #fff;
     border: none;
     border-radius: 6px;
-    padding: 0.4rem 0.85rem;
+    padding: 0.5rem 1rem;
     font: inherit;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     cursor: pointer;
+    font-weight: 600;
   }
   .copy-btn:hover { filter: brightness(1.08); }
   .copy-btn:active { transform: translateY(1px); }
@@ -376,34 +520,128 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
     min-height: 1em;
   }
 
-  .result h2 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
-  .result h2 code {
+  .result-meta {
+    font-size: 0.95rem;
+    margin: 0 0 0.85rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .result-meta code {
     background: #efece2;
-    padding: 0.05rem 0.35rem;
+    padding: 0.1rem 0.4rem;
     border-radius: 4px;
     font-size: 0.85rem;
+    color: var(--fg);
   }
-  .result h3 { margin: 1.25rem 0 0.5rem; font-size: 1rem; }
+
+  .hub-callout {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-left-width: 4px;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    margin: 0 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .hub-callout .hub-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-dark);
+  }
+  .hub-callout strong {
+    font-size: 0.95rem;
+    color: var(--accent-dark);
+    font-weight: 600;
+  }
+
+  .result h3 {
+    margin: 1.5rem 0 0.6rem;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+  .result h3:first-of-type { border-top: none; padding-top: 0; }
+  .result h3 .count {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+  }
+
   .grid {
     display: grid;
-    gap: 0.75rem;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
+
   .warnings {
-    background: #fff8e0;
-    border: 1px solid #f0d97a;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
     border-radius: 8px;
     padding: 0.75rem 1rem;
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
+    font-size: 0.88rem;
+    margin: 0 0 1rem;
+    color: var(--warn-fg);
   }
   .warnings ul { margin: 0.25rem 0 0 1rem; padding: 0; }
-  .hub-summary { margin-top: 1rem; font-size: 0.9rem; }
   .empty {
-    background: #fff8e0;
-    border: 1px solid #f0d97a;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
     border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+    color: var(--warn-fg);
+  }
+  .empty p { margin: 0.25rem 0; }
+  .empty a { color: var(--accent-dark); font-weight: 600; }
+
+  .price-disclaimer {
+    margin: 1.5rem 0 0;
+    padding: 0.65rem 0.85rem;
+    background: #fff8e0;
+    border: 1px solid var(--warn-border);
+    border-left-width: 3px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    color: var(--warn-fg);
+    line-height: 1.5;
+  }
+  .price-disclaimer strong { color: var(--warn-fg); }
+
+  .back-to-top {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  .back-to-top a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--card);
+  }
+  .back-to-top a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.65rem; }
+    .hero .sub { font-size: 0.95rem; }
+    .config-form { padding: 0.85rem 0.95rem; gap: 0.85rem; }
+    .checkbox-grid { grid-template-columns: 1fr 1fr; }
+    .grid { grid-template-columns: 1fr; }
+    .result h3 { font-size: 0.98rem; }
   }
 </style>

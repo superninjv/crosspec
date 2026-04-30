@@ -1,88 +1,212 @@
 ---
 import type { PickedEntity } from "@engine/solver";
+import {
+  protocolLabel,
+  hubLabel,
+  ecosystemLabel,
+  otherEcosystems,
+} from "./labels";
 
 interface Props {
   pick: PickedEntity;
   vertical: string;
+  userEcosystem?: string;
 }
 
-const { pick, vertical } = Astro.props;
+const { pick, vertical, userEcosystem } = Astro.props;
 const { entity, hub_required, native_in_ecosystem } = pick;
 const sku = entity.sku ?? entity.id;
 const affiliateHref = `/go/${vertical}/${sku}`;
 
 const ecosystems = (entity.attributes.ecosystems ?? []) as string[];
+const priceUsd = entity.attributes.price_usd;
+const priceSource = entity.attributes.price_source;
+const priceDate = entity.attributes.price_ingest_date;
+const priceLabel = typeof priceUsd === "number" ? `$${priceUsd}` : null;
+
+const proto = entity.attributes.protocol
+  ? protocolLabel(entity.attributes.protocol)
+  : null;
+const hubText = hubLabel(hub_required);
+const otherEcos = userEcosystem
+  ? otherEcosystems(ecosystems, userEcosystem).map(ecosystemLabel)
+  : ecosystems.map(ecosystemLabel);
 ---
 <article class="product-card">
   <header>
     <h3>{entity.name}</h3>
-    <span class={`badge ${native_in_ecosystem ? "ok" : "warn"}`}>
-      {native_in_ecosystem ? "native" : "via bridge"}
-    </span>
+    {priceLabel && <span class="price-amount">{priceLabel}</span>}
   </header>
-  <dl class="specs">
-    {entity.attributes.brand && (<><dt>Brand</dt><dd>{entity.attributes.brand}</dd></>)}
-    {entity.attributes.model && (<><dt>Model</dt><dd>{entity.attributes.model}</dd></>)}
-    {entity.attributes.protocol && (<><dt>Protocol</dt><dd>{entity.attributes.protocol}</dd></>)}
-    <dt>Hub</dt><dd>{hub_required === "none" ? "no hub required" : hub_required}</dd>
-    <dt>Ecosystems</dt><dd>{ecosystems.join(", ") || "—"}</dd>
-  </dl>
-  <a class="cta" href={affiliateHref} rel="sponsored nofollow">
-    Find via affiliate
-  </a>
-  <p class="attrib">
-    Sources: {(entity.attributes.source_ids ?? []).map((s) => `#${s}`).join(", ")}
-    &middot; ingest 2026-04-21
+  <p class="compat-line">
+    <span class={`compat-badge ${native_in_ecosystem ? "ok" : "warn"}`}>
+      {native_in_ecosystem ? "Native" : "Via bridge"}
+    </span>
+    {userEcosystem && <span class="compat-eco">{ecosystemLabel(userEcosystem)}</span>}
+    {proto && <><span class="dot">·</span><span>{proto}</span></>}
+    <span class="dot">·</span>
+    <span>{hubText}</span>
   </p>
+  {otherEcos.length > 0 && (
+    <p class="also-line">Also works with {otherEcos.join(", ")}.</p>
+  )}
+  {priceLabel && (priceSource || priceDate) && (
+    <p class="price-meta-line">
+      {priceSource}{priceSource && priceDate ? " · " : ""}{priceDate}
+    </p>
+  )}
+  <div class="cta-row">
+    <a class="cta" href={affiliateHref} rel="sponsored nofollow">
+      Find on retailer →
+    </a>
+    <span class="affiliate-tag">affiliate</span>
+  </div>
+  <details class="card-details">
+    <summary>Specs &amp; sources</summary>
+    <dl class="specs">
+      {entity.attributes.brand && (<><dt>Brand</dt><dd>{entity.attributes.brand}</dd></>)}
+      {entity.attributes.model && (<><dt>Model</dt><dd>{entity.attributes.model}</dd></>)}
+      {entity.attributes.protocol && (<><dt>Protocol</dt><dd>{entity.attributes.protocol}</dd></>)}
+      <dt>Hub</dt><dd>{hub_required === "none" ? "no hub required" : hub_required}</dd>
+      <dt>Ecosystems</dt><dd>{ecosystems.join(", ") || "—"}</dd>
+    </dl>
+    <p class="attrib">
+      Compatibility cited from sources #{(entity.attributes.source_ids ?? []).join(", #")}
+      &middot; KB ingest 2026-04-21
+    </p>
+  </details>
 </article>
 <style>
   .product-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    padding: 0.95rem 1.1rem 0.85rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    transition: border-color 0.1s ease, box-shadow 0.1s ease;
+  }
+  .product-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(11,78,55,0.08);
   }
   .product-card header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 1rem;
+    gap: 0.75rem;
   }
-  .product-card h3 { margin: 0; font-size: 1.05rem; }
-  .badge {
-    font-size: 0.7rem;
-    padding: 0.15rem 0.5rem;
+  .product-card h3 {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  .price-amount {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-dark);
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .compat-line {
+    margin: 0.1rem 0 0;
+    font-size: 0.88rem;
+    color: var(--fg);
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .compat-line .dot { color: var(--border); }
+  .compat-badge {
+    font-size: 0.68rem;
+    padding: 0.15rem 0.55rem;
     border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+  }
+  .compat-badge.ok { background: var(--accent-soft); color: var(--accent-dark); }
+  .compat-badge.warn { background: #fff3d6; color: var(--warn-fg); }
+  .compat-eco { font-weight: 600; }
+
+  .also-line {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .price-meta-line {
+    margin: 0;
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.35rem;
+  }
+  .cta {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .cta:hover { filter: brightness(1.08); }
+  .affiliate-tag {
+    font-size: 0.68rem;
+    color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
-  .badge.ok { background: #d6f0e3; color: #0b6e4f; }
-  .badge.warn { background: #fff3d6; color: #7a5b00; }
+
+  .card-details {
+    margin-top: 0.25rem;
+    border-top: 1px dashed var(--border);
+    padding-top: 0.45rem;
+  }
+  .card-details summary {
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: var(--muted);
+    list-style: none;
+    user-select: none;
+  }
+  .card-details summary::-webkit-details-marker { display: none; }
+  .card-details summary::before { content: "▸ "; color: var(--muted); font-size: 0.7rem; }
+  .card-details[open] summary::before { content: "▾ "; }
+  .card-details summary:hover { color: var(--accent); }
   .specs {
     display: grid;
     grid-template-columns: max-content 1fr;
     column-gap: 0.75rem;
     row-gap: 0.2rem;
-    margin: 0.25rem 0;
-    font-size: 0.85rem;
+    margin: 0.5rem 0 0.4rem;
+    font-size: 0.8rem;
   }
-  .specs dt { color: var(--muted); }
+  .specs dt {
+    color: var(--muted);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    align-self: center;
+  }
   .specs dd { margin: 0; }
-  .cta {
-    align-self: flex-start;
-    background: var(--accent);
-    color: white;
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.9rem;
-  }
   .attrib {
     margin: 0.25rem 0 0;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--muted);
+    line-height: 1.4;
+    font-style: italic;
   }
 </style>

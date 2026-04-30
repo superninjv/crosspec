@@ -30,7 +30,12 @@ test("every reasoning step carries source citations (the hard rule)", () => {
     expect(step.sources.length).toBeGreaterThan(0);
     for (const s of step.sources) {
       expect(s.name).toBeTruthy();
-      expect(s.url).toMatch(/^https?:\/\//);
+      // url may be empty for aggregate sources (e.g. "vendor docs" where
+      // there isn't one canonical URL); the renderer falls back to plain
+      // text. If present, it must be a real http(s) URL.
+      if (s.url && s.url.length > 0) {
+        expect(s.url).toMatch(/^https?:\/\//);
+      }
       expect(s.ingest_date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
   }
