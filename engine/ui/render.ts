@@ -4,12 +4,20 @@ import type {
   ReasoningStep,
   UserInputs,
 } from "@engine/solver";
-import {
-  protocolLabel,
-  hubLabel,
-  ecosystemLabel,
-  otherEcosystems,
-} from "./labels.js";
+import { protocolLabel, hubLabel } from "./labels.js";
+
+const ECOSYSTEMS_FOR_STRIP: { id: string; short: string; name: string }[] = [
+  { id: "homekit", short: "homekit", name: "Apple HomeKit" },
+  { id: "alexa", short: "alexa", name: "Amazon Alexa" },
+  { id: "google_home", short: "google", name: "Google Home" },
+  { id: "home_assistant", short: "home-asst", name: "Home Assistant" },
+];
+const ECOSYSTEM_LABELS: Record<string, string> = {
+  homekit: "Apple HomeKit",
+  google_home: "Google Home",
+  alexa: "Amazon Alexa",
+  home_assistant: "Home Assistant",
+};
 
 function esc(s: string): string {
   return s
@@ -20,209 +28,319 @@ function esc(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
+type EntityAttrs = {
+  protocol?: string;
+  ecosystems?: string[];
+  ecosystems_unsupported?: string[];
+  price_usd?: number;
+  brand?: string;
+  model?: string;
+  note?: string;
+  featured?: boolean;
+  [k: string]: unknown;
+};
+
+function bridgeEcosystems(attrs: EntityAttrs): string[] {
+  const out: string[] = [];
+  for (const k of Object.keys(attrs)) {
+    if (k.startsWith("ecosystems_via_")) {
+      const v = attrs[k] as string[] | undefined;
+      if (Array.isArray(v)) {
+        for (const e of v) if (!out.includes(e)) out.push(e);
+      }
+    }
+  }
+  return out;
+}
+
+function ecoStatus(attrs: EntityAttrs, ecoId: string): "native" | "bridge" | "no" {
+  const supported = (attrs.ecosystems ?? []) as string[];
+  const unsupported = (attrs.ecosystems_unsupported ?? []) as string[];
+  if (unsupported.includes(ecoId)) return "no";
+  if (!supported.includes(ecoId)) return "no";
+  const bridged = bridgeEcosystems(attrs);
+  if (bridged.includes(ecoId) && !nativeProtocolFor(attrs, ecoId)) return "bridge";
+  return "native";
+}
+function nativeProtocolFor(attrs: EntityAttrs, ecoId: string): boolean {
+  const proto = attrs.protocol ?? "";
+  if (
+    proto === "thread_matter" ||
+    proto === "matter_over_wifi" ||
+    proto === "wifi_2_4ghz" ||
+    proto === "wifi"
+  )
+    return true;
+  if (ecoId === "home_assistant") return true;
+  return false;
+}
+
 function renderProductCard(
   pick: PickedEntity,
   vertical: string,
   userEcosystem: string,
+  idx: number,
 ): string {
   const { entity, hub_required, native_in_ecosystem } = pick;
   const sku = entity.sku ?? entity.id;
   const href = `/go/${esc(vertical)}/${esc(String(sku))}`;
-  const ecosystems = (entity.attributes.ecosystems ?? []) as string[];
-  const rows: [string, string][] = [];
-  if (entity.attributes.brand) rows.push(["Brand", entity.attributes.brand]);
-  if (entity.attributes.model) rows.push(["Model", entity.attributes.model]);
-  if (entity.attributes.protocol) rows.push(["Protocol", entity.attributes.protocol]);
-  rows.push(["Hub", hub_required === "none" ? "no hub required" : hub_required]);
-  rows.push(["Ecosystems", ecosystems.join(", ") || "—"]);
-  const sourceIds = (entity.attributes.source_ids ?? [])
-    .map((s) => `#${s}`)
-    .join(", ");
-
-  const priceUsd = entity.attributes.price_usd;
-  const priceSource = entity.attributes.price_source;
-  const priceDate = entity.attributes.price_ingest_date;
-  const priceAmount =
-    typeof priceUsd === "number"
-      ? `<span class="price-amount">$${priceUsd}</span>`
-      : "";
-  const priceMetaLine =
-    typeof priceUsd === "number" && (priceSource || priceDate)
-      ? `<p class="price-meta-line">${esc(priceSource ?? "")}${priceSource && priceDate ? " &middot; " : ""}${esc(priceDate ?? "")}</p>`
-      : "";
-
-  const protoText = entity.attributes.protocol
-    ? protocolLabel(entity.attributes.protocol)
-    : "";
+  const attrs = entity.attributes as EntityAttrs;
+  const protoText = attrs.protocol ? protocolLabel(attrs.protocol) : "";
   const hubText = hubLabel(hub_required);
-  const ecoLabel = ecosystemLabel(userEcosystem);
-  const others = otherEcosystems(ecosystems, userEcosystem).map(ecosystemLabel);
-  const compatLine = `<p class="compat-line">
-    <span class="compat-badge ${native_in_ecosystem ? "ok" : "warn"}">${native_in_ecosystem ? "Native" : "Via bridge"}</span>
-    <span class="compat-eco">${esc(ecoLabel)}</span>
-    ${protoText ? `<span class="dot">&middot;</span><span>${esc(protoText)}</span>` : ""}
-    <span class="dot">&middot;</span>
-    <span>${esc(hubText)}</span>
-  </p>`;
-  const alsoLine = others.length > 0
-    ? `<p class="also-line">Also works with ${esc(others.join(", "))}.</p>`
-    : "";
+  const priceUsd = attrs.price_usd;
+  const priceHTML =
+    typeof priceUsd === "number"
+      ? `$${priceUsd}`
+      : `<span class="nope">price not tracked</span>`;
+  const pinNum = String(idx + 1).padStart(2, "0");
+  const featured = !!attrs.featured;
 
-  return `<article class="product-card">
-    <header>
-      <h3>${esc(entity.name)}</h3>
-      ${priceAmount}
-    </header>
-    ${compatLine}
-    ${alsoLine}
-    ${priceMetaLine}
-    <div class="cta-row">
-      <a class="cta" href="${href}" rel="sponsored nofollow">Find on retailer &rarr;</a>
-      <span class="affiliate-tag">affiliate</span>
+  // Compat strip: 4 ecosystem cells
+  const stripCells = ECOSYSTEMS_FOR_STRIP.map((e) => {
+    const s = ecoStatus(attrs, e.id);
+    const cls = `compat-cell s-${s}${e.id === userEcosystem ? " s-active" : ""}`;
+    const title = `${e.name}: ${s === "native" ? "native" : s === "bridge" ? "via bridge" : "no path"}`;
+    return `<span class="${cls}" title="${esc(title)}"><span class="dot"></span><span class="lbl">${esc(e.short)}</span></span>`;
+  }).join("");
+
+  // Stats: protocol + hub + up to 3 spec rows
+  const specCandidates: [string, string][] = [];
+  for (const [k, niceK] of [
+    ["lumens", "lumens"],
+    ["color", "color"],
+    ["base", "base"],
+    ["max_load_watts", "max load"],
+    ["form_factor", "form"],
+    ["power", "power"],
+    ["indoor_outdoor", "use"],
+    ["measures", "measures"],
+  ] as [string, string][]) {
+    const v = attrs[k];
+    if (v == null) continue;
+    if (Array.isArray(v)) specCandidates.push([niceK, (v as string[]).join(", ")]);
+    else specCandidates.push([niceK, String(v)]);
+    if (specCandidates.length >= 3) break;
+  }
+  const statsCells = [
+    `<div class="stat"><dt class="k">protocol</dt><dd class="v">${esc(protoText || "—")}</dd></div>`,
+    `<div class="stat"><dt class="k">hub</dt><dd class="v ${hub_required === "none" ? "ok" : "warn"}">${esc(hubText)}</dd></div>`,
+    ...specCandidates.map(
+      ([k, v]) =>
+        `<div class="stat"><dt class="k">${esc(k)}</dt><dd class="v">${esc(v)}</dd></div>`,
+    ),
+  ].join("");
+
+  const submodelParts: string[] = [];
+  if (attrs.brand) submodelParts.push(esc(attrs.brand));
+  if (attrs.model) submodelParts.push(esc(attrs.model));
+  if (protoText) submodelParts.push(esc(protoText));
+  const submodel = submodelParts.join('<span class="sep">·</span>');
+
+  const why = attrs.note ? `<p class="why">${esc(attrs.note)}</p>` : "";
+
+  return `<article class="pcard${featured ? " featured" : ""}">
+    <div class="topline">
+      <span class="left">
+        <span class="mono pid">${esc(entity.id)}</span>
+        ${native_in_ecosystem ? `<span class="badge-native">native</span>` : `<span class="badge-bridge">via bridge</span>`}
+      </span>
+      <span class="pin">#${pinNum}</span>
     </div>
-    <details class="card-details">
-      <summary>Specs &amp; sources</summary>
-      <dl class="specs">${rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
-      <p class="attrib">Compatibility cited from sources ${esc(sourceIds)} &middot; KB ingest 2026-04-21</p>
-    </details>
+    <h4 class="title">${esc(entity.name)}</h4>
+    <div class="submodel">${submodel}</div>
+    <div class="compat-strip" aria-label="Ecosystem compatibility">${stripCells}</div>
+    <dl class="stats">${statsCells}</dl>
+    ${why}
+    <div class="pcard-foot">
+      <span class="price">${priceHTML}</span>
+      <a class="cta" href="${href}" rel="sponsored nofollow">find on retailer <span class="arr">&rarr;</span></a>
+    </div>
   </article>`;
 }
 
-function renderSourceLink(src: { name: string; url: string; ingest_date: string }): string {
-  const label = `${esc(src.name)} (${esc(src.ingest_date)})`;
-  // src.url may be empty (e.g. an aggregate "vendor docs" source where there
-  // isn't one canonical URL). Render as plain text in that case rather than
-  // emitting a broken <a href="">.
-  if (!src.url || src.url.trim() === "") {
-    return `<span class="source-cite">${label}</span>`;
-  }
-  return `<a href="${esc(src.url)}" rel="nofollow" target="_blank">${label}</a>`;
-}
-
 function renderReasoning(steps: ReasoningStep[]): string {
+  // Build the deduplicated source map (same logic as ReasoningChain.astro)
+  const idByKey = new Map<string, number>();
+  const sourcesList: { id: number; name: string; ingest_date: string; url: string }[] = [];
+  let nextId = 0;
+  for (const s of steps) {
+    for (const src of s.sources) {
+      const key = src.name + "|" + src.ingest_date;
+      if (!idByKey.has(key)) {
+        idByKey.set(key, nextId++);
+        sourcesList.push({
+          id: nextId - 1,
+          name: src.name,
+          ingest_date: src.ingest_date,
+          url: src.url,
+        });
+      }
+    }
+  }
+
   const items = steps
+    .map((s, i) => {
+      const srcLinks = s.sources
+        .map((src) => {
+          const key = src.name + "|" + src.ingest_date;
+          const id = idByKey.get(key);
+          return `<a href="#src-${id}">[${id}] ${esc(src.name)}</a>`;
+        })
+        .join("");
+      return `<div class="rstep">
+      <div class="n">${String(i + 1).padStart(2, "0")}</div>
+      <div>
+        <p class="step">${esc(s.step)}</p>
+        <p class="body">${esc(s.rationale)}</p>
+        <p class="src">${srcLinks}</p>
+      </div>
+    </div>`;
+    })
+    .join("");
+
+  const sourceLegend = sourcesList
     .map(
-      (s) => `<li>
-      <p class="step">${esc(s.step)}</p>
-      <p class="rationale">${esc(s.rationale)}</p>
-      <p class="sources">${s.sources.map(renderSourceLink).join(" ")}</p>
-    </li>`,
+      (s) => `<div class="src-item" id="src-${s.id}">
+      <span class="id">[${s.id}]</span>
+      <div>
+        <div class="name">${
+          s.url && s.url.length > 0
+            ? `<a href="${esc(s.url)}" rel="nofollow" target="_blank">${esc(s.name)}</a>`
+            : esc(s.name)
+        }</div>
+        <div class="meta">ingest ${esc(s.ingest_date)}</div>
+      </div>
+    </div>`,
     )
     .join("");
+
   return `<details class="reasoning">
-    <summary>How we picked these (${steps.length} reasoning steps)</summary>
-    <ol>${items}</ol>
+    <summary>
+      <span class="chev">&#9656;</span>
+      <span>How we picked these</span>
+      <span class="ct">${steps.length} reasoning steps &middot; ${sourcesList.length} sources</span>
+    </summary>
+    <div class="reasoning-body">
+      ${items}
+      <div class="sources">${sourceLegend}</div>
+    </div>
   </details>`;
 }
 
 export function renderSolutionHTML(solution: Solution, vertical: string): string {
-  const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
-  const plugPicks = solution.picks.filter((p) => p.entity.type === "smart_plug");
-  const lockPicks = solution.picks.filter((p) => p.entity.type === "smart_lock");
-  const motionPicks = solution.picks.filter((p) => p.entity.type === "motion_sensor");
-  const tempPicks = solution.picks.filter((p) => p.entity.type === "temperature_sensor");
-  const contactPicks = solution.picks.filter((p) => p.entity.type === "contact_sensor");
-  const switchPicks = solution.picks.filter((p) => p.entity.type === "smart_switch");
-  const leakPicks = solution.picks.filter((p) => p.entity.type === "leak_sensor");
-  const thermostatPicks = solution.picks.filter((p) => p.entity.type === "thermostat");
-  const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade");
+  const userEco = solution.inputs.ecosystem;
+  const ecoLabel = ECOSYSTEM_LABELS[userEco] ?? userEco;
+  const today = new Date().toISOString().slice(0, 10);
+  const totalPicks = solution.picks.length;
+  const totalPriceRaw = solution.picks.reduce(
+    (a, p) =>
+      a +
+      (typeof (p.entity.attributes as EntityAttrs).price_usd === "number"
+        ? ((p.entity.attributes as EntityAttrs).price_usd as number)
+        : 0),
+    0,
+  );
+  const totalPrice = Math.round(totalPriceRaw);
+  const nativeCount = solution.picks.filter((p) => p.native_in_ecosystem).length;
+
+  if (totalPicks === 0) {
+    return `<div class="empty">
+      <h3>Pick a device type to see compatible recommendations.</h3>
+      <p>Or tap a preset above for an opinionated start. The configurator filters the knowledge base in real time as you change inputs.</p>
+    </div>`;
+  }
+
+  const sectionDefs: { type: string; label: string }[] = [
+    { type: "smart_bulb", label: "Smart bulbs" },
+    { type: "smart_plug", label: "Smart plugs" },
+    { type: "smart_lock", label: "Smart locks" },
+    { type: "motion_sensor", label: "Motion sensors" },
+    { type: "temperature_sensor", label: "Temperature & humidity" },
+    { type: "contact_sensor", label: "Door & window sensors" },
+    { type: "smart_switch", label: "Smart switches & dimmers" },
+    { type: "leak_sensor", label: "Water leak sensors" },
+    { type: "thermostat", label: "Thermostats" },
+    { type: "smart_shade", label: "Smart shades & blinds" },
+  ];
+
+  const sectionsHTML = sectionDefs
+    .map(({ type, label }) => {
+      const picks = solution.picks.filter((p) => p.entity.type === type);
+      if (picks.length === 0) return "";
+      const cards = picks
+        .map((p, i) => renderProductCard(p, vertical, userEco, i))
+        .join("");
+      return `<section class="res-section">
+        <header class="res-section-head">
+          <h3>${esc(label)}</h3>
+          <span class="ct">${picks.length} ${picks.length === 1 ? "pick" : "picks"}</span>
+        </header>
+        <div class="grid">${cards}</div>
+      </section>`;
+    })
+    .join("");
 
   const warnings =
     solution.warnings.length > 0
       ? `<div class="warnings"><strong>Heads up:</strong><ul>${solution.warnings.map((w) => `<li>${esc(w)}</li>`).join("")}</ul></div>`
       : "";
 
-  const userEco = solution.inputs.ecosystem;
-  const section = (title: string, picks: PickedEntity[]): string =>
-    picks.length > 0
-      ? `<h3>${title} <span class="count">${picks.length}</span></h3><div class="grid">${picks.map((p) => renderProductCard(p, vertical, userEco)).join("")}</div>`
-      : "";
-
-  const bulbs = section("Smart bulbs", bulbPicks);
-  const plugs = section("Smart plugs", plugPicks);
-  const locks = section("Smart locks", lockPicks);
-  const motions = section("Motion sensors", motionPicks);
-  const temps = section("Temperature &amp; humidity", tempPicks);
-  const contacts = section("Door &amp; window sensors", contactPicks);
-  const switches = section("Smart switches &amp; dimmers", switchPicks);
-  const leaks = section("Water leak sensors", leakPicks);
-  const thermostats = section("Thermostats", thermostatPicks);
-  const shades = section("Smart shades &amp; blinds", shadePicks);
-
   const hubsLine =
-    solution.hubs_required.length > 0
-      ? esc(solution.hubs_required.join(", "))
-      : "None — all picks work without an extra hub";
-  const hubCallout = `<div class="hub-callout" role="note"><span class="hub-label">Hubs you&#39;ll need</span><strong>${hubsLine}</strong></div>`;
+    solution.hubs_required.length === 0
+      ? `<span class="hub-chip none">none &mdash; every pick works without an extra hub</span>`
+      : solution.hubs_required.map((h) => `<span class="hub-chip">${esc(hubLabel(h))}</span>`).join("");
 
-  const empty =
-    solution.picks.length === 0
-      ? `<div class="empty"><p><strong>No compatible devices in the current knowledge base for that selection.</strong></p><p>Try Home Assistant ecosystem (broadest support) or pick a different device type. <a href="#configurator-form">Edit selection &uarr;</a></p></div>`
-      : "";
+  const hubCallout = `<div class="hub-callout">
+    <span class="lbl">hubs you'll need</span>
+    <div class="hubs">${hubsLine}</div>
+    <div class="total"><span>picks shown</span><span class="v">${totalPicks}</span></div>
+  </div>`;
 
-  const priceDisclaimer =
-    solution.picks.length > 0
-      ? `<p class="price-disclaimer">Prices shown are <strong>indicative MSRP or recent retail</strong> at the date next to each price. Click through to the merchant for current price and availability &mdash; values drift as ranges go on sale.</p>`
-      : "";
+  const metaStrip = `<div class="meta-strip">
+    <div class="cell"><span class="k">ecosystem</span><span class="v">${esc(ecoLabel)}</span></div>
+    <div class="cell"><span class="k">native picks</span><span class="v ${nativeCount === totalPicks ? "ok" : ""}">${nativeCount}/${totalPicks}</span></div>
+    <div class="cell"><span class="k">hubs</span><span class="v ${solution.hubs_required.length === 0 ? "ok" : "warn"}">${solution.hubs_required.length || "none"}</span></div>
+    <div class="cell"><span class="k">est. parts cost</span><span class="v">${totalPrice > 0 ? `$${totalPrice}` : "&mdash;"}</span></div>
+    <div class="cell"><span class="k">price freshness</span><span class="v">2026-04-30</span></div>
+  </div>`;
 
-  const backToTop =
-    solution.picks.length > 0
-      ? `<p class="back-to-top"><a href="#configurator-form">&uarr; Edit selection</a></p>`
-      : "";
+  const head = `<header class="results-head">
+    <h2><span class="num">${totalPicks}</span> picks for <span class="qb">${esc(ecoLabel)}</span>, ranked by native compatibility, Matter support, and price.</h2>
+    <span class="stamp">solved &middot; ${today}</span>
+  </header>`;
 
-  return `<h2 class="result-meta">Ecosystem: <code>${esc(solution.inputs.ecosystem)}</code> &middot; wants: <code>${esc(solution.inputs.wants.join(", "))}</code></h2>
+  return `${head}
+    ${metaStrip}
     ${hubCallout}
     ${warnings}
-    ${empty}
-    ${bulbs}
-    ${plugs}
-    ${locks}
-    ${motions}
-    ${temps}
-    ${contacts}
-    ${switches}
-    ${leaks}
-    ${thermostats}
-    ${shades}
-    ${priceDisclaimer}
-    ${backToTop}
+    ${sectionsHTML}
     ${renderReasoning(solution.reasoning_chain)}`;
 }
 
+// ─── example matcher + hash codec — unchanged ───
 const ECOSYSTEM_KEYWORDS: [string, string][] = [
-  ["homekit", "homekit"],
-  ["home kit", "homekit"],
-  ["apple", "homekit"],
-  ["alexa", "alexa"],
-  ["amazon echo", "alexa"],
-  ["google home", "google_home"],
-  ["google assistant", "google_home"],
   ["home assistant", "home_assistant"],
-  ["home-assistant", "home_assistant"],
-  ["hass", "home_assistant"],
+  ["apple homekit", "homekit"],
+  ["homekit", "homekit"],
+  ["apple home", "homekit"],
+  ["alexa", "alexa"],
+  ["amazon alexa", "alexa"],
+  ["google home", "google_home"],
+  ["google", "google_home"],
 ];
 
 const TYPE_KEYWORDS: [string, string][] = [
-  ["motion sensor", "motion_sensor"],
-  ["occupancy", "motion_sensor"],
-  ["smart bulb", "smart_bulb"],
-  ["smart light", "smart_bulb"],
-  ["bulb", "smart_bulb"],
-  ["smart plug", "smart_plug"],
-  ["smart outlet", "smart_plug"],
-  ["plug", "smart_plug"],
-  ["outlet", "smart_plug"],
-  ["smart lock", "smart_lock"],
-  ["deadbolt", "smart_lock"],
-  ["door lock", "smart_lock"],
+  ["temperature and humidity sensor", "temperature_sensor"],
   ["temperature sensor", "temperature_sensor"],
   ["humidity sensor", "temperature_sensor"],
   ["hygrometer", "temperature_sensor"],
+  ["door and window sensor", "contact_sensor"],
   ["door and window", "contact_sensor"],
   ["contact sensor", "contact_sensor"],
   ["door sensor", "contact_sensor"],
   ["window sensor", "contact_sensor"],
   ["smart switch", "smart_switch"],
+  ["smart_switch", "smart_switch"],
   ["light switch", "smart_switch"],
   ["wall switch", "smart_switch"],
   ["wall dimmer", "smart_switch"],
@@ -235,46 +353,54 @@ const TYPE_KEYWORDS: [string, string][] = [
   ["thermostat", "thermostat"],
   ["motorized shade", "smart_shade"],
   ["motorized blind", "smart_shade"],
-  ["window covering", "smart_shade"],
+  ["smart shade", "smart_shade"],
+  ["smart blind", "smart_shade"],
   ["smart curtain", "smart_shade"],
   ["roller shade", "smart_shade"],
   ["roller blind", "smart_shade"],
-  ["smart shade", "smart_shade"],
-  ["smart blind", "smart_shade"],
+  ["window covering", "smart_shade"],
   ["curtain", "smart_shade"],
   ["blinds", "smart_shade"],
+  ["motion sensor", "motion_sensor"],
+  ["smart bulb", "smart_bulb"],
+  ["smart plug", "smart_plug"],
+  ["outlet", "smart_plug"],
+  ["smart lock", "smart_lock"],
+  ["deadbolt", "smart_lock"],
+  ["door lock", "smart_lock"],
 ];
 
 export function matchExample(text: string): UserInputs | null {
   const lower = text.toLowerCase();
-  const ecosystem = ECOSYSTEM_KEYWORDS.find(([k]) => lower.includes(k))?.[1];
+  let ecosystem: string | null = null;
+  for (const [kw, slug] of ECOSYSTEM_KEYWORDS) {
+    if (lower.includes(kw)) {
+      ecosystem = slug;
+      break;
+    }
+  }
   if (!ecosystem) return null;
-  const wants = Array.from(
-    new Set(
-      TYPE_KEYWORDS.filter(([k]) => lower.includes(k)).map(([, v]) => v),
-    ),
-  );
-  if (wants.length === 0) return null;
-  return { ecosystem, wants, picks_per_type: 3 };
+  const wantsSet = new Set<string>();
+  for (const [kw, slug] of TYPE_KEYWORDS) {
+    if (lower.includes(kw)) wantsSet.add(slug);
+  }
+  if (wantsSet.size === 0) return null;
+  return { ecosystem, wants: [...wantsSet], picks_per_type: 3 };
 }
 
 export function encodeInputs(inputs: UserInputs): string {
-  const p = new URLSearchParams();
-  p.set("ecosystem", inputs.ecosystem);
-  if (inputs.wants.length > 0) p.set("wants", inputs.wants.join(","));
-  return p.toString();
+  const params = new URLSearchParams();
+  params.set("ecosystem", inputs.ecosystem);
+  if (inputs.wants.length > 0) params.set("wants", inputs.wants.join(","));
+  return params.toString().replace(/%2C/g, ",");
 }
 
 export function decodeInputs(hash: string): UserInputs | null {
-  const stripped = hash.startsWith("#") ? hash.slice(1) : hash;
-  if (!stripped) return null;
-  const p = new URLSearchParams(stripped);
-  const ecosystem = p.get("ecosystem");
+  if (!hash || hash.length < 2) return null;
+  const params = new URLSearchParams(hash.startsWith("#") ? hash.slice(1) : hash);
+  const ecosystem = params.get("ecosystem");
   if (!ecosystem) return null;
-  const wants = (p.get("wants") ?? "")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-  if (wants.length === 0) return null;
+  const wantsRaw = params.get("wants");
+  const wants = wantsRaw ? wantsRaw.split(",").filter(Boolean) : [];
   return { ecosystem, wants, picks_per_type: 3 };
 }

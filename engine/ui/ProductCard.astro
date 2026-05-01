@@ -1,212 +1,336 @@
 ---
 import type { PickedEntity } from "@engine/solver";
-import {
-  protocolLabel,
-  hubLabel,
-  ecosystemLabel,
-  otherEcosystems,
-} from "./labels";
+import { protocolLabel, hubLabel } from "./labels";
 
 interface Props {
   pick: PickedEntity;
   vertical: string;
-  userEcosystem?: string;
+  userEcosystem: string;
+  idx?: number;
 }
 
-const { pick, vertical, userEcosystem } = Astro.props;
+const ECOSYSTEMS = [
+  { id: "homekit", short: "homekit", name: "Apple HomeKit" },
+  { id: "alexa", short: "alexa", name: "Amazon Alexa" },
+  { id: "google_home", short: "google", name: "Google Home" },
+  { id: "home_assistant", short: "home-asst", name: "Home Assistant" },
+];
+
+const { pick, vertical, userEcosystem, idx = 0 } = Astro.props;
 const { entity, hub_required, native_in_ecosystem } = pick;
 const sku = entity.sku ?? entity.id;
 const affiliateHref = `/go/${vertical}/${sku}`;
+const attrs = entity.attributes;
 
-const ecosystems = (entity.attributes.ecosystems ?? []) as string[];
-const priceUsd = entity.attributes.price_usd;
-const priceSource = entity.attributes.price_source;
-const priceDate = entity.attributes.price_ingest_date;
+const ecosystems = (attrs.ecosystems ?? []) as string[];
+const ecosystemsUnsupported = (attrs.ecosystems_unsupported ?? []) as string[];
+const ecosystemsViaBridge: string[] = [];
+for (const k of Object.keys(attrs)) {
+  if (k.startsWith("ecosystems_via_")) {
+    for (const e of (attrs[k] as string[]) ?? []) {
+      if (!ecosystemsViaBridge.includes(e)) ecosystemsViaBridge.push(e);
+    }
+  }
+}
+
+function ecoStatus(ecoId: string): "native" | "bridge" | "no" {
+  if (ecosystemsUnsupported.includes(ecoId)) return "no";
+  if (!ecosystems.includes(ecoId)) return "no";
+  // If the ecosystem support comes only via a bridge attribute, mark as bridge.
+  if (ecosystemsViaBridge.includes(ecoId) && !nativeProtocolFor(ecoId)) return "bridge";
+  return "native";
+}
+function nativeProtocolFor(ecoId: string): boolean {
+  // Heuristic: if the protocol is thread_matter / matter_over_wifi or the device
+  // has a vendor-direct path (no `requires_hub` other than thread/matter_controller),
+  // treat as native; otherwise the only path is via the brand bridge → "bridge".
+  const proto = (attrs.protocol ?? "") as string;
+  if (proto === "thread_matter" || proto === "matter_over_wifi" || proto === "wifi_2_4ghz" || proto === "wifi") {
+    return true;
+  }
+  // Zigbee / BLE / proprietary RF require a hub — except Home Assistant which has
+  // first-class support via Zigbee2MQTT / ZHA / direct integrations
+  if (ecoId === "home_assistant") return true;
+  return false;
+}
+
+const priceUsd = attrs.price_usd;
 const priceLabel = typeof priceUsd === "number" ? `$${priceUsd}` : null;
-
-const proto = entity.attributes.protocol
-  ? protocolLabel(entity.attributes.protocol)
-  : null;
+const protoText = attrs.protocol ? protocolLabel(attrs.protocol as string) : "";
 const hubText = hubLabel(hub_required);
-const otherEcos = userEcosystem
-  ? otherEcosystems(ecosystems, userEcosystem).map(ecosystemLabel)
-  : ecosystems.map(ecosystemLabel);
+
+// Build the small stats grid: protocol + hub + up to 3 spec rows pulled from
+// well-known optional attribute keys
+const specRows: [string, string][] = [];
+for (const [k, niceK] of [
+  ["lumens", "lumens"],
+  ["color", "color"],
+  ["base", "base"],
+  ["max_load_watts", "max load"],
+  ["form_factor", "form"],
+  ["power", "power"],
+  ["indoor_outdoor", "use"],
+  ["measures", "measures"],
+] as [string, string][]) {
+  const v = attrs[k];
+  if (v == null) continue;
+  if (Array.isArray(v)) specRows.push([niceK, v.join(", ")]);
+  else specRows.push([niceK, String(v)]);
+  if (specRows.length >= 3) break;
+}
+
+const pinNum = String(idx + 1).padStart(2, "0");
 ---
-<article class="product-card">
-  <header>
-    <h3>{entity.name}</h3>
-    {priceLabel && <span class="price-amount">{priceLabel}</span>}
-  </header>
-  <p class="compat-line">
-    <span class={`compat-badge ${native_in_ecosystem ? "ok" : "warn"}`}>
-      {native_in_ecosystem ? "Native" : "Via bridge"}
+<article class={`pcard${attrs.featured ? " featured" : ""}`}>
+  <div class="topline">
+    <span class="left">
+      <span class="mono pid">{entity.id}</span>
+      {native_in_ecosystem ? (
+        <span class="badge-native">native</span>
+      ) : (
+        <span class="badge-bridge">via bridge</span>
+      )}
     </span>
-    {userEcosystem && <span class="compat-eco">{ecosystemLabel(userEcosystem)}</span>}
-    {proto && <><span class="dot">·</span><span>{proto}</span></>}
-    <span class="dot">·</span>
-    <span>{hubText}</span>
-  </p>
-  {otherEcos.length > 0 && (
-    <p class="also-line">Also works with {otherEcos.join(", ")}.</p>
-  )}
-  {priceLabel && (priceSource || priceDate) && (
-    <p class="price-meta-line">
-      {priceSource}{priceSource && priceDate ? " · " : ""}{priceDate}
-    </p>
-  )}
-  <div class="cta-row">
-    <a class="cta" href={affiliateHref} rel="sponsored nofollow">
-      Find on retailer →
-    </a>
-    <span class="affiliate-tag">affiliate</span>
+    <span class="pin">#{pinNum}</span>
   </div>
-  <details class="card-details">
-    <summary>Specs &amp; sources</summary>
-    <dl class="specs">
-      {entity.attributes.brand && (<><dt>Brand</dt><dd>{entity.attributes.brand}</dd></>)}
-      {entity.attributes.model && (<><dt>Model</dt><dd>{entity.attributes.model}</dd></>)}
-      {entity.attributes.protocol && (<><dt>Protocol</dt><dd>{entity.attributes.protocol}</dd></>)}
-      <dt>Hub</dt><dd>{hub_required === "none" ? "no hub required" : hub_required}</dd>
-      <dt>Ecosystems</dt><dd>{ecosystems.join(", ") || "—"}</dd>
-    </dl>
-    <p class="attrib">
-      Compatibility cited from sources #{(entity.attributes.source_ids ?? []).join(", #")}
-      &middot; KB ingest 2026-04-21
-    </p>
-  </details>
+  <h4 class="title">{entity.name}</h4>
+  <div class="submodel">
+    {attrs.brand && <span>{attrs.brand}</span>}
+    {attrs.brand && attrs.model && <span class="sep">·</span>}
+    {attrs.model && <span>{attrs.model}</span>}
+    {attrs.protocol && <span class="sep">·</span>}
+    {attrs.protocol && <span>{protoText}</span>}
+  </div>
+
+  <div class="compat-strip" aria-label="Ecosystem compatibility">
+    {ECOSYSTEMS.map((e) => {
+      const s = ecoStatus(e.id);
+      const cls = `compat-cell s-${s}${e.id === userEcosystem ? " s-active" : ""}`;
+      return (
+        <span class={cls} title={`${e.name}: ${s === "native" ? "native" : s === "bridge" ? "via bridge" : "no path"}`}>
+          <span class="dot"></span>
+          <span class="lbl">{e.short}</span>
+        </span>
+      );
+    })}
+  </div>
+
+  <dl class="stats">
+    <div class="stat">
+      <dt class="k">protocol</dt>
+      <dd class="v">{protoText || "—"}</dd>
+    </div>
+    <div class="stat">
+      <dt class="k">hub</dt>
+      <dd class={`v${hub_required === "none" ? " ok" : " warn"}`}>{hubText}</dd>
+    </div>
+    {specRows.map(([k, v]) => (
+      <div class="stat">
+        <dt class="k">{k}</dt>
+        <dd class="v">{v}</dd>
+      </div>
+    ))}
+  </dl>
+
+  {attrs.note && <p class="why">{attrs.note}</p>}
+
+  <div class="pcard-foot">
+    <span class="price">
+      {priceLabel ?? <span class="nope">price not tracked</span>}
+    </span>
+    <a class="cta" href={affiliateHref} rel="sponsored nofollow">
+      find on retailer <span class="arr">→</span>
+    </a>
+  </div>
 </article>
 <style>
-  .product-card {
-    background: var(--card);
-    border: 1px solid var(--border);
+  .pcard {
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
     border-radius: 10px;
-    padding: 0.95rem 1.1rem 0.85rem;
+    padding: var(--card-pad);
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    transition: border-color 0.1s ease, box-shadow 0.1s ease;
+    gap: 10px;
+    transition: border-color .12s, box-shadow .12s, transform .12s;
   }
-  .product-card:hover {
-    border-color: var(--accent);
-    box-shadow: 0 2px 8px rgba(11,78,55,0.08);
+  .pcard:hover {
+    border-color: var(--ink-4);
+    box-shadow: 0 6px 20px oklch(0.20 0.02 250 / 0.06);
   }
-  .product-card header {
+  .pcard.featured {
+    border: 1px solid var(--ink-1);
+    box-shadow: inset 0 0 0 1px var(--ink-1);
+  }
+  .topline {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    gap: 0.75rem;
-  }
-  .product-card h3 {
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.3;
-    font-weight: 600;
-  }
-  .price-amount {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--accent-dark);
-    letter-spacing: -0.01em;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-
-  .compat-line {
-    margin: 0.1rem 0 0;
-    font-size: 0.88rem;
-    color: var(--fg);
-    line-height: 1.5;
-    display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .compat-line .dot { color: var(--border); }
-  .compat-badge {
-    font-size: 0.68rem;
-    padding: 0.15rem 0.55rem;
-    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 700;
   }
-  .compat-badge.ok { background: var(--accent-soft); color: var(--accent-dark); }
-  .compat-badge.warn { background: #fff3d6; color: var(--warn-fg); }
-  .compat-eco { font-weight: 600; }
-
-  .also-line {
-    margin: 0;
-    font-size: 0.8rem;
-    color: var(--muted);
-    line-height: 1.45;
-  }
-  .price-meta-line {
-    margin: 0;
-    font-size: 0.7rem;
-    color: var(--muted);
-    font-style: italic;
-  }
-
-  .cta-row {
-    display: flex;
+  .topline .left { display: flex; align-items: center; gap: 8px; }
+  .topline .pid { color: var(--ink-3); }
+  .badge-native, .badge-bridge {
+    display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    margin-top: 0.35rem;
+    gap: 5px;
+    padding: 1px 7px;
+    border-radius: 99px;
+    font-weight: 600;
+    font-size: 10px;
   }
-  .cta {
-    background: var(--accent);
-    color: #fff;
-    padding: 0.45rem 0.9rem;
+  .badge-native { background: var(--ok-soft); color: var(--ok-dark); }
+  .badge-native::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ok);
+  }
+  .badge-bridge { background: var(--warn-soft); color: var(--warn-dark); }
+  .badge-bridge::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--warn);
+  }
+  .pin { font-family: var(--mono); font-weight: 600; color: var(--ink-3); }
+  .title {
+    font-size: 15.5px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .submodel {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-3);
+    margin-top: -4px;
+  }
+  .submodel .sep { color: var(--ink-4); margin: 0 4px; }
+
+  .compat-strip {
+    display: flex;
+    font-family: var(--mono);
+    font-size: 10px;
+    background: var(--paper-1);
+    border: 1px solid var(--paper-edge);
     border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.88rem;
-    font-weight: 600;
+    overflow: hidden;
   }
-  .cta:hover { filter: brightness(1.08); }
-  .affiliate-tag {
-    font-size: 0.68rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .compat-cell {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 4px;
+    line-height: 1.1;
+    gap: 3px;
+    border-left: 1px solid var(--paper-edge);
+    text-align: center;
   }
+  .compat-cell:first-child { border-left: 0; }
+  .compat-cell .lbl { font-size: 9.5px; color: var(--ink-3); }
+  .compat-cell .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ink-4);
+    opacity: 0.5;
+  }
+  .compat-cell.s-native { background: var(--ok-soft); }
+  .compat-cell.s-native .lbl { color: var(--ok-dark); font-weight: 600; }
+  .compat-cell.s-native .dot { background: var(--ok); opacity: 0.95; }
+  .compat-cell.s-bridge { background: var(--warn-soft); }
+  .compat-cell.s-bridge .lbl { color: var(--warn-dark); font-weight: 600; }
+  .compat-cell.s-bridge .dot { background: var(--warn); opacity: 0.9; }
+  .compat-cell.s-no .lbl { color: var(--ink-4); text-decoration: line-through; }
+  .compat-cell.s-active { box-shadow: inset 0 -2px 0 var(--ink-0); }
 
-  .card-details {
-    margin-top: 0.25rem;
-    border-top: 1px dashed var(--border);
-    padding-top: 0.45rem;
-  }
-  .card-details summary {
-    cursor: pointer;
-    font-size: 0.75rem;
-    color: var(--muted);
-    list-style: none;
-    user-select: none;
-  }
-  .card-details summary::-webkit-details-marker { display: none; }
-  .card-details summary::before { content: "▸ "; color: var(--muted); font-size: 0.7rem; }
-  .card-details[open] summary::before { content: "▾ "; }
-  .card-details summary:hover { color: var(--accent); }
-  .specs {
+  .stats {
     display: grid;
-    grid-template-columns: max-content 1fr;
-    column-gap: 0.75rem;
-    row-gap: 0.2rem;
-    margin: 0.5rem 0 0.4rem;
-    font-size: 0.8rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--paper-edge);
+    border: 1px solid var(--paper-edge);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0;
   }
-  .specs dt {
-    color: var(--muted);
-    font-size: 0.7rem;
+  .stat {
+    background: var(--paper-1);
+    padding: 7px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+  }
+  .stat .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--ink-3);
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    align-self: center;
+    margin: 0;
   }
-  .specs dd { margin: 0; }
-  .attrib {
-    margin: 0.25rem 0 0;
-    font-size: 0.68rem;
-    color: var(--muted);
-    line-height: 1.4;
-    font-style: italic;
+  .stat .v {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-1);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
   }
+  .stat .v.ok { color: var(--ok); }
+  .stat .v.warn { color: var(--warn); }
+
+  .why {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.45;
+    text-wrap: pretty;
+    margin: 0;
+  }
+  .pcard-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .pcard-foot .price {
+    font-family: var(--mono);
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink-0);
+  }
+  .pcard-foot .price .nope {
+    color: var(--ink-4);
+    font-weight: 500;
+    font-size: 11px;
+  }
+  .pcard-foot .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 11px;
+    border-radius: 6px;
+    background: var(--ink-0);
+    color: var(--paper-0);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .pcard-foot .cta:hover { background: var(--ink-1); }
+  .pcard-foot .cta .arr { transition: transform .15s; display: inline-block; }
+  .pcard-foot .cta:hover .arr { transform: translateX(2px); }
 </style>

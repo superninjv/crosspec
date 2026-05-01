@@ -30,7 +30,12 @@ const examples = [
   "HomeKit apartment — smart curtain that clips onto the existing rod, no rewiring",
 ];
 ---
-<Layout title={headline} description={subheadline}>
+<Layout
+  title={headline}
+  description={subheadline}
+  crumbs={["smart-home", "configurator"]}
+  kbStatus={`kb v0.1 · ${kb.entities.length} entities`}
+>
   <ConfiguratorShell
     vertical="smart-home"
     headline={headline}

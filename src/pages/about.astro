@@ -5,7 +5,7 @@ const title = "About Jack — crosspec";
 const description =
   "Crosspec is built by Jack, a hands-on Home Assistant operator running Matter, Thread, and Zigbee devices across Hue, Aqara, SwitchBot, Tapo, and Eve.";
 ---
-<Layout title={title} description={description} path="/about/">
+<Layout title={title} description={description} path="/about/" crumbs={["about"]}>
   <article class="about">
     <h1>About Jack</h1>
     <p class="lede">
@@ -26,9 +26,26 @@ const description =
   </article>
 
   <style>
-    .about { max-width: 640px; }
-    .about h1 { font-size: 1.6rem; margin-bottom: 0.75rem; }
-    .about .lede { font-size: 1.05rem; }
-    .about p { margin: 0.75rem 0; }
+    .about {
+      max-width: 640px;
+      margin: 60px auto 80px;
+      padding: 0 24px;
+    }
+    .about h1 {
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+      font-weight: 600;
+    }
+    .about .lede {
+      font-size: 16px;
+      color: var(--ink-1);
+      line-height: 1.55;
+    }
+    .about p {
+      margin: 14px 0;
+      color: var(--ink-2);
+      line-height: 1.6;
+    }
   </style>
 </Layout>

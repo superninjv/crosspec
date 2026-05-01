@@ -5,55 +5,175 @@ interface Props {
   steps: ReasoningStep[];
 }
 const { steps } = Astro.props;
+
+// Collect distinct sources across all steps for the bottom legend
+const sourceMap = new Map<string, { name: string; ingest_date: string; url: string }>();
+let nextId = 0;
+const idByKey = new Map<string, number>();
+for (const s of steps) {
+  for (const src of s.sources) {
+    const key = src.name + "|" + src.ingest_date;
+    if (!idByKey.has(key)) {
+      idByKey.set(key, nextId++);
+      sourceMap.set(key, { name: src.name, ingest_date: src.ingest_date, url: src.url });
+    }
+  }
+}
+const sourcesList = [...sourceMap.entries()].map(([key, src]) => ({
+  id: idByKey.get(key)!,
+  ...src,
+}));
 ---
 <details class="reasoning">
-  <summary>How we picked these ({steps.length} reasoning steps)</summary>
-  <ol>
-    {steps.map((s) => (
-      <li>
-        <p class="step">{s.step}</p>
-        <p class="rationale">{s.rationale}</p>
-        <p class="sources">
-          {s.sources.map((src) => (
-            src.url && src.url.trim() !== "" ? (
-              <a href={src.url} rel="nofollow" target="_blank">
-                {src.name} ({src.ingest_date})
-              </a>
-            ) : (
-              <span class="source-cite">{src.name} ({src.ingest_date})</span>
-            )
-          ))}
-        </p>
-      </li>
+  <summary>
+    <span class="chev">▸</span>
+    <span>How we picked these</span>
+    <span class="ct">{steps.length} reasoning steps · {sourcesList.length} sources</span>
+  </summary>
+  <div class="reasoning-body">
+    {steps.map((s, i) => (
+      <div class="rstep">
+        <div class="n">{String(i + 1).padStart(2, "0")}</div>
+        <div>
+          <p class="step">{s.step}</p>
+          <p class="body">{s.rationale}</p>
+          <p class="src">
+            {s.sources.map((src) => {
+              const key = src.name + "|" + src.ingest_date;
+              const id = idByKey.get(key);
+              return (
+                <a href={`#src-${id}`}>[{id}] {src.name}</a>
+              );
+            })}
+          </p>
+        </div>
+      </div>
     ))}
-  </ol>
+    <div class="sources">
+      {sourcesList.map((s) => (
+        <div class="src-item" id={`src-${s.id}`}>
+          <span class="id">[{s.id}]</span>
+          <div>
+            <div class="name">
+              {s.url && s.url.length > 0 ? (
+                <a href={s.url} rel="nofollow" target="_blank">{s.name}</a>
+              ) : (
+                s.name
+              )}
+            </div>
+            <div class="meta">ingest {s.ingest_date}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
 </details>
 <style>
   .reasoning {
-    margin-top: 1.5rem;
-    padding: 1rem 1.25rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    margin-top: 36px;
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 10px;
+    overflow: hidden;
   }
   .reasoning summary {
+    list-style: none;
     cursor: pointer;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .reasoning summary::-webkit-details-marker { display: none; }
+  .reasoning summary .ct { margin-left: auto; color: var(--ink-3); }
+  .reasoning summary .chev { transition: transform .15s; color: var(--ink-3); display: inline-block; }
+  .reasoning[open] summary .chev { transform: rotate(90deg); }
+  .reasoning[open] summary { border-bottom: 1px solid var(--paper-edge); }
+  .reasoning-body { padding: 6px 18px 18px; }
+  .rstep {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--paper-2);
+  }
+  .rstep:first-child { border-top: 0; }
+  .rstep .n {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-4);
+    text-align: right;
+    padding-top: 1px;
+  }
+  .rstep .step {
+    font-size: 13px;
     font-weight: 600;
+    color: var(--ink-1);
+    margin: 0 0 4px;
   }
-  .reasoning ol {
-    padding-left: 1.25rem;
-    margin: 1rem 0 0;
+  .rstep .body {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    margin: 0 0 6px;
   }
-  .reasoning li { margin-bottom: 0.85rem; }
-  .step { margin: 0; font-weight: 600; font-size: 0.92rem; }
-  .rationale { margin: 0.15rem 0; font-size: 0.88rem; color: var(--fg); }
-  .sources {
-    margin: 0.15rem 0 0;
-    font-size: 0.75rem;
-    color: var(--muted);
+  .rstep .src {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 8px;
+    margin: 0;
   }
-  .sources a { color: var(--muted); text-decoration: underline; }
+  .rstep .src a {
+    color: var(--ink-2);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-4);
+  }
+  .rstep .src a:hover {
+    color: var(--ink-0);
+    border-bottom-color: var(--ink-2);
+  }
+
+  .sources {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--paper-edge);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  .src-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    font-size: 11.5px;
+  }
+  .src-item .id {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    background: var(--paper-1);
+    border: 1px solid var(--paper-edge);
+    border-radius: 3px;
+    padding: 0 6px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    align-self: start;
+  }
+  .src-item .name { color: var(--ink-1); font-weight: 500; line-height: 1.3; }
+  .src-item .name a { color: var(--ink-1); text-decoration: underline; text-underline-offset: 2px; }
+  .src-item .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    margin-top: 1px;
+  }
 </style>

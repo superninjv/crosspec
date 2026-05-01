@@ -159,7 +159,7 @@ describe("matchExample", () => {
 });
 
 describe("renderSolutionHTML", () => {
-  it("produces HTML with product cards and reasoning for a real solver run", () => {
+  it("produces HTML with pcards, results head, meta strip, and reasoning", () => {
     const [solution] = solve(kb, {
       ecosystem: "homekit",
       wants: ["smart_bulb", "motion_sensor"],
@@ -167,20 +167,24 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
 
-    expect(html).toContain('Ecosystem: <code>homekit</code>');
-    expect(html).toContain('class="product-card"');
+    expect(html).toContain('class="results-head"');
+    expect(html).toContain('class="meta-strip"');
+    expect(html).toContain('class="pcard');
     expect(html).toContain('<details class="reasoning"');
     expect(html).toContain('href="/go/smart-home/');
+    // Meta strip cells include the user's ecosystem label
+    expect(html).toContain("Apple HomeKit");
   });
 
-  it("renders an 'empty' note when no picks match", () => {
+  it("renders the empty-state when no picks match", () => {
     const [solution] = solve(kb, {
       ecosystem: "homekit",
       wants: ["nonexistent_type"],
       picks_per_type: 2,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("No compatible devices");
+    expect(html).toContain('class="empty"');
+    expect(html).toContain("Pick a device type");
   });
 
   it("renders a Smart plugs section when plug picks are present", () => {
@@ -190,7 +194,7 @@ describe("renderSolutionHTML", () => {
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("<h3>Smart plugs ");
+    expect(html).toContain("<h3>Smart plugs</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 
@@ -201,7 +205,7 @@ describe("renderSolutionHTML", () => {
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("<h3>Smart locks ");
+    expect(html).toContain("<h3>Smart locks</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 
@@ -212,7 +216,7 @@ describe("renderSolutionHTML", () => {
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("<h3>Temperature &amp; humidity ");
+    expect(html).toContain("<h3>Temperature &amp; humidity</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 
@@ -223,7 +227,7 @@ describe("renderSolutionHTML", () => {
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("<h3>Door &amp; window sensors ");
+    expect(html).toContain("<h3>Door &amp; window sensors</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 
@@ -234,7 +238,7 @@ describe("renderSolutionHTML", () => {
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("<h3>Smart switches &amp; dimmers ");
+    expect(html).toContain("<h3>Smart switches &amp; dimmers</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 
@@ -245,7 +249,7 @@ describe("renderSolutionHTML", () => {
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("<h3>Water leak sensors ");
+    expect(html).toContain("<h3>Water leak sensors</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 
@@ -256,7 +260,7 @@ describe("renderSolutionHTML", () => {
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("<h3>Thermostats ");
+    expect(html).toContain("<h3>Thermostats</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 
@@ -267,56 +271,61 @@ describe("renderSolutionHTML", () => {
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("<h3>Smart shades &amp; blinds ");
+    expect(html).toContain("<h3>Smart shades &amp; blinds</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 
-  it("renders price + source + date for entities that have them", () => {
+  it("renders the price line in the pcard footer for entities with price_usd", () => {
     const [solution] = solve(kb, {
       ecosystem: "homekit",
       wants: ["smart_bulb"],
       picks_per_type: 5,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    // hue_white_a19 was populated with $14.99 / vendor MSRP / 2026-04-30
-    expect(html).toContain('class="price-amount">$14.99<');
-    expect(html).toContain("vendor MSRP (single bulb)");
-    expect(html).toContain("2026-04-30");
+    // hue_white_a19 was populated with $14.99
+    expect(html).toContain('class="price">$14.99</span>');
   });
 
-  it("omits the price block for entities with no price_usd", () => {
+  it("renders 'price not tracked' for entities with no price_usd", () => {
     const [solution] = solve(kb, {
       ecosystem: "home_assistant",
       wants: ["motion_sensor"],
       picks_per_type: 5,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    // sonoff_snzb03 has no price; assert at least one card lacks a price block
-    // by counting cards vs. price blocks.
-    const cards = (html.match(/class="product-card"/g) ?? []).length;
-    const priceBlocks = (html.match(/class="price-amount"/g) ?? []).length;
-    expect(cards).toBeGreaterThan(priceBlocks);
+    expect(html).toContain("price not tracked");
   });
 
-  it("renders the price freshness disclaimer when picks are present", () => {
+  it("renders the meta-strip price-freshness cell when picks are present", () => {
     const [solution] = solve(kb, {
       ecosystem: "homekit",
       wants: ["smart_bulb"],
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("price-disclaimer");
-    expect(html).toContain("indicative MSRP or recent retail");
+    expect(html).toContain("price freshness");
+    expect(html).toContain("2026-04-30");
   });
 
-  it("omits the price disclaimer when there are no picks", () => {
+  it("omits the meta-strip when there are no picks", () => {
     const [solution] = solve(kb, {
       ecosystem: "homekit",
       wants: ["unknown_device_type_xyz"],
       picks_per_type: 3,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).not.toContain("price-disclaimer");
+    expect(html).not.toContain("meta-strip");
+  });
+
+  it("renders the compat-strip with all four ecosystem cells per card", () => {
+    const [solution] = solve(kb, {
+      ecosystem: "homekit",
+      wants: ["smart_bulb"],
+      picks_per_type: 1,
+    });
+    const html = renderSolutionHTML(solution, "smart-home");
+    expect(html).toContain('class="compat-strip"');
+    expect(html).toMatch(/compat-cell s-(native|bridge|no)( s-active)?/);
   });
 
   it("escapes HTML special characters in inputs", () => {
@@ -362,9 +371,19 @@ describe("encodeInputs / decodeInputs", () => {
     expect(decodeInputs("#wants=smart_bulb")).toBeNull();
   });
 
-  it("returns null when wants is missing or empty", () => {
-    expect(decodeInputs("#ecosystem=homekit")).toBeNull();
-    expect(decodeInputs("#ecosystem=homekit&wants=")).toBeNull();
+  it("returns inputs with empty wants when wants param is missing or empty", () => {
+    // The v0.2 configurator allows ecosystem-only state — the user can pick
+    // an ecosystem first and the page shows an empty-state prompt to add devices.
+    expect(decodeInputs("#ecosystem=homekit")).toEqual({
+      ecosystem: "homekit",
+      wants: [],
+      picks_per_type: 3,
+    });
+    expect(decodeInputs("#ecosystem=homekit&wants=")).toEqual({
+      ecosystem: "homekit",
+      wants: [],
+      picks_per_type: 3,
+    });
   });
 
   it("accepts a leading # or not", () => {

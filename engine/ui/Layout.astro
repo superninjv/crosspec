@@ -4,16 +4,19 @@ interface Props {
   description?: string;
   path?: string;
   ogImage?: string;
+  crumbs?: string[];
+  kbStatus?: string;
 }
 const {
   title,
   description = "Crosspec — vertical configurator hub.",
   path = Astro.url.pathname,
   ogImage = "/og-image.png",
+  crumbs,
+  kbStatus = "v0.1",
 } = Astro.props;
 const canonical = `https://crosspec.com${path}`;
 const ogImageURL = `https://crosspec.com${ogImage}`;
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +27,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="crosspec" />
@@ -41,58 +51,103 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
-    <header class="site-header">
-      <a href="/" class="brand" aria-label="crosspec home">crosspec</a>
-      <nav aria-label="Primary">
-        <a href="/smart-home" aria-current={currentPath.startsWith("/smart-home") ? "page" : undefined}>Smart Home</a>
-        <a href="/about" aria-current={currentPath === "/about" ? "page" : undefined}>About</a>
-      </nav>
+    <header class="topbar">
+      <a href="/" class="brand" aria-label="crosspec home">
+        <span class="glyph">×</span>
+        <span class="name">crosspec</span>
+        {crumbs && crumbs.length > 0 && (
+          <span class="crumbs">
+            {crumbs.map((c, i) => (
+              <>
+                <span class="sep">/</span>
+                <span class={i === crumbs.length - 1 ? "here" : undefined}>{c}</span>
+              </>
+            ))}
+          </span>
+        )}
+      </a>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-meta">
+        <span><span class="pip"></span>live</span>
+        <span class="kb-status"><code>{kbStatus}</code></span>
+      </div>
     </header>
     <main id="main-content"><slot /></main>
     <footer class="site-footer">
-      <p class="disclosure">
-        Compatibility data sourced from public registries — cited per recommendation.
-        crosspec earns affiliate commission on qualifying purchases; this does not
-        change ranking.
-      </p>
-      <p class="footer-links">
-        Sources:
-        <a href="https://www.home-assistant.io/integrations/" rel="nofollow" target="_blank">HA integrations</a>
-        ·
-        <a href="https://csa-iot.org/csa-iot_products/" rel="nofollow" target="_blank">CSA Matter products</a>
-        ·
-        <a href="https://www.zigbee2mqtt.io/supported-devices/" rel="nofollow" target="_blank">Zigbee2MQTT devices</a>
-        <span class="sep">|</span>
-        <a href="https://github.com/superninjv/crosspec" rel="nofollow" target="_blank">GitHub</a>
-        <span class="sep">|</span>
-        <a href="/about">About</a>
-      </p>
+      <div class="footer-inner">
+        <p class="disclosure">
+          Compatibility data sourced from public registries — cited per recommendation.
+          crosspec earns affiliate commission on qualifying purchases; this does not
+          change ranking.
+        </p>
+        <p class="footer-links">
+          <a href="https://www.home-assistant.io/integrations/" rel="nofollow" target="_blank">HA integrations</a>
+          <span class="sep">·</span>
+          <a href="https://csa-iot.org/csa-iot_products/" rel="nofollow" target="_blank">CSA Matter products</a>
+          <span class="sep">·</span>
+          <a href="https://www.zigbee2mqtt.io/supported-devices/" rel="nofollow" target="_blank">Zigbee2MQTT</a>
+          <span class="sep">|</span>
+          <a href="https://github.com/superninjv/crosspec" rel="nofollow" target="_blank">GitHub</a>
+          <span class="sep">|</span>
+          <a href="/about/">About</a>
+        </p>
+      </div>
     </footer>
     <style is:global>
       :root {
-        --fg: #111;
-        --muted: #555;
-        --bg: #fafaf7;
-        --accent: #0b6e4f;
-        --accent-dark: #0a4d3a;
-        --accent-soft: #d6f0e3;
-        --card: #fff;
-        --border: #e2e0d8;
-        --warn-bg: #fff8e0;
-        --warn-border: #f0d97a;
-        --warn-fg: #7a5b00;
+        /* oklch design tokens — fall back to var() consumers */
+        --ink-0: oklch(0.14 0.012 250);
+        --ink-1: oklch(0.22 0.011 250);
+        --ink-2: oklch(0.40 0.009 250);
+        --ink-3: oklch(0.58 0.008 250);
+        --ink-4: oklch(0.74 0.006 250);
+        --paper-0: oklch(0.985 0.003 250);
+        --paper-1: oklch(0.965 0.004 250);
+        --paper-2: oklch(0.935 0.005 250);
+        --paper-3: oklch(0.895 0.006 250);
+        --paper-edge: oklch(0.86 0.007 250);
+        --ok: oklch(0.58 0.13 145);
+        --ok-soft: oklch(0.93 0.05 145);
+        --ok-dark: oklch(0.32 0.10 145);
+        --warn: oklch(0.66 0.14 70);
+        --warn-soft: oklch(0.95 0.06 80);
+        --warn-dark: oklch(0.36 0.10 70);
+
+        --sans: "Inter Tight", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+        --row-pad-y: 10px;
+        --row-pad-x: 14px;
+        --grid-gap: 12px;
+        --card-pad: 16px;
       }
       * { box-sizing: border-box; }
-      body {
-        font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      html, body {
         margin: 0;
-        background: var(--bg);
-        color: var(--fg);
+        background: var(--paper-1);
+        color: var(--ink-0);
+        font-family: var(--sans);
+        font-size: 14px;
+        line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
       }
-      a { color: var(--accent); }
+      ::selection { background: oklch(0.88 0.04 145); color: var(--ink-0); }
+      a { color: inherit; }
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+      code, kbd, samp, .mono {
+        font-family: var(--mono);
+        font-feature-settings: "ss01", "zero";
+      }
       a:focus-visible, button:focus-visible, input:focus-visible {
-        outline: 2px solid var(--accent);
+        outline: 2px solid var(--ink-0);
         outline-offset: 2px;
         border-radius: 4px;
       }
@@ -100,73 +155,100 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
         position: absolute;
         left: -9999px;
         top: 0;
-        background: var(--accent);
-        color: #fff;
-        padding: 0.5rem 1rem;
+        background: var(--ink-0);
+        color: var(--paper-0);
+        padding: 8px 14px;
         text-decoration: none;
         z-index: 100;
+        font-family: var(--mono);
+        font-size: 12px;
       }
-      .skip-link:focus { left: 0.5rem; top: 0.5rem; }
+      .skip-link:focus { left: 8px; top: 8px; }
 
-      .site-header {
-        padding: 0.85rem 1.25rem;
-        border-bottom: 1px solid var(--border);
+      .topbar {
         display: flex;
-        gap: 1rem;
         align-items: center;
-        background: var(--card);
+        gap: 14px;
+        padding: 10px 24px;
+        background: var(--paper-0);
+        border-bottom: 1px solid var(--paper-edge);
+        position: sticky;
+        top: 0;
+        z-index: 20;
       }
-      .site-header .brand {
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        text-decoration: none;
-        color: var(--fg);
-        font-size: 1.05rem;
-      }
-      .site-header nav {
-        margin-left: auto;
+      .topbar .brand {
         display: flex;
-        gap: 0.25rem;
-      }
-      .site-header nav a {
-        color: var(--fg);
-        text-decoration: none;
-        padding: 0.4rem 0.75rem;
-        border-radius: 6px;
-        font-size: 0.95rem;
-      }
-      .site-header nav a:hover { background: var(--accent-soft); }
-      .site-header nav a[aria-current="page"] {
-        background: var(--accent-soft);
-        color: var(--accent-dark);
+        align-items: baseline;
+        gap: 8px;
+        font-family: var(--mono);
+        font-size: 12.5px;
         font-weight: 600;
+        text-decoration: none;
+        color: var(--ink-0);
+      }
+      .topbar .brand .glyph {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+        background: var(--ink-0);
+        color: var(--paper-0);
+        font-size: 11px;
+        font-weight: 700;
+        transform: translateY(2px);
+      }
+      .topbar .brand .name { color: var(--ink-0); }
+      .topbar .brand .crumbs { color: var(--ink-3); font-weight: 500; }
+      .topbar .brand .crumbs .sep { margin: 0 4px; color: var(--ink-4); }
+      .topbar .brand .crumbs .here { color: var(--ink-1); font-weight: 600; }
+      .topbar-spacer { flex: 1; }
+      .topbar-meta {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-3);
+      }
+      .topbar-meta .pip {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--ok);
+        box-shadow: 0 0 0 3px oklch(0.58 0.13 145 / 0.18);
+        display: inline-block;
+        margin-right: 6px;
+      }
+      .topbar-meta .kb-status code {
+        font-size: 11px;
       }
 
-      main {
-        padding: 1.5rem 1.25rem;
-        max-width: 920px;
-        margin: 0 auto;
-      }
+      main { display: block; }
 
       .site-footer {
-        border-top: 1px solid var(--border);
-        padding: 1.25rem 1.25rem 1.5rem;
-        font-size: 0.8rem;
-        color: var(--muted);
-        max-width: 920px;
-        margin: 2rem auto 0;
+        border-top: 1px solid var(--paper-edge);
+        padding: 24px 24px 36px;
+        background: var(--paper-0);
+        color: var(--ink-3);
       }
-      .site-footer p { margin: 0 0 0.5rem; }
-      .site-footer .footer-links a { color: var(--muted); text-decoration: underline; }
-      .site-footer .footer-links a:hover { color: var(--accent); }
-      .site-footer .sep { padding: 0 0.4rem; color: var(--border); }
-      .site-footer .disclosure { line-height: 1.5; }
+      .footer-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        font-size: 12px;
+      }
+      .site-footer p { margin: 0 0 8px; }
+      .site-footer a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; }
+      .site-footer a:hover { color: var(--ink-0); }
+      .site-footer .footer-links .sep { padding: 0 6px; color: var(--ink-4); }
+      .site-footer .disclosure { line-height: 1.55; max-width: 720px; }
 
-      @media (max-width: 480px) {
-        main { padding: 1rem 0.85rem; }
-        .site-header { padding: 0.75rem 0.85rem; }
-        .site-footer { padding: 1rem 0.85rem 1.25rem; }
-        .site-header nav a { padding: 0.4rem 0.55rem; font-size: 0.9rem; }
+      @media (max-width: 640px) {
+        .topbar { padding: 9px 14px; gap: 10px; }
+        .topbar .brand .crumbs { display: none; }
+        .topbar-meta .kb-status { display: none; }
+        .site-footer { padding: 18px 14px 28px; }
       }
     </style>
   </body>

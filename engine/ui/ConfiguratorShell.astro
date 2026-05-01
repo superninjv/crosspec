@@ -2,6 +2,7 @@
 import ProductCard from "./ProductCard.astro";
 import ReasoningChain from "./ReasoningChain.astro";
 import type { Solution } from "@engine/solver";
+import { hubLabel, ecosystemLabel } from "./labels";
 
 interface Props {
   vertical: string;
@@ -12,6 +13,59 @@ interface Props {
 }
 
 const { vertical, headline, subheadline, examples, solution } = Astro.props;
+
+const ECOSYSTEMS = [
+  { id: "homekit", name: "Apple HomeKit", controllers: "HomePod / Apple TV 4K" },
+  { id: "google_home", name: "Google Home", controllers: "Nest Hub / Nest Mini" },
+  { id: "alexa", name: "Amazon Alexa", controllers: "Echo / Echo Hub" },
+  { id: "home_assistant", name: "Home Assistant", controllers: "any HA instance" },
+];
+
+const DEVICE_TYPES = [
+  { id: "smart_bulb", label: "Smart bulb" },
+  { id: "smart_plug", label: "Smart plug" },
+  { id: "motion_sensor", label: "Motion sensor" },
+  { id: "contact_sensor", label: "Door / window" },
+  { id: "smart_switch", label: "Switch / dimmer" },
+  { id: "smart_lock", label: "Smart lock" },
+  { id: "thermostat", label: "Thermostat" },
+  { id: "leak_sensor", label: "Water leak" },
+  { id: "temperature_sensor", label: "Temp / humidity" },
+  { id: "smart_shade", label: "Motorized shade" },
+];
+
+const PRESETS = [
+  {
+    id: "matter_first_apartment",
+    label: "Matter-first apartment starter",
+    tag: "new build",
+    eco: "homekit",
+    wants: ["smart_bulb", "smart_plug", "motion_sensor"],
+  },
+  {
+    id: "home_assistant_zigbee",
+    label: "Home Assistant + Zigbee maximalist",
+    tag: "power user",
+    eco: "home_assistant",
+    wants: ["motion_sensor", "contact_sensor", "temperature_sensor"],
+  },
+  {
+    id: "alexa_renter",
+    label: "Alexa renter, no rewiring",
+    tag: "renter-friendly",
+    eco: "alexa",
+    wants: ["smart_bulb", "smart_plug", "leak_sensor"],
+  },
+  {
+    id: "google_home_security",
+    label: "Google Home — entry security",
+    tag: "safety pack",
+    eco: "google_home",
+    wants: ["smart_lock", "contact_sensor", "motion_sensor"],
+  },
+];
+
+// Group picks by type for SSR rendering
 const motionPicks = solution.picks.filter((p) => p.entity.type === "motion_sensor");
 const bulbPicks = solution.picks.filter((p) => p.entity.type === "smart_bulb");
 const plugPicks = solution.picks.filter((p) => p.entity.type === "smart_plug");
@@ -22,190 +76,238 @@ const switchPicks = solution.picks.filter((p) => p.entity.type === "smart_switch
 const leakPicks = solution.picks.filter((p) => p.entity.type === "leak_sensor");
 const thermostatPicks = solution.picks.filter((p) => p.entity.type === "thermostat");
 const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade");
+
+const sections: { type: string; label: string; picks: typeof solution.picks }[] = [
+  { type: "smart_bulb", label: "Smart bulbs", picks: bulbPicks },
+  { type: "smart_plug", label: "Smart plugs", picks: plugPicks },
+  { type: "smart_lock", label: "Smart locks", picks: lockPicks },
+  { type: "motion_sensor", label: "Motion sensors", picks: motionPicks },
+  { type: "temperature_sensor", label: "Temperature & humidity", picks: tempPicks },
+  { type: "contact_sensor", label: "Door & window sensors", picks: contactPicks },
+  { type: "smart_switch", label: "Smart switches & dimmers", picks: switchPicks },
+  { type: "leak_sensor", label: "Water leak sensors", picks: leakPicks },
+  { type: "thermostat", label: "Thermostats", picks: thermostatPicks },
+  { type: "smart_shade", label: "Smart shades & blinds", picks: shadePicks },
+];
+
+const totalPicks = solution.picks.length;
+const totalPriceRaw = solution.picks.reduce(
+  (a, p) => a + (typeof p.entity.attributes.price_usd === "number" ? p.entity.attributes.price_usd : 0),
+  0,
+);
+const totalPrice = Math.round(totalPriceRaw);
+const nativeCount = solution.picks.filter((p) => p.native_in_ecosystem).length;
+const ecoObj = ECOSYSTEMS.find((e) => e.id === solution.inputs.ecosystem);
+const today = new Date().toISOString().slice(0, 10);
 ---
 <section class="hero">
-  <h1>{headline}</h1>
-  <p class="sub">{subheadline}</p>
-  <ul class="trust-strip" aria-label="Data sources">
-    <li>Home Assistant integrations</li>
-    <li>CSA Matter products</li>
-    <li>Zigbee2MQTT devices</li>
-    <li>Vendor docs</li>
-  </ul>
-</section>
+  <div class="hero-inner">
+    <span class="h-eyebrow"><span class="pip"></span> {vertical} v0.1</span>
+    <h1 class="h-title">
+      Compose a smart-home setup that <em>actually works together</em>.
+    </h1>
+    <p class="h-sub">{subheadline}</p>
 
-<form id="configurator-form" class="config-form" data-vertical={vertical}>
-  <fieldset class="ecosystem-row">
-    <legend>Ecosystem</legend>
-    <div class="segmented" role="radiogroup" aria-label="Ecosystem">
-      <label><input type="radio" name="ecosystem" value="homekit" checked /><span>HomeKit</span></label>
-      <label><input type="radio" name="ecosystem" value="alexa" /><span>Alexa</span></label>
-      <label><input type="radio" name="ecosystem" value="google_home" /><span>Google Home</span></label>
-      <label><input type="radio" name="ecosystem" value="home_assistant" /><span>Home Assistant</span></label>
-    </div>
-  </fieldset>
+    <form id="configurator-form" class="config-card" data-vertical={vertical}>
+      <div class="config-tabs" id="config-tabs">
+        <div class="config-tab" data-tab="eco">
+          <span class="n">1</span> ecosystem
+        </div>
+        <div class="config-tab" data-tab="wants">
+          <span class="n">2</span> devices
+        </div>
+        <div class="config-tab" data-tab="solve">
+          <span class="n">→</span> solve
+        </div>
+      </div>
 
-  <fieldset class="wants-row">
-    <legend>What do you want to add?</legend>
-    <div class="checkbox-grid">
-      <label><input type="checkbox" name="wants" value="smart_bulb" checked /><span>Smart bulb</span></label>
-      <label><input type="checkbox" name="wants" value="motion_sensor" checked /><span>Motion sensor</span></label>
-      <label><input type="checkbox" name="wants" value="smart_plug" /><span>Smart plug</span></label>
-      <label><input type="checkbox" name="wants" value="smart_lock" /><span>Smart lock</span></label>
-      <label><input type="checkbox" name="wants" value="temperature_sensor" /><span>Temp &amp; humidity</span></label>
-      <label><input type="checkbox" name="wants" value="contact_sensor" /><span>Door &amp; window</span></label>
-      <label><input type="checkbox" name="wants" value="smart_switch" /><span>Switch / dimmer</span></label>
-      <label><input type="checkbox" name="wants" value="leak_sensor" /><span>Water leak</span></label>
-      <label><input type="checkbox" name="wants" value="thermostat" /><span>Thermostat</span></label>
-      <label><input type="checkbox" name="wants" value="smart_shade" /><span>Shade / blind</span></label>
-    </div>
-  </fieldset>
+      <div class="config-body">
+        <fieldset class="cfg-step">
+          <legend class="sr-only">Ecosystem</legend>
+          <h3><span class="ord">1</span> Which ecosystem?</h3>
+          <p class="hint">The voice / app you'll use day-to-day. Determines which devices show up.</p>
+          <div class="eco-grid" role="radiogroup" aria-label="Ecosystem">
+            {ECOSYSTEMS.map((e) => (
+              <label class="eco-pick">
+                <input type="radio" name="ecosystem" value={e.id} checked={e.id === "homekit"} />
+                <span class="eco-pick-body">
+                  <span class="name">{e.name}</span>
+                  <span class="sub">{e.controllers}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
 
-  <div class="examples">
-    <span class="examples-label">Try an example:</span>
-    {examples.map((q) => (
-      <button type="button" class="chip" data-example={q}>{q}</button>
+        <fieldset class="cfg-step">
+          <legend class="sr-only">Device types</legend>
+          <h3><span class="ord">2</span> What do you want to add?</h3>
+          <p class="hint">Tap any combination. Counts show how many compatible devices we have.</p>
+          <div class="want-grid">
+            {DEVICE_TYPES.map((t) => (
+              <label class="want-chip">
+                <input type="checkbox" name="wants" value={t.id} checked={t.id === "smart_bulb" || t.id === "motion_sensor"} />
+                <span class="want-chip-body">
+                  <span class="check">✓</span>
+                  <span class="lbl">{t.label}</span>
+                  <span class="ct" data-want-count={t.id}>—</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <div class="cfg-solve">
+          <span class="solve-label">live preview</span>
+          <div class="solve-stats">
+            <div class="solve-stat">
+              <span class="k">picks</span>
+              <span class="v" id="stat-picks">{totalPicks || "—"}</span>
+            </div>
+            <div class="solve-stat">
+              <span class="k">device types</span>
+              <span class="v" id="stat-types">{solution.inputs.wants.length || "—"}</span>
+            </div>
+            <div class="solve-stat">
+              <span class="k">hubs needed</span>
+              <span class={`v${solution.hubs_required.length === 0 && totalPicks > 0 ? " ok" : ""}`} id="stat-hubs">
+                {totalPicks === 0 ? "—" : (solution.hubs_required.length || "0")}
+              </span>
+            </div>
+            <div class="solve-stat">
+              <span class="k">ecosystem</span>
+              <span class="v small" id="stat-eco">{ecoObj?.name ?? "—"}</span>
+            </div>
+          </div>
+          <button type="button" class="btn-solve" id="btn-solve">
+            <span id="btn-solve-text">show {totalPicks} compatible picks</span>
+            <span class="arr">↓</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="presets-row">
+    <span class="presets-label">or jump in:</span>
+    {PRESETS.map((p) => (
+      <button
+        type="button"
+        class="preset-chip"
+        data-preset-eco={p.eco}
+        data-preset-wants={p.wants.join(",")}
+      >
+        <span>{p.label}</span>
+        <span class="tag">{p.tag}</span>
+      </button>
     ))}
   </div>
 
   <div class="share">
-    <button type="button" id="copy-link" class="copy-btn">
-      Copy link to this config
-    </button>
+    <span>shareable URL</span>
+    <span class="hash" id="share-hash">#</span>
+    <button type="button" class="copy" id="copy-link">copy link</button>
     <span id="copy-status" class="copy-status" role="status" aria-live="polite"></span>
   </div>
-</form>
 
-<section id="result" class="result" aria-live="polite">
-  <h2 class="result-meta">
-    Ecosystem: <code>{solution.inputs.ecosystem}</code> &middot; wants: <code>{solution.inputs.wants.join(", ")}</code>
-  </h2>
-
-  <div class="hub-callout" role="note">
-    <span class="hub-label">Hubs you'll need</span>
-    <strong>
-      {solution.hubs_required.length > 0
-        ? solution.hubs_required.join(", ")
-        : "None — all picks work without an extra hub"}
-    </strong>
+  <div class="examples">
+    <span class="examples-label">try an example:</span>
+    {examples.map((q) => (
+      <button type="button" class="chip" data-example={q}>{q}</button>
+    ))}
   </div>
+</section>
 
-  {solution.warnings.length > 0 && (
-    <div class="warnings">
-      <strong>Heads up:</strong>
-      <ul>{solution.warnings.map((w) => <li>{w}</li>)}</ul>
-    </div>
-  )}
+<section id="result" class="results" aria-live="polite">
+  {totalPicks > 0 ? (
+    <>
+      <header class="results-head">
+        <h2>
+          <span class="num">{totalPicks}</span> picks for{" "}
+          <span class="qb">{ecoObj?.name ?? solution.inputs.ecosystem}</span>, ranked by native compatibility, Matter support, and price.
+        </h2>
+        <span class="stamp">solved · {today}</span>
+      </header>
 
-  {solution.picks.length === 0 && (
+      <div class="meta-strip">
+        <div class="cell">
+          <span class="k">ecosystem</span>
+          <span class="v">{ecoObj?.name ?? solution.inputs.ecosystem}</span>
+        </div>
+        <div class="cell">
+          <span class="k">native picks</span>
+          <span class={`v${nativeCount === totalPicks ? " ok" : ""}`}>{nativeCount}/{totalPicks}</span>
+        </div>
+        <div class="cell">
+          <span class="k">hubs</span>
+          <span class={`v${solution.hubs_required.length === 0 ? " ok" : " warn"}`}>
+            {solution.hubs_required.length || "none"}
+          </span>
+        </div>
+        <div class="cell">
+          <span class="k">est. parts cost</span>
+          <span class="v">{totalPrice > 0 ? `$${totalPrice}` : "—"}</span>
+        </div>
+        <div class="cell">
+          <span class="k">price freshness</span>
+          <span class="v">2026-04-30</span>
+        </div>
+      </div>
+
+      <div class="hub-callout">
+        <span class="lbl">hubs you'll need</span>
+        <div class="hubs">
+          {solution.hubs_required.length === 0 ? (
+            <span class="hub-chip none">none — every pick works without an extra hub</span>
+          ) : (
+            solution.hubs_required.map((h) => <span class="hub-chip">{hubLabel(h)}</span>)
+          )}
+        </div>
+        <div class="total">
+          <span>picks shown</span>
+          <span class="v">{totalPicks}</span>
+        </div>
+      </div>
+
+      {solution.warnings.length > 0 && (
+        <div class="warnings">
+          <strong>Heads up:</strong>
+          <ul>{solution.warnings.map((w) => <li>{w}</li>)}</ul>
+        </div>
+      )}
+
+      {sections
+        .filter((s) => s.picks.length > 0)
+        .map((s) => (
+          <section class="res-section">
+            <header class="res-section-head">
+              <h3>{s.label}</h3>
+              <span class="ct">{s.picks.length} {s.picks.length === 1 ? "pick" : "picks"}</span>
+            </header>
+            <div class="grid">
+              {s.picks.map((p, i) => (
+                <ProductCard
+                  pick={p}
+                  vertical={vertical}
+                  userEcosystem={solution.inputs.ecosystem}
+                  idx={i}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
+
+      <ReasoningChain steps={solution.reasoning_chain} />
+    </>
+  ) : (
     <div class="empty">
-      <p><strong>No compatible devices in the current knowledge base for that selection.</strong></p>
-      <p>Try Home Assistant ecosystem (broadest support) or pick a different device type. <a href="#configurator-form">Edit selection ↑</a></p>
+      <h3>Pick a device type to see compatible recommendations.</h3>
+      <p>
+        Or tap a preset above for an opinionated start. The configurator filters
+        the knowledge base in real time as you change inputs.
+      </p>
     </div>
   )}
-
-  {bulbPicks.length > 0 && (
-    <>
-      <h3>Smart bulbs <span class="count">{bulbPicks.length}</span></h3>
-      <div class="grid">
-        {bulbPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {plugPicks.length > 0 && (
-    <>
-      <h3>Smart plugs <span class="count">{plugPicks.length}</span></h3>
-      <div class="grid">
-        {plugPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {lockPicks.length > 0 && (
-    <>
-      <h3>Smart locks <span class="count">{lockPicks.length}</span></h3>
-      <div class="grid">
-        {lockPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {motionPicks.length > 0 && (
-    <>
-      <h3>Motion sensors <span class="count">{motionPicks.length}</span></h3>
-      <div class="grid">
-        {motionPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {tempPicks.length > 0 && (
-    <>
-      <h3>Temperature &amp; humidity <span class="count">{tempPicks.length}</span></h3>
-      <div class="grid">
-        {tempPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {contactPicks.length > 0 && (
-    <>
-      <h3>Door &amp; window sensors <span class="count">{contactPicks.length}</span></h3>
-      <div class="grid">
-        {contactPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {switchPicks.length > 0 && (
-    <>
-      <h3>Smart switches &amp; dimmers <span class="count">{switchPicks.length}</span></h3>
-      <div class="grid">
-        {switchPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {leakPicks.length > 0 && (
-    <>
-      <h3>Water leak sensors <span class="count">{leakPicks.length}</span></h3>
-      <div class="grid">
-        {leakPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {thermostatPicks.length > 0 && (
-    <>
-      <h3>Thermostats <span class="count">{thermostatPicks.length}</span></h3>
-      <div class="grid">
-        {thermostatPicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {shadePicks.length > 0 && (
-    <>
-      <h3>Smart shades &amp; blinds <span class="count">{shadePicks.length}</span></h3>
-      <div class="grid">
-        {shadePicks.map((p) => <ProductCard pick={p} vertical={vertical} userEcosystem={solution.inputs.ecosystem} />)}
-      </div>
-    </>
-  )}
-
-  {solution.picks.length > 0 && (
-    <p class="price-disclaimer">
-      Prices shown are <strong>indicative MSRP or recent retail</strong> at the date next to each price.
-      Click through to the merchant for current price and availability — values drift as ranges go on sale.
-    </p>
-  )}
-
-  {solution.picks.length > 0 && (
-    <p class="back-to-top"><a href="#configurator-form">↑ Edit selection</a></p>
-  )}
-
-  <ReasoningChain steps={solution.reasoning_chain} />
 </section>
 
 <script>
@@ -222,6 +324,7 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
   const kb = kbRaw as KnowledgeBase;
   const form = document.getElementById("configurator-form") as HTMLFormElement | null;
   const result = document.getElementById("result");
+
   if (form && result) {
     const vertical = form.dataset.vertical ?? "smart-home";
 
@@ -233,14 +336,10 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
     }
 
     function populateForm(inputs: UserInputs) {
-      for (const input of form!.querySelectorAll<HTMLInputElement>(
-        'input[name="ecosystem"]',
-      )) {
+      for (const input of form!.querySelectorAll<HTMLInputElement>('input[name="ecosystem"]')) {
         input.checked = input.value === inputs.ecosystem;
       }
-      for (const input of form!.querySelectorAll<HTMLInputElement>(
-        'input[name="wants"]',
-      )) {
+      for (const input of form!.querySelectorAll<HTMLInputElement>('input[name="wants"]')) {
         input.checked = inputs.wants.includes(input.value);
       }
     }
@@ -248,6 +347,87 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
     function render(inputs: UserInputs) {
       const [solution] = solve(kb, inputs);
       result!.innerHTML = renderSolutionHTML(solution, vertical);
+      updateLivePreview(inputs, solution);
+      updateTabs(inputs);
+      updateWantCounts(inputs);
+      updateShareHash(inputs);
+    }
+
+    function updateLivePreview(
+      inputs: UserInputs,
+      solution: { picks: { entity: { attributes: { price_usd?: number } }; native_in_ecosystem: boolean }[]; hubs_required: string[] },
+    ) {
+      const totalPicks = solution.picks.length;
+      const setText = (id: string, text: string) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      };
+      setText("stat-picks", totalPicks > 0 ? String(totalPicks) : "—");
+      setText("stat-types", inputs.wants.length > 0 ? String(inputs.wants.length) : "—");
+      const hubsEl = document.getElementById("stat-hubs");
+      if (hubsEl) {
+        hubsEl.textContent = totalPicks === 0 ? "—" : String(solution.hubs_required.length || "0");
+        hubsEl.classList.toggle("ok", solution.hubs_required.length === 0 && totalPicks > 0);
+      }
+      const ecoEl = document.getElementById("stat-eco");
+      if (ecoEl) {
+        const labels: Record<string, string> = {
+          homekit: "Apple HomeKit",
+          google_home: "Google Home",
+          alexa: "Amazon Alexa",
+          home_assistant: "Home Assistant",
+        };
+        ecoEl.textContent = labels[inputs.ecosystem] ?? inputs.ecosystem;
+      }
+      const btnText = document.getElementById("btn-solve-text");
+      const btnSolve = document.getElementById("btn-solve") as HTMLButtonElement | null;
+      const allDone = !!inputs.ecosystem && inputs.wants.length > 0;
+      if (btnText) {
+        btnText.textContent = allDone
+          ? `show ${totalPicks} compatible picks`
+          : "pick at least one device";
+      }
+      if (btnSolve) {
+        btnSolve.disabled = !allDone;
+        btnSolve.classList.toggle("disabled", !allDone);
+      }
+    }
+
+    function updateTabs(inputs: UserInputs) {
+      const tabs = form!.querySelectorAll<HTMLDivElement>(".config-tab");
+      const stepEcoDone = !!inputs.ecosystem;
+      const stepWantsDone = inputs.wants.length > 0;
+      const allDone = stepEcoDone && stepWantsDone;
+      tabs.forEach((tab) => {
+        const k = tab.dataset.tab;
+        tab.classList.remove("done", "active");
+        if (k === "eco") {
+          if (stepEcoDone) tab.classList.add("done");
+          if (!stepEcoDone) tab.classList.add("active");
+        } else if (k === "wants") {
+          if (stepWantsDone) tab.classList.add("done");
+          if (stepEcoDone && !stepWantsDone) tab.classList.add("active");
+        } else if (k === "solve") {
+          if (allDone) tab.classList.add("active");
+        }
+      });
+    }
+
+    function updateWantCounts(inputs: UserInputs) {
+      // Count how many entities of each type are compatible with the chosen ecosystem.
+      const eco = inputs.ecosystem;
+      for (const span of document.querySelectorAll<HTMLSpanElement>("[data-want-count]")) {
+        const t = span.dataset.wantCount;
+        const n = kb.entities.filter((e: { type: string; attributes: { ecosystems?: string[] } }) =>
+          e.type === t && (e.attributes.ecosystems ?? []).includes(eco),
+        ).length;
+        span.textContent = String(n);
+      }
+    }
+
+    function updateShareHash(inputs: UserInputs) {
+      const el = document.getElementById("share-hash");
+      if (el) el.textContent = "#" + encodeInputs(inputs);
     }
 
     function syncHash(inputs: UserInputs) {
@@ -263,11 +443,17 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
       syncHash(inputs);
     }
 
+    function scrollToResults() {
+      result!.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Initial hydration: hash overrides defaults if present
     const fromHash = decodeInputs(location.hash);
     if (fromHash) {
       populateForm(fromHash);
-      render(fromHash);
     }
+    // Always re-render to pick up live counts + tab state, even if SSR matched
+    onFormChange();
 
     form.addEventListener("change", onFormChange);
 
@@ -279,17 +465,35 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
       }
     });
 
-    document
-      .querySelectorAll<HTMLButtonElement>(".chip[data-example]")
-      .forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const match = matchExample(btn.dataset.example ?? "");
-          if (!match) return;
-          populateForm(match);
-          render(match);
-          syncHash(match);
-        });
+    document.querySelectorAll<HTMLButtonElement>(".chip[data-example]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const match = matchExample(btn.dataset.example ?? "");
+        if (!match) return;
+        populateForm(match);
+        render(match);
+        syncHash(match);
+        scrollToResults();
       });
+    });
+
+    document.querySelectorAll<HTMLButtonElement>(".preset-chip[data-preset-eco]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const eco = btn.dataset.presetEco ?? "homekit";
+        const wants = (btn.dataset.presetWants ?? "").split(",").filter(Boolean);
+        const inputs: UserInputs = { ecosystem: eco, wants, picks_per_type: 3 };
+        populateForm(inputs);
+        render(inputs);
+        syncHash(inputs);
+        setTimeout(scrollToResults, 80);
+      });
+    });
+
+    const btnSolve = document.getElementById("btn-solve");
+    if (btnSolve) {
+      btnSolve.addEventListener("click", () => {
+        if (!(btnSolve as HTMLButtonElement).disabled) scrollToResults();
+      });
+    }
 
     const copyBtn = document.getElementById("copy-link") as HTMLButtonElement | null;
     const copyStatus = document.getElementById("copy-status");
@@ -299,349 +503,597 @@ const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade")
         const url = location.href;
         try {
           await navigator.clipboard.writeText(url);
-          copyStatus.textContent = "Link copied";
+          copyStatus.textContent = "copied ✓";
+          copyStatus.classList.add("ok-flash");
         } catch {
           copyStatus.textContent = url;
         }
         setTimeout(() => {
-          if (copyStatus.textContent === "Link copied") copyStatus.textContent = "";
-        }, 2000);
+          copyStatus.textContent = "";
+          copyStatus.classList.remove("ok-flash");
+        }, 1400);
       });
     }
   }
 </script>
 
 <style>
-  .hero {
-    margin: 0.5rem 0 1.5rem;
-  }
-  .hero h1 {
-    font-size: 2.1rem;
-    line-height: 1.15;
-    margin: 0 0 0.5rem;
-    letter-spacing: -0.02em;
-  }
-  .hero .sub {
-    color: var(--muted);
-    margin: 0 0 0.85rem;
-    font-size: 1.05rem;
-    max-width: 56ch;
-  }
-  .trust-strip {
-    list-style: none;
-    margin: 0;
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-  .trust-strip li {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.2rem 0.6rem;
-  }
-  .trust-strip li::before {
-    content: "✓ ";
-    color: var(--accent);
-    font-weight: 700;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-  .config-form {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.1rem 1.25rem;
-    margin: 0 0 1.5rem;
+  /* ─── HERO ─── */
+  .hero {
+    background:
+      radial-gradient(1200px 400px at 50% -200px, oklch(0.92 0.04 145 / 0.45), transparent 60%),
+      var(--paper-0);
+    border-bottom: 1px solid var(--paper-edge);
+    padding: 36px 24px 0;
+  }
+  .hero-inner { max-width: 1180px; margin: 0 auto; }
+  .h-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: var(--paper-1);
+    border: 1px solid var(--paper-edge);
+  }
+  .h-eyebrow .pip { width: 5px; height: 5px; border-radius: 50%; background: var(--ok); }
+  .h-title {
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: var(--ink-0);
+    margin: 14px 0 8px;
+    text-wrap: balance;
+    max-width: 780px;
+  }
+  .h-title em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 60%, oklch(0.88 0.10 145) 60%);
+    padding: 0 2px;
+  }
+  .h-sub {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 640px;
+    margin: 0 0 28px;
+    text-wrap: pretty;
+  }
+
+  /* ─── CONFIGURATOR CARD ─── */
+  .config-card {
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 14px;
+    box-shadow:
+      0 1px 0 var(--paper-1) inset,
+      0 1px 1px oklch(0.20 0.01 250 / 0.04),
+      0 24px 60px -28px oklch(0.20 0.02 250 / 0.18);
+    overflow: hidden;
+    transform: translateY(36px);
+    margin-bottom: -36px;
+    position: relative;
+    z-index: 2;
+  }
+  .config-tabs {
+    display: flex;
+    gap: 0;
+    background: var(--paper-1);
+    border-bottom: 1px solid var(--paper-edge);
+    padding: 0 6px;
+  }
+  .config-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .config-tab .n {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid var(--ink-4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9.5px;
+    color: var(--ink-3);
+    background: var(--paper-0);
+  }
+  .config-tab.done .n { background: var(--ok); border-color: var(--ok); color: var(--paper-0); }
+  .config-tab.done { color: var(--ink-1); }
+  .config-tab.active { color: var(--ink-0); border-bottom-color: var(--ink-0); }
+  .config-tab.active .n { border-color: var(--ink-0); color: var(--ink-0); }
+
+  .config-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 280px;
+    gap: 0;
+  }
+  .cfg-step {
+    padding: 22px 24px;
+    border-right: 1px solid var(--paper-edge);
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-    box-shadow: 0 1px 2px rgba(11,78,55,0.04);
-  }
-  .config-form fieldset {
-    border: none;
-    padding: 0;
+    gap: 14px;
+    min-width: 0;
+    border: 0;
     margin: 0;
   }
-  .config-form legend {
+  .cfg-step:last-of-type { border-right: 0; }
+  .cfg-step h3 {
+    margin: 0;
+    font-size: 13px;
     font-weight: 600;
-    font-size: 0.78rem;
-    color: var(--muted);
+    color: var(--ink-1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cfg-step h3 .ord {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--paper-0);
+    background: var(--ink-0);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cfg-step .hint { font-size: 11.5px; color: var(--ink-3); margin: -6px 0 0; }
+
+  .eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .eco-pick {
+    cursor: pointer;
+    display: block;
+  }
+  .eco-pick input { position: absolute; opacity: 0; pointer-events: none; }
+  .eco-pick-body {
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid var(--paper-edge);
+    border-radius: 8px;
+    background: var(--paper-0);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    transition: border-color .12s, background .12s;
+  }
+  .eco-pick:hover .eco-pick-body { border-color: var(--ink-4); background: var(--paper-1); }
+  .eco-pick .name { font-size: 12.5px; font-weight: 600; color: var(--ink-1); }
+  .eco-pick .sub { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+  .eco-pick input:checked + .eco-pick-body {
+    background: var(--ink-0);
+    border-color: var(--ink-0);
+  }
+  .eco-pick input:checked + .eco-pick-body .name { color: var(--paper-0); }
+  .eco-pick input:checked + .eco-pick-body .sub { color: var(--paper-2); }
+  .eco-pick input:focus-visible + .eco-pick-body {
+    outline: 2px solid var(--ink-0);
+    outline-offset: 2px;
+  }
+
+  .want-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .want-chip { cursor: pointer; }
+  .want-chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .want-chip-body {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 11px;
+    border-radius: 99px;
+    border: 1px solid var(--paper-edge);
+    background: var(--paper-0);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink-1);
+    transition: background .12s, border-color .12s;
+  }
+  .want-chip:hover .want-chip-body { border-color: var(--ink-3); }
+  .want-chip-body .check {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: currentColor;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    transition: opacity .12s, width .12s;
+  }
+  .want-chip-body .ct { font-family: var(--mono); font-size: 10px; color: var(--ink-4); }
+  .want-chip input:checked + .want-chip-body {
+    background: oklch(0.91 0.05 145);
+    border-color: var(--ok);
+    color: var(--ok-dark);
+  }
+  .want-chip input:checked + .want-chip-body .check { opacity: 0.6; width: auto; }
+  .want-chip input:checked + .want-chip-body .ct { color: var(--ok-dark); }
+  .want-chip input:focus-visible + .want-chip-body {
+    outline: 2px solid var(--ink-0);
+    outline-offset: 2px;
+  }
+
+  .cfg-solve {
+    background: var(--paper-1);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .solve-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+  .solve-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .solve-stat {
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 6px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .solve-stat .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .solve-stat .v {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-0);
+  }
+  .solve-stat .v.small { font-size: 11.5px; font-weight: 500; }
+  .solve-stat .v.ok { color: var(--ok); }
+
+  .btn-solve {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 8px;
+    background: var(--ink-0);
+    color: var(--paper-0);
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background .12s, transform .08s;
+  }
+  .btn-solve:hover { background: var(--ink-1); }
+  .btn-solve:active { transform: translateY(1px); }
+  .btn-solve.disabled, .btn-solve:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-solve .arr { font-family: var(--mono); font-weight: 500; opacity: 0.85; }
+
+  /* ─── PRESETS ROW ─── */
+  .presets-row {
+    max-width: 1180px;
+    margin: 18px auto 0;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .presets-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    padding: 0;
-    margin-bottom: 0.5rem;
+  }
+  .preset-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 99px;
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    font-size: 12.5px;
+    color: var(--ink-1);
+    transition: border-color .12s, background .12s;
+  }
+  .preset-chip:hover { border-color: var(--ink-3); background: var(--paper-1); }
+  .preset-chip .tag {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--ink-3);
+    border-left: 1px solid var(--paper-edge);
+    padding-left: 8px;
+    margin-left: 2px;
   }
 
-  .segmented {
+  /* ─── SHARE STRIP ─── */
+  .share {
+    max-width: 1180px;
+    margin: 18px auto 0;
+    padding: 0 24px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
   }
-  .segmented label {
-    cursor: pointer;
-    position: relative;
+  .share .hash {
+    flex: 1;
+    padding: 5px 10px;
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 5px;
+    color: var(--ink-1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  .segmented label input {
-    position: absolute;
-    opacity: 0;
-    inset: 0;
-    margin: 0;
-  }
-  .segmented label span {
-    display: inline-block;
-    padding: 0.45rem 0.85rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: 0.88rem;
-    background: var(--bg);
-    transition: background 0.1s ease, color 0.1s ease, border-color 0.1s ease;
-  }
-  .segmented label:hover span {
-    border-color: var(--accent);
-  }
-  .segmented label input:checked + span {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
+  .share .copy {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--paper-edge);
+    background: var(--paper-0);
+    font-size: 11px;
     font-weight: 600;
-  }
-  .segmented label input:focus-visible + span {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-
-  .checkbox-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.4rem;
-  }
-  .checkbox-grid label {
     cursor: pointer;
-    position: relative;
   }
-  .checkbox-grid label input {
-    position: absolute;
-    opacity: 0;
-    inset: 0;
-    margin: 0;
-  }
-  .checkbox-grid label span {
-    display: block;
-    padding: 0.5rem 0.7rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 0.88rem;
-    background: var(--bg);
-    transition: background 0.1s ease, border-color 0.1s ease;
-  }
-  .checkbox-grid label span::before {
-    content: "";
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    margin-right: 0.5rem;
-    border: 1.5px solid var(--border);
-    border-radius: 3px;
-    vertical-align: -2px;
-    background: #fff;
-  }
-  .checkbox-grid label input:checked + span {
-    border-color: var(--accent);
-    background: var(--accent-soft);
-    color: var(--accent-dark);
-    font-weight: 600;
-  }
-  .checkbox-grid label input:checked + span::before {
-    background: var(--accent);
-    border-color: var(--accent);
-    box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 14px var(--accent);
-  }
-  .checkbox-grid label:hover span { border-color: var(--accent); }
-  .checkbox-grid label input:focus-visible + span {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+  .share .copy:hover { border-color: var(--ink-3); }
+  .share .copy-status { min-width: 70px; }
+  .share .copy-status.ok-flash { color: var(--ok); }
 
+  /* ─── EXAMPLE CHIPS (kept from prior — renamed to match palette) ─── */
   .examples {
+    max-width: 1180px;
+    margin: 12px auto 0;
+    padding: 0 24px 24px;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
+    gap: 8px;
     align-items: center;
   }
   .examples-label {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-right: 0.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-  }
-  .chip {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.35rem 0.75rem;
-    font: inherit;
-    font-size: 0.8rem;
-    color: var(--fg);
-    cursor: pointer;
-    transition: background 0.1s ease, border-color 0.1s ease;
-  }
-  .chip:hover {
-    background: var(--accent-soft);
-    border-color: var(--accent);
-  }
-  .chip:active { transform: translateY(1px); }
-
-  .share {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .copy-btn {
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    font: inherit;
-    font-size: 0.88rem;
-    cursor: pointer;
-    font-weight: 600;
-  }
-  .copy-btn:hover { filter: brightness(1.08); }
-  .copy-btn:active { transform: translateY(1px); }
-  .copy-status {
-    font-size: 0.82rem;
-    color: var(--muted);
-    min-height: 1em;
-  }
-
-  .result-meta {
-    font-size: 0.95rem;
-    margin: 0 0 0.85rem;
-    color: var(--muted);
-    font-weight: 500;
-  }
-  .result-meta code {
-    background: #efece2;
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    color: var(--fg);
-  }
-
-  .hub-callout {
-    background: var(--accent-soft);
-    border: 1px solid var(--accent);
-    border-left-width: 4px;
-    border-radius: 8px;
-    padding: 0.85rem 1rem;
-    margin: 0 0 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-  .hub-callout .hub-label {
-    font-size: 0.72rem;
-    font-weight: 700;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--accent-dark);
+    margin-right: 4px;
   }
-  .hub-callout strong {
-    font-size: 0.95rem;
-    color: var(--accent-dark);
-    font-weight: 600;
+  .chip {
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 99px;
+    padding: 6px 11px;
+    font-size: 12px;
+    color: var(--ink-2);
+    cursor: pointer;
+    line-height: 1.4;
+    transition: background .12s, border-color .12s;
   }
+  .chip:hover { background: var(--paper-1); border-color: var(--ink-3); color: var(--ink-1); }
 
-  .result h3 {
-    margin: 1.5rem 0 0.6rem;
-    font-size: 1.05rem;
+  /* ─── RESULTS ─── */
+  .results {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 80px 24px 100px;
+  }
+  .results-head {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding-top: 0.85rem;
-    border-top: 1px solid var(--border);
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--paper-edge);
   }
-  .result h3:first-of-type { border-top: none; padding-top: 0; }
-  .result h3 .count {
-    background: var(--accent-soft);
-    color: var(--accent-dark);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.1rem 0.5rem;
-    border-radius: 999px;
-    letter-spacing: 0.04em;
+  .results-head h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+    max-width: 680px;
   }
+  .results-head h2 .num {
+    font-family: var(--mono);
+    background: var(--paper-1);
+    border: 1px solid var(--paper-edge);
+    padding: 0 6px;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-right: 4px;
+  }
+  .results-head h2 .qb {
+    background: oklch(0.93 0.05 145);
+    padding: 0 4px;
+    border-radius: 3px;
+  }
+  .results-head .stamp {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-bottom: 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .meta-strip .cell {
+    flex: 1;
+    min-width: 140px;
+    padding: 10px 14px;
+    border-left: 1px solid var(--paper-edge);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .meta-strip .cell:first-child { border-left: 0; }
+  .meta-strip .cell .k {
+    font-size: 9.5px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .meta-strip .cell .v { font-size: 13px; font-weight: 600; color: var(--ink-1); }
+  .meta-strip .cell .v.ok { color: var(--ok); }
+  .meta-strip .cell .v.warn { color: var(--warn); }
 
-  .grid {
+  .hub-callout {
     display: grid;
-    gap: 0.85rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 8px;
+    margin-bottom: 24px;
   }
+  .hub-callout .lbl {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .hub-callout .hubs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .hub-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    background: var(--paper-1);
+    border: 1px solid var(--paper-edge);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-1);
+  }
+  .hub-chip.none {
+    background: var(--ok-soft);
+    border-color: transparent;
+    color: var(--ok-dark);
+  }
+  .hub-callout .total { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-align: right; }
+  .hub-callout .total .v { font-size: 14px; color: var(--ink-0); font-weight: 600; display: block; }
 
   .warnings {
-    background: var(--warn-bg);
-    border: 1px solid var(--warn-border);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 0.88rem;
-    margin: 0 0 1rem;
-    color: var(--warn-fg);
-  }
-  .warnings ul { margin: 0.25rem 0 0 1rem; padding: 0; }
-  .empty {
-    background: var(--warn-bg);
-    border: 1px solid var(--warn-border);
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-    font-size: 0.95rem;
-    color: var(--warn-fg);
-  }
-  .empty p { margin: 0.25rem 0; }
-  .empty a { color: var(--accent-dark); font-weight: 600; }
-
-  .price-disclaimer {
-    margin: 1.5rem 0 0;
-    padding: 0.65rem 0.85rem;
-    background: #fff8e0;
-    border: 1px solid var(--warn-border);
-    border-left-width: 3px;
+    background: var(--warn-soft);
+    border: 1px solid var(--warn);
+    border-left-width: 4px;
     border-radius: 6px;
-    font-size: 0.78rem;
-    color: var(--warn-fg);
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: var(--warn-dark);
+  }
+  .warnings ul { margin: 4px 0 0 18px; padding: 0; }
+
+  .res-section { margin-top: 28px; }
+  .res-section:first-of-type { margin-top: 0; }
+  .res-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--paper-edge);
+  }
+  .res-section-head h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .res-section-head .ct { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: var(--grid-gap);
+  }
+
+  /* empty state */
+  .empty {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--ink-2);
+    border: 1px dashed var(--paper-edge);
+    border-radius: 12px;
+    background: var(--paper-0);
+  }
+  .empty h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    color: var(--ink-1);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .empty p {
+    margin: 0 auto;
+    max-width: 420px;
+    font-size: 13.5px;
     line-height: 1.5;
   }
-  .price-disclaimer strong { color: var(--warn-fg); }
 
-  .back-to-top {
-    margin-top: 1rem;
-    text-align: center;
-    font-size: 0.85rem;
+  /* responsive */
+  @media (max-width: 980px) {
+    .config-body { grid-template-columns: 1fr; }
+    .cfg-step { border-right: 0; border-bottom: 1px solid var(--paper-edge); }
+    .h-title { font-size: 32px; }
+    .results-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .hub-callout { grid-template-columns: 1fr; gap: 8px; }
+    .hub-callout .total { text-align: left; }
   }
-  .back-to-top a {
-    color: var(--muted);
-    text-decoration: none;
-    padding: 0.4rem 0.85rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--card);
-  }
-  .back-to-top a:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-
   @media (max-width: 480px) {
-    .hero h1 { font-size: 1.65rem; }
-    .hero .sub { font-size: 0.95rem; }
-    .config-form { padding: 0.85rem 0.95rem; gap: 0.85rem; }
-    .checkbox-grid { grid-template-columns: 1fr 1fr; }
-    .grid { grid-template-columns: 1fr; }
-    .result h3 { font-size: 0.98rem; }
+    .hero { padding: 24px 14px 0; }
+    .results { padding: 60px 14px 80px; }
+    .h-title { font-size: 28px; }
+    .examples, .presets-row, .share { padding-left: 14px; padding-right: 14px; }
   }
 </style>
