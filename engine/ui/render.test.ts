@@ -332,8 +332,9 @@ describe("renderSolutionHTML", () => {
       picks_per_type: 5,
     });
     const html = renderSolutionHTML(solution, "smart-home");
-    // hue_white_a19 was populated with $14.99
-    expect(html).toContain('class="price">$14.99</span>');
+    // Some priced bulb should appear in the top picks regardless of which
+    // ranks first as the KB grows. Match the price-class shape, not a specific dollar value.
+    expect(html).toMatch(/class="price">\$\d+(\.\d{1,2})?<\/span>/);
   });
 
   it("renders the meta-strip price-freshness cell when picks are present", () => {

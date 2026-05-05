@@ -1395,6 +1395,670 @@
         "price_ingest_date": "2026-05-05"
       }
     }
+,
+
+    {
+      "id": "hue_white_b22",
+      "type": "smart_bulb",
+      "name": "Philips Hue White B22 (bayonet)",
+      "sku": "philips_hue_white_b22",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "LWB006",
+        "base": "b22",
+        "color": "warm_white",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "lumens": 800,
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "source_ids": [0, 3],
+        "price_usd": 14.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "hue_color_e12",
+      "type": "smart_bulb",
+      "name": "Philips Hue White and Color Candle E12",
+      "sku": "philips_hue_color_e12",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "LCT012",
+        "base": "e12",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "lumens": 470,
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "source_ids": [0, 3],
+        "price_usd": 49.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "hue_white_gu10",
+      "type": "smart_bulb",
+      "name": "Philips Hue White GU10 spot",
+      "sku": "philips_hue_white_gu10",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "LWG004",
+        "base": "gu10",
+        "color": "warm_white",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "lumens": 400,
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "hue_color_gu10",
+      "type": "smart_bulb",
+      "name": "Philips Hue White and Color GU10 spot",
+      "sku": "philips_hue_color_gu10",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "LCG002",
+        "base": "gu10",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "lumens": 350,
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "source_ids": [0, 3],
+        "price_usd": 49.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "hue_color_br30",
+      "type": "smart_bulb",
+      "name": "Philips Hue White and Color BR30 (recessed)",
+      "sku": "philips_hue_color_br30",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "LCT021",
+        "base": "e26",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "br30_recessed_floodlight",
+        "lumens": 850,
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "source_ids": [0, 3],
+        "price_usd": 54.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "hue_color_par38",
+      "type": "smart_bulb",
+      "name": "Philips Hue White and Color PAR38 outdoor",
+      "sku": "philips_hue_color_par38",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "LCP005",
+        "base": "e26",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "par38_outdoor",
+        "indoor_outdoor": "outdoor_ip65",
+        "lumens": 1300,
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "source_ids": [0, 3],
+        "price_usd": 89.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "nanoleaf_essentials_br30",
+      "type": "smart_bulb",
+      "name": "Nanoleaf Essentials BR30 (Matter)",
+      "sku": "nanoleaf_essentials_br30",
+      "attributes": {
+        "brand": "nanoleaf",
+        "model": "NL45-1100BRMTW",
+        "base": "e26",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "br30_recessed_floodlight",
+        "lumens": 1100,
+        "protocol": "matter_over_wifi",
+        "requires_hub": "matter_controller",
+        "source_ids": [0, 1, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "lifx_mini_color",
+      "type": "smart_bulb",
+      "name": "LIFX Mini Color (E26)",
+      "sku": "lifx_mini_color",
+      "attributes": {
+        "brand": "lifx",
+        "model": "LBE32E26US-MINI-COLOR",
+        "base": "e26",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "lumens": 800,
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 34.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "lifx_a21_brightest",
+      "type": "smart_bulb",
+      "name": "LIFX A21 1600 lumens (brightest)",
+      "sku": "lifx_a21_1600",
+      "attributes": {
+        "brand": "lifx",
+        "model": "LBE32E26USA21",
+        "base": "e26",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "lumens": 1600,
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 49.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "kasa_kl125",
+      "type": "smart_bulb",
+      "name": "TP-Link Kasa KL125 Color (no Matter)",
+      "sku": "kasa_kl125",
+      "attributes": {
+        "brand": "tp_link_kasa",
+        "model": "KL125",
+        "base": "e26",
+        "color": "rgb_full",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "lumens": 800,
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Kasa-line bulb (older Kasa firmware, no Matter path). Pick Tapo L530E if HomeKit matters.",
+        "source_ids": [0, 3],
+        "price_usd": 12.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "wiz_a19_color",
+      "type": "smart_bulb",
+      "name": "WiZ A19 Color (Signify)",
+      "sku": "wiz_a19_color",
+      "attributes": {
+        "brand": "wiz",
+        "model": "603509",
+        "base": "e26",
+        "color": "rgb_full",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "lumens": 800,
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Signify's budget Wi-Fi line (parallel to Hue's Zigbee line). No HomeKit.",
+        "source_ids": [0, 3],
+        "price_usd": 12.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "ge_cync_a19_color",
+      "type": "smart_bulb",
+      "name": "GE Cync A19 Full Color (Direct Connect)",
+      "sku": "ge_cync_a19_color",
+      "attributes": {
+        "brand": "ge_cync",
+        "model": "C-LIFE-A19-RGB-CRI",
+        "base": "e26",
+        "color": "rgb_full",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "lumens": 800,
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "sengled_e11_n1ea",
+      "type": "smart_bulb",
+      "name": "Sengled Element Color Plus (Zigbee)",
+      "sku": "sengled_element_color_plus",
+      "attributes": {
+        "brand": "sengled",
+        "model": "E11-N1EA",
+        "base": "e26",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "ecosystems_via_sengled_hub": ["homekit", "google_home", "alexa"],
+        "lumens": 800,
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "source_ids": [0, 2, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "hue_lightstrip_plus_2m",
+      "type": "smart_bulb",
+      "name": "Philips Hue Lightstrip Plus (2m base)",
+      "sku": "philips_hue_lightstrip_plus_2m",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "LST002",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "lightstrip_2m_extendable",
+        "protocol": "zigbee",
+        "requires_hub": "hue_bridge",
+        "source_ids": [0, 3],
+        "price_usd": 79.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "govee_glide_hexa",
+      "type": "smart_bulb",
+      "name": "Govee Glide Hexa Light Panels",
+      "sku": "govee_glide_hexa",
+      "attributes": {
+        "brand": "govee",
+        "model": "H6066",
+        "color": "rgb_full",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wall_panel_hexagon",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Decorative wall panels with onboard scene effects. No HomeKit firmware path; HA via the govee HACS integration (cloud) or govee_ble (local BLE) for some models.",
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "nanoleaf_lines",
+      "type": "smart_bulb",
+      "name": "Nanoleaf Lines (Thread / Matter)",
+      "sku": "nanoleaf_lines",
+      "attributes": {
+        "brand": "nanoleaf",
+        "model": "NL59-K-7002LW-9PK",
+        "color": "rgb_full",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "wall_panel_line_segment",
+        "protocol": "thread_matter",
+        "requires_hub": "thread_border_router_plus_matter_controller",
+        "source_ids": [0, 1, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "eufy_solocam_e30",
+      "type": "camera",
+      "name": "Eufy SoloCam E30 (wired outdoor)",
+      "sku": "eufy_solocam_e30",
+      "attributes": {
+        "brand": "eufy",
+        "model": "T8B00",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "outdoor_pan_tilt",
+        "indoor_outdoor": "outdoor_ip67",
+        "power": "wired_ac",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "resolution": "4k",
+        "video_storage": "local_microsd_or_homekit_secure_video",
+        "note": "Wired 4K outdoor cam with on-device AI tracking. No mandatory cloud subscription. HomeKit Secure Video native; Alexa/Google via Eufy cloud; HA via eufy_security HACS.",
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "aqara_g5_pro",
+      "type": "camera",
+      "name": "Aqara Camera Hub G5 Pro (PoE Matter)",
+      "sku": "aqara_g5_pro",
+      "attributes": {
+        "brand": "aqara",
+        "model": "CH-C03P",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "outdoor_bullet",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "wired_poe",
+        "protocol": "ethernet_poe",
+        "requires_hub": "none",
+        "resolution": "2k",
+        "video_storage": "local_microsd_or_nvr",
+        "note": "Outdoor PoE cam that's both a Matter device (commissions natively into any Matter controller) and a Zigbee 3.0 hub. AI on-device for person/vehicle/package.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 249.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "nest_cam_battery",
+      "type": "camera",
+      "name": "Google Nest Cam (battery, indoor/outdoor)",
+      "sku": "nest_cam_battery",
+      "attributes": {
+        "brand": "google_nest",
+        "model": "GA01317-US",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "battery_outdoor",
+        "indoor_outdoor": "outdoor_ip54",
+        "power": "rechargeable_battery_or_wired",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "resolution": "1080p",
+        "video_storage": "google_home_3hr_event_history_free_or_nest_aware",
+        "note": "Battery cam usable indoor or outdoor. Native Google Home; Alexa via Nest skill. No HomeKit firmware path. HA via the badnest HACS integration.",
+        "source_ids": [0, 3],
+        "price_usd": 179.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "wyze_cam_outdoor_v3",
+      "type": "camera",
+      "name": "Wyze Cam Outdoor v3",
+      "sku": "wyze_cam_outdoor_v3",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WYZECPF",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "battery_outdoor",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "rechargeable_battery",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "wyze_base_station",
+        "resolution": "1080p",
+        "video_storage": "local_microsd_or_wyze_cloud",
+        "note": "Battery outdoor cam pairs with a Wyze Base Station for local recording. No HomeKit firmware path.",
+        "source_ids": [0, 3],
+        "price_usd": 49.98,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "reolink_argus_4_pro",
+      "type": "camera",
+      "name": "Reolink Argus 4 Pro (4K battery + solar)",
+      "sku": "reolink_argus_4_pro",
+      "attributes": {
+        "brand": "reolink",
+        "model": "Argus 4 Pro",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "battery_outdoor_solar",
+        "indoor_outdoor": "outdoor_ip66",
+        "power": "rechargeable_battery_or_solar",
+        "protocol": "wifi_dual_band",
+        "requires_hub": "none",
+        "resolution": "4k",
+        "video_storage": "local_microsd_or_nvr_onvif",
+        "note": "4K Wi-Fi battery cam with optional solar panel. ONVIF capable for Frigate / Scrypted; native HA via the reolink integration. No first-party HomeKit / Google / Alexa path.",
+        "source_ids": [0, 3],
+        "price_usd": 179.99,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "arlo_pro_5s_2k",
+      "type": "camera",
+      "name": "Arlo Pro 5S 2K (Wi-Fi 6)",
+      "sku": "arlo_pro_5s_2k",
+      "attributes": {
+        "brand": "arlo",
+        "model": "VMC4060P",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "battery_outdoor",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "rechargeable_battery_or_wired",
+        "protocol": "wifi_6",
+        "requires_hub": "none",
+        "resolution": "2k",
+        "video_storage": "arlo_secure_cloud_or_microsd_via_smarthub",
+        "note": "Native HomeKit support was removed by Arlo in 2023 across the cloud-managed cameras and has not returned. Google / Alexa native; HA via aarlo / pyaarlo HACS integrations. Pick Aqara / Eufy if HomeKit Secure Video matters.",
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "aqara_doorbell_g410",
+      "type": "doorbell",
+      "name": "Aqara Smart Video Doorbell G410 (Matter)",
+      "sku": "aqara_doorbell_g410",
+      "attributes": {
+        "brand": "aqara",
+        "model": "SVD-KIT1",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "battery_or_wired_doorbell",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "rechargeable_battery_or_8_24v_wired",
+        "protocol": "matter_over_wifi",
+        "requires_hub": "matter_controller",
+        "resolution": "2k",
+        "video_storage": "homekit_secure_video_or_microsd_chime",
+        "note": "Matter-over-Wi-Fi doorbell that commissions natively into any Matter controller. HomeKit Secure Video over Matter Casting. Battery + chime in the box.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "inovelli_blue_2_1_dimmer",
+      "type": "smart_switch",
+      "name": "Inovelli Blue Series 2-1 Dimmer (Zigbee)",
+      "sku": "inovelli_blue_2_1_dimmer",
+      "attributes": {
+        "brand": "inovelli",
+        "model": "VZM31-SN",
+        "ecosystems": ["home_assistant"],
+        "form_factor": "wall_dimmer_paddle",
+        "power": "neutral_required",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "note": "Premium Zigbee dimmer with full RGB LED bar for status notifications. Native HA via Z2M / ZHA. HomeKit / Google / Alexa via Aqara / SmartThings hub bridging to Matter; not first-party.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 49.95,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "leviton_d215s_dimmer",
+      "type": "smart_switch",
+      "name": "Leviton D215S Decora Smart Z-Wave Dimmer",
+      "sku": "leviton_d215s_dimmer",
+      "attributes": {
+        "brand": "leviton",
+        "model": "D215S",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wall_dimmer_paddle",
+        "power": "neutral_required",
+        "protocol": "z_wave",
+        "requires_hub": "z_wave_controller",
+        "note": "Z-Wave dimmer; needs a Z-Wave controller (HA Z-Wave JS, Aeotec, etc.). No native HomeKit; Alexa / Google via the controller's bridge integrations.",
+        "source_ids": [0, 3],
+        "price_usd": 54.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "aqara_h2_no_neutral",
+      "type": "smart_switch",
+      "name": "Aqara Smart Wall Switch H2 US (Matter, no neutral)",
+      "sku": "aqara_h2_no_neutral",
+      "attributes": {
+        "brand": "aqara",
+        "model": "WS-USC04",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "wall_switch_paddle",
+        "power": "no_neutral_supported",
+        "protocol": "matter_over_thread",
+        "requires_hub": "thread_border_router_plus_matter_controller",
+        "note": "Newer Matter-over-Thread variant of the H1; commissions directly into any Matter controller without an Aqara hub. No-neutral install supported.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 54.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "kasa_ep25",
+      "type": "smart_plug",
+      "name": "TP-Link Kasa EP25 (Matter)",
+      "sku": "kasa_ep25",
+      "attributes": {
+        "brand": "tp_link_kasa",
+        "model": "EP25",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "indoor_single_outlet",
+        "indoor_outdoor": "indoor",
+        "protocol": "matter_over_wifi",
+        "requires_hub": "matter_controller",
+        "source_ids": [0, 1, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "kasa_kp303",
+      "type": "smart_plug",
+      "name": "TP-Link Kasa KP303 (3-outlet Wi-Fi power strip)",
+      "sku": "kasa_kp303",
+      "attributes": {
+        "brand": "tp_link_kasa",
+        "model": "KP303",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "indoor_3_outlet_strip",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 24.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "meross_outdoor_plug",
+      "type": "smart_plug",
+      "name": "Meross Outdoor Smart Plug (HomeKit)",
+      "sku": "meross_outdoor_plug",
+      "attributes": {
+        "brand": "meross",
+        "model": "MSS620",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "outdoor_dual_outlet",
+        "indoor_outdoor": "outdoor_ip44",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 34.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+
+    {
+      "id": "aqara_smart_plug_us",
+      "type": "smart_plug",
+      "name": "Aqara Smart Plug US (Zigbee)",
+      "sku": "aqara_smart_plug_us",
+      "attributes": {
+        "brand": "aqara",
+        "model": "SP-EUC01",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "ecosystems_via_aqara_hub": ["homekit", "google_home", "alexa"],
+        "form_factor": "indoor_single_outlet",
+        "indoor_outdoor": "indoor",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub_or_zigbee_coordinator",
+        "source_ids": [0, 2, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    }
   ],
   "constraints": [
     {
