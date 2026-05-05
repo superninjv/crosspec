@@ -262,6 +262,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
     { type: "thermostat", label: "Thermostats" },
     { type: "smart_shade", label: "Smart shades & blinds" },
     { type: "camera", label: "Security cameras" },
+    { type: "doorbell", label: "Video doorbells" },
   ];
 
   const sectionsHTML = sectionDefs
@@ -379,6 +380,14 @@ const TYPE_KEYWORDS: [string, string][] = [
   ["window covering", "smart_shade"],
   ["curtain", "smart_shade"],
   ["blinds", "smart_shade"],
+  ["video doorbell", "doorbell"],
+  ["smart doorbell", "doorbell"],
+  ["wireless doorbell", "doorbell"],
+  ["wi-fi doorbell", "doorbell"],
+  ["wifi doorbell", "doorbell"],
+  ["doorbell camera", "doorbell"],
+  ["doorbell cam", "doorbell"],
+  ["doorbell", "doorbell"],
   ["security camera", "camera"],
   ["indoor camera", "camera"],
   ["outdoor camera", "camera"],
@@ -386,7 +395,6 @@ const TYPE_KEYWORDS: [string, string][] = [
   ["wifi camera", "camera"],
   ["wi-fi camera", "camera"],
   ["webcam", "camera"],
-  ["doorbell camera", "camera"],
   ["surveillance camera", "camera"],
   ["camera", "camera"],
   ["motion sensor", "motion_sensor"],

@@ -461,3 +461,47 @@ test("google_home + camera excludes Ring (Amazon pulled Google support) and incl
   expect(ids).toContain("aqara_camera_g3");
   expect(ids).toContain("eufy_indoor_cam_2k");
 });
+
+test("homekit + doorbell returns Aqara G4 + Eufy and excludes Nest / Ring / Reolink", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["doorbell"],
+    picks_per_type: 6,
+  });
+  const bells = sol.picks.filter((p) => p.entity.type === "doorbell");
+  expect(bells.length).toBeGreaterThanOrEqual(2);
+  const ids = bells.map((p) => p.entity.id);
+  expect(ids).toContain("aqara_doorbell_g4");
+  expect(ids).toContain("eufy_doorbell_dual");
+  expect(ids).not.toContain("google_nest_doorbell_wired_2");
+  expect(ids).not.toContain("ring_battery_doorbell_plus");
+  expect(ids).not.toContain("reolink_doorbell_poe");
+});
+
+test("home_assistant + doorbell returns all 5 doorbells including the local-PoE Reolink", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "home_assistant",
+    wants: ["doorbell"],
+    picks_per_type: 10,
+  });
+  const bells = sol.picks.filter((p) => p.entity.type === "doorbell");
+  expect(bells.length).toBeGreaterThanOrEqual(5);
+  const ids = bells.map((p) => p.entity.id);
+  expect(ids).toContain("aqara_doorbell_g4");
+  expect(ids).toContain("eufy_doorbell_dual");
+  expect(ids).toContain("google_nest_doorbell_wired_2");
+  expect(ids).toContain("ring_battery_doorbell_plus");
+  expect(ids).toContain("reolink_doorbell_poe");
+});
+
+test("alexa + doorbell includes Ring (Alexa-native) and excludes Reolink (HA-only)", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "alexa",
+    wants: ["doorbell"],
+    picks_per_type: 10,
+  });
+  const bells = sol.picks.filter((p) => p.entity.type === "doorbell");
+  const ids = bells.map((p) => p.entity.id);
+  expect(ids).toContain("ring_battery_doorbell_plus");
+  expect(ids).not.toContain("reolink_doorbell_poe");
+});

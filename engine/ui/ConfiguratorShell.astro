@@ -33,6 +33,7 @@ const DEVICE_TYPES = [
   { id: "temperature_sensor", label: "Temp / humidity" },
   { id: "smart_shade", label: "Motorized shade" },
   { id: "camera", label: "Security camera" },
+  { id: "doorbell", label: "Video doorbell" },
 ];
 
 const PRESETS = [
@@ -78,6 +79,7 @@ const leakPicks = solution.picks.filter((p) => p.entity.type === "leak_sensor");
 const thermostatPicks = solution.picks.filter((p) => p.entity.type === "thermostat");
 const shadePicks = solution.picks.filter((p) => p.entity.type === "smart_shade");
 const cameraPicks = solution.picks.filter((p) => p.entity.type === "camera");
+const doorbellPicks = solution.picks.filter((p) => p.entity.type === "doorbell");
 
 const sections: { type: string; label: string; picks: typeof solution.picks }[] = [
   { type: "smart_bulb", label: "Smart bulbs", picks: bulbPicks },
@@ -91,6 +93,7 @@ const sections: { type: string; label: string; picks: typeof solution.picks }[] 
   { type: "thermostat", label: "Thermostats", picks: thermostatPicks },
   { type: "smart_shade", label: "Smart shades & blinds", picks: shadePicks },
   { type: "camera", label: "Security cameras", picks: cameraPicks },
+  { type: "doorbell", label: "Video doorbells", picks: doorbellPicks },
 ];
 
 const totalPicks = solution.picks.length;

@@ -19,20 +19,30 @@ interface Env {
   MERCHANT_TAG_AMAZON?: string;
 }
 
-function bulkCartURL(asins: string[], tag: string): string {
+function bulkCartURL(asins: string[], tag: string, ref: string): string {
   const params = new URLSearchParams();
   if (tag) params.set("AssociateTag", tag);
   asins.forEach((a, i) => {
     params.set(`ASIN.${i + 1}`, a);
     params.set(`Quantity.${i + 1}`, "1");
   });
+  if (ref) params.set("ascsubtag", ref);
   return `https://www.amazon.com/gp/aws/cart/add.html?${params.toString()}`;
 }
 
-function searchFallback(skus: string[], tag: string): string {
+function searchFallback(skus: string[], tag: string, ref: string): string {
   const query = skus.map((s) => s.replace(/_/g, " ")).join(" OR ");
   const base = `https://www.amazon.com/s?k=${encodeURIComponent(query)}`;
-  return tag ? `${base}&tag=${encodeURIComponent(tag)}` : base;
+  const parts: string[] = [];
+  if (tag) parts.push(`tag=${encodeURIComponent(tag)}`);
+  if (ref) parts.push(`ascsubtag=${encodeURIComponent(ref)}`);
+  return parts.length ? `${base}&${parts.join("&")}` : base;
+}
+
+function sanitizeRef(raw: string | null): string {
+  if (!raw) return "";
+  const m = raw.match(/^[A-Za-z0-9_-]{1,32}$/);
+  return m ? m[0] : "";
 }
 
 const handler: PagesFunction<Env> = async ({ params, request, env }) => {
@@ -47,6 +57,7 @@ const handler: PagesFunction<Env> = async ({ params, request, env }) => {
     return new Response("?skus= required", { status: 400 });
   }
 
+  const ref = sanitizeRef(url.searchParams.get("ref"));
   const tag = env.MERCHANT_TAG_AMAZON ?? "";
   const asins = skus
     .map((sku) => affiliates.products[sku]?.asin)
@@ -54,8 +65,8 @@ const handler: PagesFunction<Env> = async ({ params, request, env }) => {
 
   const target =
     asins.length === skus.length && asins.length > 0
-      ? bulkCartURL(asins, tag)
-      : searchFallback(skus, tag);
+      ? bulkCartURL(asins, tag, ref)
+      : searchFallback(skus, tag, ref);
 
   return Response.redirect(target, 302);
 };

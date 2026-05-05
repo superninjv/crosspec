@@ -17,6 +17,7 @@ const {
 } = Astro.props;
 const canonical = `https://crosspec.com${path}`;
 const ogImageURL = `https://crosspec.com${ogImage}`;
+const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN as string | undefined;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +49,14 @@ const ogImageURL = `https://crosspec.com${ogImage}`;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+
+    {cfAnalyticsToken && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${cfAnalyticsToken}"}`}
+      />
+    )}
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>

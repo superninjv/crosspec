@@ -1275,6 +1275,125 @@
         "price_source": "vendor retail",
         "price_ingest_date": "2026-05-05"
       }
+    },
+
+    {
+      "id": "aqara_doorbell_g4",
+      "type": "doorbell",
+      "name": "Aqara Smart Video Doorbell G4",
+      "sku": "aqara_doorbell_g4",
+      "attributes": {
+        "brand": "aqara",
+        "model": "SVD-C03",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "battery_or_wired_doorbell",
+        "resolution": "1080p",
+        "video_storage": "homekit_secure_video_or_microsd_chime",
+        "power": "battery_aaa_or_8_24v_wired",
+        "indoor_outdoor": "outdoor_ip65",
+        "note": "Battery + chime doorbell with HomeKit Secure Video native; HKSV requires iCloud+ and an Apple home hub. Local face recognition runs on the included chime/repeater. Alexa / Google via the Aqara cloud; HA via the aqara_gateway HACS integration. Battery operation removes wiring requirement.",
+        "source_ids": [0, 3],
+        "price_usd": 119.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+    {
+      "id": "eufy_doorbell_dual",
+      "type": "doorbell",
+      "name": "Eufy Video Doorbell Dual (Battery)",
+      "sku": "eufy_doorbell_dual",
+      "attributes": {
+        "brand": "eufy",
+        "model": "E8213CW1",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "homebase_2",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "battery_doorbell_dual_camera",
+        "resolution": "2k_front_plus_1080p_package_cam",
+        "video_storage": "local_homebase_2",
+        "power": "rechargeable_battery_or_8_24v_wired",
+        "indoor_outdoor": "outdoor_ip65",
+        "note": "Two-camera battery doorbell (front + downward package cam) that pairs with a Eufy HomeBase 2 for local-only storage with no mandatory cloud. HomeKit Secure Video via the HomeBase 2 bridge; Alexa / Google via Eufy cloud; HA via the eufy_security HACS integration.",
+        "source_ids": [0, 3],
+        "price_usd": 259.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+    {
+      "id": "google_nest_doorbell_wired_2",
+      "type": "doorbell",
+      "name": "Google Nest Doorbell (wired, 2nd gen)",
+      "sku": "google_nest_doorbell_wired_2",
+      "attributes": {
+        "brand": "google_nest",
+        "model": "GA02567-US",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wired_doorbell",
+        "resolution": "1080p_3_4_aspect",
+        "video_storage": "google_home_3hr_event_history_free_or_nest_aware",
+        "power": "wired_8_24v",
+        "indoor_outdoor": "outdoor_ip54",
+        "note": "Tall 3:4 aspect sensor captures full package-on-doorstep framing without tilt. Native Google Home; Alexa via the Nest skill. HA via the badnest / nest HACS integrations (Google has restricted the official API). No HomeKit firmware path; pick Aqara G4 or Eufy if HomeKit matters.",
+        "source_ids": [0, 3],
+        "price_usd": 179.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+    {
+      "id": "ring_battery_doorbell_plus",
+      "type": "doorbell",
+      "name": "Ring Battery Doorbell Plus",
+      "sku": "ring_battery_doorbell_plus",
+      "attributes": {
+        "brand": "ring",
+        "model": "8VRDP8-0EN0",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home"],
+        "form_factor": "battery_doorbell",
+        "resolution": "1536p_head_to_toe",
+        "video_storage": "ring_protect_cloud_required_for_history",
+        "power": "rechargeable_battery_or_wired",
+        "indoor_outdoor": "outdoor_ip65",
+        "note": "Quick-release battery doorbell with head-to-toe 1536p sensor. Amazon-owned, Alexa-native; Google support was pulled by Amazon in 2023. No HomeKit. HA via the ring HACS integration (cloud-polled). Ring Protect subscription required for any video history; live view + chime work without it.",
+        "source_ids": [0, 3],
+        "price_usd": 179.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+    {
+      "id": "reolink_doorbell_poe",
+      "type": "doorbell",
+      "name": "Reolink Video Doorbell PoE",
+      "sku": "reolink_doorbell_poe",
+      "attributes": {
+        "brand": "reolink",
+        "model": "Doorbell PoE",
+        "protocol": "ethernet_poe",
+        "requires_hub": "none",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "wired_poe_doorbell",
+        "resolution": "2k_5mp",
+        "video_storage": "local_microsd_or_nvr_onvif",
+        "power": "wired_poe",
+        "indoor_outdoor": "outdoor_ip65",
+        "note": "ONVIF / RTSP PoE doorbell for local-only / no-cloud setups (Frigate, Scrypted, Blue Iris). Native HA via the reolink integration; no first-party HomeKit / Google / Alexa path. Reroute through Scrypted to backfill HomeKit Secure Video if needed. PoE means one cable runs power + data; no battery to recharge, no Wi-Fi to drop.",
+        "source_ids": [0, 3],
+        "price_usd": 109.99,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
+      }
     }
   ],
   "constraints": [

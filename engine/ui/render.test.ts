@@ -170,6 +170,20 @@ describe("matchExample", () => {
     expect(m?.ecosystem).toBe("homekit");
     expect(m?.wants).toContain("camera");
   });
+
+  it("parses HomeKit + video doorbell example", () => {
+    const m = matchExample(
+      "Apple HomeKit household needs a video doorbell with HomeKit Secure Video",
+    );
+    expect(m?.ecosystem).toBe("homekit");
+    expect(m?.wants).toContain("doorbell");
+  });
+
+  it("treats 'PoE doorbell' as a doorbell synonym", () => {
+    const m = matchExample("Home Assistant only, PoE doorbell with no cloud and no battery to recharge");
+    expect(m?.ecosystem).toBe("home_assistant");
+    expect(m?.wants).toContain("doorbell");
+  });
 });
 
 describe("renderSolutionHTML", () => {
@@ -297,6 +311,17 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).toContain("<h3>Security cameras</h3>");
+    expect(html).toContain('href="/go/smart-home/');
+  });
+
+  it("renders a Video doorbells section when doorbell picks are present", () => {
+    const [solution] = solve(kb, {
+      ecosystem: "homekit",
+      wants: ["doorbell"],
+      picks_per_type: 3,
+    });
+    const html = renderSolutionHTML(solution, "smart-home");
+    expect(html).toContain("<h3>Video doorbells</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 

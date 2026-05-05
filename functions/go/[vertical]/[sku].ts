@@ -43,10 +43,21 @@ function resolveTag(merchantKey: string, env: Env): string {
   return map[merchantKey] ?? "";
 }
 
-function amazonFallback(sku: string, tag: string): string {
+function amazonFallback(sku: string, tag: string, ref: string): string {
   const query = sku.replace(/_/g, "+");
   const base = `https://www.amazon.com/s?k=${encodeURIComponent(query)}`;
-  return tag ? `${base}&tag=${encodeURIComponent(tag)}` : base;
+  const parts: string[] = [];
+  if (tag) parts.push(`tag=${encodeURIComponent(tag)}`);
+  if (ref) parts.push(`ascsubtag=${encodeURIComponent(ref)}`);
+  return parts.length ? `${base}&${parts.join("&")}` : base;
+}
+
+// Whitelist for ?ref= values: alphanumeric + dash + underscore, max 32 chars.
+// Blocks injection of arbitrary URL fragments.
+function sanitizeRef(raw: string | null): string {
+  if (!raw) return "";
+  const m = raw.match(/^[A-Za-z0-9_-]{1,32}$/);
+  return m ? m[0] : "";
 }
 
 function renderTemplate(
@@ -56,7 +67,7 @@ function renderTemplate(
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => vars[key] ?? "");
 }
 
-const handler: PagesFunction<Env> = async ({ params, env }) => {
+const handler: PagesFunction<Env> = async ({ params, request, env }) => {
   const vertical = String(params.vertical ?? "");
   const sku = String(params.sku ?? "");
   const affiliates = VERTICALS[vertical];
@@ -64,6 +75,9 @@ const handler: PagesFunction<Env> = async ({ params, env }) => {
   if (!affiliates || !sku) {
     return new Response("Not found", { status: 404 });
   }
+
+  const url = new URL(request.url);
+  const ref = sanitizeRef(url.searchParams.get("ref"));
 
   const product = affiliates.products[sku];
   let target: string | null = null;
@@ -75,6 +89,9 @@ const handler: PagesFunction<Env> = async ({ params, env }) => {
         merchant_sku: product.merchant_sku ?? sku,
         affiliate_tag: resolveTag(product.merchant, env),
       });
+      if (ref && product.merchant === "amazon_associates" && target) {
+        target += (target.includes("?") ? "&" : "?") + `ascsubtag=${encodeURIComponent(ref)}`;
+      }
     }
   }
 
@@ -82,9 +99,9 @@ const handler: PagesFunction<Env> = async ({ params, env }) => {
     const fallbackKey = affiliates.fallback;
     const fallback = affiliates.merchants[fallbackKey];
     if (fallback && fallback.link_template && fallbackKey === "amazon_associates") {
-      target = amazonFallback(sku, resolveTag(fallbackKey, env));
+      target = amazonFallback(sku, resolveTag(fallbackKey, env), ref);
     } else {
-      target = amazonFallback(sku, "");
+      target = amazonFallback(sku, "", ref);
     }
   }
 

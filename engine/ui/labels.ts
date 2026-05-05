@@ -16,6 +16,7 @@ const PROTOCOL_LABELS: Record<string, string> = {
   lutron_clear_connect: "Lutron Clear Connect (RF)",
   yolink_lora: "YoLink LoRa",
   z_wave: "Z-Wave",
+  ethernet_poe: "Ethernet (PoE)",
 };
 
 const HUB_LABELS: Record<string, string> = {
@@ -30,6 +31,7 @@ const HUB_LABELS: Record<string, string> = {
   yolink_hub: "Needs YoLink hub",
   ikea_dirigera_or_tradfri_gateway: "Needs IKEA DIRIGERA or TRÅDFRI gateway",
   thread_border_router_plus_matter_controller_or_aqara_hub: "Needs Thread border router + Matter controller, or Aqara hub",
+  homebase_2: "Needs Eufy HomeBase 2",
 };
 
 const ECOSYSTEM_LABELS: Record<string, string> = {
