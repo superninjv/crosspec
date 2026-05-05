@@ -9,7 +9,7 @@ interface Props {
 }
 const {
   title,
-  description = "Crosspec — vertical configurator hub.",
+  description = "Crosspec. Vertical configurator hub.",
   path = Astro.url.pathname,
   ogImage = "/og-image.png",
   crumbs,
@@ -76,7 +76,7 @@ const ogImageURL = `https://crosspec.com${ogImage}`;
     <footer class="site-footer">
       <div class="footer-inner">
         <p class="disclosure">
-          Compatibility data sourced from public registries — cited per recommendation.
+          Compatibility data sourced from public registries, cited per recommendation.
           crosspec earns affiliate commission on qualifying purchases; this does not
           change ranking.
         </p>
@@ -127,8 +127,8 @@ const ogImageURL = `https://crosspec.com${ogImage}`;
         background: var(--paper-1);
         color: var(--ink-0);
         font-family: var(--sans);
-        font-size: 14px;
-        line-height: 1.45;
+        font-size: 16px;
+        line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
       }
@@ -221,8 +221,13 @@ const ogImageURL = `https://crosspec.com${ogImage}`;
         display: inline-block;
         margin-right: 6px;
       }
+      .topbar-meta {
+        font-size: 12.5px;
+        color: var(--ink-2);
+        font-weight: 600;
+      }
       .topbar-meta .kb-status code {
-        font-size: 11px;
+        font-size: 12.5px;
       }
 
       main { display: block; }
@@ -236,7 +241,7 @@ const ogImageURL = `https://crosspec.com${ogImage}`;
       .footer-inner {
         max-width: 1180px;
         margin: 0 auto;
-        font-size: 12px;
+        font-size: 13.5px;
       }
       .site-footer p { margin: 0 0 8px; }
       .site-footer a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; }

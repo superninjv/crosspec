@@ -58,7 +58,7 @@ const PRESETS = [
   },
   {
     id: "google_home_security",
-    label: "Google Home — entry security",
+    label: "Google Home, entry security",
     tag: "safety pack",
     eco: "google_home",
     wants: ["smart_lock", "contact_sensor", "motion_sensor"],
@@ -250,7 +250,7 @@ const today = new Date().toISOString().slice(0, 10);
         </div>
         <div class="cell">
           <span class="k">price freshness</span>
-          <span class="v">2026-04-30</span>
+          <span class="v">2026-05-05</span>
         </div>
       </div>
 
@@ -258,7 +258,7 @@ const today = new Date().toISOString().slice(0, 10);
         <span class="lbl">hubs you'll need</span>
         <div class="hubs">
           {solution.hubs_required.length === 0 ? (
-            <span class="hub-chip none">none — every pick works without an extra hub</span>
+            <span class="hub-chip none">none required. Every pick works without an extra hub.</span>
           ) : (
             solution.hubs_required.map((h) => <span class="hub-chip">{hubLabel(h)}</span>)
           )}
@@ -268,6 +268,26 @@ const today = new Date().toISOString().slice(0, 10);
           <span class="v">{totalPicks}</span>
         </div>
       </div>
+
+      {totalPicks > 0 && (
+        <div class="build-summary" id="build-summary">
+          <div class="bs-totals">
+            <span class="bs-label">build total</span>
+            <span class="bs-amount" id="bs-amount">{totalPrice > 0 ? `$${totalPrice}` : "no prices"}</span>
+            <span class="bs-meta">across {totalPicks} {totalPicks === 1 ? "pick" : "picks"}</span>
+          </div>
+          <a
+            class="bs-cart"
+            id="bs-cart"
+            href={`/go/${vertical}/cart?skus=${solution.picks.map((p) => p.entity.sku ?? p.entity.id).join(",")}`}
+            rel="sponsored nofollow"
+          >
+            <span class="bs-cart-glyph" aria-hidden="true">▣</span>
+            <span>Add all to Amazon cart</span>
+            <span class="bs-cart-arr" aria-hidden="true">→</span>
+          </a>
+        </div>
+      )}
 
       {solution.warnings.length > 0 && (
         <div class="warnings">
@@ -588,10 +608,9 @@ const today = new Date().toISOString().slice(0, 10);
       0 1px 1px oklch(0.20 0.01 250 / 0.04),
       0 24px 60px -28px oklch(0.20 0.02 250 / 0.18);
     overflow: hidden;
-    transform: translateY(36px);
-    margin-bottom: -36px;
     position: relative;
     z-index: 2;
+    margin-top: 24px;
   }
   .config-tabs {
     display: flex;
@@ -604,24 +623,25 @@ const today = new Date().toISOString().slice(0, 10);
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 14px;
+    padding: 12px 16px;
     font-family: var(--mono);
-    font-size: 11px;
-    color: var(--ink-3);
+    font-size: 12.5px;
+    color: var(--ink-2);
+    font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
   }
   .config-tab .n {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     border: 1px solid var(--ink-4);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 9.5px;
+    font-size: 11px;
     color: var(--ink-3);
     background: var(--paper-0);
   }
@@ -813,31 +833,42 @@ const today = new Date().toISOString().slice(0, 10);
   }
   .presets-label {
     font-family: var(--mono);
-    font-size: 11px;
-    color: var(--ink-3);
+    font-size: 12.5px;
+    color: var(--ink-2);
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    font-weight: 600;
   }
   .preset-chip {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 7px 12px;
+    gap: 10px;
+    padding: 10px 18px;
     border-radius: 99px;
-    background: var(--paper-0);
-    border: 1px solid var(--paper-edge);
-    font-size: 12.5px;
-    color: var(--ink-1);
-    transition: border-color .12s, background .12s;
+    background: oklch(0.96 0.03 145);
+    border: 1.5px solid oklch(from var(--ok) l c h / 0.4);
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink-0);
+    cursor: pointer;
+    transition: border-color .12s, background .12s, transform .12s, box-shadow .12s;
   }
-  .preset-chip:hover { border-color: var(--ink-3); background: var(--paper-1); }
+  .preset-chip:hover {
+    border-color: var(--ok);
+    background: oklch(0.93 0.06 145);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px -4px oklch(0.50 0.12 145 / 0.3);
+  }
   .preset-chip .tag {
     font-family: var(--mono);
-    font-size: 9.5px;
-    color: var(--ink-3);
-    border-left: 1px solid var(--paper-edge);
-    padding-left: 8px;
+    font-size: 11px;
+    color: var(--ok-dark);
+    border-left: 1px solid oklch(from var(--ok) l c h / 0.35);
+    padding-left: 10px;
     margin-left: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
   }
 
   /* ─── SHARE STRIP ─── */
@@ -847,14 +878,14 @@ const today = new Date().toISOString().slice(0, 10);
     padding: 0 24px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12.5px;
     color: var(--ink-3);
   }
   .share .hash {
     flex: 1;
-    padding: 5px 10px;
+    padding: 7px 12px;
     background: var(--paper-0);
     border: 1px solid var(--paper-edge);
     border-radius: 5px;
@@ -864,11 +895,11 @@ const today = new Date().toISOString().slice(0, 10);
     white-space: nowrap;
   }
   .share .copy {
-    padding: 5px 10px;
+    padding: 7px 12px;
     border-radius: 5px;
-    border: 1px solid var(--paper-edge);
+    border: 1px solid var(--ink-4);
     background: var(--paper-0);
-    font-size: 11px;
+    font-size: 12.5px;
     font-weight: 600;
     cursor: pointer;
   }
@@ -888,24 +919,31 @@ const today = new Date().toISOString().slice(0, 10);
   }
   .examples-label {
     font-family: var(--mono);
-    font-size: 11px;
-    color: var(--ink-3);
+    font-size: 12.5px;
+    color: var(--ink-2);
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    font-weight: 600;
     margin-right: 4px;
   }
   .chip {
-    background: var(--paper-0);
-    border: 1px solid var(--paper-edge);
+    background: oklch(0.95 0.025 250);
+    border: 1.5px solid oklch(0.78 0.03 250);
     border-radius: 99px;
-    padding: 6px 11px;
-    font-size: 12px;
-    color: var(--ink-2);
+    padding: 9px 16px;
+    font-size: 14px;
+    color: var(--ink-1);
     cursor: pointer;
-    line-height: 1.4;
-    transition: background .12s, border-color .12s;
+    line-height: 1.35;
+    transition: background .12s, border-color .12s, transform .12s, box-shadow .12s;
   }
-  .chip:hover { background: var(--paper-1); border-color: var(--ink-3); color: var(--ink-1); }
+  .chip:hover {
+    background: oklch(0.91 0.05 250);
+    border-color: oklch(0.55 0.10 250);
+    color: var(--ink-0);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px -4px oklch(0.30 0.06 250 / 0.3);
+  }
 
   /* ─── RESULTS ─── */
   .results {
@@ -975,12 +1013,14 @@ const today = new Date().toISOString().slice(0, 10);
   }
   .meta-strip .cell:first-child { border-left: 0; }
   .meta-strip .cell .k {
-    font-size: 9.5px;
-    color: var(--ink-3);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-2);
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    font-weight: 600;
   }
-  .meta-strip .cell .v { font-size: 13px; font-weight: 600; color: var(--ink-1); }
+  .meta-strip .cell .v { font-size: 14.5px; font-weight: 600; color: var(--ink-1); }
   .meta-strip .cell .v.ok { color: var(--ok); }
   .meta-strip .cell .v.warn { color: var(--warn); }
 
@@ -997,22 +1037,23 @@ const today = new Date().toISOString().slice(0, 10);
   }
   .hub-callout .lbl {
     font-family: var(--mono);
-    font-size: 9.5px;
+    font-size: 11px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--ink-2);
+    font-weight: 600;
   }
-  .hub-callout .hubs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .hub-callout .hubs { display: flex; flex-wrap: wrap; gap: 8px; }
   .hub-chip {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 3px 9px;
+    padding: 5px 11px;
     border-radius: 4px;
     background: var(--paper-1);
     border: 1px solid var(--paper-edge);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12.5px;
     color: var(--ink-1);
   }
   .hub-chip.none {
@@ -1020,8 +1061,65 @@ const today = new Date().toISOString().slice(0, 10);
     border-color: transparent;
     color: var(--ok-dark);
   }
-  .hub-callout .total { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-align: right; }
-  .hub-callout .total .v { font-size: 14px; color: var(--ink-0); font-weight: 600; display: block; }
+  .hub-callout .total { font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); text-align: right; }
+  .hub-callout .total .v { font-size: 15.5px; color: var(--ink-0); font-weight: 600; display: block; }
+
+  /* ─── BUILD SUMMARY (total + bulk-cart CTA) ─── */
+  .build-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 22px;
+    background: linear-gradient(180deg, oklch(0.98 0.025 145) 0%, var(--paper-0) 100%);
+    border: 1.5px solid oklch(from var(--ok) l c h / 0.35);
+    border-radius: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .bs-totals { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .bs-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .bs-amount {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  .bs-meta {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-3);
+  }
+  .bs-cart {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background: oklch(0.62 0.18 35);
+    color: oklch(0.99 0.005 250);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid oklch(0.55 0.18 35);
+    box-shadow: 0 2px 0 oklch(0.45 0.18 35), 0 6px 14px -6px oklch(0.40 0.15 35 / 0.5);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .bs-cart:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 0 oklch(0.45 0.18 35), 0 10px 18px -6px oklch(0.40 0.15 35 / 0.6);
+  }
+  .bs-cart:active { transform: translateY(1px); box-shadow: 0 1px 0 oklch(0.45 0.18 35); }
+  .bs-cart-glyph { font-size: 16px; opacity: 0.95; }
+  .bs-cart-arr { font-family: var(--mono); opacity: 0.85; }
 
   .warnings {
     background: var(--warn-soft);

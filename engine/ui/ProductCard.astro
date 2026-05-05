@@ -167,10 +167,11 @@ const pinNum = String(idx + 1).padStart(2, "0");
     justify-content: space-between;
     align-items: center;
     font-family: var(--mono);
-    font-size: 10px;
-    color: var(--ink-3);
+    font-size: 11.5px;
+    color: var(--ink-2);
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    font-weight: 600;
   }
   .topline .left { display: flex; align-items: center; gap: 8px; }
   .topline .pid { color: var(--ink-3); }
@@ -178,10 +179,10 @@ const pinNum = String(idx + 1).padStart(2, "0");
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 1px 7px;
+    padding: 2px 9px;
     border-radius: 99px;
     font-weight: 600;
-    font-size: 10px;
+    font-size: 11.5px;
   }
   .badge-native { background: var(--ok-soft); color: var(--ok-dark); }
   .badge-native::before {
@@ -210,7 +211,7 @@ const pinNum = String(idx + 1).padStart(2, "0");
   }
   .submodel {
     font-family: var(--mono);
-    font-size: 10.5px;
+    font-size: 12px;
     color: var(--ink-3);
     margin-top: -4px;
   }
@@ -219,7 +220,7 @@ const pinNum = String(idx + 1).padStart(2, "0");
   .compat-strip {
     display: flex;
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 11.5px;
     background: var(--paper-1);
     border: 1px solid var(--paper-edge);
     border-radius: 6px;
@@ -237,7 +238,7 @@ const pinNum = String(idx + 1).padStart(2, "0");
     text-align: center;
   }
   .compat-cell:first-child { border-left: 0; }
-  .compat-cell .lbl { font-size: 9.5px; color: var(--ink-3); }
+  .compat-cell .lbl { font-size: 11px; color: var(--ink-3); }
   .compat-cell .dot {
     width: 10px;
     height: 10px;
@@ -274,15 +275,16 @@ const pinNum = String(idx + 1).padStart(2, "0");
   }
   .stat .k {
     font-family: var(--mono);
-    font-size: 9.5px;
-    color: var(--ink-3);
+    font-size: 11px;
+    color: var(--ink-2);
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    font-weight: 600;
     margin: 0;
   }
   .stat .v {
     font-family: var(--mono);
-    font-size: 11.5px;
+    font-size: 13px;
     color: var(--ink-1);
     font-weight: 500;
     white-space: nowrap;
@@ -294,9 +296,9 @@ const pinNum = String(idx + 1).padStart(2, "0");
   .stat .v.warn { color: var(--warn); }
 
   .why {
-    font-size: 12px;
+    font-size: 13.5px;
     color: var(--ink-2);
-    line-height: 1.45;
+    line-height: 1.5;
     text-wrap: pretty;
     margin: 0;
   }
@@ -316,17 +318,17 @@ const pinNum = String(idx + 1).padStart(2, "0");
   .pcard-foot .price .nope {
     color: var(--ink-4);
     font-weight: 500;
-    font-size: 11px;
+    font-size: 12.5px;
   }
   .pcard-foot .cta {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 7px 11px;
+    padding: 9px 14px;
     border-radius: 6px;
     background: var(--ink-0);
     color: var(--paper-0);
-    font-size: 12px;
+    font-size: 13.5px;
     font-weight: 600;
     text-decoration: none;
   }

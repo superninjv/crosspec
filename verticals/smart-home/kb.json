@@ -1,7 +1,7 @@
 {
   "version": "0.1",
   "vertical": "smart-home",
-  "data_quality": "v0.1 best-effort population from cited public sources. Each entity's compat claims trace to source_ids on its attributes. Verification pass required before production launch — this dataset is sized to prove the engine end-to-end, not for general consumer trust.",
+  "data_quality": "v0.1 best-effort population from cited public sources. Each entity's compat claims trace to source_ids on its attributes. Verification pass required before production launch; this dataset is sized to prove the engine end-to-end, not for general consumer trust.",
   "sources": [
     {
       "id": 0,
@@ -67,7 +67,10 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "power": "battery_cr2450",
         "indoor_outdoor": "indoor",
-        "source_ids": [0, 2, 3]
+        "source_ids": [0, 2, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -83,7 +86,10 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "power": "battery_aa",
         "indoor_outdoor": "indoor_outdoor_ipx3",
-        "source_ids": [0, 1, 3]
+        "source_ids": [0, 1, 3],
+        "price_usd": 49.95,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -99,7 +105,10 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "power": "battery_aaa",
         "indoor_outdoor": "indoor",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -116,7 +125,10 @@
         "power": "battery_cr2450",
         "indoor_outdoor": "indoor",
         "note": "Native cloud ecosystem support (HomeKit/Google/Alexa) requires the eWeLink Bridge or pass-through from HA.",
-        "source_ids": [2, 3]
+        "source_ids": [2, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -133,7 +145,10 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "power": "battery_cr2032",
         "indoor_outdoor": "indoor",
-        "source_ids": [0, 2, 3]
+        "source_ids": [0, 2, 3],
+        "price_usd": 14.99,
+        "price_source": "IKEA retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -150,7 +165,10 @@
         "ecosystems_unsupported": ["homekit"],
         "power": "battery_cr2450",
         "indoor_outdoor": "indoor",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 9.99,
+        "price_source": "vendor MSRP (single)",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -167,7 +185,10 @@
         "ecosystems_unsupported": ["homekit"],
         "power": "battery_aaa",
         "indoor_outdoor": "indoor",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
 
@@ -205,7 +226,10 @@
         "color": "rgb_full",
         "lumens": 800,
         "base": "e26",
-        "source_ids": [0, 2, 3]
+        "source_ids": [0, 2, 3],
+        "price_usd": 49.99,
+        "price_source": "vendor MSRP (single bulb)",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -222,7 +246,10 @@
         "color": "rgb_full",
         "lumens": 1100,
         "base": "e26",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 44.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -241,7 +268,10 @@
         "lumens": 806,
         "base": "e26",
         "note": "HomeKit support arrives via Matter-over-WiFi after the firmware update is applied; not present out of box on early manufacturing batches.",
-        "source_ids": [0, 1, 3]
+        "source_ids": [0, 1, 3],
+        "price_usd": 13.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -259,7 +289,10 @@
         "color": "rgb_full",
         "lumens": 800,
         "base": "e26",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 11.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -276,7 +309,10 @@
         "color": "rgbww_full",
         "lumens": 800,
         "base": "e26",
-        "source_ids": [0, 1, 3]
+        "source_ids": [0, 1, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -294,7 +330,10 @@
         "color": "tunable_white",
         "lumens": 806,
         "base": "e26",
-        "source_ids": [0, 2, 3]
+        "source_ids": [0, 2, 3],
+        "price_usd": 13.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -312,7 +351,10 @@
         "color": "tunable_white",
         "lumens": 806,
         "base": "e26",
-        "source_ids": [0, 2, 3]
+        "source_ids": [0, 2, 3],
+        "price_usd": 9.99,
+        "price_source": "IKEA retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -330,7 +372,10 @@
         "color": "rgb_full",
         "lumens": 1100,
         "base": "e26",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 13.98,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -347,7 +392,10 @@
         "color": "rgb_full",
         "lumens": 810,
         "base": "e26",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 13.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -365,7 +413,10 @@
         "color": "rgb_full",
         "lumens": 800,
         "base": "e26",
-        "source_ids": [0, 2, 3]
+        "source_ids": [0, 2, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
 
@@ -403,8 +454,11 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "form_factor": "plug_mini",
         "max_load_watts": 1875,
-        "note": "Matter-over-Wi-Fi plug. Commissioned directly into any Matter controller — no Tapo cloud required once paired.",
-        "source_ids": [0, 1, 3]
+        "note": "Matter-over-Wi-Fi plug. Commissioned directly into any Matter controller; no Tapo cloud required once paired.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -422,7 +476,10 @@
         "form_factor": "plug",
         "max_load_watts": 1875,
         "note": "Alexa-exclusive. No native HomeKit, Google Home, or Home Assistant integration. Only pick this if the household is committed to Alexa and values zero-config setup over cross-ecosystem reach.",
-        "source_ids": [3]
+        "source_ids": [3],
+        "price_usd": 24.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -440,7 +497,10 @@
         "form_factor": "plug_mini",
         "max_load_watts": 1875,
         "note": "Wi-Fi plug; HomeKit/Alexa/Google paths go through a SwitchBot Hub 2 or Hub Mini with Matter acting as a Matter bridge. Direct HA control via the SwitchBot integration.",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -456,7 +516,10 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "form_factor": "plug",
         "max_load_watts": 1800,
-        "source_ids": [0, 1, 3]
+        "source_ids": [0, 1, 3],
+        "price_usd": 39.95,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -493,7 +556,10 @@
         "form_factor": "deadbolt_with_keypad",
         "power": "battery_aa",
         "apple_home_key": false,
-        "source_ids": [1, 3]
+        "source_ids": [1, 3],
+        "price_usd": 279.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -510,7 +576,10 @@
         "form_factor": "deadbolt_with_keypad",
         "power": "battery_aa",
         "apple_home_key": true,
-        "source_ids": [1, 3]
+        "source_ids": [1, 3],
+        "price_usd": 329.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -527,7 +596,10 @@
         "form_factor": "deadbolt_retrofit",
         "power": "battery_cr123a",
         "apple_home_key": false,
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 229.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
 
@@ -548,7 +620,10 @@
         "display": true,
         "power": "battery_aaa",
         "note": "Bluetooth sensor with built-in LCD. HomeKit / Google / Alexa paths go through a SwitchBot Hub 2 or Hub Mini (Matter) acting as a Matter bridge. Direct HA control via the SwitchBot integration.",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 29.99,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -567,7 +642,10 @@
         "indoor_outdoor": "indoor",
         "display": false,
         "power": "battery_cr2032",
-        "source_ids": [0, 2, 3]
+        "source_ids": [0, 2, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -585,8 +663,11 @@
         "indoor_outdoor": "indoor_outdoor_ipx3",
         "display": true,
         "power": "battery_cr2450",
-        "note": "Outdoor-rated temperature, humidity, and barometric pressure sensor with an e-ink display. Matter-over-Thread on recent firmware — ecosystem-agnostic once commissioned.",
-        "source_ids": [0, 1, 3]
+        "note": "Outdoor-rated temperature, humidity, and barometric pressure sensor with an e-ink display. Matter-over-Thread on recent firmware; ecosystem-agnostic once commissioned.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 79.95,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -605,8 +686,11 @@
         "indoor_outdoor": "indoor",
         "display": true,
         "power": "battery_aaa",
-        "note": "Direct BLE integration in Home Assistant via the govee_ble component — no cloud, no hub, HA-only. No native HomeKit / Google Home / Alexa path.",
-        "source_ids": [0, 3]
+        "note": "Direct BLE integration in Home Assistant via the govee_ble component; no cloud, no hub, HA-only. No native HomeKit / Google Home / Alexa path.",
+        "source_ids": [0, 3],
+        "price_usd": 11.99,
+        "price_source": "Amazon retail (single)",
+        "price_ingest_date": "2026-05-05"
       }
     },
 
@@ -624,8 +708,11 @@
         "form_factor": "door_window",
         "indoor_outdoor": "indoor",
         "power": "battery_cr2032",
-        "note": "Matter-over-Thread — commissions directly into any Matter controller without the Aqara hub. Preferred pick when HomeKit + Google + Alexa + HA parity matters.",
-        "source_ids": [1, 3]
+        "note": "Matter-over-Thread; commissions directly into any Matter controller without the Aqara hub. Preferred pick when HomeKit + Google + Alexa + HA parity matters.",
+        "source_ids": [1, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -643,8 +730,11 @@
         "form_factor": "door_window",
         "indoor_outdoor": "indoor",
         "power": "battery_cr1632",
-        "note": "Zigbee sensor — cheapest ecosystem path if an Aqara hub (or any Zigbee coordinator for HA via Z2M) is already on the network.",
-        "source_ids": [0, 2, 3]
+        "note": "Zigbee sensor; cheapest ecosystem path if an Aqara hub (or any Zigbee coordinator for HA via Z2M) is already on the network.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -663,7 +753,10 @@
         "indoor_outdoor": "indoor",
         "power": "battery_cr2450",
         "note": "Bluetooth sensor with built-in motion PIR. HomeKit / Google / Alexa paths require a SwitchBot Hub 2 or Hub Mini (Matter) acting as a Matter bridge. Direct HA control via the SwitchBot integration.",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -681,7 +774,10 @@
         "indoor_outdoor": "indoor",
         "power": "battery_cr2450",
         "note": "Cheapest Zigbee contact sensor that works via Zigbee2MQTT / ZHA in Home Assistant. Native cloud ecosystem support (HomeKit/Google/Alexa) requires the eWeLink Bridge or pass-through from HA.",
-        "source_ids": [2, 3]
+        "source_ids": [2, 3],
+        "price_usd": 9.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
 
@@ -698,8 +794,11 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "form_factor": "single_gang_dimmer",
         "neutral_required": false,
-        "note": "Lutron Clear Connect runs on a dedicated proprietary RF mesh, not Wi-Fi or Zigbee — requires a Lutron Smart Bridge Pro 2 (L-BDG2-WH) as its hub. HomeKit / Google / Alexa integrate via that bridge. Home Assistant talks to the bridge via the lutron_caseta integration. No-neutral install supported.",
-        "source_ids": [0, 3]
+        "note": "Lutron Clear Connect runs on a dedicated proprietary RF mesh, not Wi-Fi or Zigbee; requires a Lutron Smart Bridge Pro 2 (L-BDG2-WH) as its hub. HomeKit / Google / Alexa integrate via that bridge. Home Assistant talks to the bridge via the lutron_caseta integration. No-neutral install supported.",
+        "source_ids": [0, 3],
+        "price_usd": 59.95,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -716,8 +815,11 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "form_factor": "single_gang_paddle",
         "neutral_required": false,
-        "note": "Zigbee 3.0 wall switch designed for homes without a neutral wire in the switch box — a common retrofit headache. HomeKit / Google / Alexa paths go through an Aqara hub (M2 / M3) acting as a Matter bridge; Home Assistant via Zigbee2MQTT or ZHA without the hub.",
-        "source_ids": [0, 2, 3]
+        "note": "Zigbee 3.0 wall switch designed for homes without a neutral wire in the switch box; a common retrofit headache. HomeKit / Google / Alexa paths go through an Aqara hub (M2 / M3) acting as a Matter bridge; Home Assistant via Zigbee2MQTT or ZHA without the hub.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 34.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -734,8 +836,11 @@
         "ecosystems_unsupported": ["homekit"],
         "form_factor": "single_gang_paddle",
         "neutral_required": true,
-        "note": "Wi-Fi paddle switch with no Matter firmware path — HomeKit is not supported on this SKU. Pick the Shelly Plus 1PM or Aqara H1 if HomeKit matters.",
-        "source_ids": [0, 3]
+        "note": "Wi-Fi paddle switch with no Matter firmware path; HomeKit is not supported on this SKU. Pick the Shelly Plus 1PM or Aqara H1 if HomeKit matters.",
+        "source_ids": [0, 3],
+        "price_usd": 17.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -752,8 +857,11 @@
         "ecosystems_via_matter_firmware": ["homekit"],
         "form_factor": "behind_switch_relay",
         "neutral_required": true,
-        "note": "Single-channel Wi-Fi relay with power metering that installs behind the user's existing dumb toggle or paddle — no new faceplate required. Matter-over-Wi-Fi support landed on the Plus-gen firmware in 2024, giving it a HomeKit path via any Matter controller. Google / Alexa / HA work via native Shelly integrations directly.",
-        "source_ids": [0, 1, 3]
+        "note": "Single-channel Wi-Fi relay with power metering that installs behind the user's existing dumb toggle or paddle; no new faceplate required. Matter-over-Wi-Fi support landed on the Plus-gen firmware in 2024, giving it a HomeKit path via any Matter controller. Google / Alexa / HA work via native Shelly integrations directly.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 24.99,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
 
@@ -774,7 +882,10 @@
         "power": "battery_cr2",
         "audible_alarm_db": 100,
         "note": "Bluetooth water leak detector with a 100 dB local alarm and IP67-rated probe. HomeKit / Google / Alexa paths go through a SwitchBot Hub 2 or Hub Mini (Matter) acting as a Matter bridge. Direct HA control via the SwitchBot integration.",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 24.99,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -793,8 +904,11 @@
         "indoor_outdoor": "indoor",
         "power": "battery_cr2032",
         "audible_alarm_db": null,
-        "note": "IP67 Zigbee water leak puck — drop on the floor next to a water heater, sink, or dishwasher. HomeKit / Google / Alexa paths go through an Aqara hub (M2 / M3); HA via Zigbee2MQTT or ZHA without the hub. No local alarm on the puck itself — notifications via the hub / HA automations.",
-        "source_ids": [0, 2, 3]
+        "note": "IP67 Zigbee water leak puck; drop on the floor next to a water heater, sink, or dishwasher. HomeKit / Google / Alexa paths go through an Aqara hub (M2 / M3); HA via Zigbee2MQTT or ZHA without the hub. No local alarm on the puck itself; notifications via the hub / HA automations.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -813,8 +927,11 @@
         "indoor_outdoor": "indoor",
         "power": "battery_aaa",
         "audible_alarm_db": 85,
-        "note": "Proprietary sub-GHz LoRa radio with quarter-mile range — trivially covers basements, detached garages, and outbuildings where Wi-Fi or Zigbee won't reach. Requires a YoLink hub; integrates with Alexa / Google via cloud, HA via the HACS yolink integration. No HomeKit path.",
-        "source_ids": [0, 3]
+        "note": "Proprietary sub-GHz LoRa radio with quarter-mile range; trivially covers basements, detached garages, and outbuildings where Wi-Fi or Zigbee won't reach. Requires a YoLink hub; integrates with Alexa / Google via cloud, HA via the HACS yolink integration. No HomeKit path.",
+        "source_ids": [0, 3],
+        "price_usd": 24.99,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -834,8 +951,11 @@
         "power": "battery_cr123a",
         "audible_alarm_db": null,
         "measures": ["water_presence", "temperature"],
-        "note": "Gen1 Wi-Fi water leak + temperature sensor — no Matter firmware on this SKU, so HomeKit is not supported. HA integrates natively via the Shelly integration; Google / Alexa via Shelly Cloud. Pick SwitchBot or Aqara if HomeKit matters.",
-        "source_ids": [0, 3]
+        "note": "Gen1 Wi-Fi water leak + temperature sensor; no Matter firmware on this SKU, so HomeKit is not supported. HA integrates natively via the Shelly integration; Google / Alexa via Shelly Cloud. Pick SwitchBot or Aqara if HomeKit matters.",
+        "source_ids": [0, 3],
+        "price_usd": 34.99,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
       }
     },
 
@@ -877,7 +997,10 @@
         "built_in_voice": [],
         "supports_remote_sensors": true,
         "note": "Wi-Fi thermostat with HomeKit, Alexa, and Google. Supports up to 20 wireless remote room sensors (separate SKU C7189R1004) for true multi-zone averaging. Home Assistant integrates via the Total Connect Comfort cloud integration.",
-        "source_ids": [0, 3]
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -896,8 +1019,11 @@
         "c_wire_required": false,
         "built_in_voice": [],
         "supports_remote_sensors": true,
-        "note": "2024 release — the first Nest Learning generation with Matter support, finally giving Google's marquee thermostat a HomeKit path (via any Matter controller). Google Home is the native control surface; Alexa via the Nest skill; Home Assistant via the Nest cloud integration or directly over Matter (local).",
-        "source_ids": [0, 1, 3]
+        "note": "2024 release; the first Nest Learning generation with Matter support, finally giving Google's marquee thermostat a HomeKit path (via any Matter controller). Google Home is the native control surface; Alexa via the Nest skill; Home Assistant via the Nest cloud integration or directly over Matter (local).",
+        "source_ids": [0, 1, 3],
+        "price_usd": 279.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -916,8 +1042,11 @@
         "c_wire_required": false,
         "built_in_voice": [],
         "supports_remote_sensors": false,
-        "note": "Budget Wi-Fi thermostat (~$80). Alexa + Google native, HA via the HACS ha-wyzeapi integration (cloud-polled). No HomeKit and no Matter firmware path — pick Ecobee, Honeywell T9, or Nest 4th gen if HomeKit matters.",
-        "source_ids": [0, 3]
+        "note": "Budget Wi-Fi thermostat (~$80). Alexa + Google native, HA via the HACS ha-wyzeapi integration (cloud-polled). No HomeKit and no Matter firmware path; pick Ecobee, Honeywell T9, or Nest 4th gen if HomeKit matters.",
+        "source_ids": [0, 3],
+        "price_usd": 79.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
 
@@ -934,8 +1063,11 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "form_factor": "motorized_roller_shade",
         "power": "rechargeable_battery_or_wired",
-        "note": "Matter-over-Thread motorized roller shade. Eve's MotionBlinds line ships pre-installed in custom-cut shades (Bali / Graber / etc. via select retailers). Commissions directly into any Matter controller — ecosystem-agnostic, no Eve cloud required.",
-        "source_ids": [0, 1, 3]
+        "note": "Matter-over-Thread motorized roller shade. Eve's MotionBlinds line ships pre-installed in custom-cut shades (Bali / Graber / etc. via select retailers). Commissions directly into any Matter controller; ecosystem-agnostic, no Eve cloud required.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 329.95,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -952,8 +1084,11 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "form_factor": "chain_driver_retrofit",
         "power": "rechargeable_battery_usb_c",
-        "note": "Bolts onto the bead chain of an existing roller shade — no new shade purchase required. Zigbee 3.0; HomeKit / Google / Alexa via an Aqara hub (M2 / M3) bridging to Matter, or HA directly via Zigbee2MQTT / ZHA without the hub.",
-        "source_ids": [0, 2, 3]
+        "note": "Bolts onto the bead chain of an existing roller shade; no new shade purchase required. Zigbee 3.0; HomeKit / Google / Alexa via an Aqara hub (M2 / M3) bridging to Matter, or HA directly via Zigbee2MQTT / ZHA without the hub.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 99.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
       }
     },
     {
@@ -970,7 +1105,7 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "form_factor": "curtain_rod_clip_on",
         "power": "rechargeable_battery_usb_c",
-        "note": "Clips onto an existing curtain rod and walks the curtain across — zero rewiring, zero new hardware on the wall, no shade replacement. Bluetooth direct or via SwitchBot Hub 2 / Mini (Matter) bridging to HomeKit / Google / Alexa. HA via the SwitchBot integration.",
+        "note": "Clips onto an existing curtain rod and walks the curtain across; zero rewiring, zero new hardware on the wall, no shade replacement. Bluetooth direct or via SwitchBot Hub 2 / Mini (Matter) bridging to HomeKit / Google / Alexa. HA via the SwitchBot integration.",
         "source_ids": [0, 3],
         "price_usd": 89.99,
         "price_source": "vendor retail",
@@ -991,8 +1126,11 @@
         "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
         "form_factor": "motorized_roller_blind",
         "power": "rechargeable_battery_usb_c",
-        "note": "Cheapest motorized blackout shade in widespread availability. Comes pre-installed in fixed sizes — measure before ordering. Zigbee; HomeKit / Google / Alexa via the IKEA TRÅDFRI / DIRIGERA hub, HA via Zigbee2MQTT / ZHA without the hub.",
-        "source_ids": [0, 2, 3]
+        "note": "Cheapest motorized blackout shade in widespread availability. Comes pre-installed in fixed sizes; measure before ordering. Zigbee; HomeKit / Google / Alexa via the IKEA TRÅDFRI / DIRIGERA hub, HA via Zigbee2MQTT / ZHA without the hub.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 129.99,
+        "price_source": "IKEA retail",
+        "price_ingest_date": "2026-05-05"
       }
     }
   ],
@@ -1010,7 +1148,7 @@
       "kind": "requires",
       "when": { "protocol": "zigbee_3_0" },
       "then": { "requires_hub": "any_zigbee_coordinator" },
-      "rationale": "Zigbee 3.0 is a Zigbee variant — same hub requirement as C1.",
+      "rationale": "Zigbee 3.0 is a Zigbee variant; same hub requirement as C1.",
       "source_id": 2
     },
     {
@@ -1061,7 +1199,7 @@
     },
     {
       "id": "G3_prefer_matter",
-      "prompt": "When two entities are equally compatible, prefer Matter-certified ones — they survive ecosystem switches without re-buying.",
+      "prompt": "When two entities are equally compatible, prefer Matter-certified ones; they survive ecosystem switches without re-buying.",
       "objective": "maximize",
       "target": "entity.attributes.protocol == 'thread_matter' || entity.attributes.ecosystems_via_matter_firmware"
     }

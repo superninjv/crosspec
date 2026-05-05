@@ -1,0 +1,328 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import ProductCard from "@engine/ui/ProductCard.astro";
+import type { Entity, KnowledgeBase, PickedEntity } from "@engine/solver";
+import { protocolLabel, hubLabel } from "@engine/ui/labels";
+import kbRaw from "@verticals/smart-home/kb.json";
+
+const kb = kbRaw as KnowledgeBase;
+
+const ECOSYSTEM_LABEL: Record<string, string> = {
+  homekit: "Apple HomeKit",
+  alexa: "Amazon Alexa",
+  google_home: "Google Home",
+  home_assistant: "Home Assistant",
+};
+const TYPE_LABEL: Record<string, string> = {
+  motion_sensor: "motion sensor",
+  smart_bulb: "smart bulb",
+  smart_plug: "smart plug",
+  smart_lock: "smart lock",
+  temperature_sensor: "temperature & humidity sensor",
+  contact_sensor: "door & window sensor",
+  smart_switch: "smart switch / dimmer",
+  leak_sensor: "water leak sensor",
+  thermostat: "thermostat",
+  smart_shade: "smart shade / blind",
+};
+
+export async function getStaticPaths() {
+  const k = kbRaw as KnowledgeBase;
+  return k.entities.map((e) => ({
+    params: { sku: e.sku ?? e.id },
+    props: { entityId: e.id },
+  }));
+}
+
+interface PageProps { entityId: string }
+const { entityId } = Astro.props as PageProps;
+const entity = kb.entities.find((e) => e.id === entityId) as Entity;
+const sku = entity.sku ?? entity.id;
+const attrs = entity.attributes;
+
+const ecosystems = (attrs.ecosystems ?? []) as string[];
+const ecosystemsUnsupported = (attrs.ecosystems_unsupported ?? []) as string[];
+const ecosystemsViaBridge: string[] = [];
+for (const k of Object.keys(attrs)) {
+  if (k.startsWith("ecosystems_via_")) {
+    for (const e of (attrs[k] as string[]) ?? []) {
+      if (!ecosystemsViaBridge.includes(e)) ecosystemsViaBridge.push(e);
+    }
+  }
+}
+const nativeEcos = ecosystems.filter(
+  (e) => !ecosystemsUnsupported.includes(e) && !ecosystemsViaBridge.includes(e),
+);
+const bridgeEcos = ecosystemsViaBridge.filter(
+  (e) => !ecosystemsUnsupported.includes(e),
+);
+const unsupportedEcos = ecosystemsUnsupported;
+
+const typeLabel = TYPE_LABEL[entity.type] ?? entity.type.replace(/_/g, " ");
+const protoText = attrs.protocol ? protocolLabel(attrs.protocol as string) : "";
+const hubText = hubLabel(attrs.requires_hub ?? "none");
+
+const pickedSynth: PickedEntity = {
+  entity,
+  fired_constraints: [],
+  hub_required: (attrs.requires_hub as string) ?? "none",
+  native_in_ecosystem: nativeEcos.length > 0,
+};
+
+const pageTitle = `${entity.name} compatibility | Matter, HomeKit, Google Home, Alexa, Home Assistant | crosspec`;
+const summaryParts: string[] = [];
+if (nativeEcos.length) {
+  summaryParts.push(
+    `Native to ${nativeEcos.map((e) => ECOSYSTEM_LABEL[e] ?? e).join(", ")}`,
+  );
+}
+if (bridgeEcos.length) {
+  summaryParts.push(
+    `bridged via hub for ${bridgeEcos.map((e) => ECOSYSTEM_LABEL[e] ?? e).join(", ")}`,
+  );
+}
+if (unsupportedEcos.length) {
+  summaryParts.push(
+    `not supported on ${unsupportedEcos.map((e) => ECOSYSTEM_LABEL[e] ?? e).join(", ")}`,
+  );
+}
+const description =
+  `${entity.name} (${attrs.brand ?? ""}${attrs.model ? " " + attrs.model : ""}, ` +
+  `${protoText}). ${summaryParts.join("; ")}.`;
+
+const sourceIds = (attrs.source_ids ?? []) as number[];
+const sources = sourceIds
+  .map((id) => kb.sources.find((s) => s.id === id))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+const related = kb.entities
+  .filter((e) => e.type === entity.type && e.id !== entity.id)
+  .slice(0, 8);
+---
+<Layout
+  title={pageTitle}
+  description={description}
+  crumbs={["smart-home", "devices", sku]}
+  kbStatus={`kb v0.1 · ${kb.entities.length} entities`}
+>
+  <section class="device-page">
+    <p class="eyebrow">
+      <a href="/smart-home/">smart home</a>
+      <span class="sep">›</span>
+      <span>{typeLabel}</span>
+    </p>
+    <h1 class="device-title">
+      <span class="brand-line">{attrs.brand && (attrs.brand as string).replace(/_/g, " ")}</span>
+      <span class="full">{entity.name}</span>
+    </h1>
+    <p class="lede">
+      {description}
+    </p>
+
+    <div class="device-card">
+      <ProductCard pick={pickedSynth} vertical="smart-home" userEcosystem="" idx={0} />
+    </div>
+
+    <section class="compat-detail">
+      <h2>Ecosystem compatibility</h2>
+      <ul class="compat-list">
+        {(["homekit", "alexa", "google_home", "home_assistant"] as const).map((e) => {
+          const label = ECOSYSTEM_LABEL[e];
+          let status: "native" | "bridge" | "no" = "no";
+          let note = "";
+          if (nativeEcos.includes(e)) {
+            status = "native";
+            note = `Works natively. Protocol: ${protoText}.`;
+          } else if (bridgeEcos.includes(e)) {
+            status = "bridge";
+            note = `Requires ${hubText} as a Matter / cloud bridge.`;
+          } else if (unsupportedEcos.includes(e)) {
+            status = "no";
+            note = "Not supported by the manufacturer for this ecosystem.";
+          } else {
+            note = "Not on the supported list.";
+          }
+          return (
+            <li class={`compat-row r-${status}`}>
+              <span class="dot"></span>
+              <span class="eco">{label}</span>
+              <span class="lbl">
+                {status === "native" ? "Native" : status === "bridge" ? "Via bridge" : "Not supported"}
+              </span>
+              <span class="why">{note}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+
+    {sources.length > 0 && (
+      <section class="sources-block">
+        <h2>Sources</h2>
+        <ol class="sources-list">
+          {sources.map((s) => (
+            <li>
+              {s.url ? (
+                <a href={s.url} rel="nofollow" target="_blank">{s.name}</a>
+              ) : (
+                <span>{s.name}</span>
+              )}
+              <span class="meta"> · ingest {s.ingest_date}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    {related.length > 0 && (
+      <section class="related-block">
+        <h2>Other {typeLabel}s on crosspec</h2>
+        <ul class="related-list">
+          {related.map((r) => (
+            <li>
+              <a href={`/smart-home/devices/${r.sku ?? r.id}/`}>
+                <span class="name">{r.name}</span>
+                <span class="brand">
+                  {(r.attributes.brand as string ?? "").replace(/_/g, " ")}
+                  {r.attributes.protocol ? ` · ${protocolLabel(r.attributes.protocol as string)}` : ""}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class="cta-block">
+      <h2>Configure your whole setup</h2>
+      <p>
+        Compatibility for one device is the easy part. The interactive configurator picks the
+        best devices across an entire ecosystem at once, citing the data on every choice.
+      </p>
+      <a class="cta-primary" href="/smart-home/">Open the smart-home configurator →</a>
+    </section>
+  </section>
+</Layout>
+<style>
+  .device-page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+    color: var(--ink-1);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 16px;
+  }
+  .eyebrow a { color: var(--ink-2); text-decoration: none; }
+  .eyebrow a:hover { color: var(--ink-0); }
+  .eyebrow .sep { color: var(--ink-4); margin: 0 6px; }
+  .device-title {
+    font-size: 42px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .device-title .brand-line {
+    display: block;
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .lede {
+    font-size: 19px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    text-wrap: pretty;
+    margin: 0 0 36px;
+    max-width: 56ch;
+  }
+  .device-card {
+    max-width: 460px;
+    margin: 0 0 44px;
+  }
+  .compat-detail h2,
+  .sources-block h2,
+  .related-block h2,
+  .cta-block h2 {
+    font-size: 16px;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    border-top: 1px dashed var(--paper-edge);
+    padding-top: 18px;
+    margin: 36px 0 18px;
+  }
+  .compat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .compat-row {
+    display: grid;
+    grid-template-columns: 16px 170px 140px 1fr;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--paper-edge);
+    border-radius: 8px;
+    background: var(--paper-1);
+    font-size: 16px;
+  }
+  .compat-row .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--ink-4); opacity: 0.5; }
+  .compat-row.r-native { background: var(--ok-soft); border-color: oklch(from var(--ok) l c h / 0.4); }
+  .compat-row.r-native .dot { background: var(--ok); opacity: 0.95; }
+  .compat-row.r-native .lbl { color: var(--ok-dark); font-weight: 600; }
+  .compat-row.r-bridge { background: var(--warn-soft); border-color: oklch(from var(--warn) l c h / 0.4); }
+  .compat-row.r-bridge .dot { background: var(--warn); opacity: 0.9; }
+  .compat-row.r-bridge .lbl { color: var(--warn-dark); font-weight: 600; }
+  .compat-row.r-no .lbl { color: var(--ink-4); text-decoration: line-through; }
+  .compat-row .eco { font-weight: 600; font-size: 16.5px; }
+  .compat-row .lbl { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .compat-row .why { color: var(--ink-2); font-size: 15.5px; line-height: 1.5; }
+  @media (max-width: 640px) {
+    .compat-row { grid-template-columns: 16px 1fr; row-gap: 6px; }
+    .compat-row .lbl, .compat-row .why { grid-column: 2 / -1; }
+  }
+
+  .sources-list { font-family: var(--mono); font-size: 14px; color: var(--ink-3); padding-left: 26px; }
+  .sources-list li { margin: 7px 0; }
+  .sources-list a { color: var(--ink-1); }
+  .sources-list .meta { color: var(--ink-4); }
+
+  .related-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .related-list a {
+    display: block;
+    padding: 14px 16px;
+    border: 1px solid var(--paper-edge);
+    border-radius: 8px;
+    background: var(--paper-1);
+    text-decoration: none;
+    color: var(--ink-1);
+    transition: border-color .12s, background .12s;
+  }
+  .related-list a:hover { border-color: var(--ink-3); background: var(--paper-0); }
+  .related-list .name { display: block; font-size: 16.5px; font-weight: 600; }
+  .related-list .brand { display: block; font-family: var(--mono); font-size: 13px; color: var(--ink-3); margin-top: 4px; }
+
+  .cta-block p { color: var(--ink-2); font-size: 17.5px; line-height: 1.55; max-width: 56ch; margin: 0 0 18px; }
+  .cta-primary {
+    display: inline-block;
+    padding: 14px 24px;
+    background: var(--ink-0);
+    color: var(--paper-0);
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .cta-primary:hover { background: var(--ink-1); }
+</style>

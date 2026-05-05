@@ -296,12 +296,28 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
     <div class="total"><span>picks shown</span><span class="v">${totalPicks}</span></div>
   </div>`;
 
+  const buildSummary =
+    totalPicks > 0
+      ? `<div class="build-summary" id="build-summary">
+    <div class="bs-totals">
+      <span class="bs-label">build total</span>
+      <span class="bs-amount" id="bs-amount">${totalPrice > 0 ? `$${totalPrice}` : "no prices"}</span>
+      <span class="bs-meta">across ${totalPicks} ${totalPicks === 1 ? "pick" : "picks"}</span>
+    </div>
+    <a class="bs-cart" id="bs-cart" href="/go/${esc(vertical)}/cart?skus=${solution.picks.map((p) => esc(String(p.entity.sku ?? p.entity.id))).join(",")}" rel="sponsored nofollow">
+      <span class="bs-cart-glyph" aria-hidden="true">&#9635;</span>
+      <span>Add all to Amazon cart</span>
+      <span class="bs-cart-arr" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>`
+      : "";
+
   const metaStrip = `<div class="meta-strip">
     <div class="cell"><span class="k">ecosystem</span><span class="v">${esc(ecoLabel)}</span></div>
     <div class="cell"><span class="k">native picks</span><span class="v ${nativeCount === totalPicks ? "ok" : ""}">${nativeCount}/${totalPicks}</span></div>
     <div class="cell"><span class="k">hubs</span><span class="v ${solution.hubs_required.length === 0 ? "ok" : "warn"}">${solution.hubs_required.length || "none"}</span></div>
     <div class="cell"><span class="k">est. parts cost</span><span class="v">${totalPrice > 0 ? `$${totalPrice}` : "&mdash;"}</span></div>
-    <div class="cell"><span class="k">price freshness</span><span class="v">2026-04-30</span></div>
+    <div class="cell"><span class="k">price freshness</span><span class="v">2026-05-05</span></div>
   </div>`;
 
   const head = `<header class="results-head">
@@ -312,6 +328,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
   return `${head}
     ${metaStrip}
     ${hubCallout}
+    ${buildSummary}
     ${warnings}
     ${sectionsHTML}
     ${renderReasoning(solution.reasoning_chain)}`;

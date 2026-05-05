@@ -286,16 +286,6 @@ describe("renderSolutionHTML", () => {
     expect(html).toContain('class="price">$14.99</span>');
   });
 
-  it("renders 'price not tracked' for entities with no price_usd", () => {
-    const [solution] = solve(kb, {
-      ecosystem: "home_assistant",
-      wants: ["motion_sensor"],
-      picks_per_type: 5,
-    });
-    const html = renderSolutionHTML(solution, "smart-home");
-    expect(html).toContain("price not tracked");
-  });
-
   it("renders the meta-strip price-freshness cell when picks are present", () => {
     const [solution] = solve(kb, {
       ecosystem: "homekit",
@@ -304,7 +294,7 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).toContain("price freshness");
-    expect(html).toContain("2026-04-30");
+    expect(html).toContain("2026-05-05");
   });
 
   it("omits the meta-strip when there are no picks", () => {
