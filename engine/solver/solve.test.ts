@@ -411,3 +411,53 @@ test("smart_shade with Thread+Matter (Eve MotionBlinds) ranks above BLE-via-brid
     expect(eveIdx).toBeLessThan(switchbotIdx);
   }
 });
+
+test("homekit + camera returns picks with HomeKit Secure Video paths and excludes Tapo C320WS / Ring / Wyze", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "homekit",
+    wants: ["camera"],
+    picks_per_type: 6,
+  });
+  const cams = sol.picks.filter((p) => p.entity.type === "camera");
+  expect(cams.length).toBeGreaterThanOrEqual(2);
+  const ids = cams.map((p) => p.entity.id);
+  expect(ids).toContain("aqara_camera_g3");
+  expect(ids).toContain("eufy_indoor_cam_2k");
+  expect(ids).not.toContain("tapo_c320ws");
+  expect(ids).not.toContain("ring_stick_up_cam");
+  expect(ids).not.toContain("wyze_cam_v4");
+  expect(ids).not.toContain("reolink_e1_outdoor");
+});
+
+test("home_assistant + camera returns all 6 cams including the local-NVR Reolink", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "home_assistant",
+    wants: ["camera"],
+    picks_per_type: 10,
+  });
+  const cams = sol.picks.filter((p) => p.entity.type === "camera");
+  expect(cams.length).toBeGreaterThanOrEqual(6);
+  const ids = cams.map((p) => p.entity.id);
+  expect(ids).toContain("aqara_camera_g3");
+  expect(ids).toContain("eufy_indoor_cam_2k");
+  expect(ids).toContain("tapo_c320ws");
+  expect(ids).toContain("reolink_e1_outdoor");
+  expect(ids).toContain("ring_stick_up_cam");
+  expect(ids).toContain("wyze_cam_v4");
+});
+
+test("google_home + camera excludes Ring (Amazon pulled Google support) and includes Tapo / Wyze / Aqara / Eufy", () => {
+  const [sol] = solve(kb, {
+    ecosystem: "google_home",
+    wants: ["camera"],
+    picks_per_type: 10,
+  });
+  const cams = sol.picks.filter((p) => p.entity.type === "camera");
+  const ids = cams.map((p) => p.entity.id);
+  expect(ids).not.toContain("ring_stick_up_cam");
+  expect(ids).not.toContain("reolink_e1_outdoor");
+  expect(ids).toContain("tapo_c320ws");
+  expect(ids).toContain("wyze_cam_v4");
+  expect(ids).toContain("aqara_camera_g3");
+  expect(ids).toContain("eufy_indoor_cam_2k");
+});

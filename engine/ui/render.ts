@@ -261,6 +261,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
     { type: "leak_sensor", label: "Water leak sensors" },
     { type: "thermostat", label: "Thermostats" },
     { type: "smart_shade", label: "Smart shades & blinds" },
+    { type: "camera", label: "Security cameras" },
   ];
 
   const sectionsHTML = sectionDefs
@@ -378,6 +379,16 @@ const TYPE_KEYWORDS: [string, string][] = [
   ["window covering", "smart_shade"],
   ["curtain", "smart_shade"],
   ["blinds", "smart_shade"],
+  ["security camera", "camera"],
+  ["indoor camera", "camera"],
+  ["outdoor camera", "camera"],
+  ["smart camera", "camera"],
+  ["wifi camera", "camera"],
+  ["wi-fi camera", "camera"],
+  ["webcam", "camera"],
+  ["doorbell camera", "camera"],
+  ["surveillance camera", "camera"],
+  ["camera", "camera"],
   ["motion sensor", "motion_sensor"],
   ["smart bulb", "smart_bulb"],
   ["smart plug", "smart_plug"],

@@ -6,6 +6,7 @@
 const PROTOCOL_LABELS: Record<string, string> = {
   wifi_2_4ghz: "Wi-Fi",
   wifi: "Wi-Fi",
+  wifi_5ghz: "Wi-Fi (5 GHz)",
   thread_matter: "Thread + Matter",
   matter_over_wifi: "Matter over Wi-Fi",
   zigbee: "Zigbee",

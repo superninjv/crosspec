@@ -1132,6 +1132,149 @@
         "price_source": "IKEA retail",
         "price_ingest_date": "2026-05-05"
       }
+    },
+
+    {
+      "id": "aqara_camera_g3",
+      "type": "camera",
+      "name": "Aqara Camera Hub G3",
+      "sku": "aqara_camera_g3",
+      "attributes": {
+        "brand": "aqara",
+        "model": "CH-H03",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "indoor_pan_tilt",
+        "resolution": "2k",
+        "video_storage": "homekit_secure_video_or_microsd",
+        "power": "wired_usb_c",
+        "indoor_outdoor": "indoor",
+        "note": "Indoor pan/tilt camera that doubles as an Aqara Zigbee 3.0 hub and a Thread Border Router; HomeKit Secure Video native (HKSV requires an iCloud+ plan and Apple home hub). Google / Alexa via the Aqara cloud; HA via the aqara_gateway HACS integration. Ships with on-device AI gestures.",
+        "source_ids": [0, 3],
+        "price_usd": 109.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+    {
+      "id": "eufy_indoor_cam_2k",
+      "type": "camera",
+      "name": "Eufy Indoor Cam 2K Pan & Tilt",
+      "sku": "eufy_indoor_cam_2k",
+      "attributes": {
+        "brand": "eufy",
+        "model": "T8410",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"],
+        "form_factor": "indoor_pan_tilt",
+        "resolution": "2k",
+        "video_storage": "local_microsd_or_homekit_secure_video",
+        "power": "wired_usb_c",
+        "indoor_outdoor": "indoor",
+        "note": "Indoor pan/tilt with on-device storage (microSD), no mandatory cloud subscription. HomeKit Secure Video native; Google Home / Alexa via the Eufy / Anker cloud. HA via the eufy_security HACS integration (third-party, may break on firmware updates).",
+        "source_ids": [0, 3],
+        "price_usd": 49.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+    {
+      "id": "tapo_c320ws",
+      "type": "camera",
+      "name": "TP-Link Tapo C320WS Outdoor Camera",
+      "sku": "tapo_c320ws",
+      "attributes": {
+        "brand": "tapo",
+        "model": "C320WS",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["google_home", "alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "outdoor_bullet",
+        "resolution": "2k_quad_hd",
+        "video_storage": "local_microsd_or_tapo_care_cloud",
+        "power": "wired_ac",
+        "indoor_outdoor": "outdoor_ip66",
+        "note": "Outdoor IP66 bullet cam with built-in starlight color night vision. Alexa / Google native via the Tapo cloud; HA via the tplink_tapo_p100 / tapo HACS integrations or onboard RTSP. No HomeKit path; pick Aqara G3 or Eufy if HomeKit Secure Video matters.",
+        "source_ids": [0, 3],
+        "price_usd": 39.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+    {
+      "id": "reolink_e1_outdoor",
+      "type": "camera",
+      "name": "Reolink E1 Outdoor",
+      "sku": "reolink_e1_outdoor",
+      "attributes": {
+        "brand": "reolink",
+        "model": "E1 Outdoor",
+        "protocol": "wifi_5ghz",
+        "requires_hub": "none",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "outdoor_pan_tilt",
+        "resolution": "2k_quad_hd",
+        "video_storage": "local_microsd_or_nvr_onvif",
+        "power": "wired_ac",
+        "indoor_outdoor": "outdoor_ip65",
+        "note": "Outdoor pan/tilt with full ONVIF / RTSP support for local NVR pipelines (Frigate, Scrypted, Blue Iris). Native HA via the reolink integration; no first-party HomeKit / Google / Alexa path. The pick when local-only / no-cloud is the requirement; reroute through Scrypted to backfill HomeKit Secure Video if needed.",
+        "source_ids": [0, 3],
+        "price_usd": 79.99,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+    {
+      "id": "ring_stick_up_cam",
+      "type": "camera",
+      "name": "Ring Stick Up Cam Battery (3rd gen)",
+      "sku": "ring_stick_up_cam",
+      "attributes": {
+        "brand": "ring",
+        "model": "8SS1S9-WEN0",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home"],
+        "form_factor": "indoor_outdoor_battery",
+        "resolution": "1080p",
+        "video_storage": "ring_protect_cloud_required_for_history",
+        "power": "rechargeable_battery_or_wired",
+        "indoor_outdoor": "indoor_outdoor_ip65",
+        "note": "Battery cam usable indoor or outdoor. Amazon-owned, Alexa-native; Google Home support was removed by Amazon in 2023 and has not returned. No HomeKit. HA via the ring HACS integration (cloud-polled). Ring Protect subscription required for any video history; live view works without it.",
+        "source_ids": [0, 3],
+        "price_usd": 99.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-05"
+      }
+    },
+    {
+      "id": "wyze_cam_v4",
+      "type": "camera",
+      "name": "Wyze Cam v4",
+      "sku": "wyze_cam_v4",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WYZEC4",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "indoor_static",
+        "resolution": "2.5k",
+        "video_storage": "local_microsd_or_wyze_cloud",
+        "power": "wired_usb_c",
+        "indoor_outdoor": "indoor",
+        "note": "Cheap 2.5K indoor cam with starlight sensor, color night vision, and onboard event detection. Alexa / Google native via the Wyze cloud; HA via the wyze_v2 HACS integration (cloud-polled, occasionally rate-limited). No HomeKit firmware path.",
+        "source_ids": [0, 3],
+        "price_usd": 35.98,
+        "price_source": "vendor retail",
+        "price_ingest_date": "2026-05-05"
+      }
     }
   ],
   "constraints": [

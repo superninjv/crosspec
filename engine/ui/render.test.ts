@@ -156,6 +156,20 @@ describe("matchExample", () => {
     expect(m?.ecosystem).toBe("home_assistant");
     expect(m?.wants).toContain("smart_shade");
   });
+
+  it("parses Home Assistant local-NVR camera example", () => {
+    const m = matchExample(
+      "Home Assistant only, local-NVR security camera with no cloud subscription",
+    );
+    expect(m?.ecosystem).toBe("home_assistant");
+    expect(m?.wants).toContain("camera");
+  });
+
+  it("treats 'indoor camera' as a camera synonym", () => {
+    const m = matchExample("HomeKit household: indoor pan-and-tilt camera with HomeKit Secure Video");
+    expect(m?.ecosystem).toBe("homekit");
+    expect(m?.wants).toContain("camera");
+  });
 });
 
 describe("renderSolutionHTML", () => {
@@ -272,6 +286,17 @@ describe("renderSolutionHTML", () => {
     });
     const html = renderSolutionHTML(solution, "smart-home");
     expect(html).toContain("<h3>Smart shades &amp; blinds</h3>");
+    expect(html).toContain('href="/go/smart-home/');
+  });
+
+  it("renders a Security cameras section when camera picks are present", () => {
+    const [solution] = solve(kb, {
+      ecosystem: "home_assistant",
+      wants: ["camera"],
+      picks_per_type: 3,
+    });
+    const html = renderSolutionHTML(solution, "smart-home");
+    expect(html).toContain("<h3>Security cameras</h3>");
     expect(html).toContain('href="/go/smart-home/');
   });
 
