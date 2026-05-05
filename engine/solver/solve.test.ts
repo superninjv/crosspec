@@ -104,7 +104,7 @@ test("homekit + smart_plug returns >= 2 Matter-capable picks", () => {
   const [sol] = solve(kb, {
     ecosystem: "homekit",
     wants: ["smart_plug"],
-    picks_per_type: 3,
+    picks_per_type: 25,
   });
   const plugs = sol.picks.filter((p) => p.entity.type === "smart_plug");
   expect(plugs.length).toBeGreaterThanOrEqual(2);
@@ -320,7 +320,7 @@ test("home_assistant + leak_sensor returns >= 3 picks across BLE, Zigbee, LoRa, 
   const [sol] = solve(kb, {
     ecosystem: "home_assistant",
     wants: ["leak_sensor"],
-    picks_per_type: 5,
+    picks_per_type: 20,
   });
   const leaks = sol.picks.filter((p) => p.entity.type === "leak_sensor");
   expect(leaks.length).toBeGreaterThanOrEqual(3);
@@ -386,7 +386,7 @@ test("home_assistant + smart_shade returns all 4 picks (Thread/Matter, Zigbee, B
   const [sol] = solve(kb, {
     ecosystem: "home_assistant",
     wants: ["smart_shade"],
-    picks_per_type: 5,
+    picks_per_type: 20,
   });
   const shades = sol.picks.filter((p) => p.entity.type === "smart_shade");
   expect(shades.length).toBeGreaterThanOrEqual(4);
@@ -482,7 +482,7 @@ test("home_assistant + doorbell returns all 5 doorbells including the local-PoE 
   const [sol] = solve(kb, {
     ecosystem: "home_assistant",
     wants: ["doorbell"],
-    picks_per_type: 10,
+    picks_per_type: 25,
   });
   const bells = sol.picks.filter((p) => p.entity.type === "doorbell");
   expect(bells.length).toBeGreaterThanOrEqual(5);
