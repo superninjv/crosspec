@@ -13107,7 +13107,3753 @@
     {"id": "soma_connect", "type": "hub", "name": "SOMA Connect", "sku": "soma_connect", "attributes": {"brand": "soma", "model": "SC-001", "type_label": "hub", "requires_hub": "none", "source_ids": [0, 2, 3], "protocol": "bluetooth_le", "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"], "provides_hub": "soma_connect_bridge", "provides_hub_aliases": ["soma_connect_optional"], "note": "Required to bridge SOMA Smart Shades / Tilt 2 to Wi-Fi + ecosystems. Without it, SOMA devices are Bluetooth-only and don't reach beyond ~30 ft.", "price_usd": 99.0, "price_source": "vendor MSRP", "price_as_of": "2026-05-05"}},
     {"id": "tado_internet_bridge", "type": "hub", "name": "tado° Internet Bridge", "sku": "tado_internet_bridge", "attributes": {"brand": "tado", "model": "BR02", "type_label": "hub", "requires_hub": "none", "source_ids": [0, 2, 3], "protocol": "tado_proprietary_868mhz", "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"], "provides_hub": "tado_internet_bridge", "provides_hub_aliases": ["thread_border_router_plus_tado_bridge_x"], "note": "Required for any tado° thermostat (V3+ generation). The newer tado° X line uses Matter directly and bypasses this bridge.", "price_usd": 59.99, "price_source": "vendor MSRP", "price_as_of": "2026-05-05"}},
     {"id": "tapo_h200_hub", "type": "hub", "name": "TP-Link Tapo H200 Smart Hub", "sku": "tapo_h200_hub", "attributes": {"brand": "tapo", "model": "H200", "type_label": "hub", "requires_hub": "none", "source_ids": [0, 2, 3], "protocol": "wifi_zigbee_subghz", "ecosystems": ["alexa", "google_home", "home_assistant"], "provides_hub": "tapo_h200_hub", "provides_hub_aliases": ["tapo_h200_hub_optional"], "ecosystems_unsupported": ["homekit"], "note": "Required for Tapo's sub-GHz sensor line and chime functionality. Also a Wi-Fi range extender.", "price_usd": 49.99, "price_source": "vendor MSRP", "price_as_of": "2026-05-05"}},
-    {"id": "switchbot_hub_2", "type": "hub", "name": "SwitchBot Hub 2 (Matter)", "sku": "switchbot_hub_2", "attributes": {"brand": "switchbot", "model": "W3202100", "type_label": "hub", "requires_hub": "none", "source_ids": [0, 2, 3], "protocol": "wifi_bluetooth_matter", "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"], "provides_hub": "switchbot_hub_2_optional", "provides_hub_aliases": ["switchbot_hub_2_or_mini_with_matter", "matter_controller_optional"], "note": "Bridges SwitchBot's Bluetooth-only line to Wi-Fi + Matter. Adds basic temp/humidity sensor and IR blaster for AC remote control. Required to expose SwitchBot devices to HomeKit / Google / Alexa via Matter.", "price_usd": 69.99, "price_source": "vendor MSRP", "price_as_of": "2026-05-05"}}
+    {"id": "switchbot_hub_2", "type": "hub", "name": "SwitchBot Hub 2 (Matter)", "sku": "switchbot_hub_2", "attributes": {"brand": "switchbot", "model": "W3202100", "type_label": "hub", "requires_hub": "none", "source_ids": [0, 2, 3], "protocol": "wifi_bluetooth_matter", "ecosystems": ["homekit", "google_home", "alexa", "home_assistant"], "provides_hub": "switchbot_hub_2_optional", "provides_hub_aliases": ["switchbot_hub_2_or_mini_with_matter", "matter_controller_optional"], "note": "Bridges SwitchBot's Bluetooth-only line to Wi-Fi + Matter. Adds basic temp/humidity sensor and IR blaster for AC remote control. Required to expose SwitchBot devices to HomeKit / Google / Alexa via Matter.", "price_usd": 69.99, "price_source": "vendor MSRP", "price_as_of": "2026-05-05"}},
+        {
+      "id": "hue_festavia_20m",
+      "type": "smart_bulb",
+      "name": "Philips Hue Festavia 20m Outdoor String",
+      "sku": "hue_festavia_20m",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "929003480801",
+        "color": "rgbcw_per_bulb",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "outdoor_string_lights_20m_250_leds",
+        "indoor_outdoor": "outdoor_ip54",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "philips_hue_bridge",
+        "note": "Hue's premium outdoor string. Per-bulb gradient; works with HomeKit Adaptive Lighting via the Bridge.",
+        "source_ids": [0, 3],
+        "price_usd": 579.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hue_lily_v2",
+      "type": "smart_bulb",
+      "name": "Philips Hue Lily Outdoor Spot v2 (single)",
+      "sku": "hue_lily_v2",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "1746330V7",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "outdoor_spot_stake",
+        "indoor_outdoor": "outdoor_ip65",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "philips_hue_bridge",
+        "note": "Add-on Lily extension to existing Lily 3-pack. Requires the Hue Outdoor Power Supply.",
+        "source_ids": [0, 3],
+        "price_usd": 119.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hue_calla_outdoor",
+      "type": "smart_bulb",
+      "name": "Philips Hue Calla Outdoor Bollard",
+      "sku": "hue_calla_outdoor",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "1746430V7",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "outdoor_bollard_path_light",
+        "indoor_outdoor": "outdoor_ip65",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "philips_hue_bridge",
+        "source_ids": [0, 3],
+        "price_usd": 249.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hue_lightguide_edison",
+      "type": "smart_bulb",
+      "name": "Philips Hue Lightguide Edison ST64",
+      "sku": "hue_lightguide_edison",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "929003051301",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "edison_st64_decorative",
+        "indoor_outdoor": "indoor",
+        "protocol": "zigbee_3_0_plus_ble",
+        "requires_hub": "philips_hue_bridge_recommended",
+        "note": "Visible-filament Edison; clear glass. Bluetooth-only without Bridge but loses scenes/automation.",
+        "source_ids": [0, 3],
+        "price_usd": 69.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hue_lightguide_globe_g125",
+      "type": "smart_bulb",
+      "name": "Philips Hue Lightguide Globe G125",
+      "sku": "hue_lightguide_globe_g125",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "929003051401",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "globe_g125_decorative",
+        "indoor_outdoor": "indoor",
+        "protocol": "zigbee_3_0_plus_ble",
+        "requires_hub": "philips_hue_bridge_recommended",
+        "note": "Big visible-filament globe — bigger than the existing G93 lightguide_globe SKU.",
+        "source_ids": [0, 3],
+        "price_usd": 79.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "govee_h6076_outdoor_pro",
+      "type": "smart_bulb",
+      "name": "Govee Outdoor Pro Wall Lights H6076",
+      "sku": "govee_h6076_outdoor",
+      "attributes": {
+        "brand": "govee",
+        "model": "H6076",
+        "color": "rgbic_per_segment",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "outdoor_wall_uplight_pair",
+        "indoor_outdoor": "outdoor_ip65",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Pair of stake/wall uplights, RGBIC. HA via govee2mqtt.",
+        "source_ids": [0, 3],
+        "price_usd": 189.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "govee_h6064_panel",
+      "type": "smart_bulb",
+      "name": "Govee Glide Wall Light H6064",
+      "sku": "govee_h6064_panel",
+      "attributes": {
+        "brand": "govee",
+        "model": "H6064",
+        "color": "rgbic_per_segment",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wall_panel_modular_6_pack",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 169.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "twinkly_squares_starter",
+      "type": "smart_bulb",
+      "name": "Twinkly Squares Starter Kit (6 panels)",
+      "sku": "twinkly_squares_starter",
+      "attributes": {
+        "brand": "twinkly",
+        "model": "TWQ064STP",
+        "color": "rgb_per_pixel_64",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "modular_wall_panel_6pk",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Modular wall panels — animation-first vs Nanoleaf's static-scene focus. HA via twinkly integration.",
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "twinkly_smart_cluster",
+      "type": "smart_bulb",
+      "name": "Twinkly Smart Cluster (400 LED, RGB+W)",
+      "sku": "twinkly_smart_cluster",
+      "attributes": {
+        "brand": "twinkly",
+        "model": "TWKR400SPP",
+        "color": "rgbw_per_pixel",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "indoor_cluster_19_5ft",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Dense bundle of 400 LEDs in a 6m cluster — Christmas-tree default use.",
+        "source_ids": [0, 3],
+        "price_usd": 179.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "cololight_mix_pro",
+      "type": "smart_bulb",
+      "name": "Cololight Mix Pro (modular hex+square)",
+      "sku": "cololight_mix_pro",
+      "attributes": {
+        "brand": "cololight",
+        "model": "CL-167",
+        "color": "rgb_per_module",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "modular_wall_panel_mixed",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Mix of hex + square panels in one kit. HA via the cololight community integration.",
+        "source_ids": [0, 3],
+        "price_usd": 129.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "cololight_hexa_plus",
+      "type": "smart_bulb",
+      "name": "Cololight Hexa Plus (10 panel)",
+      "sku": "cololight_hexa_plus",
+      "attributes": {
+        "brand": "cololight",
+        "model": "CL-198",
+        "color": "rgb_per_module",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "modular_hex_wall_panel_10pk",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 159.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "cololight_plus_r2",
+      "type": "smart_bulb",
+      "name": "Cololight PLUS R2 (8 panel)",
+      "sku": "cololight_plus_r2",
+      "attributes": {
+        "brand": "cololight",
+        "model": "CL-201",
+        "color": "rgb_per_module",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "modular_hex_wall_panel_8pk",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 129.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aidot_orein_a21",
+      "type": "smart_bulb",
+      "name": "AiDot OREiN A21 Smart Bulb",
+      "sku": "aidot_orein_a21",
+      "attributes": {
+        "brand": "aidot",
+        "model": "OB1-A21",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "a21_e26",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Brighter A21 form. HA via aidot custom integration.",
+        "source_ids": [0, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aidot_orein_par16",
+      "type": "smart_bulb",
+      "name": "AiDot OREiN Smart PAR16 GU10",
+      "sku": "aidot_orein_par16",
+      "attributes": {
+        "brand": "aidot",
+        "model": "OB1-PAR16",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "par16_gu10",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 12.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aidot_orein_par38",
+      "type": "smart_bulb",
+      "name": "AiDot OREiN Smart PAR38 Outdoor",
+      "sku": "aidot_orein_par38",
+      "attributes": {
+        "brand": "aidot",
+        "model": "OB1-PAR38",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "par38_outdoor_e26",
+        "indoor_outdoor": "outdoor_ip65",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "yeelight_cube_spotlight",
+      "type": "smart_bulb",
+      "name": "Yeelight Cube Smart Lamp Spotlight Base",
+      "sku": "yeelight_cube_spotlight",
+      "attributes": {
+        "brand": "yeelight",
+        "model": "YLFWD-0011",
+        "color": "rgbic_per_segment",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "stackable_cube_spotlight",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Stackable cube — HomeKit native. Spotlight version of the Matrix line.",
+        "source_ids": [0, 3],
+        "price_usd": 59.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "yeelight_cube_matrix",
+      "type": "smart_bulb",
+      "name": "Yeelight Cube Smart Lamp Matrix",
+      "sku": "yeelight_cube_matrix",
+      "attributes": {
+        "brand": "yeelight",
+        "model": "YLFWD-0009",
+        "color": "rgbic_per_pixel",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "stackable_cube_matrix_5x5",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "5x5 RGB matrix on each cube; programmable pixel display.",
+        "source_ids": [0, 3],
+        "price_usd": 69.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "linkind_st64_filament",
+      "type": "smart_bulb",
+      "name": "Linkind ST64 Smart Filament Bulb",
+      "sku": "linkind_st64_filament",
+      "attributes": {
+        "brand": "linkind",
+        "model": "LK-ST64",
+        "color": "tunable_white_2200_6500k",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "edison_st64_filament",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Vintage filament look, smart-tunable. Cheap; Tuya-compatible.",
+        "source_ids": [0, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "linkind_br30_color",
+      "type": "smart_bulb",
+      "name": "Linkind BR30 Smart Color Bulb",
+      "sku": "linkind_br30_color",
+      "attributes": {
+        "brand": "linkind",
+        "model": "LK-BR30C",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "br30_e26",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "linkind_gu10_color",
+      "type": "smart_bulb",
+      "name": "Linkind GU10 Smart Color (4-pack)",
+      "sku": "linkind_gu10_color",
+      "attributes": {
+        "brand": "linkind",
+        "model": "LK-GU10C",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "gu10_4pk",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 32.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "ecosmart_rgb_br30",
+      "type": "smart_bulb",
+      "name": "EcoSmart RGB BR30 Smart Bulb",
+      "sku": "ecosmart_rgb_br30",
+      "attributes": {
+        "brand": "ecosmart",
+        "model": "11ABR30100W27RGB",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "br30_e26",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Home Depot house brand. Tuya-flavored; HA via local-tuya.",
+        "source_ids": [0, 3],
+        "price_usd": 12.99,
+        "price_source": "Home Depot retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "innr_outdoor_spot",
+      "type": "smart_bulb",
+      "name": "Innr Outdoor Smart Spot OSL 130 C",
+      "sku": "innr_outdoor_spot",
+      "attributes": {
+        "brand": "innr",
+        "model": "OSL130C",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "outdoor_spot_stake",
+        "indoor_outdoor": "outdoor_ip65",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "note": "Generic Zigbee — works with Hue Bridge for HomeKit pass-through. Cheaper than Hue Lily.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 59.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "yeelight_strip_pro_v3",
+      "type": "smart_bulb",
+      "name": "Yeelight LED Lightstrip 1S Plus",
+      "sku": "yeelight_strip_pro_v3",
+      "attributes": {
+        "brand": "yeelight",
+        "model": "YLDD05YL",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "lightstrip_2m_extendable",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 34.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "nanoleaf_blocks",
+      "type": "smart_bulb",
+      "name": "Nanoleaf Smart Lightblocks Starter",
+      "sku": "nanoleaf_blocks",
+      "attributes": {
+        "brand": "nanoleaf",
+        "model": "NL69-K-3002SW-7PK",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "modular_square_wall_panel_7pk",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble_plus_thread",
+        "requires_hub": "none",
+        "note": "Matter over Thread — HomeKit native via Matter.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hue_lily_3pk_2",
+      "type": "smart_bulb",
+      "name": "Philips Hue Lily Outdoor Spot 3-pack v2",
+      "sku": "hue_lily_3pk_2",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "1745930V7",
+        "color": "rgbcw",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "outdoor_spot_stake_3pk",
+        "indoor_outdoor": "outdoor_ip65",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "philips_hue_bridge",
+        "note": "Refreshed 3-pack with newer power supply. HomeKit via Hue Bridge.",
+        "source_ids": [0, 3],
+        "price_usd": 349.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_p230m_matter",
+      "type": "smart_plug",
+      "name": "Tapo P230 In-Wall Outlet (Matter)",
+      "sku": "tapo_p230m_matter",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "P230M",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "in_wall_duplex_receptacle",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_thread_plus_ble",
+        "requires_hub": "none",
+        "note": "Matter-native in-wall replacement outlet. Requires neutral. HomeKit via Matter.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 34.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_p115m",
+      "type": "smart_plug",
+      "name": "Tapo P115M Mini Smart Plug (Matter)",
+      "sku": "tapo_p115m_v2",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "P115M",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "mini_outlet_us",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Matter rev of the popular P115; energy monitoring.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_p125_eu",
+      "type": "smart_plug",
+      "name": "Tapo P125 Mini Plug (EU)",
+      "sku": "tapo_p125_eu",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "P125",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "mini_outlet_eu_schuko",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "EU Schuko form factor of the P125. Energy monitoring.",
+        "source_ids": [0, 3],
+        "price_usd": 12.99,
+        "price_source": "Amazon EU retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_p125_uk",
+      "type": "smart_plug",
+      "name": "Tapo P125 Mini Plug (UK)",
+      "sku": "tapo_p125_uk",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "P125-UK",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "mini_outlet_uk_g_type",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon UK retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "athom_plug_us_v2",
+      "type": "smart_plug",
+      "name": "Athom Smart Plug US v2 (Matter, preflashed)",
+      "sku": "athom_plug_us_v2",
+      "attributes": {
+        "brand": "athom",
+        "model": "PG02-US-V2",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "compact_outlet_us",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Preflashed Tasmota or Matter firmware option. HA via local Matter or MQTT.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "athom_plug_us_v3",
+      "type": "smart_plug",
+      "name": "Athom Smart Plug US v3 (Thread)",
+      "sku": "athom_plug_us_v3",
+      "attributes": {
+        "brand": "athom",
+        "model": "PG03-US",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "compact_outlet_us",
+        "indoor_outdoor": "indoor",
+        "protocol": "thread_plus_ble",
+        "requires_hub": "thread_border_router",
+        "note": "Thread-only; requires border router (Apple TV, HomePod mini, eero, Nanoleaf, Echo 4).",
+        "source_ids": [0, 1, 3],
+        "price_usd": 22.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "athom_plug_eu",
+      "type": "smart_plug",
+      "name": "Athom Smart Plug EU (Matter)",
+      "sku": "athom_plug_eu",
+      "attributes": {
+        "brand": "athom",
+        "model": "PG02-EU",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "compact_outlet_eu_schuko",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 1, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "athom_plug_uk",
+      "type": "smart_plug",
+      "name": "Athom Smart Plug UK (Matter)",
+      "sku": "athom_plug_uk",
+      "attributes": {
+        "brand": "athom",
+        "model": "PG02-UK",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "compact_outlet_uk_g_type",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 1, 3],
+        "price_usd": 22.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "sonoff_s40_v2_matter",
+      "type": "smart_plug",
+      "name": "Sonoff S40 v2 Smart Plug (Matter)",
+      "sku": "sonoff_s40_v2_matter",
+      "attributes": {
+        "brand": "sonoff",
+        "model": "S40-LITEv2",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "compact_outlet_us",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Refreshed S40 with Matter. Supersedes the S40 Lite Matter.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "refoss_p11_eu",
+      "type": "smart_plug",
+      "name": "Refoss P11 Smart Plug (EU)",
+      "sku": "refoss_p11_eu",
+      "attributes": {
+        "brand": "refoss",
+        "model": "P11-EU",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "compact_outlet_eu_schuko",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "EU Schuko, Matter-native.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon EU retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "refoss_p12_outdoor",
+      "type": "smart_plug",
+      "name": "Refoss P12 Outdoor Smart Plug (Matter)",
+      "sku": "refoss_p12_outdoor",
+      "attributes": {
+        "brand": "refoss",
+        "model": "P12",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "outdoor_dual_outlet",
+        "indoor_outdoor": "outdoor_ip44",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 1, 3],
+        "price_usd": 27.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "wyze_plug_outdoor_v2",
+      "type": "smart_plug",
+      "name": "Wyze Plug Outdoor v2",
+      "sku": "wyze_plug_outdoor_v2",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WLPPO-V2",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "outdoor_dual_outlet",
+        "indoor_outdoor": "outdoor_ip64",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "v2 hardware refresh — slightly faster relays. HA via wyze_v2 custom integration.",
+        "source_ids": [0, 3],
+        "price_usd": 22.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "nooie_smart_plug",
+      "type": "smart_plug",
+      "name": "Nooie Smart Plug Mini (4-pack)",
+      "sku": "nooie_smart_plug",
+      "attributes": {
+        "brand": "nooie",
+        "model": "NS-CN02-4P",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "mini_outlet_us_4pk",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Cheap Tuya-flavored 4-pack. HA via local-tuya.",
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "treatlife_outdoor_plug",
+      "type": "smart_plug",
+      "name": "Treatlife Outdoor Smart Plug DP02",
+      "sku": "treatlife_outdoor_plug",
+      "attributes": {
+        "brand": "treatlife",
+        "model": "DP02",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "outdoor_dual_outlet",
+        "indoor_outdoor": "outdoor_ip44",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Tuya-based outdoor dual outlet. Cheap. HA via local-tuya.",
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eve_energy_3rd_outdoor",
+      "type": "smart_plug",
+      "name": "Eve Energy Outdoor Smart Plug (3rd Gen)",
+      "sku": "eve_energy_3rd_outdoor",
+      "attributes": {
+        "brand": "eve",
+        "model": "20EBO9901",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "outdoor_outlet",
+        "indoor_outdoor": "outdoor_ip44",
+        "protocol": "thread_plus_ble",
+        "requires_hub": "thread_border_router",
+        "note": "Thread + Matter; energy monitoring. Requires Thread border router.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 59.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "innr_sp240_outdoor",
+      "type": "smart_plug",
+      "name": "Innr SP 240 Outdoor Plug (Zigbee)",
+      "sku": "innr_sp240_outdoor",
+      "attributes": {
+        "brand": "innr",
+        "model": "SP240",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "outdoor_dual_outlet",
+        "indoor_outdoor": "outdoor_ip44",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "note": "Zigbee outdoor dual; works with Hue Bridge for HomeKit pass-through.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 34.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "meross_mss110_4pk",
+      "type": "smart_plug",
+      "name": "Meross MSS110 Smart Plug (4-pack)",
+      "sku": "meross_mss110_4pk",
+      "attributes": {
+        "brand": "meross",
+        "model": "MSS110-4",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "mini_outlet_us_4pk",
+        "indoor_outdoor": "indoor",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Cheaper non-HomeKit Meross. HA via meross-cloud or local-meross.",
+        "source_ids": [0, 3],
+        "price_usd": 27.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "kasa_kp405",
+      "type": "smart_plug",
+      "name": "Kasa Outdoor Dimmer Plug KP405",
+      "sku": "kasa_kp405",
+      "attributes": {
+        "brand": "tp_link_kasa",
+        "model": "KP405",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "outdoor_dimmer_plug",
+        "indoor_outdoor": "outdoor_ip64",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Outdoor + dimmer combo (rare). For string lights.",
+        "source_ids": [0, 3],
+        "price_usd": 29.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "reolink_argus_4",
+      "type": "camera",
+      "name": "Reolink Argus 4 (4K Battery, 180°)",
+      "sku": "reolink_argus_4",
+      "attributes": {
+        "brand": "reolink",
+        "model": "ARGUS-4",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "battery_bullet_180deg",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "battery_or_solar",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "4k_8mp",
+        "note": "Wide 180° dual-lens stitched. Local microSD; RTSP for HA.",
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "reolink_argus_3_pro",
+      "type": "camera",
+      "name": "Reolink Argus 3 Pro (battery 2K)",
+      "sku": "reolink_argus_3_pro",
+      "attributes": {
+        "brand": "reolink",
+        "model": "ARGUS-3-PRO",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "battery_bullet",
+        "indoor_outdoor": "outdoor_ip64",
+        "power": "battery_or_solar",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "2k_4mp",
+        "source_ids": [0, 3],
+        "price_usd": 119.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "reolink_duo_3_poe",
+      "type": "camera",
+      "name": "Reolink Duo 3 PoE (16MP dual-lens)",
+      "sku": "reolink_duo_3_poe",
+      "attributes": {
+        "brand": "reolink",
+        "model": "DUO-3-POE",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "dual_lens_bullet",
+        "indoor_outdoor": "outdoor_ip66",
+        "power": "poe_802_3af",
+        "protocol": "ethernet_poe",
+        "requires_hub": "poe_switch_or_nvr",
+        "resolution": "16mp_dual_lens",
+        "source_ids": [0, 3],
+        "price_usd": 249.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "reolink_duo_3_wifi",
+      "type": "camera",
+      "name": "Reolink Duo 3 WiFi (16MP dual-lens)",
+      "sku": "reolink_duo_3_wifi",
+      "attributes": {
+        "brand": "reolink",
+        "model": "DUO-3-WIFI",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "dual_lens_bullet",
+        "indoor_outdoor": "outdoor_ip66",
+        "power": "wired_dc12v",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "16mp_dual_lens",
+        "source_ids": [0, 3],
+        "price_usd": 279.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "reolink_rlc_820a",
+      "type": "camera",
+      "name": "Reolink RLC-820A 4K PoE Bullet",
+      "sku": "reolink_rlc_820a",
+      "attributes": {
+        "brand": "reolink",
+        "model": "RLC-820A",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "bullet",
+        "indoor_outdoor": "outdoor_ip66",
+        "power": "poe_802_3af",
+        "protocol": "ethernet_poe",
+        "requires_hub": "poe_switch_or_nvr",
+        "resolution": "4k_8mp",
+        "source_ids": [0, 3],
+        "price_usd": 89.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "reolink_b400_dome",
+      "type": "camera",
+      "name": "Reolink B400 4MP PoE Dome",
+      "sku": "reolink_b400_dome",
+      "attributes": {
+        "brand": "reolink",
+        "model": "B400",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "dome",
+        "indoor_outdoor": "outdoor_ip66",
+        "power": "poe_802_3af",
+        "protocol": "ethernet_poe",
+        "requires_hub": "poe_switch_or_nvr",
+        "resolution": "4mp",
+        "source_ids": [0, 3],
+        "price_usd": 69.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eufy_solocam_s330",
+      "type": "camera",
+      "name": "Eufy SoloCam S330 (4K Solar)",
+      "sku": "eufy_solocam_s330",
+      "attributes": {
+        "brand": "eufy",
+        "model": "T8134",
+        "ecosystems": ["alexa", "google_home", "homekit_hsv_via_homebase", "home_assistant"],
+        "form_factor": "solar_bullet_pan_tilt",
+        "indoor_outdoor": "outdoor_ip67",
+        "power": "battery_with_integrated_solar",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "4k_8mp",
+        "note": "Built-in solar panel; no homebase required for storage.",
+        "source_ids": [0, 3],
+        "price_usd": 219.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eufy_solocam_s40_v2",
+      "type": "camera",
+      "name": "Eufy SoloCam S40 (Solar 2K)",
+      "sku": "eufy_solocam_s40_v2",
+      "attributes": {
+        "brand": "eufy",
+        "model": "T8124-V2",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "solar_bullet",
+        "indoor_outdoor": "outdoor_ip67",
+        "power": "battery_with_integrated_solar",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "2k_4mp",
+        "source_ids": [0, 3],
+        "price_usd": 159.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eufy_4g_lte_starlight",
+      "type": "camera",
+      "name": "Eufy 4G LTE Starlight Cam S330",
+      "sku": "eufy_4g_lte_s330",
+      "attributes": {
+        "brand": "eufy",
+        "model": "T8151",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "lte_battery_bullet",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "battery_or_solar",
+        "protocol": "lte_4g_plus_wifi",
+        "requires_hub": "none",
+        "resolution": "2k_4mp",
+        "sim_required": "anker_or_third_party",
+        "note": "LTE-direct camera for off-grid sites. Requires data plan.",
+        "source_ids": [0, 3],
+        "price_usd": 249.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "lorex_w871aad",
+      "type": "camera",
+      "name": "Lorex W871AAD 4K Wired Bullet",
+      "sku": "lorex_w871aad",
+      "attributes": {
+        "brand": "lorex",
+        "model": "W871AAD",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "wired_bullet",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "wired_dc12v",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "4k_8mp",
+        "source_ids": [0, 3],
+        "price_usd": 169.99,
+        "price_source": "Best Buy retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "lorex_v261lcd",
+      "type": "camera",
+      "name": "Lorex V261LCD-E 2K Indoor Pan-Tilt",
+      "sku": "lorex_v261lcd",
+      "attributes": {
+        "brand": "lorex",
+        "model": "V261LCD-E",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "pan_tilt_indoor",
+        "indoor_outdoor": "indoor",
+        "power": "wired_usb_c",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "resolution": "2k_4mp",
+        "source_ids": [0, 3],
+        "price_usd": 69.99,
+        "price_source": "Best Buy retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "annke_ncd800",
+      "type": "camera",
+      "name": "Annke NCD800 4K NightChroma PoE",
+      "sku": "annke_ncd800",
+      "attributes": {
+        "brand": "annke",
+        "model": "NCD800",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "bullet_color_night",
+        "indoor_outdoor": "outdoor_ip67",
+        "power": "poe_802_3af",
+        "protocol": "ethernet_poe",
+        "requires_hub": "poe_switch_or_nvr",
+        "resolution": "4k_8mp",
+        "note": "f/1.0 lens for color night vision. RTSP for HA.",
+        "source_ids": [0, 3],
+        "price_usd": 179.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "amcrest_ip5m_1190ew",
+      "type": "camera",
+      "name": "Amcrest IP5M-1190EW 5MP PoE Dome",
+      "sku": "amcrest_ip5m_1190ew",
+      "attributes": {
+        "brand": "amcrest",
+        "model": "IP5M-1190EW",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "turret_dome",
+        "indoor_outdoor": "outdoor_ip67",
+        "power": "poe_802_3af",
+        "protocol": "ethernet_poe",
+        "requires_hub": "poe_switch_or_nvr",
+        "resolution": "5mp",
+        "source_ids": [0, 3],
+        "price_usd": 119.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "wyze_cam_pan_v3_pro",
+      "type": "camera",
+      "name": "Wyze Cam Pan v3 Pro (2.5K)",
+      "sku": "wyze_cam_pan_v3_pro",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WYZECPV3PRO",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "pan_tilt",
+        "indoor_outdoor": "indoor_outdoor_ip65",
+        "power": "wired_usb_c",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "resolution": "2_5k_5mp",
+        "source_ids": [0, 3],
+        "price_usd": 74.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_c520ws_v2",
+      "type": "camera",
+      "name": "Tapo C520WS Outdoor Pan/Tilt 2K",
+      "sku": "tapo_c520ws_v2",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "C520WS-V2",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "outdoor_pan_tilt",
+        "indoor_outdoor": "outdoor_ip66",
+        "power": "wired_dc12v",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "2k_4mp",
+        "source_ids": [0, 3],
+        "price_usd": 74.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_c720_4k",
+      "type": "camera",
+      "name": "Tapo C720 4K AI Cam",
+      "sku": "tapo_c720_4k",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "C720",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "outdoor_bullet",
+        "indoor_outdoor": "outdoor_ip66",
+        "power": "wired_dc12v",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "4k_8mp",
+        "source_ids": [0, 3],
+        "price_usd": 119.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_kc410s",
+      "type": "camera",
+      "name": "Tapo KC410S Battery Spotlight Cam",
+      "sku": "tapo_kc410s",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "KC410S",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "battery_spotlight",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "battery",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "tapo_h200_hub_optional",
+        "resolution": "2k_4mp",
+        "note": "Optional H200 hub for local storage; otherwise standalone.",
+        "source_ids": [0, 3],
+        "price_usd": 89.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "imou_bullet_2_pro",
+      "type": "camera",
+      "name": "Imou Bullet 2 Pro 5MP",
+      "sku": "imou_bullet_2_pro",
+      "attributes": {
+        "brand": "imou",
+        "model": "IPC-S2DP",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wired_bullet",
+        "indoor_outdoor": "outdoor_ip67",
+        "power": "wired_dc12v",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "5mp",
+        "source_ids": [0, 3],
+        "price_usd": 54.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "nooie_cam_360",
+      "type": "camera",
+      "name": "Nooie 360 Indoor Cam (1080p)",
+      "sku": "nooie_cam_360",
+      "attributes": {
+        "brand": "nooie",
+        "model": "IPC100",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "pan_tilt",
+        "indoor_outdoor": "indoor",
+        "power": "wired_usb_c",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "resolution": "1080p",
+        "source_ids": [0, 3],
+        "price_usd": 34.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "foscam_r4s",
+      "type": "camera",
+      "name": "Foscam R4S 4MP Indoor Pan-Tilt",
+      "sku": "foscam_r4s",
+      "attributes": {
+        "brand": "foscam",
+        "model": "R4S",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "pan_tilt",
+        "indoor_outdoor": "indoor",
+        "power": "wired_dc5v",
+        "protocol": "wifi_2_4_5ghz_plus_ethernet",
+        "requires_hub": "none",
+        "resolution": "4mp",
+        "source_ids": [0, 3],
+        "price_usd": 69.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "foscam_x5",
+      "type": "camera",
+      "name": "Foscam X5 5MP Outdoor Pan-Tilt",
+      "sku": "foscam_x5",
+      "attributes": {
+        "brand": "foscam",
+        "model": "X5",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "outdoor_pan_tilt",
+        "indoor_outdoor": "outdoor_ip66",
+        "power": "wired_dc12v",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "5mp",
+        "source_ids": [0, 3],
+        "price_usd": 99.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_camera_e1",
+      "type": "camera",
+      "name": "Aqara Camera E1 Indoor Pan-Tilt",
+      "sku": "aqara_camera_e1",
+      "attributes": {
+        "brand": "aqara",
+        "model": "CH-C01",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "pan_tilt",
+        "indoor_outdoor": "indoor",
+        "power": "wired_usb_c",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "resolution": "2k_4mp",
+        "note": "HomeKit Secure Video native. Doubles as Matter controller.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 59.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eufy_doorbell_e330_kit",
+      "type": "doorbell",
+      "name": "Eufy Video Doorbell E330 + Chime Kit",
+      "sku": "eufy_doorbell_e330_kit",
+      "attributes": {
+        "brand": "eufy",
+        "model": "E8214-K",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "dual_camera_doorbell",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "wired_doorbell_or_battery",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "eufy_chime",
+        "resolution": "2k_dual_cam",
+        "note": "Includes wireless chime. Dual cam (front + package view).",
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "reolink_doorbell_4k",
+      "type": "doorbell",
+      "name": "Reolink Doorbell PoE 4K",
+      "sku": "reolink_doorbell_4k",
+      "attributes": {
+        "brand": "reolink",
+        "model": "DOORBELL-PoE-4K",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "wired_doorbell",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "poe_802_3af",
+        "protocol": "ethernet_poe",
+        "requires_hub": "poe_switch",
+        "resolution": "4k_8mp",
+        "note": "PoE-direct, 4K, no cloud. RTSP for HA.",
+        "source_ids": [0, 3],
+        "price_usd": 149.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_d230s2",
+      "type": "doorbell",
+      "name": "Tapo D230S2 2-Pack Battery Doorbell",
+      "sku": "tapo_d230s2",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "D230S2",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "battery_doorbell",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "battery_18650",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "tapo_h200_hub",
+        "resolution": "2k_4mp",
+        "note": "Two-pack of D230 + H200 hub for local storage.",
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_d210",
+      "type": "doorbell",
+      "name": "Tapo D210 Battery Doorbell",
+      "sku": "tapo_d210",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "D210",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "battery_doorbell",
+        "indoor_outdoor": "outdoor_ip64",
+        "power": "battery_18650",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "tapo_h200_hub_optional",
+        "resolution": "1080p",
+        "note": "Cheaper than D230. 1080p.",
+        "source_ids": [0, 3],
+        "price_usd": 69.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "tapo_d200",
+      "type": "doorbell",
+      "name": "Tapo D200 Battery Doorbell (1080p)",
+      "sku": "tapo_d200_v2",
+      "attributes": {
+        "brand": "tp_link_tapo",
+        "model": "D200",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "battery_doorbell",
+        "indoor_outdoor": "outdoor_ip64",
+        "power": "battery_18650",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "tapo_h200_hub_optional",
+        "resolution": "1080p",
+        "source_ids": [0, 3],
+        "price_usd": 59.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "skybell_slim_line",
+      "type": "doorbell",
+      "name": "SkyBell Slim Line Wired Doorbell",
+      "sku": "skybell_slim_line",
+      "attributes": {
+        "brand": "skybell",
+        "model": "SLIM-LINE-2",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wired_slim_doorbell",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "wired_doorbell",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "resolution": "1080p",
+        "note": "Slim form factor — fits narrow doorframes.",
+        "source_ids": [0, 3],
+        "price_usd": 159.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "wyze_doorbell_pro_v2",
+      "type": "doorbell",
+      "name": "Wyze Doorbell Pro v2 (2K)",
+      "sku": "wyze_doorbell_pro_v2",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WYZEDB4-V2",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wired_doorbell",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "wired_doorbell",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "resolution": "2k_4mp",
+        "source_ids": [0, 3],
+        "price_usd": 89.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "maximus_dualcam",
+      "type": "doorbell",
+      "name": "Maximus Answer DualCam Floodlight Doorbell",
+      "sku": "maximus_dualcam_doorbell",
+      "attributes": {
+        "brand": "maximus",
+        "model": "AKDB702",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "dual_cam_floodlight_doorbell",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "wired_doorbell",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "resolution": "1080p_dual_cam",
+        "note": "Top + bottom (package) cam. Built-in floodlight.",
+        "source_ids": [0, 3],
+        "price_usd": 249.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "toucan_floodlight_doorbell",
+      "type": "doorbell",
+      "name": "Toucan Outdoor Smart Floodlight Doorbell",
+      "sku": "toucan_floodlight_doorbell",
+      "attributes": {
+        "brand": "toucan",
+        "model": "TFLD-100",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "doorbell_with_floodlight",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "wired_doorbell",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "resolution": "1080p",
+        "source_ids": [0, 3],
+        "price_usd": 169.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hikvision_kb6403_v3",
+      "type": "doorbell",
+      "name": "Hikvision DS-KB6403-WIP",
+      "sku": "hikvision_kb6403_wip",
+      "attributes": {
+        "brand": "hikvision",
+        "model": "DS-KB6403-WIP",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "wired_doorbell",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "poe_or_wired",
+        "protocol": "wifi_2_4ghz_plus_ethernet",
+        "requires_hub": "none",
+        "resolution": "2mp",
+        "note": "Wi-Fi + PoE optional. RTSP/SIP-capable.",
+        "source_ids": [0, 3],
+        "price_usd": 149.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "anker_eufy_e340_wired",
+      "type": "doorbell",
+      "name": "Anker Eufy E340 Wired Dual-Cam Doorbell",
+      "sku": "anker_eufy_e340_wired",
+      "attributes": {
+        "brand": "eufy",
+        "model": "T8214-WIRED",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "dual_camera_wired_doorbell",
+        "indoor_outdoor": "outdoor_ip65",
+        "power": "wired_doorbell",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "none",
+        "resolution": "2k_dual_cam",
+        "source_ids": [0, 3],
+        "price_usd": 179.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hue_doorbell_secure",
+      "type": "doorbell",
+      "name": "Philips Hue Secure Wired Doorbell",
+      "sku": "hue_doorbell_secure",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "929003600301",
+        "ecosystems": ["alexa", "google_home", "homekit_hsv", "home_assistant"],
+        "form_factor": "wired_doorbell",
+        "indoor_outdoor": "outdoor_ip54",
+        "power": "wired_doorbell",
+        "protocol": "wifi_2_4_5ghz",
+        "requires_hub": "philips_hue_bridge_recommended",
+        "resolution": "2k_4mp",
+        "note": "First Hue-branded doorbell — Hue Secure ecosystem.",
+        "source_ids": [0, 3],
+        "price_usd": 249.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "inovelli_blue_2_1_black",
+      "type": "smart_switch",
+      "name": "Inovelli Blue Series 2-1 Black",
+      "sku": "inovelli_blue_2_1_black",
+      "attributes": {
+        "brand": "inovelli",
+        "model": "VZM31-SN-BLACK",
+        "color": "black_paddle",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "in_wall_dimmer_paddle",
+        "neutral_required": true,
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "note": "Black-on-black Inovelli Blue. Zigbee + LED notification bar.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 54.99,
+        "price_source": "Inovelli direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "inovelli_blue_2_1_white_v2",
+      "type": "smart_switch",
+      "name": "Inovelli Blue Series 2-1 White",
+      "sku": "inovelli_blue_2_1_white_v2",
+      "attributes": {
+        "brand": "inovelli",
+        "model": "VZM31-SN-WHITE",
+        "color": "white_paddle",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "in_wall_dimmer_paddle",
+        "neutral_required": true,
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "source_ids": [0, 2, 3],
+        "price_usd": 54.99,
+        "price_source": "Inovelli direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "inovelli_red_vzw31_sn",
+      "type": "smart_switch",
+      "name": "Inovelli Red Series VZW31-SN Z-Wave",
+      "sku": "inovelli_red_vzw31_sn",
+      "attributes": {
+        "brand": "inovelli",
+        "model": "VZW31-SN",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "in_wall_dimmer_paddle",
+        "neutral_required": true,
+        "protocol": "z_wave_700",
+        "requires_hub": "z_wave_controller",
+        "note": "Z-Wave 700-series Red 2-1. LED notification bar; pairs with HA via Z-Wave JS.",
+        "source_ids": [0, 3],
+        "price_usd": 69.99,
+        "price_source": "Inovelli direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "inovelli_fan_light",
+      "type": "smart_switch",
+      "name": "Inovelli Fan + Light Combo VZM35-SN",
+      "sku": "inovelli_fan_light_combo",
+      "attributes": {
+        "brand": "inovelli",
+        "model": "VZM35-SN",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "in_wall_dual_paddle_fan_light",
+        "neutral_required": true,
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "note": "Replaces both fan and light wall switches with one device.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 74.99,
+        "price_source": "Inovelli direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "lutron_caseta_pd_3out",
+      "type": "smart_switch",
+      "name": "Lutron Caseta Outdoor Plug-in PD-3OUT-WH",
+      "sku": "lutron_caseta_pd_3out",
+      "attributes": {
+        "brand": "lutron",
+        "model": "PD-3OUT-WH",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "outdoor_plug_in_module",
+        "indoor_outdoor": "outdoor_ip65",
+        "protocol": "lutron_clearconnect",
+        "requires_hub": "lutron_caseta_smart_hub",
+        "note": "Outdoor 5A plug-in for Lutron Caseta hub.",
+        "source_ids": [0, 3],
+        "price_usd": 79.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "leviton_dds15",
+      "type": "smart_switch",
+      "name": "Leviton DDS15 Decora Smart Switch (No Neutral)",
+      "sku": "leviton_dds15",
+      "attributes": {
+        "brand": "leviton",
+        "model": "DDS15-1RZ",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "in_wall_paddle_switch",
+        "neutral_required": false,
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Wi-Fi switch with no neutral required (rare). HA via leviton_decora_smart_wifi.",
+        "source_ids": [0, 3],
+        "price_usd": 54.99,
+        "price_source": "Home Depot retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "leviton_d26hd",
+      "type": "smart_switch",
+      "name": "Leviton Decora D26HD Dimmer (Wi-Fi)",
+      "sku": "leviton_d26hd",
+      "attributes": {
+        "brand": "leviton",
+        "model": "D26HD",
+        "ecosystems": ["alexa", "google_home", "home_assistant", "matter"],
+        "form_factor": "in_wall_dimmer_paddle",
+        "neutral_required": true,
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Matter-over-Wi-Fi update for the My Leviton dimmer line.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 49.99,
+        "price_source": "Home Depot retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "leviton_d215o",
+      "type": "smart_switch",
+      "name": "Leviton D215O Outdoor Decora Switch",
+      "sku": "leviton_d215o",
+      "attributes": {
+        "brand": "leviton",
+        "model": "D215O",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "outdoor_in_wall_switch",
+        "indoor_outdoor": "outdoor_ip54",
+        "neutral_required": true,
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Outdoor-rated in-wall replacement (rare).",
+        "source_ids": [0, 3],
+        "price_usd": 69.99,
+        "price_source": "Home Depot retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "ge_enbrighten_46562",
+      "type": "smart_switch",
+      "name": "GE Enbrighten 46562 Z-Wave Plus In-Wall Smart Outlet",
+      "sku": "ge_enbrighten_46562",
+      "attributes": {
+        "brand": "ge_enbrighten",
+        "model": "46562",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "in_wall_duplex_receptacle",
+        "neutral_required": true,
+        "protocol": "z_wave_700",
+        "requires_hub": "z_wave_controller",
+        "source_ids": [0, 3],
+        "price_usd": 49.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "zooz_zen77",
+      "type": "smart_switch",
+      "name": "Zooz ZEN77 Z-Wave 800 Dimmer",
+      "sku": "zooz_zen77",
+      "attributes": {
+        "brand": "zooz",
+        "model": "ZEN77-800",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "in_wall_dimmer_paddle",
+        "neutral_required": true,
+        "protocol": "z_wave_800",
+        "requires_hub": "z_wave_controller",
+        "note": "Z-Wave 800 — better range/battery than 700. HA via Z-Wave JS.",
+        "source_ids": [0, 3],
+        "price_usd": 49.99,
+        "price_source": "TheSmartestHouse direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "zooz_zen32_scene",
+      "type": "smart_switch",
+      "name": "Zooz ZEN32 Scene Controller (Z-Wave)",
+      "sku": "zooz_zen32_scene",
+      "attributes": {
+        "brand": "zooz",
+        "model": "ZEN32-700",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "in_wall_5_button_scene_controller",
+        "neutral_required": true,
+        "protocol": "z_wave_700",
+        "requires_hub": "z_wave_controller",
+        "note": "5 buttons; one drives the load, four are scene-only.",
+        "source_ids": [0, 3],
+        "price_usd": 54.99,
+        "price_source": "TheSmartestHouse direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "zooz_zen17_relay",
+      "type": "smart_switch",
+      "name": "Zooz ZEN17 Universal Relay (Z-Wave)",
+      "sku": "zooz_zen17_relay",
+      "attributes": {
+        "brand": "zooz",
+        "model": "ZEN17-700",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "in_box_dual_relay",
+        "neutral_required": true,
+        "protocol": "z_wave_700",
+        "requires_hub": "z_wave_controller",
+        "note": "Hidden in-box dual relay — for retrofitting low-voltage / dumb switches.",
+        "source_ids": [0, 3],
+        "price_usd": 39.99,
+        "price_source": "TheSmartestHouse direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "kasa_hs200p3",
+      "type": "smart_switch",
+      "name": "Kasa HS200P3 Smart Switch (3-pack)",
+      "sku": "kasa_hs200p3",
+      "attributes": {
+        "brand": "tp_link_kasa",
+        "model": "HS200P3",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "in_wall_paddle_switch_3pk",
+        "neutral_required": true,
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 38.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "sonoff_t5_1gang",
+      "type": "smart_switch",
+      "name": "Sonoff T5 Touch Wall Switch 1-Gang",
+      "sku": "sonoff_t5_1gang",
+      "attributes": {
+        "brand": "sonoff",
+        "model": "T5-1C-86",
+        "ecosystems": ["alexa", "google_home", "home_assistant", "matter"],
+        "form_factor": "in_wall_touch_panel_1gang",
+        "neutral_required": true,
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 1, 3],
+        "price_usd": 22.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "sonoff_t5_2gang",
+      "type": "smart_switch",
+      "name": "Sonoff T5 Touch Wall Switch 2-Gang",
+      "sku": "sonoff_t5_2gang",
+      "attributes": {
+        "brand": "sonoff",
+        "model": "T5-2C-86",
+        "ecosystems": ["alexa", "google_home", "home_assistant", "matter"],
+        "form_factor": "in_wall_touch_panel_2gang",
+        "neutral_required": true,
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 1, 3],
+        "price_usd": 27.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "sonoff_ifan04_h",
+      "type": "smart_switch",
+      "name": "Sonoff iFan04-H Ceiling Fan Switch",
+      "sku": "sonoff_ifan04_h",
+      "attributes": {
+        "brand": "sonoff",
+        "model": "iFan04-H",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "in_canopy_fan_controller",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Sits inside ceiling fan canopy. RF433 remote included.",
+        "source_ids": [0, 3],
+        "price_usd": 34.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_h1_with_neutral_3g",
+      "type": "smart_switch",
+      "name": "Aqara Smart Wall Switch H1 (With Neutral, 3-Gang)",
+      "sku": "aqara_h1_with_neutral_3g",
+      "attributes": {
+        "brand": "aqara",
+        "model": "WS-EUK04",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "in_wall_3gang_switch",
+        "neutral_required": true,
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "Aqara Hub bridges to HomeKit via Matter. EU style.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 59.99,
+        "price_source": "Amazon EU retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_h2_3gang_no_neutral",
+      "type": "smart_switch",
+      "name": "Aqara Smart Wall Switch H2 (No Neutral, 3-Gang)",
+      "sku": "aqara_h2_3gang_no_neutral",
+      "attributes": {
+        "brand": "aqara",
+        "model": "WS-USC04-NN",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "in_wall_3gang_switch",
+        "neutral_required": false,
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "Rare US no-neutral 3-gang.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 69.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "schlage_sense_pro",
+      "type": "smart_lock",
+      "name": "Schlage Sense Pro Smart Deadbolt",
+      "sku": "schlage_sense_pro",
+      "attributes": {
+        "brand": "schlage",
+        "model": "BE599",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "deadbolt_keypad_uwb",
+        "power": "battery_aa_4x",
+        "protocol": "wifi_plus_ble_plus_uwb",
+        "requires_hub": "none",
+        "note": "First Schlage with UWB. Apple HomeKey + Matter.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 349.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "yale_assure_2_plus_wifi",
+      "type": "smart_lock",
+      "name": "Yale Assure Lock 2 Plus + Wi-Fi",
+      "sku": "yale_assure_2_plus_wifi",
+      "attributes": {
+        "brand": "yale",
+        "model": "YRD420-WV1-619",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "deadbolt_keypad",
+        "power": "battery_aa_4x",
+        "protocol": "wifi_plus_ble",
+        "requires_hub": "none",
+        "note": "Apple HomeKey native + Matter over Wi-Fi.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 299.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_a100_pro_zigbee",
+      "type": "smart_lock",
+      "name": "Aqara Smart Lock A100 Pro (Zigbee)",
+      "sku": "aqara_a100_pro_zigbee",
+      "attributes": {
+        "brand": "aqara",
+        "model": "ZNMS04LM",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "deadbolt_fingerprint_keypad",
+        "power": "battery_aa_8x",
+        "protocol": "zigbee_3_0_plus_ble",
+        "requires_hub": "aqara_hub",
+        "note": "Fingerprint + Apple HomeKey via Aqara Hub bridge.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 299.99,
+        "price_source": "Aqara direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_u200_matter_v2",
+      "type": "smart_lock",
+      "name": "Aqara Smart Lock U200 (Matter, Apple HomeKey)",
+      "sku": "aqara_u200_matter_v2",
+      "attributes": {
+        "brand": "aqara",
+        "model": "ZNMS06LM-V2",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "deadbolt_retrofit_keypad",
+        "power": "battery_aa_4x",
+        "protocol": "matter_over_thread_plus_ble",
+        "requires_hub": "thread_border_router",
+        "note": "Refresh of U200 — silent motor revision. HomeKey + Matter.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 279.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "lockly_visage_ble",
+      "type": "smart_lock",
+      "name": "Lockly Visage Face-Recognition Deadbolt",
+      "sku": "lockly_visage_ble",
+      "attributes": {
+        "brand": "lockly",
+        "model": "PGD798A",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "deadbolt_face_recognition_fingerprint_keypad",
+        "power": "battery_aa_4x",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Face-rec + fingerprint + keypad + key fob + key. Local face data.",
+        "source_ids": [0, 3],
+        "price_usd": 449.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eufy_e330_lock",
+      "type": "smart_lock",
+      "name": "Eufy Smart Lock E330",
+      "sku": "eufy_e330_lock",
+      "attributes": {
+        "brand": "eufy",
+        "model": "T8506",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "deadbolt_fingerprint_keypad",
+        "power": "battery_aa_4x",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 159.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "ultraloq_ubolt_pro_zwave",
+      "type": "smart_lock",
+      "name": "U-tec Ultraloq U-Bolt Pro Z-Wave",
+      "sku": "ultraloq_ubolt_pro_zwave",
+      "attributes": {
+        "brand": "ultraloq",
+        "model": "U-Bolt-Pro-ZW",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "deadbolt_fingerprint_keypad",
+        "power": "battery_aa_4x",
+        "protocol": "z_wave_700_plus_ble",
+        "requires_hub": "z_wave_controller",
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "level_lock_plus_homekey",
+      "type": "smart_lock",
+      "name": "Level Lock+ Touch with HomeKey",
+      "sku": "level_lock_plus_homekey",
+      "attributes": {
+        "brand": "level",
+        "model": "C-L13U-HK",
+        "ecosystems": ["homekit", "home_assistant", "matter"],
+        "ecosystems_unsupported": ["alexa", "google_home"],
+        "form_factor": "deadbolt_invisible_with_touch_pad",
+        "power": "battery_cr2",
+        "protocol": "ble_plus_thread",
+        "requires_hub": "thread_border_router",
+        "note": "Looks like a regular deadbolt; tap-to-unlock via Apple HomeKey.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 349.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "level_bolt_v2",
+      "type": "smart_lock",
+      "name": "Level Bolt v2 (Invisible Deadbolt)",
+      "sku": "level_bolt_v2",
+      "attributes": {
+        "brand": "level",
+        "model": "C-L11-V2",
+        "ecosystems": ["homekit", "home_assistant", "matter"],
+        "ecosystems_unsupported": ["alexa", "google_home"],
+        "form_factor": "invisible_deadbolt_replacement",
+        "power": "battery_cr2",
+        "protocol": "ble_plus_thread",
+        "requires_hub": "thread_border_router",
+        "source_ids": [0, 1, 3],
+        "price_usd": 229.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "kwikset_aura_ble",
+      "type": "smart_lock",
+      "name": "Kwikset Aura Bluetooth Deadbolt",
+      "sku": "kwikset_aura_ble",
+      "attributes": {
+        "brand": "kwikset",
+        "model": "959 BLE",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "alexa", "google_home"],
+        "form_factor": "deadbolt_keypad",
+        "power": "battery_aa_4x",
+        "protocol": "ble_only",
+        "requires_hub": "none",
+        "note": "Bluetooth-only — no remote unlock without bridge phone. Cheap.",
+        "source_ids": [0, 3],
+        "price_usd": 129.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_u300_v2",
+      "type": "smart_lock",
+      "name": "Aqara Smart Lock U300 (Matter)",
+      "sku": "aqara_u300_v2",
+      "attributes": {
+        "brand": "aqara",
+        "model": "ZNMS07LM",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "deadbolt_keypad_palm_vein",
+        "power": "battery_aa_8x",
+        "protocol": "matter_over_thread_plus_ble",
+        "requires_hub": "thread_border_router",
+        "note": "Adds palm-vein recognition. Matter-native.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 349.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "yale_approach_keypad_kit",
+      "type": "smart_lock",
+      "name": "Yale Approach Lock + Smart Keypad Kit",
+      "sku": "yale_approach_keypad_kit",
+      "attributes": {
+        "brand": "yale",
+        "model": "YRD140-KP",
+        "ecosystems": ["alexa", "google_home", "homekit_via_august", "home_assistant"],
+        "form_factor": "retrofit_deadbolt_with_external_keypad",
+        "power": "battery_aa_4x",
+        "protocol": "ble_plus_wifi_optional",
+        "requires_hub": "none",
+        "note": "Retrofit lock + remote keypad bundle. Sister to August Wi-Fi.",
+        "source_ids": [0, 3],
+        "price_usd": 229.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "sensibo_sky_v2",
+      "type": "thermostat",
+      "name": "Sensibo Sky 2nd Gen",
+      "sku": "sensibo_sky_v2",
+      "attributes": {
+        "brand": "sensibo",
+        "model": "SKY-V2",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "ir_remote_emulator_for_minisplit",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "IR-blast minisplit / window AC controller. HomeKit native.",
+        "source_ids": [0, 3],
+        "price_usd": 119.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "sensibo_air_pro",
+      "type": "thermostat",
+      "name": "Sensibo Air Pro (HVAC + Air Quality)",
+      "sku": "sensibo_air_pro",
+      "attributes": {
+        "brand": "sensibo",
+        "model": "AIR-PRO",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "ir_remote_with_air_quality_sensor",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Adds PM2.5 + CO2 + VOC vs Sensibo Air. HomeKit native.",
+        "source_ids": [0, 3],
+        "price_usd": 199.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "mysa_v3_minisplit",
+      "type": "thermostat",
+      "name": "Mysa V3 Mini-Split Smart Thermostat",
+      "sku": "mysa_v3_minisplit",
+      "attributes": {
+        "brand": "mysa",
+        "model": "MS-MSV3",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "wall_mount_minisplit_controller",
+        "protocol": "wifi_2_4ghz_plus_thread",
+        "requires_hub": "thread_border_router_optional",
+        "note": "Minisplit controller refresh — Matter over Thread.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 199.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "mysa_v3_baseboard",
+      "type": "thermostat",
+      "name": "Mysa V3 Baseboard Thermostat",
+      "sku": "mysa_v3_baseboard",
+      "attributes": {
+        "brand": "mysa",
+        "model": "MS-BBV3",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "in_wall_240v_baseboard",
+        "protocol": "wifi_2_4ghz_plus_thread",
+        "requires_hub": "thread_border_router_optional",
+        "note": "240V line-voltage baseboard. Matter over Thread.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 159.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "mysa_v3_smart",
+      "type": "thermostat",
+      "name": "Mysa V3 Smart Thermostat (Forced Air)",
+      "sku": "mysa_v3_smart",
+      "attributes": {
+        "brand": "mysa",
+        "model": "MS-SMV3",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "wall_thermostat_24v",
+        "protocol": "wifi_2_4ghz_plus_thread",
+        "requires_hub": "thread_border_router_optional",
+        "note": "Forced-air (24V) version of the Mysa line.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 179.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "emerson_sensi_touch_2",
+      "type": "thermostat",
+      "name": "Emerson Sensi Touch 2 Smart Thermostat",
+      "sku": "emerson_sensi_touch_2",
+      "attributes": {
+        "brand": "emerson",
+        "model": "ST76",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "wall_thermostat_24v_color_touch",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Touch 2 — Matter rev of the Sensi Touch.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 169.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "bosch_bcc150_v2",
+      "type": "thermostat",
+      "name": "Bosch BCC150 Smart Thermostat",
+      "sku": "bosch_bcc150_v2",
+      "attributes": {
+        "brand": "bosch",
+        "model": "BCC150",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wall_thermostat_24v_color_touch",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 129.99,
+        "price_source": "Home Depot retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_thermostat_zigbee",
+      "type": "thermostat",
+      "name": "Aqara Smart Thermostat HKWS-G01D",
+      "sku": "aqara_thermostat_zigbee",
+      "attributes": {
+        "brand": "aqara",
+        "model": "HKWS-G01D",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "in_wall_thermostat_eu",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "Underfloor heating thermostat (EU). Aqara Hub bridges to HomeKit via Matter.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 69.99,
+        "price_source": "Amazon EU retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_radiator_e1",
+      "type": "thermostat",
+      "name": "Aqara Radiator Thermostat E1",
+      "sku": "aqara_radiator_e1",
+      "attributes": {
+        "brand": "aqara",
+        "model": "SRTS-A01",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "trv_radiator_valve",
+        "power": "battery_aa_2x",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "Per-radiator TRV. EU heating. HA via Z2M / Aqara hub.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 49.99,
+        "price_source": "Amazon EU retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "nest_learning_4th",
+      "type": "thermostat",
+      "name": "Google Nest Learning Thermostat (4th Gen)",
+      "sku": "nest_learning_4th",
+      "attributes": {
+        "brand": "google_nest",
+        "model": "GA02180-US",
+        "ecosystems": ["alexa", "google_home", "home_assistant", "matter"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "round_color_oled_24v",
+        "protocol": "wifi_2_4_5ghz_plus_thread",
+        "requires_hub": "none",
+        "note": "Long-rumored 4th gen — Thread + Matter support.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 279.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "switchbot_curtain_pro_v1",
+      "type": "smart_shade",
+      "name": "SwitchBot Curtain Pro 3",
+      "sku": "switchbot_curtain_pro_v1",
+      "attributes": {
+        "brand": "switchbot",
+        "model": "W2400000",
+        "ecosystems": ["alexa", "google_home", "home_assistant", "homekit_via_hub2", "matter"],
+        "form_factor": "curtain_track_robot_motorized",
+        "power": "rechargeable_battery_with_solar",
+        "protocol": "ble_plus_optional_hub",
+        "requires_hub": "switchbot_hub_2_for_matter",
+        "note": "Pro 3 motor — quieter, faster than Curtain 3. Optional Hub 2 for Matter.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 119.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "switchbot_tilt_v1",
+      "type": "smart_shade",
+      "name": "SwitchBot Blind Tilt v1 (single)",
+      "sku": "switchbot_tilt_v1_single",
+      "attributes": {
+        "brand": "switchbot",
+        "model": "W2701600",
+        "ecosystems": ["alexa", "google_home", "home_assistant", "homekit_via_hub2", "matter"],
+        "form_factor": "venetian_blind_tilt_clip",
+        "power": "rechargeable_battery_with_solar",
+        "protocol": "ble_plus_optional_hub",
+        "requires_hub": "switchbot_hub_2_for_matter",
+        "source_ids": [0, 1, 3],
+        "price_usd": 69.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_roller_shade_t1_matter",
+      "type": "smart_shade",
+      "name": "Aqara Roller Shade Driver T1 (Matter)",
+      "sku": "aqara_roller_shade_t1_matter",
+      "attributes": {
+        "brand": "aqara",
+        "model": "RSD-M01",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "roller_shade_motor_chain_drive",
+        "power": "rechargeable_battery_with_solar_optional",
+        "protocol": "matter_over_thread_plus_ble",
+        "requires_hub": "thread_border_router",
+        "note": "Matter-native motor; replaces existing chain-drive shade.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 149.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_curtain_driver_e1_matter",
+      "type": "smart_shade",
+      "name": "Aqara Curtain Driver E1 (Matter)",
+      "sku": "aqara_curtain_driver_e1_matter",
+      "attributes": {
+        "brand": "aqara",
+        "model": "CCD-M01",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "curtain_track_motor",
+        "power": "rechargeable_battery",
+        "protocol": "matter_over_thread_plus_ble",
+        "requires_hub": "thread_border_router",
+        "source_ids": [0, 1, 3],
+        "price_usd": 159.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eve_motionblinds_matter_v2",
+      "type": "smart_shade",
+      "name": "Eve MotionBlinds Matter v2",
+      "sku": "eve_motionblinds_matter_v2",
+      "attributes": {
+        "brand": "eve",
+        "model": "20EBM9904",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "roller_blind_motor_kit",
+        "power": "rechargeable_battery",
+        "protocol": "matter_over_thread",
+        "requires_hub": "thread_border_router",
+        "note": "Coppermind / Coulisse partnership. Pre-installed in Eve-branded blinds.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 279.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hunter_powerview_g3_roller",
+      "type": "smart_shade",
+      "name": "Hunter Douglas PowerView Gen 3 Roller",
+      "sku": "hunter_powerview_g3_roller",
+      "attributes": {
+        "brand": "hunter_douglas",
+        "model": "PV3-ROLLER",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "premium_motorized_roller",
+        "protocol": "matter_over_thread_plus_ble",
+        "requires_hub": "powerview_gen3_hub",
+        "note": "Made-to-measure premium. Sold installed via dealer network.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 899.99,
+        "price_source": "dealer install MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hunter_powerview_g3_honeycomb",
+      "type": "smart_shade",
+      "name": "Hunter Douglas PowerView Gen 3 Honeycomb",
+      "sku": "hunter_powerview_g3_honeycomb",
+      "attributes": {
+        "brand": "hunter_douglas",
+        "model": "PV3-DUETTE",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "cellular_honeycomb_motorized",
+        "protocol": "matter_over_thread_plus_ble",
+        "requires_hub": "powerview_gen3_hub",
+        "source_ids": [0, 1, 3],
+        "price_usd": 999.99,
+        "price_source": "dealer install MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "yoolax_roller_custom_matter",
+      "type": "smart_shade",
+      "name": "Yoolax Roller Custom (Matter)",
+      "sku": "yoolax_roller_custom_matter",
+      "attributes": {
+        "brand": "yoolax",
+        "model": "YL-CUSTOM-M",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant", "matter"],
+        "form_factor": "made_to_measure_roller_shade",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Custom-cut roller, Matter over Wi-Fi. Solar-charging tube motor.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 249.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "soma_smart_shades_2_v2",
+      "type": "smart_shade",
+      "name": "Soma Smart Shades 2 (with Connect2)",
+      "sku": "soma_smart_shades_2_v2",
+      "attributes": {
+        "brand": "soma",
+        "model": "SMARTSHADES2",
+        "ecosystems": ["alexa", "google_home", "homekit_via_connect2", "home_assistant"],
+        "form_factor": "chain_drive_clip_on_motor",
+        "power": "rechargeable_battery_with_solar",
+        "protocol": "ble_plus_optional_hub",
+        "requires_hub": "soma_connect2_for_homekit",
+        "source_ids": [0, 3],
+        "price_usd": 149.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "soma_connect2_bridge",
+      "type": "smart_shade",
+      "name": "Soma Connect2 Bridge",
+      "sku": "soma_connect2_bridge",
+      "attributes": {
+        "brand": "soma",
+        "model": "CONNECT2",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "wifi_to_ble_bridge",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Bridges Soma Smart Shades / Tilt to HomeKit + Wi-Fi.",
+        "source_ids": [0, 3],
+        "price_usd": 99.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "zemismart_m515egb_v2",
+      "type": "smart_shade",
+      "name": "ZemiSmart M515EGB Curtain Motor (Zigbee)",
+      "sku": "zemismart_m515egb_v2",
+      "attributes": {
+        "brand": "zemismart",
+        "model": "M515EGB",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "u_track_motorized_curtain",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "note": "Cheap Zigbee curtain motor — Z2M-compatible. Existing entry but different SKU/model.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 109.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "brilliant_curtain_v2",
+      "type": "smart_shade",
+      "name": "Brilliant Smart Curtain Motor v2",
+      "sku": "brilliant_curtain_v2",
+      "attributes": {
+        "brand": "brilliant",
+        "model": "BR-CURTAIN-V2",
+        "ecosystems": ["alexa", "google_home", "home_assistant", "matter"],
+        "form_factor": "u_track_motorized_curtain",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Refresh with Matter over Wi-Fi.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 159.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_p1_motion",
+      "type": "motion_sensor",
+      "name": "Aqara Motion Sensor P1 (Zigbee)",
+      "sku": "aqara_p1_motion",
+      "attributes": {
+        "brand": "aqara",
+        "model": "RTCGQ14LM",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "puck_with_lux_sensor",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "P1 — longer battery (2 yr typical) + lux. HomeKit via Aqara hub Matter bridge.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 22.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_t1_motion_lux",
+      "type": "motion_sensor",
+      "name": "Aqara Motion + Light Sensor T1",
+      "sku": "aqara_t1_motion_lux",
+      "attributes": {
+        "brand": "aqara",
+        "model": "RTCGQ12LM",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "puck_with_lux_sensor",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "source_ids": [0, 2, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_fp2_zone_v2",
+      "type": "motion_sensor",
+      "name": "Aqara Presence Sensor FP2 (multi-zone mmWave)",
+      "sku": "aqara_fp2_zone_v2",
+      "attributes": {
+        "brand": "aqara",
+        "model": "PS-S02E",
+        "ecosystems": ["homekit", "home_assistant", "matter"],
+        "ecosystems_unsupported": ["alexa", "google_home"],
+        "form_factor": "wall_mount_mmwave_multi_zone",
+        "indoor_outdoor": "indoor",
+        "power": "wired_usb_c",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "30-zone mmWave; HomeKit native via Matter.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 79.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_fp1e_mmwave_v2",
+      "type": "motion_sensor",
+      "name": "Aqara Presence Sensor FP1E (Zigbee)",
+      "sku": "aqara_fp1e_mmwave_v2",
+      "attributes": {
+        "brand": "aqara",
+        "model": "PS-S01D",
+        "ecosystems": ["homekit", "home_assistant", "alexa", "google_home"],
+        "form_factor": "puck_mmwave_single_zone",
+        "indoor_outdoor": "indoor",
+        "power": "wired_usb_c",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "Cheaper Zigbee mmWave; single-zone. Aqara hub bridges to HomeKit.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 39.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hue_outdoor_motion_v3",
+      "type": "motion_sensor",
+      "name": "Philips Hue Outdoor Motion Sensor (gen 3)",
+      "sku": "hue_outdoor_motion_v3",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "9290020568A",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "outdoor_motion_with_lux_temp",
+        "indoor_outdoor": "outdoor_ip54",
+        "power": "battery_aa_2x",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "philips_hue_bridge",
+        "note": "Gen 3 — twice the detection range, hidden battery hatch.",
+        "source_ids": [0, 3],
+        "price_usd": 54.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hue_indoor_motion_v2",
+      "type": "motion_sensor",
+      "name": "Philips Hue Indoor Motion Sensor v2",
+      "sku": "hue_indoor_motion_v2",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "9290022166",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "puck_with_lux_temp",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aaa_2x",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "philips_hue_bridge",
+        "source_ids": [0, 3],
+        "price_usd": 44.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aeotec_multisensor_8",
+      "type": "motion_sensor",
+      "name": "Aeotec MultiSensor 7 (8-in-1)",
+      "sku": "aeotec_multisensor_8in1",
+      "attributes": {
+        "brand": "aeotec",
+        "model": "ZWA024",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck_8_in_1_motion_temp_humidity_lux_uv_vibration_tilt",
+        "indoor_outdoor": "indoor",
+        "power": "battery_or_usb",
+        "protocol": "z_wave_700",
+        "requires_hub": "z_wave_controller",
+        "note": "Adds tilt + vibration vs MS6. HA via Z-Wave JS.",
+        "source_ids": [0, 3],
+        "price_usd": 59.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "ring_alarm_motion_v3",
+      "type": "motion_sensor",
+      "name": "Ring Alarm Motion Detector (3rd Gen)",
+      "sku": "ring_alarm_motion_v3",
+      "attributes": {
+        "brand": "ring",
+        "model": "8SM1S9-AEN0",
+        "ecosystems": ["alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home"],
+        "form_factor": "wall_mount_pir",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aa_2x",
+        "protocol": "z_wave_long_range",
+        "requires_hub": "ring_alarm_pro",
+        "note": "Z-Wave LR. HA via ring custom + ZWaveJS UI dual integration.",
+        "source_ids": [0, 3],
+        "price_usd": 34.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "bosch_motion_ii",
+      "type": "motion_sensor",
+      "name": "Bosch Motion Sensor II (Zigbee)",
+      "sku": "bosch_motion_ii",
+      "attributes": {
+        "brand": "bosch",
+        "model": "BSEN-MOTION-II",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck_with_lux_temp",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "source_ids": [0, 2, 3],
+        "price_usd": 34.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "ratgdo_garage_v2",
+      "type": "motion_sensor",
+      "name": "RatgdoV2 Garage Door Controller (with sensors)",
+      "sku": "ratgdo_v2_garage_sensor",
+      "attributes": {
+        "brand": "ratgdo",
+        "model": "RATGDO-V2",
+        "ecosystems": ["home_assistant", "matter"],
+        "ecosystems_unsupported": ["alexa", "google_home"],
+        "form_factor": "garage_door_open_close_obstruction_temp",
+        "indoor_outdoor": "indoor",
+        "power": "wired_24v_from_opener",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "HA-favorite garage controller — supersedes proprietary myQ. Matter via ESPHome firmware.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 39.99,
+        "price_source": "vendor direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "ecolink_pirzwave_2_5",
+      "type": "motion_sensor",
+      "name": "Ecolink PIRZWAVE2.5 Z-Wave Motion",
+      "sku": "ecolink_pirzwave_2_5",
+      "attributes": {
+        "brand": "ecolink",
+        "model": "PIRZWAVE2.5",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr123a",
+        "protocol": "z_wave_500",
+        "requires_hub": "z_wave_controller",
+        "source_ids": [0, 3],
+        "price_usd": 27.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "sonoff_snzb_03p_v2",
+      "type": "motion_sensor",
+      "name": "Sonoff SNZB-03P Motion Sensor (refresh)",
+      "sku": "sonoff_snzb_03p_motion",
+      "attributes": {
+        "brand": "sonoff",
+        "model": "SNZB-03P-V2",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "puck",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "source_ids": [0, 2, 3],
+        "price_usd": 11.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "wyze_sense_motion_v3",
+      "type": "motion_sensor",
+      "name": "Wyze Sense V3 Motion Sensor",
+      "sku": "wyze_sense_motion_v3",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WYZE-PIR-V3",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "wyze_sense_hub_v2",
+        "source_ids": [0, 3],
+        "price_usd": 12.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "govee_h5121",
+      "type": "motion_sensor",
+      "name": "Govee Motion Sensor H5121 (Wi-Fi)",
+      "sku": "govee_h5121",
+      "attributes": {
+        "brand": "govee",
+        "model": "H5121",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aa_3x",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "Wi-Fi-direct (no hub). HA via govee2mqtt.",
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_p1_contact",
+      "type": "contact_sensor",
+      "name": "Aqara Door & Window Sensor P1",
+      "sku": "aqara_p1_contact",
+      "attributes": {
+        "brand": "aqara",
+        "model": "MCCGQ14LM",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "two_piece_door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "P1 — 5-yr battery. HomeKit via Aqara hub Matter bridge.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_t1_contact",
+      "type": "contact_sensor",
+      "name": "Aqara Door & Window Sensor T1",
+      "sku": "aqara_t1_contact",
+      "attributes": {
+        "brand": "aqara",
+        "model": "MCCGQ12LM",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "two_piece_door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr1632",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "source_ids": [0, 2, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_mcc1_pro_v2",
+      "type": "contact_sensor",
+      "name": "Aqara Door & Window Sensor MCC1 Pro",
+      "sku": "aqara_mcc1_pro_v2",
+      "attributes": {
+        "brand": "aqara",
+        "model": "MCCGQ14LM-PRO",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "two_piece_with_tilt_temp",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "Adds tilt and temp/humidity vs T1. HomeKit via Aqara hub.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 34.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "hue_contact_v2",
+      "type": "contact_sensor",
+      "name": "Philips Hue Secure Contact Sensor v2",
+      "sku": "hue_contact_v2",
+      "attributes": {
+        "brand": "philips_hue",
+        "model": "929003484101",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "two_piece_door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr123a",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "philips_hue_bridge",
+        "note": "Hue Secure ecosystem; integrates with Hue Bridge as alarm sensor.",
+        "source_ids": [0, 3],
+        "price_usd": 39.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aeotec_recessed_door_8",
+      "type": "contact_sensor",
+      "name": "Aeotec Recessed Door Sensor 8",
+      "sku": "aeotec_recessed_door_8",
+      "attributes": {
+        "brand": "aeotec",
+        "model": "ZWA025",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "recessed_drilled_in_door_jamb",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr14250",
+        "protocol": "z_wave_700",
+        "requires_hub": "z_wave_controller",
+        "note": "Hidden recessed mount — hides flush with door jamb.",
+        "source_ids": [0, 3],
+        "price_usd": 49.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "ring_alarm_contact_v3",
+      "type": "contact_sensor",
+      "name": "Ring Alarm Contact Sensor (3rd Gen)",
+      "sku": "ring_alarm_contact_v3",
+      "attributes": {
+        "brand": "ring",
+        "model": "8SD1S9-AEN0",
+        "ecosystems": ["alexa", "home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home"],
+        "form_factor": "two_piece_door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2032_2x",
+        "protocol": "z_wave_long_range",
+        "requires_hub": "ring_alarm_pro",
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "ecolink_dwzwave_2_5_v2",
+      "type": "contact_sensor",
+      "name": "Ecolink DoorWindow Z-Wave 2.5 (revised)",
+      "sku": "ecolink_dwzwave_2_5_v2",
+      "attributes": {
+        "brand": "ecolink",
+        "model": "DWZWAVE2.5-ECO",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "two_piece_door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr123a",
+        "protocol": "z_wave_500",
+        "requires_hub": "z_wave_controller",
+        "source_ids": [0, 3],
+        "price_usd": 22.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "bosch_door_window_3",
+      "type": "contact_sensor",
+      "name": "Bosch Door/Window Contact II (Zigbee, 2nd Rev)",
+      "sku": "bosch_door_window_3",
+      "attributes": {
+        "brand": "bosch",
+        "model": "BSEN-DW-II-V2",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "two_piece_door_window_slim",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2450",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "source_ids": [0, 2, 3],
+        "price_usd": 27.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "sonoff_snzb_04p_v2",
+      "type": "contact_sensor",
+      "name": "Sonoff SNZB-04P Contact Sensor (refresh)",
+      "sku": "sonoff_snzb_04p_v2",
+      "attributes": {
+        "brand": "sonoff",
+        "model": "SNZB-04P-V2",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "two_piece_door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2032",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "source_ids": [0, 2, 3],
+        "price_usd": 8.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "wyze_sense_door_v3",
+      "type": "contact_sensor",
+      "name": "Wyze Sense V3 Door/Window",
+      "sku": "wyze_sense_door_v3",
+      "attributes": {
+        "brand": "wyze",
+        "model": "WYZE-DW-V3",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "two_piece_door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2032",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "wyze_sense_hub_v2",
+        "source_ids": [0, 3],
+        "price_usd": 9.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eve_door_window_v3",
+      "type": "contact_sensor",
+      "name": "Eve Door & Window Matter v3",
+      "sku": "eve_door_window_v3",
+      "attributes": {
+        "brand": "eve",
+        "model": "20EBJ9901-V3",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "two_piece_door_window_slim",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2_x2",
+        "protocol": "matter_over_thread_plus_ble",
+        "requires_hub": "thread_border_router",
+        "note": "Slimmer rev with longer battery.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 49.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "frient_door_window_v2",
+      "type": "contact_sensor",
+      "name": "Frient Door/Window Sensor (Zigbee)",
+      "sku": "frient_door_window_v2",
+      "attributes": {
+        "brand": "frient",
+        "model": "WISZB-138",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "two_piece_door_window",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aaa_2x",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "note": "Develco / Frient brand — premium build, AAA batteries.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 39.99,
+        "price_source": "Amazon EU retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_temp_humidity_t1_v2",
+      "type": "temperature_sensor",
+      "name": "Aqara Temp & Humidity T1 (refresh)",
+      "sku": "aqara_temp_humidity_t1_v2",
+      "attributes": {
+        "brand": "aqara",
+        "model": "WSDCGQ12LM-V2",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "puck",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2032",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "source_ids": [0, 2, 3],
+        "price_usd": 14.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_th_t1_pro",
+      "type": "temperature_sensor",
+      "name": "Aqara Temp + Humidity + Pressure T1 Pro",
+      "sku": "aqara_th_t1_pro_v2",
+      "attributes": {
+        "brand": "aqara",
+        "model": "WSDCGQ13LM",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "puck_with_baro_pressure",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2032",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "Adds barometric pressure vs T1.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "sonoff_snzb_02p_v2",
+      "type": "temperature_sensor",
+      "name": "Sonoff SNZB-02P Temp/Humidity (refresh)",
+      "sku": "sonoff_snzb_02p_v2",
+      "attributes": {
+        "brand": "sonoff",
+        "model": "SNZB-02P-V2",
+        "ecosystems": ["home_assistant"],
+        "ecosystems_unsupported": ["homekit", "google_home", "alexa"],
+        "form_factor": "puck_with_lcd",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2477",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "any_zigbee_coordinator",
+        "source_ids": [0, 2, 3],
+        "price_usd": 12.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "govee_h5179_v2",
+      "type": "temperature_sensor",
+      "name": "Govee H5179 Wi-Fi Hygrometer (refresh)",
+      "sku": "govee_h5179_v2",
+      "attributes": {
+        "brand": "govee",
+        "model": "H5179-V2",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "wall_mount_with_lcd",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aa_3x_or_usb",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 17.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eve_weather_outdoor_matter",
+      "type": "temperature_sensor",
+      "name": "Eve Weather Outdoor (Matter)",
+      "sku": "eve_weather_outdoor_matter",
+      "attributes": {
+        "brand": "eve",
+        "model": "20EBN9911",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "outdoor_weather_station_temp_humidity_pressure",
+        "indoor_outdoor": "outdoor_ip54",
+        "power": "battery_cr2_x2",
+        "protocol": "matter_over_thread",
+        "requires_hub": "thread_border_router",
+        "note": "Outdoor-rated weather; barometer trends.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 79.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "switchbot_meter_co2",
+      "type": "temperature_sensor",
+      "name": "SwitchBot Meter Pro CO2",
+      "sku": "switchbot_meter_co2",
+      "attributes": {
+        "brand": "switchbot",
+        "model": "W2003020",
+        "ecosystems": ["alexa", "google_home", "home_assistant", "homekit_via_hub2"],
+        "form_factor": "tabletop_with_color_display",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aa_2x_or_usb",
+        "protocol": "ble_plus_optional_hub",
+        "requires_hub": "switchbot_hub_2_for_matter",
+        "note": "Adds NDIR CO2 vs Meter Pro.",
+        "source_ids": [0, 3],
+        "price_usd": 69.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "aqara_leak_t1_v3",
+      "type": "leak_sensor",
+      "name": "Aqara Water Leak Sensor T1 (latest rev)",
+      "sku": "aqara_leak_t1_v3",
+      "attributes": {
+        "brand": "aqara",
+        "model": "SJCGQ14LM-V2",
+        "ecosystems": ["alexa", "google_home", "homekit", "home_assistant"],
+        "form_factor": "puck_with_two_probes",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2",
+        "protocol": "zigbee_3_0",
+        "requires_hub": "aqara_hub",
+        "note": "Latest revision — improved gold-plated probe contacts.",
+        "source_ids": [0, 2, 3],
+        "price_usd": 22.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "yolink_leak_v3_pro",
+      "type": "leak_sensor",
+      "name": "YoLink Leak Sensor v3 Pro",
+      "sku": "yolink_leak_v3_pro",
+      "attributes": {
+        "brand": "yolink",
+        "model": "YS7903-UC",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck_with_built_in_siren_and_probe",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aa_2x_5yr",
+        "protocol": "lora_unb",
+        "requires_hub": "yolink_hub",
+        "note": "LoRa long range; in-puck 80 dB siren. v3 Pro adds longer probe lead.",
+        "source_ids": [0, 3],
+        "price_usd": 34.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "govee_h5054",
+      "type": "leak_sensor",
+      "name": "Govee Water Leak Sensor H5054 (3-pack)",
+      "sku": "govee_h5054_3pk",
+      "attributes": {
+        "brand": "govee",
+        "model": "H5054",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck_3_pack",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aaa_3x",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "note": "3-pack value bundle. Wi-Fi-direct, no hub.",
+        "source_ids": [0, 3],
+        "price_usd": 49.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "govee_h5052",
+      "type": "leak_sensor",
+      "name": "Govee H5052 Wi-Fi Leak Sensor (single)",
+      "sku": "govee_h5052_single",
+      "attributes": {
+        "brand": "govee",
+        "model": "H5052",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aaa_3x",
+        "protocol": "wifi_2_4ghz_plus_ble",
+        "requires_hub": "none",
+        "source_ids": [0, 3],
+        "price_usd": 19.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "switchbot_water_leak_v2_v2",
+      "type": "leak_sensor",
+      "name": "SwitchBot Water Leak Detector v2",
+      "sku": "switchbot_water_leak_v2_v2",
+      "attributes": {
+        "brand": "switchbot",
+        "model": "W3402100",
+        "ecosystems": ["alexa", "google_home", "home_assistant", "homekit_via_hub2", "matter"],
+        "form_factor": "puck_with_metal_probe_strip",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2032",
+        "protocol": "ble_plus_optional_hub",
+        "requires_hub": "switchbot_hub_2_for_matter",
+        "source_ids": [0, 1, 3],
+        "price_usd": 22.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "flo_by_moen_smart",
+      "type": "leak_sensor",
+      "name": "Flo by Moen Smart Water Detector (3-pack)",
+      "sku": "flo_by_moen_3pk",
+      "attributes": {
+        "brand": "flo_by_moen",
+        "model": "900-002-3PK",
+        "ecosystems": ["alexa", "google_home", "home_assistant"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck_with_temp_humidity",
+        "indoor_outdoor": "indoor",
+        "power": "battery_aaa_3x",
+        "protocol": "wifi_2_4ghz",
+        "requires_hub": "none",
+        "note": "Pairs with Flo Smart Water Shutoff; works standalone too.",
+        "source_ids": [0, 3],
+        "price_usd": 149.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "smartrent_leak",
+      "type": "leak_sensor",
+      "name": "SmartRent Z-Wave Water Leak Sensor",
+      "sku": "smartrent_leak",
+      "attributes": {
+        "brand": "smartrent",
+        "model": "SR-LEAK-ZW",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr123a",
+        "protocol": "z_wave_700",
+        "requires_hub": "z_wave_controller",
+        "note": "Multi-family / property-management grade Z-Wave.",
+        "source_ids": [0, 3],
+        "price_usd": 29.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "dome_leak",
+      "type": "leak_sensor",
+      "name": "Dome Home Z-Wave Leak Sensor",
+      "sku": "dome_leak",
+      "attributes": {
+        "brand": "dome_home_automation",
+        "model": "DMWS1",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck_with_probe",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr123a",
+        "protocol": "z_wave_500",
+        "requires_hub": "z_wave_controller",
+        "source_ids": [0, 3],
+        "price_usd": 32.99,
+        "price_source": "Amazon retail",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "zooz_zse42_v2",
+      "type": "leak_sensor",
+      "name": "Zooz ZSE42 700-series Leak (refresh)",
+      "sku": "zooz_zse42_v2",
+      "attributes": {
+        "brand": "zooz",
+        "model": "ZSE42-V2",
+        "ecosystems": ["home_assistant", "samsung_smartthings"],
+        "ecosystems_unsupported": ["homekit"],
+        "form_factor": "puck_with_probe",
+        "indoor_outdoor": "indoor",
+        "power": "battery_cr2032",
+        "protocol": "z_wave_700",
+        "requires_hub": "z_wave_controller",
+        "source_ids": [0, 3],
+        "price_usd": 27.99,
+        "price_source": "TheSmartestHouse direct",
+        "price_ingest_date": "2026-05-06"
+      }
+    },
+
+    {
+      "id": "eve_water_guard_matter",
+      "type": "leak_sensor",
+      "name": "Eve Water Guard Matter (cable sensor)",
+      "sku": "eve_water_guard_matter",
+      "attributes": {
+        "brand": "eve",
+        "model": "20EBQ9901",
+        "ecosystems": ["homekit", "home_assistant", "matter", "alexa", "google_home"],
+        "form_factor": "puck_with_2m_sensing_cable",
+        "indoor_outdoor": "indoor",
+        "power": "wired_outlet",
+        "protocol": "matter_over_thread_plus_ble",
+        "requires_hub": "thread_border_router",
+        "note": "2 m cable senses leaks along its length, not just a single point.",
+        "source_ids": [0, 1, 3],
+        "price_usd": 99.99,
+        "price_source": "vendor MSRP",
+        "price_ingest_date": "2026-05-06"
+      }
+    }
   ],
   "constraints": [
     {

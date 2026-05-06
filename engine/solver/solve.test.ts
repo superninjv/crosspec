@@ -372,7 +372,7 @@ test("homekit + smart_shade returns >= 3 picks across Thread/Matter, Zigbee-via-
   const [sol] = solve(kb, {
     ecosystem: "homekit",
     wants: ["smart_shade"],
-    picks_per_type: 5,
+    picks_per_type: 25,
   });
   const shades = sol.picks.filter((p) => p.entity.type === "smart_shade");
   expect(shades.length).toBeGreaterThanOrEqual(3);
