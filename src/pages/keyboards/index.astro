@@ -178,6 +178,7 @@ for (const e of kb.entities) {
   type Slim = { id: string; sku: string; name: string; type: string; brand: string; model: string; price: number | null; note: string; asin: string | null; attrs: Record<string, unknown>; };
 
   const VERTICAL = "keyboards";
+  const STEP1_DEFAULT_WANTS: string[] = ["keyboard_kit", "switch", "keycap_set"];
   const TYPE_LABEL: Record<string, string> = {
     keyboard_kit: "Kits", switch: "Switches", keycap_set: "Keycaps",
     keyboard_stabilizer: "Stabilizers", keyboard_plate: "Plates",
@@ -377,6 +378,15 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]') || t.matches('input[name="layout"]')) {
+        if (t.matches('input[name="layout"]')) {
+          const wantsTicked = form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked').length;
+          if (wantsTicked === 0) {
+            for (const slug of STEP1_DEFAULT_WANTS) {
+              const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${slug}"]`);
+              if (cb) cb.checked = true;
+            }
+          }
+        }
         renderPicker();
         renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {

@@ -172,6 +172,7 @@ for (const e of kb.entities) {
   type Slim = { id: string; sku: string; name: string; type: string; brand: string; model: string; price: number | null; note: string; asin: string | null; attrs: Record<string, unknown>; };
 
   const VERTICAL = "arduino";
+  const STEP1_DEFAULT_WANTS: string[] = ["microcontroller_board", "sensor_module", "carrier_breakout"];
   const TYPE_LABEL: Record<string, string> = {
     microcontroller_board: "Boards", sensor_module: "Sensors", display_module: "Displays",
     motor_actuator: "Motors", power_module: "Power", carrier_breakout: "Carriers / breakouts",
@@ -361,6 +362,15 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]') || t.matches('input[name="voltage"]')) {
+        if (t.matches('input[name="voltage"]')) {
+          const wantsTicked = form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked').length;
+          if (wantsTicked === 0) {
+            for (const slug of STEP1_DEFAULT_WANTS) {
+              const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${slug}"]`);
+              if (cb) cb.checked = true;
+            }
+          }
+        }
         renderPicker();
         renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {

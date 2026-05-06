@@ -177,6 +177,7 @@ for (const e of kb.entities) {
   type Slim = { id: string; sku: string; name: string; type: string; brand: string; model: string; price: number | null; note: string; asin: string | null; attrs: Record<string, unknown>; };
 
   const VERTICAL = "espresso";
+  const STEP1_DEFAULT_WANTS: string[] = ["espresso_machine", "grinder", "basket", "tamper"];
   const TYPE_LABEL: Record<string, string> = {
     espresso_machine: "Machine", grinder: "Grinder", portafilter: "Portafilter",
     basket: "Basket", tamper: "Tamper", distribution_tool: "Distribution",
@@ -371,6 +372,15 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]') || t.matches('input[name="level"]')) {
+        if (t.matches('input[name="level"]')) {
+          const wantsTicked = form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked').length;
+          if (wantsTicked === 0) {
+            for (const slug of STEP1_DEFAULT_WANTS) {
+              const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${slug}"]`);
+              if (cb) cb.checked = true;
+            }
+          }
+        }
         renderPicker();
         renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {

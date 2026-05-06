@@ -180,6 +180,7 @@ for (const e of kb.entities) {
   type Slim = { id: string; sku: string; name: string; type: string; brand: string; model: string; price: number | null; note: string; asin: string | null; attrs: Record<string, unknown>; };
 
   const VERTICAL = "fpv-drone";
+  const STEP1_DEFAULT_WANTS: string[] = ["frame", "motor", "esc", "flight_controller", "camera", "vtx", "antenna", "battery", "propeller"];
   const TYPE_LABEL: Record<string, string> = {
     frame: "Frame", motor: "Motors", esc: "ESC", flight_controller: "Flight controller",
     camera: "Camera", vtx: "VTX", antenna: "Antenna", battery: "Battery (LiPo)",
@@ -384,6 +385,15 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]') || t.matches('input[name="build_kind"]')) {
+        if (t.matches('input[name="build_kind"]')) {
+          const wantsTicked = form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked').length;
+          if (wantsTicked === 0) {
+            for (const slug of STEP1_DEFAULT_WANTS) {
+              const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${slug}"]`);
+              if (cb) cb.checked = true;
+            }
+          }
+        }
         renderPicker();
         renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {
