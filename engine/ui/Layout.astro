@@ -424,6 +424,43 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN as string | u
         .topbar-meta .kb-status { display: none; }
         .site-footer { padding: 18px 14px 28px; }
       }
+
+      /* Configurator hero — shared across all vertical pages.
+         Lives here (not on each page) so it's available regardless of which
+         page bundle Astro ships, since <style is:global> on a page only loads
+         on that page. */
+      .solar-hero {
+        background: linear-gradient(180deg, oklch(0.96 0.04 80) 0%, var(--paper-1) 100%);
+        border-bottom: 1px solid var(--paper-edge);
+        padding: 36px 24px 30px;
+      }
+      .solar-hero .hero-inner { max-width: 1100px; margin: 0 auto; }
+      .solar-hero .eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-3);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin: 0 0 6px;
+      }
+      .solar-hero h1 {
+        font-size: 38px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        margin: 0 0 14px;
+        color: var(--ink-0);
+        text-wrap: balance;
+        max-width: 820px;
+      }
+      .solar-hero h1 em { font-style: normal; color: var(--accent); }
+      .solar-hero .lede {
+        font-size: 16px;
+        color: var(--ink-2);
+        line-height: 1.55;
+        max-width: 720px;
+        margin: 0;
+      }
     </style>
   </body>
 </html>

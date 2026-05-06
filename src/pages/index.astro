@@ -5,6 +5,9 @@ import smartHomeKb from "@verticals/smart-home/kb.json";
 import solarKb from "@verticals/solar/kb.json";
 import keyboardsKb from "@verticals/keyboards/kb.json";
 import arduinoKb from "@verticals/arduino/kb.json";
+import threedPrinterKb from "@verticals/3d-printer/kb.json";
+import cncKb from "@verticals/cnc/kb.json";
+import pcKb from "@verticals/pc/kb.json";
 
 interface Vertical {
   slug: string;
@@ -91,6 +94,9 @@ const smartHome = smartHomeKb as KnowledgeBase;
 const solar = solarKb as KnowledgeBase;
 const keyboards = keyboardsKb as KnowledgeBase;
 const arduino = arduinoKb as KnowledgeBase;
+const threedPrinter = threedPrinterKb as KnowledgeBase;
+const cnc = cncKb as KnowledgeBase;
+const pc = pcKb as KnowledgeBase;
 
 const verticals: Vertical[] = [
   {
@@ -133,28 +139,28 @@ const verticals: Vertical[] = [
     slug: "3d-printer",
     name: "3D printers + filament",
     blurb: "Printers, filament, hotends, nozzles, build surfaces",
-    pitch: "Hardened nozzle for carbon fiber. Enclosure for ABS / ASA. Direct-drive for TPU. Coming online.",
-    count: 0,
+    pitch: "Hardened nozzle for carbon fiber. Enclosure for ABS / ASA. Direct-drive for TPU.",
+    count: threedPrinter.entities.length,
     accent: "oklch(0.55 0.13 30)",
-    status: "soon",
+    status: "live",
   },
   {
     slug: "cnc",
     name: "CNC routers",
-    blurb: "Machines, spindles, bits, fixtures",
-    pitch: "Match feed/speed to material and bit. Coming online.",
-    count: 0,
+    blurb: "Machines, spindles, bits, fixtures, dust shoes",
+    pitch: "Match collet to bit shank, spindle mount to machine, dust shoe to router diameter.",
+    count: cnc.entities.length,
     accent: "oklch(0.45 0.06 250)",
-    status: "soon",
+    status: "live",
   },
   {
     slug: "pc",
     name: "PC build",
-    blurb: "CPUs, GPUs, motherboards, RAM, PSUs",
-    pitch: "Socket compat, RAM speed limits, PSU wattage, GPU clearance. Coming online.",
-    count: 0,
+    blurb: "CPUs, GPUs, motherboards, RAM, PSUs, cases, coolers, storage",
+    pitch: "Socket compat, RAM speed limits, PSU wattage, GPU and cooler clearance.",
+    count: pc.entities.length,
     accent: "oklch(0.50 0.14 240)",
-    status: "soon",
+    status: "live",
   },
 ];
 

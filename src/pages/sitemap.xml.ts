@@ -4,6 +4,9 @@ import smartHomeKb from "../../verticals/smart-home/kb.json";
 import solarKb from "../../verticals/solar/kb.json";
 import keyboardsKb from "../../verticals/keyboards/kb.json";
 import arduinoKb from "../../verticals/arduino/kb.json";
+import threedPrinterKb from "../../verticals/3d-printer/kb.json";
+import cncKb from "../../verticals/cnc/kb.json";
+import pcKb from "../../verticals/pc/kb.json";
 
 const SITE = "https://crosspec.com";
 
@@ -16,6 +19,9 @@ export const GET: APIRoute = () => {
     { loc: `${SITE}/solar/`, priority: "0.9" },
     { loc: `${SITE}/keyboards/`, priority: "0.9" },
     { loc: `${SITE}/arduino/`, priority: "0.9" },
+    { loc: `${SITE}/3d-printer/`, priority: "0.9" },
+    { loc: `${SITE}/cnc/`, priority: "0.9" },
+    { loc: `${SITE}/pc/`, priority: "0.9" },
     { loc: `${SITE}/about/`, priority: "0.4" },
   ];
 
@@ -38,6 +44,21 @@ export const GET: APIRoute = () => {
   for (const e of arduino.entities) {
     const sku = e.sku ?? e.id;
     urls.push({ loc: `${SITE}/arduino/devices/${sku}/`, priority: "0.7" });
+  }
+  const threedPrinter = threedPrinterKb as KnowledgeBase;
+  for (const e of threedPrinter.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/3d-printer/devices/${sku}/`, priority: "0.7" });
+  }
+  const cnc = cncKb as KnowledgeBase;
+  for (const e of cnc.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/cnc/devices/${sku}/`, priority: "0.7" });
+  }
+  const pc = pcKb as KnowledgeBase;
+  for (const e of pc.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/pc/devices/${sku}/`, priority: "0.7" });
   }
 
   // Comparison pages: same pair-selection rules as src/pages/smart-home/compare/[pair].astro
