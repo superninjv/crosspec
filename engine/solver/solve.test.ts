@@ -482,7 +482,7 @@ test("home_assistant + doorbell returns all 5 doorbells including the local-PoE 
   const [sol] = solve(kb, {
     ecosystem: "home_assistant",
     wants: ["doorbell"],
-    picks_per_type: 25,
+    picks_per_type: 40,
   });
   const bells = sol.picks.filter((p) => p.entity.type === "doorbell");
   expect(bells.length).toBeGreaterThanOrEqual(5);
