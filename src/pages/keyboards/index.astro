@@ -2,41 +2,50 @@
 import Layout from "@engine/ui/Layout.astro";
 import type { KnowledgeBase } from "@engine/solver";
 import kbRaw from "@verticals/keyboards/kb.json";
+import affRaw from "@verticals/keyboards/affiliates.json";
 
 const kb = kbRaw as KnowledgeBase;
+const VERTICAL = "keyboards";
+const ACCENT = "oklch(0.50 0.16 280)";
 
-const TYPE_LABEL: Record<string, { label: string; blurb: string }> = {
-  keyboard_kit: {
-    label: "Keyboard kits",
-    blurb: "60 / 65 / 75 / TKL / 100% / Alice / split / 40% barebones and prebuilt boards.",
-  },
-  switch: {
-    label: "Switches",
-    blurb: "Linear, tactile, clicky, and silent MX-compatible + Choc low-profile switches.",
-  },
-  keycap_set: {
-    label: "Keycap sets",
-    blurb: "GMK / Cherry profile, MT3, KAT, OEM, XDA, DSA, plus Choc-compatible sets.",
-  },
-  keyboard_stabilizer: {
-    label: "Stabilizers",
-    blurb: "PCB-mount and plate-mount stabs. Match the cutout type or it won't fit.",
-  },
-  keyboard_plate: {
-    label: "Plates",
-    blurb: "Brass, aluminum, PC, POM, FR4, carbon fiber. Material affects sound + feel.",
-  },
-  keyboard_pcb: {
-    label: "PCBs",
-    blurb: "Hotswap and soldered PCBs across common form factors. Firmware support listed.",
-  },
-  keyboard_cable: {
-    label: "Cables",
-    blurb: "Coiled USB-C cables with optional aviator-detach.",
-  },
-};
+interface ProductMap { products: Record<string, { merchant: string; asin?: string }>; }
+const aff = affRaw as ProductMap;
 
-const TYPE_ORDER = ["keyboard_kit", "switch", "keycap_set", "keyboard_stabilizer", "keyboard_plate", "keyboard_pcb", "keyboard_cable"];
+const TYPES = [
+  { slug: "keyboard_kit", label: "Kits", blurb: "60 / 65 / 75 / TKL / 100 / Alice / split / 40." },
+  { slug: "switch", label: "Switches", blurb: "Linear, tactile, clicky, silent. MX + Choc." },
+  { slug: "keycap_set", label: "Keycaps", blurb: "Cherry, OEM, MT3, KAT, SA, XDA, DSA." },
+  { slug: "keyboard_stabilizer", label: "Stabilizers", blurb: "PCB-mount and plate-mount. Match the cutout." },
+  { slug: "keyboard_plate", label: "Plates", blurb: "Brass, alu, PC, POM, FR4, carbon fiber." },
+  { slug: "keyboard_pcb", label: "PCBs", blurb: "Hotswap and soldered. QMK / VIA support." },
+  { slug: "keyboard_cable", label: "Cables", blurb: "Coiled USB-C with optional aviator." },
+];
+
+const LAYOUTS = [
+  { slug: "any", label: "Any layout" },
+  { slug: "60", label: "60%" },
+  { slug: "65", label: "65%" },
+  { slug: "75", label: "75%" },
+  { slug: "tkl", label: "TKL" },
+  { slug: "100", label: "Full size" },
+  { slug: "alice", label: "Alice" },
+  { slug: "split", label: "Split" },
+  { slug: "40", label: "40%" },
+];
+
+const slim = kb.entities.map((e) => ({
+  id: e.id,
+  sku: e.sku ?? e.id,
+  name: e.name,
+  type: e.type,
+  brand: String(e.attributes.brand ?? ""),
+  model: String(e.attributes.model ?? ""),
+  price: typeof e.attributes.price_usd === "number" ? (e.attributes.price_usd as number) : null,
+  note: (e.attributes.note as string) ?? "",
+  asin: aff.products[e.id]?.asin ?? aff.products[e.sku ?? e.id]?.asin ?? null,
+  attrs: e.attributes,
+}));
+const slimJSON = JSON.stringify(slim);
 
 const byType = new Map<string, typeof kb.entities>();
 for (const e of kb.entities) {
@@ -45,67 +54,219 @@ for (const e of kb.entities) {
 }
 ---
 <Layout
-  title="Mechanical keyboard component compatibility · kits, switches, keycaps, plates | crosspec"
-  description="Pick a keyboard kit + switches + keycaps + plate that all actually fit. 149 components with sourced compat info from keebfol.io and r/MechanicalKeyboards."
+  title="Keyboard configurator · kits, switches, keycaps, plates · crosspec"
+  description="Build a mech keyboard that fits together. Pick a kit, switches, keycaps, stabs, plate. See the build total. Sourced specs from keebfol.io and r/MK."
   crumbs={["keyboards"]}
   kbStatus={`keyboards v0.1 · ${kb.entities.length} entities`}
 >
-  <section class="kb-hero">
-    <div class="kb-hero-inner">
+  <section class="solar-hero" style={`--accent: ${ACCENT}`}>
+    <div class="hero-inner">
       <p class="eyebrow">crosspec / keyboards</p>
-      <h1>Pick keyboard parts that <em>actually fit together.</em></h1>
-      <p class="lede">{kb.entities.length} components across {TYPE_ORDER.length} categories. Stabs that match your PCB cutout, keycap sets that cover your layout, switches that fit your hotswap sockets, all without the &quot;wait, do these go together?&quot; surprise on assembly day.</p>
-      <p class="cta-row">
-        <a class="cta-primary" href="#keyboard_kit">Browse kits</a>
-        <a class="cta-secondary" href="#switch">Browse switches</a>
-      </p>
+      <h1>Build a mech keyboard that <em>fits together.</em></h1>
+      <p class="lede">{kb.entities.length} components. Stabs that match the PCB cutout, keycap sets that cover your layout, switches that fit your hotswap sockets. Sourced from keebfol.io and r/MechanicalKeyboards.</p>
     </div>
   </section>
 
-  <div class="kb-page">
-    {TYPE_ORDER.map((t) => {
-      const ents = byType.get(t) ?? [];
-      const meta = TYPE_LABEL[t];
-      return (
-        <section class="cat-section" id={t}>
-          <header class="cat-head">
-            <h2>{meta.label}</h2>
-            <span class="cat-count">{ents.length} {ents.length === 1 ? "product" : "products"}</span>
-          </header>
-          <p class="cat-blurb">{meta.blurb}</p>
-          <ul class="cat-grid">
-            {ents.map((e) => {
-              const sku = e.sku ?? e.id;
-              const attrs = e.attributes;
-              const priceUsd = typeof attrs.price_usd === "number" ? attrs.price_usd : null;
-              return (
-                <li class="cat-card">
-                  <a class="cc-link" href={`/keyboards/devices/${sku}/`}>
-                    <span class="cc-brand">{String(attrs.brand ?? "").replace(/_/g, " ")}</span>
-                    <span class="cc-name">{e.name}</span>
-                    <span class="cc-price">{priceUsd != null ? `$${priceUsd}` : ""}</span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      );
-    })}
-  </div>
+  <form id="picker-form" class="picker-form">
+    <fieldset class="picker-step">
+      <legend><span class="step-num">1</span> What layout?</legend>
+      <div class="chip-row">
+        {LAYOUTS.map((l, i) => (
+          <label class="chip">
+            <input type="radio" name="layout" value={l.slug} checked={i === 0} />
+            <span>{l.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset class="picker-step">
+      <legend><span class="step-num">2</span> What components do you want?</legend>
+      <div class="want-grid">
+        {TYPES.map((t) => {
+          const ents = byType.get(t.slug) ?? [];
+          return (
+            <label class="want-tile">
+              <input type="checkbox" name="want" value={t.slug} />
+              <div class="wt-body">
+                <span class="wt-label">{t.label}</span>
+                <span class="wt-blurb">{t.blurb}</span>
+                <span class="wt-count">{ents.length} options</span>
+              </div>
+            </label>
+          );
+        })}
+      </div>
+    </fieldset>
+  </form>
+
+  <section id="picker-result" class="picker-result">
+    <p class="picker-empty">Tick a component above to see compatible options.</p>
+  </section>
+
+  <section class="build-summary" id="build-summary" hidden>
+    <div class="bs-totals">
+      <span class="bs-label">build total</span>
+      <span class="bs-amount" id="bs-amount">$0</span>
+      <span class="bs-meta" id="bs-meta">tick the products you want</span>
+    </div>
+    <a class="bs-cart disabled" id="bs-cart" href={`/${VERTICAL}/cart/?skus=`} target="_blank">
+      <span aria-hidden="true">▣</span>
+      <span>Review &amp; checkout</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </section>
+
+  <details class="all-products">
+    <summary>Or browse everything by category</summary>
+    <div class="all-inner">
+      {TYPES.map((t) => {
+        const ents = byType.get(t.slug) ?? [];
+        if (ents.length === 0) return null;
+        return (
+          <section class="cat-section" id={t.slug}>
+            <header class="cat-head">
+              <h3>{t.label}</h3>
+              <span class="cat-count">{ents.length}</span>
+            </header>
+            <ul class="cat-grid">
+              {ents.map((e) => {
+                const sku = e.sku ?? e.id;
+                const priceUsd = typeof e.attributes.price_usd === "number" ? e.attributes.price_usd : null;
+                return (
+                  <li class="cat-card">
+                    <a class="cc-link" href={`/${VERTICAL}/devices/${sku}/`}>
+                      <span class="cc-brand">{String(e.attributes.brand ?? "").replace(/_/g, " ")}</span>
+                      <span class="cc-name">{e.name}</span>
+                      <span class="cc-price">{priceUsd != null ? `$${priceUsd}` : ""}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        );
+      })}
+    </div>
+  </details>
 </Layout>
 
-<style is:global>
-  .kb-hero {
-    background: linear-gradient(180deg, oklch(0.95 0.04 280) 0%, var(--paper-1) 100%);
-    border-bottom: 1px solid var(--paper-edge);
-    padding: 36px 24px 30px;
+<script id="picker-data" type="application/json" set:html={slimJSON} />
+
+<script>
+  type Slim = { id: string; sku: string; name: string; type: string; brand: string; model: string; price: number | null; note: string; asin: string | null; attrs: Record<string, unknown>; };
+
+  const VERTICAL = "keyboards";
+  const TYPE_LABEL: Record<string, string> = {
+    keyboard_kit: "Kits", switch: "Switches", keycap_set: "Keycaps",
+    keyboard_stabilizer: "Stabilizers", keyboard_plate: "Plates",
+    keyboard_pcb: "PCBs", keyboard_cable: "Cables",
+  };
+  const dataEl = document.getElementById("picker-data");
+  const data: Slim[] = dataEl ? JSON.parse(dataEl.textContent ?? "[]") : [];
+  const form = document.getElementById("picker-form") as HTMLFormElement | null;
+  const resultEl = document.getElementById("picker-result");
+  const buildSummary = document.getElementById("build-summary");
+  const selected = new Set<string>();
+
+  function escapeHtml(s: string): string {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
-  .kb-hero-inner { max-width: 1100px; margin: 0 auto; }
-  .kb-hero .eyebrow { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 6px; }
-  .kb-hero h1 { font-size: 38px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; margin: 0 0 14px; color: var(--ink-0); text-wrap: balance; max-width: 800px; }
-  .kb-hero h1 em { font-style: normal; color: oklch(0.45 0.16 280); }
-  .kb-hero .lede { font-size: 16px; color: var(--ink-2); line-height: 1.55; max-width: 720px; margin: 0 0 18px; }
-  .kb-hero .cta-row { display: flex; gap: 10px; margin: 0; }
-  .kb-page { max-width: 1100px; margin: 0 auto; padding: 28px 24px 80px; }
-</style>
+
+  function matchesLayout(d: Slim, layout: string): boolean {
+    if (!layout || layout === "any") return true;
+    const a = d.attrs as Record<string, unknown>;
+    const layoutAttr = String(a.layout ?? a.pcb_form_factor ?? a.layout_compat ?? "").toLowerCase();
+    if (!layoutAttr) return true;
+    if (layout === "60" && layoutAttr.includes("60")) return true;
+    if (layout === "65" && layoutAttr.includes("65")) return true;
+    if (layout === "75" && layoutAttr.includes("75")) return true;
+    if (layout === "tkl" && (layoutAttr.includes("tkl") || layoutAttr.includes("87"))) return true;
+    if (layout === "100" && (layoutAttr.includes("100") || layoutAttr.includes("full"))) return true;
+    if (layout === "alice" && layoutAttr.includes("alice")) return true;
+    if (layout === "split" && layoutAttr.includes("split")) return true;
+    if (layout === "40" && layoutAttr.includes("40")) return true;
+    // Switch / keycap / cable / generic stab don't have a strict layout — pass
+    if (d.type === "switch" || d.type === "keycap_set" || d.type === "keyboard_cable" || d.type === "keyboard_stabilizer") return true;
+    return false;
+  }
+
+  function renderPicker() {
+    if (!form || !resultEl) return;
+    const wanted = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value);
+    const layout = (form.querySelector('input[name="layout"]:checked') as HTMLInputElement | null)?.value ?? "any";
+    if (wanted.length === 0) {
+      resultEl.innerHTML = '<p class="picker-empty">Tick a component above to see compatible options.</p>';
+      buildSummary?.setAttribute("hidden", "");
+      return;
+    }
+    buildSummary?.removeAttribute("hidden");
+
+    let html = "";
+    for (const wantType of wanted) {
+      const ofType = data.filter((d) => d.type === wantType && matchesLayout(d, layout));
+      if (ofType.length === 0) {
+        html += `<section class="res-section"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2></header><p class="picker-empty">No matches for the selected layout.</p></section>`;
+        continue;
+      }
+      html += `<section class="res-section"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2><span class="res-ct">${ofType.length}</span></header><div class="card-grid">`;
+      for (const d of ofType) {
+        const isSelected = selected.has(d.sku);
+        const detailHref = `/${VERTICAL}/devices/${d.sku}/`;
+        const buyHref = d.asin
+          ? `https://www.amazon.com/dp/${d.asin}/?tag=crosspec20-20&ascsubtag=picker`
+          : `/go/${VERTICAL}/${d.sku}?ref=picker`;
+        const priceTxt = d.price != null ? `$${d.price}` : "—";
+        html += `<article class="pcard" data-sku="${escapeHtml(d.sku)}" data-price="${d.price ?? 0}" data-selected="${isSelected ? "1" : "0"}">
+          <div class="pc-top">
+            <label class="pick-toggle"><input type="checkbox" class="pick-cb" ${isSelected ? "checked" : ""} aria-label="Include in build" /><span class="pick-box" aria-hidden="true"></span></label>
+            <span class="pc-brand">${escapeHtml(d.brand.replace(/_/g, " "))}</span>
+          </div>
+          <h3 class="pc-name"><a href="${detailHref}">${escapeHtml(d.name)}</a></h3>
+          ${d.note ? `<p class="pc-note">${escapeHtml(d.note.slice(0, 200))}</p>` : ""}
+          <div class="pc-foot">
+            <span class="pc-price">${priceTxt}</span>
+            <a class="pc-cta" href="${buyHref}" target="_blank" rel="sponsored nofollow noopener">Open on Amazon →</a>
+          </div>
+        </article>`;
+      }
+      html += `</div></section>`;
+    }
+    resultEl.innerHTML = html;
+    syncBuildSummary();
+  }
+
+  function syncBuildSummary() {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".pcard[data-sku]"));
+    let total = 0;
+    const skus: string[] = [];
+    for (const card of cards) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      const sku = card.dataset.sku ?? "";
+      if (cb && cb.checked) {
+        card.dataset.selected = "1";
+        if (sku) { skus.push(sku); selected.add(sku); total += parseFloat(card.dataset.price ?? "0") || 0; }
+      } else {
+        card.dataset.selected = "0";
+        selected.delete(sku);
+      }
+    }
+    const amountEl = document.getElementById("bs-amount");
+    if (amountEl) amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "$0";
+    const metaEl = document.getElementById("bs-meta");
+    if (metaEl) metaEl.textContent = skus.length === 0 ? "tick the products you want" : `${skus.length} ${skus.length === 1 ? "pick" : "picks"} · review before buying`;
+    const cartEl = document.getElementById("bs-cart") as HTMLAnchorElement | null;
+    if (cartEl) {
+      cartEl.href = `/${VERTICAL}/cart/?skus=${skus.join(",")}`;
+      cartEl.classList.toggle("disabled", skus.length === 0);
+    }
+  }
+
+  if (form) {
+    form.addEventListener("change", (e) => {
+      const t = e.target as HTMLElement;
+      if (t.matches('input[name="want"]') || t.matches('input[name="layout"]')) renderPicker();
+      else if (t.classList.contains("pick-cb")) syncBuildSummary();
+    });
+  }
+</script>

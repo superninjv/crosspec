@@ -2,41 +2,44 @@
 import Layout from "@engine/ui/Layout.astro";
 import type { KnowledgeBase } from "@engine/solver";
 import kbRaw from "@verticals/arduino/kb.json";
+import affRaw from "@verticals/arduino/affiliates.json";
 
 const kb = kbRaw as KnowledgeBase;
+const VERTICAL = "arduino";
+const ACCENT = "oklch(0.50 0.13 200)";
 
-const TYPE_LABEL: Record<string, { label: string; blurb: string }> = {
-  microcontroller_board: {
-    label: "Microcontroller boards",
-    blurb: "Arduino, ESP32, RP2040 / Pico, Adafruit Feather + QT Py, Teensy, Particle, M5Stack.",
-  },
-  sensor_module: {
-    label: "Sensors",
-    blurb: "Temperature, IMU, ToF, gas, current, environmental, GPS, motion. I2C/SPI/analog/1-wire.",
-  },
-  display_module: {
-    label: "Displays",
-    blurb: "OLED, TFT, e-paper, NeoPixel, character LCD, segment displays.",
-  },
-  motor_actuator: {
-    label: "Motors & actuators",
-    blurb: "Servos, steppers, DC motors, drivers (A4988, DRV8825, TMC2208, L298N), solenoids, relays.",
-  },
-  power_module: {
-    label: "Power & charging",
-    blurb: "LiPo packs, 18650 cells, TP4056 chargers, LDOs, buck/boost regulators, USB-C PD triggers.",
-  },
-  carrier_breakout: {
-    label: "Carriers & breakouts",
-    blurb: "FeatherWings, ProtoShields, breadboards, perfboards, screw-terminal adapters.",
-  },
-  connectivity_module: {
-    label: "Connectivity",
-    blurb: "LoRa, BLE, WiFi, GSM/LTE, RFID/NFC, Ethernet, NRF24L01.",
-  },
-};
+interface ProductMap { products: Record<string, { merchant: string; asin?: string }>; }
+const aff = affRaw as ProductMap;
 
-const TYPE_ORDER = ["microcontroller_board", "sensor_module", "display_module", "motor_actuator", "power_module", "carrier_breakout", "connectivity_module"];
+const TYPES = [
+  { slug: "microcontroller_board", label: "Boards", blurb: "Arduino, ESP32, RP2040 / Pico, Feather, Teensy." },
+  { slug: "sensor_module", label: "Sensors", blurb: "Temp, IMU, ToF, gas, environmental, GPS." },
+  { slug: "display_module", label: "Displays", blurb: "OLED, TFT, e-paper, NeoPixel, LCD." },
+  { slug: "motor_actuator", label: "Motors", blurb: "Servos, steppers, drivers, solenoids, relays." },
+  { slug: "power_module", label: "Power", blurb: "LiPo, chargers, regulators, USB-C PD triggers." },
+  { slug: "carrier_breakout", label: "Carriers / breakouts", blurb: "FeatherWings, ProtoShields, breadboards." },
+  { slug: "connectivity_module", label: "Connectivity", blurb: "LoRa, BLE, GSM/LTE, RFID, Ethernet." },
+];
+
+const VOLTAGE = [
+  { slug: "any", label: "Any logic level" },
+  { slug: "3v3", label: "3.3V (ESP32 / Pico / Feather)" },
+  { slug: "5v", label: "5V (UNO / Mega / Nano classic)" },
+];
+
+const slim = kb.entities.map((e) => ({
+  id: e.id,
+  sku: e.sku ?? e.id,
+  name: e.name,
+  type: e.type,
+  brand: String(e.attributes.brand ?? ""),
+  model: String(e.attributes.model ?? ""),
+  price: typeof e.attributes.price_usd === "number" ? (e.attributes.price_usd as number) : null,
+  note: (e.attributes.note as string) ?? "",
+  asin: aff.products[e.id]?.asin ?? aff.products[e.sku ?? e.id]?.asin ?? null,
+  attrs: e.attributes,
+}));
+const slimJSON = JSON.stringify(slim);
 
 const byType = new Map<string, typeof kb.entities>();
 for (const e of kb.entities) {
@@ -45,67 +48,213 @@ for (const e of kb.entities) {
 }
 ---
 <Layout
-  title="Arduino + ESP32 + Pico component compatibility · boards, sensors, displays, motors | crosspec"
-  description="138 microcontroller-project parts with logic-voltage match, I2C address collision, and current-budget compat checks. Sourced from SparkFun, Adafruit, and Arduino open catalogs."
+  title="Arduino + ESP32 + Pico configurator · boards, sensors, displays, motors · crosspec"
+  description="Build an embedded project with parts that fit. Match logic voltage, find I2C address conflicts, get the right LiPo combo. Sourced from SparkFun, Adafruit, Arduino."
   crumbs={["arduino"]}
   kbStatus={`arduino v0.1 · ${kb.entities.length} entities`}
 >
-  <section class="ar-hero">
-    <div class="ar-hero-inner">
+  <section class="solar-hero" style={`--accent: ${ACCENT}`}>
+    <div class="hero-inner">
       <p class="eyebrow">crosspec / arduino &amp; embedded</p>
-      <h1>Pick boards + sensors + power that <em>actually work together.</em></h1>
-      <p class="lede">{kb.entities.length} components across {TYPE_ORDER.length} categories. Match 3.3V / 5V logic levels, find I2C address conflicts before you wire them up, and get the right LiPo + charger combo for your battery-powered build.</p>
-      <p class="cta-row">
-        <a class="cta-primary" href="#microcontroller_board">Browse boards</a>
-        <a class="cta-secondary" href="#sensor_module">Browse sensors</a>
-      </p>
+      <h1>Build an embedded project that <em>just works.</em></h1>
+      <p class="lede">{kb.entities.length} components. Match 3.3V / 5V logic, avoid I2C address conflicts, get the right LiPo + charger. Sourced from SparkFun, Adafruit, and the Arduino official catalog.</p>
     </div>
   </section>
 
-  <div class="ar-page">
-    {TYPE_ORDER.map((t) => {
-      const ents = byType.get(t) ?? [];
-      const meta = TYPE_LABEL[t];
-      return (
-        <section class="cat-section" id={t}>
-          <header class="cat-head">
-            <h2>{meta.label}</h2>
-            <span class="cat-count">{ents.length} {ents.length === 1 ? "product" : "products"}</span>
-          </header>
-          <p class="cat-blurb">{meta.blurb}</p>
-          <ul class="cat-grid">
-            {ents.map((e) => {
-              const sku = e.sku ?? e.id;
-              const attrs = e.attributes;
-              const priceUsd = typeof attrs.price_usd === "number" ? attrs.price_usd : null;
-              return (
-                <li class="cat-card">
-                  <a class="cc-link" href={`/arduino/devices/${sku}/`}>
-                    <span class="cc-brand">{String(attrs.brand ?? "").replace(/_/g, " ")}</span>
-                    <span class="cc-name">{e.name}</span>
-                    <span class="cc-price">{priceUsd != null ? `$${priceUsd}` : ""}</span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      );
-    })}
-  </div>
+  <form id="picker-form" class="picker-form">
+    <fieldset class="picker-step">
+      <legend><span class="step-num">1</span> Logic level?</legend>
+      <div class="chip-row">
+        {VOLTAGE.map((v, i) => (
+          <label class="chip">
+            <input type="radio" name="voltage" value={v.slug} checked={i === 0} />
+            <span>{v.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset class="picker-step">
+      <legend><span class="step-num">2</span> What components do you want?</legend>
+      <div class="want-grid">
+        {TYPES.map((t) => {
+          const ents = byType.get(t.slug) ?? [];
+          return (
+            <label class="want-tile">
+              <input type="checkbox" name="want" value={t.slug} />
+              <div class="wt-body">
+                <span class="wt-label">{t.label}</span>
+                <span class="wt-blurb">{t.blurb}</span>
+                <span class="wt-count">{ents.length} options</span>
+              </div>
+            </label>
+          );
+        })}
+      </div>
+    </fieldset>
+  </form>
+
+  <section id="picker-result" class="picker-result">
+    <p class="picker-empty">Tick a component above to see compatible options.</p>
+  </section>
+
+  <section class="build-summary" id="build-summary" hidden>
+    <div class="bs-totals">
+      <span class="bs-label">build total</span>
+      <span class="bs-amount" id="bs-amount">$0</span>
+      <span class="bs-meta" id="bs-meta">tick the products you want</span>
+    </div>
+    <a class="bs-cart disabled" id="bs-cart" href={`/${VERTICAL}/cart/?skus=`} target="_blank">
+      <span aria-hidden="true">▣</span>
+      <span>Review &amp; checkout</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </section>
+
+  <details class="all-products">
+    <summary>Or browse everything by category</summary>
+    <div class="all-inner">
+      {TYPES.map((t) => {
+        const ents = byType.get(t.slug) ?? [];
+        if (ents.length === 0) return null;
+        return (
+          <section class="cat-section" id={t.slug}>
+            <header class="cat-head">
+              <h3>{t.label}</h3>
+              <span class="cat-count">{ents.length}</span>
+            </header>
+            <ul class="cat-grid">
+              {ents.map((e) => {
+                const sku = e.sku ?? e.id;
+                const priceUsd = typeof e.attributes.price_usd === "number" ? e.attributes.price_usd : null;
+                return (
+                  <li class="cat-card">
+                    <a class="cc-link" href={`/${VERTICAL}/devices/${sku}/`}>
+                      <span class="cc-brand">{String(e.attributes.brand ?? "").replace(/_/g, " ")}</span>
+                      <span class="cc-name">{e.name}</span>
+                      <span class="cc-price">{priceUsd != null ? `$${priceUsd}` : ""}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        );
+      })}
+    </div>
+  </details>
 </Layout>
 
-<style is:global>
-  .ar-hero {
-    background: linear-gradient(180deg, oklch(0.95 0.04 200) 0%, var(--paper-1) 100%);
-    border-bottom: 1px solid var(--paper-edge);
-    padding: 36px 24px 30px;
+<script id="picker-data" type="application/json" set:html={slimJSON} />
+
+<script>
+  type Slim = { id: string; sku: string; name: string; type: string; brand: string; model: string; price: number | null; note: string; asin: string | null; attrs: Record<string, unknown>; };
+
+  const VERTICAL = "arduino";
+  const TYPE_LABEL: Record<string, string> = {
+    microcontroller_board: "Boards", sensor_module: "Sensors", display_module: "Displays",
+    motor_actuator: "Motors", power_module: "Power", carrier_breakout: "Carriers / breakouts",
+    connectivity_module: "Connectivity",
+  };
+  const dataEl = document.getElementById("picker-data");
+  const data: Slim[] = dataEl ? JSON.parse(dataEl.textContent ?? "[]") : [];
+  const form = document.getElementById("picker-form") as HTMLFormElement | null;
+  const resultEl = document.getElementById("picker-result");
+  const buildSummary = document.getElementById("build-summary");
+  const selected = new Set<string>();
+
+  function escapeHtml(s: string): string {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
-  .ar-hero-inner { max-width: 1100px; margin: 0 auto; }
-  .ar-hero .eyebrow { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 6px; }
-  .ar-hero h1 { font-size: 38px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; margin: 0 0 14px; color: var(--ink-0); text-wrap: balance; max-width: 800px; }
-  .ar-hero h1 em { font-style: normal; color: oklch(0.45 0.13 200); }
-  .ar-hero .lede { font-size: 16px; color: var(--ink-2); line-height: 1.55; max-width: 720px; margin: 0 0 18px; }
-  .ar-hero .cta-row { display: flex; gap: 10px; margin: 0; }
-  .ar-page { max-width: 1100px; margin: 0 auto; padding: 28px 24px 80px; }
-</style>
+
+  function matchesVoltage(d: Slim, v: string): boolean {
+    if (!v || v === "any") return true;
+    const a = d.attrs as Record<string, unknown>;
+    const op = String(a.operating_voltage_v ?? a.voltage_v ?? "").toLowerCase();
+    if (!op) return true;
+    if (v === "3v3" && (op.includes("3.3") || op.includes("3v3") || op === "3.3v_or_5v" || op.includes("3v3_or_5v") || op.includes("3.3v_or_5v"))) return true;
+    if (v === "5v" && (op.includes("5") && !op.startsWith("3.3"))) return true;
+    if (op.includes("or")) return true; // dual-voltage modules
+    if (d.type === "carrier_breakout" || d.type === "display_module") return true; // mostly voltage-flexible
+    return false;
+  }
+
+  function renderPicker() {
+    if (!form || !resultEl) return;
+    const wanted = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value);
+    const voltage = (form.querySelector('input[name="voltage"]:checked') as HTMLInputElement | null)?.value ?? "any";
+    if (wanted.length === 0) {
+      resultEl.innerHTML = '<p class="picker-empty">Tick a component above to see compatible options.</p>';
+      buildSummary?.setAttribute("hidden", "");
+      return;
+    }
+    buildSummary?.removeAttribute("hidden");
+
+    let html = "";
+    for (const wantType of wanted) {
+      const ofType = data.filter((d) => d.type === wantType && matchesVoltage(d, voltage));
+      if (ofType.length === 0) {
+        html += `<section class="res-section"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2></header><p class="picker-empty">No matches for the selected logic level.</p></section>`;
+        continue;
+      }
+      html += `<section class="res-section"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2><span class="res-ct">${ofType.length}</span></header><div class="card-grid">`;
+      for (const d of ofType) {
+        const isSelected = selected.has(d.sku);
+        const detailHref = `/${VERTICAL}/devices/${d.sku}/`;
+        const buyHref = d.asin
+          ? `https://www.amazon.com/dp/${d.asin}/?tag=crosspec20-20&ascsubtag=picker`
+          : `/go/${VERTICAL}/${d.sku}?ref=picker`;
+        const priceTxt = d.price != null ? `$${d.price}` : "—";
+        html += `<article class="pcard" data-sku="${escapeHtml(d.sku)}" data-price="${d.price ?? 0}" data-selected="${isSelected ? "1" : "0"}">
+          <div class="pc-top">
+            <label class="pick-toggle"><input type="checkbox" class="pick-cb" ${isSelected ? "checked" : ""} aria-label="Include in build" /><span class="pick-box" aria-hidden="true"></span></label>
+            <span class="pc-brand">${escapeHtml(d.brand.replace(/_/g, " "))}</span>
+          </div>
+          <h3 class="pc-name"><a href="${detailHref}">${escapeHtml(d.name)}</a></h3>
+          ${d.note ? `<p class="pc-note">${escapeHtml(d.note.slice(0, 200))}</p>` : ""}
+          <div class="pc-foot">
+            <span class="pc-price">${priceTxt}</span>
+            <a class="pc-cta" href="${buyHref}" target="_blank" rel="sponsored nofollow noopener">Open on Amazon →</a>
+          </div>
+        </article>`;
+      }
+      html += `</div></section>`;
+    }
+    resultEl.innerHTML = html;
+    syncBuildSummary();
+  }
+
+  function syncBuildSummary() {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".pcard[data-sku]"));
+    let total = 0;
+    const skus: string[] = [];
+    for (const card of cards) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      const sku = card.dataset.sku ?? "";
+      if (cb && cb.checked) {
+        card.dataset.selected = "1";
+        if (sku) { skus.push(sku); selected.add(sku); total += parseFloat(card.dataset.price ?? "0") || 0; }
+      } else {
+        card.dataset.selected = "0";
+        selected.delete(sku);
+      }
+    }
+    const amountEl = document.getElementById("bs-amount");
+    if (amountEl) amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "$0";
+    const metaEl = document.getElementById("bs-meta");
+    if (metaEl) metaEl.textContent = skus.length === 0 ? "tick the products you want" : `${skus.length} ${skus.length === 1 ? "pick" : "picks"} · review before buying`;
+    const cartEl = document.getElementById("bs-cart") as HTMLAnchorElement | null;
+    if (cartEl) {
+      cartEl.href = `/${VERTICAL}/cart/?skus=${skus.join(",")}`;
+      cartEl.classList.toggle("disabled", skus.length === 0);
+    }
+  }
+
+  if (form) {
+    form.addEventListener("change", (e) => {
+      const t = e.target as HTMLElement;
+      if (t.matches('input[name="want"]') || t.matches('input[name="voltage"]')) renderPicker();
+      else if (t.classList.contains("pick-cb")) syncBuildSummary();
+    });
+  }
+</script>
