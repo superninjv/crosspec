@@ -84,6 +84,7 @@
       "type": "head_unit",
       "name": "Pioneer DMH-2660NEX",
       "attributes": {
+        "price_usd": 599,
         "brand": "Pioneer",
         "screen_size_in": 6.8,
         "supports_carplay": true,
@@ -100,6 +101,7 @@
       "type": "head_unit",
       "name": "Kenwood DMX9720XDS",
       "attributes": {
+        "price_usd": 949,
         "brand": "Kenwood",
         "screen_size_in": 6.8,
         "supports_carplay": true,
@@ -116,6 +118,7 @@
       "type": "head_unit",
       "name": "Sony XAV-AX8000",
       "attributes": {
+        "price_usd": 749,
         "brand": "Sony",
         "screen_size_in": 8.95,
         "supports_carplay": true,
@@ -132,6 +135,7 @@
       "type": "head_unit",
       "name": "Alpine iLX-W670",
       "attributes": {
+        "price_usd": 549,
         "brand": "Alpine",
         "screen_size_in": 7.0,
         "supports_carplay": true,
@@ -148,6 +152,7 @@
       "type": "head_unit",
       "name": "Pioneer AVH-2400NEX",
       "attributes": {
+        "price_usd": 449,
         "brand": "Pioneer",
         "screen_size_in": 6.2,
         "supports_carplay": true,
@@ -164,6 +169,7 @@
       "type": "head_unit",
       "name": "Kenwood DMX809S",
       "attributes": {
+        "price_usd": 549,
         "brand": "Kenwood",
         "screen_size_in": 6.8,
         "supports_carplay": true,
@@ -180,6 +186,7 @@
       "type": "head_unit",
       "name": "Sony XAV-AX1000",
       "attributes": {
+        "price_usd": 349,
         "brand": "Sony",
         "screen_size_in": 6.4,
         "supports_carplay": true,
@@ -196,6 +203,7 @@
       "type": "head_unit",
       "name": "JVC KW-V960BW",
       "attributes": {
+        "price_usd": 599,
         "brand": "JVC",
         "screen_size_in": 6.8,
         "supports_carplay": true,
@@ -212,6 +220,7 @@
       "type": "component_speaker",
       "name": "Focal Performance PS 165 FE",
       "attributes": {
+        "price_usd": 379,
         "brand": "Focal",
         "woofer_size_in": 6.5,
         "power_handling_rms_w": 80,
@@ -227,6 +236,7 @@
       "type": "component_speaker",
       "name": "Morel Maximo 6",
       "attributes": {
+        "price_usd": 169,
         "brand": "Morel",
         "woofer_size_in": 6.5,
         "power_handling_rms_w": 75,
@@ -242,6 +252,7 @@
       "type": "component_speaker",
       "name": "JL Audio C2-650",
       "attributes": {
+        "price_usd": 199,
         "brand": "JL Audio",
         "woofer_size_in": 6.5,
         "power_handling_rms_w": 75,
@@ -257,6 +268,7 @@
       "type": "component_speaker",
       "name": "Rockford Fosgate Punch P165-S",
       "attributes": {
+        "price_usd": 199,
         "brand": "Rockford Fosgate",
         "woofer_size_in": 6.5,
         "power_handling_rms_w": 80,
@@ -272,6 +284,7 @@
       "type": "component_speaker",
       "name": "Hertz Dieci DSK 165.3",
       "attributes": {
+        "price_usd": 229,
         "brand": "Hertz",
         "woofer_size_in": 6.5,
         "power_handling_rms_w": 75,
@@ -287,6 +300,7 @@
       "type": "component_speaker",
       "name": "Polk Audio DB6502",
       "attributes": {
+        "price_usd": 109,
         "brand": "Polk Audio",
         "woofer_size_in": 6.5,
         "power_handling_rms_w": 75,
@@ -302,6 +316,7 @@
       "type": "component_speaker",
       "name": "Alpine Type-R R2-S65C",
       "attributes": {
+        "price_usd": 249,
         "brand": "Alpine",
         "woofer_size_in": 6.5,
         "power_handling_rms_w": 100,
@@ -317,6 +332,7 @@
       "type": "component_speaker",
       "name": "Kicker KS650.2",
       "attributes": {
+        "price_usd": 129,
         "brand": "Kicker",
         "woofer_size_in": 6.5,
         "power_handling_rms_w": 75,
@@ -332,6 +348,7 @@
       "type": "coaxial_speaker",
       "name": "Pioneer TS-A6960F",
       "attributes": {
+        "price_usd": 89,
         "brand": "Pioneer",
         "size_in": "6x9",
         "power_handling_rms_w": 80,
@@ -346,6 +363,7 @@
       "type": "coaxial_speaker",
       "name": "JBL CLUB 6520",
       "attributes": {
+        "price_usd": 139,
         "brand": "JBL",
         "size_in": "6.5",
         "power_handling_rms_w": 60,
@@ -360,6 +378,7 @@
       "type": "coaxial_speaker",
       "name": "Rockford Fosgate R165X3",
       "attributes": {
+        "price_usd": 109,
         "brand": "Rockford Fosgate",
         "size_in": "6.5",
         "power_handling_rms_w": 45,
@@ -374,6 +393,7 @@
       "type": "coaxial_speaker",
       "name": "Kenwood KFC-6985PS",
       "attributes": {
+        "price_usd": 79,
         "brand": "Kenwood",
         "size_in": "6x9",
         "power_handling_rms_w": 70,
@@ -388,6 +408,7 @@
       "type": "coaxial_speaker",
       "name": "Sony XS-AWS6701S",
       "attributes": {
+        "price_usd": 169,
         "brand": "Sony",
         "size_in": "6.5",
         "power_handling_rms_w": 50,
@@ -402,6 +423,7 @@
       "type": "coaxial_speaker",
       "name": "Alpine SXE-1750S",
       "attributes": {
+        "price_usd": 89,
         "brand": "Alpine",
         "size_in": "6.5",
         "power_handling_rms_w": 55,
@@ -416,6 +438,7 @@
       "type": "subwoofer",
       "name": "JL Audio 12W3v3-4",
       "attributes": {
+        "price_usd": 379,
         "brand": "JL Audio",
         "size_in": 12,
         "power_handling_rms_w": 500,
@@ -431,6 +454,7 @@
       "type": "subwoofer",
       "name": "Rockford Fosgate Punch P3D4-12",
       "attributes": {
+        "price_usd": 299,
         "brand": "Rockford Fosgate",
         "size_in": 12,
         "power_handling_rms_w": 600,
@@ -446,6 +470,7 @@
       "type": "subwoofer",
       "name": "Kicker CompR CWR12",
       "attributes": {
+        "price_usd": 219,
         "brand": "Kicker",
         "size_in": 12,
         "power_handling_rms_w": 500,
@@ -461,6 +486,7 @@
       "type": "subwoofer",
       "name": "Alpine Type-R R2-W12D4",
       "attributes": {
+        "price_usd": 399,
         "brand": "Alpine",
         "size_in": 12,
         "power_handling_rms_w": 750,
@@ -476,6 +502,7 @@
       "type": "subwoofer",
       "name": "Skar Audio EVL-12",
       "attributes": {
+        "price_usd": 269,
         "brand": "Skar Audio",
         "size_in": 12,
         "power_handling_rms_w": 1250,
@@ -491,6 +518,7 @@
       "type": "subwoofer",
       "name": "Pioneer TS-W3003D4",
       "attributes": {
+        "price_usd": 229,
         "brand": "Pioneer",
         "size_in": 12,
         "power_handling_rms_w": 600,
@@ -506,6 +534,7 @@
       "type": "amplifier",
       "name": "JL Audio XD600/6v2",
       "attributes": {
+        "price_usd": 599,
         "brand": "JL Audio",
         "num_channels": 6,
         "power_per_channel_w_4ohm": 75,
@@ -519,6 +548,7 @@
       "type": "amplifier",
       "name": "Rockford Fosgate Punch P1000X5",
       "attributes": {
+        "price_usd": 549,
         "brand": "Rockford Fosgate",
         "num_channels": 5,
         "power_per_channel_w_4ohm": 100,
@@ -532,6 +562,7 @@
       "type": "amplifier",
       "name": "Alpine MRV-M1200",
       "attributes": {
+        "price_usd": 449,
         "brand": "Alpine",
         "num_channels": 1,
         "power_per_channel_w_4ohm": 600,
@@ -545,6 +576,7 @@
       "type": "amplifier",
       "name": "Kenwood Excelon X802-5",
       "attributes": {
+        "price_usd": 549,
         "brand": "Kenwood",
         "num_channels": 5,
         "power_per_channel_w_4ohm": 100,
@@ -558,6 +590,7 @@
       "type": "amplifier",
       "name": "Hertz HCP 5MD",
       "attributes": {
+        "price_usd": 399,
         "brand": "Hertz",
         "num_channels": 5,
         "power_per_channel_w_4ohm": 100,
@@ -571,6 +604,7 @@
       "type": "amplifier",
       "name": "Skar Audio RP-1200.1D",
       "attributes": {
+        "price_usd": 219,
         "brand": "Skar Audio",
         "num_channels": 1,
         "power_per_channel_w_4ohm": 600,
@@ -584,6 +618,7 @@
       "type": "wiring_kit",
       "name": "KnuKonceptz Kolossus 0AWG",
       "attributes": {
+        "price_usd": 199,
         "brand": "KnuKonceptz",
         "gauge_awg": 0,
         "includes_rca": true,
@@ -596,6 +631,7 @@
       "type": "wiring_kit",
       "name": "Skar Audio SKAR4ANL kit",
       "attributes": {
+        "price_usd": 79,
         "brand": "Skar Audio",
         "gauge_awg": 4,
         "includes_rca": true,
@@ -608,6 +644,7 @@
       "type": "wiring_kit",
       "name": "Stinger SK4641 4awg",
       "attributes": {
+        "price_usd": 89,
         "brand": "Stinger",
         "gauge_awg": 4,
         "includes_rca": false,
@@ -620,6 +657,7 @@
       "type": "wiring_kit",
       "name": "Rockford Fosgate RFK4X kit",
       "attributes": {
+        "price_usd": 59,
         "brand": "Rockford Fosgate",
         "gauge_awg": 4,
         "includes_rca": true,
@@ -632,6 +670,7 @@
       "type": "sound_deadener",
       "name": "Dynamat Xtreme bulk pack",
       "attributes": {
+        "price_usd": 169,
         "brand": "Dynamat",
         "sheet_count": 9,
         "total_sqft": 36,
@@ -644,6 +683,7 @@
       "type": "sound_deadener",
       "name": "SoundQubed Q-Mat bulk pack",
       "attributes": {
+        "price_usd": 99,
         "brand": "SoundQubed",
         "sheet_count": 10,
         "total_sqft": 36,

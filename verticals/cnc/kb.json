@@ -291,6 +291,7 @@
       "name": "Makita RT0701C Compact Router",
       "sku": "makita_rt0701c",
       "attributes": {
+        "price_usd": 119,
         "brand": "Makita",
         "model": "RT0701C",
         "hp": 1.25,
@@ -310,6 +311,7 @@
       "name": "DeWalt DWP611 Compact Router",
       "sku": "dewalt_dwp611",
       "attributes": {
+        "price_usd": 159,
         "brand": "DeWalt",
         "model": "DWP611",
         "hp": 1.25,
@@ -329,6 +331,7 @@
       "name": "Mafell FM 1000 WSJ CNC Router",
       "sku": "mafell_fm1000",
       "attributes": {
+        "price_usd": 599,
         "brand": "Mafell",
         "model": "FM 1000 WSJ",
         "hp": 1.34,
@@ -348,6 +351,7 @@
       "name": "Generic 1.5 kW 65 mm Air-Cooled VFD Spindle",
       "sku": "vfd_65mm_15kw_air",
       "attributes": {
+        "price_usd": 369,
         "brand": "Generic (HY / VEVOR / Huanyang)",
         "model": "1.5 kW ER11 air-cooled",
         "hp": 2.0,
@@ -367,6 +371,7 @@
       "name": "Generic 2.2 kW 80 mm Water-Cooled VFD Spindle",
       "sku": "vfd_80mm_22kw_water",
       "attributes": {
+        "price_usd": 619,
         "brand": "Generic (HY / VEVOR / Huanyang)",
         "model": "2.2 kW ER20 water-cooled",
         "hp": 3.0,
@@ -386,6 +391,7 @@
       "name": "Mafell FM 2700 CNC Spindle",
       "sku": "mafell_fm2700",
       "attributes": {
+        "price_usd": 899,
         "brand": "Mafell",
         "model": "FM 2700",
         "hp": 3.6,
@@ -405,6 +411,7 @@
       "name": "1/4\" 2-Flute Downcut Endmill (solid carbide)",
       "sku": "bit_downcut_25_2fl",
       "attributes": {
+        "price_usd": 24,
         "brand": "Amana Tool / Whiteside (typical)",
         "diameter_inch": 0.25,
         "shank_diameter_inch": 0.25,
@@ -423,6 +430,7 @@
       "name": "1/4\" 2-Flute Upcut Endmill (solid carbide)",
       "sku": "bit_upcut_25_2fl",
       "attributes": {
+        "price_usd": 19,
         "brand": "Amana Tool / Whiteside (typical)",
         "diameter_inch": 0.25,
         "shank_diameter_inch": 0.25,
@@ -441,6 +449,7 @@
       "name": "1/4\" 3-Flute Compression Bit (solid carbide)",
       "sku": "bit_compression_25_3fl",
       "attributes": {
+        "price_usd": 32,
         "brand": "Amana Tool / Onsrud (typical)",
         "diameter_inch": 0.25,
         "shank_diameter_inch": 0.25,
@@ -459,6 +468,7 @@
       "name": "1/8\" 2-Flute Upcut Endmill (solid carbide)",
       "sku": "bit_upcut_125_2fl",
       "attributes": {
+        "price_usd": 12,
         "brand": "Amana Tool / Kodiak (typical)",
         "diameter_inch": 0.125,
         "shank_diameter_inch": 0.125,
@@ -477,6 +487,7 @@
       "name": "1/16\" 2-Flute Micro Endmill (solid carbide)",
       "sku": "bit_micro_0625_2fl",
       "attributes": {
+        "price_usd": 18,
         "brand": "Harvey Tool (typical)",
         "diameter_inch": 0.0625,
         "shank_diameter_inch": 0.125,
@@ -495,6 +506,7 @@
       "name": "60° V-Bit (solid carbide)",
       "sku": "bit_vbit_60deg",
       "attributes": {
+        "price_usd": 18,
         "brand": "Amana Tool / Whiteside (typical)",
         "diameter_inch": 0.5,
         "shank_diameter_inch": 0.25,
@@ -514,6 +526,7 @@
       "name": "90° V-Bit (solid carbide)",
       "sku": "bit_vbit_90deg",
       "attributes": {
+        "price_usd": 16,
         "brand": "Amana Tool / Whiteside (typical)",
         "diameter_inch": 0.5,
         "shank_diameter_inch": 0.25,
@@ -533,6 +546,7 @@
       "name": "1/4\" Ballnose Endmill (solid carbide)",
       "sku": "bit_ballnose_25",
       "attributes": {
+        "price_usd": 22,
         "brand": "Amana Tool / Destiny (typical)",
         "diameter_inch": 0.25,
         "shank_diameter_inch": 0.25,
@@ -551,6 +565,7 @@
       "name": "1/8\" Ballnose Endmill (solid carbide)",
       "sku": "bit_ballnose_125",
       "attributes": {
+        "price_usd": 18,
         "brand": "Amana Tool / Destiny (typical)",
         "diameter_inch": 0.125,
         "shank_diameter_inch": 0.125,
@@ -569,6 +584,7 @@
       "name": "Single-Flute O-Flute Endmill for Aluminum (solid carbide)",
       "sku": "bit_oflute_al_25",
       "attributes": {
+        "price_usd": 28,
         "brand": "Amana Tool / Harvey Tool (typical)",
         "diameter_inch": 0.25,
         "shank_diameter_inch": 0.25,
@@ -587,6 +603,7 @@
       "name": "Diamond-Pattern Carbide Endmill for Fiberglass/PCB",
       "sku": "bit_diamond_fg_25",
       "attributes": {
+        "price_usd": 35,
         "brand": "Amana Tool / SpeTool (typical)",
         "diameter_inch": 0.25,
         "shank_diameter_inch": 0.25,
@@ -605,6 +622,7 @@
       "name": "Drag Knife Tangential Cutting Tool",
       "sku": "bit_drag_knife_25shk",
       "attributes": {
+        "price_usd": 79,
         "brand": "Donek Tools (typical)",
         "diameter_inch": null,
         "shank_diameter_inch": 0.25,
@@ -623,6 +641,7 @@
       "name": "Mitee-Bite Low-Profile CNC Clamps (set)",
       "sku": "miteebite_lowprofile_set",
       "attributes": {
+        "price_usd": 69,
         "brand": "Mitee-Bite",
         "type": "mechanical_clamp",
         "holds_workpiece_max_mm": "305x305",
@@ -637,6 +656,7 @@
       "name": "T-Track + Hold-Down Clamps Kit",
       "sku": "ttrack_holddown_kit",
       "attributes": {
+        "price_usd": 89,
         "brand": "Kreg / Rockler (typical)",
         "type": "t_track_system",
         "holds_workpiece_max_mm": "610x610",
@@ -651,6 +671,7 @@
       "name": "MDF Spoilboard (tooling plate)",
       "sku": "fixture_mdf_spoilboard",
       "attributes": {
+        "price_usd": 45,
         "brand": "DIY / shop-cut",
         "type": "spoilboard",
         "holds_workpiece_max_mm": "838x838",
@@ -666,6 +687,7 @@
       "name": "DIY Vacuum Table Kit",
       "sku": "fixture_vac_table_diy",
       "attributes": {
+        "price_usd": 199,
         "brand": "DIY (OpenBuilds community design)",
         "type": "vacuum_table",
         "holds_workpiece_max_mm": "600x600",
@@ -681,6 +703,7 @@
       "name": "Festool MFT Dogs + F-Clamps Set",
       "sku": "fixture_mft_dogs_clamps",
       "attributes": {
+        "price_usd": 39,
         "brand": "Festool / Parf Guide compatible",
         "type": "dog_clamp_system",
         "holds_workpiece_max_mm": "1200x600",
@@ -696,6 +719,7 @@
       "name": "CNC Edge Stop / Corner Stops",
       "sku": "fixture_edge_stops",
       "attributes": {
+        "price_usd": 29,
         "brand": "Various (Carbide 3D, generic)",
         "type": "edge_stop",
         "holds_workpiece_max_mm": "610x610",
@@ -710,6 +734,7 @@
       "name": "SuckIt Dust Boot",
       "sku": "suckit_dust_boot",
       "attributes": {
+        "price_usd": 109,
         "brand": "SuckIt",
         "fits_router_diameter_mm": 65,
         "hose_diameter_mm": 57,
@@ -724,6 +749,7 @@
       "name": "Makita-Fit Soft Brush Dust Shoe",
       "sku": "dust_makita_soft_brush",
       "attributes": {
+        "price_usd": 29,
         "brand": "Various (generic)",
         "fits_router_diameter_mm": 65,
         "hose_diameter_mm": 38,
@@ -738,6 +764,7 @@
       "name": "Rockler CNC Dust Shoe",
       "sku": "rockler_cnc_dust_shoe",
       "attributes": {
+        "price_usd": 79,
         "brand": "Rockler",
         "fits_router_diameter_mm": 65,
         "hose_diameter_mm": 57,
@@ -752,6 +779,7 @@
       "name": "Generic 65 mm CNC Dust Shoe",
       "sku": "dust_generic_65mm",
       "attributes": {
+        "price_usd": 45,
         "brand": "Generic / 3D-printed community designs",
         "fits_router_diameter_mm": 65,
         "hose_diameter_mm": 38,
@@ -766,6 +794,7 @@
       "name": "Buildbotics CNC Controller",
       "sku": "buildbotics_controller",
       "attributes": {
+        "price_usd": 729,
         "brand": "Buildbotics",
         "controller_kind": "external_box",
         "grbl_compatible": false,
@@ -782,6 +811,7 @@
       "name": "Masso G3 CNC Controller",
       "sku": "masso_g3",
       "attributes": {
+        "price_usd": 950,
         "brand": "Masso",
         "controller_kind": "external_box",
         "grbl_compatible": false,
@@ -886,6 +916,7 @@
       "name": "Mafell FM 2700-V CNC Spindle",
       "sku": "mafell_fm2700v",
       "attributes": {
+        "price_usd": 949,
         "brand": "Mafell",
         "model": "FM 2700-V",
         "hp": 3.6,
@@ -905,6 +936,7 @@
       "name": "Generic ER20 800W 65mm Air-Cooled VFD Spindle",
       "sku": "vfd_65mm_800w_er20_air",
       "attributes": {
+        "price_usd": 289,
         "brand": "Generic (HY / VEVOR)",
         "model": "800W ER20 air-cooled",
         "hp": 1.07,
@@ -924,6 +956,7 @@
       "name": "Hitachi M12VC Fixed-Base Router",
       "sku": "hitachi_m12vc",
       "attributes": {
+        "price_usd": 229,
         "brand": "Metabo HPT (formerly Hitachi)",
         "model": "M12VC",
         "hp": 2.25,
@@ -943,6 +976,7 @@
       "name": "Bosch GKF12V-08 Palm Router",
       "sku": "bosch_gkf12v_08",
       "attributes": {
+        "price_usd": 179,
         "brand": "Bosch",
         "model": "GKF12V-08",
         "hp": 1.0,
@@ -962,6 +996,7 @@
       "name": "Whiteside Spiral Upcut 1/2\" (solid carbide)",
       "sku": "whiteside_1050_upcut_50",
       "attributes": {
+        "price_usd": 32,
         "brand": "Whiteside",
         "diameter_inch": 0.5,
         "shank_diameter_inch": 0.5,
@@ -980,6 +1015,7 @@
       "name": "Amana CNC Compression 1/2\" (solid carbide)",
       "sku": "amana_46202_compression_50",
       "attributes": {
+        "price_usd": 55,
         "brand": "Amana Tool",
         "diameter_inch": 0.5,
         "shank_diameter_inch": 0.5,
@@ -998,6 +1034,7 @@
       "name": "Carbide-Tipped 90° V-Bit",
       "sku": "bit_vbit_90deg_ct",
       "attributes": {
+        "price_usd": 22,
         "brand": "Amana Tool / Whiteside (typical)",
         "diameter_inch": 0.5,
         "shank_diameter_inch": 0.25,
@@ -1017,6 +1054,7 @@
       "name": "4-Flute Downcut 1/4\" (solid carbide)",
       "sku": "bit_downcut_4fl_25",
       "attributes": {
+        "price_usd": 38,
         "brand": "Amana Tool / SpeTool (typical)",
         "diameter_inch": 0.25,
         "shank_diameter_inch": 0.25,
@@ -1035,6 +1073,7 @@
       "name": "Aluminum 1-Flute Upcut 1/4\" (solid carbide)",
       "sku": "bit_1fl_al_25",
       "attributes": {
+        "price_usd": 28,
         "brand": "Harvey Tool / Amana Tool (typical)",
         "diameter_inch": 0.25,
         "shank_diameter_inch": 0.25,
@@ -1053,6 +1092,7 @@
       "name": "Insert Tool Body 1/2\" (indexable carbide)",
       "sku": "bit_insert_body_50",
       "attributes": {
+        "price_usd": 79,
         "brand": "Amana Tool / Onsrud (typical)",
         "diameter_inch": 0.5,
         "shank_diameter_inch": 0.5,
@@ -1071,6 +1111,7 @@
       "name": "Chamfer 45° 1/4\" (solid carbide)",
       "sku": "bit_chamfer_45_25",
       "attributes": {
+        "price_usd": 29,
         "brand": "Amana Tool / Whiteside (typical)",
         "diameter_inch": 0.375,
         "shank_diameter_inch": 0.25,
@@ -1090,6 +1131,7 @@
       "name": "Profile Bit 1/2\" Radius (solid carbide)",
       "sku": "bit_roundover_50r",
       "attributes": {
+        "price_usd": 34,
         "brand": "Amana Tool / Whiteside (typical)",
         "diameter_inch": 1.0,
         "shank_diameter_inch": 0.5,
@@ -1108,6 +1150,7 @@
       "name": "Single-Flute Onsrud Upcut (solid carbide)",
       "sku": "onsrud_52_910_1fl_25",
       "attributes": {
+        "price_usd": 42,
         "brand": "Onsrud",
         "diameter_inch": 0.25,
         "shank_diameter_inch": 0.25,
@@ -1126,6 +1169,7 @@
       "name": "Plate-Edge Form Bit (ogee profile, solid carbide)",
       "sku": "bit_plate_edge_ogee",
       "attributes": {
+        "price_usd": 65,
         "brand": "Amana Tool (typical)",
         "diameter_inch": 0.75,
         "shank_diameter_inch": 0.5,
@@ -1144,6 +1188,7 @@
       "name": "Dovetail 14° Undercut Bit (solid carbide)",
       "sku": "bit_dovetail_14deg_25",
       "attributes": {
+        "price_usd": 48,
         "brand": "Amana Tool / Whiteside (typical)",
         "diameter_inch": 0.5,
         "shank_diameter_inch": 0.25,
@@ -1163,6 +1208,7 @@
       "name": "Surface Planer / Surfacing Bit 1.5\" (solid carbide)",
       "sku": "bit_surface_planer_150",
       "attributes": {
+        "price_usd": 89,
         "brand": "SpeTool / Amana Tool (typical)",
         "diameter_inch": 1.5,
         "shank_diameter_inch": 0.5,
@@ -1181,6 +1227,7 @@
       "name": "Bessey Hold-Down Clamps (set of 4)",
       "sku": "bessey_holddown_set",
       "attributes": {
+        "price_usd": 59,
         "brand": "Bessey",
         "type": "mechanical_clamp",
         "holds_workpiece_max_mm": "610x610",
@@ -1195,6 +1242,7 @@
       "name": "Carter Products Fence Kit",
       "sku": "carter_fence_kit",
       "attributes": {
+        "price_usd": 149,
         "brand": "Carter Products",
         "type": "fence_system",
         "holds_workpiece_max_mm": "1200x610",
@@ -1209,6 +1257,7 @@
       "name": "Low-Profile Cam Clamps (set of 8)",
       "sku": "fixture_cam_clamps_lp",
       "attributes": {
+        "price_usd": 49,
         "brand": "Various (generic / Mitee-Bite compatible)",
         "type": "mechanical_clamp",
         "holds_workpiece_max_mm": "500x500",
@@ -1223,6 +1272,7 @@
       "name": "MFT-Style Track Clamps (set of 4)",
       "sku": "fixture_mft_track_clamps",
       "attributes": {
+        "price_usd": 39,
         "brand": "Festool / Parf-compatible (typical)",
         "type": "dog_clamp_system",
         "holds_workpiece_max_mm": "1200x600",
@@ -1238,6 +1288,7 @@
       "name": "Vacuum Manifold Kit (Frogmill)",
       "sku": "frogmill_vacuum_manifold",
       "attributes": {
+        "price_usd": 179,
         "brand": "Frogmill",
         "type": "vacuum_table",
         "holds_workpiece_max_mm": "600x600",
@@ -1253,6 +1304,7 @@
       "name": "Saburrtooth Quick-Mount Fixture System",
       "sku": "saburrtooth_quickmount",
       "attributes": {
+        "price_usd": 99,
         "brand": "Saburrtooth",
         "type": "mechanical_clamp",
         "holds_workpiece_max_mm": "400x400",
@@ -1267,6 +1319,7 @@
       "name": "SuckIt Dust Shoe v3",
       "sku": "suckit_v3",
       "attributes": {
+        "price_usd": 119,
         "brand": "SuckIt",
         "fits_router_diameter_mm": 65,
         "hose_diameter_mm": 57,
@@ -1281,6 +1334,7 @@
       "name": "Carbide 3D Dust Collection Kit",
       "sku": "carbide3d_dust_kit",
       "attributes": {
+        "price_usd": 89,
         "brand": "Carbide 3D",
         "fits_router_diameter_mm": 65,
         "hose_diameter_mm": 57,
@@ -1295,6 +1349,7 @@
       "name": "Festool MFT/3 Dust Shroud",
       "sku": "festool_mft3_shroud",
       "attributes": {
+        "price_usd": 149,
         "brand": "Festool",
         "fits_router_diameter_mm": 65,
         "hose_diameter_mm": 27,
@@ -1309,6 +1364,7 @@
       "name": "Lightburn Shoe for K40 Laser (adapter)",
       "sku": "dust_lightburn_k40_adapter",
       "attributes": {
+        "price_usd": 59,
         "brand": "Generic / community design",
         "fits_router_diameter_mm": 65,
         "hose_diameter_mm": 38,
@@ -1323,6 +1379,7 @@
       "name": "Mach4 + Ethernet SmoothStepper",
       "sku": "mach4_ess_bundle",
       "attributes": {
+        "price_usd": 499,
         "brand": "Newfangled Solutions (Mach4) + Warp9 (ESS)",
         "controller_kind": "pc_plugin",
         "grbl_compatible": false,
@@ -1339,6 +1396,7 @@
       "name": "Acorn CNC Controller (Centroid)",
       "sku": "centroid_acorn",
       "attributes": {
+        "price_usd": 395,
         "brand": "Centroid",
         "controller_kind": "external_box",
         "grbl_compatible": false,
@@ -1355,6 +1413,7 @@
       "name": "LinuxCNC + Mesa 7i96S",
       "sku": "linuxcnc_mesa_7i96s",
       "attributes": {
+        "price_usd": 219,
         "brand": "Mesa Electronics (hardware) + LinuxCNC (software)",
         "controller_kind": "external_box",
         "grbl_compatible": false,
@@ -1371,6 +1430,7 @@
       "name": "Centroid Allin1 DC CNC Controller",
       "sku": "centroid_allin1dc",
       "attributes": {
+        "price_usd": 895,
         "brand": "Centroid",
         "controller_kind": "external_box",
         "grbl_compatible": false,
@@ -1387,6 +1447,7 @@
       "name": "Carbide Create Pro",
       "sku": "carbide_create_pro",
       "attributes": {
+        "price_usd": 360,
         "brand": "Carbide 3D",
         "license": "subscription",
         "price_usd_per_year": 120,
@@ -1403,6 +1464,7 @@
       "name": "Vectric VCarve Pro",
       "sku": "vectric_vcarve_pro",
       "attributes": {
+        "price_usd": 749,
         "brand": "Vectric",
         "license": "perpetual",
         "price_usd_per_year": 699,
@@ -1419,6 +1481,7 @@
       "name": "Fusion 360 Personal",
       "sku": "autodesk_fusion360_personal",
       "attributes": {
+        "price_usd": 0,
         "brand": "Autodesk",
         "license": "subscription_free_personal",
         "price_usd_per_year": 0,
@@ -1435,6 +1498,7 @@
       "name": "MeshCAM",
       "sku": "meshcam_pro",
       "attributes": {
+        "price_usd": 250,
         "brand": "GRZ Software",
         "license": "perpetual",
         "price_usd_per_year": 250,
@@ -1451,6 +1515,7 @@
       "name": "Estlcam",
       "sku": "estlcam_v12",
       "attributes": {
+        "price_usd": 60,
         "brand": "Christian Knüll",
         "license": "perpetual",
         "price_usd_per_year": 59,
@@ -1467,6 +1532,7 @@
       "name": "Easel Pro",
       "sku": "inventables_easel_pro",
       "attributes": {
+        "price_usd": 299,
         "brand": "Inventables",
         "license": "subscription",
         "price_usd_per_year": 299,

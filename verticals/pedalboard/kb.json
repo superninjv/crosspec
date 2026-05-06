@@ -52,6 +52,7 @@
       "type": "pedal",
       "name": "Ibanez Tube Screamer TS9",
       "attributes": {
+        "price_usd": 89,
         "brand": "ibanez",
         "model": "TS9",
         "subtype": "overdrive",
@@ -69,6 +70,7 @@
       "type": "pedal",
       "name": "Fulltone OCD V2",
       "attributes": {
+        "price_usd": 149,
         "brand": "fulltone",
         "model": "OCD V2",
         "subtype": "overdrive",
@@ -86,6 +88,7 @@
       "type": "pedal",
       "name": "Klon KTR",
       "attributes": {
+        "price_usd": 269,
         "brand": "klon",
         "model": "KTR",
         "subtype": "overdrive",
@@ -103,6 +106,7 @@
       "type": "pedal",
       "name": "Chase Bliss Audio Brothers",
       "attributes": {
+        "price_usd": 299,
         "brand": "chase_bliss_audio",
         "model": "Brothers",
         "subtype": "overdrive",
@@ -120,6 +124,7 @@
       "type": "pedal",
       "name": "Pro Co RAT2",
       "attributes": {
+        "price_usd": 99,
         "brand": "pro_co",
         "model": "RAT2",
         "subtype": "distortion",
@@ -137,6 +142,7 @@
       "type": "pedal",
       "name": "Electro-Harmonix Big Muff Pi",
       "attributes": {
+        "price_usd": 99,
         "brand": "electro_harmonix",
         "model": "Big Muff Pi",
         "subtype": "distortion",
@@ -154,6 +160,7 @@
       "type": "pedal",
       "name": "Boss DS-1 Distortion",
       "attributes": {
+        "price_usd": 49,
         "brand": "boss",
         "model": "DS-1",
         "subtype": "distortion",
@@ -171,6 +178,7 @@
       "type": "pedal",
       "name": "Electro-Harmonix Op-Amp Big Muff Pi",
       "attributes": {
+        "price_usd": 119,
         "brand": "electro_harmonix",
         "model": "Op-Amp Big Muff Pi",
         "subtype": "fuzz",
@@ -188,6 +196,7 @@
       "type": "pedal",
       "name": "JHS Muffuletta",
       "attributes": {
+        "price_usd": 199,
         "brand": "jhs",
         "model": "Muffuletta",
         "subtype": "fuzz",
@@ -205,6 +214,7 @@
       "type": "pedal",
       "name": "Walrus Audio Janus",
       "attributes": {
+        "price_usd": 279,
         "brand": "walrus_audio",
         "model": "Janus",
         "subtype": "fuzz",
@@ -222,6 +232,7 @@
       "type": "pedal",
       "name": "Boss CE-2W Waza Craft Chorus",
       "attributes": {
+        "price_usd": 199,
         "brand": "boss",
         "model": "CE-2W",
         "subtype": "modulation",
@@ -239,6 +250,7 @@
       "type": "pedal",
       "name": "MXR Phase 90",
       "attributes": {
+        "price_usd": 99,
         "brand": "mxr",
         "model": "Phase 90",
         "subtype": "modulation",
@@ -256,6 +268,7 @@
       "type": "pedal",
       "name": "Strymon Mobius",
       "attributes": {
+        "price_usd": 449,
         "brand": "strymon",
         "model": "Mobius",
         "subtype": "modulation",
@@ -273,6 +286,7 @@
       "type": "pedal",
       "name": "Strymon TimeLine",
       "attributes": {
+        "price_usd": 449,
         "brand": "strymon",
         "model": "TimeLine",
         "subtype": "delay",
@@ -290,6 +304,7 @@
       "type": "pedal",
       "name": "MXR Carbon Copy Analog Delay",
       "attributes": {
+        "price_usd": 149,
         "brand": "mxr",
         "model": "Carbon Copy",
         "subtype": "delay",
@@ -307,6 +322,7 @@
       "type": "pedal",
       "name": "Boss DD-8 Digital Delay",
       "attributes": {
+        "price_usd": 169,
         "brand": "boss",
         "model": "DD-8",
         "subtype": "delay",
@@ -324,6 +340,7 @@
       "type": "pedal",
       "name": "Strymon BigSky",
       "attributes": {
+        "price_usd": 479,
         "brand": "strymon",
         "model": "BigSky",
         "subtype": "reverb",
@@ -341,6 +358,7 @@
       "type": "pedal",
       "name": "Walrus Audio Slö Multi Texture Reverb",
       "attributes": {
+        "price_usd": 199,
         "brand": "walrus_audio",
         "model": "Slö",
         "subtype": "reverb",
@@ -358,6 +376,7 @@
       "type": "pedalboard",
       "name": "Pedaltrain Classic Jr",
       "attributes": {
+        "price_usd": 119,
         "brand": "pedaltrain",
         "model": "Classic Jr",
         "dimensions_inch": "17x11",
@@ -373,6 +392,7 @@
       "type": "pedalboard",
       "name": "Pedaltrain Classic 2",
       "attributes": {
+        "price_usd": 169,
         "brand": "pedaltrain",
         "model": "Classic 2",
         "dimensions_inch": "24x12.5",
@@ -388,6 +408,7 @@
       "type": "pedalboard",
       "name": "Pedaltrain Classic Pro",
       "attributes": {
+        "price_usd": 229,
         "brand": "pedaltrain",
         "model": "Classic Pro",
         "dimensions_inch": "32x16",
@@ -403,6 +424,7 @@
       "type": "pedalboard",
       "name": "Pedaltrain Novo 24",
       "attributes": {
+        "price_usd": 249,
         "brand": "pedaltrain",
         "model": "Novo 24",
         "dimensions_inch": "24x14",
@@ -418,6 +440,7 @@
       "type": "pedalboard",
       "name": "Pedaltrain Metro 24",
       "attributes": {
+        "price_usd": 199,
         "brand": "pedaltrain",
         "model": "Metro 24",
         "dimensions_inch": "24x12.5",
@@ -433,6 +456,7 @@
       "type": "pedalboard",
       "name": "Pedaltrain Voyager",
       "attributes": {
+        "price_usd": 149,
         "brand": "pedaltrain",
         "model": "Voyager",
         "dimensions_inch": "20x8",
@@ -448,6 +472,7 @@
       "type": "power_supply",
       "name": "Voodoo Lab Pedal Power 2 Plus",
       "attributes": {
+        "price_usd": 199,
         "brand": "voodoo_lab",
         "model": "Pedal Power 2 Plus",
         "num_outputs": 8,
@@ -463,6 +488,7 @@
       "type": "power_supply",
       "name": "CIOKS DC10",
       "attributes": {
+        "price_usd": 269,
         "brand": "cioks",
         "model": "DC10",
         "num_outputs": 10,
@@ -478,6 +504,7 @@
       "type": "power_supply",
       "name": "Truetone CS12",
       "attributes": {
+        "price_usd": 249,
         "brand": "truetone",
         "model": "CS12",
         "num_outputs": 12,
@@ -493,6 +520,7 @@
       "type": "power_supply",
       "name": "Strymon Zuma R300",
       "attributes": {
+        "price_usd": 269,
         "brand": "strymon",
         "model": "Zuma R300",
         "num_outputs": 9,
@@ -508,6 +536,7 @@
       "type": "power_supply",
       "name": "MXR DC Brick",
       "attributes": {
+        "price_usd": 79,
         "brand": "mxr",
         "model": "DC Brick",
         "num_outputs": 10,
@@ -523,6 +552,7 @@
       "type": "power_supply",
       "name": "Electro-Harmonix 9.6DC-200",
       "attributes": {
+        "price_usd": 39,
         "brand": "electro_harmonix",
         "model": "9.6DC-200",
         "num_outputs": 10,
@@ -538,6 +568,7 @@
       "type": "patch_cable",
       "name": "George L's .155 Cable Kit",
       "attributes": {
+        "price_usd": 79,
         "brand": "george_ls",
         "model": ".155 Cable Kit",
         "length_inch": 6,
@@ -553,6 +584,7 @@
       "type": "patch_cable",
       "name": "Mogami Gold Instrument Patch",
       "attributes": {
+        "price_usd": 89,
         "brand": "mogami",
         "model": "Gold Instrument Patch 6\"",
         "length_inch": 6,
@@ -568,6 +600,7 @@
       "type": "patch_cable",
       "name": "EBS PCF Deluxe Flat Patch Cable",
       "attributes": {
+        "price_usd": 49,
         "brand": "ebs",
         "model": "PCF Deluxe",
         "length_inch": 4,
@@ -583,6 +616,7 @@
       "type": "patch_cable",
       "name": "Pedaltrain Solderless Patch Cable Kit",
       "attributes": {
+        "price_usd": 89,
         "brand": "pedaltrain",
         "model": "Solderless Kit 10-pack",
         "length_inch": 6,
@@ -598,6 +632,7 @@
       "type": "patch_cable",
       "name": "Lava Cable Tightrope Kit",
       "attributes": {
+        "price_usd": 99,
         "brand": "lava_cable",
         "model": "Tightrope Solderless Kit",
         "length_inch": 6,
@@ -613,6 +648,7 @@
       "type": "patch_cable",
       "name": "Hosa CMM Molded Patch Cable 6\"",
       "attributes": {
+        "price_usd": 19,
         "brand": "hosa",
         "model": "CMM-106",
         "length_inch": 6,
@@ -628,6 +664,7 @@
       "type": "tuner",
       "name": "Boss TU-3 Chromatic Tuner",
       "attributes": {
+        "price_usd": 109,
         "brand": "boss",
         "model": "TU-3",
         "type": "chromatic",
@@ -642,6 +679,7 @@
       "type": "tuner",
       "name": "Peterson StroboStomp HD",
       "attributes": {
+        "price_usd": 159,
         "brand": "peterson",
         "model": "StroboStomp HD",
         "type": "strobe",
@@ -656,6 +694,7 @@
       "type": "tuner",
       "name": "TC Electronic PolyTune 3",
       "attributes": {
+        "price_usd": 99,
         "brand": "tc_electronic",
         "model": "PolyTune 3",
         "type": "polyphonic",
@@ -670,6 +709,7 @@
       "type": "tuner",
       "name": "Korg Pitchblack Pro",
       "attributes": {
+        "price_usd": 89,
         "brand": "korg",
         "model": "Pitchblack Pro",
         "type": "chromatic",

@@ -84,6 +84,7 @@
       "type": "bookshelf",
       "name": "KEF LS50 Meta",
       "attributes": {
+        "price_usd": 1599,
         "brand": "KEF",
         "type": "2-way",
         "drivers": ["1in_tweeter_in_cone", "5.25in_woofer"],
@@ -101,6 +102,7 @@
       "type": "bookshelf",
       "name": "Q Acoustics 3030i",
       "attributes": {
+        "price_usd": 549,
         "brand": "Q Acoustics",
         "type": "2-way",
         "drivers": ["0.9in_tweeter", "6.5in_woofer"],
@@ -118,6 +120,7 @@
       "type": "bookshelf",
       "name": "ELAC Debut Reference DBR62",
       "attributes": {
+        "price_usd": 449,
         "brand": "ELAC",
         "type": "2-way",
         "drivers": ["1in_tweeter", "6.5in_woofer"],
@@ -135,6 +138,7 @@
       "type": "bookshelf",
       "name": "Wharfedale Diamond 12.1",
       "attributes": {
+        "price_usd": 399,
         "brand": "Wharfedale",
         "type": "2-way",
         "drivers": ["1in_tweeter", "5in_woofer"],
@@ -152,6 +156,7 @@
       "type": "bookshelf",
       "name": "Polk Audio Reserve R200",
       "attributes": {
+        "price_usd": 549,
         "brand": "Polk Audio",
         "type": "2-way",
         "drivers": ["1in_tweeter", "6.5in_woofer"],
@@ -169,6 +174,7 @@
       "type": "bookshelf",
       "name": "Bowers & Wilkins 707 S3",
       "attributes": {
+        "price_usd": 1499,
         "brand": "Bowers & Wilkins",
         "type": "2-way",
         "drivers": ["1in_tweeter", "5in_woofer"],
@@ -186,6 +192,7 @@
       "type": "bookshelf",
       "name": "Triangle Borea BR03",
       "attributes": {
+        "price_usd": 499,
         "brand": "Triangle",
         "type": "2-way",
         "drivers": ["1in_tweeter", "6.5in_woofer"],
@@ -203,6 +210,7 @@
       "type": "bookshelf",
       "name": "Buchardt S400 mkII",
       "attributes": {
+        "price_usd": 1599,
         "brand": "Buchardt",
         "type": "2-way",
         "drivers": ["1in_tweeter", "5.5in_woofer"],
@@ -220,6 +228,7 @@
       "type": "bookshelf",
       "name": "Klipsch RP-600M",
         "attributes": {
+        "price_usd": 599,
         "brand": "Klipsch",
         "type": "2-way",
         "drivers": ["1in_tweeter_horn", "6.5in_woofer"],
@@ -237,6 +246,7 @@
       "type": "bookshelf",
       "name": "KEF Q150",
       "attributes": {
+        "price_usd": 449,
         "brand": "KEF",
         "type": "2-way",
         "drivers": ["1in_tweeter_in_cone", "5.25in_woofer"],
@@ -254,6 +264,7 @@
       "type": "floorstanding",
       "name": "KEF R7 Meta",
       "attributes": {
+        "price_usd": 4499,
         "brand": "KEF",
         "type": "3-way",
         "drivers": ["1in_tweeter_in_cone", "5in_midrange", "6.5in_woofer", "6.5in_woofer"],
@@ -271,6 +282,7 @@
       "type": "floorstanding",
       "name": "ELAC Debut Reference DFR52",
       "attributes": {
+        "price_usd": 999,
         "brand": "ELAC",
         "type": "3-way",
         "drivers": ["1in_tweeter", "5.25in_midrange", "6.5in_woofer", "6.5in_woofer"],
@@ -288,6 +300,7 @@
       "type": "floorstanding",
       "name": "Klipsch RP-8000F II",
       "attributes": {
+        "price_usd": 1599,
         "brand": "Klipsch",
         "type": "2-way",
         "drivers": ["1in_tweeter_horn", "8in_woofer", "8in_woofer"],
@@ -305,6 +318,7 @@
       "type": "floorstanding",
       "name": "Polk Audio Reserve R700",
       "attributes": {
+        "price_usd": 1799,
         "brand": "Polk Audio",
         "type": "3-way",
         "drivers": ["1in_tweeter", "6.5in_midrange", "8in_woofer"],
@@ -322,6 +336,7 @@
       "type": "floorstanding",
       "name": "Q Acoustics 3050i",
       "attributes": {
+        "price_usd": 799,
         "brand": "Q Acoustics",
         "type": "2-way",
         "drivers": ["1in_tweeter", "6.5in_woofer", "6.5in_woofer"],
@@ -339,6 +354,7 @@
       "type": "floorstanding",
       "name": "Wharfedale Diamond 12.4",
       "attributes": {
+        "price_usd": 799,
         "brand": "Wharfedale",
         "type": "3-way",
         "drivers": ["1in_tweeter", "5in_midrange", "8in_woofer"],
@@ -356,6 +372,7 @@
       "type": "subwoofer",
       "name": "SVS SB-1000 Pro",
       "attributes": {
+        "price_usd": 599,
         "brand": "SVS",
         "driver_size_in": 12,
         "amp_power_w_rms": 325,
@@ -374,6 +391,7 @@
       "type": "subwoofer",
       "name": "Klipsch R-120SW",
       "attributes": {
+        "price_usd": 349,
         "brand": "Klipsch",
         "driver_size_in": 12,
         "amp_power_w_rms": 400,
@@ -392,6 +410,7 @@
       "type": "subwoofer",
       "name": "REL HT/1205 MKII",
       "attributes": {
+        "price_usd": 799,
         "brand": "REL",
         "driver_size_in": 12,
         "amp_power_w_rms": 500,
@@ -410,6 +429,7 @@
       "type": "subwoofer",
       "name": "Rythmik L12",
       "attributes": {
+        "price_usd": 799,
         "brand": "Rythmik",
         "driver_size_in": 12,
         "amp_power_w_rms": 370,
@@ -428,6 +448,7 @@
       "type": "subwoofer",
       "name": "ELAC SUB3030",
       "attributes": {
+        "price_usd": 699,
         "brand": "ELAC",
         "driver_size_in": 12,
         "amp_power_w_rms": 1000,
@@ -446,6 +467,7 @@
       "type": "av_receiver",
       "name": "Denon AVR-X3800H",
       "attributes": {
+        "price_usd": 1599,
         "brand": "Denon",
         "channels": "9.4ch",
         "power_per_channel_w_8ohm": 105,
@@ -462,6 +484,7 @@
       "type": "av_receiver",
       "name": "Marantz Cinema 50",
       "attributes": {
+        "price_usd": 2199,
         "brand": "Marantz",
         "channels": "9.4ch",
         "power_per_channel_w_8ohm": 110,
@@ -478,6 +501,7 @@
       "type": "av_receiver",
       "name": "Yamaha RX-A6A",
       "attributes": {
+        "price_usd": 2499,
         "brand": "Yamaha",
         "channels": "9.2ch",
         "power_per_channel_w_8ohm": 150,
@@ -494,6 +518,7 @@
       "type": "av_receiver",
       "name": "Onkyo TX-RZ70",
       "attributes": {
+        "price_usd": 1799,
         "brand": "Onkyo",
         "channels": "11.2ch",
         "power_per_channel_w_8ohm": 140,
@@ -510,6 +535,7 @@
       "type": "av_receiver",
       "name": "Anthem MRX 740",
       "attributes": {
+        "price_usd": 2999,
         "brand": "Anthem",
         "channels": "7.2ch",
         "power_per_channel_w_8ohm": 140,
@@ -526,6 +552,7 @@
       "type": "av_receiver",
       "name": "Sony STR-AN1000",
       "attributes": {
+        "price_usd": 1299,
         "brand": "Sony",
         "channels": "8.2ch",
         "power_per_channel_w_8ohm": 100,
@@ -542,6 +569,7 @@
       "type": "stereo_amp",
       "name": "Cambridge Audio CXA81",
       "attributes": {
+        "price_usd": 1499,
         "brand": "Cambridge Audio",
         "integrated": true,
         "power_per_channel_w_8ohm": 80,
@@ -556,6 +584,7 @@
       "type": "stereo_amp",
       "name": "NAD C 379",
       "attributes": {
+        "price_usd": 1099,
         "brand": "NAD",
         "integrated": true,
         "power_per_channel_w_8ohm": 120,
@@ -570,6 +599,7 @@
       "type": "stereo_amp",
       "name": "Schiit Vidar 2",
       "attributes": {
+        "price_usd": 899,
         "brand": "Schiit",
         "integrated": false,
         "power_per_channel_w_8ohm": 100,
@@ -584,6 +614,7 @@
       "type": "stereo_amp",
       "name": "Marantz PM7000N",
       "attributes": {
+        "price_usd": 1299,
         "brand": "Marantz",
         "integrated": true,
         "power_per_channel_w_8ohm": 60,
@@ -598,6 +629,7 @@
       "type": "stereo_amp",
       "name": "Rega Brio",
       "attributes": {
+        "price_usd": 999,
         "brand": "Rega",
         "integrated": true,
         "power_per_channel_w_8ohm": 50,
@@ -612,6 +644,7 @@
       "type": "streamer",
       "name": "Bluesound Node X",
       "attributes": {
+        "price_usd": 749,
         "brand": "Bluesound",
         "supports_airplay_2": true,
         "supports_chromecast": false,
@@ -629,6 +662,7 @@
       "type": "streamer",
       "name": "WiiM Pro Plus",
       "attributes": {
+        "price_usd": 219,
         "brand": "WiiM",
         "supports_airplay_2": true,
         "supports_chromecast": true,
@@ -646,6 +680,7 @@
       "type": "streamer",
       "name": "iFi Zen Stream",
       "attributes": {
+        "price_usd": 399,
         "brand": "iFi",
         "supports_airplay_2": true,
         "supports_chromecast": true,
@@ -663,6 +698,7 @@
       "type": "streamer",
       "name": "Cambridge Audio CXN V2",
       "attributes": {
+        "price_usd": 999,
         "brand": "Cambridge Audio",
         "supports_airplay_2": true,
         "supports_chromecast": false,
@@ -680,6 +716,7 @@
       "type": "speaker_cable",
       "name": "Mediabridge 12AWG Speaker Cable with Banana Plugs",
       "attributes": {
+        "price_usd": 39,
         "brand": "Mediabridge",
         "gauge_awg": 12,
         "length_ft": 10,
@@ -693,6 +730,7 @@
       "type": "speaker_cable",
       "name": "Monoprice 14AWG Pure Copper Speaker Wire",
       "attributes": {
+        "price_usd": 25,
         "brand": "Monoprice",
         "gauge_awg": 14,
         "length_ft": 50,
@@ -706,6 +744,7 @@
       "type": "speaker_cable",
       "name": "Audtek 16AWG Pre-Terminated Speaker Cable",
       "attributes": {
+        "price_usd": 39,
         "brand": "Audtek",
         "gauge_awg": 16,
         "length_ft": 10,
@@ -719,6 +758,7 @@
       "type": "speaker_cable",
       "name": "Anti-Cables Level 2 14AWG Solid Core",
       "attributes": {
+        "price_usd": 99,
         "brand": "Anti-Cables",
         "gauge_awg": 14,
         "length_ft": 8,

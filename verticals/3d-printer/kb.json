@@ -52,6 +52,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab A1",
       "attributes": {
+        "price_usd": 299,
         "brand": "bambu_lab",
         "model": "A1",
         "build_volume_mm": "256x256x256",
@@ -69,6 +70,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab A1 Mini",
       "attributes": {
+        "price_usd": 199,
         "brand": "bambu_lab",
         "model": "A1 Mini",
         "build_volume_mm": "180x180x180",
@@ -86,6 +88,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab P1P",
       "attributes": {
+        "price_usd": 499,
         "brand": "bambu_lab",
         "model": "P1P",
         "build_volume_mm": "256x256x256",
@@ -103,6 +106,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab P1S",
       "attributes": {
+        "price_usd": 699,
         "brand": "bambu_lab",
         "model": "P1S",
         "build_volume_mm": "256x256x256",
@@ -120,6 +124,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab X1 Carbon",
       "attributes": {
+        "price_usd": 1199,
         "brand": "bambu_lab",
         "model": "X1C",
         "build_volume_mm": "256x256x256",
@@ -137,6 +142,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab H2D",
       "attributes": {
+        "price_usd": 1999,
         "brand": "bambu_lab",
         "model": "H2D",
         "build_volume_mm": "350x320x325",
@@ -154,6 +160,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab P2S",
       "attributes": {
+        "price_usd": 849,
         "brand": "bambu_lab",
         "model": "P2S",
         "build_volume_mm": "256x256x256",
@@ -171,6 +178,7 @@
       "type": "fdm_printer",
       "name": "Prusa MK4S",
       "attributes": {
+        "price_usd": 1099,
         "brand": "prusa_research",
         "model": "MK4S",
         "build_volume_mm": "250x210x220",
@@ -188,6 +196,7 @@
       "type": "fdm_printer",
       "name": "Prusa Mini+",
       "attributes": {
+        "price_usd": 459,
         "brand": "prusa_research",
         "model": "Mini+",
         "build_volume_mm": "180x180x180",
@@ -205,6 +214,7 @@
       "type": "fdm_printer",
       "name": "Prusa Core One",
       "attributes": {
+        "price_usd": 1299,
         "brand": "prusa_research",
         "model": "Core One",
         "build_volume_mm": "250x220x270",
@@ -222,6 +232,7 @@
       "type": "fdm_printer",
       "name": "Creality K1C",
       "attributes": {
+        "price_usd": 299,
         "brand": "creality",
         "model": "K1C",
         "build_volume_mm": "220x220x250",
@@ -239,6 +250,7 @@
       "type": "fdm_printer",
       "name": "Sovol SV08",
       "attributes": {
+        "price_usd": 599,
         "brand": "sovol",
         "model": "SV08",
         "build_volume_mm": "350x350x350",
@@ -256,6 +268,7 @@
       "type": "resin_printer",
       "name": "Elegoo Saturn 4 Ultra",
       "attributes": {
+        "price_usd": 599,
         "brand": "elegoo",
         "model": "Saturn 4 Ultra",
         "build_volume_mm": "218x123x220",
@@ -270,6 +283,7 @@
       "type": "resin_printer",
       "name": "Anycubic Photon Mono M7 Pro",
       "attributes": {
+        "price_usd": 449,
         "brand": "anycubic",
         "model": "Photon Mono M7 Pro",
         "build_volume_mm": "200x126x235",
@@ -284,6 +298,7 @@
       "type": "resin_printer",
       "name": "Phrozen Sonic Mighty 14K",
       "attributes": {
+        "price_usd": 699,
         "brand": "phrozen",
         "model": "Sonic Mighty 14K",
         "build_volume_mm": "218x123x235",
@@ -298,6 +313,7 @@
       "type": "hotend",
       "name": "E3D Revo Six",
       "attributes": {
+        "price_usd": 119,
         "brand": "e3d",
         "max_temp_c": 300,
         "fits_printers": ["voron", "ender3", "prusa_mk4s", "generic_v6_mount"],
@@ -312,6 +328,7 @@
       "type": "hotend",
       "name": "Phaetus Dragon HF",
       "attributes": {
+        "price_usd": 109,
         "brand": "phaetus",
         "max_temp_c": 500,
         "fits_printers": ["voron", "ratrig", "generic_v6_mount"],
@@ -326,6 +343,7 @@
       "type": "hotend",
       "name": "Slice Engineering Mosquito Magnum",
       "attributes": {
+        "price_usd": 135,
         "brand": "slice_engineering",
         "max_temp_c": 500,
         "fits_printers": ["voron", "ender3", "generic_v6_mount"],
@@ -340,6 +358,7 @@
       "type": "hotend",
       "name": "Bondtech LGX Lite",
       "attributes": {
+        "price_usd": 69,
         "brand": "bondtech",
         "max_temp_c": 300,
         "fits_printers": ["voron", "ender3", "generic_lgx_mount"],
@@ -354,6 +373,7 @@
       "type": "hotend",
       "name": "Triangle Labs Volcano Clone",
       "attributes": {
+        "price_usd": 29,
         "brand": "triangle_labs",
         "max_temp_c": 300,
         "fits_printers": ["ender3", "cr10", "generic_v6_mount"],
@@ -368,6 +388,7 @@
       "type": "nozzle",
       "name": "Bondtech CHT Brass 0.4mm",
       "attributes": {
+        "price_usd": 14,
         "brand": "bondtech",
         "diameter_mm": 0.4,
         "material": "brass",
@@ -382,6 +403,7 @@
       "type": "nozzle",
       "name": "Hardened Steel 0.4mm Nozzle",
       "attributes": {
+        "price_usd": 9,
         "brand": "e3d",
         "diameter_mm": 0.4,
         "material": "hardened_steel",
@@ -396,6 +418,7 @@
       "type": "nozzle",
       "name": "Ruby-Tipped 0.4mm Nozzle",
       "attributes": {
+        "price_usd": 79,
         "brand": "olsson_ruby",
         "diameter_mm": 0.4,
         "material": "ruby",
@@ -410,6 +433,7 @@
       "type": "nozzle",
       "name": "Tungsten Carbide 0.6mm Nozzle",
       "attributes": {
+        "price_usd": 59,
         "brand": "e3d",
         "diameter_mm": 0.6,
         "material": "tungsten_carbide",
@@ -424,6 +448,7 @@
       "type": "filament",
       "name": "Polymaker PolyTerra PLA",
       "attributes": {
+        "price_usd": 22,
         "brand": "polymaker",
         "material": "PLA",
         "diameter_mm": 1.75,
@@ -441,6 +466,7 @@
       "type": "filament",
       "name": "Bambu PLA Basic",
       "attributes": {
+        "price_usd": 24,
         "brand": "bambu_lab",
         "material": "PLA",
         "diameter_mm": 1.75,
@@ -458,6 +484,7 @@
       "type": "filament",
       "name": "Hatchbox PETG",
       "attributes": {
+        "price_usd": 18,
         "brand": "hatchbox",
         "material": "PETG",
         "diameter_mm": 1.75,
@@ -475,6 +502,7 @@
       "type": "filament",
       "name": "Polymaker PolyMax PC",
       "attributes": {
+        "price_usd": 49,
         "brand": "polymaker",
         "material": "PC",
         "diameter_mm": 1.75,
@@ -492,6 +520,7 @@
       "type": "filament",
       "name": "Bambu ABS",
       "attributes": {
+        "price_usd": 26,
         "brand": "bambu_lab",
         "material": "ABS",
         "diameter_mm": 1.75,
@@ -509,6 +538,7 @@
       "type": "filament",
       "name": "eSun ePA-CF Carbon Fiber Nylon",
       "attributes": {
+        "price_usd": 44,
         "brand": "esun",
         "material": "PA-CF",
         "diameter_mm": 1.75,
@@ -526,6 +556,7 @@
       "type": "filament",
       "name": "SunLu TPU 95A",
       "attributes": {
+        "price_usd": 26,
         "brand": "sunlu",
         "material": "TPU",
         "diameter_mm": 1.75,
@@ -543,6 +574,7 @@
       "type": "enclosure",
       "name": "Creality Enclosure for K1 Series",
       "attributes": {
+        "price_usd": 99,
         "brand": "creality",
         "fits_printer_models": ["k1", "k1c", "k1_max"],
         "internal_volume_mm": "530x490x470",
@@ -554,6 +586,7 @@
       "type": "enclosure",
       "name": "IKEA Lack Table Mod Kit",
       "attributes": {
+        "price_usd": 45,
         "brand": "generic",
         "fits_printer_models": ["ender3", "prusa_mk4s", "prusa_mk3s", "cr10"],
         "internal_volume_mm": "500x500x500",
@@ -566,6 +599,7 @@
       "type": "build_surface",
       "name": "Bambu Textured PEI Plate",
       "attributes": {
+        "price_usd": 49,
         "brand": "bambu_lab",
         "surface": "textured_pei",
         "magnetic": true,
@@ -579,6 +613,7 @@
       "type": "build_surface",
       "name": "Wham Bam Flexi Smooth PEI",
       "attributes": {
+        "price_usd": 35,
         "brand": "wham_bam",
         "surface": "smooth_pei",
         "magnetic": true,
@@ -592,6 +627,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab A1 Combo",
       "attributes": {
+        "price_usd": 499,
         "brand": "bambu_lab",
         "model": "A1 Combo",
         "build_volume_mm": "256x256x256",
@@ -609,6 +645,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab P1S Combo",
       "attributes": {
+        "price_usd": 949,
         "brand": "bambu_lab",
         "model": "P1S Combo",
         "build_volume_mm": "256x256x256",
@@ -626,6 +663,7 @@
       "type": "fdm_printer",
       "name": "Bambu Lab X1E",
       "attributes": {
+        "price_usd": 1499,
         "brand": "bambu_lab",
         "model": "X1E",
         "build_volume_mm": "256x256x256",
@@ -643,6 +681,7 @@
       "type": "fdm_printer",
       "name": "Prusa MK4",
       "attributes": {
+        "price_usd": 949,
         "brand": "prusa_research",
         "model": "MK4",
         "build_volume_mm": "250x210x220",
@@ -660,6 +699,7 @@
       "type": "fdm_printer",
       "name": "Voron Trident 250",
       "attributes": {
+        "price_usd": 1499,
         "brand": "voron_design",
         "model": "Trident 250",
         "build_volume_mm": "250x250x250",
@@ -677,6 +717,7 @@
       "type": "fdm_printer",
       "name": "Voron 0.2",
       "attributes": {
+        "price_usd": 1699,
         "brand": "voron_design",
         "model": "0.2",
         "build_volume_mm": "120x120x120",
@@ -694,6 +735,7 @@
       "type": "resin_printer",
       "name": "Anycubic Photon Mono M5s Pro",
       "attributes": {
+        "price_usd": 299,
         "brand": "anycubic",
         "model": "Photon Mono M5s Pro",
         "build_volume_mm": "218x123x260",
@@ -708,6 +750,7 @@
       "type": "resin_printer",
       "name": "Elegoo Mars 5 Ultra",
       "attributes": {
+        "price_usd": 249,
         "brand": "elegoo",
         "model": "Mars 5 Ultra",
         "build_volume_mm": "143x90x165",
@@ -722,6 +765,7 @@
       "type": "resin_printer",
       "name": "Phrozen Sonic Mini 8K S",
       "attributes": {
+        "price_usd": 199,
         "brand": "phrozen",
         "model": "Sonic Mini 8K S",
         "build_volume_mm": "165x72x180",
@@ -736,6 +780,7 @@
       "type": "resin_printer",
       "name": "Uniformation GKtwo",
       "attributes": {
+        "price_usd": 349,
         "brand": "uniformation",
         "model": "GKtwo",
         "build_volume_mm": "200x126x245",
@@ -750,6 +795,7 @@
       "type": "hotend",
       "name": "Bondtech CHT Volcano",
       "attributes": {
+        "price_usd": 18,
         "brand": "bondtech",
         "max_temp_c": 300,
         "fits_printers": ["ender3", "cr10", "generic_v6_mount"],
@@ -764,6 +810,7 @@
       "type": "hotend",
       "name": "E3D Revo Voron",
       "attributes": {
+        "price_usd": 99,
         "brand": "e3d",
         "max_temp_c": 300,
         "fits_printers": ["voron", "ratrig", "generic_v6_mount"],
@@ -778,6 +825,7 @@
       "type": "hotend",
       "name": "Phaetus Rapido HF",
       "attributes": {
+        "price_usd": 89,
         "brand": "phaetus",
         "max_temp_c": 500,
         "fits_printers": ["voron", "ratrig", "generic_v6_mount"],
@@ -792,6 +840,7 @@
       "type": "hotend",
       "name": "Slice Engineering Copperhead",
       "attributes": {
+        "price_usd": 79,
         "brand": "slice_engineering",
         "max_temp_c": 450,
         "fits_printers": ["voron", "ender3", "generic_v6_mount"],
@@ -806,6 +855,7 @@
       "type": "nozzle",
       "name": "Bondtech CHT 0.6mm Hardened Steel",
       "attributes": {
+        "price_usd": 18,
         "brand": "bondtech",
         "diameter_mm": 0.6,
         "material": "hardened_steel",
@@ -820,6 +870,7 @@
       "type": "nozzle",
       "name": "E3D V6 Brass 0.4mm",
       "attributes": {
+        "price_usd": 7,
         "brand": "e3d",
         "diameter_mm": 0.4,
         "material": "brass",
@@ -834,6 +885,7 @@
       "type": "nozzle",
       "name": "Ruby-Tipped 0.6mm Nozzle",
       "attributes": {
+        "price_usd": 89,
         "brand": "olsson_ruby",
         "diameter_mm": 0.6,
         "material": "ruby",
@@ -848,6 +900,7 @@
       "type": "nozzle",
       "name": "Hardened Steel 0.8mm Nozzle",
       "attributes": {
+        "price_usd": 12,
         "brand": "e3d",
         "diameter_mm": 0.8,
         "material": "hardened_steel",
@@ -862,6 +915,7 @@
       "type": "nozzle",
       "name": "Tungsten Carbide 0.4mm Nozzle",
       "attributes": {
+        "price_usd": 55,
         "brand": "e3d",
         "diameter_mm": 0.4,
         "material": "tungsten_carbide",
@@ -876,6 +930,7 @@
       "type": "nozzle",
       "name": "Bondtech CHT 0.4mm Hardened Steel",
       "attributes": {
+        "price_usd": 16,
         "brand": "bondtech",
         "diameter_mm": 0.4,
         "material": "hardened_steel",
@@ -890,6 +945,7 @@
       "type": "filament",
       "name": "Polymaker PolyLite ABS",
       "attributes": {
+        "price_usd": 19,
         "brand": "polymaker",
         "material": "ABS",
         "diameter_mm": 1.75,
@@ -907,6 +963,7 @@
       "type": "filament",
       "name": "Polymaker Fiberon PA-CF",
       "attributes": {
+        "price_usd": 54,
         "brand": "polymaker",
         "material": "PA-CF",
         "diameter_mm": 1.75,
@@ -924,6 +981,7 @@
       "type": "filament",
       "name": "Bambu PETG Basic",
       "attributes": {
+        "price_usd": 24,
         "brand": "bambu_lab",
         "material": "PETG",
         "diameter_mm": 1.75,
@@ -941,6 +999,7 @@
       "type": "filament",
       "name": "Bambu PA-CF",
       "attributes": {
+        "price_usd": 56,
         "brand": "bambu_lab",
         "material": "PA-CF",
         "diameter_mm": 1.75,
@@ -958,6 +1017,7 @@
       "type": "filament",
       "name": "Prusament PETG",
       "attributes": {
+        "price_usd": 29,
         "brand": "prusa_research",
         "material": "PETG",
         "diameter_mm": 1.75,
@@ -975,6 +1035,7 @@
       "type": "filament",
       "name": "Polymaker PolyMax PLA",
       "attributes": {
+        "price_usd": 27,
         "brand": "polymaker",
         "material": "PLA",
         "diameter_mm": 1.75,
@@ -992,6 +1053,7 @@
       "type": "filament",
       "name": "eSun ePLA-ST",
       "attributes": {
+        "price_usd": 22,
         "brand": "esun",
         "material": "PLA",
         "diameter_mm": 1.75,
@@ -1009,6 +1071,7 @@
       "type": "filament",
       "name": "eSun PETG-CF",
       "attributes": {
+        "price_usd": 32,
         "brand": "esun",
         "material": "PETG-CF",
         "diameter_mm": 1.75,
@@ -1026,6 +1089,7 @@
       "type": "filament",
       "name": "Polymaker PolyTerra Wood",
       "attributes": {
+        "price_usd": 24,
         "brand": "polymaker",
         "material": "PLA",
         "diameter_mm": 1.75,
@@ -1043,6 +1107,7 @@
       "type": "filament",
       "name": "Sunlu PLA Plus",
       "attributes": {
+        "price_usd": 16,
         "brand": "sunlu",
         "material": "PLA",
         "diameter_mm": 1.75,
@@ -1060,6 +1125,7 @@
       "type": "filament",
       "name": "Hatchbox ABS",
       "attributes": {
+        "price_usd": 19,
         "brand": "hatchbox",
         "material": "ABS",
         "diameter_mm": 1.75,
@@ -1077,6 +1143,7 @@
       "type": "filament",
       "name": "FormFutura StoneFil",
       "attributes": {
+        "price_usd": 39,
         "brand": "formfutura",
         "material": "PLA",
         "diameter_mm": 1.75,
@@ -1094,6 +1161,7 @@
       "type": "enclosure",
       "name": "Vivedino Enclosure for Prusa MK4",
       "attributes": {
+        "price_usd": 149,
         "brand": "vivedino",
         "fits_printer_models": ["prusa_mk4", "prusa_mk4s"],
         "internal_volume_mm": "450x450x500",
@@ -1106,6 +1174,7 @@
       "type": "enclosure",
       "name": "Voron Stealthburner Skirt Kit",
       "attributes": {
+        "price_usd": 12,
         "brand": "voron_design",
         "fits_printer_models": ["voron_trident_250", "voron_24"],
         "internal_volume_mm": "N/A — skirt only, printer enclosure is integral",
@@ -1118,6 +1187,7 @@
       "type": "enclosure",
       "name": "Generic Flame-Retardant Fabric Enclosure 600x600",
       "attributes": {
+        "price_usd": 79,
         "brand": "generic",
         "fits_printer_models": ["ender3", "sovol_sv08", "cr10", "artillery_sidewinder"],
         "internal_volume_mm": "600x600x700",
@@ -1130,6 +1200,7 @@
       "type": "build_surface",
       "name": "Wham Bam Flexi Smooth Black PEI",
       "attributes": {
+        "price_usd": 35,
         "brand": "wham_bam",
         "surface": "smooth_pei",
         "magnetic": true,
@@ -1143,6 +1214,7 @@
       "type": "build_surface",
       "name": "Bambu Textured PEI Plate (X1/P1 Series)",
       "attributes": {
+        "price_usd": 49,
         "brand": "bambu_lab",
         "surface": "textured_pei",
         "magnetic": true,
@@ -1156,6 +1228,7 @@
       "type": "build_surface",
       "name": "GoPrint Flexible Glass Plate",
       "attributes": {
+        "price_usd": 25,
         "brand": "goprint",
         "surface": "borosilicate_glass",
         "magnetic": true,
@@ -1169,6 +1242,7 @@
       "type": "build_surface",
       "name": "Energetic PEI Sheet 235x235",
       "attributes": {
+        "price_usd": 18,
         "brand": "energetic",
         "surface": "textured_pei",
         "magnetic": true,
@@ -1182,6 +1256,7 @@
       "type": "build_surface",
       "name": "Magigoo PA Glue Stick",
       "attributes": {
+        "price_usd": 14,
         "brand": "magigoo",
         "surface": "adhesive_stick",
         "magnetic": false,

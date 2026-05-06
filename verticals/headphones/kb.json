@@ -52,6 +52,7 @@
       "type": "headphone_open",
       "name": "Sennheiser HD 600",
       "attributes": {
+        "price_usd": 399,
         "brand": "Sennheiser",
         "model": "HD 600",
         "driver_type": "dynamic",
@@ -69,6 +70,7 @@
       "type": "headphone_open",
       "name": "Sennheiser HD 660S2",
       "attributes": {
+        "price_usd": 599,
         "brand": "Sennheiser",
         "model": "HD 660S2",
         "driver_type": "dynamic",
@@ -86,6 +88,7 @@
       "type": "headphone_open",
       "name": "Sennheiser HD 800S",
       "attributes": {
+        "price_usd": 1599,
         "brand": "Sennheiser",
         "model": "HD 800S",
         "driver_type": "dynamic",
@@ -103,6 +106,7 @@
       "type": "headphone_open",
       "name": "Focal Clear MG",
       "attributes": {
+        "price_usd": 1499,
         "brand": "Focal",
         "model": "Clear MG",
         "driver_type": "dynamic",
@@ -120,6 +124,7 @@
       "type": "headphone_open",
       "name": "Focal Utopia 2022",
       "attributes": {
+        "price_usd": 4999,
         "brand": "Focal",
         "model": "Utopia 2022",
         "driver_type": "dynamic",
@@ -137,6 +142,7 @@
       "type": "headphone_open",
       "name": "Audeze LCD-X",
       "attributes": {
+        "price_usd": 1199,
         "brand": "Audeze",
         "model": "LCD-X",
         "driver_type": "planar",
@@ -154,6 +160,7 @@
       "type": "headphone_open",
       "name": "HiFiMan Sundara",
       "attributes": {
+        "price_usd": 349,
         "brand": "HiFiMan",
         "model": "Sundara",
         "driver_type": "planar",
@@ -171,6 +178,7 @@
       "type": "headphone_open",
       "name": "HiFiMan Ananda Stealth",
       "attributes": {
+        "price_usd": 599,
         "brand": "HiFiMan",
         "model": "Ananda Stealth",
         "driver_type": "planar",
@@ -188,6 +196,7 @@
       "type": "headphone_open",
       "name": "AKG K712 Pro",
       "attributes": {
+        "price_usd": 299,
         "brand": "AKG",
         "model": "K712 Pro",
         "driver_type": "dynamic",
@@ -205,6 +214,7 @@
       "type": "headphone_open",
       "name": "Beyerdynamic DT 990 Pro",
       "attributes": {
+        "price_usd": 169,
         "brand": "Beyerdynamic",
         "model": "DT 990 Pro",
         "driver_type": "dynamic",
@@ -222,6 +232,7 @@
       "type": "headphone_open",
       "name": "Grado SR325x",
       "attributes": {
+        "price_usd": 295,
         "brand": "Grado",
         "model": "SR325x",
         "driver_type": "dynamic",
@@ -239,6 +250,7 @@
       "type": "headphone_open",
       "name": "Meze 109 Pro",
       "attributes": {
+        "price_usd": 799,
         "brand": "Meze",
         "model": "109 Pro",
         "driver_type": "dynamic",
@@ -256,6 +268,7 @@
       "type": "headphone_closed",
       "name": "Audio-Technica ATH-M50x",
       "attributes": {
+        "price_usd": 149,
         "brand": "Audio-Technica",
         "model": "ATH-M50x",
         "driver_type": "dynamic",
@@ -273,6 +286,7 @@
       "type": "headphone_closed",
       "name": "Sony WH-1000XM6",
       "attributes": {
+        "price_usd": 449,
         "brand": "Sony",
         "model": "WH-1000XM6",
         "driver_type": "dynamic",
@@ -290,6 +304,7 @@
       "type": "headphone_closed",
       "name": "Beyerdynamic DT 770 Pro",
       "attributes": {
+        "price_usd": 159,
         "brand": "Beyerdynamic",
         "model": "DT 770 Pro",
         "driver_type": "dynamic",
@@ -307,6 +322,7 @@
       "type": "headphone_closed",
       "name": "Sennheiser HD 569",
       "attributes": {
+        "price_usd": 149,
         "brand": "Sennheiser",
         "model": "HD 569",
         "driver_type": "dynamic",
@@ -324,6 +340,7 @@
       "type": "headphone_closed",
       "name": "Focal Stellia",
       "attributes": {
+        "price_usd": 2999,
         "brand": "Focal",
         "model": "Stellia",
         "driver_type": "dynamic",
@@ -341,6 +358,7 @@
       "type": "headphone_closed",
       "name": "Dan Clark Audio Aeon 2 Closed",
       "attributes": {
+        "price_usd": 899,
         "brand": "Dan Clark Audio",
         "model": "Aeon 2 Closed",
         "driver_type": "planar",
@@ -358,6 +376,7 @@
       "type": "headphone_closed",
       "name": "AKG K371",
       "attributes": {
+        "price_usd": 149,
         "brand": "AKG",
         "model": "K371",
         "driver_type": "dynamic",
@@ -375,6 +394,7 @@
       "type": "headphone_closed",
       "name": "Audeze LCD-XC",
       "attributes": {
+        "price_usd": 1799,
         "brand": "Audeze",
         "model": "LCD-XC",
         "driver_type": "planar",
@@ -392,6 +412,7 @@
       "type": "iem",
       "name": "Etymotic ER4XR",
       "attributes": {
+        "price_usd": 349,
         "brand": "Etymotic",
         "model": "ER4XR",
         "driver_config": "1BA",
@@ -406,6 +427,7 @@
       "type": "iem",
       "name": "Moondrop Variations",
       "attributes": {
+        "price_usd": 499,
         "brand": "Moondrop",
         "model": "Variations",
         "driver_config": "hybrid_3BA+1DD",
@@ -420,6 +442,7 @@
       "type": "iem",
       "name": "Truthear Hexa",
       "attributes": {
+        "price_usd": 79,
         "brand": "Truthear",
         "model": "Hexa",
         "driver_config": "hybrid_3BA+1DD",
@@ -434,6 +457,7 @@
       "type": "iem",
       "name": "Sennheiser IE 600",
       "attributes": {
+        "price_usd": 699,
         "brand": "Sennheiser",
         "model": "IE 600",
         "driver_config": "1DD",
@@ -448,6 +472,7 @@
       "type": "iem",
       "name": "64 Audio U6t",
       "attributes": {
+        "price_usd": 1499,
         "brand": "64 Audio",
         "model": "U6t",
         "driver_config": "6BA",
@@ -462,6 +487,7 @@
       "type": "iem",
       "name": "Campfire Andromeda",
       "attributes": {
+        "price_usd": 1099,
         "brand": "Campfire Audio",
         "model": "Andromeda",
         "driver_config": "6BA",
@@ -476,6 +502,7 @@
       "type": "iem",
       "name": "Truthear Nova",
       "attributes": {
+        "price_usd": 99,
         "brand": "Truthear",
         "model": "Nova",
         "driver_config": "1DD",
@@ -490,6 +517,7 @@
       "type": "iem",
       "name": "ThieAudio Monarch MKIII",
       "attributes": {
+        "price_usd": 699,
         "brand": "ThieAudio",
         "model": "Monarch MKIII",
         "driver_config": "electrostat",
@@ -504,6 +532,7 @@
       "type": "dac_amp",
       "name": "FiiO K7",
       "attributes": {
+        "price_usd": 199,
         "brand": "FiiO",
         "model": "K7",
         "has_dac": true,
@@ -519,6 +548,7 @@
       "type": "dac_amp",
       "name": "Topping DX3 Pro+",
       "attributes": {
+        "price_usd": 169,
         "brand": "Topping",
         "model": "DX3 Pro+",
         "has_dac": true,
@@ -534,6 +564,7 @@
       "type": "dac_amp",
       "name": "iFi Zen DAC V3",
       "attributes": {
+        "price_usd": 229,
         "brand": "iFi",
         "model": "Zen DAC V3",
         "has_dac": true,
@@ -549,6 +580,7 @@
       "type": "dac_amp",
       "name": "Schiit Magnius+Modius stack",
       "attributes": {
+        "price_usd": 399,
         "brand": "Schiit",
         "model": "Magnius+Modius",
         "has_dac": true,
@@ -564,6 +596,7 @@
       "type": "dac_amp",
       "name": "JDS Labs Atom 2 stack",
       "attributes": {
+        "price_usd": 250,
         "brand": "JDS Labs",
         "model": "Atom DAC+ / Atom Amp 2",
         "has_dac": true,
@@ -579,6 +612,7 @@
       "type": "dac_amp",
       "name": "Apple USB-C dongle DAC",
       "attributes": {
+        "price_usd": 9,
         "brand": "Apple",
         "model": "USB-C to 3.5mm Headphone Adapter",
         "has_dac": true,
@@ -594,6 +628,7 @@
       "type": "cable",
       "name": "Hart Audio HC-3 (mini-XLR)",
       "attributes": {
+        "price_usd": 79,
         "brand": "Hart Audio",
         "model": "HC-3",
         "connector_source": "mini_xlr",
@@ -607,6 +642,7 @@
       "type": "cable",
       "name": "Periapt Sennheiser cable",
       "attributes": {
+        "price_usd": 49,
         "brand": "Periapt",
         "model": "Sennheiser HD 6xx series cable",
         "connector_source": "3.5mm",
@@ -620,6 +656,7 @@
       "type": "cable",
       "name": "Hifiman 3.5mm dual",
       "attributes": {
+        "price_usd": 29,
         "brand": "HiFiMan",
         "model": "3.5mm dual-entry cable",
         "connector_source": "3.5mm",
@@ -633,6 +670,7 @@
       "type": "cable",
       "name": "Generic 4.4mm balanced replacement",
       "attributes": {
+        "price_usd": 25,
         "brand": "Generic",
         "model": "4.4mm balanced replacement",
         "connector_source": "2pin_0.78mm",
@@ -646,6 +684,7 @@
       "type": "ear_tip",
       "name": "AZLA SednaEarfit Crystal",
       "attributes": {
+        "price_usd": 16,
         "brand": "AZLA",
         "model": "SednaEarfit Crystal",
         "sizes": ["ss", "s", "ms", "m", "l"],
@@ -658,6 +697,7 @@
       "type": "ear_tip",
       "name": "Spinfit CP100",
       "attributes": {
+        "price_usd": 12,
         "brand": "Spinfit",
         "model": "CP100",
         "sizes": ["s", "m", "l"],
