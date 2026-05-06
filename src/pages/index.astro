@@ -16,6 +16,77 @@ interface Vertical {
   status: "live" | "soon";
 }
 
+const ICONS: Record<string, string> = {
+  "smart-home": `<svg class="vi vi-smart-home" viewBox="0 0 32 32" width="32" height="32">
+    <path class="vi-house" d="M5 14 L16 5 L27 14 V26 Q27 28 25 28 H7 Q5 28 5 26 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle class="vi-pulse vi-pulse-1" cx="16" cy="18" r="2" fill="currentColor"/>
+    <circle class="vi-pulse vi-pulse-2" cx="16" cy="18" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <circle class="vi-pulse vi-pulse-3" cx="16" cy="18" r="6" fill="none" stroke="currentColor" stroke-width="1"/>
+  </svg>`,
+  "solar": `<svg class="vi vi-solar" viewBox="0 0 32 32" width="32" height="32">
+    <g class="vi-sun-rays">
+      <line x1="16" y1="3" x2="16" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="16" y1="25" x2="16" y2="29" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="3" y1="16" x2="7" y2="16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="25" y1="16" x2="29" y2="16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="6.5" y1="6.5" x2="9.5" y2="9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="22.5" y1="22.5" x2="25.5" y2="25.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="6.5" y1="25.5" x2="9.5" y2="22.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="22.5" y1="9.5" x2="25.5" y2="6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </g>
+    <circle cx="16" cy="16" r="5" fill="currentColor"/>
+  </svg>`,
+  "keyboards": `<svg class="vi vi-keyboards" viewBox="0 0 32 32" width="32" height="32">
+    <rect x="4" y="11" width="24" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <rect class="vi-key vi-key-1" x="7" y="14" width="4" height="3" rx="0.6" fill="currentColor"/>
+    <rect class="vi-key vi-key-2" x="14" y="14" width="4" height="3" rx="0.6" fill="currentColor"/>
+    <rect class="vi-key vi-key-3" x="21" y="14" width="4" height="3" rx="0.6" fill="currentColor"/>
+    <rect x="7" y="19" width="18" height="3" rx="0.6" fill="currentColor" opacity="0.45"/>
+  </svg>`,
+  "arduino": `<svg class="vi vi-arduino" viewBox="0 0 32 32" width="32" height="32">
+    <rect x="6" y="11" width="20" height="10" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <line x1="9" y1="11" x2="9" y2="9" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="13" y1="11" x2="13" y2="9" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="17" y1="11" x2="17" y2="9" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="21" y1="11" x2="21" y2="9" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="9" y1="21" x2="9" y2="23" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="13" y1="21" x2="13" y2="23" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="17" y1="21" x2="17" y2="23" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="21" y1="21" x2="21" y2="23" stroke="currentColor" stroke-width="1.4"/>
+    <circle class="vi-led" cx="22" cy="16" r="2" fill="currentColor"/>
+  </svg>`,
+  "3d-printer": `<svg class="vi vi-3d-printer" viewBox="0 0 32 32" width="32" height="32">
+    <line x1="3" y1="9" x2="29" y2="9" stroke="currentColor" stroke-width="1.6"/>
+    <g class="vi-nozzle">
+      <rect x="14" y="9" width="4" height="5" fill="currentColor"/>
+      <polygon points="13,14 19,14 17,17 15,17" fill="currentColor"/>
+    </g>
+    <rect x="5" y="22" width="22" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="8" y1="22" x2="8" y2="20" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+    <line x1="16" y1="22" x2="16" y2="20" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+    <line x1="24" y1="22" x2="24" y2="20" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  </svg>`,
+  "cnc": `<svg class="vi vi-cnc" viewBox="0 0 32 32" width="32" height="32">
+    <rect x="4" y="22" width="24" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <g class="vi-spindle" style="transform-origin: 16px 14px;">
+      <rect x="13" y="6" width="6" height="8" fill="currentColor"/>
+      <polygon points="13,14 19,14 17,18 15,18" fill="currentColor"/>
+    </g>
+    <line x1="16" y1="18" x2="16" y2="22" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+  </svg>`,
+  "pc": `<svg class="vi vi-pc" viewBox="0 0 32 32" width="32" height="32">
+    <rect x="9" y="3" width="14" height="26" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <g class="vi-fan" style="transform-origin: 16px 16px;">
+      <circle cx="16" cy="16" r="6" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path d="M16 10 Q19 12 16 16 Z" fill="currentColor"/>
+      <path d="M22 16 Q20 19 16 16 Z" fill="currentColor"/>
+      <path d="M16 22 Q13 20 16 16 Z" fill="currentColor"/>
+      <path d="M10 16 Q12 13 16 16 Z" fill="currentColor"/>
+    </g>
+    <circle cx="16" cy="6" r="0.8" fill="currentColor"/>
+  </svg>`,
+};
+
 const smartHome = smartHomeKb as KnowledgeBase;
 const solar = solarKb as KnowledgeBase;
 const keyboards = keyboardsKb as KnowledgeBase;
@@ -116,6 +187,7 @@ const liveCount = verticals.filter((v) => v.status === "live").length;
         {verticals.map((v) => (
           <li class={`vert-card ${v.status}`} style={`--accent: ${v.accent}`}>
             <a href={v.status === "live" ? `/${v.slug}/` : "#"} class="vc-link" aria-disabled={v.status === "soon"}>
+              <span class="vc-icon" aria-hidden="true" set:html={ICONS[v.slug] ?? ""} />
               <span class="vc-status">{v.status === "live" ? "live" : "coming online"}</span>
               <h2>{v.name}</h2>
               <p class="vc-blurb">{v.blurb}</p>
@@ -295,6 +367,67 @@ const liveCount = verticals.filter((v) => v.status === "live").length;
     font-size: 11px;
     color: var(--ink-3);
     margin: 0;
+  }
+
+  .vc-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    color: var(--accent);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+  .vert-card.soon .vc-icon { opacity: 0.4; }
+  .vc-icon svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+  .vert-card.live .vc-link:hover .vi-pulse-1 { animation: vi-pulse 1.6s ease-out infinite; }
+  .vert-card.live .vc-link:hover .vi-pulse-2 { animation: vi-pulse 1.6s ease-out 0.25s infinite; }
+  .vert-card.live .vc-link:hover .vi-pulse-3 { animation: vi-pulse 1.6s ease-out 0.5s infinite; }
+  @keyframes vi-pulse {
+    0% { opacity: 1; transform: scale(0.4); transform-origin: 16px 18px; }
+    100% { opacity: 0; transform: scale(1.5); transform-origin: 16px 18px; }
+  }
+
+  .vi-sun-rays { transform-origin: 16px 16px; transform-box: fill-box; }
+  .vert-card.live .vc-link:hover .vi-sun-rays { animation: vi-rotate-slow 8s linear infinite; }
+  @keyframes vi-rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .vert-card.live .vc-link:hover .vi-key-1 { animation: vi-keypress 1.2s ease-in-out infinite; }
+  .vert-card.live .vc-link:hover .vi-key-2 { animation: vi-keypress 1.2s ease-in-out 0.2s infinite; }
+  .vert-card.live .vc-link:hover .vi-key-3 { animation: vi-keypress 1.2s ease-in-out 0.4s infinite; }
+  @keyframes vi-keypress {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(1.5px); opacity: 0.7; }
+  }
+
+  .vert-card.live .vc-link:hover .vi-led { animation: vi-blink 1.4s ease-in-out infinite; }
+  @keyframes vi-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  .vi-nozzle { transform-box: fill-box; }
+  .vert-card.live .vc-link:hover .vi-nozzle,
+  .vert-card.soon .vc-link .vi-nozzle { animation: vi-shuttle 2.4s ease-in-out infinite; }
+  @keyframes vi-shuttle {
+    0%, 100% { transform: translateX(-7px); }
+    50% { transform: translateX(7px); }
+  }
+
+  .vert-card.soon .vc-link .vi-spindle { animation: vi-rotate-slow 4s linear infinite; }
+  .vert-card.soon .vc-link .vi-fan { animation: vi-rotate-slow 3s linear infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vi-pulse-1, .vi-pulse-2, .vi-pulse-3,
+    .vi-sun-rays, .vi-key-1, .vi-key-2, .vi-key-3,
+    .vi-led, .vi-nozzle, .vi-spindle, .vi-fan {
+      animation: none !important;
+    }
   }
 
   .why {
