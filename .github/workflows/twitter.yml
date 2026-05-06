@@ -1,0 +1,51 @@
+name: Tweet
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: "Tweet body (under 280 chars). URLs auto-shortened by Twitter."
+        required: true
+        type: string
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post to Twitter
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+          MESSAGE: ${{ inputs.message }}
+        run: |
+          python3 -m pip install --quiet requests requests_oauthlib
+          python3 - <<'PY'
+          import os, sys, json
+          from requests_oauthlib import OAuth1Session
+
+          msg = os.environ["MESSAGE"]
+          if len(msg) > 280:
+              print(f"::error::message is {len(msg)} chars, max 280")
+              sys.exit(1)
+
+          oauth = OAuth1Session(
+              client_key=os.environ["TWITTER_API_KEY"],
+              client_secret=os.environ["TWITTER_API_SECRET"],
+              resource_owner_key=os.environ["TWITTER_ACCESS_TOKEN"],
+              resource_owner_secret=os.environ["TWITTER_ACCESS_SECRET"],
+          )
+          r = oauth.post(
+              "https://api.twitter.com/2/tweets",
+              json={"text": msg},
+              headers={"Content-Type": "application/json"},
+          )
+          if r.status_code >= 300:
+              print(f"::error::twitter API returned {r.status_code}")
+              print(r.text)
+              sys.exit(1)
+          data = r.json()
+          tweet_id = data.get("data", {}).get("id", "?")
+          print(f"posted tweet id={tweet_id}")
+          print(f"::notice::https://twitter.com/i/web/status/{tweet_id}")
+          PY
