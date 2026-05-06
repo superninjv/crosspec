@@ -67,6 +67,27 @@ for (const e of kb.entities) {
     </div>
   </section>
 
+  <section class="ai-helper" id="ai-helper">
+    <div class="ai-inner">
+      <div class="ai-head">
+        <span class="ai-glyph" aria-hidden="true">⌘</span>
+        <span class="ai-title">Tell me about the keyboard you want</span>
+        <span class="ai-sub">e.g. "quiet 65% for office work" or "clicky TKL on a budget"</span>
+      </div>
+      <div class="ai-transcript" id="ai-transcript"></div>
+      <form id="ai-form" class="ai-form" autocomplete="off">
+        <input type="text" name="q" id="ai-input" placeholder="What kind of keyboard are you building?" maxlength="500" required />
+        <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="ai-examples">
+        <button type="button" class="ai-chip" data-q="Quiet 65% for the office">Quiet 65% · office</button>
+        <button type="button" class="ai-chip" data-q="Tactile TKL with thock keycaps">Tactile TKL · thock</button>
+        <button type="button" class="ai-chip" data-q="Compact split keyboard for ergonomics">Split · ergo</button>
+        <button type="button" class="ai-chip" data-q="Cheap full-size starter board">Cheap full-size starter</button>
+      </div>
+    </div>
+  </section>
+
   <form id="picker-form" class="picker-form">
     <fieldset class="picker-step">
       <legend><span class="step-num">1</span> What layout?</legend>
@@ -269,4 +290,122 @@ for (const e of kb.entities) {
       else if (t.classList.contains("pick-cb")) syncBuildSummary();
     });
   }
+
+  // ─── AI helper: natural language → params → applied to picker ───
+
+  type Msg = { role: "user" | "assistant"; content: string };
+  type KeyboardParams = {
+    layout: "60" | "65" | "75" | "tkl" | "100" | "alice" | "split" | "40";
+    switch_type: "linear" | "tactile" | "clicky" | "silent";
+    wants: string[];
+  };
+  type LLMResp =
+    | { kind: "question"; text: string }
+    | { kind: "ready"; summary: string; params: KeyboardParams }
+    | { kind: "error"; text: string };
+
+  const aiForm = document.getElementById("ai-form") as HTMLFormElement | null;
+  const aiInput = document.getElementById("ai-input") as HTMLInputElement | null;
+  const aiSubmit = document.getElementById("ai-submit") as HTMLButtonElement | null;
+  const aiTranscript = document.getElementById("ai-transcript");
+  const conversation: Msg[] = [];
+
+  function appendBubble(role: "user" | "assistant" | "system", text: string) {
+    if (!aiTranscript) return;
+    const div = document.createElement("div");
+    div.className = `ai-bubble ai-${role}`;
+    div.textContent = text;
+    aiTranscript.appendChild(div);
+    aiTranscript.scrollTop = aiTranscript.scrollHeight;
+  }
+
+  function setBusy(busy: boolean) {
+    if (aiInput) aiInput.disabled = busy;
+    if (aiSubmit) {
+      aiSubmit.disabled = busy;
+      aiSubmit.textContent = busy ? "Thinking…" : "Ask →";
+    }
+  }
+
+  async function askLLM(text: string) {
+    conversation.push({ role: "user", content: text });
+    appendBubble("user", text);
+    setBusy(true);
+    try {
+      const r = await fetch("/api/llm-solve", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ vertical: "keyboards", messages: conversation }),
+      });
+      const data = (await r.json()) as LLMResp;
+      if (data.kind === "question") {
+        conversation.push({ role: "assistant", content: data.text });
+        appendBubble("assistant", data.text);
+      } else if (data.kind === "ready") {
+        conversation.push({ role: "assistant", content: data.summary });
+        appendBubble("assistant", data.summary);
+        applyParams(data.params);
+      } else {
+        appendBubble("system", data.text);
+      }
+    } catch (e) {
+      appendBubble("system", "Connection error — try again in a moment.");
+    } finally {
+      setBusy(false);
+      if (aiInput) aiInput.value = "";
+    }
+  }
+
+  function applyParams(p: KeyboardParams) {
+    if (form) {
+      const layoutRadio = form.querySelector<HTMLInputElement>(`input[name="layout"][value="${p.layout}"]`);
+      if (layoutRadio) layoutRadio.checked = true;
+      for (const want of p.wants) {
+        const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
+        if (cb) cb.checked = true;
+      }
+    }
+
+    const SWITCH_LABEL: Record<string, string> = {
+      linear: "linear", tactile: "tactile", clicky: "clicky", silent: "silent",
+    };
+    const LAYOUT_LABEL: Record<string, string> = {
+      "60": "60%", "65": "65%", "75": "75%", tkl: "TKL", "100": "Full size",
+      alice: "Alice", split: "Split", "40": "40%",
+    };
+
+    const sizingEl = document.getElementById("ai-sizing") ?? (() => {
+      const d = document.createElement("div");
+      d.id = "ai-sizing";
+      d.className = "ai-sizing";
+      const aiHelper = document.getElementById("ai-helper");
+      aiHelper?.parentNode?.insertBefore(d, aiHelper.nextSibling);
+      return d;
+    })();
+    sizingEl.innerHTML = `
+      <div class="sz-head">Filtering for ${LAYOUT_LABEL[p.layout] ?? p.layout} · ${SWITCH_LABEL[p.switch_type] ?? p.switch_type} switches</div>
+      <div class="sz-grid">
+        <div class="sz-cell"><span class="sz-k">layout</span><span class="sz-v">${LAYOUT_LABEL[p.layout] ?? p.layout}</span></div>
+        <div class="sz-cell"><span class="sz-k">switch feel</span><span class="sz-v">${SWITCH_LABEL[p.switch_type] ?? p.switch_type}</span></div>
+        <div class="sz-cell"><span class="sz-k">categories</span><span class="sz-v">${p.wants.length} ticked</span></div>
+      </div>
+      <p class="sz-foot">Layout filters the kit list; switch feel is a hint — review individual switch specs below before adding to your build.</p>
+    `;
+    renderPicker();
+    sizingEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  if (aiForm) {
+    aiForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = aiInput?.value.trim() ?? "";
+      if (v) askLLM(v);
+    });
+  }
+  document.querySelectorAll<HTMLButtonElement>(".ai-chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const q = btn.dataset.q ?? "";
+      if (q) askLLM(q);
+    });
+  });
 </script>

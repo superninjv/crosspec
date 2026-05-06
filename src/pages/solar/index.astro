@@ -188,11 +188,14 @@ for (const e of kb.entities) {
   const VERTICAL = "solar";
   const dataEl = document.getElementById("picker-data");
   const data: Slim[] = dataEl ? JSON.parse(dataEl.textContent ?? "[]") : [];
+  const bySku = new Map(data.map((d) => [d.sku, d]));
   const form = document.getElementById("picker-form") as HTMLFormElement | null;
   const resultEl = document.getElementById("picker-result");
   const buildSummary = document.getElementById("build-summary");
 
   const selected = new Set<string>();
+  const qty = new Map<string, number>(); // sku → quantity
+  let lastSizingTargets: { panelW: number; batteryAh: number; inverterW: number; ccA: number; voltage: number } | null = null;
 
   function escapeHtml(s: string): string {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -227,6 +230,7 @@ for (const e of kb.entities) {
         <div class="card-grid">`;
       for (const d of ofType) {
         const isSelected = selected.has(d.sku);
+        const q = qty.get(d.sku) ?? 1;
         const detailHref = `/${VERTICAL}/devices/${d.sku}/`;
         const buyHref = d.asin
           ? `https://www.amazon.com/dp/${d.asin}/?tag=crosspec20-20&ascsubtag=picker`
@@ -236,6 +240,11 @@ for (const e of kb.entities) {
           <div class="pc-top">
             <label class="pick-toggle"><input type="checkbox" class="pick-cb" ${isSelected ? "checked" : ""} aria-label="Include in build" /><span class="pick-box" aria-hidden="true"></span></label>
             <span class="pc-brand">${escapeHtml(d.brand.replace(/_/g, " "))}</span>
+            <div class="pc-qty" ${isSelected ? "" : "hidden"}>
+              <button type="button" class="qty-btn" data-act="dec" aria-label="Decrease quantity">−</button>
+              <span class="qty-val" data-qty>${q}</span>
+              <button type="button" class="qty-btn" data-act="inc" aria-label="Increase quantity">+</button>
+            </div>
           </div>
           <h3 class="pc-name"><a href="${detailHref}">${escapeHtml(d.name)}</a></h3>
           ${d.note ? `<p class="pc-note">${escapeHtml(d.note.slice(0, 200))}</p>` : ""}
@@ -254,31 +263,100 @@ for (const e of kb.entities) {
   function syncBuildSummary() {
     const cards = Array.from(document.querySelectorAll<HTMLElement>(".pcard[data-sku]"));
     let total = 0;
-    const skus: string[] = [];
+    let totalUnits = 0;
+    const cartEntries: string[] = [];
     for (const card of cards) {
       const cb = card.querySelector<HTMLInputElement>(".pick-cb");
       const sku = card.dataset.sku ?? "";
+      const qtyBlock = card.querySelector<HTMLElement>(".pc-qty");
       if (cb && cb.checked) {
         card.dataset.selected = "1";
+        if (qtyBlock) qtyBlock.removeAttribute("hidden");
+        const q = qty.get(sku) ?? 1;
+        const price = parseFloat(card.dataset.price ?? "0") || 0;
         if (sku) {
-          skus.push(sku);
+          cartEntries.push(q > 1 ? `${sku}:${q}` : sku);
           selected.add(sku);
-          total += parseFloat(card.dataset.price ?? "0") || 0;
+          total += price * q;
+          totalUnits += q;
         }
       } else {
         card.dataset.selected = "0";
+        if (qtyBlock) qtyBlock.setAttribute("hidden", "");
         selected.delete(sku);
+        qty.delete(sku);
       }
     }
     const amountEl = document.getElementById("bs-amount");
     if (amountEl) amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "$0";
     const metaEl = document.getElementById("bs-meta");
-    if (metaEl) metaEl.textContent = skus.length === 0 ? "tick the products you want" : `${skus.length} ${skus.length === 1 ? "pick" : "picks"} · review before buying`;
+    if (metaEl) {
+      if (cartEntries.length === 0) metaEl.textContent = "tick the products you want";
+      else if (totalUnits === cartEntries.length) metaEl.textContent = `${cartEntries.length} ${cartEntries.length === 1 ? "pick" : "picks"} · review before buying`;
+      else metaEl.textContent = `${cartEntries.length} ${cartEntries.length === 1 ? "pick" : "picks"} · ${totalUnits} units total`;
+    }
     const cartEl = document.getElementById("bs-cart") as HTMLAnchorElement | null;
     if (cartEl) {
-      cartEl.href = `/${VERTICAL}/cart/?skus=${skus.join(",")}`;
-      cartEl.classList.toggle("disabled", skus.length === 0);
+      cartEl.href = `/${VERTICAL}/cart/?skus=${cartEntries.join(",")}`;
+      cartEl.classList.toggle("disabled", cartEntries.length === 0);
     }
+    syncGapAnalysis();
+  }
+
+  function syncGapAnalysis() {
+    if (!lastSizingTargets) return;
+    const sizingEl = document.getElementById("ai-sizing");
+    if (!sizingEl) return;
+
+    let totalPanelW = 0;
+    let totalBatteryAh = 0;
+    let maxInverterW = 0;
+    let maxCcA = 0;
+    for (const sku of selected) {
+      const d = bySku.get(sku);
+      if (!d) continue;
+      const q = qty.get(sku) ?? 1;
+      const a = d.attrs as Record<string, unknown>;
+      if (d.type === "solar_panel") {
+        const w = Number(a.wattage ?? 0);
+        if (w > 0) totalPanelW += w * q;
+      } else if (d.type === "battery") {
+        const ah = Number(a.capacity_ah ?? 0);
+        const v = Number(a.nominal_voltage ?? 0);
+        if (ah > 0 && v === lastSizingTargets.voltage) totalBatteryAh += ah * q;
+        else if (ah > 0 && v && v < lastSizingTargets.voltage) {
+          // batteries in series — count proportional Ah
+          const factor = v / lastSizingTargets.voltage;
+          totalBatteryAh += Math.round(ah * factor) * q;
+        }
+      } else if (d.type === "inverter") {
+        const w = Number(a.continuous_watts ?? 0);
+        if (w > maxInverterW) maxInverterW = w;
+      } else if (d.type === "solar_charge_controller") {
+        const amps = Number(a.max_current_amps ?? 0);
+        if (amps > maxCcA) maxCcA = amps;
+      }
+    }
+
+    const gap = (have: number, target: number, unit: string) => {
+      if (target <= 0) return "";
+      if (have >= target) return `<span class="gap-met">✓ ${have}${unit}</span>`;
+      return `<span class="gap-short">${have}${unit} / ${target}${unit} · need <strong>${target - have}${unit}</strong> more</span>`;
+    };
+
+    let gapHtml = '<div class="gap-grid">';
+    gapHtml += `<div class="gap-cell"><span class="gap-k">panels</span>${gap(totalPanelW, lastSizingTargets.panelW, "W")}</div>`;
+    gapHtml += `<div class="gap-cell"><span class="gap-k">battery (Ah @ ${lastSizingTargets.voltage}V)</span>${gap(totalBatteryAh, lastSizingTargets.batteryAh, " Ah")}</div>`;
+    gapHtml += `<div class="gap-cell"><span class="gap-k">inverter</span>${gap(maxInverterW, lastSizingTargets.inverterW, "W")}</div>`;
+    gapHtml += `<div class="gap-cell"><span class="gap-k">MPPT</span>${gap(maxCcA, lastSizingTargets.ccA, "A")}</div>`;
+    gapHtml += "</div>";
+
+    const existing = sizingEl.querySelector(".sz-gap");
+    if (existing) existing.remove();
+    const gapDiv = document.createElement("div");
+    gapDiv.className = "sz-gap";
+    gapDiv.innerHTML = '<div class="sz-gap-head">Build progress vs target</div>' + gapHtml;
+    sizingEl.appendChild(gapDiv);
   }
 
   if (form) {
@@ -286,6 +364,23 @@ for (const e of kb.entities) {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]')) renderPicker();
       else if (t.classList.contains("pick-cb")) syncBuildSummary();
+    });
+  }
+
+  // Qty +/- handler (delegated on result area)
+  if (resultEl) {
+    resultEl.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".qty-btn");
+      if (!btn) return;
+      const card = btn.closest<HTMLElement>(".pcard");
+      const sku = card?.dataset.sku;
+      if (!sku) return;
+      const cur = qty.get(sku) ?? 1;
+      const next = btn.dataset.act === "inc" ? Math.min(cur + 1, 99) : Math.max(cur - 1, 1);
+      qty.set(sku, next);
+      const valEl = card?.querySelector<HTMLElement>("[data-qty]");
+      if (valEl) valEl.textContent = String(next);
+      syncBuildSummary();
     });
   }
 
@@ -574,6 +669,31 @@ for (const e of kb.entities) {
   .pc-name a { color: var(--ink-0); text-decoration: none; }
   .pc-name a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .pc-note { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; margin: 0; }
+  .pc-qty {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-left: auto;
+    background: var(--paper-1); border: 1px solid var(--paper-edge); border-radius: 6px;
+    padding: 1px 2px;
+  }
+  .qty-btn {
+    width: 22px; height: 22px;
+    border: 0; background: transparent;
+    font-family: var(--mono); font-size: 14px; font-weight: 700;
+    color: var(--ink-1);
+    cursor: pointer; padding: 0; line-height: 1;
+  }
+  .qty-btn:hover { color: var(--ink-0); background: var(--paper-2); border-radius: 4px; }
+  .qty-val { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--ink-0); min-width: 18px; text-align: center; }
+
+  .sz-gap { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--paper-edge); }
+  .sz-gap-head { font-size: 12.5px; font-weight: 700; color: var(--ink-1); margin-bottom: 8px; }
+  .gap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 6px; }
+  .gap-cell { display: flex; flex-direction: column; gap: 2px; padding: 6px 10px; background: var(--paper-1); border-radius: 6px; font-size: 12.5px; }
+  .gap-k { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); font-weight: 600; }
+  .gap-met { color: oklch(0.32 0.10 145); font-weight: 600; }
+  .gap-short { color: oklch(0.36 0.10 70); font-weight: 500; }
+  .gap-short strong { color: oklch(0.32 0.13 30); }
+
   .pc-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 6px; }
   .pc-price { font-family: var(--mono); font-size: 14.5px; font-weight: 700; color: var(--ink-0); }
   .pc-cta {

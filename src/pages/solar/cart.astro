@@ -77,10 +77,17 @@ const slimJSON = JSON.stringify(slim);
   const params = new URLSearchParams(location.search);
   const skuParam = params.get("skus") ?? "";
   const ref = params.get("ref") ?? "cart";
-  const wanted = skuParam
+  // Accept both "foo,bar" and "foo:2,bar:1" formats.
+  const wantedPairs: Array<{ sku: string; qty: number }> = skuParam
     .split(",")
     .map((s) => s.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .map((s) => {
+      const [sku, qStr] = s.split(":");
+      const qty = qStr ? Math.max(1, Math.min(99, parseInt(qStr, 10) || 1)) : 1;
+      return { sku, qty };
+    });
+  const wanted = wantedPairs.map((p) => p.sku);
 
   const list = document.getElementById("cart-list");
   const amountEl = document.getElementById("cart-amount");
@@ -94,21 +101,32 @@ const slimJSON = JSON.stringify(slim);
       '<p class="cart-empty">No products selected. <a href="/solar/">Go back to the configurator</a> and tick the products you want.</p>';
     if (subtitleEl) subtitleEl.style.display = "none";
   } else {
-    const found = wanted.map((s) => bySku.get(s)).filter((x): x is Slim => Boolean(x));
+    type Picked = { slim: Slim; qty: number };
+    const found: Picked[] = wantedPairs
+      .map((p) => {
+        const slim = bySku.get(p.sku);
+        return slim ? { slim, qty: p.qty } : null;
+      })
+      .filter((x): x is Picked => Boolean(x));
     let total = 0;
-    for (const s of found) total += s.price ?? 0;
+    let totalUnits = 0;
+    for (const f of found) {
+      total += (f.slim.price ?? 0) * f.qty;
+      totalUnits += f.qty;
+    }
     amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "no price tracked";
-    metaEl.textContent = `${found.length} ${found.length === 1 ? "pick" : "picks"}`;
+    metaEl.textContent = totalUnits === found.length
+      ? `${found.length} ${found.length === 1 ? "pick" : "picks"}`
+      : `${found.length} ${found.length === 1 ? "pick" : "picks"} · ${totalUnits} units`;
 
-    // If every selected product has an ASIN, offer one-click bulk-cart.
-    const allHaveAsins = found.length > 0 && found.every((s) => s.asin);
+    const allHaveAsins = found.length > 0 && found.every((f) => f.slim.asin);
     const bulkBanner = (() => {
       if (allHaveAsins) {
         const params = new URLSearchParams();
         params.set("AssociateTag", "crosspec20-20");
-        found.forEach((s, i) => {
-          params.set(`ASIN.${i + 1}`, s.asin!);
-          params.set(`Quantity.${i + 1}`, "1");
+        found.forEach((f, i) => {
+          params.set(`ASIN.${i + 1}`, f.slim.asin!);
+          params.set(`Quantity.${i + 1}`, String(f.qty));
         });
         params.set("ascsubtag", ref);
         const bulkURL = `https://www.amazon.com/gp/aws/cart/add.html?${params.toString()}`;
@@ -117,12 +135,12 @@ const slimJSON = JSON.stringify(slim);
             <strong>One-click cart:</strong> all ${found.length} products have a direct Amazon match.
           </div>
           <a class="bb-cta" href="${bulkURL}" target="_blank" rel="sponsored nofollow noopener">
-            <span>Add ${found.length} to Amazon cart</span>
+            <span>Add ${totalUnits} to Amazon cart</span>
             <span aria-hidden="true">&rarr;</span>
           </a>
         </div>`;
       }
-      const haveCount = found.filter((s) => s.asin).length;
+      const haveCount = found.filter((f) => f.slim.asin).length;
       return `<div class="bulk-banner partial">
         <div class="bb-info">
           ${haveCount > 0 ? `${haveCount} of ${found.length} products have a direct Amazon match. ` : ""}Use the per-product buttons below. Each opens that exact item on Amazon for you to add.
@@ -131,14 +149,17 @@ const slimJSON = JSON.stringify(slim);
     })();
 
     list.innerHTML = bulkBanner + found
-      .map((s) => {
+      .map(({ slim: s, qty }) => {
         const refQs = `?ref=${encodeURIComponent(ref)}`;
         const goHref = s.asin
           ? `https://www.amazon.com/dp/${s.asin}/?tag=crosspec20-20&ascsubtag=${encodeURIComponent(ref)}`
           : `/go/${VERTICAL}/${s.sku}${refQs}`;
         const detailHref = `/${VERTICAL}/devices/${s.sku}/`;
         const sub = [s.brand, s.model].filter(Boolean).join(" · ");
-        const priceTxt = s.price != null ? `$${s.price}` : "&mdash;";
+        const linePrice = s.price != null ? s.price * qty : null;
+        const priceTxt = linePrice != null
+          ? (qty > 1 ? `$${linePrice} <span class="cart-qty">${qty}× $${s.price}</span>` : `$${linePrice}`)
+          : "&mdash;";
         const matchTag = s.asin ? `<span class="match-tag exact">exact match</span>` : `<span class="match-tag search">via search</span>`;
         return `<article class="cart-row">
         <div class="cart-info">
@@ -147,7 +168,7 @@ const slimJSON = JSON.stringify(slim);
         </div>
         <div class="cart-price">${priceTxt}</div>
         <a class="cart-buy" href="${goHref}" target="_blank" rel="sponsored nofollow noopener">
-          <span>Open on Amazon</span>
+          <span>Open on Amazon${qty > 1 ? ` (×${qty})` : ""}</span>
           <span aria-hidden="true">&rarr;</span>
         </a>
       </article>`;

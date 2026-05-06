@@ -61,6 +61,27 @@ for (const e of kb.entities) {
     </div>
   </section>
 
+  <section class="ai-helper" id="ai-helper">
+    <div class="ai-inner">
+      <div class="ai-head">
+        <span class="ai-glyph" aria-hidden="true">⌘</span>
+        <span class="ai-title">Tell me about the project you're building</span>
+        <span class="ai-sub">e.g. "battery-powered ESP32 with a soil sensor" or "Pico W with an OLED"</span>
+      </div>
+      <div class="ai-transcript" id="ai-transcript"></div>
+      <form id="ai-form" class="ai-form" autocomplete="off">
+        <input type="text" name="q" id="ai-input" placeholder="What are you building?" maxlength="500" required />
+        <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="ai-examples">
+        <button type="button" class="ai-chip" data-q="Battery-powered ESP32 with WiFi + soil moisture sensor for a garden">Battery ESP32 · soil sensor</button>
+        <button type="button" class="ai-chip" data-q="Pico W reading temperature and humidity, sending over Wi-Fi">Pico W · temp + humidity</button>
+        <button type="button" class="ai-chip" data-q="Servo project on Arduino UNO with a 9V battery">UNO · servo · 9V</button>
+        <button type="button" class="ai-chip" data-q="Build a tiny e-paper IoT badge with QT Py">QT Py · e-paper badge</button>
+      </div>
+    </div>
+  </section>
+
   <form id="picker-form" class="picker-form">
     <fieldset class="picker-step">
       <legend><span class="step-num">1</span> Logic level?</legend>
@@ -257,4 +278,207 @@ for (const e of kb.entities) {
       else if (t.classList.contains("pick-cb")) syncBuildSummary();
     });
   }
+
+  // ─── AI helper: natural language → params → applied to picker ───
+
+  type Msg = { role: "user" | "assistant"; content: string };
+  type ArduinoParams = {
+    voltage: "3v3" | "5v" | "any";
+    power_source: "usb" | "battery" | "mains";
+    use_case: string;
+    wants: string[];
+  };
+  type LLMResp =
+    | { kind: "question"; text: string }
+    | { kind: "ready"; summary: string; params: ArduinoParams }
+    | { kind: "error"; text: string };
+
+  const aiForm = document.getElementById("ai-form") as HTMLFormElement | null;
+  const aiInput = document.getElementById("ai-input") as HTMLInputElement | null;
+  const aiSubmit = document.getElementById("ai-submit") as HTMLButtonElement | null;
+  const aiTranscript = document.getElementById("ai-transcript");
+  const conversation: Msg[] = [];
+
+  function appendBubble(role: "user" | "assistant" | "system", text: string) {
+    if (!aiTranscript) return;
+    const div = document.createElement("div");
+    div.className = `ai-bubble ai-${role}`;
+    div.textContent = text;
+    aiTranscript.appendChild(div);
+    aiTranscript.scrollTop = aiTranscript.scrollHeight;
+  }
+
+  function setBusy(busy: boolean) {
+    if (aiInput) aiInput.disabled = busy;
+    if (aiSubmit) {
+      aiSubmit.disabled = busy;
+      aiSubmit.textContent = busy ? "Thinking…" : "Ask →";
+    }
+  }
+
+  async function askLLM(text: string) {
+    conversation.push({ role: "user", content: text });
+    appendBubble("user", text);
+    setBusy(true);
+    try {
+      const r = await fetch("/api/llm-solve", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ vertical: "arduino", messages: conversation }),
+      });
+      const data = (await r.json()) as LLMResp;
+      if (data.kind === "question") {
+        conversation.push({ role: "assistant", content: data.text });
+        appendBubble("assistant", data.text);
+      } else if (data.kind === "ready") {
+        conversation.push({ role: "assistant", content: data.summary });
+        appendBubble("assistant", data.summary);
+        applyParams(data.params);
+      } else {
+        appendBubble("system", data.text);
+      }
+    } catch (e) {
+      appendBubble("system", "Connection error — try again in a moment.");
+    } finally {
+      setBusy(false);
+      if (aiInput) aiInput.value = "";
+    }
+  }
+
+  function applyParams(p: ArduinoParams) {
+    if (form) {
+      const voltageRadio = form.querySelector<HTMLInputElement>(`input[name="voltage"][value="${p.voltage}"]`);
+      if (voltageRadio) voltageRadio.checked = true;
+      for (const want of p.wants) {
+        const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
+        if (cb) cb.checked = true;
+      }
+    }
+
+    const VOLTAGE_LABEL: Record<string, string> = {
+      "3v3": "3.3V logic",
+      "5v": "5V logic",
+      "any": "any logic level",
+    };
+    const POWER_LABEL: Record<string, string> = {
+      usb: "USB-powered",
+      battery: "battery-powered",
+      mains: "mains-powered",
+    };
+
+    const stripEl = document.getElementById("ai-filter") ?? (() => {
+      const d = document.createElement("div");
+      d.id = "ai-filter";
+      d.className = "ai-filter";
+      const aiHelper = document.getElementById("ai-helper");
+      aiHelper?.parentNode?.insertBefore(d, aiHelper.nextSibling);
+      return d;
+    })();
+    const useCase = (p.use_case ?? "").trim();
+    stripEl.innerHTML = `
+      <div class="af-head">Filtering for your project</div>
+      <div class="af-pills">
+        <span class="af-pill"><span class="af-k">logic</span><span class="af-v">${VOLTAGE_LABEL[p.voltage] ?? p.voltage}</span></span>
+        <span class="af-pill"><span class="af-k">power</span><span class="af-v">${POWER_LABEL[p.power_source] ?? p.power_source}</span></span>
+        ${useCase ? `<span class="af-pill"><span class="af-k">use case</span><span class="af-v">${useCase.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</span></span>` : ""}
+      </div>
+    `;
+
+    renderPicker();
+    stripEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  if (aiForm) {
+    aiForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = aiInput?.value.trim() ?? "";
+      if (v) askLLM(v);
+    });
+  }
+  document.querySelectorAll<HTMLButtonElement>(".ai-chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const q = btn.dataset.q ?? "";
+      if (q) askLLM(q);
+    });
+  });
 </script>
+
+<style is:global>
+  .ai-helper {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .ai-inner {
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .ai-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .ai-glyph {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 6px;
+    background: var(--accent, oklch(0.50 0.13 200)); color: var(--paper-0);
+    font-family: var(--mono); font-weight: 700; font-size: 13px;
+  }
+  .ai-title { font-size: 15px; font-weight: 700; color: var(--ink-0); }
+  .ai-sub { font-size: 12.5px; color: var(--ink-3); font-style: italic; }
+  .ai-transcript {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 12px;
+    max-height: 320px; overflow-y: auto;
+  }
+  .ai-transcript:empty { display: none; }
+  .ai-bubble {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    max-width: 80%;
+  }
+  .ai-user { align-self: flex-end; background: var(--ink-0); color: var(--paper-0); }
+  .ai-assistant { align-self: flex-start; background: var(--paper-1); color: var(--ink-0); border: 1px solid var(--paper-edge); }
+  .ai-system { align-self: center; font-size: 12px; color: var(--ink-3); font-style: italic; }
+  .ai-form { display: flex; gap: 8px; margin-bottom: 10px; }
+  .ai-form input {
+    flex: 1; padding: 10px 12px;
+    border: 1px solid var(--paper-edge); border-radius: 7px;
+    background: var(--paper-1); color: var(--ink-0);
+    font-size: 14px; font-family: var(--sans);
+  }
+  .ai-form input:focus { outline: 2px solid var(--accent, oklch(0.50 0.13 200)); outline-offset: 1px; }
+  .ai-submit {
+    padding: 10px 18px;
+    background: var(--ink-0); color: var(--paper-0);
+    border: 0; border-radius: 7px;
+    font-size: 13.5px; font-weight: 700; cursor: pointer;
+  }
+  .ai-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .ai-examples { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ai-chip {
+    padding: 6px 12px;
+    background: var(--paper-1); border: 1px solid var(--paper-edge); border-radius: 99px;
+    font-size: 12px; color: var(--ink-2); cursor: pointer;
+    font-family: var(--mono);
+  }
+  .ai-chip:hover { background: var(--paper-0); border-color: var(--ink-3); color: var(--ink-0); }
+
+  .ai-filter {
+    max-width: 1100px;
+    margin: 16px auto 0;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, oklch(0.95 0.04 200) 0%, var(--paper-0) 100%);
+    border: 1px solid var(--accent, oklch(0.50 0.13 200));
+    border-radius: 12px;
+  }
+  .af-head { font-size: 14.5px; font-weight: 700; color: var(--ink-0); margin-bottom: 10px; }
+  .af-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .af-pill {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    background: var(--paper-0); border: 1px solid var(--paper-edge); border-radius: 99px;
+    padding: 6px 12px;
+  }
+  .af-k { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); font-weight: 600; }
+  .af-v { font-family: var(--mono); font-size: 12.5px; font-weight: 700; color: var(--ink-0); }
+</style>
