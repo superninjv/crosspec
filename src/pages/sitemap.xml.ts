@@ -9,7 +9,6 @@ export const GET: APIRoute = () => {
   const today = new Date().toISOString().slice(0, 10);
 
   const urls: Array<{ loc: string; priority: string }> = [
-    { loc: `${SITE}/`, priority: "0.6" },
     { loc: `${SITE}/smart-home/`, priority: "1.0" },
     { loc: `${SITE}/about/`, priority: "0.4" },
   ];
