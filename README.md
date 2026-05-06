@@ -1,9 +1,40 @@
 # crosspec
 
-Multi-vertical configurator hub. An LLM-assisted, constraint-aware tool that helps a buyer compose a working spec-matched setup across real products, with affiliate-routed checkout.
+A multi-vertical configurator hub. Vertical 1 is **smart home** — a constraint solver that picks devices matching your ecosystem (Apple HomeKit / Google Home / Amazon Alexa / Home Assistant), with every compatibility claim cited back to public registries.
 
-Vertical 1 (active): smart home (Matter / Thread / Zigbee / ecosystem compatibility).
-Vertical 2 (on deck): solar + battery + inverter sizing.
+**Live site**: https://crosspec.com/smart-home/
+
+## Use the data
+
+The smart-home compatibility KB is in this repo. **Free to use**, MIT for code, CC-BY-4.0 for the data.
+
+- 600+ devices across 13 categories (bulbs, plugs, cameras, doorbells, switches, locks, sensors, thermostats, shades, hubs)
+- Every entity is one JSON record with: brand, model, protocol, ecosystem support, hub requirement, source IDs
+- Compatibility claims sourced from the [Home Assistant integrations registry](https://www.home-assistant.io/integrations/), [Zigbee2MQTT supported devices](https://www.zigbee2mqtt.io/supported-devices/), [CSA Matter certified products](https://csa-iot.org/csa-iot_products/), and vendor catalogs
+
+```bash
+# Direct data link — version-pinned via Git ref
+curl -s https://raw.githubusercontent.com/superninjv/crosspec/main/verticals/smart-home/kb.json | jq '.entities | length'
+```
+
+If you redistribute the data, cite "crosspec smart home compatibility KB" + link this repo. PRs that fix wrong protocol / hub / ecosystem mappings are welcome and merged quickly.
+
+## Architecture — engine + verticals
+
+**One engine. Many verticals. Never fork the engine per vertical.**
+
+```
+crosspec/
+  engine/                     # vertical-agnostic — ZERO vertical-specific code
+    solver/                   # constraint-solver interface + primitives
+    ui/                       # shell components
+  verticals/
+    smart-home/               # V1 instance — thin wrapper over engine
+      kb.json                 # compatibility rules (ecosystem × protocol × hub × device)
+      affiliates.json         # SKU → affiliate URL map
+      copy.md                 # page copy (headlines, CTAs, disclaimers)
+      author.md               # named author EEAT bio
+```
 
 Authoritative north star: [`direction.md`](./direction.md). Living roadmap: [`plan.md`](./plan.md).
 
