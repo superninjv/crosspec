@@ -84,6 +84,7 @@ function renderProductCard(
   const { entity, hub_required, native_in_ecosystem } = pick;
   const sku = entity.sku ?? entity.id;
   const href = `/go/${esc(vertical)}/${esc(String(sku))}`;
+  const detailHref = `/${esc(vertical)}/devices/${esc(String(sku))}/`;
   const attrs = entity.attributes as EntityAttrs;
   const protoText = attrs.protocol ? protocolLabel(attrs.protocol) : "";
   const hubText = hubLabel(hub_required);
@@ -146,14 +147,14 @@ function renderProductCard(
       </span>
       <span class="pin">#${pinNum}</span>
     </div>
-    <h4 class="title">${esc(entity.name)}</h4>
+    <h4 class="title"><a href="${detailHref}">${esc(entity.name)}</a></h4>
     <div class="submodel">${submodel}</div>
     <div class="compat-strip" aria-label="Ecosystem compatibility">${stripCells}</div>
     <dl class="stats">${statsCells}</dl>
     ${why}
     <div class="pcard-foot">
       <span class="price">${priceHTML}</span>
-      <a class="cta" href="${href}" rel="sponsored nofollow">find on retailer <span class="arr">&rarr;</span></a>
+      <a class="cta" href="${href}" rel="sponsored nofollow noopener" target="_blank">find on retailer <span class="arr">&rarr;</span></a>
     </div>
   </article>`;
 }
@@ -306,7 +307,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
       <span class="bs-amount" id="bs-amount">${totalPrice > 0 ? `$${totalPrice}` : "no prices"}</span>
       <span class="bs-meta">across ${totalPicks} ${totalPicks === 1 ? "pick" : "picks"}</span>
     </div>
-    <a class="bs-cart" id="bs-cart" href="/go/${esc(vertical)}/cart?skus=${solution.picks.map((p) => esc(String(p.entity.sku ?? p.entity.id))).join(",")}" rel="sponsored nofollow">
+    <a class="bs-cart" id="bs-cart" href="/go/${esc(vertical)}/cart?skus=${solution.picks.map((p) => esc(String(p.entity.sku ?? p.entity.id))).join(",")}" rel="sponsored nofollow noopener" target="_blank">
       <span class="bs-cart-glyph" aria-hidden="true">&#9635;</span>
       <span>Add all to Amazon cart</span>
       <span class="bs-cart-arr" aria-hidden="true">&rarr;</span>

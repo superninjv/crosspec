@@ -286,7 +286,8 @@ const today = new Date().toISOString().slice(0, 10);
             class="bs-cart"
             id="bs-cart"
             href={`/go/${vertical}/cart?skus=${solution.picks.map((p) => p.entity.sku ?? p.entity.id).join(",")}`}
-            rel="sponsored nofollow"
+            rel="sponsored nofollow noopener"
+            target="_blank"
           >
             <span class="bs-cart-glyph" aria-hidden="true">▣</span>
             <span>Add all to Amazon cart</span>
