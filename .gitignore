@@ -1,5 +1,6 @@
 # Local caches / generated state
 .code-review-graph/
+.claude/
 .DS_Store
 
 # Node / Astro
