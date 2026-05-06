@@ -283,11 +283,70 @@ for (const e of kb.entities) {
     }
   }
 
+  // Keyboard dependency rules.
+  // - keyboard_kit usually ships barebones → switches + keycaps required to type
+  // - keyboard_pcb DIY build → plate + stabs + switches + keycaps + a case (kit)
+  const KB_DEPS: Record<string, string[]> = {
+    keyboard_kit: ["switch", "keycap_set"],
+    keyboard_pcb: ["keyboard_plate", "keyboard_stabilizer", "switch", "keycap_set", "keyboard_kit"],
+  };
+  const DEP_REASON: Record<string, string> = {
+    keyboard_kit: "you'll need switches and keycaps to type on a kit",
+    keyboard_pcb: "a DIY PCB build needs a plate, stabs, switches, keycaps, and a case",
+  };
+
+  function enforceDeps(): string[] {
+    if (!form) return [];
+    const checked = new Set(
+      Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
+    );
+    const reasons: string[] = [];
+    for (const [trigger, deps] of Object.entries(KB_DEPS)) {
+      if (!checked.has(trigger)) continue;
+      let addedAny = false;
+      for (const dep of deps) {
+        if (!checked.has(dep)) {
+          const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${dep}"]`);
+          if (cb && !cb.checked) {
+            cb.checked = true;
+            checked.add(dep);
+            addedAny = true;
+            const tile = cb.closest<HTMLElement>(".want-tile");
+            if (tile) tile.classList.add("want-required");
+          }
+        }
+      }
+      if (addedAny) reasons.push(DEP_REASON[trigger]);
+    }
+    return reasons;
+  }
+
+  function renderDepsBanner(reasons: string[]) {
+    let banner = document.getElementById("deps-banner");
+    if (reasons.length === 0) {
+      if (banner) banner.remove();
+      return;
+    }
+    if (!banner) {
+      banner = document.createElement("div");
+      banner.id = "deps-banner";
+      banner.className = "deps-banner";
+      const pickerForm = document.getElementById("picker-form");
+      pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
+    }
+    banner.innerHTML = `<strong>Auto-added:</strong> ${reasons.join("; ")}. Untick to opt out.`;
+  }
+
   if (form) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
-      if (t.matches('input[name="want"]') || t.matches('input[name="layout"]')) renderPicker();
-      else if (t.classList.contains("pick-cb")) syncBuildSummary();
+      if (t.matches('input[name="want"]') || t.matches('input[name="layout"]')) {
+        const reasons = enforceDeps();
+        renderDepsBanner(reasons);
+        renderPicker();
+      } else if (t.classList.contains("pick-cb")) {
+        syncBuildSummary();
+      }
     });
   }
 
@@ -364,6 +423,8 @@ for (const e of kb.entities) {
         const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
         if (cb) cb.checked = true;
       }
+      const reasons = enforceDeps();
+      renderDepsBanner(reasons);
     }
 
     const SWITCH_LABEL: Record<string, string> = {
