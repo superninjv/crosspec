@@ -65,5 +65,118 @@
       "status": "fallback"
     }
   },
-  "products": {}
+  "products": {
+    "aqara_fp1e_mmwave": {
+      "merchant": "amazon_associates",
+      "asin": "B0D5QPH3T6"
+    },
+    "aqara_door_window_p2": {
+      "merchant": "amazon_associates",
+      "asin": "B0BTL8B72D"
+    },
+    "aqara_fp2_zone_presence": {
+      "merchant": "amazon_associates",
+      "asin": "B0BXWZMQJ3"
+    },
+    "aqara_doorbell_g410": {
+      "merchant": "amazon_associates",
+      "asin": "B0F6CJF9M9"
+    },
+    "aqara_g5_pro": {
+      "merchant": "amazon_associates",
+      "asin": "B0DPX6H1FY"
+    },
+    "aqara_doorbell_g4": {
+      "merchant": "amazon_associates",
+      "asin": "B0BPHTL7MG"
+    },
+    "aqara_g2h_pro": {
+      "merchant": "amazon_associates",
+      "asin": "B09N6KDX5K"
+    },
+    "aqara_u300": {
+      "merchant": "amazon_associates",
+      "asin": "B0D496H9YV"
+    },
+    "aqara_smart_lock_u100": {
+      "merchant": "amazon_associates",
+      "asin": "B0BZSD2L1W"
+    },
+    "aqara_hub_m3": {
+      "merchant": "amazon_associates",
+      "asin": "B0CWLHSKYC"
+    },
+    "aqara_hub_m2": {
+      "merchant": "amazon_associates",
+      "asin": "B08Y1PJZZH"
+    },
+    "aqara_t2_bulb": {
+      "merchant": "amazon_associates",
+      "asin": "B0DN1542G5"
+    },
+    "aqara_t1m_ceiling": {
+      "merchant": "amazon_associates",
+      "asin": "B0CS2X8JMM"
+    },
+    "tapo_c220_pt": {
+      "merchant": "amazon_associates",
+      "asin": "B0CWD7D41R"
+    },
+    "tapo_c520ws": {
+      "merchant": "amazon_associates",
+      "asin": "B0C6FMSS7Y"
+    },
+    "tapo_c320ws": {
+      "merchant": "amazon_associates",
+      "asin": "B09ZZJB6VX"
+    },
+    "tapo_c720": {
+      "merchant": "amazon_associates",
+      "asin": "B0D2KGVQGP"
+    },
+    "tapo_h200_hub": {
+      "merchant": "amazon_associates",
+      "asin": "B0C7FCX76S"
+    },
+    "tapo_p115": {
+      "merchant": "amazon_associates",
+      "asin": "B0D7FQ93QN"
+    },
+    "kasa_hs200_v3": {
+      "merchant": "amazon_associates",
+      "asin": "B01EZV35QU"
+    },
+    "kasa_hs220": {
+      "merchant": "amazon_associates",
+      "asin": "B079775ZZQ"
+    },
+    "kasa_hs210_3way": {
+      "merchant": "amazon_associates",
+      "asin": "B083JKTMYQ"
+    },
+    "aqara_motion_sensor_p1": {
+      "merchant": "amazon_associates",
+      "asin": "B09QKVMMTB"
+    },
+    "aqara_camera_g3": {
+      "merchant": "amazon_associates",
+      "asin": "B09J2CP8YS"
+    },
+    "aqara_u200": {
+      "merchant": "amazon_associates",
+      "asin": "B0D1C75J4F"
+    },
+    "aqara_h2_no_neutral": {
+      "merchant": "amazon_associates",
+      "asin": "B0F2N68K3C"
+    },
+    "aqara_temp_humidity_t1": {
+      "merchant": "amazon_associates",
+      "asin": "B07D37FKGY"
+    },
+    "aqara_water_leak": {
+      "merchant": "amazon_associates",
+      "asin": "B07D39MSZS"
+    }
+  }
 }
