@@ -11,10 +11,11 @@ export const GET: APIRoute = () => {
   const today = new Date().toISOString().slice(0, 10);
 
   const urls: Array<{ loc: string; priority: string }> = [
-    { loc: `${SITE}/smart-home/`, priority: "1.0" },
-    { loc: `${SITE}/solar/`, priority: "1.0" },
-    { loc: `${SITE}/keyboards/`, priority: "1.0" },
-    { loc: `${SITE}/arduino/`, priority: "1.0" },
+    { loc: `${SITE}/`, priority: "1.0" },
+    { loc: `${SITE}/smart-home/`, priority: "0.9" },
+    { loc: `${SITE}/solar/`, priority: "0.9" },
+    { loc: `${SITE}/keyboards/`, priority: "0.9" },
+    { loc: `${SITE}/arduino/`, priority: "0.9" },
     { loc: `${SITE}/about/`, priority: "0.4" },
   ];
 

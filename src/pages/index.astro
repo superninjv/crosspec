@@ -1,0 +1,331 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import type { KnowledgeBase } from "@engine/solver";
+import smartHomeKb from "@verticals/smart-home/kb.json";
+import solarKb from "@verticals/solar/kb.json";
+import keyboardsKb from "@verticals/keyboards/kb.json";
+import arduinoKb from "@verticals/arduino/kb.json";
+
+interface Vertical {
+  slug: string;
+  name: string;
+  blurb: string;
+  pitch: string;
+  count: number;
+  accent: string;
+  status: "live" | "soon";
+}
+
+const smartHome = smartHomeKb as KnowledgeBase;
+const solar = solarKb as KnowledgeBase;
+const keyboards = keyboardsKb as KnowledgeBase;
+const arduino = arduinoKb as KnowledgeBase;
+
+const verticals: Vertical[] = [
+  {
+    slug: "smart-home",
+    name: "Smart home",
+    blurb: "Matter / Thread / Zigbee / HomeKit / Google / Alexa / HA",
+    pitch: "Pick devices that match your ecosystem. Hubs auto-included. Per-pick checkboxes for build cost. Sources cited.",
+    count: smartHome.entities.length,
+    accent: "oklch(0.55 0.13 145)",
+    status: "live",
+  },
+  {
+    slug: "solar",
+    name: "Solar + battery",
+    blurb: "Panels, inverters, charge controllers, batteries, power stations",
+    pitch: "Match panel Voc to controller, battery chemistry to charge profile, inverter watts to BMS amp limits.",
+    count: solar.entities.length,
+    accent: "oklch(0.62 0.16 70)",
+    status: "live",
+  },
+  {
+    slug: "keyboards",
+    name: "Mechanical keyboards",
+    blurb: "Kits, switches, keycaps, plates, stabs, PCBs",
+    pitch: "Stabs that match the cutout. Keycaps that cover the layout. Switches that fit your hotswap sockets.",
+    count: keyboards.entities.length,
+    accent: "oklch(0.50 0.16 280)",
+    status: "live",
+  },
+  {
+    slug: "arduino",
+    name: "Arduino + embedded",
+    blurb: "Microcontrollers, sensors, displays, motors, power",
+    pitch: "Logic-voltage match. I2C address conflicts. Current budget. LiPo + charger combos.",
+    count: arduino.entities.length,
+    accent: "oklch(0.50 0.13 200)",
+    status: "live",
+  },
+  {
+    slug: "3d-printer",
+    name: "3D printers + filament",
+    blurb: "Printers, filament, hotends, nozzles, build surfaces",
+    pitch: "Hardened nozzle for carbon fiber. Enclosure for ABS / ASA. Direct-drive for TPU. Coming online.",
+    count: 0,
+    accent: "oklch(0.55 0.13 30)",
+    status: "soon",
+  },
+  {
+    slug: "cnc",
+    name: "CNC routers",
+    blurb: "Machines, spindles, bits, fixtures",
+    pitch: "Match feed/speed to material and bit. Coming online.",
+    count: 0,
+    accent: "oklch(0.45 0.06 250)",
+    status: "soon",
+  },
+  {
+    slug: "pc",
+    name: "PC build",
+    blurb: "CPUs, GPUs, motherboards, RAM, PSUs",
+    pitch: "Socket compat, RAM speed limits, PSU wattage, GPU clearance. Coming online.",
+    count: 0,
+    accent: "oklch(0.50 0.14 240)",
+    status: "soon",
+  },
+];
+
+const totalLive = verticals.filter((v) => v.status === "live").reduce((a, v) => a + v.count, 0);
+const liveCount = verticals.filter((v) => v.status === "live").length;
+---
+<Layout
+  title="crosspec — configurators that pick parts that actually work together"
+  description={`${liveCount} configurators across ${totalLive}+ products. Smart home, solar, keyboards, Arduino — every compatibility claim cited. No signup, no ads, no bullshit.`}
+  kbStatus={`${totalLive}+ products · ${liveCount} live verticals`}
+>
+  <section class="home-hero">
+    <div class="hero-inner">
+      <p class="eyebrow">crosspec — configurators</p>
+      <h1>Pick parts that <em>actually work together.</em></h1>
+      <p class="lede">Free constraint solvers across {liveCount} verticals so far. {totalLive.toLocaleString()}+ products with sourced compatibility claims, hub auto-include, and a per-pick build total. No signup, no ads, no email capture, no cookies. Survives off Amazon affiliate clicks.</p>
+      <div class="hero-meta">
+        <span><strong>{totalLive.toLocaleString()}</strong> products</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span><strong>{liveCount}</strong> live verticals</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>tools, not articles</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="verticals">
+    <div class="verticals-inner">
+      <ul class="vert-grid">
+        {verticals.map((v) => (
+          <li class={`vert-card ${v.status}`} style={`--accent: ${v.accent}`}>
+            <a href={v.status === "live" ? `/${v.slug}/` : "#"} class="vc-link" aria-disabled={v.status === "soon"}>
+              <span class="vc-status">{v.status === "live" ? "live" : "coming online"}</span>
+              <h2>{v.name}</h2>
+              <p class="vc-blurb">{v.blurb}</p>
+              <p class="vc-pitch">{v.pitch}</p>
+              <p class="vc-cta">
+                {v.status === "live" ? <>Open configurator <span aria-hidden="true">→</span></> : <>Soon</>}
+              </p>
+              {v.status === "live" && (
+                <p class="vc-count">{v.count} products</p>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="why-inner">
+      <h2>Why crosspec exists</h2>
+      <div class="why-cols">
+        <div>
+          <h3>Configurators, not buying guides.</h3>
+          <p>Every page is an interactive tool that filters real products against real constraints. No "best X of 2026" listicles, no AI-generated copy padding.</p>
+        </div>
+        <div>
+          <h3>Sources cited per claim.</h3>
+          <p>When a product page says "works with HomeKit via Matter" you can click through to the registry entry with the ingest date. The data layer is the moat.</p>
+        </div>
+        <div>
+          <h3>One revenue model, disclosed.</h3>
+          <p>Amazon Associates affiliate links. That's it. No ads, no signup, no tracking cookies, no email capture. Direct buy works fine if you'd rather skip the kickback.</p>
+        </div>
+        <div>
+          <h3>Open data.</h3>
+          <p>The KBs are <a href="https://github.com/superninjv/crosspec" rel="noopener" target="_blank">on GitHub</a> under MIT for code and CC-BY-4.0 for data. Cite + redistribute. PRs that fix wrong mappings are welcome.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  .home-hero {
+    background:
+      radial-gradient(1200px 500px at 50% -200px, oklch(0.92 0.04 145 / 0.55), transparent 60%),
+      var(--paper-0);
+    border-bottom: 1px solid var(--paper-edge);
+    padding: 72px 24px 60px;
+  }
+  .hero-inner { max-width: 980px; margin: 0 auto; text-align: center; }
+  .home-hero .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+  .home-hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    margin: 0 0 18px;
+    color: var(--ink-0);
+    text-wrap: balance;
+  }
+  .home-hero h1 em {
+    font-style: normal;
+    background: linear-gradient(120deg, oklch(0.45 0.13 145), oklch(0.50 0.16 240));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  .home-hero .lede {
+    font-size: 17px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    max-width: 740px;
+    margin: 0 auto 22px;
+  }
+  .hero-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-2);
+    background: var(--paper-1);
+    border: 1px solid var(--paper-edge);
+    padding: 8px 18px;
+    border-radius: 99px;
+  }
+  .hero-meta strong { font-weight: 700; color: var(--ink-0); }
+  .hero-meta .dot { opacity: 0.45; }
+
+  .verticals { padding: 56px 24px 36px; }
+  .verticals-inner { max-width: 1180px; margin: 0 auto; }
+  .vert-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .vert-card { display: block; }
+  .vc-link {
+    display: block;
+    padding: 22px 22px 18px;
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ink-0);
+    height: 100%;
+    position: relative;
+    transition: border-color .15s, box-shadow .15s, transform .15s;
+  }
+  .vert-card.live .vc-link:hover {
+    border-color: var(--accent);
+    box-shadow: 0 6px 22px -8px var(--accent);
+    transform: translateY(-2px);
+  }
+  .vert-card.soon .vc-link {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+  .vc-status {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 99px;
+    background: var(--paper-2);
+    color: var(--ink-2);
+    margin-bottom: 12px;
+  }
+  .vert-card.live .vc-status {
+    background: oklch(0.93 0.05 145);
+    color: oklch(0.32 0.10 145);
+  }
+  .vc-link h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.012em;
+    margin: 0 0 4px;
+    color: var(--ink-0);
+  }
+  .vc-blurb {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+  }
+  .vc-pitch {
+    font-size: 14px;
+    color: var(--ink-1);
+    line-height: 1.5;
+    margin: 0 0 16px;
+  }
+  .vc-cta {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .vc-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    margin: 0;
+  }
+
+  .why {
+    padding: 36px 24px 80px;
+    border-top: 1px solid var(--paper-edge);
+    background: var(--paper-1);
+  }
+  .why-inner { max-width: 1100px; margin: 0 auto; }
+  .why-inner > h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.012em;
+    margin: 0 0 22px;
+    color: var(--ink-0);
+  }
+  .why-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+  }
+  .why-cols h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: var(--ink-0);
+  }
+  .why-cols p {
+    font-size: 14px;
+    color: var(--ink-1);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .why-cols a { color: var(--ink-1); text-underline-offset: 2px; }
+</style>
