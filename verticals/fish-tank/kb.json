@@ -1,0 +1,1855 @@
+{
+  "version": "0.1",
+  "vertical": "fish-tank",
+  "data_quality": "v0.1 best-effort seed populated from cited public sources and manufacturer specs.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "Bulk Reef Supply public guides",
+      "url": "https://www.bulkreefsupply.com/learn",
+      "ingest_date": "2026-05-06",
+      "scope": "Reef-keeping methodology, equipment sizing rules of thumb (turnover, skimmer rating, lighting PAR for SPS/LPS/soft coral), used as cross-reference for saltwater compatibility logic."
+    },
+    {
+      "id": 1,
+      "name": "Aquarium Co-Op video / blog content",
+      "url": "https://www.aquariumcoop.com/blogs/aquarium",
+      "ingest_date": "2026-05-06",
+      "scope": "Freshwater + planted tank guidance, beginner-tier filter / heater / light recommendations, plant lighting PAR thresholds, real-world community-tank stocking and turnover."
+    },
+    {
+      "id": 2,
+      "name": "r/Aquariums + r/PlantedTank + r/ReefTank public threads",
+      "url": "https://www.reddit.com/r/Aquariums/",
+      "ingest_date": "2026-05-06",
+      "scope": "Cross-checks vendor specs against measured real-world results; captures practical caveats (canister flow loss with media, heater controller failures, light spectrum complaints, skimmer break-in)."
+    },
+    {
+      "id": 3,
+      "name": "Manufacturer spec sheets (Fluval, Eheim, Seachem, Hygger, NICREW, Inkbird, Hagen, Aqueon, Waterbox, Innovative Marine, Red Sea, UNS, Cobalt, Finnex, Hydor, Twinstar, Kessil, AI, CO2Art, GLA, Aquatek, ADA, CaribSea, Reef Octopus, Bubble Magus, Eshopps, Sicce, Ecotech Marine, AquaTop, API, Salifert, Hanna)",
+      "url": "",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for tank dimensions, filter GPH and rated max gallons, heater wattage, light PAR / spectrum / fixture length, CO2 regulator stage count, substrate weight and pH-buffering behavior, skimmer rated gallons, pump GPH and controllability, test-kit count and parameter."
+    },
+    {
+      "id": 4,
+      "name": "ReefBuilders public spec PDFs",
+      "url": "https://reefbuilders.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Reef equipment reviews and measured PAR readings for reef LEDs (Kessil, AI Hydra, Red Sea ReefLED), used to validate manufacturer PAR claims at 12in depth."
+    },
+    {
+      "id": 5,
+      "name": "Practical Fishkeeping public articles",
+      "url": "https://www.practicalfishkeeping.co.uk/",
+      "ingest_date": "2026-05-06",
+      "scope": "Freshwater stocking, filter classification, heater sizing rules (3-5W per gallon based on room temperature), planted-tank substrate behavior."
+    },
+    {
+      "id": 6,
+      "name": "Hagen / Fluval engineering documentation",
+      "url": "https://www.fluvalaquatics.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Detailed flow curves, multi-stage media stack documentation for Fluval canisters and Plant 3.0 spectrum data; treated as authoritative for Fluval-branded equipment."
+    }
+  ],
+  "entities": [
+    {
+      "id": "aqueon_20gal_long",
+      "type": "aquarium",
+      "name": "Aqueon 20gal Long Glass Aquarium",
+      "sku": "aqueon_20long",
+      "attributes": {
+        "brand": "aqueon",
+        "model": "20-LONG",
+        "gallons": 20,
+        "dimensions_in": "30x12x12",
+        "glass_or_acrylic": "glass",
+        "rimless": false,
+        "freshwater_or_saltwater_or_both": "both",
+        "price_usd": 89,
+        "note": "Classic shallow 30in footprint — best-selling beginner aquascape and community tank size. Long footprint maximizes territory at modest water volume.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "aqueon_40gal_breeder",
+      "type": "aquarium",
+      "name": "Aqueon 40gal Breeder Glass Aquarium",
+      "sku": "aqueon_40breeder",
+      "attributes": {
+        "brand": "aqueon",
+        "model": "40-BREEDER",
+        "gallons": 40,
+        "dimensions_in": "36x18x16",
+        "glass_or_acrylic": "glass",
+        "rimless": false,
+        "freshwater_or_saltwater_or_both": "both",
+        "price_usd": 159,
+        "note": "Wide 18in front-to-back footprint — the canonical reef nano and planted scape tank. Doubles as freshwater grow-out.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0]
+      }
+    },
+    {
+      "id": "waterbox_frag_50",
+      "type": "aquarium",
+      "name": "Waterbox Frag 50 Reef System",
+      "sku": "waterbox_frag50",
+      "attributes": {
+        "brand": "waterbox",
+        "model": "FRAG-50",
+        "gallons": 50,
+        "dimensions_in": "36x24x14",
+        "glass_or_acrylic": "glass",
+        "rimless": true,
+        "freshwater_or_saltwater_or_both": "saltwater",
+        "price_usd": 999,
+        "note": "Shallow rimless reef-ready system with built-in overflow and sump compartment. Targeted at coral frag-grow setups.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "waterbox_marine_x_70",
+      "type": "aquarium",
+      "name": "Waterbox Marine X 70.2 Peninsula Reef",
+      "sku": "waterbox_marinex_70",
+      "attributes": {
+        "brand": "waterbox",
+        "model": "MARINEX-70.2",
+        "gallons": 70,
+        "dimensions_in": "36x24x18",
+        "glass_or_acrylic": "glass",
+        "rimless": true,
+        "freshwater_or_saltwater_or_both": "saltwater",
+        "price_usd": 1499,
+        "note": "Peninsula viewing reef system with rear-overflow sump plumbing. Common upgrade path from 40gal breeder reefers.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "im_nuvo_fusion_30l",
+      "type": "aquarium",
+      "name": "Innovative Marine NUVO Fusion 30L AIO",
+      "sku": "im_nuvo_30l",
+      "attributes": {
+        "brand": "innovative_marine",
+        "model": "NUVO-FUSION-30L",
+        "gallons": 30,
+        "dimensions_in": "30x15x12",
+        "glass_or_acrylic": "glass",
+        "rimless": true,
+        "freshwater_or_saltwater_or_both": "saltwater",
+        "price_usd": 449,
+        "note": "All-in-one nano reef with rear filtration chamber — no external sump or overflow drilling required. Popular soft-coral / LPS starter.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0]
+      }
+    },
+    {
+      "id": "redsea_reefer_250_g2",
+      "type": "aquarium",
+      "name": "Red Sea Reefer 250 G2+ Reef System",
+      "sku": "redsea_reefer_250_g2",
+      "attributes": {
+        "brand": "red_sea",
+        "model": "REEFER-250-G2+",
+        "gallons": 54,
+        "dimensions_in": "36x20x21",
+        "glass_or_acrylic": "glass",
+        "rimless": true,
+        "freshwater_or_saltwater_or_both": "saltwater",
+        "price_usd": 1899,
+        "note": "Mid-size reef-ready with overflow and stand-mounted sump. Generation 2+ refines plumbing silencing and ATO integration.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "uns_75p_rimless",
+      "type": "aquarium",
+      "name": "UNS 75P Rimless Ultra-Clear Glass Aquarium",
+      "sku": "uns_75p",
+      "attributes": {
+        "brand": "uns",
+        "model": "75P",
+        "gallons": 24,
+        "dimensions_in": "30x15x15",
+        "glass_or_acrylic": "glass",
+        "rimless": true,
+        "freshwater_or_saltwater_or_both": "freshwater",
+        "price_usd": 229,
+        "note": "Low-iron ultra-clear rimless glass — the standard planted-aquascape display tank in the 30in form factor.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "fluval_207_canister",
+      "type": "filter",
+      "name": "Fluval 207 Performance Canister Filter",
+      "sku": "fluval_207",
+      "attributes": {
+        "brand": "fluval",
+        "model": "207",
+        "kind": "canister",
+        "gph": 206,
+        "max_tank_gallons": 45,
+        "multi_stage": true,
+        "price_usd": 169,
+        "note": "Quiet 4-stage canister with self-priming pump. Standard pick for 30-45gal planted or community freshwater builds.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 6, 1]
+      }
+    },
+    {
+      "id": "fluval_307_canister",
+      "type": "filter",
+      "name": "Fluval 307 Performance Canister Filter",
+      "sku": "fluval_307",
+      "attributes": {
+        "brand": "fluval",
+        "model": "307",
+        "kind": "canister",
+        "gph": 303,
+        "max_tank_gallons": 70,
+        "multi_stage": true,
+        "price_usd": 209,
+        "note": "Step-up from 207 — same chassis, larger media volume. Targets 45-70gal freshwater and planted scapes.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 6, 1]
+      }
+    },
+    {
+      "id": "eheim_classic_2217",
+      "type": "filter",
+      "name": "Eheim Classic 2217 External Canister",
+      "sku": "eheim_2217",
+      "attributes": {
+        "brand": "eheim",
+        "model": "CLASSIC-2217",
+        "kind": "canister",
+        "gph": 264,
+        "max_tank_gallons": 159,
+        "multi_stage": true,
+        "price_usd": 219,
+        "note": "Single-chamber German-engineered canister. Famously bulletproof; many users report 10+ year service life. Lower flow vs. Fluval 307 but larger media volume.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 2]
+      }
+    },
+    {
+      "id": "aquaclear_70_hob",
+      "type": "filter",
+      "name": "AquaClear 70 Power HOB Filter",
+      "sku": "aquaclear_70",
+      "attributes": {
+        "brand": "aquaclear",
+        "model": "70",
+        "kind": "hob",
+        "gph": 300,
+        "max_tank_gallons": 70,
+        "multi_stage": true,
+        "price_usd": 79,
+        "note": "Hang-on-back with three-stage media basket. Best price-per-GPH HOB on the market for freshwater builds.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "tidal_75_seachem_hob",
+      "type": "filter",
+      "name": "Seachem Tidal 75 HOB Filter",
+      "sku": "seachem_tidal_75",
+      "attributes": {
+        "brand": "seachem",
+        "model": "TIDAL-75",
+        "kind": "hob",
+        "gph": 250,
+        "max_tank_gallons": 75,
+        "multi_stage": true,
+        "price_usd": 89,
+        "note": "HOB with surface skimmer intake and adjustable flow. Modern competitor to AquaClear; quieter at low flow rates.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "marineland_penguin_350",
+      "type": "filter",
+      "name": "Marineland Penguin 350 BIO-Wheel HOB",
+      "sku": "marineland_penguin_350",
+      "attributes": {
+        "brand": "marineland",
+        "model": "PENGUIN-350",
+        "kind": "hob",
+        "gph": 350,
+        "max_tank_gallons": 75,
+        "multi_stage": true,
+        "price_usd": 69,
+        "note": "BIO-Wheel rotating bio-media adds wet/dry biological filtration above waterline. Cheap, high-flow, popular budget pick.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 2]
+      }
+    },
+    {
+      "id": "sicce_whale_350_canister",
+      "type": "filter",
+      "name": "Sicce Whale 350 External Canister",
+      "sku": "sicce_whale_350",
+      "attributes": {
+        "brand": "sicce",
+        "model": "WHALE-350",
+        "kind": "canister",
+        "gph": 343,
+        "max_tank_gallons": 90,
+        "multi_stage": true,
+        "price_usd": 199,
+        "note": "Italian-built canister with self-priming pump and large media trays. Reliable mid-size pick competing directly with Fluval 307.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 2]
+      }
+    },
+    {
+      "id": "diy_sump_refugium_30",
+      "type": "filter",
+      "name": "DIY 30gal Sump + Refugium",
+      "sku": "diy_sump_30",
+      "attributes": {
+        "brand": "generic",
+        "model": "DIY-SUMP-30",
+        "kind": "sump",
+        "gph": 600,
+        "max_tank_gallons": 150,
+        "multi_stage": true,
+        "price_usd": 250,
+        "note": "Drilled-tank sump pattern for reef builds: skimmer chamber + refugium with chaeto + return chamber. GPH set by chosen return pump; max gallons assumes 4x turnover at 600 GPH.",
+        "price_source": "DIY material cost estimate",
+        "price_as_of": "2026-05-06",
+        "source_ids": [0, 2, 4]
+      }
+    },
+    {
+      "id": "eheim_jager_200w",
+      "type": "heater",
+      "name": "Eheim Jager 200W Adjustable Submersible Heater",
+      "sku": "eheim_jager_200",
+      "attributes": {
+        "brand": "eheim",
+        "model": "JAGER-200",
+        "watts": 200,
+        "adjustable": true,
+        "suitable_for_gallons": "40-80",
+        "titanium": false,
+        "price_usd": 39,
+        "note": "Glass-tube German heater with TruTemp dial, +/- 0.5C accuracy. Long-running community favorite for freshwater + saltwater up to ~80gal.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 2, 5]
+      }
+    },
+    {
+      "id": "cobalt_neotherm_200w",
+      "type": "heater",
+      "name": "Cobalt Aquatics Neo-Therm 200W Heater",
+      "sku": "cobalt_neotherm_200",
+      "attributes": {
+        "brand": "cobalt_aquatics",
+        "model": "NEO-THERM-200",
+        "watts": 200,
+        "adjustable": true,
+        "suitable_for_gallons": "40-65",
+        "titanium": false,
+        "price_usd": 79,
+        "note": "Flat shatter-resistant thermoplastic body, digital display, +/- 1F accuracy. Premium reef-safe pick for nano + mid-size builds.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0]
+      }
+    },
+    {
+      "id": "inkbird_itc308_controller",
+      "type": "heater",
+      "name": "Inkbird ITC-308 External Heater Controller",
+      "sku": "inkbird_itc308",
+      "attributes": {
+        "brand": "inkbird",
+        "model": "ITC-308",
+        "watts": 0,
+        "adjustable": true,
+        "suitable_for_gallons": "any",
+        "titanium": false,
+        "price_usd": 39,
+        "note": "External temperature controller — no internal heating element. Plug an existing heater into it for stuck-thermostat protection. Mandatory pairing for 200W+ heaters per safety constraint C7.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 2]
+      }
+    },
+    {
+      "id": "finnex_th_titanium_300w",
+      "type": "heater",
+      "name": "Finnex TH Titanium 300W Heater",
+      "sku": "finnex_th_300",
+      "attributes": {
+        "brand": "finnex",
+        "model": "TH-300",
+        "watts": 300,
+        "adjustable": true,
+        "suitable_for_gallons": "60-100",
+        "titanium": true,
+        "price_usd": 59,
+        "note": "Titanium-element heater — unbreakable, safe for saltwater. Comes with separate digital controller. Required to pair with external Inkbird if user doesn't trust the included one.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "hydor_theo_300w",
+      "type": "heater",
+      "name": "Hydor Theo 300W Submersible Heater",
+      "sku": "hydor_theo_300",
+      "attributes": {
+        "brand": "hydor",
+        "model": "THEO-300",
+        "watts": 300,
+        "adjustable": true,
+        "suitable_for_gallons": "60-100",
+        "titanium": false,
+        "price_usd": 35,
+        "note": "Italian-built glass heater, well-priced reliable workhorse. Pair with external controller (Inkbird) per safety constraint C7 for 300W class.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "nicrew_skyled_plus",
+      "type": "light",
+      "name": "NICREW SkyLED Plus Planted LED",
+      "sku": "nicrew_skyled_plus",
+      "attributes": {
+        "brand": "nicrew",
+        "model": "SKYLED-PLUS",
+        "type": "planted",
+        "spectrum": "full",
+        "par_at_12in": 60,
+        "watts": 26,
+        "fits_size_in": "30-36",
+        "price_usd": 79,
+        "note": "Budget low-medium-light planted fixture. Adequate for crypts, anubias, java fern. Insufficient for high-light carpet plants without CO2.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "twinstar_600s",
+      "type": "light",
+      "name": "Twinstar 600S Planted Aquarium LED",
+      "sku": "twinstar_600s",
+      "attributes": {
+        "brand": "twinstar",
+        "model": "600S",
+        "type": "planted",
+        "spectrum": "full",
+        "par_at_12in": 130,
+        "watts": 38,
+        "fits_size_in": "24-30",
+        "price_usd": 329,
+        "note": "Premium high-light planted LED used in competition aquascapes. Sufficient PAR for HC Cuba, monte carlo, dwarf hairgrass with CO2.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "kessil_a360x_tuna_sun",
+      "type": "light",
+      "name": "Kessil A360X Tuna Sun Planted LED",
+      "sku": "kessil_a360x_tuna_sun",
+      "attributes": {
+        "brand": "kessil",
+        "model": "A360X-TUNA-SUN",
+        "type": "planted",
+        "spectrum": "full",
+        "par_at_12in": 200,
+        "watts": 90,
+        "fits_size_in": "24-36",
+        "price_usd": 549,
+        "note": "Pendant-style high-output planted LED. Distinctive shimmer effect. Pair with controller for sunrise/sunset ramp.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1, 4]
+      }
+    },
+    {
+      "id": "kessil_a80_tuna_blue",
+      "type": "light",
+      "name": "Kessil A80 Tuna Blue Reef LED",
+      "sku": "kessil_a80_tuna_blue",
+      "attributes": {
+        "brand": "kessil",
+        "model": "A80-TUNA-BLUE",
+        "type": "reef",
+        "spectrum": "reef_blue",
+        "par_at_12in": 110,
+        "watts": 15,
+        "fits_size_in": "12-20",
+        "price_usd": 219,
+        "note": "Compact pendant reef LED for nano builds. Adequate PAR for soft coral and most LPS at 12in depth; not enough for SPS without supplementation.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "ai_hydra_32hd",
+      "type": "light",
+      "name": "AI Hydra 32HD Reef LED",
+      "sku": "ai_hydra_32hd",
+      "attributes": {
+        "brand": "aqua_illumination",
+        "model": "HYDRA-32HD",
+        "type": "reef",
+        "spectrum": "reef_blue",
+        "par_at_12in": 250,
+        "watts": 95,
+        "fits_size_in": "24-36",
+        "price_usd": 599,
+        "note": "Flagship reef LED with full app-driven multi-channel spectrum control. Sufficient PAR for SPS coral at 12in depth on a 24in build.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "fluval_plant_3_48",
+      "type": "light",
+      "name": "Fluval Plant 3.0 48in Bluetooth LED",
+      "sku": "fluval_plant_3_48",
+      "attributes": {
+        "brand": "fluval",
+        "model": "PLANT-3.0-48",
+        "type": "planted",
+        "spectrum": "full",
+        "par_at_12in": 110,
+        "watts": 59,
+        "fits_size_in": "48-60",
+        "price_usd": 349,
+        "note": "Bluetooth-controllable planted fixture. Common pick for 75gal+ planted builds; medium-high PAR with moderate spread at 12in.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 6, 1]
+      }
+    },
+    {
+      "id": "hygger_957_rgb",
+      "type": "light",
+      "name": "Hygger 957 RGB Planted LED",
+      "sku": "hygger_957",
+      "attributes": {
+        "brand": "hygger",
+        "model": "957",
+        "type": "planted",
+        "spectrum": "full",
+        "par_at_12in": 70,
+        "watts": 24,
+        "fits_size_in": "30-36",
+        "price_usd": 89,
+        "note": "Budget RGB planted LED with built-in timer. Adequate for low-medium-light scapes; vivid color rendering on red plants.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "redsea_reefled_90",
+      "type": "light",
+      "name": "Red Sea ReefLED 90 Reef LED",
+      "sku": "redsea_reefled_90",
+      "attributes": {
+        "brand": "red_sea",
+        "model": "REEFLED-90",
+        "type": "reef",
+        "spectrum": "reef_blue",
+        "par_at_12in": 230,
+        "watts": 90,
+        "fits_size_in": "24-30",
+        "price_usd": 519,
+        "note": "Reefer-system-matched LED with single-pendant installation and ReefBeat app control. Sufficient PAR for SPS at 12in.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "co2art_pro_se_dual_stage",
+      "type": "co2_system",
+      "name": "CO2Art Pro-SE Dual Stage Regulator",
+      "sku": "co2art_pro_se",
+      "attributes": {
+        "brand": "co2art",
+        "model": "PRO-SE",
+        "kind": "regulator",
+        "co2_max_bps": 10,
+        "dual_stage": true,
+        "suitable_for_gallons": "5-150",
+        "price_usd": 269,
+        "note": "Dual-stage regulator with integrated solenoid and bubble counter. Eliminates end-of-tank-dump that can crash a planted scape.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "gla_pro_dual_stage",
+      "type": "co2_system",
+      "name": "GLA Pro Series Dual Stage Regulator",
+      "sku": "gla_pro_dual",
+      "attributes": {
+        "brand": "green_leaf_aquariums",
+        "model": "GLA-PRO-DUAL",
+        "kind": "regulator",
+        "co2_max_bps": 10,
+        "dual_stage": true,
+        "suitable_for_gallons": "5-200",
+        "price_usd": 319,
+        "note": "US-built premium dual-stage regulator with brass body and high-precision needle valve. Common upgrade in high-end planted builds.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "aquatek_mini_regulator",
+      "type": "co2_system",
+      "name": "Aquatek Mini CO2 Regulator (paintball)",
+      "sku": "aquatek_mini",
+      "attributes": {
+        "brand": "aquatek",
+        "model": "MINI",
+        "kind": "regulator",
+        "co2_max_bps": 4,
+        "dual_stage": false,
+        "suitable_for_gallons": "5-29",
+        "price_usd": 89,
+        "note": "Single-stage paintball-cylinder regulator with solenoid. Budget entry point for nano planted; expect end-of-tank-dump on cylinder swap.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "co2_dropchecker_diffuser_30mm",
+      "type": "co2_system",
+      "name": "Drop Checker + 30mm Ceramic Diffuser",
+      "sku": "co2_dropchecker_diffuser",
+      "attributes": {
+        "brand": "generic",
+        "model": "DROP-DIFFUSE-30",
+        "kind": "diffuser",
+        "co2_max_bps": 4,
+        "dual_stage": false,
+        "suitable_for_gallons": "5-75",
+        "price_usd": 19,
+        "note": "Drop checker + 30mm ceramic disc inline diffuser combo. Drop checker reads CO2 ppm via 4dKH solution and bromothymol blue indicator; required complement to any regulator per constraint C6.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "ada_aqua_soil_amazonia_v2_9l",
+      "type": "substrate",
+      "name": "ADA Aqua Soil Amazonia v2 (9L)",
+      "sku": "ada_aqua_soil_v2_9l",
+      "attributes": {
+        "brand": "ada",
+        "type": "active_planted",
+        "weight_lb": 13,
+        "planted": true,
+        "ph_buffering": "lowers_ph",
+        "price_usd": 49,
+        "note": "Premium nutrient-rich active substrate — lowers pH 0.5-1.0 in soft water, leaches ammonia during cycle (mandatory dark-start or fishless cycle).",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "fluval_stratum_17_6lb",
+      "type": "substrate",
+      "name": "Fluval Stratum (17.6 lb)",
+      "sku": "fluval_stratum_17",
+      "attributes": {
+        "brand": "fluval",
+        "model": "STRATUM-17",
+        "type": "active_planted",
+        "weight_lb": 17.6,
+        "planted": true,
+        "ph_buffering": "lowers_ph",
+        "price_usd": 39,
+        "note": "Volcanic-soil-based planted substrate. Mid-tier active alternative to ADA at half the price; less aggressive ammonia leach.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 6, 1]
+      }
+    },
+    {
+      "id": "caribsea_eco_complete_20lb",
+      "type": "substrate",
+      "name": "CaribSea Eco-Complete Planted (20 lb)",
+      "sku": "caribsea_eco_complete_20",
+      "attributes": {
+        "brand": "caribsea",
+        "model": "ECO-COMPLETE-20",
+        "type": "inert",
+        "weight_lb": 20,
+        "planted": true,
+        "ph_buffering": "neutral",
+        "price_usd": 32,
+        "note": "Inert planted substrate — nutrient-rich basalt-based gravel. No pH shift, no ammonia leach. Pairs with root tabs.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1]
+      }
+    },
+    {
+      "id": "caribsea_arag_alive_special_20lb",
+      "type": "substrate",
+      "name": "CaribSea Arag-Alive Special Grade (20 lb)",
+      "sku": "caribsea_arag_alive_20",
+      "attributes": {
+        "brand": "caribsea",
+        "model": "ARAG-ALIVE-SPECIAL-20",
+        "type": "saltwater_aragonite",
+        "weight_lb": 20,
+        "planted": false,
+        "ph_buffering": "raises_ph",
+        "price_usd": 49,
+        "note": "Live aragonite reef sand pre-loaded with bacteria — buffers pH ~8.2-8.4. Required base for any reef build per constraint C5.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "reef_octopus_classic_110",
+      "type": "protein_skimmer",
+      "name": "Reef Octopus Classic 110 In-Sump Skimmer",
+      "sku": "reef_octopus_classic_110",
+      "attributes": {
+        "brand": "reef_octopus",
+        "model": "CLASSIC-110",
+        "suitable_for_gallons": "75-150",
+        "in_sump": true,
+        "price_usd": 219,
+        "note": "Workhorse pinwheel-impeller in-sump skimmer. Quiet break-in, well-dialed needle-wheel pump. Standard sub-$250 reef pick.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "bubble_magus_curve_5",
+      "type": "protein_skimmer",
+      "name": "Bubble Magus Curve 5 In-Sump Skimmer",
+      "sku": "bubble_magus_curve_5",
+      "attributes": {
+        "brand": "bubble_magus",
+        "model": "CURVE-5",
+        "suitable_for_gallons": "30-100",
+        "in_sump": true,
+        "price_usd": 159,
+        "note": "Compact mid-tier in-sump skimmer with adjustable air intake. Popular nano + mid-size reef pick at the budget end.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "eshopps_r100_skimmer",
+      "type": "protein_skimmer",
+      "name": "Eshopps R-100 In-Sump Skimmer",
+      "sku": "eshopps_r100",
+      "attributes": {
+        "brand": "eshopps",
+        "model": "R-100",
+        "suitable_for_gallons": "75-125",
+        "in_sump": true,
+        "price_usd": 199,
+        "note": "Compact-footprint reef skimmer designed to fit narrow sump compartments. Solid mid-range performance.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0]
+      }
+    },
+    {
+      "id": "sicce_syncra_3",
+      "type": "pump",
+      "name": "Sicce Syncra 3.0 Return Pump",
+      "sku": "sicce_syncra_3",
+      "attributes": {
+        "brand": "sicce",
+        "model": "SYNCRA-3.0",
+        "kind": "return",
+        "gph": 660,
+        "controllable": false,
+        "price_usd": 119,
+        "note": "Italian-built return pump — quiet, energy-efficient, well-regarded for reliability over decade-plus runtime.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 2]
+      }
+    },
+    {
+      "id": "ecotech_mp10qd",
+      "type": "pump",
+      "name": "Ecotech Marine MP10QD Wavemaker",
+      "sku": "ecotech_mp10qd",
+      "attributes": {
+        "brand": "ecotech_marine",
+        "model": "MP10QD",
+        "kind": "wavemaker",
+        "gph": 1500,
+        "controllable": true,
+        "price_usd": 319,
+        "note": "Externally-driven controllable wavemaker for nano-to-mid reefs. App-controlled flow patterns; magnet-mount through-glass.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "aquatop_np200_powerhead",
+      "type": "pump",
+      "name": "AquaTop NP-200 Nano Powerhead",
+      "sku": "aquatop_np200",
+      "attributes": {
+        "brand": "aquatop",
+        "model": "NP-200",
+        "kind": "powerhead",
+        "gph": 200,
+        "controllable": false,
+        "price_usd": 29,
+        "note": "Compact nano powerhead for circulation in tanks under 30gal. Single-speed, magnet-mount.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 2]
+      }
+    },
+    {
+      "id": "api_master_freshwater",
+      "type": "test_kit",
+      "name": "API Master Freshwater Test Kit",
+      "sku": "api_master_fw",
+      "attributes": {
+        "brand": "api",
+        "kind": "master",
+        "num_tests": 800,
+        "price_usd": 39,
+        "note": "Liquid-reagent kit for ammonia, nitrite, nitrate, pH, high-range pH. The default cycling test kit for new freshwater builds.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 1, 5]
+      }
+    },
+    {
+      "id": "salifert_refractometer",
+      "type": "test_kit",
+      "name": "Salifert Salinity Refractometer",
+      "sku": "salifert_refractometer",
+      "attributes": {
+        "brand": "salifert",
+        "kind": "salinity",
+        "num_tests": 9999,
+        "price_usd": 49,
+        "note": "Calibrated optical refractometer for measuring saltwater specific gravity. Required tool for any reef build; calibrate with 35ppt reference solution.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "hanna_phosphate_hi736",
+      "type": "test_kit",
+      "name": "Hanna Phosphate ULR Checker (HI736)",
+      "sku": "hanna_hi736",
+      "attributes": {
+        "brand": "hanna",
+        "kind": "phosphate",
+        "num_tests": 25,
+        "price_usd": 59,
+        "note": "Ultra-low-range phosphate digital checker (ppb scale). Reef-essential for tracking nutrient export; reagents sold separately.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [3, 0, 4]
+      }
+    },
+    {
+      "id": "guppy_male",
+      "type": "fish_species",
+      "name": "Male Fancy Guppy (Poecilia reticulata)",
+      "sku": "fish_guppy_male",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.5,
+        "temperature_range_f": "72-82",
+        "ph_range": "7.0-8.0",
+        "gh_range_dgh": "8-20",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "2-3",
+        "tank_zone": "top",
+        "notes": "Male-only avoids non-stop fry; livebearer needs harder, alkaline water — pairs poorly with blackwater tetras.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "neon_tetra",
+      "type": "fish_species",
+      "name": "Neon Tetra (Paracheirodon innesi)",
+      "sku": "fish_neon_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 1.4,
+        "temperature_range_f": "70-78",
+        "ph_range": "5.5-7.0",
+        "gh_range_dgh": "1-10",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "middle",
+        "notes": "Soft, slightly acidic water; never add to a freshly cycled tank — neon tetra disease wipes weak stock. Schools of 10+ display best.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "cardinal_tetra",
+      "type": "fish_species",
+      "name": "Cardinal Tetra (Paracheirodon axelrodi)",
+      "sku": "fish_cardinal_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "73-81",
+        "ph_range": "4.5-6.8",
+        "gh_range_dgh": "1-6",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "middle",
+        "notes": "Strict soft, acidic blackwater; harder/alkaline water shortens life. Often confused with neons but more demanding.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "betta_male",
+      "type": "fish_species",
+      "name": "Male Betta / Siamese Fighting Fish (Betta splendens)",
+      "sku": "fish_betta_male",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "76-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "3-15",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "top",
+        "notes": "Solitary — will kill other males and fin-nip long-finned tankmates (guppies). Needs heater; bowls are inhumane.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "harlequin_rasbora",
+      "type": "fish_species",
+      "name": "Harlequin Rasbora (Trigonostigma heteromorpha)",
+      "sku": "fish_harlequin_rasbora",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 1.75,
+        "temperature_range_f": "72-81",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "middle",
+        "notes": "Tolerant tetra-alternative; easier than neons in moderately hard tap water.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "ember_tetra",
+      "type": "fish_species",
+      "name": "Ember Tetra (Hyphessobrycon amandae)",
+      "sku": "fish_ember_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 0.8,
+        "temperature_range_f": "73-84",
+        "ph_range": "5.5-7.0",
+        "gh_range_dgh": "1-8",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 8,
+        "diet": "omnivore",
+        "lifespan_years": "2-4",
+        "tank_zone": "middle",
+        "notes": "Nano schooler; tiny mouths need crushed flake or micro pellets. Pops against dark substrate.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "corydoras_julii",
+      "type": "fish_species",
+      "name": "Julii / False Julii Cory (Corydoras trilineatus)",
+      "sku": "fish_cory_julii",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "72-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "bottom",
+        "notes": "Sand or smooth gravel only — sharp gravel erodes barbels. Needs sinking food; flakes alone starve them.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "otocinclus",
+      "type": "fish_species",
+      "name": "Otocinclus Catfish (Otocinclus vittatus)",
+      "sku": "fish_otocinclus",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 1.75,
+        "temperature_range_f": "72-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "herbivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "all",
+        "notes": "Wild-caught stock arrives starved; only add to mature tanks (3+ months) with established biofilm/algae. High DOA risk.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "cherry_shrimp",
+      "type": "fish_species",
+      "name": "Red Cherry Shrimp (Neocaridina davidi)",
+      "sku": "fish_cherry_shrimp",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 1.0,
+        "temperature_range_f": "65-80",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "6-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 10,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Copper-sensitive — never combine with copper-based meds. Most fish over 2in eat baby shrimp; shrimp-only or with otos/pygmy cories.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "kuhli_loach",
+      "type": "fish_species",
+      "name": "Kuhli Loach (Pangio kuhlii)",
+      "sku": "fish_kuhli_loach",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "5.5-7.0",
+        "gh_range_dgh": "1-8",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "8-10",
+        "tank_zone": "bottom",
+        "notes": "Eel-like nocturnal; needs caves and fine sand. Single specimens hide forever — group of 5+ becomes social and visible.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "bristlenose_pleco",
+      "type": "fish_species",
+      "name": "Bristlenose Pleco (Ancistrus sp.)",
+      "sku": "fish_bristlenose_pleco",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "73-81",
+        "ph_range": "6.5-7.8",
+        "gh_range_dgh": "4-20",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "10-12",
+        "tank_zone": "bottom",
+        "notes": "Algae eater that actually stays small (unlike common pleco at 18in). Driftwood mandatory — they rasp it for fiber.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "white_cloud_minnow",
+      "type": "fish_species",
+      "name": "White Cloud Mountain Minnow (Tanichthys albonubes)",
+      "sku": "fish_white_cloud_minnow",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 1.5,
+        "temperature_range_f": "60-72",
+        "ph_range": "6.0-8.0",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "top",
+        "notes": "Cool-water — incompatible with tropicals (neons, bettas). Excellent unheated tank schooler in cooler rooms.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "angelfish_silver",
+      "type": "fish_species",
+      "name": "Silver Angelfish (Pterophyllum scalare)",
+      "sku": "fish_angelfish_silver",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "76-84",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "3-12",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "10-12",
+        "tank_zone": "middle",
+        "notes": "Tall body needs 18in+ tank height. Eat neon-sized tetras at adult size; pair with cardinal tetras only when angels grow up with them.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "dwarf_gourami",
+      "type": "fish_species",
+      "name": "Dwarf Gourami (Trichogaster lalius)",
+      "sku": "fish_dwarf_gourami",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "72-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "4-15",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "top",
+        "notes": "Dwarf Gourami Iridovirus is endemic in farmed stock — buy from quality sources, quarantine, accept some loss risk.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "ram_german_blue",
+      "type": "fish_species",
+      "name": "German Blue Ram (Mikrogeophagus ramirezi)",
+      "sku": "fish_ram_german_blue",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "82-86",
+        "ph_range": "5.5-7.0",
+        "gh_range_dgh": "1-8",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "2-3",
+        "tank_zone": "bottom",
+        "notes": "High-temp dwarf cichlid — incompatible with cool-water schoolers. Soft acidic water; line-bred stock fragile in chain stores.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "apistogramma_cacatuoides",
+      "type": "fish_species",
+      "name": "Cockatoo Dwarf Cichlid (Apistogramma cacatuoides)",
+      "sku": "fish_apisto_cacatuoides",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "intermediate",
+        "aggression": "territorial",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "bottom",
+        "notes": "Most beginner-friendly Apisto. One male + 2-3 females in 20gal long; males defend caves but rarely kill dithers.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "congo_tetra",
+      "type": "fish_species",
+      "name": "Congo Tetra (Phenacogrammus interruptus)",
+      "sku": "fish_congo_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 40,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "73-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "4-18",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "middle",
+        "notes": "Skittish — needs long tank (4ft+) and group of 6+ to feel secure. Iridescent scales need full-spectrum light.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "rummynose_tetra",
+      "type": "fish_species",
+      "name": "Rummynose Tetra (Hemigrammus rhodostomus)",
+      "sku": "fish_rummynose_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "5.5-6.8",
+        "gh_range_dgh": "1-8",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 8,
+        "diet": "omnivore",
+        "lifespan_years": "5-6",
+        "tank_zone": "middle",
+        "notes": "Red nose fades when stressed — living water-quality indicator. Strict blackwater; harder water keeps them dull.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "kribensis_cichlid",
+      "type": "fish_species",
+      "name": "Kribensis (Pelvicachromis pulcher)",
+      "sku": "fish_kribensis",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "75-81",
+        "ph_range": "6.0-7.8",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "intermediate",
+        "aggression": "territorial",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "bottom",
+        "notes": "Cave-spawning dwarf; pairs become aggressive when breeding. Tolerant of harder tap water — good intro to cichlids.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "discus_blue",
+      "type": "fish_species",
+      "name": "Blue Diamond Discus (Symphysodon aequifasciatus)",
+      "sku": "fish_discus_blue",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "82-88",
+        "ph_range": "5.5-7.0",
+        "gh_range_dgh": "1-8",
+        "care_difficulty": "advanced",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 6,
+        "diet": "carnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "middle",
+        "notes": "Discus require pristine water (near-zero nitrate), stable 84F+, and daily large WCs — experienced keepers only. RO water typically required outside Amazon-soft tap.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "oscar_tiger",
+      "type": "fish_species",
+      "name": "Tiger Oscar (Astronotus ocellatus)",
+      "sku": "fish_oscar_tiger",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 12.0,
+        "temperature_range_f": "74-81",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "all",
+        "notes": "Grows 12in fast, eats anything that fits in mouth, rearranges decor, produces enormous bioload. Solo or large-cichlid setups only.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "severum_gold",
+      "type": "fish_species",
+      "name": "Gold Severum (Heros efasciatus)",
+      "sku": "fish_severum_gold",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "75-84",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "4-15",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "middle",
+        "notes": "Calm large cichlid — eats plants. Pair with similar-sized tankmates; bullies smaller community fish.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "blood_parrot_cichlid",
+      "type": "fish_species",
+      "name": "Blood Parrot Cichlid (hybrid)",
+      "sku": "fish_blood_parrot",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "76-84",
+        "ph_range": "6.5-7.8",
+        "gh_range_dgh": "6-18",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "all",
+        "notes": "Manmade hybrid — deformed jaw means slow eating; sinking pellets only. Avoid dyed or 'jellybean' variants (inhumane).",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "frontosa_burundi",
+      "type": "fish_species",
+      "name": "Burundi Frontosa (Cyphotilapia frontosa)",
+      "sku": "fish_frontosa_burundi",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 13.0,
+        "temperature_range_f": "75-81",
+        "ph_range": "7.8-9.0",
+        "gh_range_dgh": "10-20",
+        "care_difficulty": "advanced",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 5,
+        "diet": "carnivore",
+        "lifespan_years": "20-25",
+        "tank_zone": "middle",
+        "notes": "Tanganyikan — hard alkaline water mandatory; cannot mix with soft-water fish. Slow-grower, decade+ commitment, group of 1M:4F minimum.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "jaguar_cichlid",
+      "type": "fish_species",
+      "name": "Jaguar Cichlid (Parachromis managuensis)",
+      "sku": "fish_jaguar_cichlid",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 150,
+        "adult_size_in": 16.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "7.0-8.5",
+        "gh_range_dgh": "8-20",
+        "care_difficulty": "advanced",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "12-15",
+        "tank_zone": "all",
+        "notes": "Wet-pet predator; pairs murder tankmates when breeding. Solo or species-only with reinforced lid (jumpers).",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "electric_blue_acara",
+      "type": "fish_species",
+      "name": "Electric Blue Acara (Andinoacara pulcher)",
+      "sku": "fish_eb_acara",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 6.5,
+        "temperature_range_f": "72-82",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "8-10",
+        "tank_zone": "middle",
+        "notes": "Most peaceful mid-size cichlid; pairs OK with angels, larger tetras. Stunning blue under 6500K full-spectrum.",
+        "source_ids": [1, 5, 2]
+      }
+    },
+    {
+      "id": "ocellaris_clownfish",
+      "type": "fish_species",
+      "name": "Ocellaris Clownfish (Amphiprion ocellaris)",
+      "sku": "fish_ocellaris_clown",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "75-82",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 2,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "all",
+        "notes": "Hardiest marine starter. Captive-bred only — wild collection damages reefs. Pair forms hierarchy; never add a third.",
+        "source_ids": [0, 4, 3]
+      }
+    },
+    {
+      "id": "royal_gramma",
+      "type": "fish_species",
+      "name": "Royal Gramma (Gramma loreto)",
+      "sku": "fish_royal_gramma",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "middle",
+        "notes": "Reef-safe, color-stable, cave-dweller. Defends a single hideout; one per tank under 75gal to avoid territorial deaths.",
+        "source_ids": [0, 4, 3]
+      }
+    },
+    {
+      "id": "six_line_wrasse",
+      "type": "fish_species",
+      "name": "Six Line Wrasse (Pseudocheilinus hexataenia)",
+      "sku": "fish_six_line_wrasse",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "4-10",
+        "tank_zone": "all",
+        "notes": "Eats pest bristleworms and flatworms — useful reef janitor. Grows mean with age; add last to peaceful community.",
+        "source_ids": [0, 4, 3]
+      }
+    },
+    {
+      "id": "yellow_tang",
+      "type": "fish_species",
+      "name": "Yellow Tang (Zebrasoma flavescens)",
+      "sku": "fish_yellow_tang",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 7.5,
+        "temperature_range_f": "75-82",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "advanced",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "20-30",
+        "tank_zone": "all",
+        "notes": "Needs swim length (4ft+) and constant nori — starvation causes Head and Lateral Line Erosion. One tang per tank under 125gal.",
+        "source_ids": [0, 4, 3]
+      }
+    },
+    {
+      "id": "banggai_cardinal",
+      "type": "fish_species",
+      "name": "Banggai Cardinalfish (Pterapogon kauderni)",
+      "sku": "fish_banggai_cardinal",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "73-81",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "4-5",
+        "tank_zone": "middle",
+        "notes": "IUCN endangered in wild — captive-bred only. Mouthbrooder; bonded pair OR single, never odd group (kills excess males).",
+        "source_ids": [0, 4, 3]
+      }
+    },
+    {
+      "id": "firefish_purple",
+      "type": "fish_species",
+      "name": "Purple Firefish (Nemateleotris decora)",
+      "sku": "fish_firefish_purple",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "bottom",
+        "notes": "Notorious jumper — tight lid mandatory. Reef-safe; skittish around aggressive tankmates (wrasses, dottybacks).",
+        "source_ids": [0, 4, 3]
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "C1_filter_turnover_must_meet_minimum",
+      "kind": "requires",
+      "when": {
+        "filter.attributes.gph": "<aquarium.attributes.gallons * 4"
+      },
+      "then": {
+        "selection_invalid": true
+      },
+      "rationale": "Freshwater builds need at least 4x tank-volume turnover per hour for adequate biological + mechanical filtration; reef builds want 6-10x. A 75gal tank therefore requires ≥300 GPH freshwater or ≥450 GPH saltwater. Under-spec'd flow leaves dead zones and accelerates detritus buildup.",
+      "source_id": 0
+    },
+    {
+      "id": "C2_heater_wattage_must_match_tank_volume",
+      "kind": "requires",
+      "when": {
+        "heater.attributes.watts": "between aquarium.attributes.gallons * 3 and aquarium.attributes.gallons * 5"
+      },
+      "then": {
+        "selection_invalid": true
+      },
+      "rationale": "Standard heater sizing is 3W/gal for stable indoor rooms (68-72F ambient) and 5W/gal for cooler rooms or rooms with seasonal swings. Below 3W/gal the heater can't keep up on a cold night; above 5W/gal a stuck thermostat overheats faster than the user can react.",
+      "source_id": 5
+    },
+    {
+      "id": "C3_lighting_par_must_match_plant_or_coral_demand",
+      "kind": "requires",
+      "when": {
+        "build.lighting_demand": "*"
+      },
+      "then": {
+        "light.attributes.par_at_12in": "≥50 low_light_plants, ≥100 high_light_plants, ≥200 sps_coral"
+      },
+      "rationale": "Low-light plants (anubias, java fern, crypts) need ≥50 PAR at substrate. High-light carpet plants (HC Cuba, monte carlo, dwarf hairgrass) and most stems need ≥100 PAR plus CO2. SPS reef coral needs ≥200 PAR at the colony placement depth or growth stalls and color fades.",
+      "source_id": 0
+    },
+    {
+      "id": "C4_saltwater_over_30gal_requires_protein_skimmer",
+      "kind": "requires",
+      "when": {
+        "aquarium.attributes.freshwater_or_saltwater_or_both": "saltwater",
+        "aquarium.attributes.gallons": ">30"
+      },
+      "then": {
+        "build.must_include": "protein_skimmer"
+      },
+      "rationale": "Saltwater systems above 30gal accumulate dissolved organics faster than water changes can remove them. Skimmer-less reefs above this volume see chronic high nutrients, hair algae, cyano outbreaks. Below 30gal a robust water-change schedule can substitute; above 30gal a skimmer is mandatory.",
+      "source_id": 0
+    },
+    {
+      "id": "C5_saltwater_requires_aragonite_substrate",
+      "kind": "requires",
+      "when": {
+        "aquarium.attributes.freshwater_or_saltwater_or_both": "saltwater"
+      },
+      "then": {
+        "substrate.attributes.type": "saltwater_aragonite"
+      },
+      "rationale": "Saltwater builds need an aragonite-based substrate to passively buffer pH and alkalinity at reef-stable values (8.2-8.4 pH, 8-11 dKH). Inert freshwater gravel or active-planted soils cannot do this; substrate-driven alkalinity loss in a non-aragonite reef tank crashes coral within days.",
+      "source_id": 0
+    },
+    {
+      "id": "C6_co2_system_requires_full_kit",
+      "kind": "requires",
+      "when": {
+        "build.includes": "co2_regulator"
+      },
+      "then": {
+        "build.must_include": "drop_checker AND diffuser AND tubing"
+      },
+      "rationale": "A regulator alone cannot inject CO2: the gas needs a diffuser to dissolve into the water column, CO2-resistant tubing to carry it, and a drop checker to verify final ppm in-tank. Shipping a regulator without the rest leaves users either over-injecting (gassing fish) or under-injecting (BBA outbreak).",
+      "source_id": 1
+    },
+    {
+      "id": "C7_high_wattage_heater_requires_external_controller",
+      "kind": "recommends",
+      "when": {
+        "heater.attributes.watts": ">200"
+      },
+      "then": {
+        "build.must_include": "inkbird_itc308_controller"
+      },
+      "rationale": "Heaters above 200W can cook a tank within hours if their internal thermostat sticks closed (a common failure mode at end-of-life). An external controller (Inkbird ITC-308) cuts mains power on over-temperature regardless of heater state. Strongly recommended for any 300W+ heater.",
+      "source_id": 2
+    },
+    {
+      "id": "C8_tank_capacity_meets_species_minimum",
+      "kind": "requires",
+      "when": {
+        "build.includes": "fish_species"
+      },
+      "then": {
+        "aquarium.attributes.gallons": ">=max(fish_species.attributes.min_tank_gallons)"
+      },
+      "rationale": "Tank capacity must meet or exceed every selected fish's `min_tank_gallons`. Block (don't soft-warn) if violated — undersized tanks cause stunting, aggression spikes, and ammonia spikes that kill stock within days.",
+      "source_id": 5
+    },
+    {
+      "id": "C9_schooling_species_require_minimum_group",
+      "kind": "requires",
+      "when": {
+        "fish_species.attributes.schooling_min_count": ">1"
+      },
+      "then": {
+        "build.fish_count[species_id]": ">=fish_species.attributes.schooling_min_count"
+      },
+      "rationale": "Schooling species (`schooling_min_count` > 1) require at least N fish of the same species; otherwise they stress and die early. Solo neons, rummynose, or cories waste away from chronic cortisol within months.",
+      "source_id": 5
+    },
+    {
+      "id": "C10_saltwater_species_require_saltwater_build",
+      "kind": "requires",
+      "when": {
+        "fish_species.attributes.ecosystem": "==saltwater"
+      },
+      "then": {
+        "build.must_include": "protein_skimmer AND saltwater_substrate AND salinity_sg in 1.024-1.026"
+      },
+      "rationale": "Saltwater species require saltwater ecosystem (substrate, salinity, protein_skimmer). Marine fish placed in freshwater die within minutes from osmotic shock; this is non-negotiable.",
+      "source_id": 0
+    },
+    {
+      "id": "C11_freshwater_and_saltwater_not_mixable",
+      "kind": "forbids",
+      "when": {
+        "build.fish_species.ecosystems": "contains both freshwater AND saltwater"
+      },
+      "then": {
+        "build.invalid": true
+      },
+      "rationale": "Freshwater species cannot be combined with saltwater species; ecosystems are not mixable. Salinity that's safe for one is lethal for the other — no compromise exists.",
+      "source_id": 5
+    },
+    {
+      "id": "C12_temperature_ranges_must_overlap",
+      "kind": "requires",
+      "when": {
+        "build.fish_species.count": ">1"
+      },
+      "then": {
+        "intersection(fish_species.attributes.temperature_range_f)": "non_empty"
+      },
+      "rationale": "Temperature ranges must overlap for all selected species — pick fish whose ranges share a common band. Discus (84F+) with white cloud minnows (60-72F) is a slow-cook scenario for the minnows.",
+      "source_id": 5
+    },
+    {
+      "id": "C13_ph_ranges_must_overlap",
+      "kind": "requires",
+      "when": {
+        "build.fish_species.count": ">1"
+      },
+      "then": {
+        "intersection(fish_species.attributes.ph_range)": "non_empty"
+      },
+      "rationale": "pH ranges must overlap; combining acidic blackwater fish (pH 5-6 — cardinal tetras, discus) with hard-water fish (pH 7.8+ — Frontosa, livebearers) is a slow killer via chronic osmoregulatory stress.",
+      "source_id": 5
+    },
+    {
+      "id": "C14_aggression_compatibility_blocks_peaceful_with_aggressive",
+      "kind": "forbids",
+      "when": {
+        "build.fish_species.aggression_levels": "contains aggressive AND peaceful"
+      },
+      "then": {
+        "build.invalid": true
+      },
+      "rationale": "Aggression compatibility: `aggressive` species (Oscars, Jaguar Cichlid) can't share a tank with `peaceful` species (tetras, rasboras, shrimp); verify community_compatible flag. Peaceful fish become dinner or stress-kill targets.",
+      "source_id": 5
+    },
+    {
+      "id": "C15_advanced_difficulty_warns_beginners",
+      "kind": "recommends",
+      "when": {
+        "fish_species.attributes.care_difficulty": "==advanced",
+        "user.stated_experience": "==beginner"
+      },
+      "then": {
+        "build.show_warning": "advanced_species_for_beginner"
+      },
+      "rationale": "`care_difficulty: advanced` species (Discus, Yellow Tang, Frontosa, marine reefs) should warn beginners explicitly — these need a year+ of experience and stable parameters. Most beginner discus orders die within 90 days.",
+      "source_id": 5
+    }
+  ],
+  "goals": [
+    {
+      "id": "G1_meet_target_stocking_demand",
+      "prompt": "Meet the user's stated stocking goal (community / reef / planted / species-specific) at the user's tank size with margin for filtration and lighting headroom.",
+      "objective": "minimize",
+      "target": "shortfall_against_filter_turnover_or_lighting_par_or_heater_watts"
+    },
+    {
+      "id": "G2_minimize_total_build_cost",
+      "prompt": "Across all selected components, minimize total build cost while meeting all hard constraints (turnover, watts/gal, PAR, skimmer, substrate, CO2 kit completeness).",
+      "objective": "minimize",
+      "target": "sum(component.price_usd)"
+    },
+    {
+      "id": "G3_prefer_reliability_over_price_on_heaters",
+      "prompt": "When two heaters meet the watts/gal range, prefer the one with titanium element or external controller pairing — stuck-thermostat failure is the #1 fishkeeper insurance claim.",
+      "objective": "maximize",
+      "target": "heater.attributes.titanium == true OR build.includes_controller == true"
+    },
+    {
+      "id": "G4_prefer_canister_over_hob_on_planted_or_reef",
+      "prompt": "On planted scapes and reef builds, prefer canister or sump filtration over HOB — less surface agitation (preserves CO2), larger biological media volume, cleaner aquascape.",
+      "objective": "maximize",
+      "target": "filter.attributes.kind in ['canister','sump']"
+    }
+  ]
+}

@@ -96,6 +96,8 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN as string | u
           <span class="sep">·</span>
           <a href="https://www.zigbee2mqtt.io/supported-devices/" rel="nofollow" target="_blank">Zigbee2MQTT</a>
           <span class="sep">|</span>
+          <a id="request-product" href="mailto:contact@synoros.io?subject=Product%20request%20%E2%80%94%20crosspec">Request a product</a>
+          <span class="sep">|</span>
           <a href="https://github.com/superninjv/crosspec" rel="nofollow" target="_blank">GitHub</a>
           <span class="sep">|</span>
           <a href="/about/">About</a>
@@ -490,5 +492,25 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN as string | u
       .res-sort-sel:hover { border-color: var(--accent); }
       .res-sort-sel:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px oklch(from var(--accent) l c h / 0.18); }
     </style>
+
+    <script>
+      // Prefill the "Request a product" mailto link with current vertical + URL context.
+      const reqEl = document.getElementById("request-product");
+      if (reqEl) {
+        const m = location.pathname.match(/^\/([^/]+)\//);
+        const vertical = m ? m[1] : "crosspec";
+        const subject = `Product request — ${vertical}`;
+        const body = [
+          `Page: ${location.href}`,
+          ``,
+          `Product I'd like added:`,
+          `[name + brand + model + link if you have one]`,
+          ``,
+          `Why this product (use case, why current options don't fit):`,
+          ``,
+        ].join("\n");
+        (reqEl as HTMLAnchorElement).href = `mailto:contact@synoros.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+    </script>
   </body>
 </html>

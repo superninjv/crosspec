@@ -1,0 +1,1027 @@
+{
+  "version": "0.1",
+  "vertical": "fpv-drone",
+  "data_quality": "v0.1 best-effort seed populated from cited public sources and manufacturer specs. FPV is rapidly evolving; spec verification required for production launch.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "Pyrodrone / GetFPV / RaceDayQuads public spec pages",
+      "url": "https://pyrodrone.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for retailer-confirmed component specs (stator size, KV, mount pattern, current ratings, weight) and bundle compatibility notes."
+    },
+    {
+      "id": 1,
+      "name": "Oscar Liang FPV blog tutorials",
+      "url": "https://oscarliang.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for cross-checked motor/ESC/prop pairings, BLHeli firmware compatibility notes, and Betaflight target identifiers."
+    },
+    {
+      "id": 2,
+      "name": "r/Multicopter and r/fpv public threads",
+      "url": "https://www.reddit.com/r/Multicopter/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for real-world build reports, current-draw observations, and noted incompatibilities (e.g. analog frames not fitting DJI O3 modules)."
+    },
+    {
+      "id": 3,
+      "name": "Manufacturer pages (iFlight, T-Motor, EMAX, Holybro, BetaFPV, Caddx, Walksnail, DJI, RadioMaster)",
+      "url": "",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for authoritative electrical/mechanical specs: stack size, mount pattern, MCU/gyro IDs, voltage/current ratings, weight, connector types."
+    },
+    {
+      "id": 4,
+      "name": "ELRS / TBS Crossfire control link docs",
+      "url": "https://www.expresslrs.org/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for radio protocol identification, transmitter/receiver pairing rules, and frequency band confirmation."
+    },
+    {
+      "id": 5,
+      "name": "BLHeli32 / AM32 / Bluejay firmware docs",
+      "url": "https://github.com/bitdump/BLHeli",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for ESC firmware compatibility, MCU class identification, and supported protocol matrix (DShot300/600/1200)."
+    },
+    {
+      "id": 6,
+      "name": "Betaflight wiki and target list",
+      "url": "https://betaflight.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used to map flight controller hardware to Betaflight targets and to confirm gyro/MCU compatibility with current firmware."
+    }
+  ],
+  "entities": [
+    {
+      "id": "iflight_nazgul_evoque_f5d",
+      "type": "frame",
+      "name": "iFlight Nazgul Evoque F5D",
+      "sku": "iflight_nazgul_evoque_f5d",
+      "attributes": {
+        "brand": "iflight",
+        "model": "Nazgul Evoque F5D",
+        "prop_size_in": 5,
+        "motor_mount_pattern": "16x16",
+        "stack_size_mm": "30x30",
+        "weight_g": 138,
+        "hd_camera_compat": ["dji_o3", "walksnail_avatar", "analog"],
+        "price_usd": 89,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "impulserc_apex_5",
+      "type": "frame",
+      "name": "ImpulseRC Apex 5\"",
+      "sku": "impulserc_apex_5",
+      "attributes": {
+        "brand": "impulserc",
+        "model": "Apex 5",
+        "prop_size_in": 5,
+        "motor_mount_pattern": "16x16",
+        "stack_size_mm": "30x30",
+        "weight_g": 165,
+        "hd_camera_compat": ["dji_o3", "walksnail_avatar", "analog"],
+        "price_usd": 199,
+        "source_ids": [0, 1]
+      }
+    },
+    {
+      "id": "iflight_protekr5_cinematic",
+      "type": "frame",
+      "name": "iFlight ProtekR5 cinematic",
+      "sku": "iflight_protekr5",
+      "attributes": {
+        "brand": "iflight",
+        "model": "ProtekR5",
+        "prop_size_in": 5,
+        "motor_mount_pattern": "16x16",
+        "stack_size_mm": "30x30",
+        "weight_g": 280,
+        "hd_camera_compat": ["dji_o3", "walksnail_avatar"],
+        "price_usd": 159,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "foxeer_aura_5",
+      "type": "frame",
+      "name": "Foxeer Aura 5\"",
+      "sku": "foxeer_aura_5",
+      "attributes": {
+        "brand": "foxeer",
+        "model": "Aura 5",
+        "prop_size_in": 5,
+        "motor_mount_pattern": "16x16",
+        "stack_size_mm": "30x30",
+        "weight_g": 130,
+        "hd_camera_compat": ["dji_o3", "walksnail_avatar", "analog"],
+        "price_usd": 65,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "betafpv_pavo20",
+      "type": "frame",
+      "name": "BetaFPV Pavo20 (2\")",
+      "sku": "betafpv_pavo20",
+      "attributes": {
+        "brand": "betafpv",
+        "model": "Pavo20",
+        "prop_size_in": 2,
+        "motor_mount_pattern": "9x9",
+        "stack_size_mm": "20x20",
+        "weight_g": 84,
+        "hd_camera_compat": ["dji_o3", "walksnail_avatar", "analog"],
+        "price_usd": 55,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "iflight_bumblebee_4",
+      "type": "frame",
+      "name": "iFlight BumbleBee 4\"",
+      "sku": "iflight_bumblebee_4",
+      "attributes": {
+        "brand": "iflight",
+        "model": "BumbleBee 4",
+        "prop_size_in": 4,
+        "motor_mount_pattern": "12x12",
+        "stack_size_mm": "20x20",
+        "weight_g": 110,
+        "hd_camera_compat": ["walksnail_avatar", "analog"],
+        "price_usd": 75,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "impulserc_mr_steele_apex_hd",
+      "type": "frame",
+      "name": "ImpulseRC Mr Steele Apex HD",
+      "sku": "impulserc_mr_steele_apex_hd",
+      "attributes": {
+        "brand": "impulserc",
+        "model": "Mr Steele Apex HD",
+        "prop_size_in": 5,
+        "motor_mount_pattern": "16x16",
+        "stack_size_mm": "30x30",
+        "weight_g": 175,
+        "hd_camera_compat": ["dji_o3", "walksnail_avatar"],
+        "price_usd": 225,
+        "source_ids": [0, 1]
+      }
+    },
+    {
+      "id": "tmotor_f60_pro_v_2207_1750kv",
+      "type": "motor",
+      "name": "T-Motor F60 Pro V 2207 1750KV",
+      "sku": "tmotor_f60_pro_v_2207_1750kv",
+      "attributes": {
+        "brand": "t-motor",
+        "model": "F60 Pro V 2207",
+        "stator_size": "2207",
+        "kv": 1750,
+        "mount_pattern": "16x16",
+        "recommended_battery_s": "5-6",
+        "recommended_prop_size_in": 5,
+        "weight_g": 33,
+        "price_usd": 26,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "iflight_xing_e_pro_2207_2750kv",
+      "type": "motor",
+      "name": "iFlight Xing-E Pro 2207 2750KV",
+      "sku": "iflight_xing_e_pro_2207_2750kv",
+      "attributes": {
+        "brand": "iflight",
+        "model": "Xing-E Pro 2207",
+        "stator_size": "2207",
+        "kv": 2750,
+        "mount_pattern": "16x16",
+        "recommended_battery_s": "4",
+        "recommended_prop_size_in": 5,
+        "weight_g": 32,
+        "price_usd": 18,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "emax_eco_ii_2306_1700kv",
+      "type": "motor",
+      "name": "EMAX ECO II 2306 1700KV",
+      "sku": "emax_eco_ii_2306_1700kv",
+      "attributes": {
+        "brand": "emax",
+        "model": "ECO II 2306",
+        "stator_size": "2306",
+        "kv": 1700,
+        "mount_pattern": "16x16",
+        "recommended_battery_s": "5-6",
+        "recommended_prop_size_in": 5,
+        "weight_g": 31,
+        "price_usd": 15,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tmotor_velox_v2207_1950kv",
+      "type": "motor",
+      "name": "T-Motor Velox V2207 1950KV",
+      "sku": "tmotor_velox_v2207_1950kv",
+      "attributes": {
+        "brand": "t-motor",
+        "model": "Velox V2207",
+        "stator_size": "2207",
+        "kv": 1950,
+        "mount_pattern": "16x16",
+        "recommended_battery_s": "5-6",
+        "recommended_prop_size_in": 5,
+        "weight_g": 32,
+        "price_usd": 28,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "iflight_xing_1404_4600kv",
+      "type": "motor",
+      "name": "iFlight Xing 1404 4600KV (3\")",
+      "sku": "iflight_xing_1404_4600kv",
+      "attributes": {
+        "brand": "iflight",
+        "model": "Xing 1404",
+        "stator_size": "1404",
+        "kv": 4600,
+        "mount_pattern": "9x9",
+        "recommended_battery_s": "4",
+        "recommended_prop_size_in": 3,
+        "weight_g": 13,
+        "price_usd": 17,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "betafpv_0802se_18000kv",
+      "type": "motor",
+      "name": "BetaFPV 0802SE 18000KV (2\")",
+      "sku": "betafpv_0802se_18000kv",
+      "attributes": {
+        "brand": "betafpv",
+        "model": "0802SE",
+        "stator_size": "0802",
+        "kv": 18000,
+        "mount_pattern": "6x6",
+        "recommended_battery_s": "1",
+        "recommended_prop_size_in": 2,
+        "weight_g": 2,
+        "price_usd": 9,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tmotor_f1404_3800kv",
+      "type": "motor",
+      "name": "T-Motor F1404 3800KV (3\")",
+      "sku": "tmotor_f1404_3800kv",
+      "attributes": {
+        "brand": "t-motor",
+        "model": "F1404",
+        "stator_size": "1404",
+        "kv": 3800,
+        "mount_pattern": "9x9",
+        "recommended_battery_s": "4",
+        "recommended_prop_size_in": 3,
+        "weight_g": 13,
+        "price_usd": 19,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "iflight_xing2_2207_1855kv",
+      "type": "motor",
+      "name": "iFlight Xing2 2207 1855KV",
+      "sku": "iflight_xing2_2207_1855kv",
+      "attributes": {
+        "brand": "iflight",
+        "model": "Xing2 2207",
+        "stator_size": "2207",
+        "kv": 1855,
+        "mount_pattern": "16x16",
+        "recommended_battery_s": "5-6",
+        "recommended_prop_size_in": 5,
+        "weight_g": 32,
+        "price_usd": 22,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tmotor_f55a_pro_ii_4in1",
+      "type": "esc",
+      "name": "T-Motor F55A Pro II 4-in-1",
+      "sku": "tmotor_f55a_pro_ii_4in1",
+      "attributes": {
+        "brand": "t-motor",
+        "model": "F55A Pro II",
+        "kind": "4in1",
+        "current_burst_a": 55,
+        "voltage_max_s": 6,
+        "mount_size_mm": "30x30",
+        "firmware": "BLHeli32",
+        "uart_count": 0,
+        "price_usd": 79,
+        "source_ids": [0, 5]
+      }
+    },
+    {
+      "id": "iflight_blitz_e55_4in1_60a",
+      "type": "esc",
+      "name": "iFlight BLITZ E55 4-in-1 60A",
+      "sku": "iflight_blitz_e55_4in1_60a",
+      "attributes": {
+        "brand": "iflight",
+        "model": "BLITZ E55",
+        "kind": "4in1",
+        "current_burst_a": 60,
+        "voltage_max_s": 6,
+        "mount_size_mm": "30x30",
+        "firmware": "BLHeli32",
+        "uart_count": 0,
+        "price_usd": 69,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "holybro_tekko32_f4_65a",
+      "type": "esc",
+      "name": "Holybro Tekko32 F4 65A",
+      "sku": "holybro_tekko32_f4_65a",
+      "attributes": {
+        "brand": "holybro",
+        "model": "Tekko32 F4 65A",
+        "kind": "4in1",
+        "current_burst_a": 65,
+        "voltage_max_s": 6,
+        "mount_size_mm": "30x30",
+        "firmware": "BLHeli32",
+        "uart_count": 0,
+        "price_usd": 99,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "rdq_m84a_4in1",
+      "type": "esc",
+      "name": "RaceDayQuads M84A 4-in-1",
+      "sku": "rdq_m84a_4in1",
+      "attributes": {
+        "brand": "racedayquads",
+        "model": "M84A",
+        "kind": "4in1",
+        "current_burst_a": 84,
+        "voltage_max_s": 6,
+        "mount_size_mm": "30x30",
+        "firmware": "AM32",
+        "uart_count": 0,
+        "price_usd": 89,
+        "source_ids": [0, 5]
+      }
+    },
+    {
+      "id": "emax_blheli_s_35a_4in1",
+      "type": "esc",
+      "name": "EMAX BLHeli_S 35A 4-in-1",
+      "sku": "emax_blheli_s_35a_4in1",
+      "attributes": {
+        "brand": "emax",
+        "model": "Bullet 35A 4-in-1",
+        "kind": "4in1",
+        "current_burst_a": 35,
+        "voltage_max_s": 4,
+        "mount_size_mm": "20x20",
+        "firmware": "Bluejay",
+        "uart_count": 0,
+        "price_usd": 39,
+        "source_ids": [0, 5]
+      }
+    },
+    {
+      "id": "betafpv_12a_aio_whoop",
+      "type": "esc",
+      "name": "BetaFPV 12A AIO whoop",
+      "sku": "betafpv_12a_aio_whoop",
+      "attributes": {
+        "brand": "betafpv",
+        "model": "F4 1S 12A AIO Brushless",
+        "kind": "single",
+        "current_burst_a": 12,
+        "voltage_max_s": 1,
+        "mount_size_mm": "25.5x25.5",
+        "firmware": "Bluejay",
+        "uart_count": 1,
+        "price_usd": 35,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "speedybee_f405_v4",
+      "type": "flight_controller",
+      "name": "SpeedyBee F405 V4",
+      "sku": "speedybee_f405_v4",
+      "attributes": {
+        "brand": "speedybee",
+        "model": "F405 V4",
+        "mcu": "F4",
+        "gyro": "ICM-42688P",
+        "mount_size_mm": "30x30",
+        "uart_count": 6,
+        "betaflight_target": "SPEEDYBEEF405V4",
+        "supports_dji_o3": true,
+        "price_usd": 49,
+        "source_ids": [0, 6]
+      }
+    },
+    {
+      "id": "holybro_kakute_h7_v2",
+      "type": "flight_controller",
+      "name": "Holybro Kakute H7 V2",
+      "sku": "holybro_kakute_h7_v2",
+      "attributes": {
+        "brand": "holybro",
+        "model": "Kakute H7 V2",
+        "mcu": "H7",
+        "gyro": "ICM-42688P",
+        "mount_size_mm": "30x30",
+        "uart_count": 8,
+        "betaflight_target": "KAKUTEH7V2",
+        "supports_dji_o3": true,
+        "price_usd": 89,
+        "source_ids": [0, 6]
+      }
+    },
+    {
+      "id": "mamba_f722_mk4",
+      "type": "flight_controller",
+      "name": "Mamba F722 Mk4",
+      "sku": "mamba_f722_mk4",
+      "attributes": {
+        "brand": "mamba",
+        "model": "F722 Mk4",
+        "mcu": "F7",
+        "gyro": "MPU6000",
+        "mount_size_mm": "30x30",
+        "uart_count": 6,
+        "betaflight_target": "MAMBAF722_2022B",
+        "supports_dji_o3": true,
+        "price_usd": 55,
+        "source_ids": [0, 6]
+      }
+    },
+    {
+      "id": "matek_f722_wpx",
+      "type": "flight_controller",
+      "name": "Matek F722-WPX",
+      "sku": "matek_f722_wpx",
+      "attributes": {
+        "brand": "matek",
+        "model": "F722-WPX",
+        "mcu": "F7",
+        "gyro": "ICM-42688P",
+        "mount_size_mm": "30x30",
+        "uart_count": 7,
+        "betaflight_target": "MATEKF722WPX",
+        "supports_dji_o3": true,
+        "price_usd": 65,
+        "source_ids": [0, 6]
+      }
+    },
+    {
+      "id": "betafpv_f4_1s_12a_aio",
+      "type": "flight_controller",
+      "name": "BetaFPV F4 1S 12A AIO Brushless",
+      "sku": "betafpv_f4_1s_12a_aio",
+      "attributes": {
+        "brand": "betafpv",
+        "model": "F4 1S 12A AIO",
+        "mcu": "F4",
+        "gyro": "BMI270",
+        "mount_size_mm": "25.5x25.5",
+        "uart_count": 2,
+        "betaflight_target": "BETAFPVF4SX1280",
+        "supports_dji_o3": false,
+        "price_usd": 35,
+        "source_ids": [0, 6]
+      }
+    },
+    {
+      "id": "dji_o3_air_unit",
+      "type": "camera",
+      "name": "DJI O3 Air Unit",
+      "sku": "dji_o3_air_unit",
+      "attributes": {
+        "brand": "dji",
+        "model": "O3 Air Unit",
+        "kind": "hd_dji_o3",
+        "aspect_ratio": "16:9",
+        "weight_g": 36,
+        "voltage_in": "7.4-26.4V",
+        "price_usd": 229,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "walksnail_avatar_hd_v2_kit",
+      "type": "camera",
+      "name": "Walksnail Avatar HD V2 Kit",
+      "sku": "walksnail_avatar_hd_v2_kit",
+      "attributes": {
+        "brand": "walksnail",
+        "model": "Avatar HD V2",
+        "kind": "hd_walksnail",
+        "aspect_ratio": "4:3",
+        "weight_g": 32,
+        "voltage_in": "7.4-25.2V",
+        "price_usd": 199,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "caddx_ratel_2",
+      "type": "camera",
+      "name": "Caddx Ratel 2 (analog)",
+      "sku": "caddx_ratel_2",
+      "attributes": {
+        "brand": "caddx",
+        "model": "Ratel 2",
+        "kind": "analog",
+        "aspect_ratio": "4:3",
+        "weight_g": 9,
+        "voltage_in": "5-36V",
+        "price_usd": 39,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "foxeer_razer_mini",
+      "type": "camera",
+      "name": "Foxeer Razer Mini (analog)",
+      "sku": "foxeer_razer_mini",
+      "attributes": {
+        "brand": "foxeer",
+        "model": "Razer Mini",
+        "kind": "analog",
+        "aspect_ratio": "16:9",
+        "weight_g": 8,
+        "voltage_in": "5-40V",
+        "price_usd": 32,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "dji_o4_air_unit",
+      "type": "camera",
+      "name": "DJI O4 Air Unit",
+      "sku": "dji_o4_air_unit",
+      "attributes": {
+        "brand": "dji",
+        "model": "O4 Air Unit",
+        "kind": "hd_dji_o4",
+        "aspect_ratio": "16:9",
+        "weight_g": 38,
+        "voltage_in": "7.4-26.4V",
+        "price_usd": 269,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tbs_unify_pro32_hv_5g8",
+      "type": "vtx",
+      "name": "TBS Unify Pro32 HV 5G8",
+      "sku": "tbs_unify_pro32_hv_5g8",
+      "attributes": {
+        "brand": "tbs",
+        "model": "Unify Pro32 HV",
+        "kind": "analog",
+        "power_w_max": 1.0,
+        "frequency_band": "5.8GHz",
+        "smartaudio_or_tramp": "smartaudio_v2",
+        "weight_g": 6,
+        "price_usd": 65,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "foxeer_reaper_extreme_v2",
+      "type": "vtx",
+      "name": "Foxeer Reaper Extreme V2 (analog 2.5W)",
+      "sku": "foxeer_reaper_extreme_v2",
+      "attributes": {
+        "brand": "foxeer",
+        "model": "Reaper Extreme V2",
+        "kind": "analog",
+        "power_w_max": 2.5,
+        "frequency_band": "5.8GHz",
+        "smartaudio_or_tramp": "smartaudio_v2",
+        "weight_g": 12,
+        "price_usd": 79,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "walksnail_avatar_hd_vtx_kit",
+      "type": "vtx",
+      "name": "Walksnail Avatar HD VTX kit",
+      "sku": "walksnail_avatar_hd_vtx_kit",
+      "attributes": {
+        "brand": "walksnail",
+        "model": "Avatar HD VTX",
+        "kind": "hd_walksnail",
+        "power_w_max": 1.2,
+        "frequency_band": "5.8GHz",
+        "smartaudio_or_tramp": "smartaudio_v2",
+        "weight_g": 32,
+        "price_usd": 199,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "rushfpv_tank_2_pro",
+      "type": "vtx",
+      "name": "RushFPV Tank 2 PRO (analog)",
+      "sku": "rushfpv_tank_2_pro",
+      "attributes": {
+        "brand": "rushfpv",
+        "model": "Tank 2 PRO",
+        "kind": "analog",
+        "power_w_max": 1.6,
+        "frequency_band": "5.8GHz",
+        "smartaudio_or_tramp": "smartaudio_v2",
+        "weight_g": 7,
+        "price_usd": 45,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "dji_o3_built_in_vtx",
+      "type": "vtx",
+      "name": "DJI O3 (built-in)",
+      "sku": "dji_o3_built_in_vtx",
+      "attributes": {
+        "brand": "dji",
+        "model": "O3 Air Unit VTX",
+        "kind": "hd_dji_o3",
+        "power_w_max": 1.0,
+        "frequency_band": "5.8GHz",
+        "smartaudio_or_tramp": "smartaudio_v2",
+        "weight_g": 36,
+        "price_usd": 0,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "truerc_axii_2_lhcp",
+      "type": "antenna",
+      "name": "TrueRC AXII 2 5.8GHz LHCP omni",
+      "sku": "truerc_axii_2_lhcp",
+      "attributes": {
+        "brand": "truerc",
+        "kind": "omni",
+        "polarization": "LHCP",
+        "frequency_band": "5.8GHz",
+        "connector": "MMCX",
+        "gain_dbi": 1.6,
+        "price_usd": 14,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "lumenier_axii_long_range_lhcp",
+      "type": "antenna",
+      "name": "Lumenier AXII Long Range LHCP",
+      "sku": "lumenier_axii_long_range_lhcp",
+      "attributes": {
+        "brand": "lumenier",
+        "kind": "omni",
+        "polarization": "LHCP",
+        "frequency_band": "5.8GHz",
+        "connector": "SMA",
+        "gain_dbi": 2.2,
+        "price_usd": 25,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "foxeer_lollipop_4_rhcp",
+      "type": "antenna",
+      "name": "Foxeer Lollipop 4 RHCP",
+      "sku": "foxeer_lollipop_4_rhcp",
+      "attributes": {
+        "brand": "foxeer",
+        "kind": "omni",
+        "polarization": "RHCP",
+        "frequency_band": "5.8GHz",
+        "connector": "MMCX",
+        "gain_dbi": 1.6,
+        "price_usd": 12,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "truerc_x_air_5g8_patch",
+      "type": "antenna",
+      "name": "TrueRC X-Air 5.8GHz patch",
+      "sku": "truerc_x_air_5g8_patch",
+      "attributes": {
+        "brand": "truerc",
+        "kind": "patch",
+        "polarization": "LHCP",
+        "frequency_band": "5.8GHz",
+        "connector": "SMA",
+        "gain_dbi": 8.4,
+        "price_usd": 49,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tattu_r_line_v5_6s_1300_150c",
+      "type": "battery",
+      "name": "Tattu R-Line V5.0 6S 1300mAh 150C",
+      "sku": "tattu_r_line_v5_6s_1300_150c",
+      "attributes": {
+        "brand": "tattu",
+        "model": "R-Line V5.0",
+        "s_count": 6,
+        "capacity_mah": 1300,
+        "c_rating": 150,
+        "connector": "XT60",
+        "weight_g": 195,
+        "balance_lead": "JST-XH",
+        "price_usd": 39,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "cnhl_black_6s_1100_100c",
+      "type": "battery",
+      "name": "CNHL Black Series 6S 1100mAh 100C",
+      "sku": "cnhl_black_6s_1100_100c",
+      "attributes": {
+        "brand": "cnhl",
+        "model": "Black Series",
+        "s_count": 6,
+        "capacity_mah": 1100,
+        "c_rating": 100,
+        "connector": "XT60",
+        "weight_g": 168,
+        "balance_lead": "JST-XH",
+        "price_usd": 29,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "gnb_4s_1500_120c",
+      "type": "battery",
+      "name": "GNB 4S 1500mAh 120C",
+      "sku": "gnb_4s_1500_120c",
+      "attributes": {
+        "brand": "gnb",
+        "model": "4S 1500 120C",
+        "s_count": 4,
+        "capacity_mah": 1500,
+        "c_rating": 120,
+        "connector": "XT60",
+        "weight_g": 175,
+        "balance_lead": "JST-XH",
+        "price_usd": 25,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "betafpv_1s_550_bt2",
+      "type": "battery",
+      "name": "BetaFPV 1S 550mAh BT2.0 (whoop)",
+      "sku": "betafpv_1s_550_bt2",
+      "attributes": {
+        "brand": "betafpv",
+        "model": "1S 550 BT2.0",
+        "s_count": 1,
+        "capacity_mah": 550,
+        "c_rating": 75,
+        "connector": "BT2.0",
+        "weight_g": 12,
+        "balance_lead": "none",
+        "price_usd": 9,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tattu_6s_1800_75c_cinematic",
+      "type": "battery",
+      "name": "Tattu 6S 1800mAh 75C cinematic",
+      "sku": "tattu_6s_1800_75c_cinematic",
+      "attributes": {
+        "brand": "tattu",
+        "model": "Funfly 6S 1800 75C",
+        "s_count": 6,
+        "capacity_mah": 1800,
+        "c_rating": 75,
+        "connector": "XT60",
+        "weight_g": 245,
+        "balance_lead": "JST-XH",
+        "price_usd": 45,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "hqprop_5x4_3x3_v1s",
+      "type": "propeller",
+      "name": "HQProp 5x4.3x3 V1S",
+      "sku": "hqprop_5x4_3x3_v1s",
+      "attributes": {
+        "brand": "hqprop",
+        "diameter_in": 5,
+        "pitch": 4.3,
+        "blade_count": 3,
+        "mount_hole_mm": 5,
+        "price_usd": 4,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "gemfan_hurricane_51466_3",
+      "type": "propeller",
+      "name": "Gemfan Hurricane 51466 3-blade",
+      "sku": "gemfan_hurricane_51466_3",
+      "attributes": {
+        "brand": "gemfan",
+        "diameter_in": 5,
+        "pitch": 4.6,
+        "blade_count": 3,
+        "mount_hole_mm": 5,
+        "price_usd": 4,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tmotor_t5147_3",
+      "type": "propeller",
+      "name": "T-Motor T5147 3-blade",
+      "sku": "tmotor_t5147_3",
+      "attributes": {
+        "brand": "t-motor",
+        "diameter_in": 5,
+        "pitch": 4.7,
+        "blade_count": 3,
+        "mount_hole_mm": 5,
+        "price_usd": 5,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "hqprop_4x4_3x3",
+      "type": "propeller",
+      "name": "HQProp 4x4.3x3 (4\")",
+      "sku": "hqprop_4x4_3x3",
+      "attributes": {
+        "brand": "hqprop",
+        "diameter_in": 4,
+        "pitch": 4.3,
+        "blade_count": 3,
+        "mount_hole_mm": 5,
+        "price_usd": 4,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "gemfan_75mm_4_whoop",
+      "type": "propeller",
+      "name": "Gemfan 75mm 4-blade (whoop)",
+      "sku": "gemfan_75mm_4_whoop",
+      "attributes": {
+        "brand": "gemfan",
+        "diameter_in": 2,
+        "pitch": 1.9,
+        "blade_count": 4,
+        "mount_hole_mm": 1.5,
+        "price_usd": 3,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "tbs_crossfire_nano_rx",
+      "type": "radio_receiver",
+      "name": "TBS Crossfire Nano RX",
+      "sku": "tbs_crossfire_nano_rx",
+      "attributes": {
+        "brand": "tbs",
+        "model": "Crossfire Nano RX",
+        "protocol": "TBS_Crossfire_915MHz",
+        "power_input_v": "3.3-5V",
+        "weight_g": 1.5,
+        "telemetry": true,
+        "price_usd": 39,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "elrs_happymodel_ep1",
+      "type": "radio_receiver",
+      "name": "ELRS Happymodel EP1",
+      "sku": "elrs_happymodel_ep1",
+      "attributes": {
+        "brand": "happymodel",
+        "model": "EP1 ELRS 2.4G",
+        "protocol": "ELRS_2.4G",
+        "power_input_v": "3.3-5V",
+        "weight_g": 0.6,
+        "telemetry": true,
+        "price_usd": 18,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "elrs_betafpv_superd_2g4",
+      "type": "radio_receiver",
+      "name": "ELRS BetaFPV SuperD 2.4G",
+      "sku": "elrs_betafpv_superd_2g4",
+      "attributes": {
+        "brand": "betafpv",
+        "model": "SuperD 2.4G ELRS",
+        "protocol": "ELRS_2.4G",
+        "power_input_v": "3.3-5V",
+        "weight_g": 0.9,
+        "telemetry": true,
+        "price_usd": 22,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "radiomaster_rp3_elrs_2g4",
+      "type": "radio_receiver",
+      "name": "RadioMaster RP3 ELRS 2.4G",
+      "sku": "radiomaster_rp3_elrs_2g4",
+      "attributes": {
+        "brand": "radiomaster",
+        "model": "RP3 ELRS 2.4G",
+        "protocol": "ELRS_2.4G",
+        "power_input_v": "3.3-5V",
+        "weight_g": 0.8,
+        "telemetry": true,
+        "price_usd": 19,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "radiomaster_pocket_elrs",
+      "type": "radio_transmitter",
+      "name": "RadioMaster Pocket ELRS",
+      "sku": "radiomaster_pocket_elrs",
+      "attributes": {
+        "brand": "radiomaster",
+        "model": "Pocket ELRS",
+        "protocol": "ELRS_2.4G",
+        "supports_external_tx": true,
+        "channels": 16,
+        "screen": true,
+        "price_usd": 89,
+        "source_ids": [0, 4]
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "motor_mount_in_frame",
+      "description": "motor.mount_pattern must be present in frame.motor_mount_pattern set"
+    },
+    {
+      "id": "esc_matches_fc_stack",
+      "description": "esc.mount_size_mm must match flight_controller.mount_size_mm"
+    },
+    {
+      "id": "battery_in_motor_s_range",
+      "description": "battery.s_count must fall within motor.recommended_battery_s range"
+    },
+    {
+      "id": "prop_matches_frame",
+      "description": "propeller.diameter_in must equal frame.prop_size_in"
+    },
+    {
+      "id": "esc_headroom_4_motors",
+      "description": "esc.current_burst_a > motor.peak_current * 4 (rough headroom check across 4 motors)"
+    },
+    {
+      "id": "camera_kind_in_frame_compat",
+      "description": "camera.kind must be in frame.hd_camera_compat (analog frames don't fit DJI O3)"
+    },
+    {
+      "id": "rx_tx_protocol_match",
+      "description": "radio_receiver.protocol must match radio_transmitter.protocol (ELRS-to-ELRS, Crossfire-to-Crossfire)"
+    },
+    {
+      "id": "fc_supports_dji_o3",
+      "description": "flight_controller.supports_dji_o3 must be true if camera.kind = 'hd_dji_o3'"
+    }
+  ]
+}
