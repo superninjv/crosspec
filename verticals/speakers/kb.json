@@ -766,6 +766,575 @@
         "oxygen_free_copper": false,
         "source_ids": [1, 4]
       }
+    },
+    {
+      "id": "jbl_l52_classic",
+      "type": "bookshelf",
+      "name": "JBL L52 Classic",
+      "attributes": {
+        "price_usd": 1000,
+        "brand": "JBL",
+        "type": "2-way",
+        "drivers": ["0.75in_tweeter_horn", "5.25in_woofer"],
+        "frequency_response_hz": "54-40000",
+        "sensitivity_db": 85,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "10-75",
+        "dimensions_mm": "296x191x222",
+        "weight_kg": 5.9,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "wharfedale_diamond_12_0",
+      "type": "bookshelf",
+      "name": "Wharfedale Diamond 12.0",
+      "attributes": {
+        "price_usd": 249,
+        "brand": "Wharfedale",
+        "type": "2-way",
+        "drivers": ["1in_tweeter", "4in_woofer"],
+        "frequency_response_hz": "70-20000",
+        "sensitivity_db": 86,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "20-75",
+        "dimensions_mm": "225x148x218",
+        "weight_kg": 3.5,
+        "source_ids": [0, 5]
+      }
+    },
+    {
+      "id": "elac_carina_bs243_4",
+      "type": "bookshelf",
+      "name": "ELAC Carina BS243.4",
+      "attributes": {
+        "price_usd": 1000,
+        "brand": "ELAC",
+        "type": "2-way",
+        "drivers": ["0.75in_jet_tweeter", "5.25in_woofer"],
+        "frequency_response_hz": "50-50000",
+        "sensitivity_db": 85,
+        "nominal_impedance_ohm": 4,
+        "recommended_amp_w": "40-120",
+        "dimensions_mm": "305x185x280",
+        "weight_kg": 7.2,
+        "source_ids": [0, 1, 5]
+      }
+    },
+    {
+      "id": "q_acoustics_concept_30",
+      "type": "bookshelf",
+      "name": "Q Acoustics Concept 30",
+      "attributes": {
+        "price_usd": 799,
+        "brand": "Q Acoustics",
+        "type": "2-way",
+        "drivers": ["0.9in_tweeter", "5in_woofer"],
+        "frequency_response_hz": "64-30000",
+        "sensitivity_db": 86,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "15-75",
+        "dimensions_mm": "281x178x278",
+        "weight_kg": 6.8,
+        "source_ids": [0, 5]
+      }
+    },
+    {
+      "id": "kef_q11_meta",
+      "type": "floorstanding",
+      "name": "KEF Q11 Meta",
+      "attributes": {
+        "price_usd": 1599,
+        "brand": "KEF",
+        "type": "2.5-way",
+        "drivers": ["1in_tweeter_in_cone", "6.5in_woofer", "6.5in_woofer"],
+        "frequency_response_hz": "40-28000",
+        "sensitivity_db": 88,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "15-180",
+        "dimensions_mm": "970x280x360",
+        "weight_kg": 22.0,
+        "source_ids": [0, 1, 5]
+      }
+    },
+    {
+      "id": "bw_603_s3",
+      "type": "floorstanding",
+      "name": "Bowers & Wilkins 603 S3",
+      "attributes": {
+        "price_usd": 2499,
+        "brand": "Bowers & Wilkins",
+        "type": "3-way",
+        "drivers": ["1in_tweeter", "6in_midrange", "6.5in_woofer", "6.5in_woofer"],
+        "frequency_response_hz": "30-33000",
+        "sensitivity_db": 88,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "30-200",
+        "dimensions_mm": "1055x325x349",
+        "weight_kg": 32.0,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "wharfedale_aura_4",
+      "type": "floorstanding",
+      "name": "Wharfedale Aura 4",
+      "attributes": {
+        "price_usd": 1499,
+        "brand": "Wharfedale",
+        "type": "3-way",
+        "drivers": ["1in_tweeter", "5in_midrange", "6.5in_woofer", "6.5in_woofer"],
+        "frequency_response_hz": "28-22000",
+        "sensitivity_db": 90,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "25-200",
+        "dimensions_mm": "1040x270x340",
+        "weight_kg": 27.5,
+        "source_ids": [0, 5]
+      }
+    },
+    {
+      "id": "svs_pb_1000_pro",
+      "type": "subwoofer",
+      "name": "SVS PB-1000 Pro",
+      "attributes": {
+        "price_usd": 699,
+        "brand": "SVS",
+        "driver_size_in": 12,
+        "amp_power_w_rms": 325,
+        "frequency_response_hz": "17-290",
+        "crossover_range_hz": "30-200",
+        "room_correction": false,
+        "app_control": true,
+        "enclosure_type": "ported",
+        "dimensions_mm": "467x386x502",
+        "weight_kg": 21.8,
+        "source_ids": [0, 1, 3, 4]
+      }
+    },
+    {
+      "id": "rel_t9x",
+      "type": "subwoofer",
+      "name": "REL T/9x",
+      "attributes": {
+        "price_usd": 999,
+        "brand": "REL",
+        "driver_size_in": 10,
+        "amp_power_w_rms": 300,
+        "frequency_response_hz": "28-120",
+        "crossover_range_hz": "30-120",
+        "room_correction": false,
+        "app_control": false,
+        "enclosure_type": "sealed",
+        "dimensions_mm": "340x340x362",
+        "weight_kg": 18.5,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "klipsch_spl_150",
+      "type": "subwoofer",
+      "name": "Klipsch SPL-150",
+      "attributes": {
+        "price_usd": 999,
+        "brand": "Klipsch",
+        "driver_size_in": 15,
+        "amp_power_w_rms": 400,
+        "frequency_response_hz": "18-120",
+        "crossover_range_hz": "40-160",
+        "room_correction": false,
+        "app_control": false,
+        "enclosure_type": "ported",
+        "dimensions_mm": "559x438x559",
+        "weight_kg": 30.4,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "bic_america_f12",
+      "type": "subwoofer",
+      "name": "BIC America F12",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "BIC America",
+        "driver_size_in": 12,
+        "amp_power_w_rms": 475,
+        "frequency_response_hz": "25-200",
+        "crossover_range_hz": "50-200",
+        "room_correction": false,
+        "app_control": false,
+        "enclosure_type": "ported",
+        "dimensions_mm": "460x416x460",
+        "weight_kg": 19.5,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "jl_audio_e_sub_e110",
+      "type": "subwoofer",
+      "name": "JL Audio E-Sub e110",
+      "attributes": {
+        "price_usd": 999,
+        "brand": "JL Audio",
+        "driver_size_in": 10,
+        "amp_power_w_rms": 1200,
+        "frequency_response_hz": "25-120",
+        "crossover_range_hz": "40-130",
+        "room_correction": false,
+        "app_control": false,
+        "enclosure_type": "sealed",
+        "dimensions_mm": "355x355x380",
+        "weight_kg": 20.4,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "denon_avr_x4800h",
+      "type": "av_receiver",
+      "name": "Denon AVR-X4800H",
+      "attributes": {
+        "price_usd": 2199,
+        "brand": "Denon",
+        "channels": "9.4ch",
+        "power_per_channel_w_8ohm": 125,
+        "hdmi_2_1_inputs": 6,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "audyssey_xt32",
+        "auro_3d": true,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "marantz_cinema_70s",
+      "type": "av_receiver",
+      "name": "Marantz Cinema 70s",
+      "attributes": {
+        "price_usd": 999,
+        "brand": "Marantz",
+        "channels": "7.2ch",
+        "power_per_channel_w_8ohm": 50,
+        "hdmi_2_1_inputs": 3,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "audyssey_xt32",
+        "auro_3d": false,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "yamaha_rx_a4a",
+      "type": "av_receiver",
+      "name": "Yamaha RX-A4A",
+      "attributes": {
+        "price_usd": 1799,
+        "brand": "Yamaha",
+        "channels": "9.2ch",
+        "power_per_channel_w_8ohm": 120,
+        "hdmi_2_1_inputs": 7,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "ypao_r_s_c",
+        "auro_3d": false,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "onkyo_tx_rz50",
+      "type": "av_receiver",
+      "name": "Onkyo TX-RZ50",
+      "attributes": {
+        "price_usd": 1099,
+        "brand": "Onkyo",
+        "channels": "9.2ch",
+        "power_per_channel_w_8ohm": 100,
+        "hdmi_2_1_inputs": 6,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "dirac_live",
+        "auro_3d": false,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "nad_t_778",
+      "type": "av_receiver",
+      "name": "NAD T 778",
+      "attributes": {
+        "price_usd": 2499,
+        "brand": "NAD",
+        "channels": "9.2ch",
+        "power_per_channel_w_8ohm": 85,
+        "hdmi_2_1_inputs": 4,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "dirac_live",
+        "auro_3d": false,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "anthem_mrx_540",
+      "type": "av_receiver",
+      "name": "Anthem MRX 540",
+      "attributes": {
+        "price_usd": 1999,
+        "brand": "Anthem",
+        "channels": "5.2ch",
+        "power_per_channel_w_8ohm": 120,
+        "hdmi_2_1_inputs": 3,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "dirac_live",
+        "auro_3d": false,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "cambridge_audio_cxa61",
+      "type": "stereo_amp",
+      "name": "Cambridge Audio CXA61",
+      "attributes": {
+        "price_usd": 999,
+        "brand": "Cambridge Audio",
+        "integrated": true,
+        "power_per_channel_w_8ohm": 60,
+        "has_phono": false,
+        "has_dac": true,
+        "balanced_inputs": false,
+        "source_ids": [0, 1, 5]
+      }
+    },
+    {
+      "id": "marantz_pm6007",
+      "type": "stereo_amp",
+      "name": "Marantz PM6007",
+      "attributes": {
+        "price_usd": 699,
+        "brand": "Marantz",
+        "integrated": true,
+        "power_per_channel_w_8ohm": 45,
+        "has_phono": true,
+        "has_dac": true,
+        "balanced_inputs": false,
+        "source_ids": [0, 1, 5]
+      }
+    },
+    {
+      "id": "nad_c_316bee_v2",
+      "type": "stereo_amp",
+      "name": "NAD C 316BEE V2",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "NAD",
+        "integrated": true,
+        "power_per_channel_w_8ohm": 40,
+        "has_phono": false,
+        "has_dac": false,
+        "balanced_inputs": false,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "schiit_aegir",
+      "type": "stereo_amp",
+      "name": "Schiit Aegir",
+      "attributes": {
+        "price_usd": 999,
+        "brand": "Schiit",
+        "integrated": false,
+        "power_per_channel_w_8ohm": 20,
+        "has_phono": false,
+        "has_dac": false,
+        "balanced_inputs": true,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "hegel_h95",
+      "type": "stereo_amp",
+      "name": "Hegel H95",
+      "attributes": {
+        "price_usd": 2000,
+        "brand": "Hegel",
+        "integrated": true,
+        "power_per_channel_w_8ohm": 60,
+        "has_phono": false,
+        "has_dac": true,
+        "balanced_inputs": false,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "ps_audio_sprout100",
+      "type": "stereo_amp",
+      "name": "PS Audio Sprout100",
+      "attributes": {
+        "price_usd": 699,
+        "brand": "PS Audio",
+        "integrated": true,
+        "power_per_channel_w_8ohm": 50,
+        "has_phono": true,
+        "has_dac": true,
+        "balanced_inputs": false,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "cambridge_audio_mxn10",
+      "type": "streamer",
+      "name": "Cambridge Audio MXN10",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "Cambridge Audio",
+        "supports_airplay_2": true,
+        "supports_chromecast": true,
+        "supports_roon": false,
+        "supports_spotify_connect": true,
+        "supports_tidal_connect": true,
+        "hires_max": "24bit/384khz",
+        "has_dac": true,
+        "balanced_output": false,
+        "source_ids": [0, 1, 5]
+      }
+    },
+    {
+      "id": "bluesound_node_nano",
+      "type": "streamer",
+      "name": "Bluesound Node Nano",
+      "attributes": {
+        "price_usd": 349,
+        "brand": "Bluesound",
+        "supports_airplay_2": true,
+        "supports_chromecast": false,
+        "supports_roon": true,
+        "supports_spotify_connect": true,
+        "supports_tidal_connect": true,
+        "hires_max": "24bit/192khz",
+        "has_dac": true,
+        "balanced_output": false,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "eversolo_dmp_a6",
+      "type": "streamer",
+      "name": "Eversolo DMP-A6",
+      "attributes": {
+        "price_usd": 699,
+        "brand": "Eversolo",
+        "supports_airplay_2": true,
+        "supports_chromecast": false,
+        "supports_roon": true,
+        "supports_spotify_connect": true,
+        "supports_tidal_connect": true,
+        "hires_max": "32bit/768khz",
+        "has_dac": true,
+        "balanced_output": true,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "auralic_aries_mini",
+      "type": "streamer",
+      "name": "Auralic Aries Mini",
+      "attributes": {
+        "price_usd": 599,
+        "brand": "Auralic",
+        "supports_airplay_2": true,
+        "supports_chromecast": false,
+        "supports_roon": true,
+        "supports_spotify_connect": true,
+        "supports_tidal_connect": false,
+        "hires_max": "32bit/384khz",
+        "has_dac": false,
+        "balanced_output": false,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "audioquest_type_4",
+      "type": "speaker_cable",
+      "name": "AudioQuest Type 4",
+      "attributes": {
+        "price_usd": 119,
+        "brand": "AudioQuest",
+        "gauge_awg": 14,
+        "length_ft": 10,
+        "terminated": "banana",
+        "oxygen_free_copper": true,
+        "source_ids": [1, 4]
+      }
+    },
+    {
+      "id": "kimber_kable_4pr",
+      "type": "speaker_cable",
+      "name": "Kimber Kable 4PR",
+      "attributes": {
+        "price_usd": 75,
+        "brand": "Kimber Kable",
+        "gauge_awg": 16,
+        "length_ft": 8,
+        "terminated": "none",
+        "oxygen_free_copper": true,
+        "source_ids": [1, 2, 4]
+      }
+    },
+    {
+      "id": "mogami_w3104",
+      "type": "speaker_cable",
+      "name": "Mogami W3104",
+      "attributes": {
+        "price_usd": 89,
+        "brand": "Mogami",
+        "gauge_awg": 14,
+        "length_ft": 10,
+        "terminated": "none",
+        "oxygen_free_copper": true,
+        "source_ids": [1, 4]
+      }
+    },
+    {
+      "id": "pangea_audio_awg14",
+      "type": "speaker_cable",
+      "name": "Pangea Audio AWG14",
+      "attributes": {
+        "price_usd": 49,
+        "brand": "Pangea Audio",
+        "gauge_awg": 14,
+        "length_ft": 10,
+        "terminated": "banana",
+        "oxygen_free_copper": true,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "amazonbasics_16awg",
+      "type": "speaker_cable",
+      "name": "AmazonBasics 16AWG Speaker Wire",
+      "attributes": {
+        "price_usd": 20,
+        "brand": "AmazonBasics",
+        "gauge_awg": 16,
+        "length_ft": 50,
+        "terminated": "none",
+        "oxygen_free_copper": false,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "gls_audio_12awg",
+      "type": "speaker_cable",
+      "name": "GLS Audio 12AWG Speaker Cable",
+      "attributes": {
+        "price_usd": 35,
+        "brand": "GLS Audio",
+        "gauge_awg": 12,
+        "length_ft": 25,
+        "terminated": "banana",
+        "oxygen_free_copper": true,
+        "source_ids": [4]
+      }
     }
   ]
 }

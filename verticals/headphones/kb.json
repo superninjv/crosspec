@@ -704,6 +704,643 @@
         "material": "silicone",
         "source_ids": [1, 2]
       }
+    },
+    {
+      "id": "sennheiser_hd_660s",
+      "type": "headphone_open",
+      "name": "Sennheiser HD 660S",
+      "attributes": {
+        "price_usd": 499,
+        "brand": "Sennheiser",
+        "model": "HD 660S",
+        "driver_type": "dynamic",
+        "impedance_ohm": 150,
+        "sensitivity_db_mw": 104,
+        "frequency_response_hz": "10-41000",
+        "weight_g": 260,
+        "connector": "6.35mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "hifiman_edition_xs",
+      "type": "headphone_open",
+      "name": "HiFiMan Edition XS",
+      "attributes": {
+        "price_usd": 499,
+        "brand": "HiFiMan",
+        "model": "Edition XS",
+        "driver_type": "planar",
+        "impedance_ohm": 18,
+        "sensitivity_db_mw": 92,
+        "frequency_response_hz": "8-50000",
+        "weight_g": 405,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "hifiman_arya_stealth",
+      "type": "headphone_open",
+      "name": "HiFiMan Arya Stealth",
+      "attributes": {
+        "price_usd": 1299,
+        "brand": "HiFiMan",
+        "model": "Arya Stealth",
+        "driver_type": "planar",
+        "impedance_ohm": 35,
+        "sensitivity_db_mw": 94,
+        "frequency_response_hz": "8-65000",
+        "weight_g": 404,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "audeze_mm_100",
+      "type": "headphone_open",
+      "name": "Audeze MM-100",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "Audeze",
+        "model": "MM-100",
+        "driver_type": "planar",
+        "impedance_ohm": 20,
+        "sensitivity_db_mw": 100,
+        "frequency_response_hz": "10-50000",
+        "weight_g": 490,
+        "connector": "4.4mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "sennheiser_hd_6xx",
+      "type": "headphone_open",
+      "name": "Sennheiser HD 6XX",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "Sennheiser",
+        "model": "HD 6XX",
+        "driver_type": "dynamic",
+        "impedance_ohm": 300,
+        "sensitivity_db_mw": 97,
+        "frequency_response_hz": "12-39000",
+        "weight_g": 260,
+        "connector": "6.35mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 4]
+      }
+    },
+    {
+      "id": "akg_k612_pro",
+      "type": "headphone_open",
+      "name": "AKG K612 Pro",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "AKG",
+        "model": "K612 Pro",
+        "driver_type": "dynamic",
+        "impedance_ohm": 120,
+        "sensitivity_db_mw": 101,
+        "frequency_response_hz": "12-39500",
+        "weight_g": 230,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "beyerdynamic_dt_1990_pro",
+      "type": "headphone_open",
+      "name": "Beyerdynamic DT 1990 Pro Open",
+      "attributes": {
+        "price_usd": 599,
+        "brand": "Beyerdynamic",
+        "model": "DT 1990 Pro",
+        "driver_type": "dynamic",
+        "impedance_ohm": 250,
+        "sensitivity_db_mw": 102,
+        "frequency_response_hz": "5-40000",
+        "weight_g": 370,
+        "connector": "mini_xlr",
+        "removable_cable": true,
+        "source_ids": [0, 3, 5]
+      }
+    },
+    {
+      "id": "zmf_verite_open",
+      "type": "headphone_open",
+      "name": "ZMF Verite Open",
+      "attributes": {
+        "price_usd": 2499,
+        "brand": "ZMF",
+        "model": "Verite Open",
+        "driver_type": "dynamic",
+        "impedance_ohm": 300,
+        "sensitivity_db_mw": 99,
+        "frequency_response_hz": "10-30000",
+        "weight_g": 485,
+        "connector": "mini_xlr",
+        "removable_cable": true,
+        "source_ids": [0, 2, 4]
+      }
+    },
+    {
+      "id": "drop_sennheiser_hd_8xx",
+      "type": "headphone_open",
+      "name": "Drop x Sennheiser HD 8XX",
+      "attributes": {
+        "price_usd": 899,
+        "brand": "Drop x Sennheiser",
+        "model": "HD 8XX",
+        "driver_type": "dynamic",
+        "impedance_ohm": 300,
+        "sensitivity_db_mw": 102,
+        "frequency_response_hz": "4-51000",
+        "weight_g": 335,
+        "connector": "xlr_4pin",
+        "removable_cable": true,
+        "source_ids": [0, 2, 4]
+      }
+    },
+    {
+      "id": "stax_sr_l300",
+      "type": "headphone_open",
+      "name": "Stax SR-L300",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "Stax",
+        "model": "SR-L300",
+        "driver_type": "electrostatic",
+        "impedance_ohm": 145000,
+        "sensitivity_db_mw": 100,
+        "frequency_response_hz": "7-41000",
+        "weight_g": 374,
+        "connector": "stax_5pin",
+        "removable_cable": false,
+        "source_ids": [0, 3, 5]
+      }
+    },
+    {
+      "id": "ess_422h",
+      "type": "headphone_open",
+      "name": "ESS 422H",
+      "attributes": {
+        "price_usd": 299,
+        "brand": "ESS",
+        "model": "422H",
+        "driver_type": "dynamic",
+        "impedance_ohm": 50,
+        "sensitivity_db_mw": 103,
+        "frequency_response_hz": "10-45000",
+        "weight_g": 320,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "audeze_lcd_2_classic",
+      "type": "headphone_open",
+      "name": "Audeze LCD-2 Classic",
+      "attributes": {
+        "price_usd": 799,
+        "brand": "Audeze",
+        "model": "LCD-2 Classic",
+        "driver_type": "planar",
+        "impedance_ohm": 70,
+        "sensitivity_db_mw": 101,
+        "frequency_response_hz": "10-50000",
+        "weight_g": 585,
+        "connector": "4.4mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "audeze_lcd_xc_2021",
+      "type": "headphone_closed",
+      "name": "Audeze LCD-XC 2021",
+      "attributes": {
+        "price_usd": 1799,
+        "brand": "Audeze",
+        "model": "LCD-XC 2021",
+        "driver_type": "planar",
+        "impedance_ohm": 20,
+        "sensitivity_db_mw": 100,
+        "frequency_response_hz": "10-50000",
+        "weight_g": 720,
+        "connector": "4.4mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "zmf_atrium_closed",
+      "type": "headphone_closed",
+      "name": "ZMF Atrium Closed",
+      "attributes": {
+        "price_usd": 2499,
+        "brand": "ZMF",
+        "model": "Atrium Closed",
+        "driver_type": "dynamic",
+        "impedance_ohm": 300,
+        "sensitivity_db_mw": 99,
+        "frequency_response_hz": "10-30000",
+        "weight_g": 540,
+        "connector": "mini_xlr",
+        "removable_cable": true,
+        "source_ids": [0, 2, 4]
+      }
+    },
+    {
+      "id": "dan_clark_aeon_2_noire",
+      "type": "headphone_closed",
+      "name": "Dan Clark Aeon 2 Noire",
+      "attributes": {
+        "price_usd": 1299,
+        "brand": "Dan Clark Audio",
+        "model": "Aeon 2 Noire",
+        "driver_type": "planar",
+        "impedance_ohm": 13,
+        "sensitivity_db_mw": 96,
+        "frequency_response_hz": "10-50000",
+        "weight_g": 326,
+        "connector": "4.4mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "beyerdynamic_t1_3rd",
+      "type": "headphone_closed",
+      "name": "Beyerdynamic T1 3rd Gen",
+      "attributes": {
+        "price_usd": 999,
+        "brand": "Beyerdynamic",
+        "model": "T1 3rd Generation",
+        "driver_type": "dynamic",
+        "impedance_ohm": 32,
+        "sensitivity_db_mw": 100,
+        "frequency_response_hz": "5-40000",
+        "weight_g": 370,
+        "connector": "mini_xlr",
+        "removable_cable": true,
+        "source_ids": [0, 3, 5]
+      }
+    },
+    {
+      "id": "drop_fostex_tx0",
+      "type": "headphone_closed",
+      "name": "Drop x Fostex T-X0",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "Drop x Fostex",
+        "model": "T-X0",
+        "driver_type": "planar",
+        "impedance_ohm": 50,
+        "sensitivity_db_mw": 91,
+        "frequency_response_hz": "10-45000",
+        "weight_g": 390,
+        "connector": "mini_xlr",
+        "removable_cable": true,
+        "source_ids": [0, 2, 4]
+      }
+    },
+    {
+      "id": "sony_mdr_z1r",
+      "type": "headphone_closed",
+      "name": "Sony MDR-Z1R",
+      "attributes": {
+        "price_usd": 1899,
+        "brand": "Sony",
+        "model": "MDR-Z1R",
+        "driver_type": "dynamic",
+        "impedance_ohm": 64,
+        "sensitivity_db_mw": 100,
+        "frequency_response_hz": "3-120000",
+        "weight_g": 385,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 3, 5]
+      }
+    },
+    {
+      "id": "thieaudio_hype_4",
+      "type": "iem",
+      "name": "ThieAudio Hype 4",
+      "attributes": {
+        "price_usd": 249,
+        "brand": "ThieAudio",
+        "model": "Hype 4",
+        "driver_config": "hybrid_4BA+1DD",
+        "impedance_ohm": 20,
+        "sensitivity_db_mw": 112,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "thieaudio_oracle_mkii",
+      "type": "iem",
+      "name": "ThieAudio Oracle MKII",
+      "attributes": {
+        "price_usd": 299,
+        "brand": "ThieAudio",
+        "model": "Oracle MKII",
+        "driver_config": "4BA",
+        "impedance_ohm": 22,
+        "sensitivity_db_mw": 112,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "moondrop_blessing_3",
+      "type": "iem",
+      "name": "Moondrop Blessing 3",
+      "attributes": {
+        "price_usd": 319,
+        "brand": "Moondrop",
+        "model": "Blessing 3",
+        "driver_config": "hybrid_4BA+1DD",
+        "impedance_ohm": 9,
+        "sensitivity_db_mw": 117,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "moondrop_aria_2",
+      "type": "iem",
+      "name": "Moondrop Aria 2",
+      "attributes": {
+        "price_usd": 79,
+        "brand": "Moondrop",
+        "model": "Aria 2",
+        "driver_config": "1DD",
+        "impedance_ohm": 32,
+        "sensitivity_db_mw": 122,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "moondrop_chu_2",
+      "type": "iem",
+      "name": "Moondrop Chu 2",
+      "attributes": {
+        "price_usd": 25,
+        "brand": "Moondrop",
+        "model": "Chu 2",
+        "driver_config": "1DD",
+        "impedance_ohm": 28,
+        "sensitivity_db_mw": 120,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "kz_zsn_pro_2",
+      "type": "iem",
+      "name": "KZ ZSN Pro 2",
+      "attributes": {
+        "price_usd": 22,
+        "brand": "KZ",
+        "model": "ZSN Pro 2",
+        "driver_config": "hybrid_1BA+1DD",
+        "impedance_ohm": 24,
+        "sensitivity_db_mw": 111,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3]
+      }
+    },
+    {
+      "id": "tangzu_waner",
+      "type": "iem",
+      "name": "Tangzu Wan'er",
+      "attributes": {
+        "price_usd": 19,
+        "brand": "Tangzu",
+        "model": "Wan'er",
+        "driver_config": "1DD",
+        "impedance_ohm": 32,
+        "sensitivity_db_mw": 122,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3]
+      }
+    },
+    {
+      "id": "ikko_oh10",
+      "type": "iem",
+      "name": "IKKO OH10",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "IKKO",
+        "model": "OH10",
+        "driver_config": "hybrid_1BA+1DD",
+        "impedance_ohm": 16,
+        "sensitivity_db_mw": 108,
+        "connector": "mmcx",
+        "source_ids": [2, 3, 4]
+      }
+    },
+    {
+      "id": "final_e5000",
+      "type": "iem",
+      "name": "Final E5000",
+      "attributes": {
+        "price_usd": 249,
+        "brand": "Final",
+        "model": "E5000",
+        "driver_config": "1DD",
+        "impedance_ohm": 14,
+        "sensitivity_db_mw": 93,
+        "connector": "mmcx",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "schiit_bifrost_2_64",
+      "type": "dac_amp",
+      "name": "Schiit Bifrost 2/64",
+      "attributes": {
+        "price_usd": 899,
+        "brand": "Schiit",
+        "model": "Bifrost 2/64",
+        "has_dac": true,
+        "has_amp": false,
+        "max_output_mw_32ohm": 0,
+        "balanced_output": true,
+        "supports_dsd": false,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "rme_adi2_dac_fs",
+      "type": "dac_amp",
+      "name": "RME ADI-2 DAC FS",
+      "attributes": {
+        "price_usd": 1099,
+        "brand": "RME",
+        "model": "ADI-2 DAC FS",
+        "has_dac": true,
+        "has_amp": true,
+        "max_output_mw_32ohm": 1500,
+        "balanced_output": true,
+        "supports_dsd": true,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "topping_a90_discrete",
+      "type": "dac_amp",
+      "name": "Topping A90 Discrete",
+      "attributes": {
+        "price_usd": 499,
+        "brand": "Topping",
+        "model": "A90 Discrete",
+        "has_dac": false,
+        "has_amp": true,
+        "max_output_mw_32ohm": 6000,
+        "balanced_output": true,
+        "supports_dsd": false,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "jds_element_iii",
+      "type": "dac_amp",
+      "name": "JDS Element III",
+      "attributes": {
+        "price_usd": 369,
+        "brand": "JDS Labs",
+        "model": "Element III",
+        "has_dac": true,
+        "has_amp": true,
+        "max_output_mw_32ohm": 1200,
+        "balanced_output": false,
+        "supports_dsd": false,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "aune_x8",
+      "type": "dac_amp",
+      "name": "Aune X8",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "Aune",
+        "model": "X8",
+        "has_dac": true,
+        "has_amp": false,
+        "max_output_mw_32ohm": 0,
+        "balanced_output": true,
+        "supports_dsd": true,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "smsl_do200_mkii",
+      "type": "dac_amp",
+      "name": "SMSL DO200 MKII",
+      "attributes": {
+        "price_usd": 349,
+        "brand": "SMSL",
+        "model": "DO200 MKII",
+        "has_dac": true,
+        "has_amp": false,
+        "max_output_mw_32ohm": 0,
+        "balanced_output": true,
+        "supports_dsd": true,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "dunu_duw03",
+      "type": "cable",
+      "name": "DUNU DUW-03",
+      "attributes": {
+        "price_usd": 89,
+        "brand": "DUNU",
+        "model": "DUW-03",
+        "connector_source": "2pin_0.78mm",
+        "connector_termination": "4.4mm",
+        "length_m": 1.2,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "tripowin_zonie",
+      "type": "cable",
+      "name": "Linsoul Tripowin Zonie",
+      "attributes": {
+        "price_usd": 18,
+        "brand": "Tripowin",
+        "model": "Zonie",
+        "connector_source": "2pin_0.78mm",
+        "connector_termination": "3.5mm",
+        "length_m": 1.2,
+        "source_ids": [1, 4]
+      }
+    },
+    {
+      "id": "faaeal_litz_hc08",
+      "type": "cable",
+      "name": "FAAEAL Litz HC-08",
+      "attributes": {
+        "price_usd": 29,
+        "brand": "FAAEAL",
+        "model": "Litz HC-08",
+        "connector_source": "mmcx",
+        "connector_termination": "3.5mm",
+        "length_m": 1.2,
+        "source_ids": [1, 4]
+      }
+    },
+    {
+      "id": "dunu_hulk_mini",
+      "type": "cable",
+      "name": "Dunu Hulk Mini",
+      "attributes": {
+        "price_usd": 129,
+        "brand": "DUNU",
+        "model": "Hulk Mini",
+        "connector_source": "2pin_0.78mm",
+        "connector_termination": "4.4mm",
+        "length_m": 1.2,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "final_audio_e_type",
+      "type": "ear_tip",
+      "name": "Final Audio E-Type",
+      "attributes": {
+        "price_usd": 15,
+        "brand": "Final Audio",
+        "model": "E-Type",
+        "sizes": ["ss", "s", "m", "l", "ll"],
+        "material": "silicone",
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "comply_foam_t500",
+      "type": "ear_tip",
+      "name": "Comply Foam T-500",
+      "attributes": {
+        "price_usd": 25,
+        "brand": "Comply",
+        "model": "T-500",
+        "sizes": ["s", "m", "l"],
+        "material": "foam",
+        "source_ids": [1, 2]
+      }
     }
   ],
   "constraints": [

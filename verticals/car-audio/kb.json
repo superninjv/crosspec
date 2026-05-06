@@ -690,6 +690,609 @@
         "thickness_mil": 80,
         "source_ids": [4]
       }
+    },
+    {
+      "id": "pioneer_avh_2440nex",
+      "type": "head_unit",
+      "name": "Pioneer AVH-2440NEX",
+      "attributes": {
+        "price_usd": 499,
+        "brand": "Pioneer",
+        "screen_size_in": 6.2,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 50,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "kenwood_ddx9908wbt",
+      "type": "head_unit",
+      "name": "Kenwood DDX9908WBT",
+      "attributes": {
+        "price_usd": 699,
+        "brand": "Kenwood",
+        "screen_size_in": 6.95,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 50,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "sony_xav_1500",
+      "type": "head_unit",
+      "name": "Sony XAV-1500",
+      "attributes": {
+        "price_usd": 179,
+        "brand": "Sony",
+        "screen_size_in": 6.4,
+        "supports_carplay": false,
+        "supports_android_auto": false,
+        "max_power_w_per_channel": 55,
+        "has_preouts": false,
+        "num_preouts": 0,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "alpine_halo9_ilx_f511",
+      "type": "head_unit",
+      "name": "Alpine HALO9 ILX-F511",
+      "attributes": {
+        "price_usd": 1299,
+        "brand": "Alpine",
+        "screen_size_in": 9.0,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 45,
+        "has_preouts": true,
+        "num_preouts": 4,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pioneer_deh_s6220bhs",
+      "type": "head_unit",
+      "name": "Pioneer DEH-S6220BHS",
+      "attributes": {
+        "price_usd": 129,
+        "brand": "Pioneer",
+        "screen_size_in": 0,
+        "supports_carplay": false,
+        "supports_android_auto": false,
+        "max_power_w_per_channel": 50,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "jvc_kw_x840bts",
+      "type": "head_unit",
+      "name": "JVC KW-X840BTS",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "JVC",
+        "screen_size_in": 0,
+        "supports_carplay": false,
+        "supports_android_auto": false,
+        "max_power_w_per_channel": 50,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "hertz_mille_mlk_165_3",
+      "type": "component_speaker",
+      "name": "Hertz Mille MLK 165.3",
+      "attributes": {
+        "price_usd": 799,
+        "brand": "Hertz",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 120,
+        "sensitivity_db": 93,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 63,
+        "includes_crossover": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "focal_k2_power_165krx2",
+      "type": "component_speaker",
+      "name": "Focal K2 Power 165KRX2",
+      "attributes": {
+        "price_usd": 1099,
+        "brand": "Focal",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 120,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 71,
+        "includes_crossover": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "jl_audio_c5_650",
+      "type": "component_speaker",
+      "name": "JL Audio C5-650",
+      "attributes": {
+        "price_usd": 499,
+        "brand": "JL Audio",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 100,
+        "sensitivity_db": 90,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 65,
+        "includes_crossover": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "memphis_mc65c",
+      "type": "component_speaker",
+      "name": "Memphis MClass MC65C",
+      "attributes": {
+        "price_usd": 179,
+        "brand": "Memphis",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 75,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 62,
+        "includes_crossover": true,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "audiofrog_gs62",
+      "type": "component_speaker",
+      "name": "Audiofrog GS62",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "Audiofrog",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 100,
+        "sensitivity_db": 88,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 67,
+        "includes_crossover": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pioneer_ts_z65ch",
+      "type": "component_speaker",
+      "name": "Pioneer TS-Z65CH",
+      "attributes": {
+        "price_usd": 249,
+        "brand": "Pioneer",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 100,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 64,
+        "includes_crossover": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "hertz_cento_cx_165",
+      "type": "coaxial_speaker",
+      "name": "Hertz Cento CX 165",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "Hertz",
+        "size_in": "6.5",
+        "power_handling_rms_w": 80,
+        "sensitivity_db": 93,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "polk_mm_6502",
+      "type": "coaxial_speaker",
+      "name": "Polk MM 6502",
+      "attributes": {
+        "price_usd": 179,
+        "brand": "Polk Audio",
+        "size_in": "6.5",
+        "power_handling_rms_w": 75,
+        "sensitivity_db": 93,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "jbl_gto629",
+      "type": "coaxial_speaker",
+      "name": "JBL GTO629",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "JBL",
+        "size_in": "6.5",
+        "power_handling_rms_w": 60,
+        "sensitivity_db": 94,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "alpine_sxe_1325s",
+      "type": "coaxial_speaker",
+      "name": "Alpine SXE-1325S",
+      "attributes": {
+        "price_usd": 59,
+        "brand": "Alpine",
+        "size_in": "5.25",
+        "power_handling_rms_w": 35,
+        "sensitivity_db": 90,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "kicker_dsc650",
+      "type": "coaxial_speaker",
+      "name": "Kicker DSC650",
+      "attributes": {
+        "price_usd": 49,
+        "brand": "Kicker",
+        "size_in": "6.5",
+        "power_handling_rms_w": 40,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "pioneer_ts_g1620f",
+      "type": "coaxial_speaker",
+      "name": "Pioneer TS-G1620F",
+      "attributes": {
+        "price_usd": 39,
+        "brand": "Pioneer",
+        "size_in": "6.5",
+        "power_handling_rms_w": 35,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "jl_audio_10w3v3_2",
+      "type": "subwoofer",
+      "name": "JL Audio 10W3v3-2",
+      "attributes": {
+        "price_usd": 329,
+        "brand": "JL Audio",
+        "size_in": 10,
+        "power_handling_rms_w": 500,
+        "impedance_ohm": 2,
+        "dual_voice_coil": false,
+        "mounting_depth_in": 5.25,
+        "enclosure_required": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "rockford_p3sd2_12",
+      "type": "subwoofer",
+      "name": "Rockford Punch P3SD2-12",
+      "attributes": {
+        "price_usd": 349,
+        "brand": "Rockford Fosgate",
+        "size_in": 12,
+        "power_handling_rms_w": 600,
+        "impedance_ohm": 2,
+        "dual_voice_coil": true,
+        "mounting_depth_in": 3.875,
+        "enclosure_required": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "kicker_cwcs124",
+      "type": "subwoofer",
+      "name": "Kicker CompC CWCS124",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "Kicker",
+        "size_in": 12,
+        "power_handling_rms_w": 300,
+        "impedance_ohm": 4,
+        "dual_voice_coil": false,
+        "mounting_depth_in": 5.125,
+        "enclosure_required": true,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "memphis_srx_12d4",
+      "type": "subwoofer",
+      "name": "Memphis SRX-12D4",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "Memphis",
+        "size_in": 12,
+        "power_handling_rms_w": 400,
+        "impedance_ohm": 4,
+        "dual_voice_coil": true,
+        "mounting_depth_in": 5.5,
+        "enclosure_required": true,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "sundown_sd3_12",
+      "type": "subwoofer",
+      "name": "Sundown SD-3 12",
+      "attributes": {
+        "price_usd": 279,
+        "brand": "Sundown Audio",
+        "size_in": 12,
+        "power_handling_rms_w": 750,
+        "impedance_ohm": 4,
+        "dual_voice_coil": true,
+        "mounting_depth_in": 4.75,
+        "enclosure_required": true,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "jl_audio_mx_fcs_2",
+      "type": "amplifier",
+      "name": "JL Audio MX-FCS-2",
+      "attributes": {
+        "price_usd": 349,
+        "brand": "JL Audio",
+        "num_channels": 2,
+        "power_per_channel_w_4ohm": 125,
+        "sub_channel_power_w_2ohm": null,
+        "class": "D",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "jl_audio_xd400_4v2",
+      "type": "amplifier",
+      "name": "JL Audio XD400/4v2",
+      "attributes": {
+        "price_usd": 449,
+        "brand": "JL Audio",
+        "num_channels": 4,
+        "power_per_channel_w_4ohm": 75,
+        "sub_channel_power_w_2ohm": null,
+        "class": "D",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "rockford_t1500_1bdcp",
+      "type": "amplifier",
+      "name": "Rockford T1500-1bdCP",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "Rockford Fosgate",
+        "num_channels": 1,
+        "power_per_channel_w_4ohm": 750,
+        "sub_channel_power_w_2ohm": 1500,
+        "class": "D",
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "alpine_bbx_t600",
+      "type": "amplifier",
+      "name": "Alpine BBX-T600",
+      "attributes": {
+        "price_usd": 129,
+        "brand": "Alpine",
+        "num_channels": 2,
+        "power_per_channel_w_4ohm": 150,
+        "sub_channel_power_w_2ohm": null,
+        "class": "AB",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "hertz_hcp4d",
+      "type": "amplifier",
+      "name": "Hertz HCP4D",
+      "attributes": {
+        "price_usd": 349,
+        "brand": "Hertz",
+        "num_channels": 4,
+        "power_per_channel_w_4ohm": 100,
+        "sub_channel_power_w_2ohm": null,
+        "class": "D",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "sony_xm_gs6dsp",
+      "type": "amplifier",
+      "name": "Sony XM-GS6DSP",
+      "attributes": {
+        "price_usd": 499,
+        "brand": "Sony",
+        "num_channels": 6,
+        "power_per_channel_w_4ohm": 100,
+        "sub_channel_power_w_2ohm": 600,
+        "class": "D",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "knukonceptz_klink_4awg",
+      "type": "wiring_kit",
+      "name": "KnuKonceptz K-Link 4AWG",
+      "attributes": {
+        "price_usd": 59,
+        "brand": "KnuKonceptz",
+        "gauge_awg": 4,
+        "includes_rca": true,
+        "kit_amperage_a": 200,
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "tspec_v8_rak04",
+      "type": "wiring_kit",
+      "name": "T-Spec V8-RAK04 4AWG",
+      "attributes": {
+        "price_usd": 69,
+        "brand": "T-Spec",
+        "gauge_awg": 4,
+        "includes_rca": true,
+        "kit_amperage_a": 200,
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "stinger_sk4641_new",
+      "type": "wiring_kit",
+      "name": "Stinger SK4641 4AWG Complete Kit",
+      "attributes": {
+        "price_usd": 89,
+        "brand": "Stinger",
+        "gauge_awg": 4,
+        "includes_rca": false,
+        "kit_amperage_a": 200,
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "audiopipe_nb4",
+      "type": "wiring_kit",
+      "name": "Audiopipe NB-4",
+      "attributes": {
+        "price_usd": 44,
+        "brand": "Audiopipe",
+        "gauge_awg": 4,
+        "includes_rca": true,
+        "kit_amperage_a": 200,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "jbl_stage_a6500",
+      "type": "coaxial_speaker",
+      "name": "JBL Stage A6500",
+      "attributes": {
+        "price_usd": 119,
+        "brand": "JBL",
+        "size_in": "6.5",
+        "power_handling_rms_w": 60,
+        "sensitivity_db": 92,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "memphis_scs525",
+      "type": "coaxial_speaker",
+      "name": "Memphis 5.25 SCS525",
+      "attributes": {
+        "price_usd": 79,
+        "brand": "Memphis",
+        "size_in": "5.25",
+        "power_handling_rms_w": 50,
+        "sensitivity_db": 90,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "hertz_energy_e165",
+      "type": "coaxial_speaker",
+      "name": "Hertz Energy E165",
+      "attributes": {
+        "price_usd": 69,
+        "brand": "Hertz",
+        "size_in": "6.5",
+        "power_handling_rms_w": 55,
+        "sensitivity_db": 92,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "kicker_dsc4",
+      "type": "coaxial_speaker",
+      "name": "Kicker DSC4",
+      "attributes": {
+        "price_usd": 39,
+        "brand": "Kicker",
+        "size_in": "4",
+        "power_handling_rms_w": 30,
+        "sensitivity_db": 89,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "secondskin_damplifier_pro",
+      "type": "sound_deadener",
+      "name": "Second Skin Damplifier Pro",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "Second Skin",
+        "sheet_count": 10,
+        "total_sqft": 36,
+        "thickness_mil": 80,
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "fatmat_sound_deadener",
+      "type": "sound_deadener",
+      "name": "FatMat Sound Deadener",
+      "attributes": {
+        "price_usd": 79,
+        "brand": "FatMat",
+        "sheet_count": 10,
+        "total_sqft": 50,
+        "thickness_mil": 50,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "hushmat_ultra",
+      "type": "sound_deadener",
+      "name": "Hushmat Ultra",
+      "attributes": {
+        "price_usd": 109,
+        "brand": "Hushmat",
+        "sheet_count": 10,
+        "total_sqft": 25,
+        "thickness_mil": 65,
+        "source_ids": [3]
+      }
     }
   ]
 }

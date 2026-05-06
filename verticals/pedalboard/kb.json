@@ -718,6 +718,757 @@
         "note": "Rackmount-style floor tuner. True bypass. High-visibility display for dark stages. Low draw. 1U rack-friendly — popular for players who want a tuner off the pedalboard. ±0.1 cent accuracy.",
         "source_ids": [0, 2]
       }
+    },
+    {
+      "id": "strymon_sunset",
+      "type": "pedal",
+      "name": "Strymon Sunset Dual Overdrive",
+      "attributes": {
+        "price_usd": 299,
+        "brand": "strymon",
+        "model": "Sunset",
+        "subtype": "overdrive",
+        "current_draw_ma": 165,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "175x115x57",
+        "note": "Dual-channel overdrive with 6 selectable circuit types per side. High draw (~165mA) — isolated output required. True bypass with relay switching. MIDI over TRS.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "jhs_morning_glory",
+      "type": "pedal",
+      "name": "JHS Morning Glory V4",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "jhs",
+        "model": "Morning Glory V4",
+        "subtype": "overdrive",
+        "current_draw_ma": 9,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "Low-gain Marshall-style overdrive. Extremely low draw — any output or daisy-chain safe. HP switch adds top-end clarity. True bypass.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "boss_sd1",
+      "type": "pedal",
+      "name": "Boss SD-1 Super OverDrive",
+      "attributes": {
+        "price_usd": 59,
+        "brand": "boss",
+        "model": "SD-1",
+        "subtype": "overdrive",
+        "current_draw_ma": 5,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "128x70x59",
+        "note": "Asymmetric clipping overdrive; warmer than the TS9. Buffered bypass. Very low draw — daisy-chain safe. Popular as a clean boost or TS alternative.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "eqd_plumes",
+      "type": "pedal",
+      "name": "EarthQuaker Devices Plumes",
+      "attributes": {
+        "price_usd": 79,
+        "brand": "earthquaker_devices",
+        "model": "Plumes",
+        "subtype": "overdrive",
+        "current_draw_ma": 12,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "Tube Screamer-inspired with three selectable clipping modes (op-amp, diode, no clipping). True bypass. Low draw — daisy-chain safe.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "wampler_sovereign",
+      "type": "pedal",
+      "name": "Wampler Sovereign Distortion",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "wampler",
+        "model": "Sovereign",
+        "subtype": "distortion",
+        "current_draw_ma": 20,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "High-gain distortion with 3-band EQ and mid-shift toggle. True bypass. Low draw — daisy-chain safe.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "pro_co_turbo_rat",
+      "type": "pedal",
+      "name": "Pro Co Turbo RAT",
+      "attributes": {
+        "price_usd": 109,
+        "brand": "pro_co",
+        "model": "Turbo RAT",
+        "subtype": "distortion",
+        "current_draw_ma": 5,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "118x92x51",
+        "note": "RAT2 circuit with LED clipping diodes for higher headroom and tighter low-end. Buffered bypass. Extremely low draw — any supply or daisy-chain suitable.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "dunlop_fuzz_face_mini",
+      "type": "pedal",
+      "name": "Dunlop Fuzz Face Mini",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "dunlop",
+        "model": "Fuzz Face Mini FFM1",
+        "subtype": "fuzz",
+        "current_draw_ma": 3,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "79x79x54",
+        "note": "Germanium transistor fuzz in compact enclosure. Very input-impedance sensitive — place first in chain or after a buffer-bypass pedal for consistent tone. Ultra-low draw; daisy-chain safe.",
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "dba_apocalypse",
+      "type": "pedal",
+      "name": "Death by Audio Apocalypse",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "death_by_audio",
+        "model": "Apocalypse",
+        "subtype": "fuzz",
+        "current_draw_ma": 25,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "Five selectable fuzz circuits on rotary. True bypass. Moderate draw — daisy-chain tolerable but isolated preferred.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "ehx_small_stone",
+      "type": "pedal",
+      "name": "Electro-Harmonix Small Stone",
+      "attributes": {
+        "price_usd": 89,
+        "brand": "electro_harmonix",
+        "model": "Small Stone",
+        "subtype": "modulation",
+        "current_draw_ma": 4,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "112x59x51",
+        "note": "4-stage analog phaser. Buffered bypass. Ultra-low draw — daisy-chain safe. Color switch alters feedback intensity.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "boss_ch1",
+      "type": "pedal",
+      "name": "Boss CH-1 Super Chorus",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "boss",
+        "model": "CH-1",
+        "subtype": "modulation",
+        "current_draw_ma": 25,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "128x70x59",
+        "note": "Stereo chorus with separate EQ knob. Buffered bypass. Low draw — daisy-chain safe. Stereo out for wet/dry rig configurations.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "mxr_talk_box",
+      "type": "pedal",
+      "name": "MXR M222 Talk Box",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "mxr",
+        "model": "M222 Talk Box",
+        "subtype": "modulation",
+        "current_draw_ma": 100,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "121x121x57",
+        "note": "Solid-state talk box; speaker-to-tube driver eliminates external amp requirement. Buffered bypass. Moderate draw — isolated output recommended.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "boss_dm2w",
+      "type": "pedal",
+      "name": "Boss DM-2W Waza Craft Delay",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "boss",
+        "model": "DM-2W",
+        "subtype": "delay",
+        "current_draw_ma": 55,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "128x70x59",
+        "note": "Reissue of the original analog DM-2 using MN3205 BBD. Waza mode extends delay time. Buffered bypass. Moderate draw — isolated output recommended to prevent BBD clock noise coupling.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "ehx_memory_boy",
+      "type": "pedal",
+      "name": "Electro-Harmonix Memory Boy",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "electro_harmonix",
+        "model": "Memory Boy",
+        "subtype": "delay",
+        "current_draw_ma": 80,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "120x67x57",
+        "note": "Analog BBD delay with chorus/vibrato modulation on repeats. True bypass. Moderate draw — isolated output preferred. Expression pedal input for delay-time sweeps.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "jhs_lucky_cat",
+      "type": "pedal",
+      "name": "JHS Lucky Cat Delay",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "jhs",
+        "model": "Lucky Cat",
+        "subtype": "delay",
+        "current_draw_ma": 85,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "Digital delay with tap tempo and lo-fi switch. True bypass. Moderate draw — isolated output recommended. USB for firmware updates.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "walrus_fundamental_delay",
+      "type": "pedal",
+      "name": "Walrus Audio Fundamental Delay",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "walrus_audio",
+        "model": "Fundamental Delay",
+        "subtype": "delay",
+        "current_draw_ma": 100,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_inch": "4.75x2.5",
+        "dimensions_mm": "121x64x54",
+        "note": "Compact digital delay with three modes (digital, analog, tape). True bypass. Moderate draw — isolated output recommended for quiet rigs.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "ehx_holy_grail_plus",
+      "type": "pedal",
+      "name": "Electro-Harmonix Holy Grail Plus",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "electro_harmonix",
+        "model": "Holy Grail Plus",
+        "subtype": "reverb",
+        "current_draw_ma": 100,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "120x67x57",
+        "note": "Spring, Hall, Flerb, and Plate reverbs. Buffered bypass. Moderate draw — isolated output recommended. Classic budget reverb pedal for all styles.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "ehx_cathedral",
+      "type": "pedal",
+      "name": "Electro-Harmonix Cathedral Stereo Reverb",
+      "attributes": {
+        "price_usd": 179,
+        "brand": "electro_harmonix",
+        "model": "Cathedral",
+        "subtype": "reverb",
+        "current_draw_ma": 100,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "144x118x57",
+        "note": "8 reverb types including Grail Spring, Hall, Plate, Reverse, and Echo Room. Stereo in/out. Buffered bypass. 100mA — isolated output recommended. Expression pedal input for reverb time.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "jhs_3series_reverb",
+      "type": "pedal",
+      "name": "JHS 3 Series Reverb",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "jhs",
+        "model": "3 Series Reverb",
+        "subtype": "reverb",
+        "current_draw_ma": 75,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "Budget-tier digital reverb; hall, spring, shimmer modes. True bypass. Moderate draw — isolated output recommended.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "wampler_ego",
+      "type": "pedal",
+      "name": "Wampler Ego Compressor",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "wampler",
+        "model": "Ego Compressor",
+        "subtype": "compressor",
+        "current_draw_ma": 50,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "OTA-based compressor with blend knob for parallel compression. True bypass. Moderate draw — daisy-chain tolerable but isolated preferred for low-noise operation.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "jhs_pulp_n_peel",
+      "type": "pedal",
+      "name": "JHS Pulp N Peel V4",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "jhs",
+        "model": "Pulp N Peel V4",
+        "subtype": "compressor",
+        "current_draw_ma": 15,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "Dynacomp-style OTA compressor with clean blend and preamp boost. True bypass. Low draw — daisy-chain safe.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "origin_cali76",
+      "type": "pedal",
+      "name": "Origin Effects Cali76 Compact Deluxe",
+      "attributes": {
+        "price_usd": 349,
+        "brand": "origin_effects",
+        "model": "Cali76 Compact Deluxe",
+        "subtype": "compressor",
+        "current_draw_ma": 130,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "1176-style FET compressor in compact enclosure. True bypass. Higher draw (130mA) — isolated output recommended. Attack/release controls plus wet/dry blend.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "mxr_dyna_comp",
+      "type": "pedal",
+      "name": "MXR M102 Dyna Comp",
+      "attributes": {
+        "price_usd": 79,
+        "brand": "mxr",
+        "model": "M102 Dyna Comp",
+        "subtype": "compressor",
+        "current_draw_ma": 3,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "121x66x38",
+        "note": "Simple two-knob OTA compressor. Buffered bypass. Ultra-low draw — daisy-chain safe. Script logo vintage units slightly different circuit. Classic country/funk squish.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "dunlop_crybaby_gcb95",
+      "type": "pedal",
+      "name": "Dunlop Cry Baby GCB-95",
+      "attributes": {
+        "price_usd": 89,
+        "brand": "dunlop",
+        "model": "GCB-95",
+        "subtype": "wah",
+        "current_draw_ma": 5,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "229x89x76",
+        "note": "Classic inductor-based wah. Buffered bypass with click-on/off footswitch. Very low draw — daisy-chain safe. Halo inductor is the signature component; aftermarket Fasel inductors popular upgrade.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "vox_v845",
+      "type": "pedal",
+      "name": "Vox V845 Classic Wah",
+      "attributes": {
+        "price_usd": 69,
+        "brand": "vox",
+        "model": "V845",
+        "subtype": "wah",
+        "current_draw_ma": 5,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "229x89x76",
+        "note": "Budget reissue of the classic Vox wah circuit. Buffered bypass. Ultra-low draw — daisy-chain safe. Italian-made Fasel inductor variant available as upgrade.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "pedaltrain_metro16",
+      "type": "pedalboard",
+      "name": "Pedaltrain Metro 16",
+      "attributes": {
+        "price_usd": 129,
+        "brand": "pedaltrain",
+        "model": "Metro 16",
+        "dimensions_inch": "16x8",
+        "weight_lb": 1.6,
+        "riser_levels": 1,
+        "includes_case": true,
+        "note": "Compact flat-profile metro board; fits 3–4 standard pedals. Soft case included. Undercarriage fits Strymon Ojai and PP Nano+ — confirm depth before ordering larger supplies.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pedaltrain_nano",
+      "type": "pedalboard",
+      "name": "Pedaltrain Nano",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "pedaltrain",
+        "model": "Nano",
+        "dimensions_inch": "14x5.5",
+        "weight_lb": 1.2,
+        "riser_levels": 1,
+        "includes_case": true,
+        "note": "Micro board for 2–3 compact pedals or fly-gig essentials. Soft bag included. Power supply must be a 1 SPOT or similar flat-bottom unit — no undercarriage depth for full-size supplies.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pedaltrain_novo32",
+      "type": "pedalboard",
+      "name": "Pedaltrain Novo 32",
+      "attributes": {
+        "price_usd": 299,
+        "brand": "pedaltrain",
+        "model": "Novo 32",
+        "dimensions_inch": "32x16",
+        "weight_lb": 6.0,
+        "riser_levels": 3,
+        "includes_case": true,
+        "note": "Flagship Novo-series board; wide rail spacing accommodates large enclosures (Strymon BigSky, CIOKS DC10). Three riser levels. Soft case included; hard case upgrade available.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "mono_pfx_pedalboard",
+      "type": "pedalboard",
+      "name": "Mono PFX Pedalboard Medium",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "mono",
+        "model": "PFX Pedalboard Medium",
+        "dimensions_inch": "21x12.5",
+        "weight_lb": 3.2,
+        "riser_levels": 1,
+        "includes_case": true,
+        "note": "Canvas-covered steel-rail board with integrated Mono case. Meets carry-on airline size requirements (medium variant). Rugged for touring; slightly heavier than aluminum options.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "vertex_mega",
+      "type": "pedalboard",
+      "name": "Vertex Effects MEGA Board",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "vertex",
+        "model": "MEGA",
+        "dimensions_inch": "28x14",
+        "weight_lb": 4.8,
+        "riser_levels": 2,
+        "includes_case": false,
+        "note": "High-end welded aluminum board with dual-level rail system and integrated cable management channels. No case included — sold separately. Popular among pro session and touring guitarists for clean build aesthetics.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "salvage_custom_24x12",
+      "type": "pedalboard",
+      "name": "Salvage Custom 24×12 Pedalboard",
+      "attributes": {
+        "price_usd": 279,
+        "brand": "salvage_custom",
+        "model": "24x12",
+        "dimensions_inch": "24x12",
+        "weight_lb": 3.8,
+        "riser_levels": 2,
+        "includes_case": false,
+        "note": "Boutique welded-steel board with anodized finish. Slanted rail profile. No case included. Custom orders available. Popular with players who prefer a heavier/sturdier option over aluminum.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "trex_fuel_tank_chameleon",
+      "type": "power_supply",
+      "name": "T-Rex Fuel Tank Chameleon",
+      "attributes": {
+        "price_usd": 189,
+        "brand": "trex",
+        "model": "Fuel Tank Chameleon",
+        "num_outputs": 7,
+        "total_current_ma": 1300,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v", "12v", "18v"],
+        "note": "7 isolated outputs with user-selectable voltages (9/12/18V per output via internal jumpers). Compact chassis. Suitable for boards with mixed-voltage pedals. Outputs 1–5: 100mA; output 6–7: 250mA.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "gigrig_generator",
+      "type": "power_supply",
+      "name": "GigRig Generator",
+      "attributes": {
+        "price_usd": 499,
+        "brand": "gigrig",
+        "model": "Generator",
+        "num_outputs": 8,
+        "total_current_ma": 4000,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v", "12v", "18v"],
+        "note": "Ultra-high-current isolated supply (500mA per output). Designed for DSP-heavy rigs with multiple Strymon/Eventide/Chase Bliss pedals. Linear regulated. Expandable via GigRig Quartermaster.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "gigrig_quartermaster",
+      "type": "power_supply",
+      "name": "GigRig Quartermaster",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "gigrig",
+        "model": "Quartermaster",
+        "num_outputs": 4,
+        "total_current_ma": 1000,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v"],
+        "note": "Expander module for GigRig Generator; adds 4 additional isolated 9V outputs at 250mA each. Powered from Generator's expansion port — requires Generator host. Not a standalone supply.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "strymon_ojai_r30",
+      "type": "power_supply",
+      "name": "Strymon Ojai R30",
+      "attributes": {
+        "price_usd": 189,
+        "brand": "strymon",
+        "model": "Ojai R30",
+        "num_outputs": 5,
+        "total_current_ma": 1500,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v"],
+        "note": "5 isolated 9V outputs at 300mA each. Linear regulated for ultra-low noise. Purpose-built for high-current digital pedals; each output can independently handle a Strymon BigSky/TimeLine/Mobius. Expandable with Ojai R30 Expansion Kit.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "eventide_powermini",
+      "type": "power_supply",
+      "name": "Eventide PowerMini",
+      "attributes": {
+        "price_usd": 79,
+        "brand": "eventide",
+        "model": "PowerMini",
+        "num_outputs": 5,
+        "total_current_ma": 750,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v"],
+        "note": "Ultra-compact isolated supply; 5 outputs at 150mA each (9V). Designed to mount beneath pedalboards with minimal footprint. Good option for medium-draw digital boards. Not suitable for 300mA Strymon pedals without output combining.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "caline_cp202",
+      "type": "power_supply",
+      "name": "Caline CP-202 Power Supply",
+      "attributes": {
+        "price_usd": 35,
+        "brand": "caline",
+        "model": "CP-202",
+        "num_outputs": 8,
+        "total_current_ma": 1000,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v", "12v", "18v"],
+        "note": "Budget-tier isolated supply. 6 outputs at 100mA (9V), 1 output at 12V (100mA), 1 output at 18V (100mA). Switching supply — noise floor higher than linear units. Acceptable for all-analog or low-sensitivity digital boards.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "lava_tightrope_solderless",
+      "type": "patch_cable",
+      "name": "Lava Cable Tightrope Solderless Kit",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "lava_cable",
+        "model": "Tightrope Solderless Kit 10-pack",
+        "length_inch": 6,
+        "gauge_awg": 22,
+        "solderless": true,
+        "right_angle": true,
+        "note": "Ultra-thin .095\" cable with screw-lock right-angle mini plugs; cut to any length. Ideal for tight-spaced boards. Separate from the standard Lava Tightrope entry — this is the 10-plug bundle variant.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "voodoo_lab_solder_free",
+      "type": "patch_cable",
+      "name": "Voodoo Lab Pedal Power Solder-Free Patch Cable Kit",
+      "attributes": {
+        "price_usd": 69,
+        "brand": "voodoo_lab",
+        "model": "Solder-Free Patch Kit",
+        "length_inch": 6,
+        "gauge_awg": 22,
+        "solderless": true,
+        "right_angle": true,
+        "note": "10 right-angle screw-crimp plugs + bulk cable. Voodoo Lab brand; compatible with any standard TRS/TS jack. Low-capacitance cable. Often bundled with Pedal Power 2 Plus packages.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "disaster_area_dpc_solderless",
+      "type": "patch_cable",
+      "name": "Disaster Area DPC Solderless Kit",
+      "attributes": {
+        "price_usd": 89,
+        "brand": "disaster_area",
+        "model": "DPC Solderless Kit",
+        "length_inch": 6,
+        "gauge_awg": 22,
+        "solderless": true,
+        "right_angle": true,
+        "note": "Solderless right-angle patch system with color-coded plugs for signal chain identification. 10-plug kit. Used by touring professionals. Cable is OFC for low resistance over long patch runs.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "ebs_solderless_kit",
+      "type": "patch_cable",
+      "name": "EBS Solderless Flat Patch Kit",
+      "attributes": {
+        "price_usd": 79,
+        "brand": "ebs",
+        "model": "Solderless Flat Patch Kit",
+        "length_inch": 4,
+        "gauge_awg": 24,
+        "solderless": true,
+        "right_angle": true,
+        "note": "Flat-profile solderless variant; 10 plugs + bulk cable. Combines the space-saving flat profile of EBS PCF Deluxe with the flexibility of cut-to-length assembly.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "boss_bic_patch_pack",
+      "type": "patch_cable",
+      "name": "Boss BIC Instrument Connector Pack",
+      "attributes": {
+        "price_usd": 29,
+        "brand": "boss",
+        "model": "BIC-1A",
+        "length_inch": 4,
+        "gauge_awg": 24,
+        "solderless": false,
+        "right_angle": true,
+        "note": "Pack of 5 right-angle molded patch cables (4\"/10cm). Budget tier; acceptable for small boards. Not recommended for dense pro rigs where cable quality affects noise floor.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "hosa_cmm303_patches",
+      "type": "patch_cable",
+      "name": "Hosa CMM-303 Patch Cable 3-Pack",
+      "attributes": {
+        "price_usd": 12,
+        "brand": "hosa",
+        "model": "CMM-303",
+        "length_inch": 4,
+        "gauge_awg": 24,
+        "solderless": false,
+        "right_angle": false,
+        "note": "Pack of 3 straight TS molded patch cables (3\"/7.5cm). Lowest-cost option. Straight plugs can create mechanical stress on pedal jacks in tight builds — use only for home practice or temporary rigs.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "daddario_pedal_tuner_plus",
+      "type": "tuner",
+      "name": "D'Addario Pedal Tuner+",
+      "attributes": {
+        "price_usd": 59,
+        "brand": "daddario",
+        "model": "Pedal Tuner+",
+        "type": "chromatic",
+        "true_bypass": true,
+        "current_draw_ma": 40,
+        "note": "True bypass chromatic tuner with full-color display and multiple meter modes. ±0.5 cent accuracy. Low profile; fits compact boards. Low draw — daisy-chain safe.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "sonic_research_turbo_tuner",
+      "type": "tuner",
+      "name": "Sonic Research ST-300 Turbo Tuner",
+      "attributes": {
+        "price_usd": 109,
+        "brand": "sonic_research",
+        "model": "ST-300",
+        "type": "strobe",
+        "true_bypass": true,
+        "current_draw_ma": 35,
+        "note": "True bypass strobe tuner with ±0.02 cent accuracy — fastest-tracking and most accurate class available in pedal format. Low draw — daisy-chain safe. Popular for intonation work and alternate tunings.",
+        "source_ids": [0, 2]
+      }
     }
   ],
   "constraints": [
