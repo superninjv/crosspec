@@ -1,0 +1,111 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import type { KnowledgeBase } from "@engine/solver";
+import kbRaw from "@verticals/keyboards/kb.json";
+
+const kb = kbRaw as KnowledgeBase;
+
+const TYPE_LABEL: Record<string, { label: string; blurb: string }> = {
+  keyboard_kit: {
+    label: "Keyboard kits",
+    blurb: "60 / 65 / 75 / TKL / 100% / Alice / split / 40% barebones and prebuilt boards.",
+  },
+  switch: {
+    label: "Switches",
+    blurb: "Linear, tactile, clicky, and silent MX-compatible + Choc low-profile switches.",
+  },
+  keycap_set: {
+    label: "Keycap sets",
+    blurb: "GMK / Cherry profile, MT3, KAT, OEM, XDA, DSA — including Choc-compatible sets.",
+  },
+  keyboard_stabilizer: {
+    label: "Stabilizers",
+    blurb: "PCB-mount and plate-mount stabs. Match the cutout type or it won't fit.",
+  },
+  keyboard_plate: {
+    label: "Plates",
+    blurb: "Brass, aluminum, PC, POM, FR4, carbon fiber. Material affects sound + feel.",
+  },
+  keyboard_pcb: {
+    label: "PCBs",
+    blurb: "Hotswap and soldered PCBs across common form factors. Firmware support listed.",
+  },
+  keyboard_cable: {
+    label: "Cables",
+    blurb: "Coiled USB-C cables with optional aviator-detach.",
+  },
+};
+
+const TYPE_ORDER = ["keyboard_kit", "switch", "keycap_set", "keyboard_stabilizer", "keyboard_plate", "keyboard_pcb", "keyboard_cable"];
+
+const byType = new Map<string, typeof kb.entities>();
+for (const e of kb.entities) {
+  if (!byType.has(e.type)) byType.set(e.type, []);
+  byType.get(e.type)!.push(e);
+}
+---
+<Layout
+  title="Mechanical keyboard component compatibility — kits, switches, keycaps, plates | crosspec"
+  description="Pick a keyboard kit + switches + keycaps + plate that all actually fit. 149 components with sourced compat info from keebfol.io and r/MechanicalKeyboards."
+  crumbs={["keyboards"]}
+  kbStatus={`keyboards v0.1 · ${kb.entities.length} entities`}
+>
+  <section class="kb-hero">
+    <div class="kb-hero-inner">
+      <p class="eyebrow">crosspec / keyboards</p>
+      <h1>Pick keyboard parts that <em>actually fit together.</em></h1>
+      <p class="lede">{kb.entities.length} components across {TYPE_ORDER.length} categories. Stabs that match your PCB cutout, keycap sets that cover your layout, switches that fit your hotswap sockets — without the &quot;wait, do these go together?&quot; surprise on assembly day.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="#keyboard_kit">Browse kits</a>
+        <a class="cta-secondary" href="#switch">Browse switches</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="kb-page">
+    {TYPE_ORDER.map((t) => {
+      const ents = byType.get(t) ?? [];
+      const meta = TYPE_LABEL[t];
+      return (
+        <section class="cat-section" id={t}>
+          <header class="cat-head">
+            <h2>{meta.label}</h2>
+            <span class="cat-count">{ents.length} {ents.length === 1 ? "product" : "products"}</span>
+          </header>
+          <p class="cat-blurb">{meta.blurb}</p>
+          <ul class="cat-grid">
+            {ents.map((e) => {
+              const sku = e.sku ?? e.id;
+              const attrs = e.attributes;
+              const priceUsd = typeof attrs.price_usd === "number" ? attrs.price_usd : null;
+              return (
+                <li class="cat-card">
+                  <a class="cc-link" href={`/keyboards/devices/${sku}/`}>
+                    <span class="cc-brand">{String(attrs.brand ?? "").replace(/_/g, " ")}</span>
+                    <span class="cc-name">{e.name}</span>
+                    <span class="cc-price">{priceUsd != null ? `$${priceUsd}` : ""}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      );
+    })}
+  </div>
+</Layout>
+
+<style is:global>
+  .kb-hero {
+    background: linear-gradient(180deg, oklch(0.95 0.04 280) 0%, var(--paper-1) 100%);
+    border-bottom: 1px solid var(--paper-edge);
+    padding: 36px 24px 30px;
+  }
+  .kb-hero-inner { max-width: 1100px; margin: 0 auto; }
+  .kb-hero .eyebrow { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 6px; }
+  .kb-hero h1 { font-size: 38px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; margin: 0 0 14px; color: var(--ink-0); text-wrap: balance; max-width: 800px; }
+  .kb-hero h1 em { font-style: normal; color: oklch(0.45 0.16 280); }
+  .kb-hero .lede { font-size: 16px; color: var(--ink-2); line-height: 1.55; max-width: 720px; margin: 0 0 18px; }
+  .kb-hero .cta-row { display: flex; gap: 10px; margin: 0; }
+  .kb-page { max-width: 1100px; margin: 0 auto; padding: 28px 24px 80px; }
+</style>

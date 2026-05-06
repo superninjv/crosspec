@@ -1,0 +1,3739 @@
+{
+  "version": "0.1",
+  "vertical": "solar",
+  "data_quality": "v0.1 best-effort population from cited public sources. Each entity's compat claims trace to source_ids on its attributes. Verification pass required before production launch; this dataset is sized to prove the engine end-to-end, not for general consumer trust.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "NREL PVWatts public solar resource API",
+      "url": "https://pvwatts.nrel.gov/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for ground-truth solar yield modeling per location and for the assumptions baked into our charge-controller / array-sizing recommendations."
+    },
+    {
+      "id": 1,
+      "name": "Open Energy Information / OpenEI public datasets",
+      "url": "https://openei.org/datasets",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for component classifications, irradiance reference tables, and battery-cycle-life baselines."
+    },
+    {
+      "id": 2,
+      "name": "Manufacturer spec sheets (public PDFs and product pages)",
+      "url": "",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for electrical specs (Voc, Vmp, Imp, continuous/surge watts, MPPT range, capacity_ah, BMS limits, dimensions, weight). Vendors include Renogy, Victron, EcoFlow, Bluetti, Jackery, Goal Zero, Anker SOLIX, Battle Born, BougeRV, AIMS, Schneider, Growatt, EPEVER, Eco-Worthy."
+    },
+    {
+      "id": 3,
+      "name": "Solar enthusiast community references (DIY Solar Forum public threads, Will Prowse YouTube spec summaries, Mobile Solar Power public guides)",
+      "url": "https://diysolarforum.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used to cross-check vendor specs against measured real-world results, and to capture practical compatibility caveats (e.g. high-voltage panel arrays vs. 100V-class controllers, BMS reverse-polarity behavior, inverter idle draw)."
+    }
+  ],
+  "entities": [
+    {
+      "id": "renogy_100w_mono_compact",
+      "type": "solar_panel",
+      "name": "Renogy 100W 12V Monocrystalline Compact Panel",
+      "sku": "renogy_rng_100d_ss",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RNG-100D-SS",
+        "wattage": 100,
+        "voltage_voc": 24.3,
+        "voltage_vmp": 20.4,
+        "current_imp": 4.91,
+        "cell_type": "mono",
+        "efficiency_pct": 22.0,
+        "dimensions_mm": "1004x540x30",
+        "weight_kg": 6.3,
+        "panel_type": "rigid",
+        "price_usd": 109.99,
+        "note": "Small-footprint 100W panel \u2014 common starter for 12V camper / RV builds. Voc fits any 100V-class MPPT in series-of-3 or fewer.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_100w_mono",
+      "type": "solar_panel",
+      "name": "Renogy 100W 12V Monocrystalline Panel",
+      "sku": "renogy_rng_100d",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RNG-100D",
+        "wattage": 100,
+        "voltage_voc": 22.5,
+        "voltage_vmp": 18.9,
+        "current_imp": 5.29,
+        "cell_type": "mono",
+        "efficiency_pct": 21.0,
+        "dimensions_mm": "1175x540x35",
+        "weight_kg": 7.0,
+        "panel_type": "rigid",
+        "price_usd": 99.99,
+        "note": "The original Renogy 100W \u2014 most-installed off-grid panel in the US. Pairs with any PWM or MPPT charge controller rated 10A+.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_200w_mono",
+      "type": "solar_panel",
+      "name": "Renogy 200W 12V Monocrystalline Panel",
+      "sku": "renogy_rng_200d",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RNG-200D",
+        "wattage": 200,
+        "voltage_voc": 24.3,
+        "voltage_vmp": 20.4,
+        "current_imp": 9.8,
+        "cell_type": "mono",
+        "efficiency_pct": 22.0,
+        "dimensions_mm": "1480x670x35",
+        "weight_kg": 11.0,
+        "panel_type": "rigid",
+        "price_usd": 189.99,
+        "note": "Single-panel 200W rigid \u2014 popular for medium-roof RVs that want one panel instead of two 100W. Needs ~30A MPPT at 12V.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_320w_mono",
+      "type": "solar_panel",
+      "name": "Renogy 320W 24V Monocrystalline Panel",
+      "sku": "renogy_rsp_320d",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RSP-320D",
+        "wattage": 320,
+        "voltage_voc": 40.5,
+        "voltage_vmp": 33.7,
+        "current_imp": 9.5,
+        "cell_type": "mono",
+        "efficiency_pct": 20.5,
+        "dimensions_mm": "1956x992x35",
+        "weight_kg": 18.6,
+        "panel_type": "rigid",
+        "price_usd": 259.99,
+        "note": "24V-class panel; ground-mount and rooftop residential off-grid. Two in series exceed Victron 75/15 \u2014 needs 100V-class MPPT or higher.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_400w_mono",
+      "type": "solar_panel",
+      "name": "Renogy 400W Monocrystalline Panel",
+      "sku": "renogy_rsp_400d",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RSP-400D",
+        "wattage": 400,
+        "voltage_voc": 49.7,
+        "voltage_vmp": 41.4,
+        "current_imp": 9.66,
+        "cell_type": "mono",
+        "efficiency_pct": 21.5,
+        "dimensions_mm": "2110x1052x35",
+        "weight_kg": 21.5,
+        "panel_type": "rigid",
+        "price_usd": 329.99,
+        "note": "High-voltage 400W panel; do NOT put two in series into a 100V controller \u2014 array Voc exceeds 99.4V at cold-temp coefficient. Use 150V+ MPPT.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_175w_flex",
+      "type": "solar_panel",
+      "name": "Renogy 175W Flexible Monocrystalline Panel",
+      "sku": "renogy_rng_175df",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RNG-175DF",
+        "wattage": 175,
+        "voltage_voc": 23.8,
+        "voltage_vmp": 20.0,
+        "current_imp": 8.75,
+        "cell_type": "mono",
+        "efficiency_pct": 19.5,
+        "dimensions_mm": "1480x670x3",
+        "weight_kg": 2.9,
+        "panel_type": "flexible",
+        "price_usd": 219.99,
+        "note": "Flexible panel for curved RV/boat roofs. Lower lifespan than rigid (~5 yr vs 25 yr) \u2014 buyer-beware for permanent installs.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_100w_flex",
+      "type": "solar_panel",
+      "name": "Renogy 100W Flexible Monocrystalline Panel",
+      "sku": "renogy_rng_100df",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RNG-100DF",
+        "wattage": 100,
+        "voltage_voc": 23.5,
+        "voltage_vmp": 19.8,
+        "current_imp": 5.05,
+        "cell_type": "mono",
+        "efficiency_pct": 18.5,
+        "dimensions_mm": "1158x533x3",
+        "weight_kg": 1.9,
+        "panel_type": "flexible",
+        "price_usd": 139.99,
+        "note": "Adhesive-mount flexible panel, common on van/boat curved roofs. Heat dissipation is poor on glued installs \u2014 derate ~15% in summer.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_550w_bifacial",
+      "type": "solar_panel",
+      "name": "Renogy 550W Bifacial Monocrystalline Panel",
+      "sku": "renogy_rsp_550d",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RSP-550D",
+        "wattage": 550,
+        "voltage_voc": 49.7,
+        "voltage_vmp": 41.7,
+        "current_imp": 13.19,
+        "cell_type": "mono_bifacial",
+        "efficiency_pct": 21.3,
+        "dimensions_mm": "2278x1134x35",
+        "weight_kg": 27.7,
+        "panel_type": "rigid",
+        "price_usd": 389.99,
+        "note": "Large bifacial residential ground-mount panel. Backside gain ~10-20% over reflective surface. Requires 150V+ MPPT in any series config.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bougerv_200w_bifacial",
+      "type": "solar_panel",
+      "name": "BougeRV 200W Bifacial 12V Panel",
+      "sku": "bougerv_n200_bifacial",
+      "attributes": {
+        "brand": "bougerv",
+        "model": "N200-BIFACIAL",
+        "wattage": 200,
+        "voltage_voc": 25.2,
+        "voltage_vmp": 21.0,
+        "current_imp": 9.52,
+        "cell_type": "mono_bifacial",
+        "efficiency_pct": 22.6,
+        "dimensions_mm": "1480x670x35",
+        "weight_kg": 12.0,
+        "panel_type": "rigid",
+        "price_usd": 169.99,
+        "note": "Budget bifacial alternative to Renogy 200W. Ground-mount with reflective surface to capture rear-side gain (5-15% real-world).",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bougerv_400w_bifacial",
+      "type": "solar_panel",
+      "name": "BougeRV 400W Bifacial Panel",
+      "sku": "bougerv_n400_bifacial",
+      "attributes": {
+        "brand": "bougerv",
+        "model": "N400-BIFACIAL",
+        "wattage": 400,
+        "voltage_voc": 49.5,
+        "voltage_vmp": 41.4,
+        "current_imp": 9.66,
+        "cell_type": "mono_bifacial",
+        "efficiency_pct": 22.0,
+        "dimensions_mm": "1722x1134x35",
+        "weight_kg": 22.7,
+        "panel_type": "rigid",
+        "price_usd": 279.99,
+        "note": "High-Voc 400W; needs 150V+ MPPT. Popular in DIY ground-mount arrays for cabins.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bougerv_180w_portable",
+      "type": "solar_panel",
+      "name": "BougeRV 180W Portable Briefcase Panel",
+      "sku": "bougerv_180w_briefcase",
+      "attributes": {
+        "brand": "bougerv",
+        "model": "ISE142",
+        "wattage": 180,
+        "voltage_voc": 22.5,
+        "voltage_vmp": 19.4,
+        "current_imp": 9.27,
+        "cell_type": "mono",
+        "efficiency_pct": 22.0,
+        "dimensions_mm": "1500x540x35_folded_780x540x70",
+        "weight_kg": 8.6,
+        "panel_type": "portable",
+        "price_usd": 199.99,
+        "note": "Foldable briefcase panel with stand and integrated PWM controller (bypassable). Targets portable power stations with DC8mm or MC4 inputs.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bougerv_100w_portable",
+      "type": "solar_panel",
+      "name": "BougeRV 100W Foldable Portable Panel",
+      "sku": "bougerv_100w_fold",
+      "attributes": {
+        "brand": "bougerv",
+        "model": "CRPRO-100",
+        "wattage": 100,
+        "voltage_voc": 22.0,
+        "voltage_vmp": 18.5,
+        "current_imp": 5.4,
+        "cell_type": "mono",
+        "efficiency_pct": 23.0,
+        "dimensions_mm": "folded_410x540x40",
+        "weight_kg": 4.2,
+        "panel_type": "portable",
+        "price_usd": 129.99,
+        "note": "ETFE foldable panel, MC4 + DC + Anderson outputs. Pairs with Jackery / EcoFlow / Bluetti units that accept open-circuit voltage up to 22V.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_400w_portable",
+      "type": "solar_panel",
+      "name": "EcoFlow 400W Portable Solar Panel",
+      "sku": "ecoflow_400w",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFSOLAR400W",
+        "wattage": 400,
+        "voltage_voc": 48.0,
+        "voltage_vmp": 41.4,
+        "current_imp": 9.66,
+        "cell_type": "mono",
+        "efficiency_pct": 22.4,
+        "dimensions_mm": "2362x1067x25",
+        "weight_kg": 16.0,
+        "panel_type": "portable",
+        "price_usd": 999.0,
+        "note": "Largest EcoFlow portable panel \u2014 pairs natively with DELTA Pro / Pro Ultra (Voc within DELTA Pro's 11-150V MPPT). Premium pricing vs DIY rigid.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_220w_bifacial_portable",
+      "type": "solar_panel",
+      "name": "EcoFlow 220W Bifacial Portable Solar Panel",
+      "sku": "ecoflow_220w_bif",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFSOLAR220W-BIF",
+        "wattage": 220,
+        "voltage_voc": 21.8,
+        "voltage_vmp": 18.4,
+        "current_imp": 12.0,
+        "cell_type": "mono_bifacial",
+        "efficiency_pct": 22.6,
+        "dimensions_mm": "folded_820x690x35",
+        "weight_kg": 9.5,
+        "panel_type": "portable",
+        "price_usd": 549.0,
+        "note": "Double-sided portable for DELTA / RIVER series. Bifacial gain only when stand keeps panel off the ground.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_160w_portable",
+      "type": "solar_panel",
+      "name": "EcoFlow 160W Portable Solar Panel",
+      "sku": "ecoflow_160w",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFSOLAR160W",
+        "wattage": 160,
+        "voltage_voc": 21.0,
+        "voltage_vmp": 18.2,
+        "current_imp": 8.8,
+        "cell_type": "mono",
+        "efficiency_pct": 21.6,
+        "dimensions_mm": "folded_680x420x24",
+        "weight_kg": 7.0,
+        "panel_type": "portable",
+        "price_usd": 399.0,
+        "note": "Compact 160W portable, MC4 output. Drop-in for any EcoFlow station; also works with Jackery via XT60-to-MC4 adapter.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_110w_portable",
+      "type": "solar_panel",
+      "name": "EcoFlow 110W Portable Solar Panel",
+      "sku": "ecoflow_110w",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFSOLAR110W",
+        "wattage": 110,
+        "voltage_voc": 21.4,
+        "voltage_vmp": 18.5,
+        "current_imp": 6.0,
+        "cell_type": "mono",
+        "efficiency_pct": 22.0,
+        "dimensions_mm": "folded_420x420x25",
+        "weight_kg": 4.6,
+        "panel_type": "portable",
+        "price_usd": 299.0,
+        "note": "Small briefcase panel, great for RIVER 2 / RIVER 2 Max. Single panel only \u2014 RIVER 2 Pro accepts 220W max input.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "goalzero_boulder_200",
+      "type": "solar_panel",
+      "name": "Goal Zero Boulder 200 Briefcase Panel",
+      "sku": "goalzero_boulder_200",
+      "attributes": {
+        "brand": "goal_zero",
+        "model": "32408",
+        "wattage": 200,
+        "voltage_voc": 22.0,
+        "voltage_vmp": 18.5,
+        "current_imp": 10.8,
+        "cell_type": "mono",
+        "efficiency_pct": 18.0,
+        "dimensions_mm": "1245x540x40_folded_625x540x100",
+        "weight_kg": 19.5,
+        "panel_type": "portable",
+        "price_usd": 599.95,
+        "note": "Heavy briefcase with kickstand. Native 8mm output for Yeti stations; MC4 dongle ships in box for third-party MPPTs.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "goalzero_boulder_100",
+      "type": "solar_panel",
+      "name": "Goal Zero Boulder 100 Briefcase Panel",
+      "sku": "goalzero_boulder_100",
+      "attributes": {
+        "brand": "goal_zero",
+        "model": "32407",
+        "wattage": 100,
+        "voltage_voc": 22.0,
+        "voltage_vmp": 18.5,
+        "current_imp": 5.4,
+        "cell_type": "mono",
+        "efficiency_pct": 17.0,
+        "dimensions_mm": "1016x533x35_folded_540x533x70",
+        "weight_kg": 11.8,
+        "panel_type": "portable",
+        "price_usd": 349.95,
+        "note": "100W rigid briefcase with kickstand. Premium price vs equivalent BougeRV; buy if already in Yeti ecosystem.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "goalzero_nomad_200",
+      "type": "solar_panel",
+      "name": "Goal Zero Nomad 200 Foldable Panel",
+      "sku": "goalzero_nomad_200",
+      "attributes": {
+        "brand": "goal_zero",
+        "model": "11811",
+        "wattage": 200,
+        "voltage_voc": 20.5,
+        "voltage_vmp": 18.5,
+        "current_imp": 10.8,
+        "cell_type": "mono",
+        "efficiency_pct": 21.0,
+        "dimensions_mm": "folded_690x510x46",
+        "weight_kg": 8.8,
+        "panel_type": "portable",
+        "price_usd": 599.95,
+        "note": "Ultra-light foldable cloth-frame panel. Pairs with Yeti 1000X/1500X via 8mm; output drops sharply when partially shaded \u2014 no bypass diodes per cell.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_pv200",
+      "type": "solar_panel",
+      "name": "Bluetti PV200 Portable Solar Panel",
+      "sku": "bluetti_pv200",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "PV200",
+        "wattage": 200,
+        "voltage_voc": 26.1,
+        "voltage_vmp": 20.5,
+        "current_imp": 9.7,
+        "cell_type": "mono",
+        "efficiency_pct": 23.4,
+        "dimensions_mm": "folded_590x590x25",
+        "weight_kg": 7.3,
+        "panel_type": "portable",
+        "price_usd": 499.0,
+        "note": "ETFE-laminated foldable, MC4 native. Three in parallel saturate AC200P / AC300 input.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_pv350",
+      "type": "solar_panel",
+      "name": "Bluetti PV350 Portable Solar Panel",
+      "sku": "bluetti_pv350",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "PV350",
+        "wattage": 350,
+        "voltage_voc": 46.5,
+        "voltage_vmp": 37.5,
+        "current_imp": 9.3,
+        "cell_type": "mono",
+        "efficiency_pct": 23.4,
+        "dimensions_mm": "folded_910x610x65",
+        "weight_kg": 13.9,
+        "panel_type": "portable",
+        "price_usd": 799.0,
+        "note": "High-voltage portable for AC300 / AC500 (12-150V MPPT). Voc rules out 24V-class controllers \u2014 meant for Bluetti's 145V MPPT.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_pv120",
+      "type": "solar_panel",
+      "name": "Bluetti PV120 Portable Solar Panel",
+      "sku": "bluetti_pv120",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "PV120",
+        "wattage": 120,
+        "voltage_voc": 20.5,
+        "voltage_vmp": 17.6,
+        "current_imp": 6.8,
+        "cell_type": "mono",
+        "efficiency_pct": 23.4,
+        "dimensions_mm": "folded_540x460x25",
+        "weight_kg": 5.3,
+        "panel_type": "portable",
+        "price_usd": 339.0,
+        "note": "Light foldable for EB3A/EB55/AC180. MC4 output works with any portable solar station.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "jackery_solarsaga_200w",
+      "type": "solar_panel",
+      "name": "Jackery SolarSaga 200W Portable Panel",
+      "sku": "jackery_solarsaga_200w",
+      "attributes": {
+        "brand": "jackery",
+        "model": "SolarSaga 200W",
+        "wattage": 200,
+        "voltage_voc": 24.4,
+        "voltage_vmp": 20.5,
+        "current_imp": 9.8,
+        "cell_type": "mono",
+        "efficiency_pct": 24.3,
+        "dimensions_mm": "folded_540x615x40",
+        "weight_kg": 8.0,
+        "panel_type": "portable",
+        "price_usd": 599.0,
+        "note": "Native DC8020 output for Explorer 1000 Pro / 2000 Pro / 3000 Pro. MC4 adapter sold separately for non-Jackery use.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "jackery_solarsaga_100w",
+      "type": "solar_panel",
+      "name": "Jackery SolarSaga 100W Portable Panel",
+      "sku": "jackery_solarsaga_100w",
+      "attributes": {
+        "brand": "jackery",
+        "model": "SolarSaga 100W",
+        "wattage": 100,
+        "voltage_voc": 21.6,
+        "voltage_vmp": 18.0,
+        "current_imp": 5.55,
+        "cell_type": "mono",
+        "efficiency_pct": 23.0,
+        "dimensions_mm": "folded_610x535x35",
+        "weight_kg": 4.0,
+        "panel_type": "portable",
+        "price_usd": 299.0,
+        "note": "Classic Jackery SolarSaga \u2014 MC4 + DC8020 outputs. Pairs with any Explorer station; many users daisy-chain 2-4 in parallel.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "jackery_solarsaga_80w",
+      "type": "solar_panel",
+      "name": "Jackery SolarSaga 80W Mini Panel",
+      "sku": "jackery_solarsaga_80w",
+      "attributes": {
+        "brand": "jackery",
+        "model": "SolarSaga 80W",
+        "wattage": 80,
+        "voltage_voc": 21.0,
+        "voltage_vmp": 17.5,
+        "current_imp": 4.57,
+        "cell_type": "mono",
+        "efficiency_pct": 23.7,
+        "dimensions_mm": "folded_440x540x25",
+        "weight_kg": 3.6,
+        "panel_type": "portable",
+        "price_usd": 229.0,
+        "note": "Smallest SolarSaga; matches Explorer 240 / 300 / 500 inputs. Voc within range for any portable power station.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "anker_solix_pps_200w",
+      "type": "solar_panel",
+      "name": "Anker SOLIX PS200 Portable Solar Panel",
+      "sku": "anker_solix_ps200",
+      "attributes": {
+        "brand": "anker_solix",
+        "model": "A2431",
+        "wattage": 200,
+        "voltage_voc": 24.5,
+        "voltage_vmp": 21.0,
+        "current_imp": 9.5,
+        "cell_type": "mono",
+        "efficiency_pct": 23.0,
+        "dimensions_mm": "folded_545x615x40",
+        "weight_kg": 8.7,
+        "panel_type": "portable",
+        "price_usd": 449.0,
+        "note": "Anker 200W foldable, native XT60 + MC4. Drop-in for SOLIX C800 / C1000 / F2000.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "anker_solix_pps_400w",
+      "type": "solar_panel",
+      "name": "Anker SOLIX PS400 Portable Solar Panel",
+      "sku": "anker_solix_ps400",
+      "attributes": {
+        "brand": "anker_solix",
+        "model": "A2440",
+        "wattage": 400,
+        "voltage_voc": 51.2,
+        "voltage_vmp": 43.2,
+        "current_imp": 9.3,
+        "cell_type": "mono",
+        "efficiency_pct": 23.0,
+        "dimensions_mm": "folded_1010x680x70",
+        "weight_kg": 18.0,
+        "panel_type": "portable",
+        "price_usd": 899.0,
+        "note": "High-Voc portable for SOLIX F2000 / F3800 (11-60V MPPT). Will not work with 24V-class third-party MPPTs in series.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoworthy_100w_mono",
+      "type": "solar_panel",
+      "name": "Eco-Worthy 100W 12V Monocrystalline Panel",
+      "sku": "ecoworthy_100w",
+      "attributes": {
+        "brand": "eco_worthy",
+        "model": "L02P100",
+        "wattage": 100,
+        "voltage_voc": 22.5,
+        "voltage_vmp": 18.6,
+        "current_imp": 5.38,
+        "cell_type": "mono",
+        "efficiency_pct": 21.0,
+        "dimensions_mm": "1020x510x30",
+        "weight_kg": 6.6,
+        "panel_type": "rigid",
+        "price_usd": 79.99,
+        "price_source": "Amazon retail",
+        "note": "Budget alternative to Renogy 100W. Functionally equivalent on small 12V banks; quality control more variable per community reports.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoworthy_195w_mono",
+      "type": "solar_panel",
+      "name": "Eco-Worthy 195W 12V Monocrystalline Panel",
+      "sku": "ecoworthy_195w",
+      "attributes": {
+        "brand": "eco_worthy",
+        "model": "L02M195",
+        "wattage": 195,
+        "voltage_voc": 23.6,
+        "voltage_vmp": 19.8,
+        "current_imp": 9.85,
+        "cell_type": "mono",
+        "efficiency_pct": 21.5,
+        "dimensions_mm": "1480x670x35",
+        "weight_kg": 11.0,
+        "panel_type": "rigid",
+        "price_usd": 139.99,
+        "price_source": "Amazon retail",
+        "note": "Budget 195W panel, 12V-class. Often sold in 4-packs for ground-mount cabin arrays. Same dimensions as Renogy 200W.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_pure_sine_1000w_12v",
+      "type": "inverter",
+      "name": "Renogy 1000W Pure Sine Wave Inverter (12V)",
+      "sku": "renogy_rinv1000s_12",
+      "attributes": {
+        "brand": "renogy",
+        "model": "R-INVT-PCH1-10111S",
+        "continuous_watts": 1000,
+        "surge_watts": 2000,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 2,
+        "weight_lb": 8.4,
+        "price_usd": 199.99,
+        "note": "Entry-level pure-sine inverter. Pairs with 100Ah-200Ah 12V LiFePO4 banks; 1000W continuous draws ~85A from battery \u2014 size cables and BMS accordingly.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_pure_sine_2000w_12v",
+      "type": "inverter",
+      "name": "Renogy 2000W Pure Sine Wave Inverter (12V)",
+      "sku": "renogy_rinv2000s_12",
+      "attributes": {
+        "brand": "renogy",
+        "model": "R-INVT-PCH1-20111S",
+        "continuous_watts": 2000,
+        "surge_watts": 4000,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 2,
+        "weight_lb": 15.4,
+        "price_usd": 349.99,
+        "note": "2000W 12V draws ~170A continuous \u2014 needs 4/0 AWG cables and a 250A+ BMS battery (e.g. Battle Born 270Ah). Underpowered BMS will trip under surge.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_pure_sine_3000w_24v",
+      "type": "inverter",
+      "name": "Renogy 3000W Pure Sine Wave Inverter (24V)",
+      "sku": "renogy_rinv3000s_24",
+      "attributes": {
+        "brand": "renogy",
+        "model": "R-INVT-PCH1-30121S",
+        "continuous_watts": 3000,
+        "surge_watts": 6000,
+        "input_voltage_dc": 24,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 1,
+        "weight_lb": 22.0,
+        "price_usd": 549.99,
+        "note": "3000W 24V \u2014 only ~125A draw at full load, much more practical wiring than 12V. Needs a matching 24V battery bank.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_pure_sine_3500w_48v",
+      "type": "inverter",
+      "name": "Renogy 3500W Pure Sine Wave Inverter (48V Hybrid)",
+      "sku": "renogy_rinv3500h_48",
+      "attributes": {
+        "brand": "renogy",
+        "model": "R-INVT-HBD1-35141S",
+        "continuous_watts": 3500,
+        "surge_watts": 7000,
+        "input_voltage_dc": 48,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 33.0,
+        "price_usd": 999.0,
+        "note": "48V hybrid inverter with built-in 80A MPPT and AC-pass-through. Single-unit off-grid for a small cabin; requires 48V battery bank.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_pure_sine_700w_12v",
+      "type": "inverter",
+      "name": "Renogy 700W Pure Sine Wave Compact Inverter",
+      "sku": "renogy_rinv700s_12",
+      "attributes": {
+        "brand": "renogy",
+        "model": "R-INVT-PCH1-70111S",
+        "continuous_watts": 700,
+        "surge_watts": 1400,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 2,
+        "weight_lb": 4.4,
+        "price_usd": 149.99,
+        "note": "Compact 700W for under-seat van builds. Will not run microwaves or full-size induction; sized for laptops, fridges, lights.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_phoenix_500_12",
+      "type": "inverter",
+      "name": "Victron Phoenix Inverter 500VA 12V",
+      "sku": "victron_phoenix_500_12",
+      "attributes": {
+        "brand": "victron",
+        "model": "PIN012500200",
+        "continuous_watts": 400,
+        "surge_watts": 900,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 6.0,
+        "price_usd": 275.0,
+        "note": "Premium European-grade compact inverter. VE.Direct port lets you wire it into a Victron Cerbo GX for whole-system telemetry.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_phoenix_1200_12",
+      "type": "inverter",
+      "name": "Victron Phoenix Inverter 1200VA 12V",
+      "sku": "victron_phoenix_1200_12",
+      "attributes": {
+        "brand": "victron",
+        "model": "PIN122120200",
+        "continuous_watts": 1000,
+        "surge_watts": 2400,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 18.0,
+        "price_usd": 599.0,
+        "note": "VE.Direct integration with Cerbo GX / GlobalLink. Premium price, low idle draw (~5W) \u2014 better for always-on liveaboard than budget inverters.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_multiplus_3000_12",
+      "type": "inverter",
+      "name": "Victron MultiPlus 3000VA 12V Inverter/Charger",
+      "sku": "victron_multiplus_3000_12",
+      "attributes": {
+        "brand": "victron",
+        "model": "PMP123020000",
+        "continuous_watts": 2400,
+        "surge_watts": 6000,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 42.0,
+        "price_usd": 1399.0,
+        "note": "Combined inverter + 120A charger + AC pass-through. Industry-standard for liveaboard boats and high-end RV builds. VE.Bus telemetry.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_multiplus_3000_48",
+      "type": "inverter",
+      "name": "Victron MultiPlus-II 3000VA 48V Inverter/Charger",
+      "sku": "victron_multiplus_ii_3000_48",
+      "attributes": {
+        "brand": "victron",
+        "model": "PMP482305010",
+        "continuous_watts": 2400,
+        "surge_watts": 5500,
+        "input_voltage_dc": 48,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 39.0,
+        "price_usd": 1599.0,
+        "note": "48V whole-home off-grid backbone. Stackable up to 3-phase or split-phase 240V via paralleling. Pairs with any 48V LFP bank with closed-loop CAN BMS.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "aims_pwrinv2000s",
+      "type": "inverter",
+      "name": "AIMS Power 2000W Pure Sine Wave Inverter (12V)",
+      "sku": "aims_pwrinv2000s_12",
+      "attributes": {
+        "brand": "aims",
+        "model": "PWRINV200012120S",
+        "continuous_watts": 2000,
+        "surge_watts": 4000,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 1,
+        "weight_lb": 18.5,
+        "price_usd": 379.0,
+        "note": "Mid-tier US-built 2000W inverter. Optional remote-on/off panel; AIMS warranty handled in-house, faster RMA than Chinese-import alts.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "aims_pwrinv5000w_24",
+      "type": "inverter",
+      "name": "AIMS Power 5000W Pure Sine Wave Inverter (24V)",
+      "sku": "aims_pwrinv5000w_24",
+      "attributes": {
+        "brand": "aims",
+        "model": "PWRI500024120S",
+        "continuous_watts": 5000,
+        "surge_watts": 10000,
+        "input_voltage_dc": 24,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 58.0,
+        "price_usd": 999.0,
+        "note": "Large 24V inverter for cabin / shop loads. Needs 24V LFP bank with 250A+ BMS \u2014 full surge can briefly draw 400A.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "aims_pwrinv6000w_48",
+      "type": "inverter",
+      "name": "AIMS Power 6000W Pure Sine Wave Inverter (48V Split-Phase)",
+      "sku": "aims_pwrinv6000w_48",
+      "attributes": {
+        "brand": "aims",
+        "model": "PICOGLF60W48V120VR",
+        "continuous_watts": 6000,
+        "surge_watts": 18000,
+        "input_voltage_dc": 48,
+        "output_voltage_ac": 240,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 88.0,
+        "price_usd": 1999.0,
+        "note": "Split-phase 120/240V \u2014 runs well pumps, dryers, mini-splits. Standalone (no built-in MPPT); pair with separate 60-100A controller.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "growatt_spf_3000_24",
+      "type": "inverter",
+      "name": "Growatt SPF 3000TL LVM-24P Hybrid Inverter",
+      "sku": "growatt_spf_3000tl_24",
+      "attributes": {
+        "brand": "growatt",
+        "model": "SPF 3000TL LVM-24P",
+        "continuous_watts": 3000,
+        "surge_watts": 6000,
+        "input_voltage_dc": 24,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 22.0,
+        "price_usd": 649.0,
+        "note": "All-in-one with built-in 80A MPPT and AC charger. Popular budget cabin off-grid choice; firmware quirks with non-Growatt 24V LFP banks reported.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "growatt_spf_5000es",
+      "type": "inverter",
+      "name": "Growatt SPF 5000ES Hybrid Inverter (48V)",
+      "sku": "growatt_spf_5000es_48",
+      "attributes": {
+        "brand": "growatt",
+        "model": "SPF 5000ES",
+        "continuous_watts": 5000,
+        "surge_watts": 10000,
+        "input_voltage_dc": 48,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 44.0,
+        "price_usd": 1099.0,
+        "note": "48V single-phase 5kW with 100A MPPT + 60A AC charger. Stackable up to 6 units. The DIY Solar Forum's most-recommended budget 48V hybrid.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "growatt_spf_6000_48",
+      "type": "inverter",
+      "name": "Growatt SPF 6000T DVM-MPV 48V Hybrid Inverter",
+      "sku": "growatt_spf_6000t_48",
+      "attributes": {
+        "brand": "growatt",
+        "model": "SPF 6000T DVM-MPV",
+        "continuous_watts": 6000,
+        "surge_watts": 12000,
+        "input_voltage_dc": 48,
+        "output_voltage_ac": 240,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 66.0,
+        "price_usd": 1599.0,
+        "note": "Split-phase 120/240V hybrid; dual MPPT inputs, 120A total. Needs 48V LFP with closed-loop comms for safe high-current charging.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "schneider_xw_pro_6848",
+      "type": "inverter",
+      "name": "Schneider Electric Conext XW Pro 6848 Inverter/Charger",
+      "sku": "schneider_xw_pro_6848",
+      "attributes": {
+        "brand": "schneider_electric",
+        "model": "865-8348-61",
+        "continuous_watts": 6800,
+        "surge_watts": 12000,
+        "input_voltage_dc": 48,
+        "output_voltage_ac": 240,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 125.0,
+        "price_usd": 3999.0,
+        "note": "Top-tier whole-home 48V split-phase inverter/charger. Stack up to 4 in parallel for 27.2 kW continuous. Industrial reliability; install requires Schneider gateway.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_smart_gen_dual",
+      "type": "inverter",
+      "name": "EcoFlow Smart Generator Dual-Fuel",
+      "sku": "ecoflow_smart_gen_dual",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "ZDG200-USDualFuel",
+        "continuous_watts": 1800,
+        "surge_watts": 2300,
+        "input_voltage_dc": 48,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 70.5,
+        "price_usd": 1599.0,
+        "note": "LP / gasoline backup generator that auto-starts to recharge DELTA Pro / Pro Ultra when bank state-of-charge is low. Not a standalone solar inverter.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_ep500pro",
+      "type": "inverter",
+      "name": "Bluetti EP500 Pro All-in-One Inverter Module",
+      "sku": "bluetti_ep500pro_module",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "EP500-PRO-INV",
+        "continuous_watts": 3000,
+        "surge_watts": 6000,
+        "input_voltage_dc": 48,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 2,
+        "weight_lb": 181.0,
+        "price_usd": 4799.0,
+        "note": "EP500 Pro is technically a power station, but it operates as a 3kW 48V inverter against a built-in 5.1 kWh LFP bank. Treated as an inverter for sizing logic.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "xijia_2000w_12",
+      "type": "inverter",
+      "name": "Xijia 2000W Pure Sine Wave Inverter (12V)",
+      "sku": "xijia_2000w_12",
+      "attributes": {
+        "brand": "xijia",
+        "model": "XJ-2000W",
+        "continuous_watts": 2000,
+        "surge_watts": 4000,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 2,
+        "weight_lb": 14.5,
+        "price_usd": 199.0,
+        "price_source": "Amazon retail",
+        "note": "Budget 2000W; community reports surge handling marginal. Acceptable for resistive loads; do not pair with hard-start motors / well pumps.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "krieger_kr1100",
+      "type": "inverter",
+      "name": "Krieger KR1100 1100W Pure Sine Wave Inverter",
+      "sku": "krieger_kr1100",
+      "attributes": {
+        "brand": "krieger",
+        "model": "KR1100",
+        "continuous_watts": 1100,
+        "surge_watts": 2200,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 2,
+        "weight_lb": 8.6,
+        "price_usd": 189.99,
+        "price_source": "Amazon retail",
+        "note": "Mid-budget mobile inverter. Built-in remote, ANL fuses included. Pairs with 100Ah-200Ah 12V banks for car-camp / van loads.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "samlex_pst3000_12",
+      "type": "inverter",
+      "name": "Samlex PST-3000-12 Pure Sine Wave Inverter",
+      "sku": "samlex_pst3000_12",
+      "attributes": {
+        "brand": "samlex",
+        "model": "PST-3000-12",
+        "continuous_watts": 3000,
+        "surge_watts": 6000,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 37.0,
+        "price_usd": 899.0,
+        "note": "Industrial-grade 12V 3kW. Conservative continuous rating (true 3000W vs marketing-3000W from cheap brands). Marine-grade build.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_pure_sine_modified_2000w",
+      "type": "inverter",
+      "name": "Renogy 2000W Modified Sine Wave Inverter (12V)",
+      "sku": "renogy_modified_2000w",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RNV-MS2000-110",
+        "continuous_watts": 2000,
+        "surge_watts": 4000,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "modified",
+        "usb_ports": 2,
+        "weight_lb": 11.5,
+        "price_usd": 159.99,
+        "note": "Cheaper modified-sine variant \u2014 DO NOT use with sensitive electronics, motors, CPAPs, or LED displays. Resistive loads (heaters, pumps) only.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_phoenix_3000_24",
+      "type": "inverter",
+      "name": "Victron Phoenix Smart 3000VA 24V Inverter",
+      "sku": "victron_phoenix_3000_24",
+      "attributes": {
+        "brand": "victron",
+        "model": "PIN242301000",
+        "continuous_watts": 2400,
+        "surge_watts": 5500,
+        "input_voltage_dc": 24,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 0,
+        "weight_lb": 39.0,
+        "price_usd": 1399.0,
+        "note": "Pure inverter (no charger). Native Bluetooth + VE.Direct. Use when MultiPlus charger feature is unwanted (e.g. fully-DC-coupled solar build).",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "aims_pwrinv120012w",
+      "type": "inverter",
+      "name": "AIMS Power 1200W Pure Sine Wave Inverter (12V)",
+      "sku": "aims_pwrinv120012w",
+      "attributes": {
+        "brand": "aims",
+        "model": "PWRINV120012W",
+        "continuous_watts": 1200,
+        "surge_watts": 2400,
+        "input_voltage_dc": 12,
+        "output_voltage_ac": 120,
+        "waveform": "pure_sine",
+        "usb_ports": 1,
+        "weight_lb": 11.4,
+        "price_usd": 259.0,
+        "note": "Mid-size 1200W with hardwired AC outputs (no NEMA outlets). Used in van/RV builds where the inverter feeds a 30A AC sub-panel.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_smartsolar_75_15",
+      "type": "solar_charge_controller",
+      "name": "Victron SmartSolar MPPT 75/15",
+      "sku": "victron_mppt_75_15",
+      "attributes": {
+        "brand": "victron",
+        "model": "SCC075015060R",
+        "max_current_amps": 15,
+        "max_pv_voltage": 75,
+        "system_voltage": "12_24_auto",
+        "topology": "mppt",
+        "bluetooth": true,
+        "price_usd": 139.0,
+        "note": "Compact 15A MPPT with built-in Bluetooth + VictronConnect. Tops out at 200W on 12V or 400W on 24V. Single 100W panel: ideal pair.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_smartsolar_100_20",
+      "type": "solar_charge_controller",
+      "name": "Victron SmartSolar MPPT 100/20",
+      "sku": "victron_mppt_100_20",
+      "attributes": {
+        "brand": "victron",
+        "model": "SCC110020060R",
+        "max_current_amps": 20,
+        "max_pv_voltage": 100,
+        "system_voltage": "12_24_48_auto",
+        "topology": "mppt",
+        "bluetooth": true,
+        "price_usd": 199.0,
+        "note": "20A controller, 100V PV. Two 200W panels in series fit; 12V\u2192290W max, 24V\u2192580W. The most common 'second 100W panel + small bank' MPPT.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_smartsolar_100_30",
+      "type": "solar_charge_controller",
+      "name": "Victron SmartSolar MPPT 100/30",
+      "sku": "victron_mppt_100_30",
+      "attributes": {
+        "brand": "victron",
+        "model": "SCC110030210",
+        "max_current_amps": 30,
+        "max_pv_voltage": 100,
+        "system_voltage": "12_24_auto",
+        "topology": "mppt",
+        "bluetooth": true,
+        "price_usd": 259.0,
+        "note": "30A / 100V. 12V\u2192440W max, 24V\u2192880W. Sweet spot for ~400W rooftop array on 12V camper.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_smartsolar_100_50",
+      "type": "solar_charge_controller",
+      "name": "Victron SmartSolar MPPT 100/50",
+      "sku": "victron_mppt_100_50",
+      "attributes": {
+        "brand": "victron",
+        "model": "SCC115050210",
+        "max_current_amps": 50,
+        "max_pv_voltage": 100,
+        "system_voltage": "12_24_auto",
+        "topology": "mppt",
+        "bluetooth": true,
+        "price_usd": 399.0,
+        "note": "50A / 100V. 12V\u2192700W, 24V\u21921400W. Pair with 600-800W rooftop arrays at 12V.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_smartsolar_150_35",
+      "type": "solar_charge_controller",
+      "name": "Victron SmartSolar MPPT 150/35",
+      "sku": "victron_mppt_150_35",
+      "attributes": {
+        "brand": "victron",
+        "model": "SCC115035210",
+        "max_current_amps": 35,
+        "max_pv_voltage": 150,
+        "system_voltage": "12_24_36_48_auto",
+        "topology": "mppt",
+        "bluetooth": true,
+        "price_usd": 429.0,
+        "note": "35A / 150V. Required when running residential 60-cell or 72-cell panels in series. 12V\u2192500W, 48V\u21922000W.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_smartsolar_150_85",
+      "type": "solar_charge_controller",
+      "name": "Victron SmartSolar MPPT 150/85",
+      "sku": "victron_mppt_150_85",
+      "attributes": {
+        "brand": "victron",
+        "model": "SCC115085210",
+        "max_current_amps": 85,
+        "max_pv_voltage": 150,
+        "system_voltage": "12_24_36_48_auto",
+        "topology": "mppt",
+        "bluetooth": true,
+        "price_usd": 679.0,
+        "note": "85A / 150V \u2014 large off-grid cabin scale. 48V\u21924900W array. Standard for 5-10 kWh battery banks with serious solar.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_smartsolar_250_100",
+      "type": "solar_charge_controller",
+      "name": "Victron SmartSolar MPPT 250/100",
+      "sku": "victron_mppt_250_100",
+      "attributes": {
+        "brand": "victron",
+        "model": "SCC125110210",
+        "max_current_amps": 100,
+        "max_pv_voltage": 250,
+        "system_voltage": "12_24_36_48_auto",
+        "topology": "mppt",
+        "bluetooth": true,
+        "price_usd": 899.0,
+        "note": "100A / 250V \u2014 flagship Victron MPPT. 48V\u21925800W. Can string 4-5 residential panels in series; ideal for ground-mount cabin arrays.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_rover_30a",
+      "type": "solar_charge_controller",
+      "name": "Renogy Rover 30A MPPT Charge Controller",
+      "sku": "renogy_rover_30a",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RVR-30",
+        "max_current_amps": 30,
+        "max_pv_voltage": 100,
+        "system_voltage": "12_24_auto",
+        "topology": "mppt",
+        "bluetooth": false,
+        "price_usd": 129.99,
+        "note": "Budget 30A MPPT. Bluetooth requires optional BT-1/BT-2 dongle (extra ~$40). Direct competitor to Victron 100/30 at half the price.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_rover_40a",
+      "type": "solar_charge_controller",
+      "name": "Renogy Rover 40A MPPT Charge Controller",
+      "sku": "renogy_rover_40a",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RVR-40",
+        "max_current_amps": 40,
+        "max_pv_voltage": 100,
+        "system_voltage": "12_24_auto",
+        "topology": "mppt",
+        "bluetooth": false,
+        "price_usd": 159.99,
+        "note": "40A / 100V; pair with up to 520W on 12V or 1040W on 24V. BT-1 dongle for app monitoring sold separately.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_rover_60a",
+      "type": "solar_charge_controller",
+      "name": "Renogy Rover 60A MPPT Charge Controller",
+      "sku": "renogy_rover_60a",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RVR-60",
+        "max_current_amps": 60,
+        "max_pv_voltage": 150,
+        "system_voltage": "12_24_36_48_auto",
+        "topology": "mppt",
+        "bluetooth": false,
+        "price_usd": 249.99,
+        "note": "60A 150V \u2014 handles serial residential panels (Voc ~50V each, 3-in-series safe). Common cabin off-grid choice.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_rover_100a",
+      "type": "solar_charge_controller",
+      "name": "Renogy Rover 100A MPPT Charge Controller",
+      "sku": "renogy_rover_100a",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RVR-100",
+        "max_current_amps": 100,
+        "max_pv_voltage": 200,
+        "system_voltage": "12_24_36_48_auto",
+        "topology": "mppt",
+        "bluetooth": false,
+        "price_usd": 499.99,
+        "note": "100A / 200V \u2014 large array support. 48V\u21925300W. Direct alternative to Victron 250/100 at lower price; no native Bluetooth.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_wanderer_30a_pwm",
+      "type": "solar_charge_controller",
+      "name": "Renogy Wanderer 30A PWM Charge Controller",
+      "sku": "renogy_wanderer_30a_pwm",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RNG-CTRL-WND30LI",
+        "max_current_amps": 30,
+        "max_pv_voltage": 50,
+        "system_voltage": "12_auto",
+        "topology": "pwm",
+        "bluetooth": false,
+        "price_usd": 39.99,
+        "note": "Cheap PWM-only controller. ~70-80% efficiency vs MPPT's 95%+; only acceptable for tiny systems where panel Vmp \u2248 battery voltage.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "epever_tracer_4210an",
+      "type": "solar_charge_controller",
+      "name": "EPEVER Tracer 4210AN 40A MPPT",
+      "sku": "epever_tracer_4210an",
+      "attributes": {
+        "brand": "epever",
+        "model": "Tracer4210AN",
+        "max_current_amps": 40,
+        "max_pv_voltage": 100,
+        "system_voltage": "12_24_auto",
+        "topology": "mppt",
+        "bluetooth": false,
+        "price_usd": 149.99,
+        "note": "Industry-favorite 40A budget MPPT. Pairs with optional MT-50 display or eBox-WiFi for remote monitoring.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "epever_tracer_an_60a",
+      "type": "solar_charge_controller",
+      "name": "EPEVER Tracer 6420AN 60A MPPT",
+      "sku": "epever_tracer_6420an",
+      "attributes": {
+        "brand": "epever",
+        "model": "Tracer6420AN",
+        "max_current_amps": 60,
+        "max_pv_voltage": 150,
+        "system_voltage": "12_24_36_48_auto",
+        "topology": "mppt",
+        "bluetooth": false,
+        "price_usd": 259.99,
+        "note": "60A controller. Handles 24V or 48V banks; native RS485 / MODBUS for HA / Node-RED integration.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "victron_bluesolar_75_10",
+      "type": "solar_charge_controller",
+      "name": "Victron BlueSolar MPPT 75/10",
+      "sku": "victron_bluesolar_75_10",
+      "attributes": {
+        "brand": "victron",
+        "model": "SCC010010050R",
+        "max_current_amps": 10,
+        "max_pv_voltage": 75,
+        "system_voltage": "12_24_auto",
+        "topology": "mppt",
+        "bluetooth": false,
+        "price_usd": 99.0,
+        "note": "Tiny 10A MPPT \u2014 100W panel + 12V battery sweet spot. No Bluetooth; SmartSolar 75/15 is $40 more and adds it. Most users should pay the extra.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "battleborn_100ah",
+      "type": "battery",
+      "name": "Battle Born 100Ah 12V LiFePO4",
+      "sku": "battleborn_bb10012",
+      "attributes": {
+        "brand": "battle_born",
+        "model": "BB10012",
+        "capacity_ah": 100,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 3000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "none",
+        "weight_lb": 29.0,
+        "price_usd": 949.0,
+        "note": "The North American gold-standard 12V LFP. 100A continuous BMS limit \u2014 1200W inverter max on a single battery. US support, 10-yr warranty.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "battleborn_270ah",
+      "type": "battery",
+      "name": "Battle Born 270Ah 12V LiFePO4",
+      "sku": "battleborn_bb27012",
+      "attributes": {
+        "brand": "battle_born",
+        "model": "BB27012H",
+        "capacity_ah": 270,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 3500,
+        "bms_amps_continuous": 200,
+        "comm_protocol": "none",
+        "weight_lb": 78.0,
+        "price_usd": 2399.0,
+        "note": "High-output 270Ah single-battery bank for full-time RV / liveaboard. 200A BMS supports 2000W continuous inverter draw. Heated optional.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "battleborn_100ah_gc2",
+      "type": "battery",
+      "name": "Battle Born 100Ah 12V GC2 LiFePO4 (Heated)",
+      "sku": "battleborn_bb10012_gc2",
+      "attributes": {
+        "brand": "battle_born",
+        "model": "BBGC2",
+        "capacity_ah": 100,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 3500,
+        "bms_amps_continuous": 200,
+        "comm_protocol": "none",
+        "weight_lb": 33.0,
+        "price_usd": 1199.0,
+        "note": "GC2 form-factor (golf-cart) \u2014 drop-in for trolling motors / heritage RV battery boxes. Heated to allow charging in sub-freezing temps.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_smart_100ah_lfp",
+      "type": "battery",
+      "name": "Renogy 100Ah Smart LiFePO4 12V",
+      "sku": "renogy_rbt100lfp12s",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RBT100LFP12S-G1",
+        "capacity_ah": 100,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "bluetooth",
+        "weight_lb": 27.0,
+        "price_usd": 649.0,
+        "note": "Mid-tier 100Ah with Bluetooth-monitored BMS. Cells balance via app. Solid budget Battle Born alternative; warranty terms shorter.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_200ah_smart_lfp",
+      "type": "battery",
+      "name": "Renogy 200Ah Smart LiFePO4 12V",
+      "sku": "renogy_rbt200lfp12s",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RBT200LFP12S-G1",
+        "capacity_ah": 200,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 200,
+        "comm_protocol": "bluetooth",
+        "weight_lb": 51.0,
+        "price_usd": 999.0,
+        "note": "200A BMS \u2014 2000W inverter compatible. Communicates state-of-charge via Renogy ONE / DC Home app. Heating pad optional add-on.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_300ah_smart_lfp",
+      "type": "battery",
+      "name": "Renogy 300Ah Smart LiFePO4 12V",
+      "sku": "renogy_rbt300lfp12s",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RBT300LFP12S-G1",
+        "capacity_ah": 300,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 200,
+        "comm_protocol": "bluetooth",
+        "weight_lb": 73.0,
+        "price_usd": 1399.0,
+        "note": "High-capacity 12V LFP. Fewer 12V batteries to wire vs multiple 100Ah; fits standard Group 8D battery box.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_100ah_24v_smart",
+      "type": "battery",
+      "name": "Renogy 100Ah Smart LiFePO4 24V",
+      "sku": "renogy_rbt100lfp24s",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RBT100LFP24S",
+        "capacity_ah": 100,
+        "nominal_voltage": 24,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "bluetooth",
+        "weight_lb": 58.0,
+        "price_usd": 1299.0,
+        "note": "Single-unit 24V bank. Avoids the need to series two 12V batteries (which restricts BMS coordination). 2.4 kWh per battery.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_48v_50ah_lfp",
+      "type": "battery",
+      "name": "Renogy 48V 50Ah Server-Rack LiFePO4",
+      "sku": "renogy_rbt050ge48s",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RBT050GE48S",
+        "capacity_ah": 50,
+        "nominal_voltage": 48,
+        "chemistry": "lifepo4",
+        "cycle_life": 6000,
+        "bms_amps_continuous": 80,
+        "comm_protocol": "rs485",
+        "weight_lb": 66.0,
+        "price_usd": 1999.0,
+        "note": "Rack-mount 48V battery; closed-loop CAN/RS485 comms with Growatt / EG4 / Sol-Ark 48V hybrid inverters. 2.5 kWh; stack 4-16 in parallel.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_delta_pro_extra_battery",
+      "type": "battery",
+      "name": "EcoFlow DELTA Pro Extra Battery 3.6 kWh",
+      "sku": "ecoflow_delta_pro_extra",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFD500-EB",
+        "capacity_ah": 72,
+        "nominal_voltage": 51.2,
+        "chemistry": "lifepo4",
+        "cycle_life": 3500,
+        "bms_amps_continuous": 80,
+        "comm_protocol": "proprietary",
+        "weight_lb": 99.0,
+        "price_usd": 2799.0,
+        "note": "DELTA Pro slave-pack only \u2014 does not work as standalone battery. Connects via the proprietary infinity-port cable.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_delta_2_max_extra",
+      "type": "battery",
+      "name": "EcoFlow DELTA 2 Max Extra Battery 2.0 kWh",
+      "sku": "ecoflow_delta_2_max_extra",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFD2MAX-EB",
+        "capacity_ah": 78,
+        "nominal_voltage": 25.6,
+        "chemistry": "lifepo4",
+        "cycle_life": 3000,
+        "bms_amps_continuous": 60,
+        "comm_protocol": "proprietary",
+        "weight_lb": 51.0,
+        "price_usd": 1599.0,
+        "note": "Slave-pack for DELTA 2 Max only. Capacity stacks 2x or 4x; not usable as a standalone battery.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "goalzero_yeti_tank_pro_4000",
+      "type": "battery",
+      "name": "Goal Zero Yeti Tank Pro 4000 Expansion",
+      "sku": "goalzero_tank_pro_4000",
+      "attributes": {
+        "brand": "goal_zero",
+        "model": "22075",
+        "capacity_ah": 83,
+        "nominal_voltage": 48.0,
+        "chemistry": "lifepo4",
+        "cycle_life": 3500,
+        "bms_amps_continuous": 70,
+        "comm_protocol": "proprietary",
+        "weight_lb": 110.0,
+        "price_usd": 4499.95,
+        "note": "Slave-pack for Yeti Pro 4000. 4 kWh add. Premium price; only justified inside Goal Zero ecosystem with existing Yeti Pro 4000.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_b230",
+      "type": "battery",
+      "name": "Bluetti B230 Expansion Battery 2.0 kWh",
+      "sku": "bluetti_b230",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "B230",
+        "capacity_ah": 80,
+        "nominal_voltage": 25.6,
+        "chemistry": "lifepo4",
+        "cycle_life": 3000,
+        "bms_amps_continuous": 50,
+        "comm_protocol": "proprietary",
+        "weight_lb": 48.5,
+        "price_usd": 1299.0,
+        "note": "Expansion for AC200P / AC200MAX. Has its own AC/DC outputs \u2014 usable as a small standalone power station, unlike most expansion packs.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_b300",
+      "type": "battery",
+      "name": "Bluetti B300 Expansion Battery 3.0 kWh",
+      "sku": "bluetti_b300",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "B300",
+        "capacity_ah": 58,
+        "nominal_voltage": 51.2,
+        "chemistry": "lifepo4",
+        "cycle_life": 3500,
+        "bms_amps_continuous": 70,
+        "comm_protocol": "proprietary",
+        "weight_lb": 79.4,
+        "price_usd": 1799.0,
+        "note": "48V slave-pack for AC300 / AC500. Standalone usable as a 12V/24V output bank via bypass \u2014 see Bluetti spec sheet.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_b300k",
+      "type": "battery",
+      "name": "Bluetti B300K Expansion Battery 2.7 kWh",
+      "sku": "bluetti_b300k",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "B300K",
+        "capacity_ah": 53,
+        "nominal_voltage": 51.2,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 70,
+        "comm_protocol": "proprietary",
+        "weight_lb": 70.0,
+        "price_usd": 1799.0,
+        "note": "Successor to B300, optimized for AC500 / Apex 300 platforms. LFP chemistry, faster cell-balancing firmware than B300.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "aims_lfp_12v_100ah",
+      "type": "battery",
+      "name": "AIMS Power 12V 100Ah LiFePO4",
+      "sku": "aims_lfp_12v_100ah",
+      "attributes": {
+        "brand": "aims",
+        "model": "LFP12V100A",
+        "capacity_ah": 100,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "none",
+        "weight_lb": 29.0,
+        "price_usd": 649.0,
+        "note": "US-warrantied 100Ah 12V LFP. No Bluetooth; pairs with any standard 12V system. Mid-tier price/quality balance.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "aims_lfp_48v_100ah",
+      "type": "battery",
+      "name": "AIMS Power 48V 100Ah LiFePO4",
+      "sku": "aims_lfp_48v_100ah",
+      "attributes": {
+        "brand": "aims",
+        "model": "LFP48V100A",
+        "capacity_ah": 100,
+        "nominal_voltage": 48,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "rs485",
+        "weight_lb": 132.0,
+        "price_usd": 3499.0,
+        "note": "48V single-unit 5.1 kWh bank. RS485 closed-loop comms with AIMS or Schneider inverters. Wall-mount or rack.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ampere_time_300ah_12",
+      "type": "battery",
+      "name": "Ampere Time / LiTime 300Ah 12V LiFePO4",
+      "sku": "litime_300ah_12v",
+      "attributes": {
+        "brand": "litime",
+        "model": "LT-300H-12V",
+        "capacity_ah": 300,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 200,
+        "comm_protocol": "none",
+        "weight_lb": 66.6,
+        "price_usd": 649.99,
+        "price_source": "Amazon retail",
+        "note": "Aggressive-priced 300Ah from LiTime. Real-world reviews confirm rated capacity. 200A BMS = 2000W inverter compatible.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "litime_200ah_12v_plus",
+      "type": "battery",
+      "name": "LiTime 200Ah Plus 12V LiFePO4",
+      "sku": "litime_200ah_12v_plus",
+      "attributes": {
+        "brand": "litime",
+        "model": "LT-200H-PLUS",
+        "capacity_ah": 200,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 200,
+        "comm_protocol": "bluetooth",
+        "weight_lb": 49.0,
+        "price_usd": 549.99,
+        "price_source": "Amazon retail",
+        "note": "Bluetooth-enabled 200Ah at half the price of Renogy 200Ah Smart. Will Prowse-recommended budget pick.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "litime_100ah_12v_lfp",
+      "type": "battery",
+      "name": "LiTime 100Ah 12V LiFePO4",
+      "sku": "litime_100ah_12v",
+      "attributes": {
+        "brand": "litime",
+        "model": "LT-100H-12V",
+        "capacity_ah": 100,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "none",
+        "weight_lb": 24.0,
+        "price_usd": 259.99,
+        "price_source": "Amazon retail",
+        "note": "Cheapest reputable 100Ah LFP. No frills, no Bluetooth, but UL-listed and tested by community reviewers. Drop-in for any 12V LFP role.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "litime_100ah_24v_lfp",
+      "type": "battery",
+      "name": "LiTime 100Ah 24V LiFePO4",
+      "sku": "litime_100ah_24v",
+      "attributes": {
+        "brand": "litime",
+        "model": "LT-100H-24V",
+        "capacity_ah": 100,
+        "nominal_voltage": 24,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "none",
+        "weight_lb": 53.0,
+        "price_usd": 599.99,
+        "price_source": "Amazon retail",
+        "note": "Single-unit 24V 100Ah \u2014 2.56 kWh. Avoids series-stacking 12V cells. Pairs with 24V Renogy / Victron / AIMS inverters.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "litime_48v_100ah_rack",
+      "type": "battery",
+      "name": "LiTime 48V 100Ah Server-Rack LiFePO4",
+      "sku": "litime_48v_100ah_rack",
+      "attributes": {
+        "brand": "litime",
+        "model": "LT-LFP48V100AH",
+        "capacity_ah": 100,
+        "nominal_voltage": 48,
+        "chemistry": "lifepo4",
+        "cycle_life": 4000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "rs485",
+        "weight_lb": 98.0,
+        "price_usd": 1799.99,
+        "price_source": "Amazon retail",
+        "note": "5.1 kWh rack-mount with closed-loop CAN/RS485 to Growatt / EG4 / Sol-Ark / Schneider. Stacks up to 16 in parallel.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ruixu_4805",
+      "type": "battery",
+      "name": "Ruixu 4805 48V 100Ah Server-Rack LFP",
+      "sku": "ruixu_4805",
+      "attributes": {
+        "brand": "ruixu",
+        "model": "4805",
+        "capacity_ah": 100,
+        "nominal_voltage": 48,
+        "chemistry": "lifepo4",
+        "cycle_life": 6000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "can",
+        "weight_lb": 119.0,
+        "price_usd": 1599.0,
+        "note": "Premium-build 5 kWh rack battery. Closed-loop CAN to most major hybrids. Heating pad standard, 6000-cycle rating.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "eg4_lifepower4",
+      "type": "battery",
+      "name": "EG4 LifePower4 48V 100Ah Server-Rack LFP",
+      "sku": "eg4_lifepower4_48",
+      "attributes": {
+        "brand": "eg4",
+        "model": "LIFEPOWER4-48V100",
+        "capacity_ah": 100,
+        "nominal_voltage": 48,
+        "chemistry": "lifepo4",
+        "cycle_life": 7000,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "can",
+        "weight_lb": 113.0,
+        "price_usd": 1399.0,
+        "note": "Industry-standard rack LFP. Closed-loop CAN with EG4 / Sol-Ark / Growatt. UL-certified, sub-$0.30/Wh \u2014 current best-value rack battery.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_agm_100ah",
+      "type": "battery",
+      "name": "Renogy 100Ah Deep Cycle AGM",
+      "sku": "renogy_agm_100ah",
+      "attributes": {
+        "brand": "renogy",
+        "model": "RNG-BATT-AGM12-100",
+        "capacity_ah": 100,
+        "nominal_voltage": 12,
+        "chemistry": "agm",
+        "cycle_life": 1100,
+        "bms_amps_continuous": 100,
+        "comm_protocol": "none",
+        "weight_lb": 66.0,
+        "price_usd": 199.99,
+        "note": "Lead-acid AGM. ~50% usable capacity (discharge to 50% only); shorter lifespan than LFP. Cheap upfront but worse $/kWh-cycle.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "battleborn_gc3_270ah_heated",
+      "type": "battery",
+      "name": "Battle Born GC3 270Ah 12V LiFePO4 Heated",
+      "sku": "battleborn_gc3_270",
+      "attributes": {
+        "brand": "battle_born",
+        "model": "BB27012H-GC3",
+        "capacity_ah": 270,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 3500,
+        "bms_amps_continuous": 250,
+        "comm_protocol": "bluetooth",
+        "weight_lb": 98.0,
+        "price_usd": 3299.0,
+        "note": "GC3 form factor (industrial battery cabinet). Bluetooth state-of-charge, integrated heating, 250A BMS = 2500W inverter capable.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "dragonfly_battle_born_cic",
+      "type": "battery",
+      "name": "Battle Born GameChanger 12V 270Ah LFP",
+      "sku": "battleborn_gc_270",
+      "attributes": {
+        "brand": "battle_born",
+        "model": "BBGC-270",
+        "capacity_ah": 270,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 5000,
+        "bms_amps_continuous": 400,
+        "comm_protocol": "bluetooth",
+        "weight_lb": 72.0,
+        "price_usd": 4699.0,
+        "note": "Top-tier prismatic-cell LFP with 400A BMS, supports 4000W inverters on a single battery. Premium pricing \u2014 pro/RV liveaboard tier.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "kilovault_hlx_1800",
+      "type": "battery",
+      "name": "KiloVault HLX+ 1800 12V LiFePO4",
+      "sku": "kilovault_hlx_1800",
+      "attributes": {
+        "brand": "kilovault",
+        "model": "HLX1800",
+        "capacity_ah": 150,
+        "nominal_voltage": 12,
+        "chemistry": "lifepo4",
+        "cycle_life": 5000,
+        "bms_amps_continuous": 200,
+        "comm_protocol": "bluetooth",
+        "weight_lb": 57.0,
+        "price_usd": 1399.0,
+        "note": "Mid-shelf 150Ah w/ self-heating, Bluetooth, and rust-resistant case. Pairs with Magnum / Schneider / Outback inverters in marine / cabin builds.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "trojan_t105_re_pair",
+      "type": "battery",
+      "name": "Trojan T-105 RE 6V Flooded Lead-Acid (Pair, 12V 225Ah)",
+      "sku": "trojan_t105re_pair",
+      "attributes": {
+        "brand": "trojan",
+        "model": "T-105 RE",
+        "capacity_ah": 225,
+        "nominal_voltage": 12,
+        "chemistry": "flooded_lead_acid",
+        "cycle_life": 1600,
+        "bms_amps_continuous": 200,
+        "comm_protocol": "none",
+        "weight_lb": 124.0,
+        "price_usd": 560.0,
+        "note": "Two 6V FLA batteries in series = 12V 225Ah. Cheapest $/Wh upfront, but requires monthly water-topping and venting. Cabin-only.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "crown_cr430_pair",
+      "type": "battery",
+      "name": "Crown CR-430 6V FLA Battery (Pair, 12V 430Ah)",
+      "sku": "crown_cr430_pair",
+      "attributes": {
+        "brand": "crown_battery",
+        "model": "CR-430",
+        "capacity_ah": 430,
+        "nominal_voltage": 12,
+        "chemistry": "flooded_lead_acid",
+        "cycle_life": 1500,
+        "bms_amps_continuous": 300,
+        "comm_protocol": "none",
+        "weight_lb": 246.0,
+        "price_usd": 1299.0,
+        "note": "Heritage off-grid choice. 430Ah at 12V (only 50% usable) = ~2.6 kWh practical. Vented battery box required. Pre-LFP-era technology.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "jackery_explorer_240_v2",
+      "type": "power_station",
+      "name": "Jackery Explorer 240 v2",
+      "sku": "jackery_explorer_240_v2",
+      "attributes": {
+        "brand": "jackery",
+        "model": "E240V2",
+        "capacity_wh": 256,
+        "ac_output_watts": 300,
+        "ac_outlets": 1,
+        "solar_input_watts": 100,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 8.4,
+        "chemistry": "lifepo4",
+        "price_usd": 199.0,
+        "note": "Smallest LFP Jackery. CPAP / laptop tier. 100W solar input \u2014 pair with one SolarSaga 100W.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "jackery_explorer_500",
+      "type": "power_station",
+      "name": "Jackery Explorer 500",
+      "sku": "jackery_explorer_500",
+      "attributes": {
+        "brand": "jackery",
+        "model": "E500",
+        "capacity_wh": 518,
+        "ac_output_watts": 500,
+        "ac_outlets": 1,
+        "solar_input_watts": 100,
+        "usb_c_pd_watts": 60,
+        "weight_lb": 13.3,
+        "chemistry": "lithium-ion",
+        "price_usd": 499.0,
+        "note": "Older NMC chemistry \u2014 lower cycle life than newer LFP siblings. Discontinued in some regions; clearance pricing common.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "jackery_explorer_1000_v2",
+      "type": "power_station",
+      "name": "Jackery Explorer 1000 v2",
+      "sku": "jackery_explorer_1000_v2",
+      "attributes": {
+        "brand": "jackery",
+        "model": "E1000V2",
+        "capacity_wh": 1070,
+        "ac_output_watts": 1500,
+        "ac_outlets": 3,
+        "solar_input_watts": 400,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 23.8,
+        "chemistry": "lifepo4",
+        "price_usd": 799.0,
+        "note": "LFP refresh of the original 1000. 4000-cycle rating. Solid camp/blackout middle-of-the-road station.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "jackery_explorer_1500_pro",
+      "type": "power_station",
+      "name": "Jackery Explorer 1500 Pro",
+      "sku": "jackery_explorer_1500_pro",
+      "attributes": {
+        "brand": "jackery",
+        "model": "E1500Pro",
+        "capacity_wh": 1512,
+        "ac_output_watts": 1800,
+        "ac_outlets": 3,
+        "solar_input_watts": 800,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 37.4,
+        "chemistry": "lithium-ion",
+        "price_usd": 1399.0,
+        "note": "High solar input (800W) but legacy NMC chemistry \u2014 Jackery is migrating to LFP, this Pro line is the prior generation.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "jackery_explorer_2000_plus",
+      "type": "power_station",
+      "name": "Jackery Explorer 2000 Plus",
+      "sku": "jackery_explorer_2000_plus",
+      "attributes": {
+        "brand": "jackery",
+        "model": "E2000Plus",
+        "capacity_wh": 2042,
+        "ac_output_watts": 3000,
+        "ac_outlets": 5,
+        "solar_input_watts": 1400,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 61.5,
+        "chemistry": "lifepo4",
+        "price_usd": 1999.0,
+        "note": "LFP 2 kWh expandable to 24 kWh via add-on packs. Supports 240V output when paired with a second unit. Whole-home backup tier.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "jackery_explorer_3000_pro",
+      "type": "power_station",
+      "name": "Jackery Explorer 3000 Pro",
+      "sku": "jackery_explorer_3000_pro",
+      "attributes": {
+        "brand": "jackery",
+        "model": "E3000Pro",
+        "capacity_wh": 3024,
+        "ac_output_watts": 3000,
+        "ac_outlets": 4,
+        "solar_input_watts": 1200,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 63.9,
+        "chemistry": "lithium-ion",
+        "price_usd": 2999.0,
+        "note": "3 kWh standalone, NMC chemistry. Heavy at 64 lb \u2014 no longer the recommended Jackery flagship; the 2000 Plus / 5000 Plus are LFP.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_delta_2",
+      "type": "power_station",
+      "name": "EcoFlow DELTA 2",
+      "sku": "ecoflow_delta_2",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFDELTA2",
+        "capacity_wh": 1024,
+        "ac_output_watts": 1800,
+        "ac_outlets": 6,
+        "solar_input_watts": 500,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 27.0,
+        "chemistry": "lifepo4",
+        "price_usd": 999.0,
+        "note": "LFP 1 kWh, expandable to 3 kWh via DELTA 2 / Max extra batteries. X-Boost mode pushes 2200W resistive loads.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_delta_2_max",
+      "type": "power_station",
+      "name": "EcoFlow DELTA 2 Max",
+      "sku": "ecoflow_delta_2_max",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFDELTA2MAX",
+        "capacity_wh": 2048,
+        "ac_output_watts": 2400,
+        "ac_outlets": 6,
+        "solar_input_watts": 1000,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 50.0,
+        "chemistry": "lifepo4",
+        "price_usd": 1899.0,
+        "note": "2 kWh expandable to 6 kWh via two B2-MAX slave packs. 1000W MPPT. Whole-evening backup tier; not whole-home.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_delta_pro",
+      "type": "power_station",
+      "name": "EcoFlow DELTA Pro",
+      "sku": "ecoflow_delta_pro",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFDELTAPRO",
+        "capacity_wh": 3600,
+        "ac_output_watts": 3600,
+        "ac_outlets": 5,
+        "solar_input_watts": 1600,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 99.0,
+        "chemistry": "lifepo4",
+        "price_usd": 3199.0,
+        "note": "3.6 kWh standalone, expandable to 25 kWh w/ 2x extras + 2x Smart Generators. AC-coupled to home panel via Smart Home Panel 2.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_delta_pro_ultra",
+      "type": "power_station",
+      "name": "EcoFlow DELTA Pro Ultra",
+      "sku": "ecoflow_delta_pro_ultra",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFDPU",
+        "capacity_wh": 6144,
+        "ac_output_watts": 7200,
+        "ac_outlets": 12,
+        "solar_input_watts": 5600,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 114.0,
+        "chemistry": "lifepo4",
+        "price_usd": 3699.0,
+        "note": "Per-inverter unit \u2014 7.2 kW output, 6 kWh per battery slot, expandable to 90 kWh. True split-phase 240V; whole-home backup tier.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_river_2",
+      "type": "power_station",
+      "name": "EcoFlow RIVER 2",
+      "sku": "ecoflow_river_2",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFRIVER2",
+        "capacity_wh": 256,
+        "ac_output_watts": 300,
+        "ac_outlets": 2,
+        "solar_input_watts": 110,
+        "usb_c_pd_watts": 60,
+        "weight_lb": 7.7,
+        "chemistry": "lifepo4",
+        "price_usd": 239.0,
+        "note": "Smallest LFP RIVER. CPAP overnight + small fridge. 1-hour AC fast-charge.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoflow_river_2_pro",
+      "type": "power_station",
+      "name": "EcoFlow RIVER 2 Pro",
+      "sku": "ecoflow_river_2_pro",
+      "attributes": {
+        "brand": "ecoflow",
+        "model": "EFRIVER2PRO",
+        "capacity_wh": 768,
+        "ac_output_watts": 800,
+        "ac_outlets": 4,
+        "solar_input_watts": 220,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 17.2,
+        "chemistry": "lifepo4",
+        "price_usd": 599.0,
+        "note": "LFP 768 Wh, 4-outlet station. Sweet spot for weekend camp + driveway power outage.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_ac180",
+      "type": "power_station",
+      "name": "Bluetti AC180",
+      "sku": "bluetti_ac180",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "AC180",
+        "capacity_wh": 1152,
+        "ac_output_watts": 1800,
+        "ac_outlets": 4,
+        "solar_input_watts": 500,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 37.0,
+        "chemistry": "lifepo4",
+        "price_usd": 999.0,
+        "note": "LFP 1.15 kWh, fast 1.5-hr AC charge. Wireless pad on top. Mid-tier camp/backup.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_ac200_max",
+      "type": "power_station",
+      "name": "Bluetti AC200MAX",
+      "sku": "bluetti_ac200_max",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "AC200MAX",
+        "capacity_wh": 2048,
+        "ac_output_watts": 2200,
+        "ac_outlets": 4,
+        "solar_input_watts": 900,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 61.9,
+        "chemistry": "lifepo4",
+        "price_usd": 1799.0,
+        "note": "2 kWh LFP expandable to 8 kWh via B230/B300 packs. 900W MPPT. NEMA 14-50 RV-compatible output port.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_ac300_b300_combo",
+      "type": "power_station",
+      "name": "Bluetti AC300 + B300 Combo (3 kWh)",
+      "sku": "bluetti_ac300_b300",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "AC300+B300",
+        "capacity_wh": 3072,
+        "ac_output_watts": 3000,
+        "ac_outlets": 6,
+        "solar_input_watts": 2400,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 156.0,
+        "chemistry": "lifepo4",
+        "price_usd": 2999.0,
+        "note": "AC300 inverter requires at least one B300 battery; expandable to 24 kWh + dual-unit split-phase 240V via P030A fusion box.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bluetti_ac500_b300s_combo",
+      "type": "power_station",
+      "name": "Bluetti AC500 + B300S Combo (3 kWh)",
+      "sku": "bluetti_ac500_b300s",
+      "attributes": {
+        "brand": "bluetti",
+        "model": "AC500+B300S",
+        "capacity_wh": 3072,
+        "ac_output_watts": 5000,
+        "ac_outlets": 6,
+        "solar_input_watts": 3000,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 176.0,
+        "chemistry": "lifepo4",
+        "price_usd": 3999.0,
+        "note": "5 kW continuous; expandable to 18.4 kWh and split-phase 240V via two-unit pairing. Whole-home short-duration backup.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "goalzero_yeti_1000_v2",
+      "type": "power_station",
+      "name": "Goal Zero Yeti 1000 v2",
+      "sku": "goalzero_yeti_1000_v2",
+      "attributes": {
+        "brand": "goal_zero",
+        "model": "22070",
+        "capacity_wh": 983,
+        "ac_output_watts": 1200,
+        "ac_outlets": 2,
+        "solar_input_watts": 600,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 31.7,
+        "chemistry": "lifepo4",
+        "price_usd": 999.95,
+        "note": "LFP successor to original Yeti 1000. App-monitored, 600W solar input. Premium price vs DELTA 2 / AC180 for similar specs.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "goalzero_yeti_1500x",
+      "type": "power_station",
+      "name": "Goal Zero Yeti 1500X",
+      "sku": "goalzero_yeti_1500x",
+      "attributes": {
+        "brand": "goal_zero",
+        "model": "36300",
+        "capacity_wh": 1516,
+        "ac_output_watts": 2000,
+        "ac_outlets": 2,
+        "solar_input_watts": 600,
+        "usb_c_pd_watts": 60,
+        "weight_lb": 45.6,
+        "chemistry": "lithium-ion",
+        "price_usd": 1799.95,
+        "note": "NMC chemistry \u2014 fewer cycles than LFP rivals. Hardwire-ready Yeti Home Integration Kit; Goal Zero ecosystem premium.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "goalzero_yeti_pro_4000",
+      "type": "power_station",
+      "name": "Goal Zero Yeti Pro 4000",
+      "sku": "goalzero_yeti_pro_4000",
+      "attributes": {
+        "brand": "goal_zero",
+        "model": "22050",
+        "capacity_wh": 3993,
+        "ac_output_watts": 3600,
+        "ac_outlets": 6,
+        "solar_input_watts": 3000,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 121.0,
+        "chemistry": "lifepo4",
+        "price_usd": 4999.95,
+        "note": "LFP 4 kWh, 3 kW MPPT. Expand with Tank Pro 4000 packs. Goal Zero's flagship; Anderson + XT60 inputs accept any third-party MC4 panel.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "anker_solix_c1000",
+      "type": "power_station",
+      "name": "Anker SOLIX C1000",
+      "sku": "anker_solix_c1000",
+      "attributes": {
+        "brand": "anker_solix",
+        "model": "A1761",
+        "capacity_wh": 1056,
+        "ac_output_watts": 1800,
+        "ac_outlets": 6,
+        "solar_input_watts": 600,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 28.4,
+        "chemistry": "lifepo4",
+        "price_usd": 999.0,
+        "note": "Mid-size LFP station, 6-outlet. Surge mode handles 2400W resistive. Strong $/Wh competitor to DELTA 2 and AC180.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "anker_solix_f2000",
+      "type": "power_station",
+      "name": "Anker SOLIX F2000 (PowerHouse 767)",
+      "sku": "anker_solix_f2000",
+      "attributes": {
+        "brand": "anker_solix",
+        "model": "A1780",
+        "capacity_wh": 2048,
+        "ac_output_watts": 2400,
+        "ac_outlets": 4,
+        "solar_input_watts": 1000,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 67.2,
+        "chemistry": "lifepo4",
+        "price_usd": 1799.0,
+        "note": "LFP 2 kWh; expandable to 4 kWh via BP2000 add-on. RV-ready NEMA TT-30 output. Solid 2 kWh tier.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "anker_solix_f3800",
+      "type": "power_station",
+      "name": "Anker SOLIX F3800",
+      "sku": "anker_solix_f3800",
+      "attributes": {
+        "brand": "anker_solix",
+        "model": "A1790",
+        "capacity_wh": 3840,
+        "ac_output_watts": 6000,
+        "ac_outlets": 6,
+        "solar_input_watts": 2400,
+        "usb_c_pd_watts": 100,
+        "weight_lb": 132.3,
+        "chemistry": "lifepo4",
+        "price_usd": 3499.0,
+        "note": "True split-phase 120V/240V output, 6 kW continuous, expandable to 53 kWh. Most cost-effective whole-home backup station as of 2026.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_z_brackets",
+      "type": "solar_mounting",
+      "name": "Renogy Z-Bracket Solar Panel Mount Kit",
+      "sku": "renogy_z_bracket_kit",
+      "attributes": {
+        "brand": "renogy",
+        "model": "MTS-ZBKT4",
+        "mount_type": "z_bracket",
+        "panel_count": 1,
+        "tilt_adjustable": false,
+        "material": "aluminum_anodized",
+        "hardware_included": true,
+        "price_usd": 22.99,
+        "note": "Standard rooftop fixed mount \u2014 bolts to RV roof / shed roof. One kit (4 brackets) per panel. Most-installed mount type in 12V off-grid.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_tilt_mount_kit_28in",
+      "type": "solar_mounting",
+      "name": "Renogy Adjustable Tilt Mount Kit 28in",
+      "sku": "renogy_tilt_mount_28",
+      "attributes": {
+        "brand": "renogy",
+        "model": "MTS-TLT-S",
+        "mount_type": "tilt_adjustable",
+        "panel_count": 1,
+        "tilt_adjustable": true,
+        "material": "aluminum_anodized",
+        "hardware_included": true,
+        "price_usd": 89.99,
+        "note": "Adjustable 0/15/30/45-deg tilt. Roof or ground. Improves winter yield 20-40% at high latitudes vs flat-mount.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_ground_mount",
+      "type": "solar_mounting",
+      "name": "Renogy Solar Panel Ground Mount System (3-Panel)",
+      "sku": "renogy_ground_mount_3p",
+      "attributes": {
+        "brand": "renogy",
+        "model": "MTS-GP3",
+        "mount_type": "ground_mount",
+        "panel_count": 3,
+        "tilt_adjustable": true,
+        "material": "aluminum_anodized",
+        "hardware_included": true,
+        "price_usd": 349.99,
+        "note": "3-panel adjustable-tilt ground mount. Concrete-anchor or earth-screw. Sized for 60/72-cell residential panels.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_pole_mount",
+      "type": "solar_mounting",
+      "name": "Renogy Universal Pole Mount Kit",
+      "sku": "renogy_pole_mount",
+      "attributes": {
+        "brand": "renogy",
+        "model": "MTS-PM",
+        "mount_type": "pole_mount",
+        "panel_count": 1,
+        "tilt_adjustable": true,
+        "material": "aluminum_anodized",
+        "hardware_included": true,
+        "price_usd": 119.99,
+        "note": "Top-of-pole mount; common for cabin water-pump systems. Fits 4-5 in pole, single panel up to 200W.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_corner_brackets",
+      "type": "solar_mounting",
+      "name": "Renogy ABS Corner Brackets (Set of 4) \u2014 RV Adhesive",
+      "sku": "renogy_corner_abs",
+      "attributes": {
+        "brand": "renogy",
+        "model": "MTS-CRABS",
+        "mount_type": "adhesive_corner",
+        "panel_count": 1,
+        "tilt_adjustable": false,
+        "material": "abs_plastic",
+        "hardware_included": false,
+        "price_usd": 27.99,
+        "note": "No-drill RV-roof adhesive corners. Sealant + Eternabond is mandatory; raw-adhesive installs fail in 1-2 summers.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoworthy_z_bracket",
+      "type": "solar_mounting",
+      "name": "Eco-Worthy Z-Bracket Mount Kit (4-pack)",
+      "sku": "ecoworthy_z_bracket",
+      "attributes": {
+        "brand": "eco_worthy",
+        "model": "L-EWZB-4",
+        "mount_type": "z_bracket",
+        "panel_count": 1,
+        "tilt_adjustable": false,
+        "material": "aluminum_anodized",
+        "hardware_included": true,
+        "price_usd": 15.99,
+        "price_source": "Amazon retail",
+        "note": "Cheaper Z-bracket alternative to Renogy. Same form factor; thinner aluminum stock \u2014 fine for sub-50-mph wind areas.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoworthy_tilt_mount_24in",
+      "type": "solar_mounting",
+      "name": "Eco-Worthy 24in Adjustable Tilt Mount Bracket",
+      "sku": "ecoworthy_tilt_24",
+      "attributes": {
+        "brand": "eco_worthy",
+        "model": "L-EWTM-24",
+        "mount_type": "tilt_adjustable",
+        "panel_count": 1,
+        "tilt_adjustable": true,
+        "material": "aluminum",
+        "hardware_included": true,
+        "price_usd": 44.99,
+        "price_source": "Amazon retail",
+        "note": "Budget tilt bracket. Holds up to 100W panel; not rated for 200W rigid in high-wind areas.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ecoworthy_ground_mount_4p",
+      "type": "solar_mounting",
+      "name": "Eco-Worthy 4-Panel Adjustable Ground Mount",
+      "sku": "ecoworthy_ground_4p",
+      "attributes": {
+        "brand": "eco_worthy",
+        "model": "L-EWGM-4P",
+        "mount_type": "ground_mount",
+        "panel_count": 4,
+        "tilt_adjustable": true,
+        "material": "aluminum_anodized",
+        "hardware_included": true,
+        "price_usd": 499.99,
+        "price_source": "Amazon retail",
+        "note": "4-panel ground rack. Pre-drilled for 60/72-cell panels; concrete-anchor required. Lower steel wall thickness than IronRidge XR-1000.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "goalzero_yeti_carry_strap",
+      "type": "solar_mounting",
+      "name": "Goal Zero Boulder Hardware Mounting Kit",
+      "sku": "goalzero_boulder_mount",
+      "attributes": {
+        "brand": "goal_zero",
+        "model": "98028",
+        "mount_type": "rooftop_mount",
+        "panel_count": 1,
+        "tilt_adjustable": false,
+        "material": "aluminum",
+        "hardware_included": true,
+        "price_usd": 49.95,
+        "note": "Rooftop bolt-down kit for Goal Zero Boulder rigid panels. Bracket length matches Boulder 100/200 frame; doesn't fit standard 100W.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "maxxair_solar_panel_tilt_arms",
+      "type": "solar_mounting",
+      "name": "MaxxAir RV Solar Panel Tilt Arms (Pair)",
+      "sku": "maxxair_tilt_arms",
+      "attributes": {
+        "brand": "maxxair",
+        "model": "0010-201",
+        "mount_type": "rv_roof_tilt",
+        "panel_count": 1,
+        "tilt_adjustable": true,
+        "material": "aluminum_anodized",
+        "hardware_included": true,
+        "price_usd": 99.99,
+        "note": "RV-specific roof-tilt arms \u2014 paired with Z-brackets. Tilts panel to 30/45/60 deg from rear. Improves winter parked-camper yield.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "am_solar_marine_mount",
+      "type": "solar_mounting",
+      "name": "AM Solar Tilting Roof Mount Kit (Single Panel)",
+      "sku": "am_solar_tilt_kit",
+      "attributes": {
+        "brand": "am_solar",
+        "model": "MK-ARM-1",
+        "mount_type": "rv_roof_tilt",
+        "panel_count": 1,
+        "tilt_adjustable": true,
+        "material": "aluminum_anodized",
+        "hardware_included": true,
+        "price_usd": 159.99,
+        "note": "Premium full-time RV/boat tilting mount. Stainless hardware. Often paired with VHB tape + screws on aluminum-skin RVs.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "ironridge_xr1000_kit",
+      "type": "solar_mounting",
+      "name": "IronRidge XR-1000 Rooftop Rail Kit (4-Panel)",
+      "sku": "ironridge_xr1000_4p",
+      "attributes": {
+        "brand": "ironridge",
+        "model": "XR1000-4P",
+        "mount_type": "rooftop_rail",
+        "panel_count": 4,
+        "tilt_adjustable": false,
+        "material": "aluminum_extruded",
+        "hardware_included": true,
+        "price_usd": 389.0,
+        "note": "Industry-standard residential rail. 90 mph wind / 60 psf snow rated. Used on grid-tied installs and 48V cabin systems.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "snapnrack_ultra_rail",
+      "type": "solar_mounting",
+      "name": "SnapNrack Ultra Rail Mount Kit (3-Panel)",
+      "sku": "snapnrack_ultra_3p",
+      "attributes": {
+        "brand": "snapnrack",
+        "model": "UR-100",
+        "mount_type": "rooftop_rail",
+        "panel_count": 3,
+        "tilt_adjustable": false,
+        "material": "aluminum_extruded",
+        "hardware_included": true,
+        "price_usd": 329.0,
+        "note": "Compresion lugs vs split-bolts speed install vs IronRidge. Same wind ratings. UL 2703 listed.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "eco_worthy_earth_screws",
+      "type": "solar_mounting",
+      "name": "Eco-Worthy Helical Ground-Anchor Earth Screws (4-pack)",
+      "sku": "ecoworthy_earth_screws",
+      "attributes": {
+        "brand": "eco_worthy",
+        "model": "L-EWES-4",
+        "mount_type": "ground_anchor",
+        "panel_count": 0,
+        "tilt_adjustable": false,
+        "material": "galvanized_steel",
+        "hardware_included": false,
+        "price_usd": 89.99,
+        "price_source": "Amazon retail",
+        "note": "Helical earth screws as a no-concrete alternative under 4-panel ground mounts. Avoid in soft / rocky soil.",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "am_solar_side_pole_mount",
+      "type": "solar_mounting",
+      "name": "AM Solar Side-of-Pole Mount Single Panel",
+      "sku": "am_solar_side_pole",
+      "attributes": {
+        "brand": "am_solar",
+        "model": "SPM-1",
+        "mount_type": "pole_mount",
+        "panel_count": 1,
+        "tilt_adjustable": true,
+        "material": "aluminum_anodized",
+        "hardware_included": true,
+        "price_usd": 189.0,
+        "note": "Side-of-pole mount for cabin water/lighting setups. Mounts to 2-3 in pipe. Tighter form factor than top-of-pole.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_mc4_pair",
+      "type": "solar_cable_kit",
+      "name": "Renogy MC4 Connectors (5 Pair)",
+      "sku": "renogy_mc4_5pair",
+      "attributes": {
+        "brand": "renogy",
+        "model": "ACC-CONN-MC4",
+        "kit_type": "mc4_connectors",
+        "count": 5,
+        "cable_gauge_awg": null,
+        "cable_length_ft": null,
+        "fuse_amps": null,
+        "price_usd": 14.99,
+        "note": "Standard PV connector. Crimp tool sold separately; do NOT use mismatched MC4 brand pairs (a known fire-risk per NEC).",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_10awg_20ft_pair",
+      "type": "solar_cable_kit",
+      "name": "Renogy 10 AWG MC4-to-MC4 Solar Cable Pair (20 ft)",
+      "sku": "renogy_10awg_20ft",
+      "attributes": {
+        "brand": "renogy",
+        "model": "CBL-10A-20",
+        "kit_type": "extension_cable",
+        "count": 2,
+        "cable_gauge_awg": 10,
+        "cable_length_ft": 20,
+        "fuse_amps": null,
+        "price_usd": 27.99,
+        "note": "10 AWG handles up to ~30A safely; sized for a single 200W panel run. Use 8 AWG for parallel pairs of 200W panels.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_8awg_15ft_pair",
+      "type": "solar_cable_kit",
+      "name": "Renogy 8 AWG MC4 Solar Extension Pair (15 ft)",
+      "sku": "renogy_8awg_15ft",
+      "attributes": {
+        "brand": "renogy",
+        "model": "CBL-8A-15",
+        "kit_type": "extension_cable",
+        "count": 2,
+        "cable_gauge_awg": 8,
+        "cable_length_ft": 15,
+        "fuse_amps": null,
+        "price_usd": 34.99,
+        "note": "8 AWG good for ~50A. Sized for 2x 200W parallel runs to a 30A MPPT.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_6awg_25ft_pair",
+      "type": "solar_cable_kit",
+      "name": "Renogy 6 AWG MC4 Solar Extension Pair (25 ft)",
+      "sku": "renogy_6awg_25ft",
+      "attributes": {
+        "brand": "renogy",
+        "model": "CBL-6A-25",
+        "kit_type": "extension_cable",
+        "count": 2,
+        "cable_gauge_awg": 6,
+        "cable_length_ft": 25,
+        "fuse_amps": null,
+        "price_usd": 58.99,
+        "note": "6 AWG handles ~75A; sized for 4x 200W parallel array or long ground-mount-to-shed runs.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_branch_y_2to1",
+      "type": "solar_cable_kit",
+      "name": "Renogy MC4 Y Branch Connectors (Pair)",
+      "sku": "renogy_branch_y",
+      "attributes": {
+        "brand": "renogy",
+        "model": "MC4-Y-PAIR",
+        "kit_type": "branch_connector",
+        "count": 2,
+        "cable_gauge_awg": 10,
+        "cable_length_ft": null,
+        "fuse_amps": null,
+        "price_usd": 19.99,
+        "note": "2-to-1 parallel combiner. Combines two panels' outputs into one MC4 input. Limit total current to controller's input rating.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_branch_y_4to1",
+      "type": "solar_cable_kit",
+      "name": "Renogy MC4 4-to-1 Branch Connectors (Pair)",
+      "sku": "renogy_branch_4to1",
+      "attributes": {
+        "brand": "renogy",
+        "model": "MC4-Y4-PAIR",
+        "kit_type": "branch_connector",
+        "count": 2,
+        "cable_gauge_awg": 10,
+        "cable_length_ft": null,
+        "fuse_amps": null,
+        "price_usd": 29.99,
+        "note": "4-to-1 parallel combiner. Use with 4-panel arrays going into a 60A MPPT controller. Fuse each branch separately per NEC.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_inline_fuse_30a",
+      "type": "solar_cable_kit",
+      "name": "Renogy 30A Inline MC4 Fuse",
+      "sku": "renogy_inline_fuse_30a",
+      "attributes": {
+        "brand": "renogy",
+        "model": "MC4-FUSE-30",
+        "kit_type": "inline_fuse",
+        "count": 1,
+        "cable_gauge_awg": 10,
+        "cable_length_ft": 0.3,
+        "fuse_amps": 30,
+        "price_usd": 12.99,
+        "note": "Inline branch fuse. Required by NEC when paralleling 3+ strings; protects each panel's wiring from reverse-current.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_inline_fuse_15a",
+      "type": "solar_cable_kit",
+      "name": "Renogy 15A Inline MC4 Fuse",
+      "sku": "renogy_inline_fuse_15a",
+      "attributes": {
+        "brand": "renogy",
+        "model": "MC4-FUSE-15",
+        "kit_type": "inline_fuse",
+        "count": 1,
+        "cable_gauge_awg": 10,
+        "cable_length_ft": 0.3,
+        "fuse_amps": 15,
+        "price_usd": 12.99,
+        "note": "15A inline fuse for individual residential-panel branches with Imp ~10A.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_anl_fuse_kit",
+      "type": "solar_cable_kit",
+      "name": "Renogy ANL Fuse Kit 200A (Battery to Inverter)",
+      "sku": "renogy_anl_200a",
+      "attributes": {
+        "brand": "renogy",
+        "model": "ACC-ANLF-200",
+        "kit_type": "anl_fuse_kit",
+        "count": 1,
+        "cable_gauge_awg": null,
+        "cable_length_ft": null,
+        "fuse_amps": 200,
+        "price_usd": 29.99,
+        "note": "200A ANL fuse + holder. Required between LFP battery + and any 2000W+ inverter on 12V. Sizing: inverter_W / 12V \u00d7 1.25.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "renogy_4awg_battery_cable",
+      "type": "solar_cable_kit",
+      "name": "Renogy 4 AWG Battery-to-Inverter Cable Pair (3 ft)",
+      "sku": "renogy_4awg_3ft",
+      "attributes": {
+        "brand": "renogy",
+        "model": "ACC-CBL-4A-3",
+        "kit_type": "battery_cable",
+        "count": 2,
+        "cable_gauge_awg": 4,
+        "cable_length_ft": 3,
+        "fuse_amps": null,
+        "price_usd": 39.99,
+        "note": "4 AWG good for ~100A continuous; pair with 12V 1000W inverter. For 2000W+ step up to 2/0 or 4/0 AWG.",
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "source_ids": [
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "C1_inverter_dc_voltage_must_match_battery_bank",
+      "kind": "requires",
+      "when": {
+        "selected_inverter": "*"
+      },
+      "then": {
+        "battery.attributes.nominal_voltage": "must equal inverter.attributes.input_voltage_dc"
+      },
+      "rationale": "An inverter's DC input voltage is fixed (12 / 24 / 48). A 12V battery bank cannot drive a 24V or 48V inverter (under-voltage cutoff), and a 48V bank into a 12V inverter destroys the inverter on first connection. Bank nominal voltage must match input_voltage_dc exactly.",
+      "source_id": 2
+    },
+    {
+      "id": "C2_charge_controller_max_pv_voltage_must_exceed_array_voc",
+      "kind": "requires",
+      "when": {
+        "array_total_voc_cold_temp": ">controller.attributes.max_pv_voltage"
+      },
+      "then": {
+        "selection_invalid": true
+      },
+      "rationale": "Cold-weather Voc rises ~10-25% above STC nameplate. If the array's series Voc at the coldest expected temperature exceeds the controller's max PV voltage, the controller fries. Always size with cold-temp coefficient \u00d7 series count \u00d7 Voc, not Vmp.",
+      "source_id": 0
+    },
+    {
+      "id": "C3_panel_total_watts_must_not_exceed_charge_controller_capacity",
+      "kind": "requires",
+      "when": {
+        "sum(panel.attributes.wattage)": ">controller.attributes.max_current_amps \u00d7 battery_nominal_voltage"
+      },
+      "then": {
+        "selection_invalid": true
+      },
+      "rationale": "Charge controllers cap output current. P_max = max_current_amps \u00d7 battery_nominal_voltage. Exceeding this either clips harvest (wasted panels) or, on cheap controllers, burns out the output stage. ~20-30% array oversizing is acceptable on MPPT for cloudy-day boost; beyond that, upsize the controller.",
+      "source_id": 2
+    },
+    {
+      "id": "C4_battery_chemistry_must_match_charge_profile",
+      "kind": "requires",
+      "when": {
+        "battery.attributes.chemistry": "*"
+      },
+      "then": {
+        "controller.charge_profile": "must support battery.attributes.chemistry"
+      },
+      "rationale": "LFP batteries need 14.2-14.6V bulk on a 12V bank (no temperature compensation, no equalization). Lead-acid (FLA/AGM) needs 14.4-14.8V bulk plus periodic equalization at 15.5V. A controller without an LFP profile will under-charge LFP, and an LFP profile applied to FLA causes sulfation. Confirm chemistry-specific profile before pairing.",
+      "source_id": 2
+    },
+    {
+      "id": "C5_inverter_continuous_watts_must_not_exceed_battery_bms_limit",
+      "kind": "requires",
+      "when": {
+        "inverter.attributes.continuous_watts / battery.attributes.nominal_voltage": ">battery.attributes.bms_amps_continuous"
+      },
+      "then": {
+        "selection_invalid": true
+      },
+      "rationale": "Continuous inverter draw (W \u00f7 V) cannot exceed the battery's BMS continuous current rating, or the BMS shuts the bank off mid-load (or, on cheap BMSes, fails). Example: a 2000W 12V inverter draws ~170A; a 100A-BMS battery cannot supply it without tripping. Match BMS amps to inverter peak draw.",
+      "source_id": 3
+    },
+    {
+      "id": "C6_power_station_solar_input_must_not_exceed_panel_voc",
+      "kind": "requires",
+      "when": {
+        "panel.attributes.voltage_voc": ">power_station.mppt_max_voltage"
+      },
+      "then": {
+        "selection_invalid": true
+      },
+      "rationale": "All-in-one solar generators have a fixed MPPT input voltage range. EcoFlow DELTA Pro accepts 11-150V; Jackery Explorer 1000 v2 only 12-50V. A high-Voc panel (e.g. 60-cell residential, Voc ~50V) will damage a small RIVER-class station. Match panel Voc to station MPPT range.",
+      "source_id": 2
+    },
+    {
+      "id": "C7_cable_gauge_must_match_inverter_current",
+      "kind": "requires",
+      "when": {
+        "inverter.attributes.continuous_watts / inverter.attributes.input_voltage_dc": ">cable_ampacity"
+      },
+      "then": {
+        "selection_invalid": true
+      },
+      "rationale": "Battery-to-inverter cable gauge must safely carry continuous current with 25% margin per NEC. 12V 2000W draws ~170A (need 4/0 AWG); 24V 2000W draws ~85A (4 AWG suffices); 48V 2000W draws ~42A (8 AWG). Undersized cables overheat under load; correctly sized cables also drop less voltage at the inverter.",
+      "source_id": 3
+    },
+    {
+      "id": "C8_panel_type_must_match_mount_type",
+      "kind": "requires",
+      "when": {
+        "panel.attributes.panel_type": "rigid"
+      },
+      "then": {
+        "mount.attributes.mount_type": "in [z_bracket, tilt_adjustable, ground_mount, pole_mount, rooftop_rail, rv_roof_tilt, rooftop_mount, adhesive_corner]"
+      },
+      "rationale": "Rigid framed panels need framed-panel hardware (Z-brackets, tilt arms, rails). Flexible panels are adhesive-mounted and have no frame for bolt-on hardware. Portable folding panels come with their own kickstand and need no mount. Selecting a mismatched mount voids the install.",
+      "source_id": 3
+    }
+  ],
+  "goals": [
+    {
+      "id": "G1_meet_target_daily_kwh",
+      "prompt": "Meet the user's stated daily kWh demand at the user's location with margin for cloudy days.",
+      "objective": "minimize",
+      "target": "shortfall_days_per_year given NREL PVWatts irradiance \u00d7 array_watts \u00d7 derate(0.77)"
+    },
+    {
+      "id": "G2_minimize_cost_per_usable_kwh",
+      "prompt": "Across all selected components, minimize total cost per usable kWh of daily harvest.",
+      "objective": "minimize",
+      "target": "sum(component.price_usd) / (array_watts \u00d7 peak_sun_hours \u00d7 0.77)"
+    },
+    {
+      "id": "G3_prefer_lifepo4_over_lead_acid",
+      "prompt": "When two batteries are equally compatible, prefer LiFePO4 \u2014 higher cycle life and 80% usable capacity vs. 50% on lead-acid wins on $/kWh-cycle.",
+      "objective": "maximize",
+      "target": "battery.attributes.chemistry == 'lifepo4'"
+    },
+    {
+      "id": "G4_prefer_pure_sine_over_modified",
+      "prompt": "Prefer pure-sine inverters; modified-sine units fail with motors, CPAPs, and modern electronics.",
+      "objective": "maximize",
+      "target": "inverter.attributes.waveform == 'pure_sine'"
+    }
+  ]
+}

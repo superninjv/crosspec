@@ -1,20 +1,35 @@
 import type { APIRoute } from "astro";
 import type { KnowledgeBase } from "../../engine/solver/types.js";
-import kbRaw from "../../verticals/smart-home/kb.json";
+import smartHomeKb from "../../verticals/smart-home/kb.json";
+import solarKb from "../../verticals/solar/kb.json";
+import keyboardsKb from "../../verticals/keyboards/kb.json";
 
 const SITE = "https://crosspec.com";
 
 export const GET: APIRoute = () => {
-  const kb = kbRaw as KnowledgeBase;
   const today = new Date().toISOString().slice(0, 10);
 
   const urls: Array<{ loc: string; priority: string }> = [
     { loc: `${SITE}/smart-home/`, priority: "1.0" },
+    { loc: `${SITE}/solar/`, priority: "1.0" },
+    { loc: `${SITE}/keyboards/`, priority: "1.0" },
     { loc: `${SITE}/about/`, priority: "0.4" },
   ];
+
+  const kb = smartHomeKb as KnowledgeBase;
   for (const e of kb.entities) {
     const sku = e.sku ?? e.id;
     urls.push({ loc: `${SITE}/smart-home/devices/${sku}/`, priority: "0.7" });
+  }
+  const solar = solarKb as KnowledgeBase;
+  for (const e of solar.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/solar/devices/${sku}/`, priority: "0.7" });
+  }
+  const keyboards = keyboardsKb as KnowledgeBase;
+  for (const e of keyboards.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/keyboards/devices/${sku}/`, priority: "0.7" });
   }
 
   // Comparison pages: same pair-selection rules as src/pages/smart-home/compare/[pair].astro

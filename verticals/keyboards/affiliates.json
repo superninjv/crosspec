@@ -1,0 +1,109 @@
+{
+  "version": "0.1",
+  "vertical": "mechanical-keyboards",
+  "status": "stub — populated in commit 2 once at least one affiliate is approved",
+  "fallback": "amazon_associates",
+  "merchants": {
+    "amazon_associates": {
+      "name": "Amazon Associates",
+      "network": "amazon",
+      "rate_pct": 2.5,
+      "cookie_days": 1,
+      "link_template": "https://www.amazon.com/dp/{{merchant_sku}}?tag={{affiliate_tag}}",
+      "tag": "env:MERCHANT_TAG_AMAZON",
+      "applied_on": null,
+      "status": "fallback"
+    },
+    "drop": {
+      "name": "Drop",
+      "network": "impact",
+      "rate_pct": 5.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_DROP",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "kbdfans": {
+      "name": "KBDfans",
+      "network": "direct",
+      "rate_pct": 5.0,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_KBDFANS",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "novelkeys": {
+      "name": "NovelKeys",
+      "network": "direct",
+      "rate_pct": null,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_NOVELKEYS",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "keychron": {
+      "name": "Keychron",
+      "network": "awin",
+      "rate_pct": 5.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_KEYCHRON",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "glorious": {
+      "name": "Glorious",
+      "network": "impact",
+      "rate_pct": 7.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_GLORIOUS",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "akko": {
+      "name": "Akko",
+      "network": "direct",
+      "rate_pct": null,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_AKKO",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "cannonkeys": {
+      "name": "Cannonkeys",
+      "network": "direct",
+      "rate_pct": null,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_CANNONKEYS",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "mode_designs": {
+      "name": "Mode Designs",
+      "network": "direct",
+      "rate_pct": null,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_MODE",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "zsa": {
+      "name": "ZSA Keyboards",
+      "network": "direct",
+      "rate_pct": null,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_ZSA",
+      "applied_on": null,
+      "status": "pending"
+    }
+  },
+  "products": {}
+}

@@ -1,0 +1,99 @@
+{
+  "version": "0.1",
+  "vertical": "solar",
+  "status": "stub — populated in commit 2 once at least one affiliate is approved",
+  "fallback": "amazon_associates",
+  "merchants": {
+    "amazon_associates": {
+      "name": "Amazon Associates",
+      "network": "amazon",
+      "rate_pct": 2.5,
+      "cookie_days": 1,
+      "link_template": "https://www.amazon.com/dp/{{merchant_sku}}?tag={{affiliate_tag}}",
+      "tag": "env:MERCHANT_TAG_AMAZON",
+      "applied_on": null,
+      "status": "fallback"
+    },
+    "renogy": {
+      "name": "Renogy",
+      "network": "direct",
+      "rate_pct": 5.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_RENOGY",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "ecoflow": {
+      "name": "EcoFlow",
+      "network": "impact",
+      "rate_pct": 4.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_ECOFLOW",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "bluetti": {
+      "name": "Bluetti",
+      "network": "impact",
+      "rate_pct": 5.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_BLUETTI",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "goal_zero": {
+      "name": "Goal Zero",
+      "network": "avantlink",
+      "rate_pct": 5.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_GOALZERO",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "jackery": {
+      "name": "Jackery",
+      "network": "cj",
+      "rate_pct": 5.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_JACKERY",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "anker_solix": {
+      "name": "Anker SOLIX",
+      "network": "impact",
+      "rate_pct": 4.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_ANKER",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "bougerv": {
+      "name": "BougeRV",
+      "network": "shareasale",
+      "rate_pct": 5.0,
+      "cookie_days": 30,
+      "link_template": "",
+      "tag": "env:MERCHANT_TAG_BOUGERV",
+      "applied_on": null,
+      "status": "pending"
+    },
+    "victron": {
+      "name": "Victron Energy",
+      "network": "none",
+      "rate_pct": null,
+      "cookie_days": null,
+      "link_template": "",
+      "tag": null,
+      "applied_on": null,
+      "status": "no_public_program — route via amazon_associates fallback"
+    }
+  },
+  "products": {}
+}
