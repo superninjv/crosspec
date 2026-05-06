@@ -86,6 +86,35 @@ export const GET: APIRoute = () => {
     }
   }
 
+  // Comparison pages for keyboards, arduino, 3d-printer, cnc, pc (top-5 per type)
+  const compareVerticals: [string, KnowledgeBase][] = [
+    ["keyboards", keyboardsKb as KnowledgeBase],
+    ["arduino", arduinoKb as KnowledgeBase],
+    ["3d-printer", threedPrinterKb as KnowledgeBase],
+    ["cnc", cncKb as KnowledgeBase],
+    ["pc", pcKb as KnowledgeBase],
+  ];
+  for (const [verticalSlug, vKb] of compareVerticals) {
+    const vByType = new Map<string, typeof vKb.entities>();
+    for (const e of vKb.entities) {
+      if (!vByType.has(e.type)) vByType.set(e.type, []);
+      vByType.get(e.type)!.push(e);
+    }
+    for (const [, ents] of vByType) {
+      const top = ents.slice(0, 5);
+      for (let i = 0; i < top.length; i++) {
+        for (let j = i + 1; j < top.length; j++) {
+          const aSku = top[i].sku ?? top[i].id;
+          const bSku = top[j].sku ?? top[j].id;
+          urls.push({
+            loc: `${SITE}/${verticalSlug}/compare/${aSku}-vs-${bSku}/`,
+            priority: "0.5",
+          });
+        }
+      }
+    }
+  }
+
   const body =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +

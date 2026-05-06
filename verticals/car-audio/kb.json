@@ -1,0 +1,655 @@
+{
+  "version": "0.1",
+  "vertical": "car-audio",
+  "data_quality": "v0.1 best-effort seed populated from cited public sources and Crutchfield published specs.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "Manufacturer product pages (Pioneer, Kenwood, Sony, Alpine, Rockford Fosgate, JL Audio, Focal, Hertz, Morel)",
+      "url": "",
+      "ingest_date": "2026-05-06",
+      "scope": "Primary electrical specs (power handling, sensitivity, impedance, screen size, preout count, mounting depth) sourced directly from OEM product pages and press-release datasheets."
+    },
+    {
+      "id": 1,
+      "name": "CarAudio.com public forums",
+      "url": "https://www.caraudio.com/forums/",
+      "ingest_date": "2026-05-06",
+      "scope": "Real-world install notes, crossover behaviour, amplifier dyno cross-checks, and compatibility caveats (e.g. head-unit preout voltage vs. amp sensitivity matching)."
+    },
+    {
+      "id": 2,
+      "name": "r/CarAV public threads",
+      "url": "https://www.reddit.com/r/CarAV/",
+      "ingest_date": "2026-05-06",
+      "scope": "Community-sourced install tips, wiring gauge debates, enclosure depth measurements, and comparative impressions used as secondary cross-check."
+    },
+    {
+      "id": 3,
+      "name": "Crutchfield public spec sheets",
+      "url": "https://www.crutchfield.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Mounting-depth measurements, vehicle-fitment data, and curated spec tables used as the primary cross-reference for physical compatibility attributes."
+    },
+    {
+      "id": 4,
+      "name": "SoundDomain public spec PDFs",
+      "url": "https://www.sounddomain.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Secondary spec cross-reference for sensitivity, RMS power, and impedance figures where OEM pages were ambiguous."
+    },
+    {
+      "id": 5,
+      "name": "Diamond Audio public catalogues",
+      "url": "https://www.diamondaudio.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Supplementary wiring-kit and component-speaker catalogue data used for gauge and amperage cross-checks."
+    }
+  ],
+  "constraints": [
+    {
+      "id": "amp_power_matches_speaker_rms",
+      "description": "Amplifier power_per_channel_w_4ohm should be within 0.5×–2× of the target speakers' power_handling_rms_w. Under-powering causes clipping; over-powering risks cone excursion damage.",
+      "applies_to": ["amplifier", "component_speaker", "coaxial_speaker"]
+    },
+    {
+      "id": "wiring_gauge_for_amp_current",
+      "description": "Wiring kit gauge must be rated for the amplifier's peak current draw. At 13.8V, a 1200W amplifier draws ~90A RMS; a 0AWG kit (rated 300A+) is correct. A 4AWG kit (rated ~100A) is the minimum for amplifiers up to ~600W RMS total.",
+      "applies_to": ["wiring_kit", "amplifier"]
+    },
+    {
+      "id": "subwoofer_enclosure_compatibility",
+      "description": "Subwoofers specified as enclosure_required: true must be paired with a sealed or ported box matching the manufacturer's recommended internal volume. Free-air install voids warranty and degrades performance.",
+      "applies_to": ["subwoofer"]
+    },
+    {
+      "id": "head_unit_preouts_gte_amp_channels",
+      "description": "The head unit's num_preouts must be greater than or equal to the number of amplifier input channels. A 5-channel amplifier requires a head unit with at minimum 3 preout pairs (front + rear + sub) or an active signal processor.",
+      "applies_to": ["head_unit", "amplifier"]
+    },
+    {
+      "id": "component_speaker_mounting_depth_fits_door",
+      "description": "Component speaker mounting_depth_mm must not exceed the available door-panel depth at the install location. Typical OEM door cavities range from 55 mm–90 mm; aftermarket shallow-mount options target ≤65 mm.",
+      "applies_to": ["component_speaker"]
+    },
+    {
+      "id": "subwoofer_impedance_matches_amp_sub_channel",
+      "description": "Dual-voice-coil subwoofers wired in parallel present half the single-coil impedance. A D4 sub wired in parallel presents 2Ω to the amplifier — verify the amp's rated sub_channel_power_w_2ohm rather than the 4Ω figure.",
+      "applies_to": ["subwoofer", "amplifier"]
+    }
+  ],
+  "entities": [
+    {
+      "id": "pioneer_dmh_2660nex",
+      "type": "head_unit",
+      "name": "Pioneer DMH-2660NEX",
+      "attributes": {
+        "brand": "Pioneer",
+        "screen_size_in": 6.8,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 50,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "kenwood_dmx9720xds",
+      "type": "head_unit",
+      "name": "Kenwood DMX9720XDS",
+      "attributes": {
+        "brand": "Kenwood",
+        "screen_size_in": 6.8,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 50,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "sony_xav_ax8000",
+      "type": "head_unit",
+      "name": "Sony XAV-AX8000",
+      "attributes": {
+        "brand": "Sony",
+        "screen_size_in": 8.95,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 55,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "alpine_ilx_w670",
+      "type": "head_unit",
+      "name": "Alpine iLX-W670",
+      "attributes": {
+        "brand": "Alpine",
+        "screen_size_in": 7.0,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 45,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pioneer_avh_2400nex",
+      "type": "head_unit",
+      "name": "Pioneer AVH-2400NEX",
+      "attributes": {
+        "brand": "Pioneer",
+        "screen_size_in": 6.2,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 50,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "kenwood_dmx809s",
+      "type": "head_unit",
+      "name": "Kenwood DMX809S",
+      "attributes": {
+        "brand": "Kenwood",
+        "screen_size_in": 6.8,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 50,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "sony_xav_ax1000",
+      "type": "head_unit",
+      "name": "Sony XAV-AX1000",
+      "attributes": {
+        "brand": "Sony",
+        "screen_size_in": 6.4,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 55,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "jvc_kw_v960bw",
+      "type": "head_unit",
+      "name": "JVC KW-V960BW",
+      "attributes": {
+        "brand": "JVC",
+        "screen_size_in": 6.8,
+        "supports_carplay": true,
+        "supports_android_auto": true,
+        "max_power_w_per_channel": 50,
+        "has_preouts": true,
+        "num_preouts": 3,
+        "has_dab": false,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "focal_ps_165_fe",
+      "type": "component_speaker",
+      "name": "Focal Performance PS 165 FE",
+      "attributes": {
+        "brand": "Focal",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 80,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 63,
+        "includes_crossover": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "morel_maximo_6",
+      "type": "component_speaker",
+      "name": "Morel Maximo 6",
+      "attributes": {
+        "brand": "Morel",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 75,
+        "sensitivity_db": 90,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 68,
+        "includes_crossover": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "jl_audio_c2_650",
+      "type": "component_speaker",
+      "name": "JL Audio C2-650",
+      "attributes": {
+        "brand": "JL Audio",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 75,
+        "sensitivity_db": 89,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 67,
+        "includes_crossover": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "rockford_punch_p165s",
+      "type": "component_speaker",
+      "name": "Rockford Fosgate Punch P165-S",
+      "attributes": {
+        "brand": "Rockford Fosgate",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 80,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 64,
+        "includes_crossover": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "hertz_dsk_165_3",
+      "type": "component_speaker",
+      "name": "Hertz Dieci DSK 165.3",
+      "attributes": {
+        "brand": "Hertz",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 75,
+        "sensitivity_db": 92,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 61,
+        "includes_crossover": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "polk_db6502",
+      "type": "component_speaker",
+      "name": "Polk Audio DB6502",
+      "attributes": {
+        "brand": "Polk Audio",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 75,
+        "sensitivity_db": 93,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 58,
+        "includes_crossover": true,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "alpine_type_r_r2_s65c",
+      "type": "component_speaker",
+      "name": "Alpine Type-R R2-S65C",
+      "attributes": {
+        "brand": "Alpine",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 100,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 70,
+        "includes_crossover": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "kicker_ks650_2",
+      "type": "component_speaker",
+      "name": "Kicker KS650.2",
+      "attributes": {
+        "brand": "Kicker",
+        "woofer_size_in": 6.5,
+        "power_handling_rms_w": 75,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "mounting_depth_mm": 62,
+        "includes_crossover": true,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "pioneer_ts_a6960f",
+      "type": "coaxial_speaker",
+      "name": "Pioneer TS-A6960F",
+      "attributes": {
+        "brand": "Pioneer",
+        "size_in": "6x9",
+        "power_handling_rms_w": 80,
+        "sensitivity_db": 92,
+        "impedance_ohm": 4,
+        "num_ways": 4,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "jbl_club_6520",
+      "type": "coaxial_speaker",
+      "name": "JBL CLUB 6520",
+      "attributes": {
+        "brand": "JBL",
+        "size_in": "6.5",
+        "power_handling_rms_w": 60,
+        "sensitivity_db": 94,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "rockford_r165x3",
+      "type": "coaxial_speaker",
+      "name": "Rockford Fosgate R165X3",
+      "attributes": {
+        "brand": "Rockford Fosgate",
+        "size_in": "6.5",
+        "power_handling_rms_w": 45,
+        "sensitivity_db": 90,
+        "impedance_ohm": 4,
+        "num_ways": 3,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "kenwood_kfc_6985ps",
+      "type": "coaxial_speaker",
+      "name": "Kenwood KFC-6985PS",
+      "attributes": {
+        "brand": "Kenwood",
+        "size_in": "6x9",
+        "power_handling_rms_w": 70,
+        "sensitivity_db": 93,
+        "impedance_ohm": 4,
+        "num_ways": 3,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "sony_xs_aws6701s",
+      "type": "coaxial_speaker",
+      "name": "Sony XS-AWS6701S",
+      "attributes": {
+        "brand": "Sony",
+        "size_in": "6.5",
+        "power_handling_rms_w": 50,
+        "sensitivity_db": 89,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "alpine_sxe_1750s",
+      "type": "coaxial_speaker",
+      "name": "Alpine SXE-1750S",
+      "attributes": {
+        "brand": "Alpine",
+        "size_in": "6.5",
+        "power_handling_rms_w": 55,
+        "sensitivity_db": 91,
+        "impedance_ohm": 4,
+        "num_ways": 2,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "jl_audio_12w3v3_4",
+      "type": "subwoofer",
+      "name": "JL Audio 12W3v3-4",
+      "attributes": {
+        "brand": "JL Audio",
+        "size_in": 12,
+        "power_handling_rms_w": 500,
+        "impedance_ohm": 4,
+        "dual_voice_coil": false,
+        "mounting_depth_in": 5.875,
+        "enclosure_required": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "rockford_punch_p3d4_12",
+      "type": "subwoofer",
+      "name": "Rockford Fosgate Punch P3D4-12",
+      "attributes": {
+        "brand": "Rockford Fosgate",
+        "size_in": 12,
+        "power_handling_rms_w": 600,
+        "impedance_ohm": 4,
+        "dual_voice_coil": true,
+        "mounting_depth_in": 5.625,
+        "enclosure_required": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "kicker_compr_cwr12",
+      "type": "subwoofer",
+      "name": "Kicker CompR CWR12",
+      "attributes": {
+        "brand": "Kicker",
+        "size_in": 12,
+        "power_handling_rms_w": 500,
+        "impedance_ohm": 4,
+        "dual_voice_coil": true,
+        "mounting_depth_in": 5.5,
+        "enclosure_required": true,
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "alpine_type_r_r2_w12d4",
+      "type": "subwoofer",
+      "name": "Alpine Type-R R2-W12D4",
+      "attributes": {
+        "brand": "Alpine",
+        "size_in": 12,
+        "power_handling_rms_w": 750,
+        "impedance_ohm": 4,
+        "dual_voice_coil": true,
+        "mounting_depth_in": 6.0,
+        "enclosure_required": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "skar_evl_12",
+      "type": "subwoofer",
+      "name": "Skar Audio EVL-12",
+      "attributes": {
+        "brand": "Skar Audio",
+        "size_in": 12,
+        "power_handling_rms_w": 1250,
+        "impedance_ohm": 4,
+        "dual_voice_coil": true,
+        "mounting_depth_in": 7.25,
+        "enclosure_required": true,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "pioneer_ts_w3003d4",
+      "type": "subwoofer",
+      "name": "Pioneer TS-W3003D4",
+      "attributes": {
+        "brand": "Pioneer",
+        "size_in": 12,
+        "power_handling_rms_w": 600,
+        "impedance_ohm": 4,
+        "dual_voice_coil": true,
+        "mounting_depth_in": 5.5,
+        "enclosure_required": true,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "jl_audio_xd600_6v2",
+      "type": "amplifier",
+      "name": "JL Audio XD600/6v2",
+      "attributes": {
+        "brand": "JL Audio",
+        "num_channels": 6,
+        "power_per_channel_w_4ohm": 75,
+        "sub_channel_power_w_2ohm": null,
+        "class": "D",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "rockford_punch_p1000x5",
+      "type": "amplifier",
+      "name": "Rockford Fosgate Punch P1000X5",
+      "attributes": {
+        "brand": "Rockford Fosgate",
+        "num_channels": 5,
+        "power_per_channel_w_4ohm": 100,
+        "sub_channel_power_w_2ohm": 600,
+        "class": "AB",
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "alpine_mrv_m1200",
+      "type": "amplifier",
+      "name": "Alpine MRV-M1200",
+      "attributes": {
+        "brand": "Alpine",
+        "num_channels": 1,
+        "power_per_channel_w_4ohm": 600,
+        "sub_channel_power_w_2ohm": 1200,
+        "class": "D",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "kenwood_excelon_x802_5",
+      "type": "amplifier",
+      "name": "Kenwood Excelon X802-5",
+      "attributes": {
+        "brand": "Kenwood",
+        "num_channels": 5,
+        "power_per_channel_w_4ohm": 100,
+        "sub_channel_power_w_2ohm": 600,
+        "class": "AB",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "hertz_hcp_5md",
+      "type": "amplifier",
+      "name": "Hertz HCP 5MD",
+      "attributes": {
+        "brand": "Hertz",
+        "num_channels": 5,
+        "power_per_channel_w_4ohm": 100,
+        "sub_channel_power_w_2ohm": 600,
+        "class": "D",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "skar_rp_1200_1d",
+      "type": "amplifier",
+      "name": "Skar Audio RP-1200.1D",
+      "attributes": {
+        "brand": "Skar Audio",
+        "num_channels": 1,
+        "power_per_channel_w_4ohm": 600,
+        "sub_channel_power_w_2ohm": 1200,
+        "class": "D",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "knukonceptz_kolossus_0awg",
+      "type": "wiring_kit",
+      "name": "KnuKonceptz Kolossus 0AWG",
+      "attributes": {
+        "brand": "KnuKonceptz",
+        "gauge_awg": 0,
+        "includes_rca": true,
+        "kit_amperage_a": 320,
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "skar_4anl_kit",
+      "type": "wiring_kit",
+      "name": "Skar Audio SKAR4ANL kit",
+      "attributes": {
+        "brand": "Skar Audio",
+        "gauge_awg": 4,
+        "includes_rca": true,
+        "kit_amperage_a": 200,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "stinger_sk4641",
+      "type": "wiring_kit",
+      "name": "Stinger SK4641 4awg",
+      "attributes": {
+        "brand": "Stinger",
+        "gauge_awg": 4,
+        "includes_rca": false,
+        "kit_amperage_a": 200,
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "rockford_rfk4x",
+      "type": "wiring_kit",
+      "name": "Rockford Fosgate RFK4X kit",
+      "attributes": {
+        "brand": "Rockford Fosgate",
+        "gauge_awg": 4,
+        "includes_rca": true,
+        "kit_amperage_a": 200,
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "dynamat_xtreme_bulk",
+      "type": "sound_deadener",
+      "name": "Dynamat Xtreme bulk pack",
+      "attributes": {
+        "brand": "Dynamat",
+        "sheet_count": 9,
+        "total_sqft": 36,
+        "thickness_mil": 80,
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "soundqubed_q_mat_bulk",
+      "type": "sound_deadener",
+      "name": "SoundQubed Q-Mat bulk pack",
+      "attributes": {
+        "brand": "SoundQubed",
+        "sheet_count": 10,
+        "total_sqft": 36,
+        "thickness_mil": 80,
+        "source_ids": [4]
+      }
+    }
+  ]
+}

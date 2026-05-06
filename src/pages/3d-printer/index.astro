@@ -279,48 +279,77 @@ for (const e of kb.entities) {
     }
   }
 
-  // 3D printer dependency rules.
-  const KB_DEPS: Record<string, string[]> = {
+  // Soft compat warnings — non-blocking. Pick what you want; we just flag issues.
+  const TYPE_DEPS: Record<string, string[]> = {
     fdm_printer: ["filament", "build_surface"],
     resin_printer: ["build_surface"],
     hotend: ["nozzle"],
   };
-  const DEP_REASON: Record<string, string> = {
-    fdm_printer: "an FDM printer needs filament to print and a build surface for adhesion",
-    resin_printer: "a resin printer ships with a vat and FEP but a textured build platform helps part release",
-    hotend: "a hotend swap usually means new nozzles too — different threads or geometries",
+  const TYPE_LBL: Record<string, string> = {
+    fdm_printer: "FDM printer", resin_printer: "resin printer",
+    hotend: "hotend", nozzle: "nozzle", filament: "filament",
+    enclosure: "enclosure", build_surface: "build surface",
   };
-  const KB_EXCLUSIVE: Array<[string, string]> = [["fdm_printer", "resin_printer"]];
+  const TYPE_EXCLUSIVE: Array<[string, string]> = [["fdm_printer", "resin_printer"]];
 
-  function enforceDeps(): string[] {
+  function pickedProducts(): Slim[] {
+    const out: Slim[] = [];
+    for (const card of document.querySelectorAll<HTMLElement>(".pcard[data-sku]")) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      if (!cb?.checked) continue;
+      const sku = card.dataset.sku ?? "";
+      const item = data.find((d) => d.sku === sku);
+      if (item) out.push(item);
+    }
+    return out;
+  }
+
+  function findCompatWarnings(): string[] {
     if (!form) return [];
+    const warnings: string[] = [];
     const checked = new Set(
       Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
     );
-    const reasons: string[] = [];
-    for (const [trigger, deps] of Object.entries(KB_DEPS)) {
+    for (const [trigger, deps] of Object.entries(TYPE_DEPS)) {
       if (!checked.has(trigger)) continue;
-      let addedAny = false;
-      for (const dep of deps) {
-        if (!checked.has(dep)) {
-          const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${dep}"]`);
-          if (cb && !cb.checked) {
-            cb.checked = true;
-            checked.add(dep);
-            addedAny = true;
-            const tile = cb.closest<HTMLElement>(".want-tile");
-            if (tile) tile.classList.add("want-required");
-          }
+      const missing = deps.filter((d) => !checked.has(d));
+      if (missing.length === 0) continue;
+      warnings.push(`Missing ${missing.map((m) => TYPE_LBL[m] ?? m).join(", ")} — usually needed alongside the ${TYPE_LBL[trigger] ?? trigger}.`);
+    }
+    for (const [a, b] of TYPE_EXCLUSIVE) {
+      if (checked.has(a) && checked.has(b)) {
+        warnings.push(`${TYPE_LBL[a] ?? a} and ${TYPE_LBL[b] ?? b} are different machines — most builds use one or the other.`);
+      }
+    }
+    // Spec-level: filament hotend temp vs printer max; abrasive filament vs nozzle.
+    const picked = pickedProducts();
+    const printers = picked.filter((d) => d.type === "fdm_printer");
+    const filaments = picked.filter((d) => d.type === "filament");
+    const nozzles = picked.filter((d) => d.type === "nozzle");
+    for (const f of filaments) {
+      const minT = Number(f.attrs.hotend_min_temp_c ?? 0);
+      for (const p of printers) {
+        const maxT = Number(p.attrs.max_hotend_temp_c ?? 0);
+        if (minT && maxT && minT > maxT) {
+          warnings.push(`${f.name} needs ≥${minT}°C hotend; ${p.name} maxes at ${maxT}°C.`);
         }
       }
-      if (addedAny) reasons.push(DEP_REASON[trigger]);
+      const reqHard = Boolean(f.attrs.requires_hardened_nozzle);
+      if (reqHard && nozzles.length > 0 && !nozzles.some((n) => Boolean(n.attrs.abrasive_safe))) {
+        warnings.push(`${f.name} is abrasive — pick a hardened-steel, ruby, or tungsten-carbide nozzle.`);
+      }
+      const reqEnc = Boolean(f.attrs.requires_enclosure);
+      if (reqEnc && printers.length > 0 && !printers.some((p) => Boolean(p.attrs.enclosed))) {
+        warnings.push(`${f.name} prints best in an enclosure — none of your selected printers are enclosed.`);
+      }
     }
-    return reasons;
+    return warnings;
   }
 
-  function renderDepsBanner(reasons: string[]) {
+  function renderCompatBanner() {
+    const warnings = findCompatWarnings();
     let banner = document.getElementById("deps-banner");
-    if (reasons.length === 0) {
+    if (warnings.length === 0) {
       if (banner) banner.remove();
       return;
     }
@@ -331,24 +360,7 @@ for (const e of kb.entities) {
       const pickerForm = document.getElementById("picker-form");
       pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
     }
-    banner.innerHTML = `<strong>Auto-added:</strong> ${reasons.join("; ")}. Untick to opt out.`;
-  }
-
-  function enforceExclusives(triggerEl: HTMLInputElement | null): string[] {
-    if (!form || !triggerEl || !triggerEl.checked) return [];
-    const reasons: string[] = [];
-    for (const [a, b] of KB_EXCLUSIVE) {
-      const other = triggerEl.value === a ? b : triggerEl.value === b ? a : null;
-      if (!other) continue;
-      const otherEl = form.querySelector<HTMLInputElement>(`input[name="want"][value="${other}"]`);
-      if (otherEl && otherEl.checked) {
-        otherEl.checked = false;
-        const tile = otherEl.closest<HTMLElement>(".want-tile");
-        tile?.classList.remove("want-required");
-        reasons.push(`unticked ${other.replace("_printer", "")} (alternative path to ${triggerEl.value.replace("_printer", "")})`);
-      }
-    }
-    return reasons;
+    banner.innerHTML = `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
   }
 
   if (resultEl) {
@@ -374,14 +386,11 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]') || t.matches('input[name="material"]')) {
-        const exclusiveReasons = t.matches('input[name="want"]')
-          ? enforceExclusives(t as HTMLInputElement)
-          : [];
-        const depReasons = enforceDeps();
-        renderDepsBanner([...exclusiveReasons, ...depReasons]);
         renderPicker();
+        renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {
         syncBuildSummary();
+        renderCompatBanner();
       }
     });
   }
@@ -457,15 +466,11 @@ for (const e of kb.entities) {
     if (form) {
       const materialRadio = form.querySelector<HTMLInputElement>(`input[name="material"][value="${p.material}"]`);
       if (materialRadio) materialRadio.checked = true;
-      // Dedupe mutually-exclusive wants — prefer the first member of each exclusive pair.
-      const wants = new Set(p.wants);
-      for (const [a, b] of KB_EXCLUSIVE) if (wants.has(a) && wants.has(b)) wants.delete(b);
-      for (const want of wants) {
+      for (const want of p.wants) {
         const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
         if (cb) cb.checked = true;
       }
-      const reasons = enforceDeps();
-      renderDepsBanner(reasons);
+      renderCompatBanner();
     }
 
     const MATERIAL_LABEL: Record<string, string> = {

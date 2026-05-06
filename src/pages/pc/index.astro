@@ -274,49 +274,120 @@ for (const e of kb.entities) {
     }
   }
 
-  const KB_DEPS: Record<string, string[]> = {
+  // Type-level "missing piece" warnings — soft, non-blocking. PC Part Picker style.
+  const TYPE_DEPS: Record<string, string[]> = {
     cpu: ["motherboard", "ram", "cooler"],
     gpu: ["psu", "case"],
     motherboard: ["cpu", "ram", "case"],
     ram: ["motherboard"],
   };
-  const DEP_REASON: Record<string, string> = {
-    cpu: "a CPU needs a socket-matched motherboard, RAM, and a cooler",
-    gpu: "a GPU needs a PSU with enough watts and the right connectors, plus case clearance",
-    motherboard: "a motherboard needs a CPU, RAM, and a case that fits its form factor",
-    ram: "RAM needs a motherboard with matching DDR generation and slots",
+  const TYPE_LBL: Record<string, string> = {
+    cpu: "CPU", gpu: "GPU", motherboard: "motherboard",
+    ram: "RAM", cooler: "cooler", psu: "PSU", case: "case", storage: "storage",
   };
-  const KB_EXCLUSIVE: Array<[string, string]> = [];
 
-  function enforceDeps(): string[] {
+  function pickedProducts(): Slim[] {
+    const out: Slim[] = [];
+    for (const card of document.querySelectorAll<HTMLElement>(".pcard[data-sku]")) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      if (!cb?.checked) continue;
+      const sku = card.dataset.sku ?? "";
+      const item = data.find((d) => d.sku === sku);
+      if (item) out.push(item);
+    }
+    return out;
+  }
+
+  function findCompatWarnings(): string[] {
     if (!form) return [];
+    const warnings: string[] = [];
     const checked = new Set(
       Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
     );
-    const reasons: string[] = [];
-    for (const [trigger, deps] of Object.entries(KB_DEPS)) {
+
+    // Type-level: missing dependent component categories.
+    for (const [trigger, deps] of Object.entries(TYPE_DEPS)) {
       if (!checked.has(trigger)) continue;
-      let addedAny = false;
-      for (const dep of deps) {
-        if (!checked.has(dep)) {
-          const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${dep}"]`);
-          if (cb && !cb.checked) {
-            cb.checked = true;
-            checked.add(dep);
-            addedAny = true;
-            const tile = cb.closest<HTMLElement>(".want-tile");
-            if (tile) tile.classList.add("want-required");
-          }
+      const missing = deps.filter((d) => !checked.has(d));
+      if (missing.length === 0) continue;
+      warnings.push(`Missing ${missing.map((m) => TYPE_LBL[m] ?? m).join(", ")} — usually needed alongside the ${TYPE_LBL[trigger] ?? trigger}.`);
+    }
+
+    // Spec-level: walk SELECTED product cards.
+    const picked = pickedProducts();
+    const cpus = picked.filter((d) => d.type === "cpu");
+    const mobos = picked.filter((d) => d.type === "motherboard");
+    const cases = picked.filter((d) => d.type === "case");
+    const gpus = picked.filter((d) => d.type === "gpu");
+    const psus = picked.filter((d) => d.type === "psu");
+    const coolers = picked.filter((d) => d.type === "cooler");
+    const rams = picked.filter((d) => d.type === "ram");
+
+    // Socket: CPU vs motherboard.
+    for (const cpu of cpus) {
+      const cs = String(cpu.attrs.socket ?? "");
+      for (const mb of mobos) {
+        const ms = String(mb.attrs.socket ?? "");
+        if (cs && ms && cs !== ms) {
+          warnings.push(`Socket mismatch: ${cpu.name} (${cs}) won't fit ${mb.name} (${ms}).`);
         }
       }
-      if (addedAny) reasons.push(DEP_REASON[trigger]);
     }
-    return reasons;
+
+    // Form factor: motherboard vs case.
+    for (const mb of mobos) {
+      const ff = String(mb.attrs.form_factor ?? "");
+      for (const c of cases) {
+        const supported = c.attrs.form_factors_supported as string[] | undefined;
+        if (ff && supported && supported.length && !supported.includes(ff)) {
+          warnings.push(`Form factor mismatch: ${mb.name} (${ff}) won't fit ${c.name} (${supported.join(", ")} only).`);
+        }
+      }
+    }
+
+    // PSU wattage budget = sum(cpu_tdp) + sum(gpu_tdp) + 100W headroom.
+    if (psus.length > 0 && (cpus.length > 0 || gpus.length > 0)) {
+      let needed = 100;
+      for (const cpu of cpus) needed += Number(cpu.attrs.tdp_w ?? 0);
+      for (const gpu of gpus) needed += Number(gpu.attrs.tdp_w ?? 0);
+      let total = 0;
+      for (const psu of psus) total += Number(psu.attrs.wattage_w ?? 0);
+      if (total > 0 && total < needed) {
+        warnings.push(`PSU undersized: ${total}W vs estimated draw ~${needed}W (CPU + GPU + 100W margin). Aim for ${Math.round(needed * 1.15)}W+.`);
+      }
+    }
+
+    // Cooler socket support.
+    for (const cooler of coolers) {
+      const sockets = cooler.attrs.sockets_supported as string[] | undefined;
+      if (!sockets || !sockets.length) continue;
+      for (const cpu of cpus) {
+        const sk = String(cpu.attrs.socket ?? "");
+        if (sk && !sockets.includes(sk)) {
+          warnings.push(`Cooler ${cooler.name} doesn't list ${sk} support (CPU is ${cpu.name}).`);
+        }
+      }
+    }
+
+    // RAM DDR generation vs motherboard.
+    for (const ram of rams) {
+      const rdg = Number(ram.attrs.ddr_gen ?? 0);
+      for (const mb of mobos) {
+        const mt = String(mb.attrs.memory_type ?? "");
+        const expected = mt === "DDR5" ? 5 : mt === "DDR4" ? 4 : 0;
+        if (rdg && expected && rdg !== expected) {
+          warnings.push(`RAM ${ram.name} is DDR${rdg} but ${mb.name} is ${mt}.`);
+        }
+      }
+    }
+
+    return warnings;
   }
 
-  function renderDepsBanner(reasons: string[]) {
+  function renderCompatBanner() {
+    const warnings = findCompatWarnings();
     let banner = document.getElementById("deps-banner");
-    if (reasons.length === 0) {
+    if (warnings.length === 0) {
       if (banner) banner.remove();
       return;
     }
@@ -327,24 +398,7 @@ for (const e of kb.entities) {
       const pickerForm = document.getElementById("picker-form");
       pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
     }
-    banner.innerHTML = `<strong>Auto-added:</strong> ${reasons.join("; ")}. Untick to opt out.`;
-  }
-
-  function enforceExclusives(triggerEl: HTMLInputElement | null): string[] {
-    if (!form || !triggerEl || !triggerEl.checked) return [];
-    const reasons: string[] = [];
-    for (const [a, b] of KB_EXCLUSIVE) {
-      const other = triggerEl.value === a ? b : triggerEl.value === b ? a : null;
-      if (!other) continue;
-      const otherEl = form.querySelector<HTMLInputElement>(`input[name="want"][value="${other}"]`);
-      if (otherEl && otherEl.checked) {
-        otherEl.checked = false;
-        const tile = otherEl.closest<HTMLElement>(".want-tile");
-        tile?.classList.remove("want-required");
-        reasons.push(`unticked ${other} (alternative path to ${triggerEl.value})`);
-      }
-    }
-    return reasons;
+    banner.innerHTML = `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
   }
 
   if (resultEl) {
@@ -370,14 +424,11 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]') || t.matches('input[name="use_case"]')) {
-        const exclusiveReasons = t.matches('input[name="want"]')
-          ? enforceExclusives(t as HTMLInputElement)
-          : [];
-        const depReasons = enforceDeps();
-        renderDepsBanner([...exclusiveReasons, ...depReasons]);
         renderPicker();
+        renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {
         syncBuildSummary();
+        renderCompatBanner();
       }
     });
   }
@@ -452,15 +503,11 @@ for (const e of kb.entities) {
     if (form) {
       const useCaseRadio = form.querySelector<HTMLInputElement>(`input[name="use_case"][value="${p.use_case}"]`);
       if (useCaseRadio) useCaseRadio.checked = true;
-      // Dedupe mutually-exclusive wants — prefer the first member of each exclusive pair.
-      const wants = new Set(p.wants);
-      for (const [a, b] of KB_EXCLUSIVE) if (wants.has(a) && wants.has(b)) wants.delete(b);
-      for (const want of wants) {
+      for (const want of p.wants) {
         const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
         if (cb) cb.checked = true;
       }
-      const reasons = enforceDeps();
-      renderDepsBanner(reasons);
+      renderCompatBanner();
     }
 
     const USE_CASE_LABEL: Record<string, string> = {

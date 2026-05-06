@@ -1,0 +1,701 @@
+{
+  "version": "0.1",
+  "vertical": "headphones",
+  "data_quality": "v0.1 best-effort seed populated from cited public measurements and manufacturer specs.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "Manufacturer product pages and spec sheets (Sennheiser, Beyerdynamic, AKG, Focal, Audeze, HiFiMan, Audio-Technica, Sony, Shure)",
+      "url": "",
+      "ingest_date": "2026-05-06",
+      "scope": "Primary source for impedance, sensitivity, driver type, connector, weight, and cable specs."
+    },
+    {
+      "id": 1,
+      "name": "r/headphones public threads",
+      "url": "https://www.reddit.com/r/headphones/",
+      "ingest_date": "2026-05-06",
+      "scope": "Community compatibility reports, pairing recommendations, amp requirement discussion."
+    },
+    {
+      "id": 2,
+      "name": "Crinacle IEM and headphone measurement database",
+      "url": "https://crinacle.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Frequency response measurements, driver config verification, sensitivity cross-checks for IEMs and full-size headphones."
+    },
+    {
+      "id": 3,
+      "name": "Reference Audio Analyzer public measurements",
+      "url": "https://reference-audio-analyzer.pro/",
+      "ingest_date": "2026-05-06",
+      "scope": "Impedance curves, frequency response, sensitivity at 1 kHz measurements."
+    },
+    {
+      "id": 4,
+      "name": "Head-Fi public threads",
+      "url": "https://www.head-fi.org/",
+      "ingest_date": "2026-05-06",
+      "scope": "Amplifier pairing reports, cable compatibility, user measurement cross-references."
+    },
+    {
+      "id": 5,
+      "name": "Audio Science Review (ASR) public measurements",
+      "url": "https://www.audiosciencereview.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Objective DAC/amp measurements (output power, noise floor, THD+N), headphone impedance and sensitivity verification."
+    }
+  ],
+  "entities": [
+    {
+      "id": "sennheiser_hd_600",
+      "type": "headphone_open",
+      "name": "Sennheiser HD 600",
+      "attributes": {
+        "brand": "Sennheiser",
+        "model": "HD 600",
+        "driver_type": "dynamic",
+        "impedance_ohm": 300,
+        "sensitivity_db_mw": 97,
+        "frequency_response_hz": "12-39000",
+        "weight_g": 260,
+        "connector": "6.35mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "sennheiser_hd_660s2",
+      "type": "headphone_open",
+      "name": "Sennheiser HD 660S2",
+      "attributes": {
+        "brand": "Sennheiser",
+        "model": "HD 660S2",
+        "driver_type": "dynamic",
+        "impedance_ohm": 300,
+        "sensitivity_db_mw": 104,
+        "frequency_response_hz": "8-41500",
+        "weight_g": 260,
+        "connector": "6.35mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "sennheiser_hd_800s",
+      "type": "headphone_open",
+      "name": "Sennheiser HD 800S",
+      "attributes": {
+        "brand": "Sennheiser",
+        "model": "HD 800S",
+        "driver_type": "dynamic",
+        "impedance_ohm": 300,
+        "sensitivity_db_mw": 102,
+        "frequency_response_hz": "4-51000",
+        "weight_g": 330,
+        "connector": "xlr_4pin",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "focal_clear_mg",
+      "type": "headphone_open",
+      "name": "Focal Clear MG",
+      "attributes": {
+        "brand": "Focal",
+        "model": "Clear MG",
+        "driver_type": "dynamic",
+        "impedance_ohm": 55,
+        "sensitivity_db_mw": 104,
+        "frequency_response_hz": "5-28000",
+        "weight_g": 450,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 3, 5]
+      }
+    },
+    {
+      "id": "focal_utopia_2022",
+      "type": "headphone_open",
+      "name": "Focal Utopia 2022",
+      "attributes": {
+        "brand": "Focal",
+        "model": "Utopia 2022",
+        "driver_type": "dynamic",
+        "impedance_ohm": 80,
+        "sensitivity_db_mw": 104,
+        "frequency_response_hz": "5-50000",
+        "weight_g": 490,
+        "connector": "4.4mm",
+        "removable_cable": true,
+        "source_ids": [0, 3, 5]
+      }
+    },
+    {
+      "id": "audeze_lcd_x",
+      "type": "headphone_open",
+      "name": "Audeze LCD-X",
+      "attributes": {
+        "brand": "Audeze",
+        "model": "LCD-X",
+        "driver_type": "planar",
+        "impedance_ohm": 20,
+        "sensitivity_db_mw": 100,
+        "frequency_response_hz": "10-50000",
+        "weight_g": 612,
+        "connector": "4.4mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "hifiman_sundara",
+      "type": "headphone_open",
+      "name": "HiFiMan Sundara",
+      "attributes": {
+        "brand": "HiFiMan",
+        "model": "Sundara",
+        "driver_type": "planar",
+        "impedance_ohm": 37,
+        "sensitivity_db_mw": 94,
+        "frequency_response_hz": "6-75000",
+        "weight_g": 372,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "hifiman_ananda_stealth",
+      "type": "headphone_open",
+      "name": "HiFiMan Ananda Stealth",
+      "attributes": {
+        "brand": "HiFiMan",
+        "model": "Ananda Stealth",
+        "driver_type": "planar",
+        "impedance_ohm": 25,
+        "sensitivity_db_mw": 98,
+        "frequency_response_hz": "8-55000",
+        "weight_g": 399,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "akg_k712_pro",
+      "type": "headphone_open",
+      "name": "AKG K712 Pro",
+      "attributes": {
+        "brand": "AKG",
+        "model": "K712 Pro",
+        "driver_type": "dynamic",
+        "impedance_ohm": 62,
+        "sensitivity_db_mw": 105,
+        "frequency_response_hz": "10-39800",
+        "weight_g": 235,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "beyerdynamic_dt_990_pro",
+      "type": "headphone_open",
+      "name": "Beyerdynamic DT 990 Pro",
+      "attributes": {
+        "brand": "Beyerdynamic",
+        "model": "DT 990 Pro",
+        "driver_type": "dynamic",
+        "impedance_ohm": 250,
+        "sensitivity_db_mw": 102,
+        "frequency_response_hz": "5-35000",
+        "weight_g": 250,
+        "connector": "3.5mm",
+        "removable_cable": false,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "grado_sr325x",
+      "type": "headphone_open",
+      "name": "Grado SR325x",
+      "attributes": {
+        "brand": "Grado",
+        "model": "SR325x",
+        "driver_type": "dynamic",
+        "impedance_ohm": 32,
+        "sensitivity_db_mw": 99,
+        "frequency_response_hz": "18-24000",
+        "weight_g": 175,
+        "connector": "3.5mm",
+        "removable_cable": false,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "meze_109_pro",
+      "type": "headphone_open",
+      "name": "Meze 109 Pro",
+      "attributes": {
+        "brand": "Meze",
+        "model": "109 Pro",
+        "driver_type": "dynamic",
+        "impedance_ohm": 40,
+        "sensitivity_db_mw": 110,
+        "frequency_response_hz": "10-30000",
+        "weight_g": 340,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "audio_technica_ath_m50x",
+      "type": "headphone_closed",
+      "name": "Audio-Technica ATH-M50x",
+      "attributes": {
+        "brand": "Audio-Technica",
+        "model": "ATH-M50x",
+        "driver_type": "dynamic",
+        "impedance_ohm": 38,
+        "sensitivity_db_mw": 99,
+        "frequency_response_hz": "15-28000",
+        "weight_g": 285,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "sony_wh_1000xm6",
+      "type": "headphone_closed",
+      "name": "Sony WH-1000XM6",
+      "attributes": {
+        "brand": "Sony",
+        "model": "WH-1000XM6",
+        "driver_type": "dynamic",
+        "impedance_ohm": 48,
+        "sensitivity_db_mw": 101,
+        "frequency_response_hz": "4-40000",
+        "weight_g": 250,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "beyerdynamic_dt_770_pro",
+      "type": "headphone_closed",
+      "name": "Beyerdynamic DT 770 Pro",
+      "attributes": {
+        "brand": "Beyerdynamic",
+        "model": "DT 770 Pro",
+        "driver_type": "dynamic",
+        "impedance_ohm": 250,
+        "sensitivity_db_mw": 96,
+        "frequency_response_hz": "5-35000",
+        "weight_g": 270,
+        "connector": "3.5mm",
+        "removable_cable": false,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "sennheiser_hd_569",
+      "type": "headphone_closed",
+      "name": "Sennheiser HD 569",
+      "attributes": {
+        "brand": "Sennheiser",
+        "model": "HD 569",
+        "driver_type": "dynamic",
+        "impedance_ohm": 23,
+        "sensitivity_db_mw": 115,
+        "frequency_response_hz": "10-23000",
+        "weight_g": 235,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "focal_stellia",
+      "type": "headphone_closed",
+      "name": "Focal Stellia",
+      "attributes": {
+        "brand": "Focal",
+        "model": "Stellia",
+        "driver_type": "dynamic",
+        "impedance_ohm": 35,
+        "sensitivity_db_mw": 106,
+        "frequency_response_hz": "5-40000",
+        "weight_g": 435,
+        "connector": "4.4mm",
+        "removable_cable": true,
+        "source_ids": [0, 3, 5]
+      }
+    },
+    {
+      "id": "dan_clark_aeon_2_closed",
+      "type": "headphone_closed",
+      "name": "Dan Clark Audio Aeon 2 Closed",
+      "attributes": {
+        "brand": "Dan Clark Audio",
+        "model": "Aeon 2 Closed",
+        "driver_type": "planar",
+        "impedance_ohm": 13,
+        "sensitivity_db_mw": 96,
+        "frequency_response_hz": "10-50000",
+        "weight_g": 324,
+        "connector": "4.4mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "akg_k371",
+      "type": "headphone_closed",
+      "name": "AKG K371",
+      "attributes": {
+        "brand": "AKG",
+        "model": "K371",
+        "driver_type": "dynamic",
+        "impedance_ohm": 36,
+        "sensitivity_db_mw": 114,
+        "frequency_response_hz": "5-40000",
+        "weight_g": 270,
+        "connector": "3.5mm",
+        "removable_cable": true,
+        "source_ids": [0, 3, 5]
+      }
+    },
+    {
+      "id": "audeze_lcd_xc",
+      "type": "headphone_closed",
+      "name": "Audeze LCD-XC",
+      "attributes": {
+        "brand": "Audeze",
+        "model": "LCD-XC",
+        "driver_type": "planar",
+        "impedance_ohm": 20,
+        "sensitivity_db_mw": 100,
+        "frequency_response_hz": "10-50000",
+        "weight_g": 695,
+        "connector": "4.4mm",
+        "removable_cable": true,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "etymotic_er4xr",
+      "type": "iem",
+      "name": "Etymotic ER4XR",
+      "attributes": {
+        "brand": "Etymotic",
+        "model": "ER4XR",
+        "driver_config": "1BA",
+        "impedance_ohm": 45,
+        "sensitivity_db_mw": 98,
+        "connector": "mmcx",
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "moondrop_variations",
+      "type": "iem",
+      "name": "Moondrop Variations",
+      "attributes": {
+        "brand": "Moondrop",
+        "model": "Variations",
+        "driver_config": "hybrid_3BA+1DD",
+        "impedance_ohm": 9,
+        "sensitivity_db_mw": 120,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "truthear_hexa",
+      "type": "iem",
+      "name": "Truthear Hexa",
+      "attributes": {
+        "brand": "Truthear",
+        "model": "Hexa",
+        "driver_config": "hybrid_3BA+1DD",
+        "impedance_ohm": 8.5,
+        "sensitivity_db_mw": 122,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "sennheiser_ie_600",
+      "type": "iem",
+      "name": "Sennheiser IE 600",
+      "attributes": {
+        "brand": "Sennheiser",
+        "model": "IE 600",
+        "driver_config": "1DD",
+        "impedance_ohm": 18,
+        "sensitivity_db_mw": 117,
+        "connector": "mmcx",
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "64_audio_u6t",
+      "type": "iem",
+      "name": "64 Audio U6t",
+      "attributes": {
+        "brand": "64 Audio",
+        "model": "U6t",
+        "driver_config": "6BA",
+        "impedance_ohm": 12.6,
+        "sensitivity_db_mw": 108,
+        "connector": "2pin_0.78mm",
+        "source_ids": [0, 2, 4]
+      }
+    },
+    {
+      "id": "campfire_andromeda",
+      "type": "iem",
+      "name": "Campfire Andromeda",
+      "attributes": {
+        "brand": "Campfire Audio",
+        "model": "Andromeda",
+        "driver_config": "6BA",
+        "impedance_ohm": 12.8,
+        "sensitivity_db_mw": 115,
+        "connector": "mmcx",
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "truthear_nova",
+      "type": "iem",
+      "name": "Truthear Nova",
+      "attributes": {
+        "brand": "Truthear",
+        "model": "Nova",
+        "driver_config": "1DD",
+        "impedance_ohm": 16,
+        "sensitivity_db_mw": 121,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "thieaudio_monarch_mkiii",
+      "type": "iem",
+      "name": "ThieAudio Monarch MKIII",
+      "attributes": {
+        "brand": "ThieAudio",
+        "model": "Monarch MKIII",
+        "driver_config": "electrostat",
+        "impedance_ohm": 20,
+        "sensitivity_db_mw": 108,
+        "connector": "2pin_0.78mm",
+        "source_ids": [2, 3, 5]
+      }
+    },
+    {
+      "id": "fiio_k7",
+      "type": "dac_amp",
+      "name": "FiiO K7",
+      "attributes": {
+        "brand": "FiiO",
+        "model": "K7",
+        "has_dac": true,
+        "has_amp": true,
+        "max_output_mw_32ohm": 1500,
+        "balanced_output": true,
+        "supports_dsd": true,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "topping_dx3_pro_plus",
+      "type": "dac_amp",
+      "name": "Topping DX3 Pro+",
+      "attributes": {
+        "brand": "Topping",
+        "model": "DX3 Pro+",
+        "has_dac": true,
+        "has_amp": true,
+        "max_output_mw_32ohm": 700,
+        "balanced_output": false,
+        "supports_dsd": true,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "ifi_zen_dac_v3",
+      "type": "dac_amp",
+      "name": "iFi Zen DAC V3",
+      "attributes": {
+        "brand": "iFi",
+        "model": "Zen DAC V3",
+        "has_dac": true,
+        "has_amp": true,
+        "max_output_mw_32ohm": 280,
+        "balanced_output": true,
+        "supports_dsd": true,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "schiit_magnius_modius_stack",
+      "type": "dac_amp",
+      "name": "Schiit Magnius+Modius stack",
+      "attributes": {
+        "brand": "Schiit",
+        "model": "Magnius+Modius",
+        "has_dac": true,
+        "has_amp": true,
+        "max_output_mw_32ohm": 4000,
+        "balanced_output": true,
+        "supports_dsd": false,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "jds_labs_atom_2_stack",
+      "type": "dac_amp",
+      "name": "JDS Labs Atom 2 stack",
+      "attributes": {
+        "brand": "JDS Labs",
+        "model": "Atom DAC+ / Atom Amp 2",
+        "has_dac": true,
+        "has_amp": true,
+        "max_output_mw_32ohm": 1000,
+        "balanced_output": false,
+        "supports_dsd": false,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "apple_usb_c_dongle_dac",
+      "type": "dac_amp",
+      "name": "Apple USB-C dongle DAC",
+      "attributes": {
+        "brand": "Apple",
+        "model": "USB-C to 3.5mm Headphone Adapter",
+        "has_dac": true,
+        "has_amp": true,
+        "max_output_mw_32ohm": 35,
+        "balanced_output": false,
+        "supports_dsd": false,
+        "source_ids": [1, 5]
+      }
+    },
+    {
+      "id": "hart_hc3_mini_xlr",
+      "type": "cable",
+      "name": "Hart Audio HC-3 (mini-XLR)",
+      "attributes": {
+        "brand": "Hart Audio",
+        "model": "HC-3",
+        "connector_source": "mini_xlr",
+        "connector_termination": "4.4mm",
+        "length_m": 1.5,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "periapt_sennheiser_cable",
+      "type": "cable",
+      "name": "Periapt Sennheiser cable",
+      "attributes": {
+        "brand": "Periapt",
+        "model": "Sennheiser HD 6xx series cable",
+        "connector_source": "3.5mm",
+        "connector_termination": "6.35mm",
+        "length_m": 1.5,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "hifiman_3_5mm_dual",
+      "type": "cable",
+      "name": "Hifiman 3.5mm dual",
+      "attributes": {
+        "brand": "HiFiMan",
+        "model": "3.5mm dual-entry cable",
+        "connector_source": "3.5mm",
+        "connector_termination": "3.5mm",
+        "length_m": 1.5,
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "generic_4_4mm_balanced",
+      "type": "cable",
+      "name": "Generic 4.4mm balanced replacement",
+      "attributes": {
+        "brand": "Generic",
+        "model": "4.4mm balanced replacement",
+        "connector_source": "2pin_0.78mm",
+        "connector_termination": "4.4mm",
+        "length_m": 1.5,
+        "source_ids": [1, 4]
+      }
+    },
+    {
+      "id": "azla_sednaearfit_crystal",
+      "type": "ear_tip",
+      "name": "AZLA SednaEarfit Crystal",
+      "attributes": {
+        "brand": "AZLA",
+        "model": "SednaEarfit Crystal",
+        "sizes": ["ss", "s", "ms", "m", "l"],
+        "material": "silicone",
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "spinfit_cp100",
+      "type": "ear_tip",
+      "name": "Spinfit CP100",
+      "attributes": {
+        "brand": "Spinfit",
+        "model": "CP100",
+        "sizes": ["s", "m", "l"],
+        "material": "silicone",
+        "source_ids": [1, 2]
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c1",
+      "description": "Amp output power must meet headphone power requirement derived from sensitivity and impedance. High-impedance (>=250 ohm) or low-sensitivity (<=94 dB/mW) headphones require a dedicated amp with sufficient output.",
+      "rule": "dac_amp.max_output_mw_32ohm >= required_mw(headphone.impedance_ohm, headphone.sensitivity_db_mw)"
+    },
+    {
+      "id": "c2",
+      "description": "Cable connector_source must match headphone connector type for physical fit.",
+      "rule": "cable.connector_source == headphone.connector"
+    },
+    {
+      "id": "c3",
+      "description": "IEM ear tips are only compatible with universal-fit IEMs using 2-pin 0.78mm or MMCX connector standard.",
+      "rule": "ear_tip compatible_with iem where iem.connector in ['2pin_0.78mm', 'mmcx']"
+    },
+    {
+      "id": "c4",
+      "description": "A balanced cable termination (4.4mm or XLR 4-pin) requires a DAC/amp with balanced output.",
+      "rule": "cable.connector_termination in ['4.4mm', 'xlr_4pin'] requires dac_amp.balanced_output == true"
+    },
+    {
+      "id": "c5",
+      "description": "Headphones with impedance >300 ohm require a high-power dedicated amp; dongles and portable amps with <200 mW @ 32 ohm are excluded.",
+      "rule": "headphone.impedance_ohm > 300 requires dac_amp.max_output_mw_32ohm >= 200"
+    },
+    {
+      "id": "c6",
+      "description": "Planar magnetic headphones with low sensitivity (<96 dB/mW) require a dedicated amp with at least 500 mW output at 32 ohm.",
+      "rule": "headphone.driver_type == 'planar' AND headphone.sensitivity_db_mw < 96 requires dac_amp.max_output_mw_32ohm >= 500"
+    }
+  ]
+}

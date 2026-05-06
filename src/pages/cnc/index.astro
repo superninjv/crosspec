@@ -274,46 +274,61 @@ for (const e of kb.entities) {
     }
   }
 
-  // CNC dependency rules.
-  const KB_DEPS: Record<string, string[]> = {
+  // Soft compat warnings — non-blocking. Pick what you want; we just flag issues.
+  const TYPE_DEPS: Record<string, string[]> = {
     cnc_machine: ["bit", "fixture", "dust_shoe"],
     spindle: ["bit"],
   };
-  const DEP_REASON: Record<string, string> = {
-    cnc_machine: "a machine without bits, fixtures, and a dust shoe is incomplete — bits are the cutting edge, fixtures hold the work, dust shoe handles chip ejection",
-    spindle: "a spindle upgrade still needs collet-matched bits to do anything",
+  const TYPE_LBL: Record<string, string> = {
+    cnc_machine: "machine", spindle: "spindle / router",
+    bit: "bits", fixture: "fixtures", dust_shoe: "dust shoe",
+    controller: "controller", cam_software: "CAM software",
   };
-  const KB_EXCLUSIVE: Array<[string, string]> = [];
 
-  function enforceDeps(): string[] {
+  function pickedProducts(): Slim[] {
+    const out: Slim[] = [];
+    for (const card of document.querySelectorAll<HTMLElement>(".pcard[data-sku]")) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      if (!cb?.checked) continue;
+      const sku = card.dataset.sku ?? "";
+      const item = data.find((d) => d.sku === sku);
+      if (item) out.push(item);
+    }
+    return out;
+  }
+
+  function findCompatWarnings(): string[] {
     if (!form) return [];
+    const warnings: string[] = [];
     const checked = new Set(
       Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
     );
-    const reasons: string[] = [];
-    for (const [trigger, deps] of Object.entries(KB_DEPS)) {
+    for (const [trigger, deps] of Object.entries(TYPE_DEPS)) {
       if (!checked.has(trigger)) continue;
-      let addedAny = false;
-      for (const dep of deps) {
-        if (!checked.has(dep)) {
-          const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${dep}"]`);
-          if (cb && !cb.checked) {
-            cb.checked = true;
-            checked.add(dep);
-            addedAny = true;
-            const tile = cb.closest<HTMLElement>(".want-tile");
-            if (tile) tile.classList.add("want-required");
-          }
+      const missing = deps.filter((d) => !checked.has(d));
+      if (missing.length === 0) continue;
+      warnings.push(`Missing ${missing.map((m) => TYPE_LBL[m] ?? m).join(", ")} — usually needed alongside the ${TYPE_LBL[trigger] ?? trigger}.`);
+    }
+    // Spec-level: bit shank vs spindle/router collet size.
+    const picked = pickedProducts();
+    const spindles = picked.filter((d) => d.type === "spindle");
+    const bits = picked.filter((d) => d.type === "bit");
+    for (const s of spindles) {
+      const collet = String(s.attrs.collet_size ?? "");
+      for (const b of bits) {
+        const shank = Number(b.attrs.shank_diameter_inch ?? 0);
+        if (collet && shank && !collet.includes(String(shank))) {
+          warnings.push(`Bit ${b.name} (${shank}\" shank) may not fit ${s.name} (${collet} collet). Check your collet inventory.`);
         }
       }
-      if (addedAny) reasons.push(DEP_REASON[trigger]);
     }
-    return reasons;
+    return warnings;
   }
 
-  function renderDepsBanner(reasons: string[]) {
+  function renderCompatBanner() {
+    const warnings = findCompatWarnings();
     let banner = document.getElementById("deps-banner");
-    if (reasons.length === 0) {
+    if (warnings.length === 0) {
       if (banner) banner.remove();
       return;
     }
@@ -324,24 +339,7 @@ for (const e of kb.entities) {
       const pickerForm = document.getElementById("picker-form");
       pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
     }
-    banner.innerHTML = `<strong>Auto-added:</strong> ${reasons.join("; ")}. Untick to opt out.`;
-  }
-
-  function enforceExclusives(triggerEl: HTMLInputElement | null): string[] {
-    if (!form || !triggerEl || !triggerEl.checked) return [];
-    const reasons: string[] = [];
-    for (const [a, b] of KB_EXCLUSIVE) {
-      const other = triggerEl.value === a ? b : triggerEl.value === b ? a : null;
-      if (!other) continue;
-      const otherEl = form.querySelector<HTMLInputElement>(`input[name="want"][value="${other}"]`);
-      if (otherEl && otherEl.checked) {
-        otherEl.checked = false;
-        const tile = otherEl.closest<HTMLElement>(".want-tile");
-        tile?.classList.remove("want-required");
-        reasons.push(`unticked ${other} (alternative path to ${triggerEl.value})`);
-      }
-    }
-    return reasons;
+    banner.innerHTML = `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
   }
 
   if (resultEl) {
@@ -367,14 +365,11 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]') || t.matches('input[name="material"]')) {
-        const exclusiveReasons = t.matches('input[name="want"]')
-          ? enforceExclusives(t as HTMLInputElement)
-          : [];
-        const depReasons = enforceDeps();
-        renderDepsBanner([...exclusiveReasons, ...depReasons]);
         renderPicker();
+        renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {
         syncBuildSummary();
+        renderCompatBanner();
       }
     });
   }
@@ -449,14 +444,11 @@ for (const e of kb.entities) {
     if (form) {
       const materialRadio = form.querySelector<HTMLInputElement>(`input[name="material"][value="${p.material}"]`);
       if (materialRadio) materialRadio.checked = true;
-      // No exclusives for CNC — just set all wants
-      const wants = new Set(p.wants);
-      for (const want of wants) {
+      for (const want of p.wants) {
         const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
         if (cb) cb.checked = true;
       }
-      const reasons = enforceDeps();
-      renderDepsBanner(reasons);
+      renderCompatBanner();
     }
 
     const MATERIAL_LABEL: Record<string, string> = {

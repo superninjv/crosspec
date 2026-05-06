@@ -1,0 +1,710 @@
+{
+  "version": "0.1",
+  "vertical": "pedalboard",
+  "data_quality": "v0.1 best-effort seed populated from cited public sources. Each entity's specs trace to source_ids on its attributes. Verification pass required before production launch; this dataset is sized to prove the engine end-to-end, not for general consumer trust.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "Manufacturer product pages (Boss, Strymon, EHX, Walrus Audio, JHS Pedals, Chase Bliss Audio, Pedaltrain, CIOKS, Truetone, Voodoo Lab, MXR, TC Electronic, Korg, Peterson, Cusack Music)",
+      "url": "",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for current draw (mA), voltage, polarity, true-bypass status, dimensions, weight, output counts, and isolated-output specs. Each product page is the canonical source for electrical specs."
+    },
+    {
+      "id": 1,
+      "name": "Reverb.com public listings and community threads",
+      "url": "https://reverb.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used to cross-check real-world compatibility reports, user-reported current draw under load, and pricing benchmarks against manufacturer MSRP."
+    },
+    {
+      "id": 2,
+      "name": "The Gear Page community forums (public threads)",
+      "url": "https://www.thegearpage.net/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for practical pedalboard layout caveats, power supply noise reports with specific pedal pairings, and community-maintained spec corrections for legacy pedals (RAT, Big Muff variants, CE-2W)."
+    },
+    {
+      "id": 3,
+      "name": "Pedalboard-planner blog tutorials and layout guides (PedalboardPlanner.com, SweetWater Pedalboard Guide, Andertons Pedalboard Wiring articles)",
+      "url": "https://www.sweetwater.com/insync/build-a-pedalboard/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for signal-chain ordering conventions, patch-cable count formulas, power daisy-chain vs isolated output recommendations, and pedalboard real-estate sizing heuristics."
+    },
+    {
+      "id": 4,
+      "name": "CIOKS, Truetone, and Voodoo Lab public spec sheets and FAQ pages",
+      "url": "",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for output voltage options, total current budget, isolated vs non-isolated output maps, and daisy-chain current-share warnings on specific units."
+    },
+    {
+      "id": 5,
+      "name": "TalkBass and GuitarSite community threads (public)",
+      "url": "https://www.talkbass.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used to capture bass-rig pedalboard compatibility edge cases, particularly for fuzz pedals sensitive to input impedance and for Big Muff variants on low-tuned instruments."
+    }
+  ],
+  "entities": [
+    {
+      "id": "boss_ts9",
+      "type": "pedal",
+      "name": "Ibanez Tube Screamer TS9",
+      "attributes": {
+        "brand": "ibanez",
+        "model": "TS9",
+        "subtype": "overdrive",
+        "current_draw_ma": 35,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "126x70x59",
+        "note": "Buffered bypass. Classic mid-hump overdrive; JRC4558D chip in original. High sensitivity to input impedance — place before wahs and buffers. Daisy-chain safe (analog, low draw).",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "fulltone_ocd_v2",
+      "type": "pedal",
+      "name": "Fulltone OCD V2",
+      "attributes": {
+        "brand": "fulltone",
+        "model": "OCD V2",
+        "subtype": "overdrive",
+        "current_draw_ma": 8,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "True bypass, JFET input. HP/LP switch changes clipping voicing. Very low draw — compatible with any output including daisy-chain.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "klon_ktr",
+      "type": "pedal",
+      "name": "Klon KTR",
+      "attributes": {
+        "brand": "klon",
+        "model": "KTR",
+        "subtype": "overdrive",
+        "current_draw_ma": 15,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "117x92x50",
+        "note": "True bypass. Internal charge pump doubles supply to 18V internally — do NOT feed 18V externally. Analog, low draw, daisy-chain safe.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "chase_bliss_brothers",
+      "type": "pedal",
+      "name": "Chase Bliss Audio Brothers",
+      "attributes": {
+        "brand": "chase_bliss_audio",
+        "model": "Brothers",
+        "subtype": "overdrive",
+        "current_draw_ma": 165,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "145x119x57",
+        "note": "Digital control plane over analog audio. High draw (~165mA) — requires isolated output; do not daisy-chain. MIDI over TRS-A.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "pro_co_rat",
+      "type": "pedal",
+      "name": "Pro Co RAT2",
+      "attributes": {
+        "brand": "pro_co",
+        "model": "RAT2",
+        "subtype": "distortion",
+        "current_draw_ma": 5,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "118x92x51",
+        "note": "Buffered bypass. LM308 op-amp in legacy units. Extremely low draw — any output or daisy-chain suitable. Op-amp rolloff produces distinctive filter characteristic.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "ehx_big_muff_pi",
+      "type": "pedal",
+      "name": "Electro-Harmonix Big Muff Pi",
+      "attributes": {
+        "brand": "electro_harmonix",
+        "model": "Big Muff Pi",
+        "subtype": "distortion",
+        "current_draw_ma": 4,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "120x67x50",
+        "note": "True bypass reissue. Triangle/Russian variants differ by clipping diodes. Input impedance ~470kΩ; place after buffers if using passive pickups. Daisy-chain safe.",
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "boss_ds1",
+      "type": "pedal",
+      "name": "Boss DS-1 Distortion",
+      "attributes": {
+        "brand": "boss",
+        "model": "DS-1",
+        "subtype": "distortion",
+        "current_draw_ma": 4,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "128x70x59",
+        "note": "Buffered bypass (Boss standard). Low draw, ACA vs PSA supply generations differ in regulated/unregulated behavior — modern units use PSA (center-negative 9V). Daisy-chain safe.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "ehx_op_amp_big_muff",
+      "type": "pedal",
+      "name": "Electro-Harmonix Op-Amp Big Muff Pi",
+      "attributes": {
+        "brand": "electro_harmonix",
+        "model": "Op-Amp Big Muff Pi",
+        "subtype": "fuzz",
+        "current_draw_ma": 4,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "120x67x50",
+        "note": "Op-amp clipping variant of Big Muff; more mid-forward than triangle/Russian. Daisy-chain safe. Low draw.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "jhs_muffuletta",
+      "type": "pedal",
+      "name": "JHS Muffuletta",
+      "attributes": {
+        "brand": "jhs",
+        "model": "Muffuletta",
+        "subtype": "fuzz",
+        "current_draw_ma": 35,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x66x54",
+        "note": "Six Big Muff variants on a rotary switch. Slightly higher draw than single-mode Muff units due to switching circuitry. Isolated output recommended but daisy-chain tolerable.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "walrus_janus",
+      "type": "pedal",
+      "name": "Walrus Audio Janus",
+      "attributes": {
+        "brand": "walrus_audio",
+        "model": "Janus",
+        "subtype": "fuzz",
+        "current_draw_ma": 75,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "145x121x57",
+        "note": "Fuzz + tremolo in one enclosure. Joystick control. Higher draw — use isolated output to avoid crosstalk with other pedals. Digital LFO section is noise-sensitive.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "boss_ce2w",
+      "type": "pedal",
+      "name": "Boss CE-2W Waza Craft Chorus",
+      "attributes": {
+        "brand": "boss",
+        "model": "CE-2W",
+        "subtype": "modulation",
+        "current_draw_ma": 100,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "128x70x59",
+        "note": "Waza Craft analog BBD chorus with CE-1 mode. Buffered bypass. 100mA draw higher than typical Boss pedals due to dual BBD path. Isolated output strongly recommended — BBD clock noise can couple on shared rails.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "mxr_phase90",
+      "type": "pedal",
+      "name": "MXR Phase 90",
+      "attributes": {
+        "brand": "mxr",
+        "model": "Phase 90",
+        "subtype": "modulation",
+        "current_draw_ma": 3,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "121x66x38",
+        "note": "Script or block logo variants differ in op-amp type. Buffered bypass. Ultra-low draw — any output or daisy-chain fine.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "strymon_mobius",
+      "type": "pedal",
+      "name": "Strymon Mobius",
+      "attributes": {
+        "brand": "strymon",
+        "model": "Mobius",
+        "subtype": "modulation",
+        "current_draw_ma": 300,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "175x115x57",
+        "note": "DSP modulation multi-effect. 300mA draw — MUST use isolated output; will reboot or audibly glitch on shared rails. 9V only (no 12V/18V). MIDI over DIN-5.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "strymon_timeline",
+      "type": "pedal",
+      "name": "Strymon TimeLine",
+      "attributes": {
+        "brand": "strymon",
+        "model": "TimeLine",
+        "subtype": "delay",
+        "current_draw_ma": 300,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "175x115x57",
+        "note": "DSP delay multi-effect. 300mA isolated output mandatory. MIDI DIN-5 + USB. Place at or near end of chain. Do not share rail with any other pedal.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "mxr_carbon_copy",
+      "type": "pedal",
+      "name": "MXR Carbon Copy Analog Delay",
+      "attributes": {
+        "brand": "mxr",
+        "model": "Carbon Copy",
+        "subtype": "delay",
+        "current_draw_ma": 7,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "121x66x54",
+        "note": "Analog BBD delay (MN3005 or equivalent). Very low draw; daisy-chain safe. Buffered bypass. BBD clock at low frequencies can produce subtle noise — isolated output preferred for quiet rigs.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "boss_dd8",
+      "type": "pedal",
+      "name": "Boss DD-8 Digital Delay",
+      "attributes": {
+        "brand": "boss",
+        "model": "DD-8",
+        "subtype": "delay",
+        "current_draw_ma": 55,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": false,
+        "dimensions_mm": "128x70x59",
+        "note": "Digital delay; 11 modes. Buffered bypass. Moderate draw — isolated output recommended but not mandatory if supply has headroom. USB for computer control.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "strymon_bigsky",
+      "type": "pedal",
+      "name": "Strymon BigSky",
+      "attributes": {
+        "brand": "strymon",
+        "model": "BigSky",
+        "subtype": "reverb",
+        "current_draw_ma": 300,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "175x115x57",
+        "note": "DSP reverb multi-effect. 300mA isolated output mandatory. MIDI DIN-5. Place last or second-to-last in chain. Same platform as TimeLine / Mobius — Strymon Ojai/Zuma power supplies have purpose-built high-current isolated outputs for these.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "walrus_slo",
+      "type": "pedal",
+      "name": "Walrus Audio Slö Multi Texture Reverb",
+      "attributes": {
+        "brand": "walrus_audio",
+        "model": "Slö",
+        "subtype": "reverb",
+        "current_draw_ma": 100,
+        "voltage_v": 9,
+        "polarity": "center_negative",
+        "true_bypass": true,
+        "dimensions_mm": "121x116x57",
+        "note": "DSP reverb. 100mA — isolated output recommended. Sub, Rise, and Sustain modes optimized for ambient/post-rock applications. DECAY knob doubles as infinite reverb toggle at max.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "pedaltrain_classic_jr",
+      "type": "pedalboard",
+      "name": "Pedaltrain Classic Jr",
+      "attributes": {
+        "brand": "pedaltrain",
+        "model": "Classic Jr",
+        "dimensions_inch": "17x11",
+        "weight_lb": 2.8,
+        "riser_levels": 1,
+        "includes_case": true,
+        "note": "Entry-level touring board; fits 4–5 standard-size pedals. Underneath rails accommodate most compact power supplies (Voodoo Lab PP2+, Truetone 1 SPOT Pro CS6). Soft case included.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pedaltrain_classic_2",
+      "type": "pedalboard",
+      "name": "Pedaltrain Classic 2",
+      "attributes": {
+        "brand": "pedaltrain",
+        "model": "Classic 2",
+        "dimensions_inch": "24x12.5",
+        "weight_lb": 3.5,
+        "riser_levels": 2,
+        "includes_case": true,
+        "note": "Mid-size touring board with two riser levels. Fits 8–10 standard pedals. Undercarriage accommodates most full-size power supplies. Soft case included; hard case upgrade available.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pedaltrain_classic_pro",
+      "type": "pedalboard",
+      "name": "Pedaltrain Classic Pro",
+      "attributes": {
+        "brand": "pedaltrain",
+        "model": "Classic Pro",
+        "dimensions_inch": "32x16",
+        "weight_lb": 5.5,
+        "riser_levels": 3,
+        "includes_case": true,
+        "note": "Full touring board; fits 12–16 pedals across three riser levels. Tour-grade aluminum rails. TSA-lockable hard case sold separately. Standard choice for professional live rigs.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pedaltrain_novo24",
+      "type": "pedalboard",
+      "name": "Pedaltrain Novo 24",
+      "attributes": {
+        "brand": "pedaltrain",
+        "model": "Novo 24",
+        "dimensions_inch": "24x14",
+        "weight_lb": 4.2,
+        "riser_levels": 2,
+        "includes_case": true,
+        "note": "Updated rail profile with wider spacing for larger enclosures. Undercarriage deeper than Classic series — fits Strymon Zuma and CIOKS DC10 without modification. Soft case included.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pedaltrain_metro24",
+      "type": "pedalboard",
+      "name": "Pedaltrain Metro 24",
+      "attributes": {
+        "brand": "pedaltrain",
+        "model": "Metro 24",
+        "dimensions_inch": "24x12.5",
+        "weight_lb": 3.6,
+        "riser_levels": 1,
+        "includes_case": true,
+        "note": "Flat-profile metro-series board. Single riser level; best for players who want a lower profile on stage. Slightly thinner undercarriage — confirm power supply depth before ordering.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pedaltrain_voyager",
+      "type": "pedalboard",
+      "name": "Pedaltrain Voyager",
+      "attributes": {
+        "brand": "pedaltrain",
+        "model": "Voyager",
+        "dimensions_inch": "20x8",
+        "weight_lb": 1.8,
+        "riser_levels": 1,
+        "includes_case": true,
+        "note": "Ultra-compact fly-gig board; fits 3–4 compact pedals. Backpack-compatible soft case. Power supply must be a mini format (1 SPOT, PP Nano+) — full-size units will not fit underneath.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "voodoo_lab_pp2plus",
+      "type": "power_supply",
+      "name": "Voodoo Lab Pedal Power 2 Plus",
+      "attributes": {
+        "brand": "voodoo_lab",
+        "model": "Pedal Power 2 Plus",
+        "num_outputs": 8,
+        "total_current_ma": 1400,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v", "12v", "18v"],
+        "note": "Industry-standard isolated supply. Outputs 1–4: 100mA each at 9V. Outputs 5–6: 250mA each (switchable 9V/12V). Outputs 7–8: 120mA each (switchable 9V/18V). Sag control on outputs 5–6 for vintage fuzz voicing.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "cioks_dc10",
+      "type": "power_supply",
+      "name": "CIOKS DC10",
+      "attributes": {
+        "brand": "cioks",
+        "model": "DC10",
+        "num_outputs": 10,
+        "total_current_ma": 3000,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v", "12v", "15v", "18v"],
+        "note": "10 fully isolated outputs with flex-linking for high-current digital pedals (Strymon trio: two outputs linked = 600mA). Toroidal transformer for near-zero magnetic hum. Best-in-class for noise-sensitive rigs.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "truetone_cs12",
+      "type": "power_supply",
+      "name": "Truetone CS12",
+      "attributes": {
+        "brand": "truetone",
+        "model": "CS12",
+        "num_outputs": 12,
+        "total_current_ma": 2100,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v", "12v", "18v"],
+        "note": "12 isolated outputs. Outputs 1–8: 100mA at 9V. Output 9: 250mA (9/12V). Outputs 10–11: 250mA at 18V. Output 12: 400mA at 9V. Flat profile fits Pedaltrain Classic and Novo undercarriage without modification.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "strymon_zuma",
+      "type": "power_supply",
+      "name": "Strymon Zuma R300",
+      "attributes": {
+        "brand": "strymon",
+        "model": "Zuma R300",
+        "num_outputs": 9,
+        "total_current_ma": 3600,
+        "isolated_outputs": true,
+        "voltage_outputs": ["9v", "12v", "18v"],
+        "note": "9 isolated outputs; 5 at 300mA and 4 at 100mA (9V). Designed specifically for Strymon pedal trio — one 300mA output per BigSky/TimeLine/Mobius with no linking required. Linear regulated.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "mxr_dc_brick",
+      "type": "power_supply",
+      "name": "MXR DC Brick",
+      "attributes": {
+        "brand": "mxr",
+        "model": "DC Brick",
+        "num_outputs": 10,
+        "total_current_ma": 1700,
+        "isolated_outputs": false,
+        "voltage_outputs": ["9v", "18v"],
+        "note": "Non-isolated supply; outputs share common ground. Fine for all-analog boards where pedal isolation is not needed. Outputs 1–8: 100mA at 9V (two share a daisy-chain capable bus). Outputs 9–10: 250mA at 18V. Avoid pairing with digital pedals on same rail.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "ehx_96dc200",
+      "type": "power_supply",
+      "name": "Electro-Harmonix 9.6DC-200",
+      "attributes": {
+        "brand": "electro_harmonix",
+        "model": "9.6DC-200",
+        "num_outputs": 10,
+        "total_current_ma": 2000,
+        "isolated_outputs": false,
+        "voltage_outputs": ["9v"],
+        "note": "10 daisy-chained outputs at 9.6V (slightly above 9V nominal). Non-isolated — all outputs share one ground bus. Good budget option for all-analog boards. Not suitable for DSP pedals (noise, ground loops). Included banana-jack adapter for EHX pedals.",
+        "source_ids": [0, 4]
+      }
+    },
+    {
+      "id": "george_ls_cable_kit",
+      "type": "patch_cable",
+      "name": "George L's .155 Cable Kit",
+      "attributes": {
+        "brand": "george_ls",
+        "model": ".155 Cable Kit",
+        "length_inch": 6,
+        "gauge_awg": 20,
+        "solderless": true,
+        "right_angle": true,
+        "note": "Bulk cable + solderless right-angle plugs; cut to any length. .155 diameter. Highly regarded for low capacitance and minimal high-frequency rolloff. Plugs screw-crimp — no soldering iron needed.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "mogami_gold_patch",
+      "type": "patch_cable",
+      "name": "Mogami Gold Instrument Patch",
+      "attributes": {
+        "brand": "mogami",
+        "model": "Gold Instrument Patch 6\"",
+        "length_inch": 6,
+        "gauge_awg": 24,
+        "solderless": false,
+        "right_angle": true,
+        "note": "Soldered Neutrik right-angle TS. Quad-conductor shield for lowest noise floor. Studio-grade; heavy for dense boards but provides excellent RF rejection. Available in fixed 0.5/1/2/3/6ft lengths.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "ebs_pcf_deluxe",
+      "type": "patch_cable",
+      "name": "EBS PCF Deluxe Flat Patch Cable",
+      "attributes": {
+        "brand": "ebs",
+        "model": "PCF Deluxe",
+        "length_inch": 4,
+        "gauge_awg": 24,
+        "solderless": false,
+        "right_angle": true,
+        "note": "Ultra-flat ribbon profile; fits tight-spaced boards where standard right-angle plugs foul adjacent inputs. Nickel-plated plugs. Fixed 10cm/18cm/28cm sizes. Popular for pedalboard competition builds.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "pedaltrain_solderless_kit",
+      "type": "patch_cable",
+      "name": "Pedaltrain Solderless Patch Cable Kit",
+      "attributes": {
+        "brand": "pedaltrain",
+        "model": "Solderless Kit 10-pack",
+        "length_inch": 6,
+        "gauge_awg": 22,
+        "solderless": true,
+        "right_angle": true,
+        "note": "10 right-angle plugs + bulk cable; cut-to-length solderless. Designed to fit Pedaltrain board rail widths. Lower-cost entry to custom-length cables. Signal quality sufficient for stage use.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "lava_tightrope",
+      "type": "patch_cable",
+      "name": "Lava Cable Tightrope Kit",
+      "attributes": {
+        "brand": "lava_cable",
+        "model": "Tightrope Solderless Kit",
+        "length_inch": 6,
+        "gauge_awg": 22,
+        "solderless": true,
+        "right_angle": true,
+        "note": "Solderless kit with ultra-thin cable (.095\" diameter) and right-angle mini plugs. Ideal for boards where pedal spacing is tight and standard plugs don't fit. Plugs use screw-lock mechanism.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "hosa_cmm_patch",
+      "type": "patch_cable",
+      "name": "Hosa CMM Molded Patch Cable 6\"",
+      "attributes": {
+        "brand": "hosa",
+        "model": "CMM-106",
+        "length_inch": 6,
+        "gauge_awg": 24,
+        "solderless": false,
+        "right_angle": false,
+        "note": "Straight TS molded plugs. Budget tier; acceptable for home practice boards. Not recommended for live rigs where cable tension on output jacks is a reliability concern. Buy solderless or right-angle for gigging boards.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "boss_tu3",
+      "type": "tuner",
+      "name": "Boss TU-3 Chromatic Tuner",
+      "attributes": {
+        "brand": "boss",
+        "model": "TU-3",
+        "type": "chromatic",
+        "true_bypass": false,
+        "current_draw_ma": 85,
+        "note": "Buffered bypass (mutes output on tuning, passes buffer when bypassed). Can power downstream pedals via daisy-chain output. Standard tuner for professional live rigs. ±1 cent accuracy.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "peterson_strobostomp_hd",
+      "type": "tuner",
+      "name": "Peterson StroboStomp HD",
+      "attributes": {
+        "brand": "peterson",
+        "model": "StroboStomp HD",
+        "type": "strobe",
+        "true_bypass": true,
+        "current_draw_ma": 65,
+        "note": "True bypass strobe tuner. ±0.1 cent accuracy — highest accuracy class for intonation work. Sweetened tunings library built in. Isolated output recommended (DSP backlight draws modest current).",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "tc_polytune3",
+      "type": "tuner",
+      "name": "TC Electronic PolyTune 3",
+      "attributes": {
+        "brand": "tc_electronic",
+        "model": "PolyTune 3",
+        "type": "polyphonic",
+        "true_bypass": true,
+        "current_draw_ma": 100,
+        "note": "True bypass with built-in buffer mode (switchable). Polyphonic strumming for fast between-song checks. Buffer mode provides clean signal to downstream pedals when bypassed. Isolated output recommended.",
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "korg_pitchblack_pro",
+      "type": "tuner",
+      "name": "Korg Pitchblack Pro",
+      "attributes": {
+        "brand": "korg",
+        "model": "Pitchblack Pro",
+        "type": "chromatic",
+        "true_bypass": true,
+        "current_draw_ma": 30,
+        "note": "Rackmount-style floor tuner. True bypass. High-visibility display for dark stages. Low draw. 1U rack-friendly — popular for players who want a tuner off the pedalboard. ±0.1 cent accuracy.",
+        "source_ids": [0, 2]
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "power_budget",
+      "description": "power_supply.total_current_ma must exceed the sum of current_draw_ma across all pedals in the configured rig. A 15% headroom margin is recommended (multiply pedal sum by 1.15 before comparing).",
+      "applies_to": ["power_supply", "pedal"]
+    },
+    {
+      "id": "voltage_match",
+      "description": "Each pedal's voltage_v must be available from at least one output on the selected power_supply. Pedals requiring 9V cannot use 12V/18V outputs without a voltage reducer.",
+      "applies_to": ["power_supply", "pedal"]
+    },
+    {
+      "id": "isolated_outputs_for_digital",
+      "description": "Pedals of subtype delay or reverb with DSP (Chase Bliss Brothers, Strymon Mobius, Strymon TimeLine, Strymon BigSky, Walrus Slö, Boss DD-8, TC Electronic PolyTune 3) require isolated power outputs to prevent clock noise, ground loops, and digital hash coupling to analog pedals on the same rail. Non-isolated supplies (MXR DC Brick, EHX 9.6DC-200) must not be used with these pedals.",
+      "applies_to": ["power_supply", "pedal"]
+    },
+    {
+      "id": "patch_cable_count",
+      "description": "Minimum patch cables needed = number of pedals in signal chain minus 1. A tuner at the front adds one more cable from guitar to tuner input when the tuner occupies a signal-chain slot rather than a parallel out.",
+      "applies_to": ["patch_cable", "pedal"]
+    },
+    {
+      "id": "pedalboard_footprint",
+      "description": "Sum of pedal footprint areas (dimensions_mm width × depth, converted to square inches) must not exceed 85% of the usable deck area of the selected pedalboard (board width_inch × depth_inch × 0.85). Pedal arrangement may be optimized to fit — this constraint is a first-pass filter only.",
+      "applies_to": ["pedalboard", "pedal"]
+    }
+  ]
+}

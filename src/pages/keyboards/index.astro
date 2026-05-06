@@ -283,51 +283,57 @@ for (const e of kb.entities) {
     }
   }
 
-  // Keyboard dependency rules. PCB and kit are alternative core paths, never both.
-  const KB_DEPS: Record<string, string[]> = {
+  // Soft compatibility warnings — non-blocking. Pick whatever you like; we just flag issues.
+  const TYPE_DEPS: Record<string, string[]> = {
     keyboard_kit: ["switch", "keycap_set"],
     keyboard_pcb: ["keyboard_plate", "keyboard_stabilizer", "switch", "keycap_set"],
     switch: ["keycap_set"],
     keycap_set: ["switch"],
   };
-  const DEP_REASON: Record<string, string> = {
-    keyboard_kit: "a kit ships barebones — switches and keycaps are needed to type",
-    keyboard_pcb: "a bare-PCB build needs a plate, stabs, switches, and keycaps",
-    switch: "switches need keycaps on top",
-    keycap_set: "keycaps need switches under them",
+  const TYPE_LBL: Record<string, string> = {
+    keyboard_kit: "kit", keyboard_pcb: "PCB", switch: "switches",
+    keycap_set: "keycaps", keyboard_plate: "plate", keyboard_stabilizer: "stabs",
+    keyboard_cable: "cable",
   };
-  // Mutually exclusive: kit and pcb are alternative core paths.
-  const KB_EXCLUSIVE: Array<[string, string]> = [["keyboard_kit", "keyboard_pcb"]];
+  // Pairs that are usually alternatives — both ticked → warn, don't force.
+  const TYPE_EXCLUSIVE: Array<[string, string]> = [["keyboard_kit", "keyboard_pcb"]];
 
-  function enforceDeps(): string[] {
+  function pickedProducts(): Slim[] {
+    const out: Slim[] = [];
+    for (const card of document.querySelectorAll<HTMLElement>(".pcard[data-sku]")) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      if (!cb?.checked) continue;
+      const sku = card.dataset.sku ?? "";
+      const item = data.find((d) => d.sku === sku);
+      if (item) out.push(item);
+    }
+    return out;
+  }
+
+  function findCompatWarnings(): string[] {
     if (!form) return [];
+    const warnings: string[] = [];
     const checked = new Set(
       Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
     );
-    const reasons: string[] = [];
-    for (const [trigger, deps] of Object.entries(KB_DEPS)) {
+    for (const [trigger, deps] of Object.entries(TYPE_DEPS)) {
       if (!checked.has(trigger)) continue;
-      let addedAny = false;
-      for (const dep of deps) {
-        if (!checked.has(dep)) {
-          const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${dep}"]`);
-          if (cb && !cb.checked) {
-            cb.checked = true;
-            checked.add(dep);
-            addedAny = true;
-            const tile = cb.closest<HTMLElement>(".want-tile");
-            if (tile) tile.classList.add("want-required");
-          }
-        }
-      }
-      if (addedAny) reasons.push(DEP_REASON[trigger]);
+      const missing = deps.filter((d) => !checked.has(d));
+      if (missing.length === 0) continue;
+      warnings.push(`Missing ${missing.map((m) => TYPE_LBL[m] ?? m).join(", ")} — usually needed alongside the ${TYPE_LBL[trigger] ?? trigger}.`);
     }
-    return reasons;
+    for (const [a, b] of TYPE_EXCLUSIVE) {
+      if (checked.has(a) && checked.has(b)) {
+        warnings.push(`${TYPE_LBL[a] ?? a} and ${TYPE_LBL[b] ?? b} are usually alternatives — most builds use one or the other.`);
+      }
+    }
+    return warnings;
   }
 
-  function renderDepsBanner(reasons: string[]) {
+  function renderCompatBanner() {
+    const warnings = findCompatWarnings();
     let banner = document.getElementById("deps-banner");
-    if (reasons.length === 0) {
+    if (warnings.length === 0) {
       if (banner) banner.remove();
       return;
     }
@@ -338,24 +344,7 @@ for (const e of kb.entities) {
       const pickerForm = document.getElementById("picker-form");
       pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
     }
-    banner.innerHTML = `<strong>Auto-added:</strong> ${reasons.join("; ")}. Untick to opt out.`;
-  }
-
-  function enforceExclusives(triggerEl: HTMLInputElement | null): string[] {
-    if (!form || !triggerEl || !triggerEl.checked) return [];
-    const reasons: string[] = [];
-    for (const [a, b] of KB_EXCLUSIVE) {
-      const other = triggerEl.value === a ? b : triggerEl.value === b ? a : null;
-      if (!other) continue;
-      const otherEl = form.querySelector<HTMLInputElement>(`input[name="want"][value="${other}"]`);
-      if (otherEl && otherEl.checked) {
-        otherEl.checked = false;
-        const tile = otherEl.closest<HTMLElement>(".want-tile");
-        tile?.classList.remove("want-required");
-        reasons.push(`unticked ${other.replace("keyboard_", "")} (alternative path to ${triggerEl.value.replace("keyboard_", "")})`);
-      }
-    }
-    return reasons;
+    banner.innerHTML = `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
   }
 
   if (resultEl) {
@@ -388,14 +377,11 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]') || t.matches('input[name="layout"]')) {
-        const exclusiveReasons = t.matches('input[name="want"]')
-          ? enforceExclusives(t as HTMLInputElement)
-          : [];
-        const depReasons = enforceDeps();
-        renderDepsBanner([...exclusiveReasons, ...depReasons]);
         renderPicker();
+        renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {
         syncBuildSummary();
+        renderCompatBanner();
       }
     });
   }
@@ -469,15 +455,11 @@ for (const e of kb.entities) {
     if (form) {
       const layoutRadio = form.querySelector<HTMLInputElement>(`input[name="layout"][value="${p.layout}"]`);
       if (layoutRadio) layoutRadio.checked = true;
-      // Dedupe mutually-exclusive wants — prefer the first member of each exclusive pair.
-      const wants = new Set(p.wants);
-      for (const [a, b] of KB_EXCLUSIVE) if (wants.has(a) && wants.has(b)) wants.delete(b);
-      for (const want of wants) {
+      for (const want of p.wants) {
         const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
         if (cb) cb.checked = true;
       }
-      const reasons = enforceDeps();
-      renderDepsBanner(reasons);
+      renderCompatBanner();
     }
 
     const SWITCH_LABEL: Record<string, string> = {

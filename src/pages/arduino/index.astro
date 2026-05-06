@@ -271,44 +271,60 @@ for (const e of kb.entities) {
     }
   }
 
-  // Arduino dep rule: motor/actuator generally needs an external power_module.
-  // Boards alone are USB-powered; sensors are board-powered. Motors are not.
-  const ARDUINO_DEPS: Record<string, string[]> = {
+  // Soft compat warnings — non-blocking. Pick what you want; we just flag issues.
+  const TYPE_DEPS: Record<string, string[]> = {
     motor_actuator: ["power_module"],
   };
-  const ARDUINO_DEP_REASON: Record<string, string> = {
-    motor_actuator: "motors and actuators draw too much current to run from a microcontroller's 5V pin",
+  const TYPE_LBL: Record<string, string> = {
+    microcontroller_board: "MCU board", sensor_module: "sensor", display_module: "display",
+    motor_actuator: "motor / actuator", power_module: "power module",
+    carrier_breakout: "breakout", connectivity_module: "connectivity module",
   };
 
-  function enforceDeps(): string[] {
+  function pickedProducts(): Slim[] {
+    const out: Slim[] = [];
+    for (const card of document.querySelectorAll<HTMLElement>(".pcard[data-sku]")) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      if (!cb?.checked) continue;
+      const sku = card.dataset.sku ?? "";
+      const item = data.find((d) => d.sku === sku);
+      if (item) out.push(item);
+    }
+    return out;
+  }
+
+  function findCompatWarnings(): string[] {
     if (!form) return [];
+    const warnings: string[] = [];
     const checked = new Set(
       Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
     );
-    const reasons: string[] = [];
-    for (const [trigger, deps] of Object.entries(ARDUINO_DEPS)) {
+    for (const [trigger, deps] of Object.entries(TYPE_DEPS)) {
       if (!checked.has(trigger)) continue;
-      let addedAny = false;
-      for (const dep of deps) {
-        if (!checked.has(dep)) {
-          const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${dep}"]`);
-          if (cb && !cb.checked) {
-            cb.checked = true;
-            checked.add(dep);
-            addedAny = true;
-            const tile = cb.closest<HTMLElement>(".want-tile");
-            if (tile) tile.classList.add("want-required");
-          }
+      const missing = deps.filter((d) => !checked.has(d));
+      if (missing.length === 0) continue;
+      warnings.push(`Missing ${missing.map((m) => TYPE_LBL[m] ?? m).join(", ")} — motors and actuators draw too much current to run from a microcontroller's 5V pin.`);
+    }
+    // Spec-level: voltage mismatch between boards + sensors.
+    const picked = pickedProducts();
+    const boards = picked.filter((d) => d.type === "microcontroller_board");
+    const sensors = picked.filter((d) => d.type === "sensor_module" || d.type === "display_module");
+    for (const b of boards) {
+      const bv = String(b.attrs.logic_voltage ?? b.attrs.voltage ?? "");
+      for (const s of sensors) {
+        const sv = String(s.attrs.logic_voltage ?? s.attrs.voltage ?? "");
+        if (bv && sv && bv !== sv && sv !== "any" && bv !== "any") {
+          warnings.push(`Logic-level mismatch: ${b.name} (${bv}) vs ${s.name} (${sv}). Use a level shifter or pick matching parts.`);
         }
       }
-      if (addedAny) reasons.push(ARDUINO_DEP_REASON[trigger]);
     }
-    return reasons;
+    return warnings;
   }
 
-  function renderDepsBanner(reasons: string[]) {
+  function renderCompatBanner() {
+    const warnings = findCompatWarnings();
     let banner = document.getElementById("deps-banner");
-    if (reasons.length === 0) {
+    if (warnings.length === 0) {
       if (banner) banner.remove();
       return;
     }
@@ -319,7 +335,7 @@ for (const e of kb.entities) {
       const pickerForm = document.getElementById("picker-form");
       pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
     }
-    banner.innerHTML = `<strong>Auto-added:</strong> ${reasons.join("; ")}. Untick to opt out.`;
+    banner.innerHTML = `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
   }
 
   if (resultEl) {
@@ -345,11 +361,11 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]') || t.matches('input[name="voltage"]')) {
-        const reasons = enforceDeps();
-        renderDepsBanner(reasons);
         renderPicker();
+        renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {
         syncBuildSummary();
+        renderCompatBanner();
       }
     });
   }
@@ -428,8 +444,7 @@ for (const e of kb.entities) {
         const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
         if (cb) cb.checked = true;
       }
-      const reasons = enforceDeps();
-      renderDepsBanner(reasons);
+      renderCompatBanner();
     }
 
     const VOLTAGE_LABEL: Record<string, string> = {

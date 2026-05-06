@@ -830,6 +830,583 @@
         "read_seq_mb_s": 14100,
         "source_ids": [4, 5, 7]
       }
+    },
+    {
+      "id": "amd_ryzen9_7900x3d",
+      "type": "cpu",
+      "name": "AMD Ryzen 9 7900X3D",
+      "sku": "amd_100-100000909wof",
+      "attributes": {
+        "brand": "amd",
+        "socket": "AM5",
+        "tdp_w": 120,
+        "base_clock_ghz": 4.4,
+        "boost_clock_ghz": 5.6,
+        "cores": 12,
+        "threads": 24,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5200,
+        "igpu": "rdna2_2cu",
+        "source_ids": [0, 5, 6, 7]
+      }
+    },
+    {
+      "id": "intel_core_i7_14700k",
+      "type": "cpu",
+      "name": "Intel Core i7-14700K",
+      "sku": "intel_bx8071514700k",
+      "attributes": {
+        "brand": "intel",
+        "socket": "LGA1700",
+        "tdp_w": 125,
+        "base_clock_ghz": 3.4,
+        "boost_clock_ghz": 5.6,
+        "cores": 20,
+        "threads": 28,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5600,
+        "igpu": "intel_uhd770",
+        "source_ids": [1, 5, 6, 7]
+      }
+    },
+    {
+      "id": "amd_ryzen7_9700x",
+      "type": "cpu",
+      "name": "AMD Ryzen 7 9700X",
+      "sku": "amd_100-100001404wof",
+      "attributes": {
+        "brand": "amd",
+        "socket": "AM5",
+        "tdp_w": 65,
+        "base_clock_ghz": 3.8,
+        "boost_clock_ghz": 5.5,
+        "cores": 8,
+        "threads": 16,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5600,
+        "igpu": "rdna2_2cu",
+        "source_ids": [0, 5, 6]
+      }
+    },
+    {
+      "id": "intel_core_i5_13600k",
+      "type": "cpu",
+      "name": "Intel Core i5-13600K",
+      "sku": "intel_bx8071513600k",
+      "attributes": {
+        "brand": "intel",
+        "socket": "LGA1700",
+        "tdp_w": 125,
+        "base_clock_ghz": 3.5,
+        "boost_clock_ghz": 5.1,
+        "cores": 14,
+        "threads": 20,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5600,
+        "igpu": "intel_uhd770",
+        "source_ids": [1, 5, 6]
+      }
+    },
+    {
+      "id": "nvidia_rtx5070",
+      "type": "gpu",
+      "name": "NVIDIA GeForce RTX 5070",
+      "sku": "nvidia_rtx5070_fe",
+      "attributes": {
+        "brand": "nvidia",
+        "vram_gb": 12,
+        "vram_type": "GDDR7",
+        "tdp_w": 250,
+        "recommended_psu_w": 700,
+        "length_mm": 267,
+        "slot_width": 2,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 5,
+        "source_ids": [2, 5, 7]
+      }
+    },
+    {
+      "id": "nvidia_rtx5060ti",
+      "type": "gpu",
+      "name": "NVIDIA GeForce RTX 5060 Ti",
+      "sku": "nvidia_rtx5060ti_fe",
+      "attributes": {
+        "brand": "nvidia",
+        "vram_gb": 16,
+        "vram_type": "GDDR7",
+        "tdp_w": 180,
+        "recommended_psu_w": 600,
+        "length_mm": 252,
+        "slot_width": 2,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 5,
+        "source_ids": [2, 5, 7]
+      }
+    },
+    {
+      "id": "amd_rx9060xt",
+      "type": "gpu",
+      "name": "AMD Radeon RX 9060 XT",
+      "sku": "amd_rx9060xt_ref",
+      "attributes": {
+        "brand": "amd",
+        "vram_gb": 16,
+        "vram_type": "GDDR6",
+        "tdp_w": 180,
+        "recommended_psu_w": 600,
+        "length_mm": 240,
+        "slot_width": 2,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 5,
+        "source_ids": [0, 5, 7]
+      }
+    },
+    {
+      "id": "asrock_x870_steel_legend",
+      "type": "motherboard",
+      "name": "ASRock X870 Steel Legend WiFi",
+      "sku": "asrock_x870_steel_legend_wifi",
+      "attributes": {
+        "brand": "asrock",
+        "chipset": "X870",
+        "socket": "AM5",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 8000,
+        "memory_slots": 4,
+        "max_memory_gb": 256,
+        "m2_slots": 3,
+        "wifi": "wifi7",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "gigabyte_b650_aorus_elite_ax",
+      "type": "motherboard",
+      "name": "Gigabyte B650 Aorus Elite AX",
+      "sku": "gigabyte_b650_aorus_elite_ax",
+      "attributes": {
+        "brand": "gigabyte",
+        "chipset": "B650",
+        "socket": "AM5",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 7200,
+        "memory_slots": 4,
+        "max_memory_gb": 128,
+        "m2_slots": 4,
+        "wifi": "wifi6e",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "msi_b650_gaming_plus_wifi",
+      "type": "motherboard",
+      "name": "MSI B650 Gaming Plus WiFi",
+      "sku": "msi_b650_gaming_plus_wifi",
+      "attributes": {
+        "brand": "msi",
+        "chipset": "B650",
+        "socket": "AM5",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 7600,
+        "memory_slots": 4,
+        "max_memory_gb": 256,
+        "m2_slots": 3,
+        "wifi": "wifi6e",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "asus_rog_strix_b760_a",
+      "type": "motherboard",
+      "name": "ASUS ROG Strix B760-A Gaming WiFi",
+      "sku": "asus_rog_strix_b760_a_gaming_wifi",
+      "attributes": {
+        "brand": "asus",
+        "chipset": "B760",
+        "socket": "LGA1700",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 7200,
+        "memory_slots": 4,
+        "max_memory_gb": 192,
+        "m2_slots": 4,
+        "wifi": "wifi6e",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "msi_mag_b650m_mortar_wifi",
+      "type": "motherboard",
+      "name": "MSI MAG B650M Mortar WiFi",
+      "sku": "msi_mag_b650m_mortar_wifi",
+      "attributes": {
+        "brand": "msi",
+        "chipset": "B650",
+        "socket": "AM5",
+        "form_factor": "mATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 7600,
+        "memory_slots": 4,
+        "max_memory_gb": 256,
+        "m2_slots": 2,
+        "wifi": "wifi6e",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "gskill_trident_z5_neo_32gb_ddr5_6000_cl30",
+      "type": "ram",
+      "name": "G.Skill Trident Z5 Neo 32GB DDR5-6000 CL30 (AMD EXPO)",
+      "sku": "gskill_f5_6000j3036f16gx2_tz5nrk",
+      "attributes": {
+        "brand": "gskill",
+        "capacity_gb_per_kit": 32,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 16,
+        "ddr_gen": 5,
+        "speed_mt_s": 6000,
+        "cas_latency": 30,
+        "voltage_v": 1.35,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "corsair_dominator_titanium_64gb_ddr5_6400",
+      "type": "ram",
+      "name": "Corsair Dominator Titanium 64GB DDR5-6400",
+      "sku": "corsair_cmp64gx5m2b6400c32",
+      "attributes": {
+        "brand": "corsair",
+        "capacity_gb_per_kit": 64,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 32,
+        "ddr_gen": 5,
+        "speed_mt_s": 6400,
+        "cas_latency": 32,
+        "voltage_v": 1.40,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "kingston_fury_beast_64gb_ddr5_5600",
+      "type": "ram",
+      "name": "Kingston Fury Beast 64GB DDR5-5600",
+      "sku": "kingston_kf556c40bbk2_64",
+      "attributes": {
+        "brand": "kingston",
+        "capacity_gb_per_kit": 64,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 32,
+        "ddr_gen": 5,
+        "speed_mt_s": 5600,
+        "cas_latency": 40,
+        "voltage_v": 1.25,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "gskill_ripjaws_s5_32gb_ddr5_5600",
+      "type": "ram",
+      "name": "G.Skill Ripjaws S5 32GB DDR5-5600",
+      "sku": "gskill_f5_5600j2834f16gx2_rs5k",
+      "attributes": {
+        "brand": "gskill",
+        "capacity_gb_per_kit": 32,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 16,
+        "ddr_gen": 5,
+        "speed_mt_s": 5600,
+        "cas_latency": 28,
+        "voltage_v": 1.10,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "asus_rog_loki_850w_sfx",
+      "type": "psu",
+      "name": "ASUS ROG Loki 850W SFX-L",
+      "sku": "asus_rog_loki_850p_sfxl_gaming",
+      "attributes": {
+        "brand": "asus",
+        "wattage_w": 850,
+        "efficiency": "80plus_platinum",
+        "modularity": "full",
+        "form_factor": "SFX-L",
+        "connectors_12v2x6": 1,
+        "length_mm": 130,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "corsair_sf1000_sfx",
+      "type": "psu",
+      "name": "Corsair SF1000 SFX 1000W",
+      "sku": "corsair_cp_9020264_na_sf1000",
+      "attributes": {
+        "brand": "corsair",
+        "wattage_w": 1000,
+        "efficiency": "80plus_platinum",
+        "modularity": "full",
+        "form_factor": "SFX",
+        "connectors_12v2x6": 1,
+        "length_mm": 100,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "evga_supernova_1000_g7",
+      "type": "psu",
+      "name": "EVGA SuperNOVA 1000 G7",
+      "sku": "evga_220_g7_1000_x1",
+      "attributes": {
+        "brand": "evga",
+        "wattage_w": 1000,
+        "efficiency": "80plus_gold",
+        "modularity": "full",
+        "form_factor": "ATX 3.1",
+        "connectors_12v2x6": 2,
+        "length_mm": 150,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "cooler_master_v_platinum_1300w",
+      "type": "psu",
+      "name": "Cooler Master V Platinum 1300W",
+      "sku": "cooler_master_mpe_1301_afaag_3us",
+      "attributes": {
+        "brand": "cooler master",
+        "wattage_w": 1300,
+        "efficiency": "80plus_platinum",
+        "modularity": "full",
+        "form_factor": "ATX 3.1",
+        "connectors_12v2x6": 2,
+        "length_mm": 160,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "lian_li_a4_h2o_itx",
+      "type": "case",
+      "name": "Lian Li A4-H2O ITX",
+      "sku": "lian_li_a4_h2o_x_3",
+      "attributes": {
+        "brand": "lian li",
+        "form_factors_supported": ["ITX"],
+        "max_gpu_length_mm": 322,
+        "max_cpu_cooler_height_mm": 57,
+        "max_radiator_top_mm": 240,
+        "included_fans": 0,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "cooler_master_nr200p_v2",
+      "type": "case",
+      "name": "Cooler Master NR200P V2",
+      "sku": "cooler_master_nr200p_v2",
+      "attributes": {
+        "brand": "cooler master",
+        "form_factors_supported": ["ITX", "mATX"],
+        "max_gpu_length_mm": 330,
+        "max_cpu_cooler_height_mm": 155,
+        "max_radiator_top_mm": 280,
+        "included_fans": 2,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "formd_t1_v2",
+      "type": "case",
+      "name": "FormD T1 v2",
+      "sku": "formd_t1_v2",
+      "attributes": {
+        "brand": "formd",
+        "form_factors_supported": ["ITX"],
+        "max_gpu_length_mm": 305,
+        "max_cpu_cooler_height_mm": 52,
+        "max_radiator_top_mm": 240,
+        "included_fans": 0,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "phanteks_eclipse_g500a",
+      "type": "case",
+      "name": "Phanteks Eclipse G500A",
+      "sku": "phanteks_ph_ec500atg_dbk01",
+      "attributes": {
+        "brand": "phanteks",
+        "form_factors_supported": ["ATX", "mATX", "ITX", "E-ATX"],
+        "max_gpu_length_mm": 435,
+        "max_cpu_cooler_height_mm": 185,
+        "max_radiator_top_mm": 420,
+        "included_fans": 3,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "nzxt_h510_flow",
+      "type": "case",
+      "name": "NZXT H510 Flow",
+      "sku": "nzxt_cc_h51fw_01",
+      "attributes": {
+        "brand": "nzxt",
+        "form_factors_supported": ["ATX", "mATX", "ITX"],
+        "max_gpu_length_mm": 381,
+        "max_cpu_cooler_height_mm": 165,
+        "max_radiator_top_mm": 280,
+        "included_fans": 2,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "deepcool_mystique_360",
+      "type": "cooler",
+      "name": "Deepcool Mystique 360",
+      "sku": "deepcool_mystique_360",
+      "attributes": {
+        "brand": "deepcool",
+        "kind": "aio",
+        "height_mm": null,
+        "radiator_size_mm": 360,
+        "sockets_supported": ["AM5", "LGA1700", "LGA1851"],
+        "tdp_rating_w": 350,
+        "source_ids": [5, 6, 7]
+      }
+    },
+    {
+      "id": "lian_li_galahad_ii_trinity_360",
+      "type": "cooler",
+      "name": "Lian Li Galahad II Trinity 360",
+      "sku": "lian_li_ga2_360_bk",
+      "attributes": {
+        "brand": "lian li",
+        "kind": "aio",
+        "height_mm": null,
+        "radiator_size_mm": 360,
+        "sockets_supported": ["AM5", "LGA1700", "LGA1851"],
+        "tdp_rating_w": 360,
+        "source_ids": [5, 6, 7]
+      }
+    },
+    {
+      "id": "bequiet_dark_rock_pro_5",
+      "type": "cooler",
+      "name": "be quiet! Dark Rock Pro 5",
+      "sku": "bequiet_bk036",
+      "attributes": {
+        "brand": "be quiet!",
+        "kind": "air",
+        "height_mm": 168,
+        "radiator_size_mm": null,
+        "sockets_supported": ["AM5", "LGA1700", "LGA1851"],
+        "tdp_rating_w": 280,
+        "source_ids": [5, 6, 7]
+      }
+    },
+    {
+      "id": "phanteks_t30_120_3pack",
+      "type": "cooler",
+      "name": "Phanteks T30-120 Fans (3-pack)",
+      "sku": "phanteks_ph_f30t120_pwm_bk_3p",
+      "attributes": {
+        "brand": "phanteks",
+        "kind": "fan_kit",
+        "height_mm": 30,
+        "radiator_size_mm": null,
+        "sockets_supported": [],
+        "tdp_rating_w": null,
+        "source_ids": [5, 6, 7]
+      }
+    },
+    {
+      "id": "noctua_nh_u12a_chromax",
+      "type": "cooler",
+      "name": "Noctua NH-U12A chromax.black",
+      "sku": "noctua_nh_u12a_chromax_black",
+      "attributes": {
+        "brand": "noctua",
+        "kind": "air",
+        "height_mm": 158,
+        "radiator_size_mm": null,
+        "sockets_supported": ["AM5", "LGA1700", "LGA1851"],
+        "tdp_rating_w": 250,
+        "source_ids": [5, 6, 7]
+      }
+    },
+    {
+      "id": "crucial_t700_4tb_gen5",
+      "type": "storage",
+      "name": "Crucial T700 4TB Gen5 NVMe",
+      "sku": "crucial_ct4000t700ssd3",
+      "attributes": {
+        "brand": "crucial",
+        "capacity_tb": 4,
+        "interface": "PCIe 5.0 x4",
+        "form_factor": "M.2 2280",
+        "read_seq_mb_s": 12400,
+        "source_ids": [4, 5, 7]
+      }
+    },
+    {
+      "id": "wd_sn770m_1tb_2230",
+      "type": "storage",
+      "name": "WD Black SN770M 1TB (M.2 2230)",
+      "sku": "wd_wds100t3x0g",
+      "attributes": {
+        "brand": "wd",
+        "capacity_tb": 1,
+        "interface": "PCIe 4.0 x4",
+        "form_factor": "M.2 2230",
+        "read_seq_mb_s": 5150,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "samsung_990_evo_plus_4tb",
+      "type": "storage",
+      "name": "Samsung 990 EVO Plus 4TB NVMe",
+      "sku": "samsung_mz_v9s4t0bam",
+      "attributes": {
+        "brand": "samsung",
+        "capacity_tb": 4,
+        "interface": "PCIe 4.0 x4",
+        "form_factor": "M.2 2280",
+        "read_seq_mb_s": 7250,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "lexar_nm790_4tb",
+      "type": "storage",
+      "name": "Lexar NM790 4TB NVMe",
+      "sku": "lexar_lnm790x004t_rnnng",
+      "attributes": {
+        "brand": "lexar",
+        "capacity_tb": 4,
+        "interface": "PCIe 4.0 x4",
+        "form_factor": "M.2 2280",
+        "read_seq_mb_s": 7400,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "sabrent_rocket5_2tb_gen5",
+      "type": "storage",
+      "name": "Sabrent Rocket 5 2TB Gen5 NVMe",
+      "sku": "sabrent_sb_rkt5p_2tb",
+      "attributes": {
+        "brand": "sabrent",
+        "capacity_tb": 2,
+        "interface": "PCIe 5.0 x4",
+        "form_factor": "M.2 2280",
+        "read_seq_mb_s": 14000,
+        "source_ids": [4, 5, 7]
+      }
     }
   ],
   "constraints": [

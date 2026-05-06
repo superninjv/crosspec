@@ -586,6 +586,609 @@
         "note": "Universal spring-steel flex plate with smooth PEI; pop prints off when cooled; available in common sizes for Prusa, Ender, Voron beds. ABS/ASA adhesion improved with PEI spray.",
         "source_ids": [4]
       }
+    },
+    {
+      "id": "bambu_a1_combo",
+      "type": "fdm_printer",
+      "name": "Bambu Lab A1 Combo",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "A1 Combo",
+        "build_volume_mm": "256x256x256",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 100,
+        "enclosed": false,
+        "multi_material": true,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_p1s_combo",
+      "type": "fdm_printer",
+      "name": "Bambu Lab P1S Combo",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "P1S Combo",
+        "build_volume_mm": "256x256x256",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": true,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_x1e",
+      "type": "fdm_printer",
+      "name": "Bambu Lab X1E",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "X1E",
+        "build_volume_mm": "256x256x256",
+        "direct_drive": true,
+        "max_hotend_temp_c": 320,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": false,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "prusa_mk4",
+      "type": "fdm_printer",
+      "name": "Prusa MK4",
+      "attributes": {
+        "brand": "prusa_research",
+        "model": "MK4",
+        "build_volume_mm": "250x210x220",
+        "direct_drive": true,
+        "max_hotend_temp_c": 290,
+        "max_bed_temp_c": 120,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "marlin",
+        "source_ids": [1]
+      }
+    },
+    {
+      "id": "voron_trident_250",
+      "type": "fdm_printer",
+      "name": "Voron Trident 250",
+      "attributes": {
+        "brand": "voron_design",
+        "model": "Trident 250",
+        "build_volume_mm": "250x250x250",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": false,
+        "klipper_or_marlin": "klipper",
+        "source_ids": [2]
+      }
+    },
+    {
+      "id": "voron_02",
+      "type": "fdm_printer",
+      "name": "Voron 0.2",
+      "attributes": {
+        "brand": "voron_design",
+        "model": "0.2",
+        "build_volume_mm": "120x120x120",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": false,
+        "klipper_or_marlin": "klipper",
+        "source_ids": [2]
+      }
+    },
+    {
+      "id": "anycubic_photon_mono_m5s_pro",
+      "type": "resin_printer",
+      "name": "Anycubic Photon Mono M5s Pro",
+      "attributes": {
+        "brand": "anycubic",
+        "model": "Photon Mono M5s Pro",
+        "build_volume_mm": "218x123x260",
+        "lcd_resolution": "12K",
+        "lcd_size_inch": 10.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "elegoo_mars5_ultra",
+      "type": "resin_printer",
+      "name": "Elegoo Mars 5 Ultra",
+      "attributes": {
+        "brand": "elegoo",
+        "model": "Mars 5 Ultra",
+        "build_volume_mm": "143x90x165",
+        "lcd_resolution": "12K",
+        "lcd_size_inch": 7.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "phrozen_sonic_mini_8k_s",
+      "type": "resin_printer",
+      "name": "Phrozen Sonic Mini 8K S",
+      "attributes": {
+        "brand": "phrozen",
+        "model": "Sonic Mini 8K S",
+        "build_volume_mm": "165x72x180",
+        "lcd_resolution": "8K",
+        "lcd_size_inch": 7.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "uniformation_gktwo",
+      "type": "resin_printer",
+      "name": "Uniformation GKtwo",
+      "attributes": {
+        "brand": "uniformation",
+        "model": "GKtwo",
+        "build_volume_mm": "200x126x245",
+        "lcd_resolution": "12K",
+        "lcd_size_inch": 10.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "bondtech_cht_volcano",
+      "type": "hotend",
+      "name": "Bondtech CHT Volcano",
+      "attributes": {
+        "brand": "bondtech",
+        "max_temp_c": 300,
+        "fits_printers": ["ender3", "cr10", "generic_v6_mount"],
+        "all_metal": false,
+        "hardened_path_for_abrasive": false,
+        "note": "Volcano-format CHT insert for very high volumetric flow; longer melt zone than standard V6. PTFE-lined — not rated for abrasive filaments above 240 C.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "e3d_revo_voron",
+      "type": "hotend",
+      "name": "E3D Revo Voron",
+      "attributes": {
+        "brand": "e3d",
+        "max_temp_c": 300,
+        "fits_printers": ["voron", "ratrig", "generic_v6_mount"],
+        "all_metal": false,
+        "hardened_path_for_abrasive": false,
+        "note": "Voron Stealthburner-specific form factor; proprietary Revo nozzle ecosystem for tool-free swaps. Not all-metal — 300 C practical limit.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "phaetus_rapido_hf",
+      "type": "hotend",
+      "name": "Phaetus Rapido HF",
+      "attributes": {
+        "brand": "phaetus",
+        "max_temp_c": 500,
+        "fits_printers": ["voron", "ratrig", "generic_v6_mount"],
+        "all_metal": true,
+        "hardened_path_for_abrasive": true,
+        "note": "High-flow all-metal hotend with short melt zone for speed; rated to 500 C; popular Voron 2.4 / Trident performance upgrade.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "slice_copperhead",
+      "type": "hotend",
+      "name": "Slice Engineering Copperhead",
+      "attributes": {
+        "brand": "slice_engineering",
+        "max_temp_c": 450,
+        "fits_printers": ["voron", "ender3", "generic_v6_mount"],
+        "all_metal": true,
+        "hardened_path_for_abrasive": true,
+        "note": "Bimetal heat break (copper + stainless); resists heat-creep while maintaining abrasive-safe path. Good intermediate option between PTFE-lined and full Mosquito builds.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "nozzle_cht_volcano_06_hardened",
+      "type": "nozzle",
+      "name": "Bondtech CHT 0.6mm Hardened Steel",
+      "attributes": {
+        "brand": "bondtech",
+        "diameter_mm": 0.6,
+        "material": "hardened_steel",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "CHT three-channel insert in 0.6 mm hardened steel body; high volumetric throughput AND abrasive safety for PA-CF / PC-CF. Requires Volcano or CHT-compatible hotend.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "nozzle_v6_brass_04",
+      "type": "nozzle",
+      "name": "E3D V6 Brass 0.4mm",
+      "attributes": {
+        "brand": "e3d",
+        "diameter_mm": 0.4,
+        "material": "brass",
+        "abrasive_safe": false,
+        "thread": "M6",
+        "note": "Standard V6 brass nozzle; excellent thermal conductivity; default for non-abrasive PLA, PETG, TPU. Replace frequently with abrasive filaments.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "nozzle_ruby_06",
+      "type": "nozzle",
+      "name": "Ruby-Tipped 0.6mm Nozzle",
+      "attributes": {
+        "brand": "olsson_ruby",
+        "diameter_mm": 0.6,
+        "material": "ruby",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "0.6 mm ruby-insert nozzle; essentially zero wear; suits high-speed abrasive printing in production. Higher orifice reduces detail but increases throughput.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_hardened_steel_08",
+      "type": "nozzle",
+      "name": "Hardened Steel 0.8mm Nozzle",
+      "attributes": {
+        "brand": "e3d",
+        "diameter_mm": 0.8,
+        "material": "hardened_steel",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "0.8 mm hardened steel; maximum volumetric throughput for structural/draft printing with abrasive materials. Minimum feature size ~1.6 mm; not for detail work.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "nozzle_tungsten_carbide_04",
+      "type": "nozzle",
+      "name": "Tungsten Carbide 0.4mm Nozzle",
+      "attributes": {
+        "brand": "e3d",
+        "diameter_mm": 0.4,
+        "material": "tungsten_carbide",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "0.4 mm tungsten carbide; combines standard detail resolution with near-infinite abrasive resistance. Premium price; best for continuous CF/GF production.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "nozzle_cht_04_hardened",
+      "type": "nozzle",
+      "name": "Bondtech CHT 0.4mm Hardened Steel",
+      "attributes": {
+        "brand": "bondtech",
+        "diameter_mm": 0.4,
+        "material": "hardened_steel",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "CHT three-channel insert in hardened steel 0.4 mm body; high flow AND abrasive safety in a standard diameter; best of both worlds for engineering filaments at speed.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "polymaker_polylite_abs",
+      "type": "filament",
+      "name": "Polymaker PolyLite ABS",
+      "attributes": {
+        "brand": "polymaker",
+        "material": "ABS",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 240,
+        "bed_min_temp_c": 95,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Standard ABS with low odor additive; enclosure required to prevent warping. Bed adhesion best with PEI or ABS juice. Ventilate workspace.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "polymaker_fiberon_pa_cf",
+      "type": "filament",
+      "name": "Polymaker Fiberon PA-CF",
+      "attributes": {
+        "brand": "polymaker",
+        "material": "PA-CF",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 260,
+        "bed_min_temp_c": 70,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": true,
+        "requires_direct_drive": true,
+        "note": "Continuous-strand carbon fiber PA; extremely stiff and light. Mandatory hardened/ruby nozzle. High moisture sensitivity — dry 12 h at 80 C, print in sealed dry box.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "bambu_petg_basic",
+      "type": "filament",
+      "name": "Bambu PETG Basic",
+      "attributes": {
+        "brand": "bambu_lab",
+        "material": "PETG",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 230,
+        "bed_min_temp_c": 70,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Calibrated RFID spool for Bambu AMS; good layer bonding; some stringing vs PLA — tune retraction. Works in open-frame printers.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_pa_cf",
+      "type": "filament",
+      "name": "Bambu PA-CF",
+      "attributes": {
+        "brand": "bambu_lab",
+        "material": "PA-CF",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 260,
+        "bed_min_temp_c": 70,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": true,
+        "requires_direct_drive": true,
+        "note": "Bambu-tuned chopped CF nylon; RFID-enabled for AMS. Needs hardened nozzle and enclosed chamber. Dry before printing; moisture absorption is high.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "prusament_petg",
+      "type": "filament",
+      "name": "Prusament PETG",
+      "attributes": {
+        "brand": "prusa_research",
+        "material": "PETG",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 230,
+        "bed_min_temp_c": 70,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Tight diameter tolerance (±0.02 mm); very consistent extrusion. Open-frame printing fine; slight moisture sensitivity. Good chemical resistance.",
+        "source_ids": [1]
+      }
+    },
+    {
+      "id": "polymaker_polymax_pla",
+      "type": "filament",
+      "name": "Polymaker PolyMax PLA",
+      "attributes": {
+        "brand": "polymaker",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 195,
+        "bed_min_temp_c": 25,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Toughened PLA with 9× impact resistance vs standard PLA; no enclosure needed. Good for functional parts that don't face high heat. Brass nozzle fine.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "esun_epla_st",
+      "type": "filament",
+      "name": "eSun ePLA-ST",
+      "attributes": {
+        "brand": "esun",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 210,
+        "bed_min_temp_c": 25,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "High-toughness PLA; good layer adhesion; no enclosure required. Budget alternative to PolyMax PLA for functional prints.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "esun_petg_cf",
+      "type": "filament",
+      "name": "eSun PETG-CF",
+      "attributes": {
+        "brand": "esun",
+        "material": "PETG-CF",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 240,
+        "bed_min_temp_c": 80,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": true,
+        "requires_direct_drive": false,
+        "note": "Chopped carbon fiber PETG; abrasive — hardened nozzle required. Good stiffness-to-cost ratio; no enclosure needed unlike PA-CF. Open-frame printing viable with glass bed.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "polymaker_polyterra_wood",
+      "type": "filament",
+      "name": "Polymaker PolyTerra Wood",
+      "attributes": {
+        "brand": "polymaker",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 195,
+        "bed_min_temp_c": 25,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Wood-fiber PLA composite; sandable and paintable surface. Not truly abrasive — brass nozzle usable but hardened steel extends life. Low warp; open-frame fine.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "sunlu_pla_plus",
+      "type": "filament",
+      "name": "Sunlu PLA Plus",
+      "attributes": {
+        "brand": "sunlu",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 190,
+        "bed_min_temp_c": 25,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Budget PLA+ with improved toughness over standard PLA. Wide printing window; beginner-friendly. No enclosure or direct drive required.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "hatchbox_abs",
+      "type": "filament",
+      "name": "Hatchbox ABS",
+      "attributes": {
+        "brand": "hatchbox",
+        "material": "ABS",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 230,
+        "bed_min_temp_c": 95,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Reliable budget ABS; enclosure required to prevent warping and layer separation. Fumes — ventilate. PEI or ABS slurry for bed adhesion.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "formfutura_stonefil",
+      "type": "filament",
+      "name": "FormFutura StoneFil",
+      "attributes": {
+        "brand": "formfutura",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 195,
+        "bed_min_temp_c": 25,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": true,
+        "requires_direct_drive": false,
+        "note": "PLA loaded with stone-powder filler; abrasive — hardened or ruby nozzle required. Sanded and sealed prints resemble real stone. Open-frame printing fine.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "vivedino_enclosure_mk4",
+      "type": "enclosure",
+      "name": "Vivedino Enclosure for Prusa MK4",
+      "attributes": {
+        "brand": "vivedino",
+        "fits_printer_models": ["prusa_mk4", "prusa_mk4s"],
+        "internal_volume_mm": "450x450x500",
+        "note": "Steel-frame acrylic-panel enclosure designed for MK4 footprint; magnetic door; activated carbon filter option. Raises ambient temp for ABS/ASA printing.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "voron_stealthburner_skirt",
+      "type": "enclosure",
+      "name": "Voron Stealthburner Skirt Kit",
+      "attributes": {
+        "brand": "voron_design",
+        "fits_printer_models": ["voron_trident_250", "voron_24"],
+        "internal_volume_mm": "N/A — skirt only, printer enclosure is integral",
+        "note": "Printed skirt panels for Voron 2.4 / Trident enclosure; integrates display, power inlet, and filter mount. Not a standalone enclosure — pairs with Voron foam-tape panel kit.",
+        "source_ids": [2]
+      }
+    },
+    {
+      "id": "generic_fr_fabric_enclosure_600",
+      "type": "enclosure",
+      "name": "Generic Flame-Retardant Fabric Enclosure 600x600",
+      "attributes": {
+        "brand": "generic",
+        "fits_printer_models": ["ender3", "sovol_sv08", "cr10", "artillery_sidewinder"],
+        "internal_volume_mm": "600x600x700",
+        "note": "Soft-sided FR fabric enclosure; quick to deploy; raises ambient temp by ~15-20 C. Not airtight — passive temperature retention only. Fits most 200-300 mm cube printers.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "wham_bam_flexi_smooth_black",
+      "type": "build_surface",
+      "name": "Wham Bam Flexi Smooth Black PEI",
+      "attributes": {
+        "brand": "wham_bam",
+        "surface": "smooth_pei",
+        "magnetic": true,
+        "fits_size_mm": "various — order to printer bed size",
+        "note": "Same flex-plate system as standard Wham Bam but with black PEI coating; reduces first-layer visibility contrast; adhesion profile identical to clear PEI variant.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "bambu_textured_pei_x1",
+      "type": "build_surface",
+      "name": "Bambu Textured PEI Plate (X1/P1 Series)",
+      "attributes": {
+        "brand": "bambu_lab",
+        "surface": "textured_pei",
+        "magnetic": true,
+        "fits_size_mm": "257x257",
+        "note": "Interchangeable with Bambu A1 Combo, P1S, P1P, X1C plates (same clip system). Textured PEI improves grip on PLA, PETG, TPU. Use release agent for ABS.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "goprint_flexible_glass",
+      "type": "build_surface",
+      "name": "GoPrint Flexible Glass Plate",
+      "attributes": {
+        "brand": "goprint",
+        "surface": "borosilicate_glass",
+        "magnetic": true,
+        "fits_size_mm": "235x235",
+        "note": "Thin borosilicate glass bonded to spring-steel backer; pops off prints when cooled. Glass surface suits PLA and PETG well; ABS needs glue stick. Heats evenly.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "energetic_pei_sheet_235",
+      "type": "build_surface",
+      "name": "Energetic PEI Sheet 235x235",
+      "attributes": {
+        "brand": "energetic",
+        "surface": "textured_pei",
+        "magnetic": true,
+        "fits_size_mm": "235x235",
+        "note": "Budget spring-steel PEI plate for 235 mm beds (Ender 3 family). Dual-sided: smooth PEI one face, textured the other. Good adhesion for PLA, PETG without adhesives.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "magigoo_pa_glue_stick",
+      "type": "build_surface",
+      "name": "Magigoo PA Glue Stick",
+      "attributes": {
+        "brand": "magigoo",
+        "surface": "adhesive_stick",
+        "magnetic": false,
+        "fits_size_mm": "universal — apply to any smooth bed surface",
+        "note": "Nylon-specific bed adhesive; water-soluble for easy removal. Apply thin coat to PEI or glass before printing PA or PA-CF. Dramatically reduces warping and delamination on first layer.",
+        "source_ids": [4]
+      }
     }
   ],
   "constraints": [

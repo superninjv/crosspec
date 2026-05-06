@@ -359,47 +359,77 @@ for (const e of kb.entities) {
     sizingEl.appendChild(gapDiv);
   }
 
-  // Solar dependency rules: which extra wants are needed when X is picked.
-  const SOLAR_DEPS: Record<string, string[]> = {
+  // Soft compat warnings — non-blocking. Pick what you want; we just flag issues.
+  const TYPE_DEPS: Record<string, string[]> = {
     solar_panel: ["solar_charge_controller", "solar_cable_kit"],
     battery: ["solar_charge_controller", "solar_cable_kit"],
     inverter: ["solar_cable_kit"],
   };
+  const TYPE_LBL: Record<string, string> = {
+    solar_panel: "panels", battery: "battery", inverter: "inverter",
+    solar_charge_controller: "charge controller", solar_cable_kit: "cable kit",
+    power_station: "power station", solar_mounting: "mount",
+  };
 
-  function enforceDependencies(): { added: string[]; reason: string[] } {
-    if (!form) return { added: [], reason: [] };
+  function pickedProducts(): Slim[] {
+    const out: Slim[] = [];
+    for (const card of document.querySelectorAll<HTMLElement>(".pcard[data-sku]")) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      if (!cb?.checked) continue;
+      const sku = card.dataset.sku ?? "";
+      const item = data.find((d) => d.sku === sku);
+      if (item) out.push(item);
+    }
+    return out;
+  }
+
+  function findCompatWarnings(): string[] {
+    if (!form) return [];
+    const warnings: string[] = [];
     const checked = new Set(
       Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
     );
-    const required = new Set<string>();
-    const reasons: string[] = [];
-    for (const [trigger, deps] of Object.entries(SOLAR_DEPS)) {
-      if (checked.has(trigger)) {
-        for (const dep of deps) {
-          if (!checked.has(dep) && !required.has(dep)) {
-            required.add(dep);
-            reasons.push(`${trigger.replace(/_/g, " ")} needs a ${dep.replace(/_/g, " ")}`);
-          }
+    for (const [trigger, deps] of Object.entries(TYPE_DEPS)) {
+      if (!checked.has(trigger)) continue;
+      const missing = deps.filter((d) => !checked.has(d));
+      if (missing.length === 0) continue;
+      warnings.push(`Missing ${missing.map((m) => TYPE_LBL[m] ?? m).join(", ")} — required to wire up the ${TYPE_LBL[trigger] ?? trigger}.`);
+    }
+    // Spec-level: charge controller current rating vs panel array short-circuit current.
+    const picked = pickedProducts();
+    const panels = picked.filter((d) => d.type === "solar_panel");
+    const ccs = picked.filter((d) => d.type === "solar_charge_controller");
+    const inverters = picked.filter((d) => d.type === "inverter");
+    const batteries = picked.filter((d) => d.type === "battery");
+    if (panels.length > 0 && ccs.length > 0) {
+      let arrayWatts = 0;
+      for (const p of panels) arrayWatts += Number(p.attrs.wattage ?? 0);
+      let ccCurrent = 0;
+      for (const c of ccs) ccCurrent = Math.max(ccCurrent, Number(c.attrs.max_charge_current_a ?? c.attrs.current_a ?? 0));
+      if (arrayWatts > 0 && ccCurrent > 0) {
+        const minControllerA = Math.ceil((arrayWatts / 12) * 1.25);
+        if (ccCurrent < minControllerA / 4) {
+          warnings.push(`Charge controller may be undersized: ${arrayWatts}W array @12V needs ~${minControllerA}A; selected controllers max at ${ccCurrent}A.`);
         }
       }
     }
-    const added: string[] = [];
-    for (const dep of required) {
-      const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${dep}"]`);
-      if (cb && !cb.checked) {
-        cb.checked = true;
-        added.push(dep);
-        // Mark its tile as required-styled
-        const tile = cb.closest<HTMLElement>(".want-tile");
-        if (tile) tile.classList.add("want-required");
+    // Inverter wattage vs battery bank capability (rough).
+    if (inverters.length > 0 && batteries.length > 0) {
+      let invW = 0;
+      for (const i of inverters) invW = Math.max(invW, Number(i.attrs.continuous_watts ?? i.attrs.continuous_w ?? 0));
+      let battV = 0;
+      for (const b of batteries) battV = Math.max(battV, Number(b.attrs.voltage_v ?? b.attrs.voltage ?? 0));
+      if (invW >= 2000 && battV && battV < 24) {
+        warnings.push(`Inverter is ${invW}W but battery bank is ${battV}V — high-watt inverters need 24V or 48V banks to keep cable losses sane.`);
       }
     }
-    return { added, reason: reasons };
+    return warnings;
   }
 
-  function renderDepsBanner(reasons: string[]) {
+  function renderCompatBanner() {
+    const warnings = findCompatWarnings();
     let banner = document.getElementById("deps-banner");
-    if (reasons.length === 0) {
+    if (warnings.length === 0) {
       if (banner) banner.remove();
       return;
     }
@@ -410,7 +440,7 @@ for (const e of kb.entities) {
       const pickerForm = document.getElementById("picker-form");
       pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
     }
-    banner.innerHTML = `<strong>Auto-added:</strong> ${reasons.join("; ")}. Untick to opt out.`;
+    banner.innerHTML = `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
   }
 
   if (resultEl) {
@@ -436,11 +466,11 @@ for (const e of kb.entities) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
       if (t.matches('input[name="want"]')) {
-        const { reason } = enforceDependencies();
-        renderDepsBanner(reason);
         renderPicker();
+        renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {
         syncBuildSummary();
+        renderCompatBanner();
       }
     });
   }
@@ -535,14 +565,11 @@ for (const e of kb.entities) {
     if (form) {
       const useCaseRadio = form.querySelector<HTMLInputElement>(`input[name="use_case"][value="${p.use_case}"]`);
       if (useCaseRadio) useCaseRadio.checked = true;
-      // Check the wants
       for (const want of p.wants) {
         const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
         if (cb) cb.checked = true;
       }
-      // Enforce dependencies even if LLM forgot one
-      const { reason } = enforceDependencies();
-      renderDepsBanner(reason);
+      renderCompatBanner();
     }
     // Compute sizing
     const dailyKwh = (p.load_watts * p.runtime_hours_per_day) / 1000;

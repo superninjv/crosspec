@@ -1,0 +1,731 @@
+{
+  "version": "0.1",
+  "vertical": "speakers",
+  "data_quality": "v0.1 best-effort seed populated from cited public measurements and manufacturer specs.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "Manufacturer pages (KEF, Klipsch, Polk, B&W, ELAC, SVS, Wharfedale, Triangle, Q Acoustics, Yamaha, Denon, Marantz)",
+      "url": "",
+      "ingest_date": "2026-05-06",
+      "scope": "Primary electrical and physical specs: sensitivity, impedance, frequency response, dimensions, weight, power handling. Vendors include KEF, Klipsch, Polk Audio, Bowers & Wilkins, ELAC, SVS, Wharfedale, Triangle, Q Acoustics, Yamaha, Denon, Marantz."
+    },
+    {
+      "id": 1,
+      "name": "ASR Audio Science Review — public measurements",
+      "url": "https://www.audiosciencereview.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Objective measurements: SINAD, frequency response curves, THD, IMD, crosstalk. Used to cross-check manufacturer sensitivity and impedance claims."
+    },
+    {
+      "id": 2,
+      "name": "Stereophile — public reviews",
+      "url": "https://www.stereophile.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Measured frequency response, impedance curves, and listening impressions from the Stereophile measurement suite. Used for speaker characterization."
+    },
+    {
+      "id": 3,
+      "name": "Audioholics — published spec sheets and reviews",
+      "url": "https://www.audioholics.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Published specs, editorial measurements, and AV receiver power benchmarks. Used for amplifier and receiver power output claims."
+    },
+    {
+      "id": 4,
+      "name": "r/audiophile — public discussions",
+      "url": "https://www.reddit.com/r/audiophile/",
+      "ingest_date": "2026-05-06",
+      "scope": "Community-sourced compatibility caveats, real-world pairing reports, and value assessments. Used to surface practical matching notes."
+    },
+    {
+      "id": 5,
+      "name": "What Hi-Fi — public reviews",
+      "url": "https://www.whathifi.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Five-star editorial reviews, product comparisons, and UK market pricing references. Used for subjective characterization and category placement."
+    }
+  ],
+  "constraints": [
+    {
+      "id": "amp_power_within_speaker_range",
+      "description": "Amplifier continuous power per channel must fall within the speaker's recommended_amp_w range. Under-power risks clipping distortion; over-power risks driver damage.",
+      "applies_to": ["bookshelf", "floorstanding", "stereo_amp", "av_receiver"]
+    },
+    {
+      "id": "impedance_amp_compatible",
+      "description": "Speaker nominal impedance must be within the amplifier's stable drive range (typically 4–16 ohm). Receivers rated 6-ohm minimum must not drive 4-ohm speakers without derating.",
+      "applies_to": ["bookshelf", "floorstanding", "stereo_amp", "av_receiver"]
+    },
+    {
+      "id": "subwoofer_crossover_overlaps_main_rolloff",
+      "description": "Subwoofer crossover_range_hz upper limit must exceed the main speaker's bass rolloff (approximately the lower bound of frequency_response_hz). Prevents a frequency gap in the bass-to-sub handoff.",
+      "applies_to": ["subwoofer", "bookshelf", "floorstanding"]
+    },
+    {
+      "id": "hdmi_2_1_required_for_4k_120hz",
+      "description": "4K@120Hz pass-through and VRR (Variable Refresh Rate) require HDMI 2.1 inputs. HDMI 2.0 caps at 4K@60Hz. Receivers must have hdmi_2_1_inputs > 0 if user needs 4K@120Hz sources.",
+      "applies_to": ["av_receiver"]
+    },
+    {
+      "id": "cable_gauge_appropriate_for_run_length",
+      "description": "Speaker cable gauge must be adequate for the run length and speaker impedance to keep resistance below 5% of speaker impedance. 16 AWG ≤ 20 ft at 8 ohm; 14 AWG ≤ 30 ft; 12 AWG ≤ 50 ft.",
+      "applies_to": ["speaker_cable", "bookshelf", "floorstanding"]
+    },
+    {
+      "id": "room_correction_benefits_untreated_rooms",
+      "description": "Receivers with Dirac Live or Audyssey MultEQ XT32 room correction deliver measurably better bass integration in acoustically untreated rooms. Flag when user indicates untreated space.",
+      "applies_to": ["av_receiver", "subwoofer"]
+    }
+  ],
+  "entities": [
+    {
+      "id": "kef_ls50_meta",
+      "type": "bookshelf",
+      "name": "KEF LS50 Meta",
+      "attributes": {
+        "brand": "KEF",
+        "type": "2-way",
+        "drivers": ["1in_tweeter_in_cone", "5.25in_woofer"],
+        "frequency_response_hz": "79-28000",
+        "sensitivity_db": 85,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "25-100",
+        "dimensions_mm": "302x200x278",
+        "weight_kg": 7.2,
+        "source_ids": [0, 1, 2, 5]
+      }
+    },
+    {
+      "id": "q_acoustics_3030i",
+      "type": "bookshelf",
+      "name": "Q Acoustics 3030i",
+      "attributes": {
+        "brand": "Q Acoustics",
+        "type": "2-way",
+        "drivers": ["0.9in_tweeter", "6.5in_woofer"],
+        "frequency_response_hz": "46-30000",
+        "sensitivity_db": 88,
+        "nominal_impedance_ohm": 6,
+        "recommended_amp_w": "25-75",
+        "dimensions_mm": "340x200x294",
+        "weight_kg": 7.4,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "elac_debut_reference_dbr62",
+      "type": "bookshelf",
+      "name": "ELAC Debut Reference DBR62",
+      "attributes": {
+        "brand": "ELAC",
+        "type": "2-way",
+        "drivers": ["1in_tweeter", "6.5in_woofer"],
+        "frequency_response_hz": "44-35000",
+        "sensitivity_db": 87,
+        "nominal_impedance_ohm": 6,
+        "recommended_amp_w": "30-120",
+        "dimensions_mm": "367x215x326",
+        "weight_kg": 9.3,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "wharfedale_diamond_12_1",
+      "type": "bookshelf",
+      "name": "Wharfedale Diamond 12.1",
+      "attributes": {
+        "brand": "Wharfedale",
+        "type": "2-way",
+        "drivers": ["1in_tweeter", "5in_woofer"],
+        "frequency_response_hz": "60-20000",
+        "sensitivity_db": 86,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "25-100",
+        "dimensions_mm": "255x168x250",
+        "weight_kg": 4.8,
+        "source_ids": [0, 5]
+      }
+    },
+    {
+      "id": "polk_audio_r200",
+      "type": "bookshelf",
+      "name": "Polk Audio Reserve R200",
+      "attributes": {
+        "brand": "Polk Audio",
+        "type": "2-way",
+        "drivers": ["1in_tweeter", "6.5in_woofer"],
+        "frequency_response_hz": "48-40000",
+        "sensitivity_db": 87,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "20-150",
+        "dimensions_mm": "368x218x290",
+        "weight_kg": 10.0,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "bw_707_s3",
+      "type": "bookshelf",
+      "name": "Bowers & Wilkins 707 S3",
+      "attributes": {
+        "brand": "Bowers & Wilkins",
+        "type": "2-way",
+        "drivers": ["1in_tweeter", "5in_woofer"],
+        "frequency_response_hz": "50-33000",
+        "sensitivity_db": 84,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "30-100",
+        "dimensions_mm": "306x176x272",
+        "weight_kg": 5.3,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "triangle_borea_br03",
+      "type": "bookshelf",
+      "name": "Triangle Borea BR03",
+      "attributes": {
+        "brand": "Triangle",
+        "type": "2-way",
+        "drivers": ["1in_tweeter", "6.5in_woofer"],
+        "frequency_response_hz": "46-22000",
+        "sensitivity_db": 91,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "20-120",
+        "dimensions_mm": "380x228x310",
+        "weight_kg": 10.0,
+        "source_ids": [0, 1, 5]
+      }
+    },
+    {
+      "id": "buchardt_s400_mkii",
+      "type": "bookshelf",
+      "name": "Buchardt S400 mkII",
+      "attributes": {
+        "brand": "Buchardt",
+        "type": "2-way",
+        "drivers": ["1in_tweeter", "5.5in_woofer"],
+        "frequency_response_hz": "45-40000",
+        "sensitivity_db": 87,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "30-200",
+        "dimensions_mm": "310x195x300",
+        "weight_kg": 9.5,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "klipsch_rp_600m",
+      "type": "bookshelf",
+      "name": "Klipsch RP-600M",
+        "attributes": {
+        "brand": "Klipsch",
+        "type": "2-way",
+        "drivers": ["1in_tweeter_horn", "6.5in_woofer"],
+        "frequency_response_hz": "45-25000",
+        "sensitivity_db": 96,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "25-200",
+        "dimensions_mm": "381x241x287",
+        "weight_kg": 9.1,
+        "source_ids": [0, 1, 3, 4]
+      }
+    },
+    {
+      "id": "kef_q150",
+      "type": "bookshelf",
+      "name": "KEF Q150",
+      "attributes": {
+        "brand": "KEF",
+        "type": "2-way",
+        "drivers": ["1in_tweeter_in_cone", "5.25in_woofer"],
+        "frequency_response_hz": "51-28000",
+        "sensitivity_db": 86,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "10-100",
+        "dimensions_mm": "276x185x256",
+        "weight_kg": 5.8,
+        "source_ids": [0, 1, 5]
+      }
+    },
+    {
+      "id": "kef_r7_meta",
+      "type": "floorstanding",
+      "name": "KEF R7 Meta",
+      "attributes": {
+        "brand": "KEF",
+        "type": "3-way",
+        "drivers": ["1in_tweeter_in_cone", "5in_midrange", "6.5in_woofer", "6.5in_woofer"],
+        "frequency_response_hz": "28-28000",
+        "sensitivity_db": 87,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "50-200",
+        "dimensions_mm": "1065x270x378",
+        "weight_kg": 29.5,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "elac_debut_reference_dfr52",
+      "type": "floorstanding",
+      "name": "ELAC Debut Reference DFR52",
+      "attributes": {
+        "brand": "ELAC",
+        "type": "3-way",
+        "drivers": ["1in_tweeter", "5.25in_midrange", "6.5in_woofer", "6.5in_woofer"],
+        "frequency_response_hz": "36-35000",
+        "sensitivity_db": 88,
+        "nominal_impedance_ohm": 6,
+        "recommended_amp_w": "40-140",
+        "dimensions_mm": "1040x268x360",
+        "weight_kg": 25.4,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "klipsch_rp_8000f_ii",
+      "type": "floorstanding",
+      "name": "Klipsch RP-8000F II",
+      "attributes": {
+        "brand": "Klipsch",
+        "type": "2-way",
+        "drivers": ["1in_tweeter_horn", "8in_woofer", "8in_woofer"],
+        "frequency_response_hz": "32-25000",
+        "sensitivity_db": 98,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "100-300",
+        "dimensions_mm": "1016x356x394",
+        "weight_kg": 26.3,
+        "source_ids": [0, 1, 3, 4]
+      }
+    },
+    {
+      "id": "polk_audio_r700",
+      "type": "floorstanding",
+      "name": "Polk Audio Reserve R700",
+      "attributes": {
+        "brand": "Polk Audio",
+        "type": "3-way",
+        "drivers": ["1in_tweeter", "6.5in_midrange", "8in_woofer"],
+        "frequency_response_hz": "28-40000",
+        "sensitivity_db": 88,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "20-300",
+        "dimensions_mm": "1073x330x381",
+        "weight_kg": 27.2,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "q_acoustics_3050i",
+      "type": "floorstanding",
+      "name": "Q Acoustics 3050i",
+      "attributes": {
+        "brand": "Q Acoustics",
+        "type": "2-way",
+        "drivers": ["1in_tweeter", "6.5in_woofer", "6.5in_woofer"],
+        "frequency_response_hz": "40-30000",
+        "sensitivity_db": 91,
+        "nominal_impedance_ohm": 6,
+        "recommended_amp_w": "25-150",
+        "dimensions_mm": "1010x310x376",
+        "weight_kg": 23.5,
+        "source_ids": [0, 4, 5]
+      }
+    },
+    {
+      "id": "wharfedale_diamond_12_4",
+      "type": "floorstanding",
+      "name": "Wharfedale Diamond 12.4",
+      "attributes": {
+        "brand": "Wharfedale",
+        "type": "3-way",
+        "drivers": ["1in_tweeter", "5in_midrange", "8in_woofer"],
+        "frequency_response_hz": "30-20000",
+        "sensitivity_db": 90,
+        "nominal_impedance_ohm": 8,
+        "recommended_amp_w": "25-200",
+        "dimensions_mm": "1010x285x350",
+        "weight_kg": 26.0,
+        "source_ids": [0, 5]
+      }
+    },
+    {
+      "id": "svs_sb_1000_pro",
+      "type": "subwoofer",
+      "name": "SVS SB-1000 Pro",
+      "attributes": {
+        "brand": "SVS",
+        "driver_size_in": 12,
+        "amp_power_w_rms": 325,
+        "frequency_response_hz": "20-270",
+        "crossover_range_hz": "30-200",
+        "room_correction": false,
+        "app_control": true,
+        "enclosure_type": "sealed",
+        "dimensions_mm": "321x321x368",
+        "weight_kg": 13.6,
+        "source_ids": [0, 1, 3, 4]
+      }
+    },
+    {
+      "id": "klipsch_r_120sw",
+      "type": "subwoofer",
+      "name": "Klipsch R-120SW",
+      "attributes": {
+        "brand": "Klipsch",
+        "driver_size_in": 12,
+        "amp_power_w_rms": 400,
+        "frequency_response_hz": "29-120",
+        "crossover_range_hz": "40-160",
+        "room_correction": false,
+        "app_control": false,
+        "enclosure_type": "ported",
+        "dimensions_mm": "445x381x460",
+        "weight_kg": 18.1,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "rel_ht_1205_mkii",
+      "type": "subwoofer",
+      "name": "REL HT/1205 MKII",
+      "attributes": {
+        "brand": "REL",
+        "driver_size_in": 12,
+        "amp_power_w_rms": 500,
+        "frequency_response_hz": "25-120",
+        "crossover_range_hz": "30-120",
+        "room_correction": false,
+        "app_control": false,
+        "enclosure_type": "sealed",
+        "dimensions_mm": "356x356x400",
+        "weight_kg": 21.0,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "rythmik_l12",
+      "type": "subwoofer",
+      "name": "Rythmik L12",
+      "attributes": {
+        "brand": "Rythmik",
+        "driver_size_in": 12,
+        "amp_power_w_rms": 370,
+        "frequency_response_hz": "14-370",
+        "crossover_range_hz": "40-120",
+        "room_correction": false,
+        "app_control": false,
+        "enclosure_type": "sealed",
+        "dimensions_mm": "406x368x406",
+        "weight_kg": 22.7,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "elac_sub3030",
+      "type": "subwoofer",
+      "name": "ELAC SUB3030",
+      "attributes": {
+        "brand": "ELAC",
+        "driver_size_in": 12,
+        "amp_power_w_rms": 1000,
+        "frequency_response_hz": "18-200",
+        "crossover_range_hz": "30-200",
+        "room_correction": false,
+        "app_control": true,
+        "enclosure_type": "sealed",
+        "dimensions_mm": "430x425x430",
+        "weight_kg": 26.8,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "denon_avr_x3800h",
+      "type": "av_receiver",
+      "name": "Denon AVR-X3800H",
+      "attributes": {
+        "brand": "Denon",
+        "channels": "9.4ch",
+        "power_per_channel_w_8ohm": 105,
+        "hdmi_2_1_inputs": 6,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "audyssey_xt32",
+        "auro_3d": false,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "marantz_cinema_50",
+      "type": "av_receiver",
+      "name": "Marantz Cinema 50",
+      "attributes": {
+        "brand": "Marantz",
+        "channels": "9.4ch",
+        "power_per_channel_w_8ohm": 110,
+        "hdmi_2_1_inputs": 6,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "audyssey_xt32",
+        "auro_3d": false,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "yamaha_rx_a6a",
+      "type": "av_receiver",
+      "name": "Yamaha RX-A6A",
+      "attributes": {
+        "brand": "Yamaha",
+        "channels": "9.2ch",
+        "power_per_channel_w_8ohm": 150,
+        "hdmi_2_1_inputs": 7,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "ypao_r_s_c",
+        "auro_3d": false,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "onkyo_tx_rz70",
+      "type": "av_receiver",
+      "name": "Onkyo TX-RZ70",
+      "attributes": {
+        "brand": "Onkyo",
+        "channels": "11.2ch",
+        "power_per_channel_w_8ohm": 140,
+        "hdmi_2_1_inputs": 7,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "dirac_live",
+        "auro_3d": true,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "anthem_mrx_740",
+      "type": "av_receiver",
+      "name": "Anthem MRX 740",
+      "attributes": {
+        "brand": "Anthem",
+        "channels": "7.2ch",
+        "power_per_channel_w_8ohm": 140,
+        "hdmi_2_1_inputs": 4,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "dirac_live",
+        "auro_3d": false,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "sony_str_an1000",
+      "type": "av_receiver",
+      "name": "Sony STR-AN1000",
+      "attributes": {
+        "brand": "Sony",
+        "channels": "8.2ch",
+        "power_per_channel_w_8ohm": 100,
+        "hdmi_2_1_inputs": 5,
+        "supports_atmos": true,
+        "supports_dts_x": true,
+        "room_correction": "sony_360_reality_audio",
+        "auro_3d": false,
+        "source_ids": [0, 3, 4]
+      }
+    },
+    {
+      "id": "cambridge_audio_cxa81",
+      "type": "stereo_amp",
+      "name": "Cambridge Audio CXA81",
+      "attributes": {
+        "brand": "Cambridge Audio",
+        "integrated": true,
+        "power_per_channel_w_8ohm": 80,
+        "has_phono": false,
+        "has_dac": true,
+        "balanced_inputs": true,
+        "source_ids": [0, 1, 5]
+      }
+    },
+    {
+      "id": "nad_c_379",
+      "type": "stereo_amp",
+      "name": "NAD C 379",
+      "attributes": {
+        "brand": "NAD",
+        "integrated": true,
+        "power_per_channel_w_8ohm": 120,
+        "has_phono": true,
+        "has_dac": true,
+        "balanced_inputs": false,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "schiit_vidar_2",
+      "type": "stereo_amp",
+      "name": "Schiit Vidar 2",
+      "attributes": {
+        "brand": "Schiit",
+        "integrated": false,
+        "power_per_channel_w_8ohm": 100,
+        "has_phono": false,
+        "has_dac": false,
+        "balanced_inputs": true,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "marantz_pm7000n",
+      "type": "stereo_amp",
+      "name": "Marantz PM7000N",
+      "attributes": {
+        "brand": "Marantz",
+        "integrated": true,
+        "power_per_channel_w_8ohm": 60,
+        "has_phono": true,
+        "has_dac": true,
+        "balanced_inputs": false,
+        "source_ids": [0, 1, 3]
+      }
+    },
+    {
+      "id": "rega_brio",
+      "type": "stereo_amp",
+      "name": "Rega Brio",
+      "attributes": {
+        "brand": "Rega",
+        "integrated": true,
+        "power_per_channel_w_8ohm": 50,
+        "has_phono": true,
+        "has_dac": false,
+        "balanced_inputs": false,
+        "source_ids": [0, 2, 5]
+      }
+    },
+    {
+      "id": "bluesound_node_x",
+      "type": "streamer",
+      "name": "Bluesound Node X",
+      "attributes": {
+        "brand": "Bluesound",
+        "supports_airplay_2": true,
+        "supports_chromecast": false,
+        "supports_roon": true,
+        "supports_spotify_connect": true,
+        "supports_tidal_connect": true,
+        "hires_max": "24bit/192khz",
+        "has_dac": true,
+        "balanced_output": false,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "wiim_pro_plus",
+      "type": "streamer",
+      "name": "WiiM Pro Plus",
+      "attributes": {
+        "brand": "WiiM",
+        "supports_airplay_2": true,
+        "supports_chromecast": true,
+        "supports_roon": false,
+        "supports_spotify_connect": true,
+        "supports_tidal_connect": true,
+        "hires_max": "24bit/192khz",
+        "has_dac": true,
+        "balanced_output": false,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "ifi_zen_stream",
+      "type": "streamer",
+      "name": "iFi Zen Stream",
+      "attributes": {
+        "brand": "iFi",
+        "supports_airplay_2": true,
+        "supports_chromecast": true,
+        "supports_roon": true,
+        "supports_spotify_connect": true,
+        "supports_tidal_connect": true,
+        "hires_max": "24bit/384khz",
+        "has_dac": false,
+        "balanced_output": false,
+        "source_ids": [0, 1, 4]
+      }
+    },
+    {
+      "id": "cambridge_audio_cxn_v2",
+      "type": "streamer",
+      "name": "Cambridge Audio CXN V2",
+      "attributes": {
+        "brand": "Cambridge Audio",
+        "supports_airplay_2": true,
+        "supports_chromecast": false,
+        "supports_roon": true,
+        "supports_spotify_connect": true,
+        "supports_tidal_connect": false,
+        "hires_max": "24bit/384khz",
+        "has_dac": true,
+        "balanced_output": true,
+        "source_ids": [0, 1, 5]
+      }
+    },
+    {
+      "id": "mediabridge_12awg_banana",
+      "type": "speaker_cable",
+      "name": "Mediabridge 12AWG Speaker Cable with Banana Plugs",
+      "attributes": {
+        "brand": "Mediabridge",
+        "gauge_awg": 12,
+        "length_ft": 10,
+        "terminated": "banana",
+        "oxygen_free_copper": true,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "monoprice_14awg_pure_copper",
+      "type": "speaker_cable",
+      "name": "Monoprice 14AWG Pure Copper Speaker Wire",
+      "attributes": {
+        "brand": "Monoprice",
+        "gauge_awg": 14,
+        "length_ft": 50,
+        "terminated": "none",
+        "oxygen_free_copper": true,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "audtek_16awg_pre_terminated",
+      "type": "speaker_cable",
+      "name": "Audtek 16AWG Pre-Terminated Speaker Cable",
+      "attributes": {
+        "brand": "Audtek",
+        "gauge_awg": 16,
+        "length_ft": 10,
+        "terminated": "banana",
+        "oxygen_free_copper": true,
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "anti_cables_14awg_solid",
+      "type": "speaker_cable",
+      "name": "Anti-Cables Level 2 14AWG Solid Core",
+      "attributes": {
+        "brand": "Anti-Cables",
+        "gauge_awg": 14,
+        "length_ft": 8,
+        "terminated": "none",
+        "oxygen_free_copper": false,
+        "source_ids": [1, 4]
+      }
+    }
+  ]
+}
