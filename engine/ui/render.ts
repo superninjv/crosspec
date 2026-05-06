@@ -312,9 +312,9 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
       <span class="bs-amount" id="bs-amount">$0</span>
       <span class="bs-meta">tick the products you want, then add to cart</span>
     </div>
-    <a class="bs-cart disabled" id="bs-cart" href="/go/${esc(vertical)}/cart?skus=" rel="sponsored nofollow noopener" target="_blank">
+    <a class="bs-cart disabled" id="bs-cart" href="/${esc(vertical)}/cart/?skus=" target="_blank">
       <span class="bs-cart-glyph" aria-hidden="true">&#9635;</span>
-      <span>Add to Amazon cart</span>
+      <span>Review &amp; checkout</span>
       <span class="bs-cart-arr" aria-hidden="true">&rarr;</span>
     </a>
   </div>`

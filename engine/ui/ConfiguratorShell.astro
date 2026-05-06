@@ -287,12 +287,11 @@ const today = new Date().toISOString().slice(0, 10);
           <a
             class="bs-cart disabled"
             id="bs-cart"
-            href={`/go/${vertical}/cart?skus=`}
-            rel="sponsored nofollow noopener"
+            href={`/${vertical}/cart/?skus=`}
             target="_blank"
           >
             <span class="bs-cart-glyph" aria-hidden="true">▣</span>
-            <span>Add to Amazon cart</span>
+            <span>Review &amp; checkout</span>
             <span class="bs-cart-arr" aria-hidden="true">→</span>
           </a>
         </div>
@@ -411,7 +410,7 @@ const today = new Date().toISOString().slice(0, 10);
       }
       const cartEl = document.getElementById("bs-cart") as HTMLAnchorElement | null;
       if (cartEl) {
-        const href = `/go/${vertical}/cart?skus=${selectedSkus.join(",")}`;
+        const href = `/${vertical}/cart/?skus=${selectedSkus.join(",")}`;
         cartEl.href = href;
         cartEl.classList.toggle("disabled", selectedSkus.length === 0);
       }
