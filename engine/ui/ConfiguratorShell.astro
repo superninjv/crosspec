@@ -400,11 +400,14 @@ const today = new Date().toISOString().slice(0, 10);
       }
       const amountEl = document.getElementById("bs-amount");
       if (amountEl) {
-        amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "no prices";
+        amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "$0";
       }
       const metaEl = document.querySelector<HTMLElement>(".build-summary .bs-meta");
       if (metaEl) {
-        metaEl.textContent = `across ${selectedSkus.length} ${selectedSkus.length === 1 ? "pick" : "picks"}`;
+        metaEl.textContent =
+          selectedSkus.length === 0
+            ? "tick the products you want, then add to cart"
+            : `across ${selectedSkus.length} ${selectedSkus.length === 1 ? "pick" : "picks"}`;
       }
       const cartEl = document.getElementById("bs-cart") as HTMLAnchorElement | null;
       if (cartEl) {
