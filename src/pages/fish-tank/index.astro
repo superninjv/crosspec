@@ -477,6 +477,20 @@ for (const e of kb.entities) {
     banner.innerHTML = html;
   }
 
+  function autoSelectFirstOfEachType() {
+    if (!form) return;
+    const wantedTypes = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value);
+    for (const wantType of wantedTypes) {
+      const section = document.querySelector<HTMLElement>(`.res-section[data-type="${wantType}"]`);
+      const firstCard = section?.querySelector<HTMLElement>(".pcard");
+      if (firstCard) {
+        const cb = firstCard.querySelector<HTMLInputElement>(".pick-cb");
+        if (cb && !cb.checked) cb.checked = true;
+      }
+    }
+    syncBuildSummary();
+  }
+
   if (resultEl) {
     resultEl.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
@@ -516,6 +530,7 @@ for (const e of kb.entities) {
           }
         }
         renderPicker();
+        autoSelectFirstOfEachType();
         renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {
         syncBuildSummary();
@@ -631,6 +646,7 @@ for (const e of kb.entities) {
       <p class="sz-foot">Ecosystem filters fish + aquariums; capacity, parameters, and aggression are checked when you tick specific picks below.</p>
     `;
     renderPicker();
+    autoSelectFirstOfEachType();
     sizingEl.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 

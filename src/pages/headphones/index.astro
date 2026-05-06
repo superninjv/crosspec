@@ -329,6 +329,20 @@ for (const e of kb.entities) {
     banner.innerHTML = `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
   }
 
+  function autoSelectFirstOfEachType() {
+    if (!form) return;
+    const wantedTypes = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value);
+    for (const wantType of wantedTypes) {
+      const section = document.querySelector<HTMLElement>(`.res-section[data-type="${wantType}"]`);
+      const firstCard = section?.querySelector<HTMLElement>(".pcard");
+      if (firstCard) {
+        const cb = firstCard.querySelector<HTMLInputElement>(".pick-cb");
+        if (cb && !cb.checked) cb.checked = true;
+      }
+    }
+    syncBuildSummary();
+  }
+
   if (resultEl) {
     resultEl.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
@@ -368,6 +382,7 @@ for (const e of kb.entities) {
           }
         }
         renderPicker();
+        autoSelectFirstOfEachType();
         renderCompatBanner();
       } else if (t.classList.contains("pick-cb")) {
         syncBuildSummary();
@@ -477,6 +492,7 @@ for (const e of kb.entities) {
       <p class="sz-foot">Use case is a hint — review individual product specs below before adding to your build.</p>
     `;
     renderPicker();
+    autoSelectFirstOfEachType();
     sizingEl.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
