@@ -1,0 +1,321 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import type { Entity, KnowledgeBase } from "@engine/solver";
+import kbRaw from "@verticals/fish-tank/kb.json";
+import affiliatesRaw from "@verticals/fish-tank/affiliates.json";
+
+const kb = kbRaw as KnowledgeBase;
+
+interface ProductMap {
+  products: Record<string, { merchant: string; asin?: string }>;
+}
+const aff = affiliatesRaw as ProductMap;
+
+const VERTICAL = "fish-tank";
+
+const TYPE_LABEL: Record<string, string> = {
+  fish_species: "fish species",
+  aquarium: "aquarium",
+  filter: "filter",
+  heater: "heater",
+  light: "light",
+  co2_system: "CO2 system",
+  substrate: "substrate",
+  protein_skimmer: "protein skimmer",
+  pump: "pump",
+  test_kit: "test kit",
+};
+
+export async function getStaticPaths() {
+  const k = kbRaw as KnowledgeBase;
+  const byType = new Map<string, Entity[]>();
+  for (const e of k.entities) {
+    if (!byType.has(e.type)) byType.set(e.type, []);
+    byType.get(e.type)!.push(e);
+  }
+  const out: Array<{ params: { pair: string }; props: { aId: string; bId: string } }> = [];
+  for (const [, ents] of byType) {
+    const top = ents.slice(0, 5);
+    for (let i = 0; i < top.length; i++) {
+      for (let j = i + 1; j < top.length; j++) {
+        const a = top[i];
+        const b = top[j];
+        const aSku = a.sku ?? a.id;
+        const bSku = b.sku ?? b.id;
+        const pair = `${aSku}-vs-${bSku}`;
+        out.push({ params: { pair }, props: { aId: a.id, bId: b.id } });
+      }
+    }
+  }
+  return out;
+}
+
+interface PageProps { aId: string; bId: string }
+const { aId, bId } = Astro.props as PageProps;
+const a = kb.entities.find((e) => e.id === aId)! as Entity;
+const b = kb.entities.find((e) => e.id === bId)! as Entity;
+const aSku = a.sku ?? a.id;
+const bSku = b.sku ?? b.id;
+const aAttrs = a.attributes;
+const bAttrs = b.attributes;
+
+type Attrs = Record<string, unknown>;
+const aAttrsT = aAttrs as Attrs;
+const bAttrsT = bAttrs as Attrs;
+
+const typeLabel = TYPE_LABEL[a.type] ?? a.type;
+const aPrice = typeof aAttrs.price_usd === "number" ? (aAttrs.price_usd as number) : null;
+const bPrice = typeof bAttrs.price_usd === "number" ? (bAttrs.price_usd as number) : null;
+const aAsin = aff.products[a.id]?.asin ?? aff.products[aSku]?.asin ?? null;
+const bAsin = aff.products[b.id]?.asin ?? aff.products[bSku]?.asin ?? null;
+
+const pageTitle = `${a.name} vs ${b.name} · specs, parameters, price | crosspec`;
+const description = `Side-by-side comparison of the ${a.name} and ${b.name} ${typeLabel}s: capacity, parameters, materials, and price. Sourced from Bulk Reef Supply, Aquarium Co-Op, SeriouslyFish.`;
+
+const specs: Array<{ k: string; aV: string; bV: string }> = [
+  { k: "Brand", aV: String(aAttrsT.brand ?? "—"), bV: String(bAttrsT.brand ?? "—") },
+  { k: "Model", aV: String(aAttrsT.model ?? "—"), bV: String(bAttrsT.model ?? "—") },
+  { k: "Price (last verified 2026-05-06)", aV: aPrice != null ? `$${aPrice}` : "—", bV: bPrice != null ? `$${bPrice}` : "—" },
+];
+
+const extraKeys: [string, string][] = [
+  // aquarium
+  ["gallons", "Capacity (gal)"],
+  ["dimensions_in", "Dimensions"],
+  ["glass_or_acrylic", "Material"],
+  ["rimless", "Rimless"],
+  ["freshwater_or_saltwater_or_both", "Suited for"],
+  // filter
+  ["gph", "Flow (GPH)"],
+  ["max_tank_gallons", "Max tank (gal)"],
+  ["multi_stage", "Multi-stage"],
+  ["kind", "Kind"],
+  // heater
+  ["watts", "Wattage"],
+  ["adjustable", "Adjustable"],
+  ["titanium", "Titanium"],
+  ["suitable_for_gallons", "Suited gallons"],
+  // light
+  ["par_at_12in", "PAR @ 12in"],
+  ["spectrum", "Spectrum"],
+  ["fits_size_in", "Fits (in)"],
+  ["type", "Type"],
+  // co2
+  ["co2_max_bps", "CO2 max bps"],
+  ["dual_stage", "Dual stage"],
+  // substrate
+  ["weight_lb", "Weight (lb)"],
+  ["ph_buffering", "pH buffering"],
+  ["planted", "Planted"],
+  // skimmer
+  ["in_sump", "In-sump"],
+  // pump
+  ["controllable", "Controllable"],
+  // test_kit
+  ["num_tests", "Tests"],
+  // fish
+  ["ecosystem", "Ecosystem"],
+  ["min_tank_gallons", "Min tank (gal)"],
+  ["adult_size_in", "Adult size (in)"],
+  ["temperature_range_f", "Temp (°F)"],
+  ["ph_range", "pH range"],
+  ["gh_range_dgh", "GH (dGH)"],
+  ["care_difficulty", "Care difficulty"],
+  ["aggression", "Aggression"],
+  ["community_compatible", "Community-compatible"],
+  ["schooling_min_count", "Schooling min"],
+  ["diet", "Diet"],
+  ["lifespan_years", "Lifespan (yrs)"],
+  ["tank_zone", "Tank zone"],
+];
+for (const [k, niceK] of extraKeys) {
+  const av = aAttrsT[k];
+  const bv = bAttrsT[k];
+  if (av != null || bv != null) {
+    specs.push({
+      k: niceK,
+      aV: Array.isArray(av) ? av.join(", ") : av != null ? String(av) : "—",
+      bV: Array.isArray(bv) ? bv.join(", ") : bv != null ? String(bv) : "—",
+    });
+  }
+}
+
+const compatNote =
+  a.type === "fish_species"
+    ? `Compare temperature, pH, and aggression — both fish must overlap on every parameter to share a tank.`
+    : a.type === "aquarium"
+    ? `Confirm the larger tank meets every selected species' minimum gallons.`
+    : null;
+
+function buyHref(sku: string, asin: string | null): string {
+  if (asin) return `https://www.amazon.com/dp/${asin}/?tag=crosspec20-20&ascsubtag=compare`;
+  return `/go/${VERTICAL}/${sku}?ref=compare`;
+}
+const aBuyHref = buyHref(aSku, aAsin);
+const bBuyHref = buyHref(bSku, bAsin);
+
+const aNote = (aAttrsT.note as string) ?? (aAttrsT.notes as string) ?? "";
+const bNote = (bAttrsT.note as string) ?? (bAttrsT.notes as string) ?? "";
+
+const compareJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "ItemList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: a.name, url: `https://crosspec.com/${VERTICAL}/devices/${aSku}/` },
+    { "@type": "ListItem", position: 2, name: b.name, url: `https://crosspec.com/${VERTICAL}/devices/${bSku}/` },
+  ],
+};
+---
+<script type="application/ld+json" is:inline set:html={JSON.stringify(compareJsonLd)} />
+
+<Layout
+  title={pageTitle}
+  description={description}
+  crumbs={[VERTICAL, "compare", `${aSku}-vs-${bSku}`]}
+  kbStatus={`kb v0.1 · ${kb.entities.length} entities`}
+>
+  <section class="cmp-page">
+    <p class="eyebrow">
+      <a href={`/${VERTICAL}/`}>{VERTICAL}</a>
+      <span class="sep">›</span>
+      <span>compare</span>
+    </p>
+    <h1 class="cmp-title">{a.name} <span class="vs">vs</span> {b.name}</h1>
+    <p class="lede">Quick side-by-side: specs, parameters, and price. Both are {typeLabel}s.{compatNote ? ` ${compatNote}` : ""} Specs sourced from vendor listings and community spec sheets.</p>
+
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>
+            <a class="cmp-col-link" href={`/${VERTICAL}/devices/${aSku}/`}>{a.name}</a>
+          </th>
+          <th>
+            <a class="cmp-col-link" href={`/${VERTICAL}/devices/${bSku}/`}>{b.name}</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {specs.map((row) => (
+          <tr>
+            <th class="rkey">{row.k}</th>
+            <td>{row.aV}</td>
+            <td>{row.bV}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    {(aNote || bNote) && (
+      <div class="cmp-notes">
+        {aNote && (
+          <div class="cmp-note">
+            <h3>{a.name} · what to know</h3>
+            <p>{aNote}</p>
+          </div>
+        )}
+        {bNote && (
+          <div class="cmp-note">
+            <h3>{b.name} · what to know</h3>
+            <p>{bNote}</p>
+          </div>
+        )}
+      </div>
+    )}
+
+    <div class="cmp-cta">
+      <a class="cta" href={aBuyHref} target="_blank" rel="sponsored nofollow noopener">
+        <span>Open {a.name} on Amazon</span>
+        <span class="arr" aria-hidden="true">→</span>
+      </a>
+      <a class="cta" href={bBuyHref} target="_blank" rel="sponsored nofollow noopener">
+        <span>Open {b.name} on Amazon</span>
+        <span class="arr" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <p class="disclosure">
+      crosspec is an Amazon Associate. Prices last verified 2026-05-06. Compatibility claims sourced from each vendor's product catalog and community spec sheets; see the device pages above for full citations.
+    </p>
+  </section>
+</Layout>
+
+<style is:global>
+  .cmp-page { max-width: 940px; margin: 0 auto; padding: 28px 24px 80px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin: 0 0 12px; }
+  .eyebrow a { color: var(--ink-2); text-decoration: none; }
+  .eyebrow a:hover { color: var(--ink-0); text-decoration: underline; }
+  .eyebrow .sep { margin: 0 6px; opacity: 0.5; }
+  .cmp-title {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+  .cmp-title .vs {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--ink-3);
+    font-weight: 500;
+    margin: 0 6px;
+    text-transform: lowercase;
+  }
+  .lede { color: var(--ink-2); font-size: 15px; line-height: 1.55; max-width: 720px; margin: 0 0 22px; }
+  .cmp-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .cmp-table th, .cmp-table td {
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid var(--paper-edge);
+    font-size: 14px;
+  }
+  .cmp-table thead th { font-size: 14.5px; background: var(--paper-1); }
+  .cmp-table thead th:first-child { width: 18%; }
+  .cmp-col-link { color: var(--ink-0); text-decoration: none; }
+  .cmp-col-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .rkey { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-2); font-weight: 600; }
+  .cmp-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 700px) { .cmp-notes { grid-template-columns: 1fr; } }
+  .cmp-note { background: var(--paper-1); border: 1px solid var(--paper-edge); border-radius: 8px; padding: 14px 16px; }
+  .cmp-note h3 { font-size: 14px; margin: 0 0 6px; color: var(--ink-0); }
+  .cmp-note p { font-size: 13.5px; line-height: 1.55; color: var(--ink-1); margin: 0; }
+  .cmp-cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 700px) { .cmp-cta { grid-template-columns: 1fr; } }
+  .cmp-cta .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 22px;
+    background: oklch(0.50 0.14 220);
+    color: var(--paper-0);
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 14.5px;
+    text-decoration: none;
+    box-shadow: 0 2px 0 oklch(0.38 0.14 220);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .cmp-cta .cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 0 oklch(0.38 0.14 220), 0 6px 14px -4px oklch(0.35 0.14 220 / 0.55);
+  }
+  .disclosure { font-size: 12px; color: var(--ink-3); line-height: 1.5; margin-top: 24px; border-top: 1px solid var(--paper-edge); padding-top: 14px; }
+</style>
+</content>
+</invoke>

@@ -1,0 +1,653 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import type { KnowledgeBase } from "@engine/solver";
+import kbRaw from "@verticals/fish-tank/kb.json";
+import affRaw from "@verticals/fish-tank/affiliates.json";
+
+const kb = kbRaw as KnowledgeBase;
+const VERTICAL = "fish-tank";
+const ACCENT = "oklch(0.50 0.14 220)";
+
+interface ProductMap { products: Record<string, { merchant: string; asin?: string }>; }
+const aff = affRaw as ProductMap;
+
+const TYPES = [
+  { slug: "fish_species", label: "Fish (start here)", blurb: "Pick the fish first — they drive every other choice." },
+  { slug: "aquarium", label: "Aquarium", blurb: "Capacity must meet every species' minimum." },
+  { slug: "filter", label: "Filter", blurb: "GPH ≥ tank gallons × 4 (turnover rule)." },
+  { slug: "heater", label: "Heater", blurb: "3-5W per gallon. >200W use external controller." },
+  { slug: "light", label: "Light", blurb: "Plants want 50-100 PAR; reef SPS wants 200+." },
+  { slug: "co2_system", label: "CO2 system", blurb: "Planted tanks: regulator + diffuser + drop checker." },
+  { slug: "substrate", label: "Substrate", blurb: "Active soil for plants; aragonite for saltwater." },
+  { slug: "protein_skimmer", label: "Protein skimmer", blurb: "Required for saltwater >30gal." },
+  { slug: "pump", label: "Pump", blurb: "Return pump + wavemaker / powerhead." },
+  { slug: "test_kit", label: "Test kit", blurb: "API master + salinity + phosphate." },
+];
+
+const ECOSYSTEMS = [
+  { slug: "any", label: "Any" },
+  { slug: "freshwater", label: "Freshwater (community)" },
+  { slug: "planted", label: "Planted (live plants)" },
+  { slug: "brackish", label: "Brackish" },
+  { slug: "saltwater-fowlr", label: "Saltwater FOWLR" },
+  { slug: "reef-soft", label: "Reef · soft corals" },
+  { slug: "reef-sps", label: "Reef · SPS / hard" },
+];
+
+const slim = kb.entities.map((e) => ({
+  id: e.id,
+  sku: e.sku ?? e.id,
+  name: e.name,
+  type: e.type,
+  brand: String(e.attributes.brand ?? ""),
+  model: String(e.attributes.model ?? ""),
+  price: typeof e.attributes.price_usd === "number" ? (e.attributes.price_usd as number) : null,
+  note: (e.attributes.note as string) ?? (e.attributes.notes as string) ?? "",
+  asin: aff.products[e.id]?.asin ?? aff.products[e.sku ?? e.id]?.asin ?? null,
+  attrs: e.attributes,
+}));
+const slimJSON = JSON.stringify(slim);
+
+const byType = new Map<string, typeof kb.entities>();
+for (const e of kb.entities) {
+  if (!byType.has(e.type)) byType.set(e.type, []);
+  byType.get(e.type)!.push(e);
+}
+---
+<Layout
+  title="Aquarium configurator · stocking, filtration, lighting · crosspec"
+  description="Stock a tank that keeps your fish alive. Capacity meets every species' minimum, parameters overlap, no aggression mismatches. Sourced from Bulk Reef Supply, Aquarium Co-Op, SeriouslyFish."
+  crumbs={["fish-tank"]}
+  kbStatus={`fish-tank v0.1 · ${kb.entities.length} entities`}
+>
+  <section class="solar-hero" style={`--accent: ${ACCENT}`}>
+    <div class="hero-inner">
+      <p class="eyebrow">crosspec / fish-tank</p>
+      <h1>Stock a tank that <em>keeps your fish alive.</em></h1>
+      <p class="lede">{kb.entities.length} components and species. Tank capacity meets every fish's minimum, parameters overlap, no aggression mismatches. Sourced from Bulk Reef Supply, Aquarium Co-Op, SeriouslyFish.</p>
+    </div>
+  </section>
+
+  <section class="ai-helper" id="ai-helper">
+    <div class="ai-inner">
+      <div class="ai-head">
+        <span class="ai-glyph" aria-hidden="true">⌘</span>
+        <span class="ai-title">Tell me what you want to keep</span>
+        <span class="ai-sub">e.g. "75gal planted with neon tetras + corydoras" or "30gal nano reef with clownfish"</span>
+      </div>
+      <div class="ai-transcript" id="ai-transcript"></div>
+      <form id="ai-form" class="ai-form" autocomplete="off">
+        <input type="text" name="q" id="ai-input" placeholder="What kind of tank are you stocking?" maxlength="500" required />
+        <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="ai-examples">
+        <button type="button" class="ai-chip" data-q="Planted tank with neon tetras">Planted · neon tetras</button>
+        <button type="button" class="ai-chip" data-q="Nano reef with clownfish">Nano reef · clownfish</button>
+        <button type="button" class="ai-chip" data-q="Discus advanced setup">Discus advanced</button>
+        <button type="button" class="ai-chip" data-q="Beginner 20gal community tank">Beginner 20gal community</button>
+      </div>
+    </div>
+  </section>
+
+  <form id="picker-form" class="picker-form">
+    <fieldset class="picker-step">
+      <legend><span class="step-num">1</span> What ecosystem?</legend>
+      <div class="chip-row">
+        {ECOSYSTEMS.map((l, i) => (
+          <label class="chip">
+            <input type="radio" name="ecosystem" value={l.slug} checked={i === 0} />
+            <span>{l.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset class="picker-step">
+      <legend><span class="step-num">2</span> What components do you want?</legend>
+      <div class="want-grid">
+        {TYPES.map((t) => {
+          const ents = byType.get(t.slug) ?? [];
+          return (
+            <label class="want-tile">
+              <input type="checkbox" name="want" value={t.slug} />
+              <div class="wt-body">
+                <span class="wt-label">{t.label}</span>
+                <span class="wt-blurb">{t.blurb}</span>
+                <span class="wt-count">{ents.length} options</span>
+              </div>
+            </label>
+          );
+        })}
+      </div>
+    </fieldset>
+  </form>
+
+  <section id="picker-result" class="picker-result">
+    <p class="picker-empty">Tick a component above to see compatible options.</p>
+  </section>
+
+  <section class="build-summary" id="build-summary" hidden>
+    <div class="bs-totals">
+      <span class="bs-label">build total</span>
+      <span class="bs-amount" id="bs-amount">$0</span>
+      <span class="bs-meta" id="bs-meta">tick the products you want</span>
+    </div>
+    <a class="bs-cart disabled" id="bs-cart" href={`/${VERTICAL}/cart/?skus=`} target="_blank">
+      <span aria-hidden="true">▣</span>
+      <span>Review &amp; checkout</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </section>
+
+  <details class="all-products">
+    <summary>Or browse everything by category</summary>
+    <div class="all-inner">
+      {TYPES.map((t) => {
+        const ents = byType.get(t.slug) ?? [];
+        if (ents.length === 0) return null;
+        return (
+          <section class="cat-section" id={t.slug}>
+            <header class="cat-head">
+              <h3>{t.label}</h3>
+              <span class="cat-count">{ents.length}</span>
+            </header>
+            <ul class="cat-grid">
+              {ents.map((e) => {
+                const sku = e.sku ?? e.id;
+                const priceUsd = typeof e.attributes.price_usd === "number" ? e.attributes.price_usd : null;
+                return (
+                  <li class="cat-card">
+                    <a class="cc-link" href={`/${VERTICAL}/devices/${sku}/`}>
+                      <span class="cc-brand">{String(e.attributes.brand ?? "").replace(/_/g, " ")}</span>
+                      <span class="cc-name">{e.name}</span>
+                      <span class="cc-price">{priceUsd != null ? `$${priceUsd}` : ""}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        );
+      })}
+    </div>
+  </details>
+</Layout>
+
+<script id="picker-data" type="application/json" set:html={slimJSON} />
+
+<script>
+  type Slim = { id: string; sku: string; name: string; type: string; brand: string; model: string; price: number | null; note: string; asin: string | null; attrs: Record<string, unknown>; };
+
+  const VERTICAL = "fish-tank";
+  const TYPE_LABEL: Record<string, string> = {
+    fish_species: "Fish",
+    aquarium: "Aquariums",
+    filter: "Filters",
+    heater: "Heaters",
+    light: "Lights",
+    co2_system: "CO2 systems",
+    substrate: "Substrates",
+    protein_skimmer: "Protein skimmers",
+    pump: "Pumps",
+    test_kit: "Test kits",
+  };
+  const dataEl = document.getElementById("picker-data");
+  const data: Slim[] = dataEl ? JSON.parse(dataEl.textContent ?? "[]") : [];
+  const form = document.getElementById("picker-form") as HTMLFormElement | null;
+  const resultEl = document.getElementById("picker-result");
+  const buildSummary = document.getElementById("build-summary");
+  const selected = new Set<string>();
+
+  function escapeHtml(s: string): string {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function matchesEcosystem(d: Slim, eco: string): boolean {
+    if (!eco || eco === "any") return true;
+    const a = d.attrs as Record<string, unknown>;
+    // For fish_species: filter by ecosystem attr.
+    if (d.type === "fish_species") {
+      const fishEco = String(a.ecosystem ?? "").toLowerCase();
+      if (!fishEco) return true;
+      if ((eco === "freshwater" || eco === "planted" || eco === "brackish") && fishEco === "freshwater") return true;
+      if ((eco === "saltwater-fowlr" || eco === "reef-soft" || eco === "reef-sps") && fishEco === "saltwater") return true;
+      return false;
+    }
+    // For aquariums: filter by freshwater_or_saltwater_or_both.
+    if (d.type === "aquarium") {
+      const tankEco = String(a.freshwater_or_saltwater_or_both ?? "both").toLowerCase();
+      if (tankEco === "both") return true;
+      if ((eco === "freshwater" || eco === "planted" || eco === "brackish") && tankEco === "freshwater") return true;
+      if ((eco === "saltwater-fowlr" || eco === "reef-soft" || eco === "reef-sps") && tankEco === "saltwater") return true;
+      return false;
+    }
+    // Skimmers/pumps biased to saltwater contexts but pass — user can decide.
+    return true;
+  }
+
+  function renderPicker() {
+    if (!form || !resultEl) return;
+    const wanted = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value);
+    const eco = (form.querySelector('input[name="ecosystem"]:checked') as HTMLInputElement | null)?.value ?? "any";
+    if (wanted.length === 0) {
+      resultEl.innerHTML = '<p class="picker-empty">Tick a component above to see compatible options.</p>';
+      buildSummary?.setAttribute("hidden", "");
+      return;
+    }
+    buildSummary?.removeAttribute("hidden");
+
+    let html = "";
+    for (const wantType of wanted) {
+      const ofType = data.filter((d) => d.type === wantType && matchesEcosystem(d, eco));
+      if (ofType.length === 0) {
+        html += `<section class="res-section"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2></header><p class="picker-empty">No matches for the selected ecosystem.</p></section>`;
+        continue;
+      }
+      html += `<section class="res-section" data-type="${wantType}"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2><span class="res-ct">${ofType.length}</span><label class="res-sort"><span class="res-sort-lbl">Sort</span><select class="res-sort-sel" data-type="${wantType}"><option value="default">Featured</option><option value="price-asc">Price · low to high</option><option value="price-desc">Price · high to low</option></select></label></header><div class="card-grid">`;
+      for (const d of ofType) {
+        const isSelected = selected.has(d.sku);
+        const detailHref = `/${VERTICAL}/devices/${d.sku}/`;
+        const buyHref = d.asin
+          ? `https://www.amazon.com/dp/${d.asin}/?tag=crosspec20-20&ascsubtag=picker`
+          : `/go/${VERTICAL}/${d.sku}?ref=picker`;
+        const priceTxt = d.price != null ? `$${d.price}` : "—";
+        html += `<article class="pcard" data-sku="${escapeHtml(d.sku)}" data-price="${d.price ?? 0}" data-selected="${isSelected ? "1" : "0"}">
+          <div class="pc-top">
+            <label class="pick-toggle"><input type="checkbox" class="pick-cb" ${isSelected ? "checked" : ""} aria-label="Include in build" /><span class="pick-box" aria-hidden="true"></span></label>
+            <span class="pc-brand">${escapeHtml(d.brand.replace(/_/g, " "))}</span>
+          </div>
+          <h3 class="pc-name"><a href="${detailHref}">${escapeHtml(d.name)}</a></h3>
+          ${d.note ? `<p class="pc-note">${escapeHtml(d.note.slice(0, 200))}</p>` : ""}
+          <div class="pc-foot">
+            <span class="pc-price">${priceTxt}</span>
+            <a class="pc-cta" href="${buyHref}" target="_blank" rel="sponsored nofollow noopener">Open on Amazon →</a>
+          </div>
+        </article>`;
+      }
+      html += `</div></section>`;
+    }
+    resultEl.innerHTML = html;
+    syncBuildSummary();
+  }
+
+  function syncBuildSummary() {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".pcard[data-sku]"));
+    let total = 0;
+    const skus: string[] = [];
+    for (const card of cards) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      const sku = card.dataset.sku ?? "";
+      if (cb && cb.checked) {
+        card.dataset.selected = "1";
+        if (sku) { skus.push(sku); selected.add(sku); total += parseFloat(card.dataset.price ?? "0") || 0; }
+      } else {
+        card.dataset.selected = "0";
+        selected.delete(sku);
+      }
+    }
+
+    // CRITICAL: hard-block layer. If safety violations exist, disable cart link.
+    const blocks = findBlockingViolations();
+    const amountEl = document.getElementById("bs-amount");
+    const metaEl = document.getElementById("bs-meta");
+    const cartEl = document.getElementById("bs-cart") as HTMLAnchorElement | null;
+
+    if (blocks.length > 0) {
+      // Keep summary visible (so the user sees the block message), but disable checkout.
+      buildSummary?.removeAttribute("hidden");
+      if (amountEl) amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "$0";
+      if (metaEl) metaEl.textContent = "Resolve safety blocks first";
+      if (cartEl) {
+        cartEl.removeAttribute("href");
+        cartEl.classList.add("safety-blocked", "disabled");
+      }
+      return;
+    }
+
+    if (amountEl) amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "$0";
+    if (metaEl) metaEl.textContent = skus.length === 0 ? "tick the products you want" : `${skus.length} ${skus.length === 1 ? "pick" : "picks"} · review before buying`;
+    if (cartEl) {
+      cartEl.href = `/${VERTICAL}/cart/?skus=${skus.join(",")}`;
+      cartEl.classList.toggle("disabled", skus.length === 0);
+      cartEl.classList.remove("safety-blocked");
+    }
+  }
+
+  // Soft compatibility hints — non-blocking. Type-only.
+  const TYPE_DEPS: Record<string, string[]> = {
+    fish_species: ["aquarium", "filter", "heater", "test_kit"],
+    aquarium: ["filter", "heater"],
+  };
+  const TYPE_LBL: Record<string, string> = {
+    fish_species: "fish", aquarium: "tank", filter: "filter", heater: "heater",
+    light: "light", co2_system: "CO2 system", substrate: "substrate",
+    protein_skimmer: "protein skimmer", pump: "pump", test_kit: "test kit",
+  };
+  const TYPE_EXCLUSIVE: Array<[string, string]> = [];
+
+  function pickedProducts(): Slim[] {
+    const out: Slim[] = [];
+    for (const card of document.querySelectorAll<HTMLElement>(".pcard[data-sku]")) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      if (!cb?.checked) continue;
+      const sku = card.dataset.sku ?? "";
+      const item = data.find((d) => d.sku === sku);
+      if (item) out.push(item);
+    }
+    return out;
+  }
+
+  function parseRange(s: string): [number, number] | null {
+    if (!s) return null;
+    const m = String(s).match(/(-?\d+(?:\.\d+)?)\s*[-–to]+\s*(-?\d+(?:\.\d+)?)/i);
+    if (!m) return null;
+    const a = parseFloat(m[1]);
+    const b = parseFloat(m[2]);
+    if (Number.isNaN(a) || Number.isNaN(b)) return null;
+    return [Math.min(a, b), Math.max(a, b)];
+  }
+
+  function rangesOverlap(a: [number, number], b: [number, number]): boolean {
+    return a[0] <= b[1] && b[0] <= a[1];
+  }
+
+  function findCompatWarnings(): string[] {
+    if (!form) return [];
+    const warnings: string[] = [];
+    const checked = new Set(
+      Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
+    );
+    for (const [trigger, deps] of Object.entries(TYPE_DEPS)) {
+      if (!checked.has(trigger)) continue;
+      const missing = deps.filter((d) => !checked.has(d));
+      if (missing.length === 0) continue;
+      warnings.push(`Missing ${missing.map((m) => TYPE_LBL[m] ?? m).join(", ")} — usually needed alongside the ${TYPE_LBL[trigger] ?? trigger}.`);
+    }
+    for (const [a, b] of TYPE_EXCLUSIVE) {
+      if (checked.has(a) && checked.has(b)) {
+        warnings.push(`${TYPE_LBL[a] ?? a} and ${TYPE_LBL[b] ?? b} are usually alternatives — most builds use one or the other.`);
+      }
+    }
+    return warnings;
+  }
+
+  // CRITICAL: hard-block layer for fish safety.
+  function findBlockingViolations(): string[] {
+    const picked = pickedProducts();
+    if (picked.length === 0) return [];
+    const blocks: string[] = [];
+
+    const fish = picked.filter((p) => p.type === "fish_species");
+    const tanks = picked.filter((p) => p.type === "aquarium");
+
+    // 1. Tank-capacity floor.
+    if (fish.length > 0 && tanks.length > 0) {
+      const tankMax = tanks.reduce((mx, t) => {
+        const g = Number((t.attrs as any).gallons ?? 0);
+        return g > mx ? g : mx;
+      }, 0);
+      for (const f of fish) {
+        const minGal = Number((f.attrs as any).min_tank_gallons ?? 0);
+        if (minGal > 0 && minGal > tankMax) {
+          blocks.push(`⛔ ${f.name} needs at least ${minGal}gal — your largest selected tank is ${tankMax}gal`);
+        }
+      }
+    }
+
+    // 2. Ecosystem mixing (freshwater + saltwater).
+    const ecos = new Set(fish.map((f) => String((f.attrs as any).ecosystem ?? "").toLowerCase()).filter(Boolean));
+    if (ecos.has("freshwater") && ecos.has("saltwater")) {
+      blocks.push(`⛔ Freshwater and saltwater species cannot share a tank`);
+    }
+
+    // 3. Schooling.
+    for (const f of fish) {
+      const n = Number((f.attrs as any).schooling_min_count ?? 1);
+      if (n > 1) {
+        blocks.push(`⛔ ${f.name} schools — pick at least ${n}`);
+      }
+    }
+
+    // 4. Temperature overlap (pairwise).
+    for (let i = 0; i < fish.length; i++) {
+      for (let j = i + 1; j < fish.length; j++) {
+        const a = fish[i], b = fish[j];
+        const ar = parseRange(String((a.attrs as any).temperature_range_f ?? ""));
+        const br = parseRange(String((b.attrs as any).temperature_range_f ?? ""));
+        if (ar && br && !rangesOverlap(ar, br)) {
+          const at = (a.attrs as any).temperature_range_f;
+          const bt = (b.attrs as any).temperature_range_f;
+          blocks.push(`⛔ ${a.name} (${at}) and ${b.name} (${bt}) need different temperatures — they can't share a tank`);
+        }
+      }
+    }
+
+    // 5. pH overlap (pairwise).
+    for (let i = 0; i < fish.length; i++) {
+      for (let j = i + 1; j < fish.length; j++) {
+        const a = fish[i], b = fish[j];
+        const ar = parseRange(String((a.attrs as any).ph_range ?? ""));
+        const br = parseRange(String((b.attrs as any).ph_range ?? ""));
+        if (ar && br && !rangesOverlap(ar, br)) {
+          const ap = (a.attrs as any).ph_range;
+          const bp = (b.attrs as any).ph_range;
+          blocks.push(`⛔ ${a.name} (pH ${ap}) and ${b.name} (pH ${bp}) need incompatible water chemistry`);
+        }
+      }
+    }
+
+    // 6. Aggression mismatch (aggressive + peaceful).
+    for (let i = 0; i < fish.length; i++) {
+      for (let j = i + 1; j < fish.length; j++) {
+        const a = fish[i], b = fish[j];
+        const aa = String((a.attrs as any).aggression ?? "").toLowerCase();
+        const bb = String((b.attrs as any).aggression ?? "").toLowerCase();
+        if ((aa === "aggressive" && bb === "peaceful") || (aa === "peaceful" && bb === "aggressive")) {
+          blocks.push(`⛔ ${a.name} (${aa}) and ${b.name} (${bb}) cannot share a tank — predator + prey`);
+        }
+      }
+    }
+
+    return blocks;
+  }
+
+  function renderCompatBanner() {
+    const blocks = findBlockingViolations();
+    const warnings = findCompatWarnings();
+    let banner = document.getElementById("deps-banner");
+    if (blocks.length === 0 && warnings.length === 0) {
+      if (banner) banner.remove();
+      return;
+    }
+    if (!banner) {
+      banner = document.createElement("div");
+      banner.id = "deps-banner";
+      const pickerForm = document.getElementById("picker-form");
+      pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
+    }
+    banner.className = blocks.length > 0 ? "deps-banner deps-block" : "deps-banner";
+    let html = "";
+    if (blocks.length > 0) {
+      html += `<strong>⛔ Build will harm fish — fix before checkout:</strong><ul>${blocks.map((b) => `<li>${b.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
+    }
+    if (warnings.length > 0) {
+      html += `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
+    }
+    banner.innerHTML = html;
+  }
+
+  if (resultEl) {
+    resultEl.addEventListener("change", (e) => {
+      const t = e.target as HTMLElement;
+      if (!t.matches(".res-sort-sel")) return;
+      const sel = t as HTMLSelectElement;
+      const section = sel.closest<HTMLElement>(".res-section");
+      const grid = section?.querySelector<HTMLElement>(".card-grid");
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>(".pcard"));
+      const order = sel.value;
+      const priced = cards.filter((c) => parseFloat(c.dataset.price ?? "0") > 0);
+      const unpriced = cards.filter((c) => !(parseFloat(c.dataset.price ?? "0") > 0));
+      if (order === "price-asc") {
+        priced.sort((a, b) => parseFloat(a.dataset.price ?? "0") - parseFloat(b.dataset.price ?? "0"));
+      } else if (order === "price-desc") {
+        priced.sort((a, b) => parseFloat(b.dataset.price ?? "0") - parseFloat(a.dataset.price ?? "0"));
+      } else {
+        renderPicker();
+        return;
+      }
+      for (const c of priced) grid.appendChild(c);
+      for (const c of unpriced) grid.appendChild(c);
+    });
+  }
+
+  if (form) {
+    form.addEventListener("change", (e) => {
+      const t = e.target as HTMLElement;
+      if (t.matches('input[name="want"]') || t.matches('input[name="ecosystem"]')) {
+        renderPicker();
+        renderCompatBanner();
+      } else if (t.classList.contains("pick-cb")) {
+        syncBuildSummary();
+        renderCompatBanner();
+      }
+    });
+  }
+
+  // ─── AI helper: natural language → params → applied to picker ───
+
+  type Msg = { role: "user" | "assistant"; content: string };
+  type FishTankParams = {
+    ecosystem: string;
+    tank_gallons?: number;
+    experience?: string;
+    wants: string[];
+  };
+  type LLMResp =
+    | { kind: "question"; text: string }
+    | { kind: "ready"; summary: string; params: FishTankParams }
+    | { kind: "error"; text: string };
+
+  const aiForm = document.getElementById("ai-form") as HTMLFormElement | null;
+  const aiInput = document.getElementById("ai-input") as HTMLInputElement | null;
+  const aiSubmit = document.getElementById("ai-submit") as HTMLButtonElement | null;
+  const aiTranscript = document.getElementById("ai-transcript");
+  const conversation: Msg[] = [];
+
+  function appendBubble(role: "user" | "assistant" | "system", text: string) {
+    if (!aiTranscript) return;
+    const div = document.createElement("div");
+    div.className = `ai-bubble ai-${role}`;
+    div.textContent = text;
+    aiTranscript.appendChild(div);
+    aiTranscript.scrollTop = aiTranscript.scrollHeight;
+  }
+
+  function setBusy(busy: boolean) {
+    if (aiInput) aiInput.disabled = busy;
+    if (aiSubmit) {
+      aiSubmit.disabled = busy;
+      aiSubmit.textContent = busy ? "Thinking…" : "Ask →";
+    }
+  }
+
+  async function askLLM(text: string) {
+    conversation.push({ role: "user", content: text });
+    appendBubble("user", text);
+    setBusy(true);
+    try {
+      const r = await fetch("/api/llm-solve", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ vertical: "fish-tank", messages: conversation }),
+      });
+      const data = (await r.json()) as LLMResp;
+      if (data.kind === "question") {
+        conversation.push({ role: "assistant", content: data.text });
+        appendBubble("assistant", data.text);
+      } else if (data.kind === "ready") {
+        conversation.push({ role: "assistant", content: data.summary });
+        appendBubble("assistant", data.summary);
+        applyParams(data.params);
+      } else {
+        appendBubble("system", data.text);
+      }
+    } catch (e) {
+      appendBubble("system", "Connection error — try again in a moment.");
+    } finally {
+      setBusy(false);
+      if (aiInput) aiInput.value = "";
+    }
+  }
+
+  function applyParams(p: FishTankParams) {
+    if (form) {
+      const ecoRadio = form.querySelector<HTMLInputElement>(`input[name="ecosystem"][value="${p.ecosystem}"]`);
+      if (ecoRadio) ecoRadio.checked = true;
+      for (const want of p.wants) {
+        const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
+        if (cb) cb.checked = true;
+      }
+      renderCompatBanner();
+    }
+
+    const ECO_LABEL: Record<string, string> = {
+      any: "Any",
+      freshwater: "Freshwater",
+      planted: "Planted",
+      brackish: "Brackish",
+      "saltwater-fowlr": "Saltwater FOWLR",
+      "reef-soft": "Reef · soft",
+      "reef-sps": "Reef · SPS",
+    };
+
+    const sizingEl = document.getElementById("ai-sizing") ?? (() => {
+      const d = document.createElement("div");
+      d.id = "ai-sizing";
+      d.className = "ai-sizing";
+      const aiHelper = document.getElementById("ai-helper");
+      aiHelper?.parentNode?.insertBefore(d, aiHelper.nextSibling);
+      return d;
+    })();
+    const tankTxt = p.tank_gallons ? `${p.tank_gallons}gal` : "—";
+    const expTxt = p.experience ?? "—";
+    sizingEl.innerHTML = `
+      <div class="sz-head">Filtering for ${ECO_LABEL[p.ecosystem] ?? p.ecosystem} · ${tankTxt} · ${expTxt}</div>
+      <div class="sz-grid">
+        <div class="sz-cell"><span class="sz-k">ecosystem</span><span class="sz-v">${ECO_LABEL[p.ecosystem] ?? p.ecosystem}</span></div>
+        <div class="sz-cell"><span class="sz-k">tank size</span><span class="sz-v">${tankTxt}</span></div>
+        <div class="sz-cell"><span class="sz-k">experience</span><span class="sz-v">${expTxt}</span></div>
+      </div>
+      <p class="sz-foot">Ecosystem filters fish + aquariums; capacity, parameters, and aggression are checked when you tick specific picks below.</p>
+    `;
+    renderPicker();
+    sizingEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  if (aiForm) {
+    aiForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = aiInput?.value.trim() ?? "";
+      if (v) askLLM(v);
+    });
+  }
+  document.querySelectorAll<HTMLButtonElement>(".ai-chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const q = btn.dataset.q ?? "";
+      if (q) askLLM(q);
+    });
+  });
+</script>
+
+<style>
+  .deps-block {
+    background: oklch(0.95 0.04 25);
+    border-color: oklch(0.55 0.18 25);
+    border-left-color: oklch(0.55 0.20 25);
+    border-left-width: 4px;
+  }
+  .deps-block strong { color: oklch(0.42 0.18 25); }
+  .bs-cart.safety-blocked { pointer-events: none; opacity: 0.5; }
+</style>
+</content>
+</invoke>

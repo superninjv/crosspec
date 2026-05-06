@@ -1,0 +1,500 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import type { KnowledgeBase } from "@engine/solver";
+import kbRaw from "@verticals/espresso/kb.json";
+import affRaw from "@verticals/espresso/affiliates.json";
+
+const kb = kbRaw as KnowledgeBase;
+const VERTICAL = "espresso";
+const ACCENT = "oklch(0.40 0.08 50)";
+
+interface ProductMap { products: Record<string, { merchant: string; asin?: string }>; }
+const aff = affRaw as ProductMap;
+
+const TYPES = [
+  { slug: "espresso_machine", label: "Machine", blurb: "Single boiler / heat exchanger / dual boiler / E61." },
+  { slug: "grinder", label: "Grinder", blurb: "Eureka Mignon, Niche Zero, DF64, Mahlkönig X54." },
+  { slug: "portafilter", label: "Portafilter", blurb: "Bottomless / spouted, 53/54/58mm." },
+  { slug: "basket", label: "Basket", blurb: "VST, IMS, Pesado — match dose to machine." },
+  { slug: "tamper", label: "Tamper", blurb: "Calibrated, flat / convex / big-step." },
+  { slug: "distribution_tool", label: "Distribution", blurb: "WDT, leveler, OCD, puck screen." },
+  { slug: "scale", label: "Scale", blurb: "Acaia Lunar, Felicita Arc — 0.1g resolution." },
+  { slug: "knockbox", label: "Knockbox / accessory", blurb: "BPlus knockbox, dosing funnel." },
+];
+
+const LEVELS = [
+  { slug: "any", label: "Any level" },
+  { slug: "starter", label: "First espresso setup" },
+  { slug: "enthusiast", label: "Enthusiast / E61" },
+  { slug: "pro-prosumer", label: "Pro / prosumer" },
+  { slug: "single-dose", label: "Single-dose grinder upgrade" },
+  { slug: "milk-drinks", label: "Milk drinks (latte / cap)" },
+  { slug: "americano-only", label: "Black coffee only" },
+];
+
+const slim = kb.entities.map((e) => ({
+  id: e.id,
+  sku: e.sku ?? e.id,
+  name: e.name,
+  type: e.type,
+  brand: String(e.attributes.brand ?? ""),
+  model: String(e.attributes.model ?? ""),
+  price: typeof e.attributes.price_usd === "number" ? (e.attributes.price_usd as number) : null,
+  note: (e.attributes.note as string) ?? "",
+  asin: aff.products[e.id]?.asin ?? aff.products[e.sku ?? e.id]?.asin ?? null,
+  attrs: e.attributes,
+}));
+const slimJSON = JSON.stringify(slim);
+
+const byType = new Map<string, typeof kb.entities>();
+for (const e of kb.entities) {
+  if (!byType.has(e.type)) byType.set(e.type, []);
+  byType.get(e.type)!.push(e);
+}
+---
+<Layout
+  title="Espresso configurator · machines, grinders, baskets · crosspec"
+  description="Build an espresso setup without buyer's remorse. Group head 53/54/58mm match, basket size to dose, tamper clearance, single-dose grinder workflow. Sourced from James Hoffmann, Whole Latte Love, BaristaHustle."
+  crumbs={["espresso"]}
+  kbStatus={`espresso v0.1 · ${kb.entities.length} entities`}
+>
+  <section class="solar-hero" style={`--accent: ${ACCENT}`}>
+    <div class="hero-inner">
+      <p class="eyebrow">crosspec / espresso</p>
+      <h1>Build an espresso setup <em>without buyer's remorse.</em></h1>
+      <p class="lede">{kb.entities.length} components. Group head 53/54/58mm match, basket size to dose, tamper clearance, single-dose grinder workflow. Sourced from James Hoffmann, Whole Latte Love, BaristaHustle.</p>
+    </div>
+  </section>
+
+  <section class="ai-helper" id="ai-helper">
+    <div class="ai-inner">
+      <div class="ai-head">
+        <span class="ai-glyph" aria-hidden="true">⌘</span>
+        <span class="ai-title">Tell me about your espresso</span>
+        <span class="ai-sub">e.g. "first machine + grinder under $1500" or "Linea Mini + single-dose grinder"</span>
+      </div>
+      <div class="ai-transcript" id="ai-transcript"></div>
+      <form id="ai-form" class="ai-form" autocomplete="off">
+        <input type="text" name="q" id="ai-input" placeholder="What kind of espresso setup are you building?" maxlength="500" required />
+        <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="ai-examples">
+        <button type="button" class="ai-chip" data-q="First setup · $1500">First setup · $1500</button>
+        <button type="button" class="ai-chip" data-q="Lever + grinder">Lever + grinder</button>
+        <button type="button" class="ai-chip" data-q="Single-dose upgrade">Single-dose upgrade</button>
+        <button type="button" class="ai-chip" data-q="Milk drinks · dual boiler">Milk drinks · dual boiler</button>
+      </div>
+    </div>
+  </section>
+
+  <form id="picker-form" class="picker-form">
+    <fieldset class="picker-step">
+      <legend><span class="step-num">1</span> Where are you in the rabbit hole?</legend>
+      <div class="chip-row">
+        {LEVELS.map((l, i) => (
+          <label class="chip">
+            <input type="radio" name="level" value={l.slug} checked={i === 0} />
+            <span>{l.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset class="picker-step">
+      <legend><span class="step-num">2</span> What components do you want?</legend>
+      <div class="want-grid">
+        {TYPES.map((t) => {
+          const ents = byType.get(t.slug) ?? [];
+          return (
+            <label class="want-tile">
+              <input type="checkbox" name="want" value={t.slug} />
+              <div class="wt-body">
+                <span class="wt-label">{t.label}</span>
+                <span class="wt-blurb">{t.blurb}</span>
+                <span class="wt-count">{ents.length} options</span>
+              </div>
+            </label>
+          );
+        })}
+      </div>
+    </fieldset>
+  </form>
+
+  <section id="picker-result" class="picker-result">
+    <p class="picker-empty">Tick a component above to see compatible options.</p>
+  </section>
+
+  <section class="build-summary" id="build-summary" hidden>
+    <div class="bs-totals">
+      <span class="bs-label">build total</span>
+      <span class="bs-amount" id="bs-amount">$0</span>
+      <span class="bs-meta" id="bs-meta">tick the products you want</span>
+    </div>
+    <a class="bs-cart disabled" id="bs-cart" href={`/${VERTICAL}/cart/?skus=`} target="_blank">
+      <span aria-hidden="true">▣</span>
+      <span>Review &amp; checkout</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </section>
+
+  <details class="all-products">
+    <summary>Or browse everything by category</summary>
+    <div class="all-inner">
+      {TYPES.map((t) => {
+        const ents = byType.get(t.slug) ?? [];
+        if (ents.length === 0) return null;
+        return (
+          <section class="cat-section" id={t.slug}>
+            <header class="cat-head">
+              <h3>{t.label}</h3>
+              <span class="cat-count">{ents.length}</span>
+            </header>
+            <ul class="cat-grid">
+              {ents.map((e) => {
+                const sku = e.sku ?? e.id;
+                const priceUsd = typeof e.attributes.price_usd === "number" ? e.attributes.price_usd : null;
+                return (
+                  <li class="cat-card">
+                    <a class="cc-link" href={`/${VERTICAL}/devices/${sku}/`}>
+                      <span class="cc-brand">{String(e.attributes.brand ?? "").replace(/_/g, " ")}</span>
+                      <span class="cc-name">{e.name}</span>
+                      <span class="cc-price">{priceUsd != null ? `$${priceUsd}` : ""}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        );
+      })}
+    </div>
+  </details>
+</Layout>
+
+<script id="picker-data" type="application/json" set:html={slimJSON} />
+
+<script>
+  type Slim = { id: string; sku: string; name: string; type: string; brand: string; model: string; price: number | null; note: string; asin: string | null; attrs: Record<string, unknown>; };
+
+  const VERTICAL = "espresso";
+  const TYPE_LABEL: Record<string, string> = {
+    espresso_machine: "Machine", grinder: "Grinder", portafilter: "Portafilter",
+    basket: "Basket", tamper: "Tamper", distribution_tool: "Distribution",
+    scale: "Scale", knockbox: "Knockbox / accessory",
+  };
+  const dataEl = document.getElementById("picker-data");
+  const data: Slim[] = dataEl ? JSON.parse(dataEl.textContent ?? "[]") : [];
+  const form = document.getElementById("picker-form") as HTMLFormElement | null;
+  const resultEl = document.getElementById("picker-result");
+  const buildSummary = document.getElementById("build-summary");
+  const selected = new Set<string>();
+
+  function escapeHtml(s: string): string {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function matchesLevel(d: Slim, level: string): boolean {
+    if (!level || level === "any") return true;
+    const a = d.attrs as Record<string, unknown>;
+    const lvlAttr = String(a.level ?? a.skill_level ?? a.tier ?? "").toLowerCase();
+    if (!lvlAttr) return true;
+    if (level === "starter" && (lvlAttr.includes("starter") || lvlAttr.includes("beginner") || lvlAttr.includes("entry"))) return true;
+    if (level === "enthusiast" && (lvlAttr.includes("enthusiast") || lvlAttr.includes("intermediate") || lvlAttr.includes("e61"))) return true;
+    if (level === "pro-prosumer" && (lvlAttr.includes("pro") || lvlAttr.includes("prosumer"))) return true;
+    if (level === "single-dose" && lvlAttr.includes("single")) return true;
+    if (level === "milk-drinks" && (lvlAttr.includes("milk") || lvlAttr.includes("steam"))) return true;
+    if (level === "americano-only" && (lvlAttr.includes("black") || lvlAttr.includes("americano"))) return true;
+    // Items without a level attr pass through
+    if (d.type === "basket" || d.type === "tamper" || d.type === "distribution_tool" || d.type === "scale" || d.type === "knockbox") return true;
+    return false;
+  }
+
+  function renderPicker() {
+    if (!form || !resultEl) return;
+    const wanted = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value);
+    const level = (form.querySelector('input[name="level"]:checked') as HTMLInputElement | null)?.value ?? "any";
+    if (wanted.length === 0) {
+      resultEl.innerHTML = '<p class="picker-empty">Tick a component above to see compatible options.</p>';
+      buildSummary?.setAttribute("hidden", "");
+      return;
+    }
+    buildSummary?.removeAttribute("hidden");
+
+    let html = "";
+    for (const wantType of wanted) {
+      const ofType = data.filter((d) => d.type === wantType && matchesLevel(d, level));
+      if (ofType.length === 0) {
+        html += `<section class="res-section"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2></header><p class="picker-empty">No matches for the selected level.</p></section>`;
+        continue;
+      }
+      html += `<section class="res-section" data-type="${wantType}"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2><span class="res-ct">${ofType.length}</span><label class="res-sort"><span class="res-sort-lbl">Sort</span><select class="res-sort-sel" data-type="${wantType}"><option value="default">Featured</option><option value="price-asc">Price · low to high</option><option value="price-desc">Price · high to low</option></select></label></header><div class="card-grid">`;
+      for (const d of ofType) {
+        const isSelected = selected.has(d.sku);
+        const detailHref = `/${VERTICAL}/devices/${d.sku}/`;
+        const buyHref = d.asin
+          ? `https://www.amazon.com/dp/${d.asin}/?tag=crosspec20-20&ascsubtag=picker`
+          : `/go/${VERTICAL}/${d.sku}?ref=picker`;
+        const priceTxt = d.price != null ? `$${d.price}` : "—";
+        html += `<article class="pcard" data-sku="${escapeHtml(d.sku)}" data-price="${d.price ?? 0}" data-selected="${isSelected ? "1" : "0"}">
+          <div class="pc-top">
+            <label class="pick-toggle"><input type="checkbox" class="pick-cb" ${isSelected ? "checked" : ""} aria-label="Include in build" /><span class="pick-box" aria-hidden="true"></span></label>
+            <span class="pc-brand">${escapeHtml(d.brand.replace(/_/g, " "))}</span>
+          </div>
+          <h3 class="pc-name"><a href="${detailHref}">${escapeHtml(d.name)}</a></h3>
+          ${d.note ? `<p class="pc-note">${escapeHtml(d.note.slice(0, 200))}</p>` : ""}
+          <div class="pc-foot">
+            <span class="pc-price">${priceTxt}</span>
+            <a class="pc-cta" href="${buyHref}" target="_blank" rel="sponsored nofollow noopener">Open on Amazon →</a>
+          </div>
+        </article>`;
+      }
+      html += `</div></section>`;
+    }
+    resultEl.innerHTML = html;
+    syncBuildSummary();
+  }
+
+  function syncBuildSummary() {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".pcard[data-sku]"));
+    let total = 0;
+    const skus: string[] = [];
+    for (const card of cards) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      const sku = card.dataset.sku ?? "";
+      if (cb && cb.checked) {
+        card.dataset.selected = "1";
+        if (sku) { skus.push(sku); selected.add(sku); total += parseFloat(card.dataset.price ?? "0") || 0; }
+      } else {
+        card.dataset.selected = "0";
+        selected.delete(sku);
+      }
+    }
+    const amountEl = document.getElementById("bs-amount");
+    if (amountEl) amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "$0";
+    const metaEl = document.getElementById("bs-meta");
+    if (metaEl) metaEl.textContent = skus.length === 0 ? "tick the products you want" : `${skus.length} ${skus.length === 1 ? "pick" : "picks"} · review before buying`;
+    const cartEl = document.getElementById("bs-cart") as HTMLAnchorElement | null;
+    if (cartEl) {
+      cartEl.href = `/${VERTICAL}/cart/?skus=${skus.join(",")}`;
+      cartEl.classList.toggle("disabled", skus.length === 0);
+    }
+  }
+
+  // Soft compatibility warnings — non-blocking.
+  const TYPE_DEPS: Record<string, string[]> = {
+    espresso_machine: ["grinder", "portafilter", "basket", "tamper"],
+    portafilter: ["basket"],
+    basket: ["tamper"],
+  };
+  const TYPE_LBL: Record<string, string> = {
+    espresso_machine: "machine", grinder: "grinder", portafilter: "portafilter",
+    basket: "basket", tamper: "tamper", distribution_tool: "distribution tool",
+    scale: "scale", knockbox: "knockbox",
+  };
+  const TYPE_EXCLUSIVE: Array<[string, string]> = [];
+
+  function pickedProducts(): Slim[] {
+    const out: Slim[] = [];
+    for (const card of document.querySelectorAll<HTMLElement>(".pcard[data-sku]")) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      if (!cb?.checked) continue;
+      const sku = card.dataset.sku ?? "";
+      const item = data.find((d) => d.sku === sku);
+      if (item) out.push(item);
+    }
+    return out;
+  }
+
+  function findCompatWarnings(): string[] {
+    if (!form) return [];
+    const warnings: string[] = [];
+    const checked = new Set(
+      Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
+    );
+    for (const [trigger, deps] of Object.entries(TYPE_DEPS)) {
+      if (!checked.has(trigger)) continue;
+      const missing = deps.filter((d) => !checked.has(d));
+      if (missing.length === 0) continue;
+      warnings.push(`Missing ${missing.map((m) => TYPE_LBL[m] ?? m).join(", ")} — usually needed alongside the ${TYPE_LBL[trigger] ?? trigger}.`);
+    }
+    for (const [a, b] of TYPE_EXCLUSIVE) {
+      if (checked.has(a) && checked.has(b)) {
+        warnings.push(`${TYPE_LBL[a] ?? a} and ${TYPE_LBL[b] ?? b} are usually alternatives — most builds use one or the other.`);
+      }
+    }
+    return warnings;
+  }
+
+  function renderCompatBanner() {
+    const warnings = findCompatWarnings();
+    let banner = document.getElementById("deps-banner");
+    if (warnings.length === 0) {
+      if (banner) banner.remove();
+      return;
+    }
+    if (!banner) {
+      banner = document.createElement("div");
+      banner.id = "deps-banner";
+      banner.className = "deps-banner";
+      const pickerForm = document.getElementById("picker-form");
+      pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
+    }
+    banner.innerHTML = `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
+  }
+
+  if (resultEl) {
+    resultEl.addEventListener("change", (e) => {
+      const t = e.target as HTMLElement;
+      if (!t.matches(".res-sort-sel")) return;
+      const sel = t as HTMLSelectElement;
+      const section = sel.closest<HTMLElement>(".res-section");
+      const grid = section?.querySelector<HTMLElement>(".card-grid");
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>(".pcard"));
+      const order = sel.value;
+      const priced = cards.filter((c) => parseFloat(c.dataset.price ?? "0") > 0);
+      const unpriced = cards.filter((c) => !(parseFloat(c.dataset.price ?? "0") > 0));
+      if (order === "price-asc") {
+        priced.sort((a, b) => parseFloat(a.dataset.price ?? "0") - parseFloat(b.dataset.price ?? "0"));
+      } else if (order === "price-desc") {
+        priced.sort((a, b) => parseFloat(b.dataset.price ?? "0") - parseFloat(a.dataset.price ?? "0"));
+      } else {
+        renderPicker();
+        return;
+      }
+      for (const c of priced) grid.appendChild(c);
+      for (const c of unpriced) grid.appendChild(c);
+    });
+  }
+
+  if (form) {
+    form.addEventListener("change", (e) => {
+      const t = e.target as HTMLElement;
+      if (t.matches('input[name="want"]') || t.matches('input[name="level"]')) {
+        renderPicker();
+        renderCompatBanner();
+      } else if (t.classList.contains("pick-cb")) {
+        syncBuildSummary();
+        renderCompatBanner();
+      }
+    });
+  }
+
+  // ─── AI helper: natural language → params → applied to picker ───
+
+  type Msg = { role: "user" | "assistant"; content: string };
+  type EspressoParams = {
+    level: string;
+    budget_usd?: number;
+    milk_drinks?: boolean;
+    wants: string[];
+  };
+  type LLMResp =
+    | { kind: "question"; text: string }
+    | { kind: "ready"; summary: string; params: EspressoParams }
+    | { kind: "error"; text: string };
+
+  const aiForm = document.getElementById("ai-form") as HTMLFormElement | null;
+  const aiInput = document.getElementById("ai-input") as HTMLInputElement | null;
+  const aiSubmit = document.getElementById("ai-submit") as HTMLButtonElement | null;
+  const aiTranscript = document.getElementById("ai-transcript");
+  const conversation: Msg[] = [];
+
+  function appendBubble(role: "user" | "assistant" | "system", text: string) {
+    if (!aiTranscript) return;
+    const div = document.createElement("div");
+    div.className = `ai-bubble ai-${role}`;
+    div.textContent = text;
+    aiTranscript.appendChild(div);
+    aiTranscript.scrollTop = aiTranscript.scrollHeight;
+  }
+
+  function setBusy(busy: boolean) {
+    if (aiInput) aiInput.disabled = busy;
+    if (aiSubmit) {
+      aiSubmit.disabled = busy;
+      aiSubmit.textContent = busy ? "Thinking…" : "Ask →";
+    }
+  }
+
+  async function askLLM(text: string) {
+    conversation.push({ role: "user", content: text });
+    appendBubble("user", text);
+    setBusy(true);
+    try {
+      const r = await fetch("/api/llm-solve", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ vertical: "espresso", messages: conversation }),
+      });
+      const data = (await r.json()) as LLMResp;
+      if (data.kind === "question") {
+        conversation.push({ role: "assistant", content: data.text });
+        appendBubble("assistant", data.text);
+      } else if (data.kind === "ready") {
+        conversation.push({ role: "assistant", content: data.summary });
+        appendBubble("assistant", data.summary);
+        applyParams(data.params);
+      } else {
+        appendBubble("system", data.text);
+      }
+    } catch (e) {
+      appendBubble("system", "Connection error — try again in a moment.");
+    } finally {
+      setBusy(false);
+      if (aiInput) aiInput.value = "";
+    }
+  }
+
+  function applyParams(p: EspressoParams) {
+    if (form) {
+      const levelRadio = form.querySelector<HTMLInputElement>(`input[name="level"][value="${p.level}"]`);
+      if (levelRadio) levelRadio.checked = true;
+      for (const want of p.wants) {
+        const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
+        if (cb) cb.checked = true;
+      }
+      renderCompatBanner();
+    }
+
+    const LEVEL_LABEL: Record<string, string> = {
+      any: "any", starter: "Starter", enthusiast: "Enthusiast",
+      "pro-prosumer": "Pro / prosumer", "single-dose": "Single-dose",
+      "milk-drinks": "Milk drinks", "americano-only": "Black only",
+    };
+
+    const sizingEl = document.getElementById("ai-sizing") ?? (() => {
+      const d = document.createElement("div");
+      d.id = "ai-sizing";
+      d.className = "ai-sizing";
+      const aiHelper = document.getElementById("ai-helper");
+      aiHelper?.parentNode?.insertBefore(d, aiHelper.nextSibling);
+      return d;
+    })();
+    sizingEl.innerHTML = `
+      <div class="sz-head">Filtering for ${LEVEL_LABEL[p.level] ?? p.level}${p.budget_usd ? ` · $${p.budget_usd} budget` : ""}</div>
+      <div class="sz-grid">
+        <div class="sz-cell"><span class="sz-k">level</span><span class="sz-v">${LEVEL_LABEL[p.level] ?? p.level}</span></div>
+        ${p.budget_usd ? `<div class="sz-cell"><span class="sz-k">budget</span><span class="sz-v">$${p.budget_usd}</span></div>` : ""}
+        <div class="sz-cell"><span class="sz-k">categories</span><span class="sz-v">${p.wants.length} ticked</span></div>
+      </div>
+      <p class="sz-foot">Level filters the component list — review individual specs before adding to your build.</p>
+    `;
+    renderPicker();
+    sizingEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  if (aiForm) {
+    aiForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = aiInput?.value.trim() ?? "";
+      if (v) askLLM(v);
+    });
+  }
+  document.querySelectorAll<HTMLButtonElement>(".ai-chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const q = btn.dataset.q ?? "";
+      if (q) askLLM(q);
+    });
+  });
+</script>

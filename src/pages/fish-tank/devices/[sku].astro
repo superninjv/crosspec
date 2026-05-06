@@ -1,0 +1,184 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import type { Entity, KnowledgeBase } from "@engine/solver";
+import kbRaw from "@verticals/fish-tank/kb.json";
+import affiliatesRaw from "@verticals/fish-tank/affiliates.json";
+
+const kb = kbRaw as KnowledgeBase;
+const VERTICAL = "fish-tank";
+
+interface ProductMap {
+  products: Record<string, { merchant: string; asin?: string }>;
+}
+const aff = affiliatesRaw as ProductMap;
+
+const TYPE_LABEL: Record<string, string> = {
+  fish_species: "fish species",
+  aquarium: "aquarium",
+  filter: "filter",
+  heater: "heater",
+  light: "light",
+  co2_system: "CO2 system",
+  substrate: "substrate",
+  protein_skimmer: "protein skimmer",
+  pump: "pump",
+  test_kit: "test kit",
+};
+
+export async function getStaticPaths() {
+  const k = kbRaw as KnowledgeBase;
+  return k.entities.map((e) => ({
+    params: { sku: e.sku ?? e.id },
+    props: { entityId: e.id },
+  }));
+}
+
+interface PageProps { entityId: string }
+const { entityId } = Astro.props as PageProps;
+const entity = kb.entities.find((e) => e.id === entityId)! as Entity;
+const sku = entity.sku ?? entity.id;
+const attrs = entity.attributes;
+const typeLabel = TYPE_LABEL[entity.type] ?? entity.type.replace(/_/g, " ");
+const brand = String(attrs.brand ?? "").replace(/_/g, " ");
+const priceUsd = typeof attrs.price_usd === "number" ? (attrs.price_usd as number) : null;
+const asin = aff.products[entity.id]?.asin ?? aff.products[sku]?.asin ?? null;
+
+const buyHref = asin
+  ? `https://www.amazon.com/dp/${asin}/?tag=crosspec20-20&ascsubtag=device`
+  : `/go/${VERTICAL}/${sku}?ref=device`;
+
+const HIDE_KEYS = new Set([
+  "brand", "model", "price_usd", "price_source", "price_as_of",
+  "source_ids", "note", "notes", "type_label",
+]);
+const specRows: Array<{ k: string; v: string }> = [];
+for (const [k, v] of Object.entries(attrs)) {
+  if (HIDE_KEYS.has(k)) continue;
+  if (v == null) continue;
+  let str: string;
+  if (Array.isArray(v)) str = v.join(", ");
+  else if (typeof v === "boolean") str = v ? "yes" : "no";
+  else str = String(v);
+  if (!str || str === "[object Object]") continue;
+  specRows.push({ k: k.replace(/_/g, " "), v: str });
+}
+
+const sourceIds = (attrs.source_ids ?? []) as number[];
+const sources = sourceIds
+  .map((id) => kb.sources.find((s) => s.id === id))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+const related = kb.entities
+  .filter((e) => e.type === entity.type && e.id !== entity.id)
+  .slice(0, 8);
+
+const noteText = (attrs.note as string) ?? (attrs.notes as string) ?? "";
+
+const productJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  name: entity.name,
+  description: noteText || `${entity.name} ${typeLabel} specifications.`,
+  brand: brand ? { "@type": "Brand", name: brand } : undefined,
+  ...(attrs.model ? { mpn: String(attrs.model) } : {}),
+  sku: String(sku),
+  category: typeLabel,
+  url: `https://crosspec.com/${VERTICAL}/devices/${sku}/`,
+  ...(priceUsd != null
+    ? {
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "USD",
+          price: priceUsd,
+          availability: "https://schema.org/InStock",
+          url: `https://crosspec.com/go/${VERTICAL}/${sku}`,
+          seller: { "@type": "Organization", name: "Amazon" },
+        },
+      }
+    : {}),
+};
+---
+<script type="application/ld+json" is:inline set:html={JSON.stringify(productJsonLd)} />
+
+<Layout
+  title={`${entity.name} · ${typeLabel} specs, compatibility, price | crosspec`}
+  description={noteText || `${entity.name} (${brand} ${attrs.model ?? ""}). Specs sourced from Bulk Reef Supply, Aquarium Co-Op, SeriouslyFish.`}
+  crumbs={[VERTICAL, "devices", String(sku)]}
+  kbStatus={`fish-tank v0.1 · ${kb.entities.length} entities`}
+>
+  <section class="solar-device">
+    <p class="dev-eyebrow">
+      <a href={`/${VERTICAL}/`}>fish-tank</a>
+      <span class="sep">›</span>
+      <span>{typeLabel}</span>
+    </p>
+    <h1 class="dev-title">
+      <span class="brand-line">{brand}</span>
+      <span class="full">{entity.name}</span>
+    </h1>
+    {noteText && <p class="dev-lede">{noteText}</p>}
+
+    <div class="dev-grid">
+      <div class="dev-main">
+        <h2>Specifications</h2>
+        <dl class="spec-table">
+          {specRows.map((r) => (
+            <div class="spec-row">
+              <dt>{r.k}</dt>
+              <dd>{r.v}</dd>
+            </div>
+          ))}
+        </dl>
+
+        {sources.length > 0 && (
+          <section class="sources">
+            <h3>Sources</h3>
+            <ol>
+              {sources.map((s) => (
+                <li>
+                  {s.url ? <a href={s.url} rel="nofollow" target="_blank">{s.name}</a> : <span>{s.name}</span>}
+                  <span class="ingest"> · ingest {s.ingest_date}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+      </div>
+
+      <aside class="dev-buy">
+        <div class="buy-card">
+          {priceUsd != null && (
+            <p class="buy-price">${priceUsd}</p>
+          )}
+          <a class="buy-cta" href={buyHref} target="_blank" rel="sponsored nofollow noopener">
+            <span>Open on Amazon</span>
+            <span class="arr" aria-hidden="true">→</span>
+          </a>
+          <p class="buy-note">crosspec earns affiliate commission · price last verified {String(attrs.price_as_of ?? "2026-05-06")}</p>
+        </div>
+      </aside>
+    </div>
+
+    {related.length > 0 && (
+      <section class="related">
+        <h3>Other {typeLabel}s</h3>
+        <ul class="related-list">
+          {related.map((e) => {
+            const rsku = e.sku ?? e.id;
+            const rPrice = typeof e.attributes.price_usd === "number" ? e.attributes.price_usd : null;
+            return (
+              <li>
+                <a href={`/${VERTICAL}/devices/${rsku}/`}>
+                  <span class="r-name">{e.name}</span>
+                  <span class="r-price">{rPrice != null ? `$${rPrice}` : ""}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    )}
+  </section>
+</Layout>
+</content>
+</invoke>

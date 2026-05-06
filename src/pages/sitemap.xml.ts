@@ -11,6 +11,10 @@ import pedalboardKb from "../../verticals/pedalboard/kb.json";
 import headphonesKb from "../../verticals/headphones/kb.json";
 import speakersKb from "../../verticals/speakers/kb.json";
 import carAudioKb from "../../verticals/car-audio/kb.json";
+import fishTankKb from "../../verticals/fish-tank/kb.json";
+import fpvDroneKb from "../../verticals/fpv-drone/kb.json";
+import homeNasKb from "../../verticals/home-nas/kb.json";
+import espressoKb from "../../verticals/espresso/kb.json";
 
 const SITE = "https://crosspec.com";
 
@@ -30,6 +34,10 @@ export const GET: APIRoute = () => {
     { loc: `${SITE}/headphones/`, priority: "0.9" },
     { loc: `${SITE}/speakers/`, priority: "0.9" },
     { loc: `${SITE}/car-audio/`, priority: "0.9" },
+    { loc: `${SITE}/fish-tank/`, priority: "0.9" },
+    { loc: `${SITE}/fpv-drone/`, priority: "0.9" },
+    { loc: `${SITE}/home-nas/`, priority: "0.9" },
+    { loc: `${SITE}/espresso/`, priority: "0.9" },
     { loc: `${SITE}/about/`, priority: "0.4" },
   ];
 
@@ -88,6 +96,26 @@ export const GET: APIRoute = () => {
     const sku = e.sku ?? e.id;
     urls.push({ loc: `${SITE}/car-audio/devices/${sku}/`, priority: "0.7" });
   }
+  const fishTank = fishTankKb as KnowledgeBase;
+  for (const e of fishTank.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/fish-tank/devices/${sku}/`, priority: "0.7" });
+  }
+  const fpvDrone = fpvDroneKb as KnowledgeBase;
+  for (const e of fpvDrone.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/fpv-drone/devices/${sku}/`, priority: "0.7" });
+  }
+  const homeNas = homeNasKb as KnowledgeBase;
+  for (const e of homeNas.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/home-nas/devices/${sku}/`, priority: "0.7" });
+  }
+  const espresso = espressoKb as KnowledgeBase;
+  for (const e of espresso.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/espresso/devices/${sku}/`, priority: "0.7" });
+  }
 
   // Comparison pages: same pair-selection rules as src/pages/smart-home/compare/[pair].astro
   const TOP_N: Record<string, number> = {
@@ -125,6 +153,10 @@ export const GET: APIRoute = () => {
     ["headphones", headphonesKb as KnowledgeBase],
     ["speakers", speakersKb as KnowledgeBase],
     ["car-audio", carAudioKb as KnowledgeBase],
+    ["fish-tank", fishTankKb as KnowledgeBase],
+    ["fpv-drone", fpvDroneKb as KnowledgeBase],
+    ["home-nas", homeNasKb as KnowledgeBase],
+    ["espresso", espressoKb as KnowledgeBase],
   ];
   for (const [verticalSlug, vKb] of compareVerticals) {
     const vByType = new Map<string, typeof vKb.entities>();

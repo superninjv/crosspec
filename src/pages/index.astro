@@ -12,6 +12,10 @@ import pedalboardKb from "@verticals/pedalboard/kb.json";
 import headphonesKb from "@verticals/headphones/kb.json";
 import speakersKb from "@verticals/speakers/kb.json";
 import carAudioKb from "@verticals/car-audio/kb.json";
+import fishTankKb from "@verticals/fish-tank/kb.json";
+import fpvDroneKb from "@verticals/fpv-drone/kb.json";
+import homeNasKb from "@verticals/home-nas/kb.json";
+import espressoKb from "@verticals/espresso/kb.json";
 
 interface Vertical {
   slug: string;
@@ -105,6 +109,10 @@ const pedalboard = pedalboardKb as KnowledgeBase;
 const headphones = headphonesKb as KnowledgeBase;
 const speakers = speakersKb as KnowledgeBase;
 const carAudio = carAudioKb as KnowledgeBase;
+const fishTank = fishTankKb as KnowledgeBase;
+const fpvDrone = fpvDroneKb as KnowledgeBase;
+const homeNas = homeNasKb as KnowledgeBase;
+const espresso = espressoKb as KnowledgeBase;
 
 const verticals: Vertical[] = [
   {
@@ -204,6 +212,42 @@ const verticals: Vertical[] = [
     pitch: "Amp power matched to speaker RMS. Wiring gauge for current draw. Head-unit preouts.",
     count: carAudio.entities.length,
     accent: "oklch(0.42 0.16 25)",
+    status: "live",
+  },
+  {
+    slug: "fish-tank",
+    name: "Fish tank",
+    blurb: "Stock + tank + filter + heater + light + substrate",
+    pitch: "Species drives the build. Tank capacity ≥ minimums. Parameters overlap. Hard-block on safety.",
+    count: fishTank.entities.length,
+    accent: "oklch(0.50 0.14 220)",
+    status: "live",
+  },
+  {
+    slug: "fpv-drone",
+    name: "FPV drone",
+    blurb: "Frames, motors, ESCs, FCs, cameras, VTX, batteries",
+    pitch: "Frame ↔ motor mount, ESC current ↔ motor draw, battery S-rating ↔ KV. Deepest compat.",
+    count: fpvDrone.entities.length,
+    accent: "oklch(0.55 0.20 30)",
+    status: "live",
+  },
+  {
+    slug: "home-nas",
+    name: "Home NAS",
+    blurb: "Synology, QNAP, TrueNAS, Unraid, drives, ECC RAM, HBA",
+    pitch: "CMR drives only. ECC RAM matched. HBA in IT-mode for ZFS. UPS for safety.",
+    count: homeNas.entities.length,
+    accent: "oklch(0.50 0.10 220)",
+    status: "live",
+  },
+  {
+    slug: "espresso",
+    name: "Espresso",
+    blurb: "Machines, grinders, baskets, tampers, distribution",
+    pitch: "Group head 53/54/58mm. Basket dose to machine. Single-dose grinder workflow.",
+    count: espresso.entities.length,
+    accent: "oklch(0.40 0.08 50)",
     status: "live",
   },
 ];
