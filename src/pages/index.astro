@@ -8,6 +8,10 @@ import arduinoKb from "@verticals/arduino/kb.json";
 import threedPrinterKb from "@verticals/3d-printer/kb.json";
 import cncKb from "@verticals/cnc/kb.json";
 import pcKb from "@verticals/pc/kb.json";
+import pedalboardKb from "@verticals/pedalboard/kb.json";
+import headphonesKb from "@verticals/headphones/kb.json";
+import speakersKb from "@verticals/speakers/kb.json";
+import carAudioKb from "@verticals/car-audio/kb.json";
 
 interface Vertical {
   slug: string;
@@ -97,6 +101,10 @@ const arduino = arduinoKb as KnowledgeBase;
 const threedPrinter = threedPrinterKb as KnowledgeBase;
 const cnc = cncKb as KnowledgeBase;
 const pc = pcKb as KnowledgeBase;
+const pedalboard = pedalboardKb as KnowledgeBase;
+const headphones = headphonesKb as KnowledgeBase;
+const speakers = speakersKb as KnowledgeBase;
+const carAudio = carAudioKb as KnowledgeBase;
 
 const verticals: Vertical[] = [
   {
@@ -160,6 +168,42 @@ const verticals: Vertical[] = [
     pitch: "Socket compat, RAM speed limits, PSU wattage, GPU and cooler clearance.",
     count: pc.entities.length,
     accent: "oklch(0.50 0.14 240)",
+    status: "live",
+  },
+  {
+    slug: "pedalboard",
+    name: "Guitar pedalboard",
+    blurb: "Pedals, boards, power supplies, patch cables, tuners",
+    pitch: "Power supply current vs pedal draw. Isolated outputs for digital pedals. Patch cable count.",
+    count: pedalboard.entities.length,
+    accent: "oklch(0.45 0.18 30)",
+    status: "live",
+  },
+  {
+    slug: "headphones",
+    name: "Headphones + IEMs",
+    blurb: "Open / closed cans, IEMs, DAC / amps, cables",
+    pitch: "Sensitivity vs amp output. Balanced cable termination. Universal IEM ear-tip fit.",
+    count: headphones.entities.length,
+    accent: "oklch(0.40 0.10 280)",
+    status: "live",
+  },
+  {
+    slug: "speakers",
+    name: "Home audio",
+    blurb: "Bookshelf, floorstanding, subs, AVRs, stereo amps, streamers",
+    pitch: "Amp wattage matched to speaker spec, sub crossover, AVR vs integrated tradeoffs.",
+    count: speakers.entities.length,
+    accent: "oklch(0.45 0.10 200)",
+    status: "live",
+  },
+  {
+    slug: "car-audio",
+    name: "Car audio",
+    blurb: "Head units, components, coaxials, subs, amps, wiring",
+    pitch: "Amp power matched to speaker RMS. Wiring gauge for current draw. Head-unit preouts.",
+    count: carAudio.entities.length,
+    accent: "oklch(0.42 0.16 25)",
     status: "live",
   },
 ];

@@ -1,0 +1,489 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import type { KnowledgeBase } from "@engine/solver";
+import kbRaw from "@verticals/car-audio/kb.json";
+import affRaw from "@verticals/car-audio/affiliates.json";
+
+const kb = kbRaw as KnowledgeBase;
+const VERTICAL = "car-audio";
+const ACCENT = "oklch(0.42 0.16 25)";
+
+interface ProductMap { products?: Record<string, { merchant: string; asin?: string }>; skus?: Record<string, { merchant: string; asin?: string }>; }
+const aff = affRaw as ProductMap;
+const affProducts: Record<string, { merchant: string; asin?: string }> = aff.products ?? aff.skus ?? {};
+
+const TYPES = [
+  { slug: "head_unit", label: "Head unit", blurb: "Pioneer, Kenwood, Sony, Alpine, JVC." },
+  { slug: "component_speaker", label: "Component set", blurb: "Separate tweeters + woofers + crossovers." },
+  { slug: "coaxial_speaker", label: "Coaxial speakers", blurb: "Drop-in 6×9, 6.5\" replacements." },
+  { slug: "subwoofer", label: "Subwoofer", blurb: "JL, Rockford, Kicker, Alpine, Skar." },
+  { slug: "amplifier", label: "Amplifier", blurb: "JL, Rockford, Alpine, Kenwood Excelon." },
+  { slug: "wiring_kit", label: "Wiring kit", blurb: "0AWG / 4AWG kits with RCAs and fuses." },
+  { slug: "sound_deadener", label: "Sound deadener", blurb: "Dynamat, SoundQubed Q-Mat." },
+];
+
+const GOALS = [
+  { slug: "any", label: "Any goal" },
+  { slug: "daily", label: "Daily driver upgrade" },
+  { slug: "sub-only", label: "Sub-only addition" },
+  { slug: "sq", label: "Sound quality" },
+  { slug: "spl", label: "SPL / loud" },
+  { slug: "oem-replacement", label: "OEM replacement" },
+  { slug: "carplay", label: "CarPlay rebuild" },
+];
+
+const slim = kb.entities.map((e) => ({
+  id: e.id,
+  sku: e.sku ?? e.id,
+  name: e.name,
+  type: e.type,
+  brand: String(e.attributes.brand ?? ""),
+  model: String(e.attributes.model ?? ""),
+  price: typeof e.attributes.price_usd === "number" ? (e.attributes.price_usd as number) : null,
+  note: (e.attributes.note as string) ?? "",
+  asin: affProducts[e.id]?.asin ?? affProducts[e.sku ?? e.id]?.asin ?? null,
+  attrs: e.attributes,
+}));
+const slimJSON = JSON.stringify(slim);
+
+const byType = new Map<string, typeof kb.entities>();
+for (const e of kb.entities) {
+  if (!byType.has(e.type)) byType.set(e.type, []);
+  byType.get(e.type)!.push(e);
+}
+---
+<Layout
+  title="Car audio configurator · head units, amps, subs · crosspec"
+  description="Pick car audio that actually fits. Amp power matched to speaker RMS, wiring gauge for current draw, head-unit preouts for amp count. Sourced from Crutchfield + r/CarAV."
+  crumbs={["car-audio"]}
+  kbStatus={`car-audio v0.1 · ${kb.entities.length} entities`}
+>
+  <section class="solar-hero" style={`--accent: ${ACCENT}`}>
+    <div class="hero-inner">
+      <p class="eyebrow">crosspec / car-audio</p>
+      <h1>Pick car audio that <em>actually fits.</em></h1>
+      <p class="lede">{kb.entities.length} components. Amp power matched to speaker RMS, wiring gauge for current draw, head-unit preouts for amp count. Sourced from Crutchfield + r/CarAV.</p>
+    </div>
+  </section>
+
+  <section class="ai-helper" id="ai-helper">
+    <div class="ai-inner">
+      <div class="ai-head">
+        <span class="ai-glyph" aria-hidden="true">⌘</span>
+        <span class="ai-title">Tell me what you're upgrading</span>
+        <span class="ai-sub">e.g. "front-stage component upgrade" or "trunk sub for an SUV"</span>
+      </div>
+      <div class="ai-transcript" id="ai-transcript"></div>
+      <form id="ai-form" class="ai-form" autocomplete="off">
+        <input type="text" name="q" id="ai-input" placeholder="What are you upgrading?" maxlength="500" required />
+        <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="ai-examples">
+        <button type="button" class="ai-chip" data-q="Front stage component upgrade">Front stage · components</button>
+        <button type="button" class="ai-chip" data-q="Trunk sub for an SUV">Trunk sub · SUV</button>
+        <button type="button" class="ai-chip" data-q="CarPlay rebuild">CarPlay rebuild</button>
+        <button type="button" class="ai-chip" data-q="OEM replacement speakers">OEM replacement</button>
+      </div>
+    </div>
+  </section>
+
+  <form id="picker-form" class="picker-form">
+    <fieldset class="picker-step">
+      <legend><span class="step-num">1</span> What's the goal?</legend>
+      <div class="chip-row">
+        {GOALS.map((g, i) => (
+          <label class="chip">
+            <input type="radio" name="goal" value={g.slug} checked={i === 0} />
+            <span>{g.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset class="picker-step">
+      <legend><span class="step-num">2</span> What components do you want?</legend>
+      <div class="want-grid">
+        {TYPES.map((t) => {
+          const ents = byType.get(t.slug) ?? [];
+          return (
+            <label class="want-tile">
+              <input type="checkbox" name="want" value={t.slug} />
+              <div class="wt-body">
+                <span class="wt-label">{t.label}</span>
+                <span class="wt-blurb">{t.blurb}</span>
+                <span class="wt-count">{ents.length} options</span>
+              </div>
+            </label>
+          );
+        })}
+      </div>
+    </fieldset>
+  </form>
+
+  <section id="picker-result" class="picker-result">
+    <p class="picker-empty">Tick a component above to see compatible options.</p>
+  </section>
+
+  <section class="build-summary" id="build-summary" hidden>
+    <div class="bs-totals">
+      <span class="bs-label">build total</span>
+      <span class="bs-amount" id="bs-amount">$0</span>
+      <span class="bs-meta" id="bs-meta">tick the products you want</span>
+    </div>
+    <a class="bs-cart disabled" id="bs-cart" href={`/${VERTICAL}/cart/?skus=`} target="_blank">
+      <span aria-hidden="true">▣</span>
+      <span>Review &amp; checkout</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </section>
+
+  <details class="all-products">
+    <summary>Or browse everything by category</summary>
+    <div class="all-inner">
+      {TYPES.map((t) => {
+        const ents = byType.get(t.slug) ?? [];
+        if (ents.length === 0) return null;
+        return (
+          <section class="cat-section" id={t.slug}>
+            <header class="cat-head">
+              <h3>{t.label}</h3>
+              <span class="cat-count">{ents.length}</span>
+            </header>
+            <ul class="cat-grid">
+              {ents.map((e) => {
+                const sku = e.sku ?? e.id;
+                const priceUsd = typeof e.attributes.price_usd === "number" ? e.attributes.price_usd : null;
+                return (
+                  <li class="cat-card">
+                    <a class="cc-link" href={`/${VERTICAL}/devices/${sku}/`}>
+                      <span class="cc-brand">{String(e.attributes.brand ?? "").replace(/_/g, " ")}</span>
+                      <span class="cc-name">{e.name}</span>
+                      <span class="cc-price">{priceUsd != null ? `$${priceUsd}` : ""}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        );
+      })}
+    </div>
+  </details>
+</Layout>
+
+<script id="picker-data" type="application/json" set:html={slimJSON} />
+
+<script>
+  type Slim = { id: string; sku: string; name: string; type: string; brand: string; model: string; price: number | null; note: string; asin: string | null; attrs: Record<string, unknown>; };
+
+  const VERTICAL = "car-audio";
+  const TYPE_LABEL: Record<string, string> = {
+    head_unit: "Head unit", component_speaker: "Component set", coaxial_speaker: "Coaxial speakers",
+    subwoofer: "Subwoofer", amplifier: "Amplifier", wiring_kit: "Wiring kit", sound_deadener: "Sound deadener",
+  };
+  const dataEl = document.getElementById("picker-data");
+  const data: Slim[] = dataEl ? JSON.parse(dataEl.textContent ?? "[]") : [];
+  const form = document.getElementById("picker-form") as HTMLFormElement | null;
+  const resultEl = document.getElementById("picker-result");
+  const buildSummary = document.getElementById("build-summary");
+  const selected = new Set<string>();
+
+  function escapeHtml(s: string): string {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function matchesGoal(d: Slim, goal: string): boolean {
+    if (!goal || goal === "any") return true;
+    // Goal is a planning hint rather than a hard attribute filter — pass all entities
+    // through; the AI helper applies goal-aware selection. Manual ticks show everything.
+    return true;
+  }
+
+  function renderPicker() {
+    if (!form || !resultEl) return;
+    const wanted = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value);
+    const goal = (form.querySelector('input[name="goal"]:checked') as HTMLInputElement | null)?.value ?? "any";
+    if (wanted.length === 0) {
+      resultEl.innerHTML = '<p class="picker-empty">Tick a component above to see compatible options.</p>';
+      buildSummary?.setAttribute("hidden", "");
+      return;
+    }
+    buildSummary?.removeAttribute("hidden");
+
+    let html = "";
+    for (const wantType of wanted) {
+      const ofType = data.filter((d) => d.type === wantType && matchesGoal(d, goal));
+      if (ofType.length === 0) {
+        html += `<section class="res-section"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2></header><p class="picker-empty">No matches for the selected goal.</p></section>`;
+        continue;
+      }
+      html += `<section class="res-section" data-type="${wantType}"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2><span class="res-ct">${ofType.length}</span><label class="res-sort"><span class="res-sort-lbl">Sort</span><select class="res-sort-sel" data-type="${wantType}"><option value="default">Featured</option><option value="price-asc">Price · low to high</option><option value="price-desc">Price · high to low</option></select></label></header><div class="card-grid">`;
+      for (const d of ofType) {
+        const isSelected = selected.has(d.sku);
+        const detailHref = `/${VERTICAL}/devices/${d.sku}/`;
+        const buyHref = d.asin
+          ? `https://www.amazon.com/dp/${d.asin}/?tag=crosspec20-20&ascsubtag=picker`
+          : `/go/${VERTICAL}/${d.sku}?ref=picker`;
+        const priceTxt = d.price != null ? `$${d.price}` : "—";
+        html += `<article class="pcard" data-sku="${escapeHtml(d.sku)}" data-price="${d.price ?? 0}" data-selected="${isSelected ? "1" : "0"}">
+          <div class="pc-top">
+            <label class="pick-toggle"><input type="checkbox" class="pick-cb" ${isSelected ? "checked" : ""} aria-label="Include in build" /><span class="pick-box" aria-hidden="true"></span></label>
+            <span class="pc-brand">${escapeHtml(d.brand.replace(/_/g, " "))}</span>
+          </div>
+          <h3 class="pc-name"><a href="${detailHref}">${escapeHtml(d.name)}</a></h3>
+          ${d.note ? `<p class="pc-note">${escapeHtml(d.note.slice(0, 200))}</p>` : ""}
+          <div class="pc-foot">
+            <span class="pc-price">${priceTxt}</span>
+            <a class="pc-cta" href="${buyHref}" target="_blank" rel="sponsored nofollow noopener">Open on Amazon →</a>
+          </div>
+        </article>`;
+      }
+      html += `</div></section>`;
+    }
+    resultEl.innerHTML = html;
+    syncBuildSummary();
+  }
+
+  function syncBuildSummary() {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".pcard[data-sku]"));
+    let total = 0;
+    const skus: string[] = [];
+    for (const card of cards) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      const sku = card.dataset.sku ?? "";
+      if (cb && cb.checked) {
+        card.dataset.selected = "1";
+        if (sku) { skus.push(sku); selected.add(sku); total += parseFloat(card.dataset.price ?? "0") || 0; }
+      } else {
+        card.dataset.selected = "0";
+        selected.delete(sku);
+      }
+    }
+    const amountEl = document.getElementById("bs-amount");
+    if (amountEl) amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "$0";
+    const metaEl = document.getElementById("bs-meta");
+    if (metaEl) metaEl.textContent = skus.length === 0 ? "tick the products you want" : `${skus.length} ${skus.length === 1 ? "pick" : "picks"} · review before buying`;
+    const cartEl = document.getElementById("bs-cart") as HTMLAnchorElement | null;
+    if (cartEl) {
+      cartEl.href = `/${VERTICAL}/cart/?skus=${skus.join(",")}`;
+      cartEl.classList.toggle("disabled", skus.length === 0);
+    }
+  }
+
+  // Soft compatibility warnings — non-blocking. Pick whatever you like; we just flag issues.
+  const TYPE_DEPS: Record<string, string[]> = {
+    amplifier: ["wiring_kit"],
+    subwoofer: ["amplifier", "wiring_kit"],
+  };
+  const TYPE_LBL: Record<string, string> = {
+    head_unit: "head unit", component_speaker: "component set",
+    coaxial_speaker: "coaxials", subwoofer: "subwoofer", amplifier: "amplifier",
+    wiring_kit: "wiring kit", sound_deadener: "sound deadener",
+  };
+  // Pairs that are usually alternatives — both ticked → warn, don't force.
+  const TYPE_EXCLUSIVE: Array<[string, string]> = [["component_speaker", "coaxial_speaker"]];
+
+  function pickedProducts(): Slim[] {
+    const out: Slim[] = [];
+    for (const card of document.querySelectorAll<HTMLElement>(".pcard[data-sku]")) {
+      const cb = card.querySelector<HTMLInputElement>(".pick-cb");
+      if (!cb?.checked) continue;
+      const sku = card.dataset.sku ?? "";
+      const item = data.find((d) => d.sku === sku);
+      if (item) out.push(item);
+    }
+    return out;
+  }
+
+  function findCompatWarnings(): string[] {
+    if (!form) return [];
+    const warnings: string[] = [];
+    const checked = new Set(
+      Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
+    );
+    for (const [trigger, deps] of Object.entries(TYPE_DEPS)) {
+      if (!checked.has(trigger)) continue;
+      const missing = deps.filter((d) => !checked.has(d));
+      if (missing.length === 0) continue;
+      warnings.push(`Missing ${missing.map((m) => TYPE_LBL[m] ?? m).join(", ")} — usually needed alongside the ${TYPE_LBL[trigger] ?? trigger}.`);
+    }
+    for (const [a, b] of TYPE_EXCLUSIVE) {
+      if (checked.has(a) && checked.has(b)) {
+        warnings.push(`${TYPE_LBL[a] ?? a} and ${TYPE_LBL[b] ?? b} are usually alternatives — most builds use one or the other.`);
+      }
+    }
+    return warnings;
+  }
+
+  function renderCompatBanner() {
+    const warnings = findCompatWarnings();
+    let banner = document.getElementById("deps-banner");
+    if (warnings.length === 0) {
+      if (banner) banner.remove();
+      return;
+    }
+    if (!banner) {
+      banner = document.createElement("div");
+      banner.id = "deps-banner";
+      banner.className = "deps-banner";
+      const pickerForm = document.getElementById("picker-form");
+      pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
+    }
+    banner.innerHTML = `<strong>Heads up:</strong><ul>${warnings.map((w) => `<li>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</li>`).join("")}</ul>`;
+  }
+
+  if (resultEl) {
+    resultEl.addEventListener("change", (e) => {
+      const t = e.target as HTMLElement;
+      if (!t.matches(".res-sort-sel")) return;
+      const sel = t as HTMLSelectElement;
+      const section = sel.closest<HTMLElement>(".res-section");
+      const grid = section?.querySelector<HTMLElement>(".card-grid");
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>(".pcard"));
+      const order = sel.value;
+      const priced = cards.filter((c) => parseFloat(c.dataset.price ?? "0") > 0);
+      const unpriced = cards.filter((c) => !(parseFloat(c.dataset.price ?? "0") > 0));
+      if (order === "price-asc") {
+        priced.sort((a, b) => parseFloat(a.dataset.price ?? "0") - parseFloat(b.dataset.price ?? "0"));
+      } else if (order === "price-desc") {
+        priced.sort((a, b) => parseFloat(b.dataset.price ?? "0") - parseFloat(a.dataset.price ?? "0"));
+      } else {
+        renderPicker();
+        return;
+      }
+      for (const c of priced) grid.appendChild(c);
+      for (const c of unpriced) grid.appendChild(c);
+    });
+  }
+
+  if (form) {
+    form.addEventListener("change", (e) => {
+      const t = e.target as HTMLElement;
+      if (t.matches('input[name="want"]') || t.matches('input[name="goal"]')) {
+        renderPicker();
+        renderCompatBanner();
+      } else if (t.classList.contains("pick-cb")) {
+        syncBuildSummary();
+        renderCompatBanner();
+      }
+    });
+  }
+
+  // ─── AI helper: natural language → params → applied to picker ───
+
+  type Msg = { role: "user" | "assistant"; content: string };
+  type CarAudioParams = {
+    goal: string;
+    vehicle_type?: string;
+    wants: string[];
+  };
+  type LLMResp =
+    | { kind: "question"; text: string }
+    | { kind: "ready"; summary: string; params: CarAudioParams }
+    | { kind: "error"; text: string };
+
+  const aiForm = document.getElementById("ai-form") as HTMLFormElement | null;
+  const aiInput = document.getElementById("ai-input") as HTMLInputElement | null;
+  const aiSubmit = document.getElementById("ai-submit") as HTMLButtonElement | null;
+  const aiTranscript = document.getElementById("ai-transcript");
+  const conversation: Msg[] = [];
+
+  function appendBubble(role: "user" | "assistant" | "system", text: string) {
+    if (!aiTranscript) return;
+    const div = document.createElement("div");
+    div.className = `ai-bubble ai-${role}`;
+    div.textContent = text;
+    aiTranscript.appendChild(div);
+    aiTranscript.scrollTop = aiTranscript.scrollHeight;
+  }
+
+  function setBusy(busy: boolean) {
+    if (aiInput) aiInput.disabled = busy;
+    if (aiSubmit) {
+      aiSubmit.disabled = busy;
+      aiSubmit.textContent = busy ? "Thinking…" : "Ask →";
+    }
+  }
+
+  async function askLLM(text: string) {
+    conversation.push({ role: "user", content: text });
+    appendBubble("user", text);
+    setBusy(true);
+    try {
+      const r = await fetch("/api/llm-solve", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ vertical: "car-audio", messages: conversation }),
+      });
+      const data = (await r.json()) as LLMResp;
+      if (data.kind === "question") {
+        conversation.push({ role: "assistant", content: data.text });
+        appendBubble("assistant", data.text);
+      } else if (data.kind === "ready") {
+        conversation.push({ role: "assistant", content: data.summary });
+        appendBubble("assistant", data.summary);
+        applyParams(data.params);
+      } else {
+        appendBubble("system", data.text);
+      }
+    } catch (e) {
+      appendBubble("system", "Connection error — try again in a moment.");
+    } finally {
+      setBusy(false);
+      if (aiInput) aiInput.value = "";
+    }
+  }
+
+  function applyParams(p: CarAudioParams) {
+    if (form) {
+      const goalRadio = form.querySelector<HTMLInputElement>(`input[name="goal"][value="${p.goal}"]`);
+      if (goalRadio) goalRadio.checked = true;
+      for (const want of p.wants) {
+        const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
+        if (cb) cb.checked = true;
+      }
+      renderCompatBanner();
+    }
+
+    const GOAL_LABEL: Record<string, string> = {
+      any: "any", daily: "Daily driver", "sub-only": "Sub only",
+      sq: "Sound quality", spl: "SPL / loud", "oem-replacement": "OEM replacement",
+      carplay: "CarPlay rebuild",
+    };
+
+    const sizingEl = document.getElementById("ai-sizing") ?? (() => {
+      const d = document.createElement("div");
+      d.id = "ai-sizing";
+      d.className = "ai-sizing";
+      const aiHelper = document.getElementById("ai-helper");
+      aiHelper?.parentNode?.insertBefore(d, aiHelper.nextSibling);
+      return d;
+    })();
+    sizingEl.innerHTML = `
+      <div class="sz-head">Filtering for ${GOAL_LABEL[p.goal] ?? p.goal}${p.vehicle_type ? ` · ${p.vehicle_type}` : ""}</div>
+      <div class="sz-grid">
+        <div class="sz-cell"><span class="sz-k">goal</span><span class="sz-v">${GOAL_LABEL[p.goal] ?? p.goal}</span></div>
+        ${p.vehicle_type ? `<div class="sz-cell"><span class="sz-k">vehicle</span><span class="sz-v">${p.vehicle_type}</span></div>` : ""}
+        <div class="sz-cell"><span class="sz-k">categories</span><span class="sz-v">${p.wants.length} ticked</span></div>
+      </div>
+      <p class="sz-foot">Goal is a planning hint — all matching components are shown. Review individual specs before adding to your build.</p>
+    `;
+    renderPicker();
+    sizingEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  if (aiForm) {
+    aiForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = aiInput?.value.trim() ?? "";
+      if (v) askLLM(v);
+    });
+  }
+  document.querySelectorAll<HTMLButtonElement>(".ai-chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const q = btn.dataset.q ?? "";
+      if (q) askLLM(q);
+    });
+  });
+</script>

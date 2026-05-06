@@ -9,5 +9,6 @@
       "search_template": "https://www.amazon.com/s?k={query}&tag={tag}"
     }
   },
-  "skus": {}
+  "skus": {},
+  "products": {}
 }
