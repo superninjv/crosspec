@@ -64,6 +64,27 @@ for (const e of kb.entities) {
     </div>
   </section>
 
+  <section class="ai-helper" id="ai-helper">
+    <div class="ai-inner">
+      <div class="ai-head">
+        <span class="ai-glyph" aria-hidden="true">⌘</span>
+        <span class="ai-title">Describe what you need to power</span>
+        <span class="ai-sub">e.g. "1000W irrigation pump for 2 hours a day" or "RV: fridge, lights, charge laptops"</span>
+      </div>
+      <div class="ai-transcript" id="ai-transcript"></div>
+      <form id="ai-form" class="ai-form" autocomplete="off">
+        <input type="text" name="q" id="ai-input" placeholder="What are you building?" maxlength="500" required />
+        <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="ai-examples">
+        <button type="button" class="ai-chip" data-q="Power a 1000W irrigation pump for 2 hours a day, off-grid">1000W pump · 2hr/day</button>
+        <button type="button" class="ai-chip" data-q="RV setup for a 12V fridge, LED lights, and laptop charging, 24/7">RV essentials · 12V</button>
+        <button type="button" class="ai-chip" data-q="Backup power for a 600W refrigerator during outages, 8 hours">Fridge backup · 8hr</button>
+        <button type="button" class="ai-chip" data-q="Off-grid cabin: 200W of LED lighting and a 90W laptop, 6 hours/day, 24V system">Cabin · 24V · 6hr</button>
+      </div>
+    </div>
+  </section>
+
   <form id="picker-form" class="picker-form">
     <fieldset class="picker-step">
       <legend><span class="step-num">1</span> What's the build for?</legend>
@@ -267,6 +288,131 @@ for (const e of kb.entities) {
       else if (t.classList.contains("pick-cb")) syncBuildSummary();
     });
   }
+
+  // ─── AI helper: natural language → params → applied to picker ───
+
+  type Msg = { role: "user" | "assistant"; content: string };
+  type LLMResp =
+    | { kind: "question"; text: string }
+    | { kind: "ready"; summary: string; params: SolarParams }
+    | { kind: "error"; text: string };
+  type SolarParams = {
+    load_watts: number;
+    runtime_hours_per_day: number;
+    sun_hours_per_day: number;
+    battery_voltage: 12 | 24 | 48;
+    use_case: string;
+    wants: string[];
+  };
+
+  const aiForm = document.getElementById("ai-form") as HTMLFormElement | null;
+  const aiInput = document.getElementById("ai-input") as HTMLInputElement | null;
+  const aiSubmit = document.getElementById("ai-submit") as HTMLButtonElement | null;
+  const aiTranscript = document.getElementById("ai-transcript");
+  const conversation: Msg[] = [];
+
+  function appendBubble(role: "user" | "assistant" | "system", text: string) {
+    if (!aiTranscript) return;
+    const div = document.createElement("div");
+    div.className = `ai-bubble ai-${role}`;
+    div.textContent = text;
+    aiTranscript.appendChild(div);
+    aiTranscript.scrollTop = aiTranscript.scrollHeight;
+  }
+
+  function setBusy(busy: boolean) {
+    if (aiInput) aiInput.disabled = busy;
+    if (aiSubmit) {
+      aiSubmit.disabled = busy;
+      aiSubmit.textContent = busy ? "Thinking…" : "Ask →";
+    }
+  }
+
+  async function askLLM(text: string) {
+    conversation.push({ role: "user", content: text });
+    appendBubble("user", text);
+    setBusy(true);
+    try {
+      const r = await fetch("/api/llm-solve", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ vertical: "solar", messages: conversation }),
+      });
+      const data = (await r.json()) as LLMResp;
+      if (data.kind === "question") {
+        conversation.push({ role: "assistant", content: data.text });
+        appendBubble("assistant", data.text);
+      } else if (data.kind === "ready") {
+        conversation.push({ role: "assistant", content: data.summary });
+        appendBubble("assistant", data.summary);
+        applyParams(data.params);
+      } else {
+        appendBubble("system", data.text);
+      }
+    } catch (e) {
+      appendBubble("system", "Connection error — try again in a moment.");
+    } finally {
+      setBusy(false);
+      if (aiInput) aiInput.value = "";
+    }
+  }
+
+  function applyParams(p: SolarParams) {
+    // Set use case radio
+    if (form) {
+      const useCaseRadio = form.querySelector<HTMLInputElement>(`input[name="use_case"][value="${p.use_case}"]`);
+      if (useCaseRadio) useCaseRadio.checked = true;
+      // Check the wants
+      for (const want of p.wants) {
+        const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
+        if (cb) cb.checked = true;
+      }
+    }
+    // Compute sizing
+    const dailyKwh = (p.load_watts * p.runtime_hours_per_day) / 1000;
+    const panelW = Math.ceil((dailyKwh * 1000) / p.sun_hours_per_day * 1.4);
+    const batteryAh = Math.ceil((dailyKwh * 1000) / p.battery_voltage / 0.9 * 1.5);
+    const inverterW = Math.ceil(p.load_watts * 1.5);
+    const ccA = Math.ceil(panelW / p.battery_voltage * 1.25);
+
+    // Show the recommendation strip above the picker results
+    const sizingEl = document.getElementById("ai-sizing") ?? (() => {
+      const d = document.createElement("div");
+      d.id = "ai-sizing";
+      d.className = "ai-sizing";
+      const aiHelper = document.getElementById("ai-helper");
+      aiHelper?.parentNode?.insertBefore(d, aiHelper.nextSibling);
+      return d;
+    })();
+    sizingEl.innerHTML = `
+      <div class="sz-head">Sizing for ${dailyKwh.toFixed(1)} kWh/day at ${p.sun_hours_per_day} sun-hours · ${p.battery_voltage}V system</div>
+      <div class="sz-grid">
+        <div class="sz-cell"><span class="sz-k">solar panels</span><span class="sz-v">≥ ${panelW} W total</span></div>
+        <div class="sz-cell"><span class="sz-k">battery (LFP)</span><span class="sz-v">≥ ${batteryAh} Ah @ ${p.battery_voltage}V</span></div>
+        <div class="sz-cell"><span class="sz-k">inverter</span><span class="sz-v">≥ ${inverterW} W continuous</span></div>
+        <div class="sz-cell"><span class="sz-k">MPPT controller</span><span class="sz-v">≥ ${ccA} A</span></div>
+      </div>
+      <p class="sz-foot">Targets are per-component minimums; pick anything ≥ each value below. Math: daily kWh × 1.4 oversize / sun-hours = panel watts; daily kWh × 1.5 autonomy / 0.9 LFP DoD / V = Ah.</p>
+    `;
+    // Filter the picker results to show items meeting these thresholds
+    renderPicker();
+    // Scroll
+    sizingEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  if (aiForm) {
+    aiForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = aiInput?.value.trim() ?? "";
+      if (v) askLLM(v);
+    });
+  }
+  document.querySelectorAll<HTMLButtonElement>(".ai-chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const q = btn.dataset.q ?? "";
+      if (q) askLLM(q);
+    });
+  });
 </script>
 
 <style is:global>
@@ -281,7 +427,82 @@ for (const e of kb.entities) {
   .solar-hero h1 em { font-style: normal; color: var(--accent); }
   .solar-hero .lede { font-size: 16px; color: var(--ink-2); line-height: 1.55; max-width: 720px; margin: 0; }
 
-  .picker-form { max-width: 1100px; margin: 0 auto; padding: 28px 24px 8px; display: flex; flex-direction: column; gap: 20px; }
+  .ai-helper {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .ai-inner {
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .ai-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .ai-glyph {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 6px;
+    background: var(--accent); color: var(--paper-0);
+    font-family: var(--mono); font-weight: 700; font-size: 13px;
+  }
+  .ai-title { font-size: 15px; font-weight: 700; color: var(--ink-0); }
+  .ai-sub { font-size: 12.5px; color: var(--ink-3); font-style: italic; }
+  .ai-transcript {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 12px;
+    max-height: 320px; overflow-y: auto;
+  }
+  .ai-transcript:empty { display: none; }
+  .ai-bubble {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    max-width: 80%;
+  }
+  .ai-user { align-self: flex-end; background: var(--ink-0); color: var(--paper-0); }
+  .ai-assistant { align-self: flex-start; background: var(--paper-1); color: var(--ink-0); border: 1px solid var(--paper-edge); }
+  .ai-system { align-self: center; font-size: 12px; color: var(--ink-3); font-style: italic; }
+  .ai-form { display: flex; gap: 8px; margin-bottom: 10px; }
+  .ai-form input {
+    flex: 1; padding: 10px 12px;
+    border: 1px solid var(--paper-edge); border-radius: 7px;
+    background: var(--paper-1); color: var(--ink-0);
+    font-size: 14px; font-family: var(--sans);
+  }
+  .ai-form input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .ai-submit {
+    padding: 10px 18px;
+    background: var(--ink-0); color: var(--paper-0);
+    border: 0; border-radius: 7px;
+    font-size: 13.5px; font-weight: 700; cursor: pointer;
+  }
+  .ai-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .ai-examples { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ai-chip {
+    padding: 6px 12px;
+    background: var(--paper-1); border: 1px solid var(--paper-edge); border-radius: 99px;
+    font-size: 12px; color: var(--ink-2); cursor: pointer;
+    font-family: var(--mono);
+  }
+  .ai-chip:hover { background: var(--paper-0); border-color: var(--ink-3); color: var(--ink-0); }
+
+  .ai-sizing {
+    max-width: 1100px;
+    margin: 16px auto 0;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, oklch(0.95 0.04 80) 0%, var(--paper-0) 100%);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+  }
+  .sz-head { font-size: 14.5px; font-weight: 700; color: var(--ink-0); margin-bottom: 12px; }
+  .sz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+  .sz-cell { background: var(--paper-0); border: 1px solid var(--paper-edge); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+  .sz-k { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); font-weight: 600; }
+  .sz-v { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--ink-0); }
+  .sz-foot { font-size: 11.5px; color: var(--ink-3); margin: 10px 0 0; line-height: 1.5; }
+
+  .picker-form { max-width: 1100px; margin: 16px auto 0; padding: 0 24px; display: flex; flex-direction: column; gap: 20px; }
   .picker-step { border: 0; padding: 0; margin: 0; }
   .picker-step legend { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; color: var(--ink-0); margin-bottom: 12px; }
   .step-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ink-0); color: var(--paper-0); font-family: var(--mono); font-size: 12px; font-weight: 700; }
