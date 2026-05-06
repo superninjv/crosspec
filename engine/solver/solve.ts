@@ -144,13 +144,60 @@ export function solve(kb: KnowledgeBase, inputs: UserInputs): Solution[] {
     const aliases = (e.attributes.provides_hub_aliases ?? []) as string[];
     for (const key of [provides, ...aliases]) {
       if (!key) continue;
-      // First-match wins; cheaper hubs typically appear first in catalog order
       if (!hubEntitiesByProvides.has(key)) hubEntitiesByProvides.set(key, e);
     }
   }
+
+  // Compound hub strings: "X_plus_Y" needs both, "X_or_Y" needs either.
+  // Split into atoms and try to find a single hub that satisfies as many as
+  // possible; fall back to just any one of them.
+  function splitHubAtoms(hubStr: string): { atoms: string[]; mode: "and" | "or" } {
+    if (hubStr.includes("_plus_")) {
+      return { atoms: hubStr.split("_plus_"), mode: "and" };
+    }
+    if (hubStr.includes("_or_")) {
+      return { atoms: hubStr.split("_or_"), mode: "or" };
+    }
+    return { atoms: [hubStr], mode: "or" };
+  }
+
+  function rankHub(e: Entity): number {
+    // Prefer hubs dedicated to the user's ecosystem (HomeKit user → Apple TV
+    // beats Aqara M3 even though both work). Score = native + dedicatedness.
+    const eco = (e.attributes.ecosystems ?? []) as string[];
+    const native = eco.includes(inputs.ecosystem) ? 1 : 0;
+    const dedicated = native && eco.length === 1 ? 1 : 0;
+    return native * 2 + dedicated * 3;
+  }
+
+  function findHubFor(hubStr: string): Entity | null {
+    const candidates: Entity[] = [];
+    const direct = hubEntitiesByProvides.get(hubStr);
+    if (direct) candidates.push(direct);
+
+    const { atoms, mode } = splitHubAtoms(hubStr);
+    if (mode === "and") {
+      for (const e of kb.entities) {
+        if (e.type !== "hub") continue;
+        const provides = (e.attributes.provides_hub ?? "") as string;
+        const aliases = (e.attributes.provides_hub_aliases ?? []) as string[];
+        const all = new Set([provides, ...aliases]);
+        if (atoms.every((a) => all.has(a))) candidates.push(e);
+      }
+    }
+    for (const a of atoms) {
+      const e = hubEntitiesByProvides.get(a);
+      if (e) candidates.push(e);
+    }
+    if (candidates.length === 0) return null;
+    // Prefer ecosystem-native hubs; ties broken by catalog order.
+    candidates.sort((a, b) => rankHub(b) - rankHub(a));
+    return candidates[0];
+  }
+
   const hubsAlreadyPicked = new Set(allPicks.map((p) => p.entity.id));
   for (const hub of hubs) {
-    const hubEntity = hubEntitiesByProvides.get(hub);
+    const hubEntity = findHubFor(hub);
     if (!hubEntity) continue;
     if (hubsAlreadyPicked.has(hubEntity.id)) continue;
     hubsAlreadyPicked.add(hubEntity.id);

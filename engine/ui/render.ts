@@ -139,11 +139,11 @@ function renderProductCard(
 
   const why = attrs.note ? `<p class="why">${esc(attrs.note)}</p>` : "";
 
-  return `<article class="pcard${featured ? " featured" : ""}" data-sku="${esc(String(sku))}" data-price="${typeof priceUsd === "number" ? priceUsd : 0}" data-selected="1">
+  return `<article class="pcard${featured ? " featured" : ""}" data-sku="${esc(String(sku))}" data-price="${typeof priceUsd === "number" ? priceUsd : 0}" data-selected="0">
     <div class="topline">
       <span class="left">
         <label class="pick-toggle" title="Include in build total + Amazon cart">
-          <input type="checkbox" class="pick-checkbox" checked />
+          <input type="checkbox" class="pick-checkbox" />
           <span class="pick-box" aria-hidden="true"></span>
         </label>
         <span class="mono pid">${esc(entity.id)}</span>
@@ -309,12 +309,12 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
       ? `<div class="build-summary" id="build-summary">
     <div class="bs-totals">
       <span class="bs-label">build total</span>
-      <span class="bs-amount" id="bs-amount">${totalPrice > 0 ? `$${totalPrice}` : "no prices"}</span>
-      <span class="bs-meta">across ${totalPicks} ${totalPicks === 1 ? "pick" : "picks"}</span>
+      <span class="bs-amount" id="bs-amount">$0</span>
+      <span class="bs-meta">tick the products you want, then add to cart</span>
     </div>
-    <a class="bs-cart" id="bs-cart" href="/go/${esc(vertical)}/cart?skus=${solution.picks.map((p) => esc(String(p.entity.sku ?? p.entity.id))).join(",")}" rel="sponsored nofollow noopener" target="_blank">
+    <a class="bs-cart disabled" id="bs-cart" href="/go/${esc(vertical)}/cart?skus=" rel="sponsored nofollow noopener" target="_blank">
       <span class="bs-cart-glyph" aria-hidden="true">&#9635;</span>
-      <span>Add all to Amazon cart</span>
+      <span>Add to Amazon cart</span>
       <span class="bs-cart-arr" aria-hidden="true">&rarr;</span>
     </a>
   </div>`

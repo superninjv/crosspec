@@ -281,18 +281,18 @@ const today = new Date().toISOString().slice(0, 10);
         <div class="build-summary" id="build-summary">
           <div class="bs-totals">
             <span class="bs-label">build total</span>
-            <span class="bs-amount" id="bs-amount">{totalPrice > 0 ? `$${totalPrice}` : "no prices"}</span>
-            <span class="bs-meta">across {totalPicks} {totalPicks === 1 ? "pick" : "picks"}</span>
+            <span class="bs-amount" id="bs-amount">$0</span>
+            <span class="bs-meta">tick the products you want, then add to cart</span>
           </div>
           <a
-            class="bs-cart"
+            class="bs-cart disabled"
             id="bs-cart"
-            href={`/go/${vertical}/cart?skus=${solution.picks.map((p) => p.entity.sku ?? p.entity.id).join(",")}`}
+            href={`/go/${vertical}/cart?skus=`}
             rel="sponsored nofollow noopener"
             target="_blank"
           >
             <span class="bs-cart-glyph" aria-hidden="true">▣</span>
-            <span>Add all to Amazon cart</span>
+            <span>Add to Amazon cart</span>
             <span class="bs-cart-arr" aria-hidden="true">→</span>
           </a>
         </div>

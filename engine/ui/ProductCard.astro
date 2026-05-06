@@ -82,11 +82,11 @@ for (const [k, niceK] of [
 
 const pinNum = String(idx + 1).padStart(2, "0");
 ---
-<article class={`pcard${attrs.featured ? " featured" : ""}`} data-sku={String(sku)} data-price={typeof priceUsd === "number" ? String(priceUsd) : "0"} data-selected="1">
+<article class={`pcard${attrs.featured ? " featured" : ""}`} data-sku={String(sku)} data-price={typeof priceUsd === "number" ? String(priceUsd) : "0"} data-selected="0">
   <div class="topline">
     <span class="left">
       <label class="pick-toggle" title="Include in build total + Amazon cart">
-        <input type="checkbox" class="pick-checkbox" checked />
+        <input type="checkbox" class="pick-checkbox" />
         <span class="pick-box" aria-hidden="true"></span>
       </label>
       <span class="mono pid">{entity.id}</span>
