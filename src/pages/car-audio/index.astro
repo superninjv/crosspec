@@ -79,10 +79,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Front stage component upgrade">Front stage · components</button>
-        <button type="button" class="ai-chip" data-q="Trunk sub for an SUV">Trunk sub · SUV</button>
-        <button type="button" class="ai-chip" data-q="CarPlay rebuild">CarPlay rebuild</button>
-        <button type="button" class="ai-chip" data-q="OEM replacement speakers">OEM replacement</button>
+        <button type="button" class="ai-chip" data-q="Front stage component upgrade" data-params='{"goal":"sq","vehicle_type":"any","wants":["component_speaker","amplifier","wiring_kit","sound_deadener"]}'>Front stage · components</button>
+        <button type="button" class="ai-chip" data-q="Trunk sub for an SUV" data-params='{"goal":"sub-only","vehicle_type":"suv","wants":["subwoofer","amplifier","wiring_kit"]}'>Trunk sub · SUV</button>
+        <button type="button" class="ai-chip" data-q="CarPlay rebuild" data-params='{"goal":"carplay","vehicle_type":"any","wants":["head_unit"]}'>CarPlay rebuild</button>
+        <button type="button" class="ai-chip" data-q="OEM replacement speakers" data-params='{"goal":"oem-replacement","vehicle_type":"any","wants":["coaxial_speaker"]}'>OEM replacement</button>
       </div>
     </div>
   </section>
@@ -488,6 +488,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

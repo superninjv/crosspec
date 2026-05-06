@@ -77,10 +77,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Ambient board with delay and reverb">Ambient · delay + reverb</button>
-        <button type="button" class="ai-chip" data-q="First pedalboard that can power 8 pedals">First board · power 8 pedals</button>
-        <button type="button" class="ai-chip" data-q="Compact fly gig board 12x18 inches">Compact fly gig · 12×18</button>
-        <button type="button" class="ai-chip" data-q="Metal high-gain pedalboard">Metal · high-gain</button>
+        <button type="button" class="ai-chip" data-q="Ambient board with delay and reverb" data-params='{"genre":"ambient","num_pedals":6,"wants":["pedal","pedalboard","power_supply","patch_cable","tuner"]}'>Ambient · delay + reverb</button>
+        <button type="button" class="ai-chip" data-q="First pedalboard that can power 8 pedals" data-params='{"genre":"any","num_pedals":8,"wants":["pedal","pedalboard","power_supply","patch_cable","tuner"]}'>First board · power 8 pedals</button>
+        <button type="button" class="ai-chip" data-q="Compact fly gig board 12x18 inches" data-params='{"genre":"any","num_pedals":5,"wants":["pedal","pedalboard","power_supply","patch_cable","tuner"]}'>Compact fly gig · 12×18</button>
+        <button type="button" class="ai-chip" data-q="Metal high-gain pedalboard" data-params='{"genre":"metal","num_pedals":8,"wants":["pedal","pedalboard","power_supply","patch_cable","tuner"]}'>Metal · high-gain</button>
       </div>
     </div>
   </section>
@@ -488,6 +488,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

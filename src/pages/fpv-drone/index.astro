@@ -82,10 +82,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="5&quot; freestyle with DJI O3">5" freestyle · DJI O3</button>
-        <button type="button" class="ai-chip" data-q="7&quot; long range build">7" long range</button>
-        <button type="button" class="ai-chip" data-q="Indoor whoop under $200">Indoor whoop</button>
-        <button type="button" class="ai-chip" data-q="Cinelifter cinematic build">Cinelifter / cinematic</button>
+        <button type="button" class="ai-chip" data-q="5&quot; freestyle with DJI O3" data-params='{"build_kind":"freestyle-5","budget_usd":500,"wants":["frame","motor","esc","flight_controller","camera","vtx","antenna","battery","propeller"]}'>5" freestyle · DJI O3</button>
+        <button type="button" class="ai-chip" data-q="7&quot; long range build" data-params='{"build_kind":"long-range","budget_usd":600,"wants":["frame","motor","esc","flight_controller","camera","vtx","antenna","battery","propeller","radio_receiver"]}'>7" long range</button>
+        <button type="button" class="ai-chip" data-q="Indoor whoop under $200" data-params='{"build_kind":"whoop","budget_usd":200,"wants":["frame","motor","esc","flight_controller","camera","vtx","battery","propeller"]}'>Indoor whoop</button>
+        <button type="button" class="ai-chip" data-q="Cinelifter cinematic build" data-params='{"build_kind":"cinematic","budget_usd":800,"wants":["frame","motor","esc","flight_controller","camera","vtx","antenna","battery","propeller"]}'>Cinelifter / cinematic</button>
       </div>
     </div>
   </section>
@@ -511,6 +511,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

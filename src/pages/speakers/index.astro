@@ -79,10 +79,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Stereo + sub for vinyl listening">Stereo + sub · vinyl</button>
-        <button type="button" class="ai-chip" data-q="5.1 home theater setup under $3000">5.1 · movies $3k</button>
-        <button type="button" class="ai-chip" data-q="Streamer for classical music">Streamer · classical</button>
-        <button type="button" class="ai-chip" data-q="Dolby Atmos 5.1.2 for immersive soundstage">Atmos · soundstage</button>
+        <button type="button" class="ai-chip" data-q="Stereo + sub for vinyl listening" data-params='{"setup":"stereo_sub","room_size_sqft":200,"wants":["bookshelf","subwoofer","stereo_amp","speaker_cable"]}'>Stereo + sub · vinyl</button>
+        <button type="button" class="ai-chip" data-q="5.1 home theater setup under $3000" data-params='{"setup":"5_1","room_size_sqft":250,"wants":["bookshelf","subwoofer","av_receiver","speaker_cable"]}'>5.1 · movies $3k</button>
+        <button type="button" class="ai-chip" data-q="Streamer for classical music" data-params='{"setup":"stereo","room_size_sqft":200,"wants":["floorstanding","stereo_amp","streamer","speaker_cable"]}'>Streamer · classical</button>
+        <button type="button" class="ai-chip" data-q="Dolby Atmos 5.1.2 for immersive soundstage" data-params='{"setup":"5_1_2","room_size_sqft":300,"wants":["bookshelf","subwoofer","av_receiver","speaker_cable"]}'>Atmos · soundstage</button>
       </div>
     </div>
   </section>
@@ -499,6 +499,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

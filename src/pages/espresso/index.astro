@@ -79,10 +79,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="First setup · $1500">First setup · $1500</button>
-        <button type="button" class="ai-chip" data-q="Lever + grinder">Lever + grinder</button>
-        <button type="button" class="ai-chip" data-q="Single-dose upgrade">Single-dose upgrade</button>
-        <button type="button" class="ai-chip" data-q="Milk drinks · dual boiler">Milk drinks · dual boiler</button>
+        <button type="button" class="ai-chip" data-q="First setup · $1500" data-params='{"level":"starter","budget_usd":1500,"milk_drinks":false,"wants":["espresso_machine","grinder","tamper","basket"]}'>First setup · $1500</button>
+        <button type="button" class="ai-chip" data-q="Lever + grinder" data-params='{"level":"enthusiast","budget_usd":2500,"milk_drinks":false,"wants":["espresso_machine","grinder","tamper","basket","distribution_tool","scale"]}'>Lever + grinder</button>
+        <button type="button" class="ai-chip" data-q="Single-dose upgrade" data-params='{"level":"single-dose","budget_usd":1000,"milk_drinks":false,"wants":["grinder","basket","distribution_tool","scale"]}'>Single-dose upgrade</button>
+        <button type="button" class="ai-chip" data-q="Milk drinks · dual boiler" data-params='{"level":"milk-drinks","budget_usd":3000,"milk_drinks":true,"wants":["espresso_machine","grinder","tamper","basket","distribution_tool","scale"]}'>Milk drinks · dual boiler</button>
       </div>
     </div>
   </section>
@@ -499,6 +499,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

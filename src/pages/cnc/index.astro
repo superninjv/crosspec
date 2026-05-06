@@ -79,10 +79,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Hardwood signs at 18×24 inches">Hardwood signs · 18×24</button>
-        <button type="button" class="ai-chip" data-q="RC parts in carbon fiber">RC parts · carbon fiber</button>
-        <button type="button" class="ai-chip" data-q="First CNC under $2k">First CNC under $2k</button>
-        <button type="button" class="ai-chip" data-q="Aluminum small parts milling">Aluminum · small parts</button>
+        <button type="button" class="ai-chip" data-q="Hardwood signs at 18×24 inches" data-params='{"material":"hardwood","work_area_min_mm":600,"bit_diameter_inch":0.25,"use_case":"signs","wants":["cnc_machine","bit","fixture","dust_shoe"]}'>Hardwood signs · 18×24</button>
+        <button type="button" class="ai-chip" data-q="RC parts in carbon fiber" data-params='{"material":"carbon-fiber","work_area_min_mm":400,"bit_diameter_inch":0.125,"use_case":"rc_parts","wants":["cnc_machine","spindle","bit","fixture","dust_shoe"]}'>RC parts · carbon fiber</button>
+        <button type="button" class="ai-chip" data-q="First CNC under $2k" data-params='{"material":"wood","work_area_min_mm":600,"bit_diameter_inch":0.25,"use_case":"hobby","wants":["cnc_machine","bit","fixture","dust_shoe"]}'>First CNC under $2k</button>
+        <button type="button" class="ai-chip" data-q="Aluminum small parts milling" data-params='{"material":"aluminum","work_area_min_mm":400,"bit_diameter_inch":0.125,"use_case":"small_parts","wants":["cnc_machine","spindle","bit","fixture","dust_shoe","controller"]}'>Aluminum · small parts</button>
       </div>
     </div>
   </section>
@@ -494,6 +494,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

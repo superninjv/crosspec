@@ -77,10 +77,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="End-game open-back for desk listening">End-game open-back · desk</button>
-        <button type="button" class="ai-chip" data-q="IEMs for Apple Music lossless">IEMs · Apple Music</button>
-        <button type="button" class="ai-chip" data-q="Closed-back headphones for studio mixing">Closed-back · studio</button>
-        <button type="button" class="ai-chip" data-q="Open-back headphones for gaming">Gaming · open-back</button>
+        <button type="button" class="ai-chip" data-q="End-game open-back for desk listening" data-params='{"use_case":"critical-listening","budget_usd":1000,"source":"wired","wants":["headphone_open","dac_amp"]}'>End-game open-back · desk</button>
+        <button type="button" class="ai-chip" data-q="IEMs for Apple Music lossless" data-params='{"use_case":"commute","budget_usd":300,"source":"wired","wants":["iem","dac_amp","ear_tip"]}'>IEMs · Apple Music</button>
+        <button type="button" class="ai-chip" data-q="Closed-back headphones for studio mixing" data-params='{"use_case":"studio","budget_usd":500,"source":"wired","wants":["headphone_closed","dac_amp","cable"]}'>Closed-back · studio</button>
+        <button type="button" class="ai-chip" data-q="Open-back headphones for gaming" data-params='{"use_case":"gaming","budget_usd":300,"source":"wired","wants":["headphone_open","dac_amp"]}'>Gaming · open-back</button>
       </div>
     </div>
   </section>
@@ -485,6 +485,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

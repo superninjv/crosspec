@@ -80,10 +80,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Quiet 65% for the office">Quiet 65% · office</button>
-        <button type="button" class="ai-chip" data-q="Tactile TKL with thock keycaps">Tactile TKL · thock</button>
-        <button type="button" class="ai-chip" data-q="Compact split keyboard for ergonomics">Split · ergo</button>
-        <button type="button" class="ai-chip" data-q="Cheap full-size starter board">Cheap full-size starter</button>
+        <button type="button" class="ai-chip" data-q="Quiet 65% for the office" data-params='{"layout":"65","switch_type":"silent","wants":["keyboard_kit","switch","keycap_set","keyboard_stabilizer","keyboard_plate","keyboard_pcb","keyboard_cable"]}'>Quiet 65% · office</button>
+        <button type="button" class="ai-chip" data-q="Tactile TKL with thock keycaps" data-params='{"layout":"tkl","switch_type":"tactile","wants":["keyboard_kit","switch","keycap_set","keyboard_stabilizer","keyboard_plate","keyboard_pcb","keyboard_cable"]}'>Tactile TKL · thock</button>
+        <button type="button" class="ai-chip" data-q="Compact split keyboard for ergonomics" data-params='{"layout":"split","switch_type":"linear","wants":["keyboard_kit","switch","keycap_set","keyboard_stabilizer","keyboard_pcb","keyboard_cable"]}'>Split · ergo</button>
+        <button type="button" class="ai-chip" data-q="Cheap full-size starter board" data-params='{"layout":"100","switch_type":"linear","wants":["keyboard_kit","switch","keycap_set","keyboard_stabilizer"]}'>Cheap full-size starter</button>
       </div>
     </div>
   </section>
@@ -506,6 +506,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

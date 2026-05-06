@@ -81,10 +81,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="1440p gaming, $1500 budget">1440p gaming · $1500</button>
-        <button type="button" class="ai-chip" data-q="Blender and DaVinci Resolve workstation">Blender · workstation</button>
-        <button type="button" class="ai-chip" data-q="Small-form-factor ITX build">Small-form-factor ITX</button>
-        <button type="button" class="ai-chip" data-q="Streaming and gaming combo build">Streaming + gaming</button>
+        <button type="button" class="ai-chip" data-q="1440p gaming, $1500 budget" data-params='{"use_case":"gaming-1440p","budget_usd":1500,"platform_pref":"any","wants":["cpu","gpu","motherboard","ram","psu","cooler","case","storage"]}'>1440p gaming · $1500</button>
+        <button type="button" class="ai-chip" data-q="Blender and DaVinci Resolve workstation" data-params='{"use_case":"workstation","budget_usd":3000,"platform_pref":"any","wants":["cpu","gpu","motherboard","ram","psu","cooler","case","storage"]}'>Blender · workstation</button>
+        <button type="button" class="ai-chip" data-q="Small-form-factor ITX build" data-params='{"use_case":"sff-htpc","budget_usd":1000,"platform_pref":"any","wants":["cpu","gpu","motherboard","ram","psu","cooler","case","storage"]}'>Small-form-factor ITX</button>
+        <button type="button" class="ai-chip" data-q="Streaming and gaming combo build" data-params='{"use_case":"streaming","budget_usd":2000,"platform_pref":"any","wants":["cpu","gpu","motherboard","ram","psu","cooler","case","storage"]}'>Streaming + gaming</button>
       </div>
     </div>
   </section>
@@ -553,6 +553,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

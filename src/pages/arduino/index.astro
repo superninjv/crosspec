@@ -74,10 +74,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Battery-powered ESP32 with WiFi + soil moisture sensor for a garden">Battery ESP32 · soil sensor</button>
-        <button type="button" class="ai-chip" data-q="Pico W reading temperature and humidity, sending over Wi-Fi">Pico W · temp + humidity</button>
-        <button type="button" class="ai-chip" data-q="Servo project on Arduino UNO with a 9V battery">UNO · servo · 9V</button>
-        <button type="button" class="ai-chip" data-q="Build a tiny e-paper IoT badge with QT Py">QT Py · e-paper badge</button>
+        <button type="button" class="ai-chip" data-q="Battery-powered ESP32 with WiFi + soil moisture sensor for a garden" data-params='{"voltage":"3v3","power_source":"battery","use_case":"garden_sensor","wants":["microcontroller_board","sensor_module","power_module","connectivity_module"]}'>Battery ESP32 · soil sensor</button>
+        <button type="button" class="ai-chip" data-q="Pico W reading temperature and humidity, sending over Wi-Fi" data-params='{"voltage":"3v3","power_source":"usb","use_case":"iot_sensor","wants":["microcontroller_board","sensor_module","connectivity_module"]}'>Pico W · temp + humidity</button>
+        <button type="button" class="ai-chip" data-q="Servo project on Arduino UNO with a 9V battery" data-params='{"voltage":"5v","power_source":"battery","use_case":"servo_control","wants":["microcontroller_board","motor_actuator","power_module"]}'>UNO · servo · 9V</button>
+        <button type="button" class="ai-chip" data-q="Build a tiny e-paper IoT badge with QT Py" data-params='{"voltage":"3v3","power_source":"usb","use_case":"iot_badge","wants":["microcontroller_board","display_module","carrier_breakout"]}'>QT Py · e-paper badge</button>
       </div>
     </div>
   </section>
@@ -495,6 +495,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

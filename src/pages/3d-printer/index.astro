@@ -84,10 +84,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Hardened nozzle setup for carbon-fiber nylon">Carbon-fiber nylon</button>
-        <button type="button" class="ai-chip" data-q="First FDM printer for tabletop minis">First FDM · minis</button>
-        <button type="button" class="ai-chip" data-q="Enclosed printer for ABS automotive parts">ABS · enclosed</button>
-        <button type="button" class="ai-chip" data-q="Resin printer for highly detailed miniatures">Resin · minis</button>
+        <button type="button" class="ai-chip" data-q="Hardened nozzle setup for carbon-fiber nylon" data-params='{"print_material":"pa-cf","needs_enclosure":false,"needs_hardened_nozzle":true,"needs_direct_drive":false,"use_case":"drone_parts","wants":["fdm_printer","filament","nozzle","build_surface"]}'>Carbon-fiber nylon</button>
+        <button type="button" class="ai-chip" data-q="First FDM printer for tabletop minis" data-params='{"print_material":"pla","needs_enclosure":false,"needs_hardened_nozzle":false,"needs_direct_drive":false,"use_case":"tabletop_minis","wants":["fdm_printer","filament","nozzle","build_surface"]}'>First FDM · minis</button>
+        <button type="button" class="ai-chip" data-q="Enclosed printer for ABS automotive parts" data-params='{"print_material":"abs","needs_enclosure":true,"needs_hardened_nozzle":false,"needs_direct_drive":false,"use_case":"automotive_parts","wants":["fdm_printer","filament","nozzle","enclosure","build_surface"]}'>ABS · enclosed</button>
+        <button type="button" class="ai-chip" data-q="Resin printer for highly detailed miniatures" data-params='{"print_material":"resin","needs_enclosure":false,"needs_hardened_nozzle":false,"needs_direct_drive":false,"use_case":"detailed_minis","wants":["resin_printer","build_surface"]}'>Resin · minis</button>
       </div>
     </div>
   </section>
@@ -515,6 +515,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

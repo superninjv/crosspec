@@ -81,10 +81,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Planted tank with neon tetras">Planted · neon tetras</button>
-        <button type="button" class="ai-chip" data-q="Nano reef with clownfish">Nano reef · clownfish</button>
-        <button type="button" class="ai-chip" data-q="Discus advanced setup">Discus advanced</button>
-        <button type="button" class="ai-chip" data-q="Beginner 20gal community tank">Beginner 20gal community</button>
+        <button type="button" class="ai-chip" data-q="Planted tank with neon tetras" data-params='{"ecosystem":"planted","tank_gallons":40,"experience":"beginner","wants":["fish_species","aquarium","filter","heater","light","substrate","co2_system","test_kit"]}'>Planted · neon tetras</button>
+        <button type="button" class="ai-chip" data-q="Nano reef with clownfish" data-params='{"ecosystem":"reef-soft","tank_gallons":30,"experience":"intermediate","wants":["fish_species","aquarium","filter","heater","light","substrate","protein_skimmer","pump","test_kit"]}'>Nano reef · clownfish</button>
+        <button type="button" class="ai-chip" data-q="Discus advanced setup" data-params='{"ecosystem":"freshwater","tank_gallons":75,"experience":"advanced","wants":["fish_species","aquarium","filter","heater","light","substrate","test_kit"]}'>Discus advanced</button>
+        <button type="button" class="ai-chip" data-q="Beginner 20gal community tank" data-params='{"ecosystem":"freshwater","tank_gallons":20,"experience":"beginner","wants":["fish_species","aquarium","filter","heater","test_kit"]}'>Beginner 20gal community</button>
       </div>
     </div>
   </section>
@@ -639,6 +639,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

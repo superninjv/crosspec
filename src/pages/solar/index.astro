@@ -77,10 +77,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Power a 1000W irrigation pump for 2 hours a day, off-grid">1000W pump · 2hr/day</button>
-        <button type="button" class="ai-chip" data-q="RV setup for a 12V fridge, LED lights, and laptop charging, 24/7">RV essentials · 12V</button>
-        <button type="button" class="ai-chip" data-q="Backup power for a 600W refrigerator during outages, 8 hours">Fridge backup · 8hr</button>
-        <button type="button" class="ai-chip" data-q="Off-grid cabin: 200W of LED lighting and a 90W laptop, 6 hours/day, 24V system">Cabin · 24V · 6hr</button>
+        <button type="button" class="ai-chip" data-q="Power a 1000W irrigation pump for 2 hours a day, off-grid" data-params='{"load_watts":1000,"runtime_hours_per_day":2,"sun_hours_per_day":4.5,"battery_voltage":24,"use_case":"off_grid_cabin","wants":["solar_panel","battery","inverter","solar_charge_controller","solar_cable_kit"]}'>1000W pump · 2hr/day</button>
+        <button type="button" class="ai-chip" data-q="RV setup for a 12V fridge, LED lights, and laptop charging, 24/7" data-params='{"load_watts":150,"runtime_hours_per_day":24,"sun_hours_per_day":4.5,"battery_voltage":12,"use_case":"rv_van","wants":["solar_panel","battery","solar_charge_controller","solar_cable_kit"]}'>RV essentials · 12V</button>
+        <button type="button" class="ai-chip" data-q="Backup power for a 600W refrigerator during outages, 8 hours" data-params='{"load_watts":600,"runtime_hours_per_day":8,"sun_hours_per_day":4.5,"battery_voltage":12,"use_case":"backup","wants":["battery","inverter","solar_charge_controller","solar_cable_kit"]}'>Fridge backup · 8hr</button>
+        <button type="button" class="ai-chip" data-q="Off-grid cabin: 200W of LED lighting and a 90W laptop, 6 hours/day, 24V system" data-params='{"load_watts":290,"runtime_hours_per_day":6,"sun_hours_per_day":4.5,"battery_voltage":24,"use_case":"off_grid_cabin","wants":["solar_panel","battery","inverter","solar_charge_controller","solar_cable_kit"]}'>Cabin · 24V · 6hr</button>
       </div>
     </div>
   </section>
@@ -618,6 +618,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });

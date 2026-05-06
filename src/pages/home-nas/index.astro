@@ -81,10 +81,10 @@ for (const e of kb.entities) {
         <button type="submit" class="ai-submit" id="ai-submit">Ask <span aria-hidden="true">→</span></button>
       </form>
       <div class="ai-examples">
-        <button type="button" class="ai-chip" data-q="Plex media server with 50TB usable">Plex · 50TB</button>
-        <button type="button" class="ai-chip" data-q="TrueNAS Scale ZFS build">TrueNAS Scale · ZFS</button>
-        <button type="button" class="ai-chip" data-q="Synology backup target">Synology · backup target</button>
-        <button type="button" class="ai-chip" data-q="All-flash NAS for VMs">All-flash · VMs</button>
+        <button type="button" class="ai-chip" data-q="Plex media server with 50TB usable" data-params='{"os":"unraid","usable_tb_target":50,"ecc_required":false,"wants":["diy_nas_platform","hdd","ssd_cache","nic_card","ups"]}'>Plex · 50TB</button>
+        <button type="button" class="ai-chip" data-q="TrueNAS Scale ZFS build" data-params='{"os":"truenas-scale","usable_tb_target":20,"ecc_required":true,"wants":["diy_nas_platform","hdd","ram","hba_card","ups"]}'>TrueNAS Scale · ZFS</button>
+        <button type="button" class="ai-chip" data-q="Synology backup target" data-params='{"os":"synology-dsm","usable_tb_target":16,"ecc_required":false,"wants":["nas_unit","hdd","ups"]}'>Synology · backup target</button>
+        <button type="button" class="ai-chip" data-q="All-flash NAS for VMs" data-params='{"os":"proxmox","usable_tb_target":4,"ecc_required":true,"wants":["diy_nas_platform","ssd_cache","ram","hba_card","nic_card","ups"]}'>All-flash · VMs</button>
       </div>
     </div>
   </section>
@@ -499,6 +499,18 @@ for (const e of kb.entities) {
         aiInput.value = q;
         aiInput.focus();
         aiInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const paramsJson = btn.dataset.params;
+      if (paramsJson) {
+        try {
+          const params = JSON.parse(paramsJson);
+          appendBubble("user", q);
+          appendBubble("assistant", `Applied template: ${q}`);
+          applyParams(params);
+          return;
+        } catch (e) {
+          // fall through to LLM if data-params is malformed
+        }
       }
       askLLM(q);
     });
