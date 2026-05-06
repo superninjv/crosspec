@@ -101,7 +101,45 @@ const sources = sourceIds
 const related = kb.entities
   .filter((e) => e.type === entity.type && e.id !== entity.id)
   .slice(0, 8);
+
+const priceUsd = typeof attrs.price_usd === "number" ? (attrs.price_usd as number) : null;
+const productJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  name: entity.name,
+  description: description,
+  brand: attrs.brand
+    ? { "@type": "Brand", name: String(attrs.brand).replace(/_/g, " ") }
+    : undefined,
+  ...(attrs.model ? { mpn: String(attrs.model) } : {}),
+  sku: String(sku),
+  category: typeLabel,
+  url: `https://crosspec.com/smart-home/devices/${sku}/`,
+  ...(priceUsd != null
+    ? {
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "USD",
+          price: priceUsd,
+          availability: "https://schema.org/InStock",
+          url: `https://crosspec.com/go/smart-home/${sku}`,
+          seller: { "@type": "Organization", name: "Amazon" },
+        },
+      }
+    : {}),
+};
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Smart home", item: "https://crosspec.com/smart-home/" },
+    { "@type": "ListItem", position: 2, name: typeLabel + "s" },
+    { "@type": "ListItem", position: 3, name: entity.name, item: `https://crosspec.com/smart-home/devices/${sku}/` },
+  ],
+};
 ---
+<script type="application/ld+json" is:inline set:html={JSON.stringify(productJsonLd)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbJsonLd)} />
 <Layout
   title={pageTitle}
   description={description}

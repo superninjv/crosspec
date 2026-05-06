@@ -51,6 +51,29 @@ jobs:
           command: pages deploy ./dist --project-name=crosspec --branch=main
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: IndexNow ping (Bing/Yandex/Naver)
+        run: |
+          # Build URL list from sitemap. IndexNow accepts up to 10000 URLs/POST.
+          curl -sS https://crosspec.com/sitemap.xml -o /tmp/sm.xml
+          python3 - <<'PY' > /tmp/urls.json
+          import re, json
+          locs = re.findall(r"<loc>([^<]+)</loc>", open("/tmp/sm.xml").read())
+          payload = {
+            "host": "crosspec.com",
+            "key": "dc441b7571f22f20c000cb6bffa66fbf",
+            "keyLocation": "https://crosspec.com/dc441b7571f22f20c000cb6bffa66fbf.txt",
+            "urlList": locs,
+          }
+          print(json.dumps(payload))
+          PY
+          for endpoint in https://api.indexnow.org/indexnow https://www.bing.com/indexnow https://yandex.com/indexnow; do
+            echo "::group::POST $endpoint"
+            curl -sS -X POST "$endpoint" \
+              -H "Content-Type: application/json; charset=utf-8" \
+              --data @/tmp/urls.json -w "\nstatus=%{http_code}\n" || true
+            echo "::endgroup::"
+          done
+
       - name: Ensure custom domains attached
         env:
           CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

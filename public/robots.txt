@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Don't crawl the affiliate redirector — these are 302s by design.
+Disallow: /go/
+
+Sitemap: https://crosspec.com/sitemap.xml
