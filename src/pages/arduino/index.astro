@@ -1,0 +1,111 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import type { KnowledgeBase } from "@engine/solver";
+import kbRaw from "@verticals/arduino/kb.json";
+
+const kb = kbRaw as KnowledgeBase;
+
+const TYPE_LABEL: Record<string, { label: string; blurb: string }> = {
+  microcontroller_board: {
+    label: "Microcontroller boards",
+    blurb: "Arduino, ESP32, RP2040 / Pico, Adafruit Feather + QT Py, Teensy, Particle, M5Stack.",
+  },
+  sensor_module: {
+    label: "Sensors",
+    blurb: "Temperature, IMU, ToF, gas, current, environmental, GPS, motion. I2C/SPI/analog/1-wire.",
+  },
+  display_module: {
+    label: "Displays",
+    blurb: "OLED, TFT, e-paper, NeoPixel, character LCD, segment displays.",
+  },
+  motor_actuator: {
+    label: "Motors & actuators",
+    blurb: "Servos, steppers, DC motors, drivers (A4988, DRV8825, TMC2208, L298N), solenoids, relays.",
+  },
+  power_module: {
+    label: "Power & charging",
+    blurb: "LiPo packs, 18650 cells, TP4056 chargers, LDOs, buck/boost regulators, USB-C PD triggers.",
+  },
+  carrier_breakout: {
+    label: "Carriers & breakouts",
+    blurb: "FeatherWings, ProtoShields, breadboards, perfboards, screw-terminal adapters.",
+  },
+  connectivity_module: {
+    label: "Connectivity",
+    blurb: "LoRa, BLE, WiFi, GSM/LTE, RFID/NFC, Ethernet, NRF24L01.",
+  },
+};
+
+const TYPE_ORDER = ["microcontroller_board", "sensor_module", "display_module", "motor_actuator", "power_module", "carrier_breakout", "connectivity_module"];
+
+const byType = new Map<string, typeof kb.entities>();
+for (const e of kb.entities) {
+  if (!byType.has(e.type)) byType.set(e.type, []);
+  byType.get(e.type)!.push(e);
+}
+---
+<Layout
+  title="Arduino + ESP32 + Pico component compatibility — boards, sensors, displays, motors | crosspec"
+  description="138 microcontroller-project parts with logic-voltage match, I2C address collision, and current-budget compat checks. Sourced from SparkFun, Adafruit, and Arduino open catalogs."
+  crumbs={["arduino"]}
+  kbStatus={`arduino v0.1 · ${kb.entities.length} entities`}
+>
+  <section class="ar-hero">
+    <div class="ar-hero-inner">
+      <p class="eyebrow">crosspec / arduino &amp; embedded</p>
+      <h1>Pick boards + sensors + power that <em>actually work together.</em></h1>
+      <p class="lede">{kb.entities.length} components across {TYPE_ORDER.length} categories. Match 3.3V / 5V logic levels, find I2C address conflicts before you wire them up, and get the right LiPo + charger combo for your battery-powered build.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="#microcontroller_board">Browse boards</a>
+        <a class="cta-secondary" href="#sensor_module">Browse sensors</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="ar-page">
+    {TYPE_ORDER.map((t) => {
+      const ents = byType.get(t) ?? [];
+      const meta = TYPE_LABEL[t];
+      return (
+        <section class="cat-section" id={t}>
+          <header class="cat-head">
+            <h2>{meta.label}</h2>
+            <span class="cat-count">{ents.length} {ents.length === 1 ? "product" : "products"}</span>
+          </header>
+          <p class="cat-blurb">{meta.blurb}</p>
+          <ul class="cat-grid">
+            {ents.map((e) => {
+              const sku = e.sku ?? e.id;
+              const attrs = e.attributes;
+              const priceUsd = typeof attrs.price_usd === "number" ? attrs.price_usd : null;
+              return (
+                <li class="cat-card">
+                  <a class="cc-link" href={`/arduino/devices/${sku}/`}>
+                    <span class="cc-brand">{String(attrs.brand ?? "").replace(/_/g, " ")}</span>
+                    <span class="cc-name">{e.name}</span>
+                    <span class="cc-price">{priceUsd != null ? `$${priceUsd}` : ""}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      );
+    })}
+  </div>
+</Layout>
+
+<style is:global>
+  .ar-hero {
+    background: linear-gradient(180deg, oklch(0.95 0.04 200) 0%, var(--paper-1) 100%);
+    border-bottom: 1px solid var(--paper-edge);
+    padding: 36px 24px 30px;
+  }
+  .ar-hero-inner { max-width: 1100px; margin: 0 auto; }
+  .ar-hero .eyebrow { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 6px; }
+  .ar-hero h1 { font-size: 38px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; margin: 0 0 14px; color: var(--ink-0); text-wrap: balance; max-width: 800px; }
+  .ar-hero h1 em { font-style: normal; color: oklch(0.45 0.13 200); }
+  .ar-hero .lede { font-size: 16px; color: var(--ink-2); line-height: 1.55; max-width: 720px; margin: 0 0 18px; }
+  .ar-hero .cta-row { display: flex; gap: 10px; margin: 0; }
+  .ar-page { max-width: 1100px; margin: 0 auto; padding: 28px 24px 80px; }
+</style>

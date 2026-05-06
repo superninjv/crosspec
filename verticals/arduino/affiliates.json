@@ -1,0 +1,75 @@
+{
+  "version": "0.1",
+  "vertical": "arduino",
+  "status": "stub — populated in commit 2 once at least one affiliate is approved",
+  "fallback": "amazon_associates",
+  "merchants": {
+    "amazon_associates": {
+      "name": "Amazon Associates",
+      "network": "amazon",
+      "rate_pct": 2.5,
+      "cookie_days": 1,
+      "link_template": "https://www.amazon.com/dp/{{merchant_sku}}?tag={{affiliate_tag}}",
+      "tag": "env:MERCHANT_TAG_AMAZON",
+      "applied_on": null,
+      "status": "fallback",
+      "notes": "Default outbound for any entity that doesn't have a higher-rate merchant approved. Amazon's electronics commission is 2.5% with a 24-hour cookie."
+    },
+    "sparkfun": {
+      "name": "SparkFun Electronics",
+      "network": "avantlink",
+      "rate_pct": 7.0,
+      "cookie_days": 30,
+      "link_template": "https://www.sparkfun.com/products/{{merchant_sku}}",
+      "tag": "env:MERCHANT_TAG_SPARKFUN",
+      "applied_on": null,
+      "status": "pending",
+      "notes": "SparkFun runs their affiliate program on Avantlink — application required, ~7% commission on most categories. Picked as primary outbound for SparkFun-original SKUs (RedBoard, Qwiic, breakout boards)."
+    },
+    "adafruit": {
+      "name": "Adafruit Industries",
+      "network": "direct",
+      "rate_pct": 0.0,
+      "cookie_days": null,
+      "link_template": "https://www.adafruit.com/product/{{merchant_sku}}",
+      "tag": null,
+      "applied_on": null,
+      "status": "no_program",
+      "notes": "Adafruit has no public affiliate program. We send outbound traffic at zero commission because Adafruit's catalog is the canonical reference for Feather/QT Py/STEMMA QT compatibility — the user wins, we eat the click. Revisit if Adafruit launches a program."
+    },
+    "arduino_official": {
+      "name": "Arduino (store.arduino.cc)",
+      "network": "direct",
+      "rate_pct": 0.0,
+      "cookie_days": null,
+      "link_template": "https://store.arduino.cc/products/{{merchant_sku}}",
+      "tag": null,
+      "applied_on": null,
+      "status": "no_program",
+      "notes": "Arduino's official store has no affiliate program. We send first-party Arduino board traffic direct at zero commission for accuracy reasons (counterfeits are rampant on Amazon)."
+    },
+    "digikey": {
+      "name": "Digi-Key Electronics",
+      "network": "impact",
+      "rate_pct": 3.0,
+      "cookie_days": 30,
+      "link_template": "https://www.digikey.com/en/products/detail/{{merchant_sku}}",
+      "tag": "env:MERCHANT_TAG_DIGIKEY",
+      "applied_on": null,
+      "status": "pending",
+      "notes": "Impact-network affiliate program. Lower commission than SparkFun but the right pick for any entity that's a bare chip / discrete component (LDOs, MOSFETs, regulators) where Digi-Key has the deepest catalog."
+    },
+    "mouser": {
+      "name": "Mouser Electronics",
+      "network": "impact",
+      "rate_pct": 3.0,
+      "cookie_days": 30,
+      "link_template": "https://www.mouser.com/ProductDetail/{{merchant_sku}}",
+      "tag": "env:MERCHANT_TAG_MOUSER",
+      "applied_on": null,
+      "status": "pending",
+      "notes": "Same Impact-network economics as Digi-Key. Use as alternate stocking source when Digi-Key is out of stock — the configurator can A/B these two transparently."
+    }
+  },
+  "products": {}
+}

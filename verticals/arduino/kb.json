@@ -1,0 +1,4180 @@
+{
+  "version": "0.1",
+  "vertical": "arduino",
+  "data_quality": "v0.1 best-effort population from open vendor catalogs (SparkFun, Adafruit, Arduino official) and hands-on community datasheets. Each entity's compat claims trace to source_ids on its attributes. Verification pass against vendor pages required before production launch; this dataset is sized to prove the configurator engine end-to-end on a second vertical, not for general consumer trust.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "SparkFun open product catalog",
+      "url": "https://www.sparkfun.com/products",
+      "ingest_date": "2026-05-06",
+      "scope": "Used as a citation for products SparkFun stocks. SparkFun's catalog is open and the vendor explicitly encourages outbound traffic; pricing and stock are the vendor's authoritative figures."
+    },
+    {
+      "id": 1,
+      "name": "Adafruit open product catalog",
+      "url": "https://www.adafruit.com/products",
+      "ingest_date": "2026-05-06",
+      "scope": "Used as a citation for Adafruit-manufactured boards (Feather/QT Py/Metro) and breakouts that Adafruit maintains official Arduino/CircuitPython libraries for."
+    },
+    {
+      "id": 2,
+      "name": "Arduino official product database",
+      "url": "https://store.arduino.cc",
+      "ingest_date": "2026-05-06",
+      "scope": "Authoritative source for first-party Arduino boards (UNO, Mega, Nano, MKR, Portenta) \u2014 MCU chip, voltage, pin count, official MSRP."
+    }
+  ],
+  "form_factors": [
+    "uno",
+    "mega",
+    "nano",
+    "mkr",
+    "portenta",
+    "feather",
+    "qt_py",
+    "pico",
+    "teensy",
+    "m5",
+    "devkit",
+    "module",
+    "mini"
+  ],
+  "entities": [
+    {
+      "id": "arduino_uno_r3",
+      "type": "microcontroller_board",
+      "name": "Arduino UNO R3",
+      "sku": "arduino_uno_r3",
+      "attributes": {
+        "brand": "arduino",
+        "model": "ABX00067/A000066",
+        "mcu_chip": "atmega328p",
+        "clock_mhz": 16,
+        "flash_kb": 32,
+        "sram_kb": 2,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "type_b",
+        "gpio_count": 14,
+        "analog_inputs": 6,
+        "pwm_pins": 6,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 5.0,
+        "input_voltage_range_v": "7-12",
+        "power_pins": [
+          "5v",
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "uno",
+        "price_usd": 27.6,
+        "price_source": "Arduino official MSRP",
+        "note": "Classic 5V learning board. Pairs trivially with the entire 5V sensor catalogue but cannot drive 3.3V-only modules without a level shifter on the input side. Single hardware UART means SoftwareSerial when adding GPS/GSM alongside USB-Serial debug.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "arduino_uno_r4_minima",
+      "type": "microcontroller_board",
+      "name": "Arduino UNO R4 Minima",
+      "sku": "arduino_uno_r4_minima",
+      "attributes": {
+        "brand": "arduino",
+        "model": "ABX00080",
+        "mcu_chip": "renesas_ra4m1",
+        "clock_mhz": 48,
+        "flash_kb": 256,
+        "sram_kb": 32,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "type_c",
+        "gpio_count": 14,
+        "analog_inputs": 6,
+        "pwm_pins": 6,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 5.0,
+        "input_voltage_range_v": "6-24",
+        "power_pins": [
+          "5v",
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "uno",
+        "price_usd": 20.0,
+        "price_source": "Arduino official MSRP",
+        "note": "Drop-in UNO R3 replacement on a modern 32-bit Renesas core. 5V logic is preserved so legacy shields work, but the MCU is internally 3.3V \u2014 VCC pin still says 5V to the shield world.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "arduino_uno_r4_wifi",
+      "type": "microcontroller_board",
+      "name": "Arduino UNO R4 WiFi",
+      "sku": "arduino_uno_r4_wifi",
+      "attributes": {
+        "brand": "arduino",
+        "model": "ABX00087",
+        "mcu_chip": "renesas_ra4m1",
+        "clock_mhz": 48,
+        "flash_kb": 256,
+        "sram_kb": 32,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "ble",
+        "usb": "type_c",
+        "gpio_count": 14,
+        "analog_inputs": 6,
+        "pwm_pins": 6,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 5.0,
+        "input_voltage_range_v": "6-24",
+        "power_pins": [
+          "5v",
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "uno",
+        "price_usd": 27.5,
+        "price_source": "Arduino official MSRP",
+        "note": "WiFi/BLE comes from a co-processor ESP32-S3 talking over an internal serial bridge. Use the WiFiS3 library, not raw ESP-IDF \u2014 application code still runs on the Renesas RA4M1.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "arduino_mega_2560_rev3",
+      "type": "microcontroller_board",
+      "name": "Arduino Mega 2560 Rev3",
+      "sku": "arduino_mega_2560_rev3",
+      "attributes": {
+        "brand": "arduino",
+        "model": "A000067",
+        "mcu_chip": "atmega2560",
+        "clock_mhz": 16,
+        "flash_kb": 256,
+        "sram_kb": 8,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "type_b",
+        "gpio_count": 54,
+        "analog_inputs": 16,
+        "pwm_pins": 15,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 4,
+        "operating_voltage_v": 5.0,
+        "input_voltage_range_v": "7-12",
+        "power_pins": [
+          "5v",
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "mega",
+        "price_usd": 48.4,
+        "price_source": "Arduino official MSRP",
+        "note": "Picked when GPIO count or 4 hardware UARTs (RAMPS 3D-printer boards, big LED matrix projects) matter. Slow 8-bit core \u2014 don't expect it to drive WS2812 strips longer than ~500 pixels at 60 fps.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "arduino_nano",
+      "type": "microcontroller_board",
+      "name": "Arduino Nano",
+      "sku": "arduino_nano",
+      "attributes": {
+        "brand": "arduino",
+        "model": "A000005",
+        "mcu_chip": "atmega328p",
+        "clock_mhz": 16,
+        "flash_kb": 32,
+        "sram_kb": 2,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "mini_b",
+        "gpio_count": 14,
+        "analog_inputs": 8,
+        "pwm_pins": 6,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 5.0,
+        "input_voltage_range_v": "7-12",
+        "power_pins": [
+          "5v",
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "nano",
+        "price_usd": 24.0,
+        "price_source": "Arduino official MSRP",
+        "note": "Breadboard-friendly UNO-equivalent. The on-board 3.3V regulator is rated for ~50 mA only; do not power an ESP-01 from it, brown-outs will reset the Nano.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "arduino_nano_33_iot",
+      "type": "microcontroller_board",
+      "name": "Arduino Nano 33 IoT",
+      "sku": "arduino_nano_33_iot",
+      "attributes": {
+        "brand": "arduino",
+        "model": "ABX00027",
+        "mcu_chip": "atsamd21",
+        "clock_mhz": 48,
+        "flash_kb": 256,
+        "sram_kb": 32,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "ble",
+        "usb": "micro_b",
+        "gpio_count": 14,
+        "analog_inputs": 8,
+        "pwm_pins": 11,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5-21",
+        "power_pins": [
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "nano",
+        "price_usd": 27.6,
+        "price_source": "Arduino official MSRP",
+        "note": "3.3V GPIO \u2014 do NOT feed 5V signals from a UNO directly. Has an onboard u-blox NINA-W102 for WiFi/BLE so you can ship a connected project on a single PCB.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "arduino_nano_33_ble",
+      "type": "microcontroller_board",
+      "name": "Arduino Nano 33 BLE",
+      "sku": "arduino_nano_33_ble",
+      "attributes": {
+        "brand": "arduino",
+        "model": "ABX00030",
+        "mcu_chip": "nrf52840",
+        "clock_mhz": 64,
+        "flash_kb": 1024,
+        "sram_kb": 256,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "ble",
+        "usb": "micro_b",
+        "gpio_count": 14,
+        "analog_inputs": 8,
+        "pwm_pins": 14,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5-21",
+        "power_pins": [
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "nano",
+        "price_usd": 32.3,
+        "price_source": "Arduino official MSRP",
+        "note": "Cortex-M4F + 256 KB SRAM is the smallest official Arduino that comfortably runs TensorFlow Lite Micro. 3.3V logic only.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "arduino_mkr_wifi_1010",
+      "type": "microcontroller_board",
+      "name": "Arduino MKR WiFi 1010",
+      "sku": "arduino_mkr_wifi_1010",
+      "attributes": {
+        "brand": "arduino",
+        "model": "ABX00023",
+        "mcu_chip": "atsamd21",
+        "clock_mhz": 48,
+        "flash_kb": 256,
+        "sram_kb": 32,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "ble",
+        "usb": "micro_b",
+        "gpio_count": 8,
+        "analog_inputs": 7,
+        "pwm_pins": 13,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5-7",
+        "power_pins": [
+          "vcc",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "mkr",
+        "price_usd": 38.4,
+        "price_source": "Arduino official MSRP",
+        "note": "MKR form factor is built around a JST PH 3.7V LiPo connector and integrated charger \u2014 pick this when battery operation is non-negotiable. Strict 3.3V logic.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "arduino_mkr_zero",
+      "type": "microcontroller_board",
+      "name": "Arduino MKR Zero",
+      "sku": "arduino_mkr_zero",
+      "attributes": {
+        "brand": "arduino",
+        "model": "ABX00012",
+        "mcu_chip": "atsamd21",
+        "clock_mhz": 48,
+        "flash_kb": 256,
+        "sram_kb": 32,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "micro_b",
+        "gpio_count": 22,
+        "analog_inputs": 7,
+        "pwm_pins": 12,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5-7",
+        "power_pins": [
+          "vcc",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "mkr",
+        "price_usd": 32.3,
+        "price_source": "Arduino official MSRP",
+        "note": "MKR pinout with onboard SD slot and I2S for audio. No wireless \u2014 pair with an RFM95 LoRa module if you want range.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "arduino_portenta_h7",
+      "type": "microcontroller_board",
+      "name": "Arduino Portenta H7",
+      "sku": "arduino_portenta_h7",
+      "attributes": {
+        "brand": "arduino",
+        "model": "ABX00042",
+        "mcu_chip": "stm32h747",
+        "clock_mhz": 480,
+        "flash_kb": 2048,
+        "sram_kb": 1024,
+        "wifi": true,
+        "wifi_band": "2_4ghz_5ghz_dualband",
+        "bluetooth": "ble",
+        "usb": "type_c",
+        "gpio_count": 80,
+        "analog_inputs": 8,
+        "pwm_pins": 22,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 4,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "micropython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "portenta",
+        "price_usd": 117.5,
+        "price_source": "Arduino official MSRP",
+        "note": "Industrial-grade dual-core (M7 + M4) board with USB-C, MIPI camera + display lanes via the high-density connectors. Overkill for blink \u2014 picked for vision/audio ML or PLC replacement work.",
+        "source_ids": [
+          0,
+          1,
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "esp32_devkitc_v4",
+      "type": "microcontroller_board",
+      "name": "Espressif ESP32 DevKitC v4",
+      "sku": "esp32_devkitc_v4",
+      "attributes": {
+        "brand": "espressif",
+        "model": "ESP32-DevKitC-V4",
+        "mcu_chip": "esp32_wroom_32",
+        "clock_mhz": 240,
+        "flash_kb": 4096,
+        "sram_kb": 520,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "dual_mode",
+        "usb": "micro_b",
+        "gpio_count": 30,
+        "analog_inputs": 18,
+        "pwm_pins": 16,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 3,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "esp_idf",
+          "micropython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "devkit",
+        "price_usd": 14.95,
+        "price_source": "Adafruit retail",
+        "note": "The reference 30-pin ESP32 dev board most tutorials assume. 3.3V logic only \u2014 feeding any 5V sensor signal into a GPIO will damage the chip over time.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "esp32_s3_devkitc_1",
+      "type": "microcontroller_board",
+      "name": "Espressif ESP32-S3 DevKitC-1",
+      "sku": "esp32_s3_devkitc_1",
+      "attributes": {
+        "brand": "espressif",
+        "model": "ESP32-S3-DevKitC-1",
+        "mcu_chip": "esp32_s3",
+        "clock_mhz": 240,
+        "flash_kb": 8192,
+        "sram_kb": 512,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "ble",
+        "usb": "type_c",
+        "gpio_count": 45,
+        "analog_inputs": 20,
+        "pwm_pins": 8,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 3,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "esp_idf",
+          "micropython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "devkit",
+        "price_usd": 17.5,
+        "price_source": "Adafruit retail",
+        "note": "S3 adds vector-DSP instructions for ML and native USB without a UART bridge. Picked for camera/audio ML projects on a budget. 3.3V logic.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "esp32_c3_supermini",
+      "type": "microcontroller_board",
+      "name": "ESP32-C3 SuperMini",
+      "sku": "esp32_c3_supermini",
+      "attributes": {
+        "brand": "generic",
+        "model": "ESP32-C3-SuperMini",
+        "mcu_chip": "esp32_c3",
+        "clock_mhz": 160,
+        "flash_kb": 4096,
+        "sram_kb": 400,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "ble",
+        "usb": "type_c",
+        "gpio_count": 11,
+        "analog_inputs": 4,
+        "pwm_pins": 6,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "esp_idf",
+          "micropython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "mini",
+        "price_usd": 4.5,
+        "price_source": "Amazon retail",
+        "note": "Cheapest credible WiFi+BLE board. Single-core RISC-V, only 11 usable GPIO. Ships under many brand names; quality control varies \u2014 buy from a vendor with returns.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "esp32_cam",
+      "type": "microcontroller_board",
+      "name": "AI-Thinker ESP32-CAM",
+      "sku": "esp32_cam",
+      "attributes": {
+        "brand": "ai_thinker",
+        "model": "ESP32-CAM",
+        "mcu_chip": "esp32_wroom_32",
+        "clock_mhz": 240,
+        "flash_kb": 4096,
+        "sram_kb": 520,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "classic",
+        "usb": "none",
+        "gpio_count": 9,
+        "analog_inputs": 0,
+        "pwm_pins": 4,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "esp_idf",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "module",
+        "price_usd": 9.95,
+        "price_source": "Amazon retail",
+        "note": "Has an OV2640 camera onboard but NO USB \u2014 needs a separate FTDI-style USB-TTL adapter to flash. Famous for poor 5V regulation; power from a clean 5V/2A supply, not the dev USB rail.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "rpi_pico",
+      "type": "microcontroller_board",
+      "name": "Raspberry Pi Pico",
+      "sku": "rpi_pico",
+      "attributes": {
+        "brand": "raspberry_pi",
+        "model": "Pico",
+        "mcu_chip": "rp2040",
+        "clock_mhz": 133,
+        "flash_kb": 2048,
+        "sram_kb": 264,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "micro_b",
+        "gpio_count": 26,
+        "analog_inputs": 3,
+        "pwm_pins": 16,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "1.8-5.5",
+        "power_pins": [
+          "3v3",
+          "vsys"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "micropython",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "pico",
+        "price_usd": 4.0,
+        "price_source": "Adafruit retail",
+        "note": "$4 dual-core Cortex-M0+ with PIO state machines for bit-banged protocols (DVI, WS2812, SDIO). 3.3V logic. Arduino IDE support is via the third-party arduino-pico core, not Arduino's own.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "rpi_pico_w",
+      "type": "microcontroller_board",
+      "name": "Raspberry Pi Pico W",
+      "sku": "rpi_pico_w",
+      "attributes": {
+        "brand": "raspberry_pi",
+        "model": "Pico W",
+        "mcu_chip": "rp2040",
+        "clock_mhz": 133,
+        "flash_kb": 2048,
+        "sram_kb": 264,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "ble",
+        "usb": "micro_b",
+        "gpio_count": 26,
+        "analog_inputs": 3,
+        "pwm_pins": 16,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "1.8-5.5",
+        "power_pins": [
+          "3v3",
+          "vsys"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "micropython",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "pico",
+        "price_usd": 6.0,
+        "price_source": "Adafruit retail",
+        "note": "Pico + Infineon CYW43439 WiFi/BLE on the same board. Use the on-board LED via the WiFi chip's GPIO, not GP25 \u2014 common gotcha porting Pico code to Pico W.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "rpi_pico_2",
+      "type": "microcontroller_board",
+      "name": "Raspberry Pi Pico 2",
+      "sku": "rpi_pico_2",
+      "attributes": {
+        "brand": "raspberry_pi",
+        "model": "Pico 2",
+        "mcu_chip": "rp2350",
+        "clock_mhz": 150,
+        "flash_kb": 4096,
+        "sram_kb": 520,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "micro_b",
+        "gpio_count": 26,
+        "analog_inputs": 4,
+        "pwm_pins": 24,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "1.8-5.5",
+        "power_pins": [
+          "3v3",
+          "vsys"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "micropython",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "pico",
+        "price_usd": 5.0,
+        "price_source": "Adafruit retail",
+        "note": "RP2350 Cortex-M33 with 520 KB SRAM, dual-core (M33 + RISC-V Hazard3 selectable). Same pinout as the original Pico \u2014 most shields and Pico boards work unmodified.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "rpi_pico_2w",
+      "type": "microcontroller_board",
+      "name": "Raspberry Pi Pico 2 W",
+      "sku": "rpi_pico_2w",
+      "attributes": {
+        "brand": "raspberry_pi",
+        "model": "Pico 2 W",
+        "mcu_chip": "rp2350",
+        "clock_mhz": 150,
+        "flash_kb": 4096,
+        "sram_kb": 520,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "ble",
+        "usb": "micro_b",
+        "gpio_count": 26,
+        "analog_inputs": 4,
+        "pwm_pins": 24,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "1.8-5.5",
+        "power_pins": [
+          "3v3",
+          "vsys"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "micropython",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "pico",
+        "price_usd": 7.0,
+        "price_source": "Adafruit retail",
+        "note": "Pico 2 with the same CYW43439 wireless module as Pico W. Best price/perf ratio in 2026 for a small WiFi-capable board.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_qtpy_rp2040",
+      "type": "microcontroller_board",
+      "name": "Adafruit QT Py RP2040",
+      "sku": "adafruit_qtpy_rp2040",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "4900",
+        "mcu_chip": "rp2040",
+        "clock_mhz": 133,
+        "flash_kb": 8192,
+        "sram_kb": 264,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "type_c",
+        "gpio_count": 13,
+        "analog_inputs": 4,
+        "pwm_pins": 13,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "qt_py",
+        "price_usd": 9.95,
+        "price_source": "Adafruit retail",
+        "note": "Postage-stamp size with USB-C and a STEMMA QT (JST SH 1mm) I2C connector \u2014 chain Adafruit sensors with no soldering. Pin-compatible with the Seeed Xiao RP2040 footprint.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_qtpy_esp32_s2",
+      "type": "microcontroller_board",
+      "name": "Adafruit QT Py ESP32-S2",
+      "sku": "adafruit_qtpy_esp32_s2",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "5325",
+        "mcu_chip": "esp32_s2",
+        "clock_mhz": 240,
+        "flash_kb": 4096,
+        "sram_kb": 320,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "none",
+        "usb": "type_c",
+        "gpio_count": 13,
+        "analog_inputs": 8,
+        "pwm_pins": 13,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "esp_idf",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "qt_py",
+        "price_usd": 12.5,
+        "price_source": "Adafruit retail",
+        "note": "ESP32-S2 has WiFi but NO Bluetooth \u2014 confirm before picking it for a phone-pairing project. Native USB-C HID support is excellent for keyboard/mouse projects.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_qtpy_esp32_s3",
+      "type": "microcontroller_board",
+      "name": "Adafruit QT Py ESP32-S3",
+      "sku": "adafruit_qtpy_esp32_s3",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "5426",
+        "mcu_chip": "esp32_s3",
+        "clock_mhz": 240,
+        "flash_kb": 8192,
+        "sram_kb": 512,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "ble",
+        "usb": "type_c",
+        "gpio_count": 13,
+        "analog_inputs": 8,
+        "pwm_pins": 13,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "esp_idf",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "qt_py",
+        "price_usd": 15.0,
+        "price_source": "Adafruit retail",
+        "note": "QT Py footprint with WiFi+BLE+vector DSP. The PSRAM 8 MB variant is the right pick for camera/voice ML; the no-PSRAM SKU is cheaper but limits TensorFlow models to ~200 KB.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_qtpy_samd21",
+      "type": "microcontroller_board",
+      "name": "Adafruit QT Py SAMD21",
+      "sku": "adafruit_qtpy_samd21",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "4600",
+        "mcu_chip": "atsamd21",
+        "clock_mhz": 48,
+        "flash_kb": 256,
+        "sram_kb": 32,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "type_c",
+        "gpio_count": 11,
+        "analog_inputs": 9,
+        "pwm_pins": 7,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "qt_py",
+        "price_usd": 9.5,
+        "price_source": "Adafruit retail",
+        "note": "Cheapest QT Py and the easiest entry to CircuitPython. No wireless. Great for a USB HID macro pad or a STEMMA-QT sensor logger.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_feather_m0_wifi",
+      "type": "microcontroller_board",
+      "name": "Adafruit Feather M0 WiFi (ATWINC1500)",
+      "sku": "adafruit_feather_m0_wifi",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "3010",
+        "mcu_chip": "atsamd21",
+        "clock_mhz": 48,
+        "flash_kb": 256,
+        "sram_kb": 32,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "none",
+        "usb": "micro_b",
+        "gpio_count": 20,
+        "analog_inputs": 6,
+        "pwm_pins": 10,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "3.3-6",
+        "power_pins": [
+          "3v3",
+          "vbat",
+          "vusb"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "feather",
+        "price_usd": 34.95,
+        "price_source": "Adafruit retail",
+        "note": "Feather form factor \u2014 onboard LiPo charger and JST PH battery jack. Stackable with any FeatherWing. ATWINC1500 WiFi is reliable but slower than ESP32-grade radios.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_feather_m4_express",
+      "type": "microcontroller_board",
+      "name": "Adafruit Feather M4 Express",
+      "sku": "adafruit_feather_m4_express",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "3857",
+        "mcu_chip": "atsamd51",
+        "clock_mhz": 120,
+        "flash_kb": 512,
+        "sram_kb": 192,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "micro_b",
+        "gpio_count": 21,
+        "analog_inputs": 6,
+        "pwm_pins": 16,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "3.3-6",
+        "power_pins": [
+          "3v3",
+          "vbat",
+          "vusb"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "feather",
+        "price_usd": 22.95,
+        "price_source": "Adafruit retail",
+        "note": "Cortex-M4F with FPU and 2 MB QSPI flash for CircuitPython library storage. Picked for audio synth, fast DSP, and any project that wants Feather form factor without onboard wireless (pair with an RFM69 or AirLift FeatherWing).",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_feather_esp32_v2",
+      "type": "microcontroller_board",
+      "name": "Adafruit Feather ESP32 V2",
+      "sku": "adafruit_feather_esp32_v2",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "5400",
+        "mcu_chip": "esp32_wroom_32",
+        "clock_mhz": 240,
+        "flash_kb": 8192,
+        "sram_kb": 520,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "dual_mode",
+        "usb": "type_c",
+        "gpio_count": 21,
+        "analog_inputs": 12,
+        "pwm_pins": 16,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "3.3-6",
+        "power_pins": [
+          "3v3",
+          "vbat",
+          "vusb"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "esp_idf",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "feather",
+        "price_usd": 19.95,
+        "price_source": "Adafruit retail",
+        "note": "Feather with battery support, USB-C, and an STEMMA QT port. 100 mA LiPo charger \u2014 fine for a 1000 mAh cell, slow for 3000 mAh.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_feather_rp2040",
+      "type": "microcontroller_board",
+      "name": "Adafruit Feather RP2040",
+      "sku": "adafruit_feather_rp2040",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "4884",
+        "mcu_chip": "rp2040",
+        "clock_mhz": 133,
+        "flash_kb": 8192,
+        "sram_kb": 264,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "type_c",
+        "gpio_count": 21,
+        "analog_inputs": 4,
+        "pwm_pins": 16,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "3.3-6",
+        "power_pins": [
+          "3v3",
+          "vbat",
+          "vusb"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "circuitpython",
+          "micropython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "feather",
+        "price_usd": 11.95,
+        "price_source": "Adafruit retail",
+        "note": "RP2040 Feather without WiFi \u2014 pair with an AirLift, RFM95, or 4G FeatherWing for connectivity. STEMMA QT, LiPo charging.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_metro_express",
+      "type": "microcontroller_board",
+      "name": "Adafruit Metro M0 Express",
+      "sku": "adafruit_metro_express",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "3505",
+        "mcu_chip": "atsamd21",
+        "clock_mhz": 48,
+        "flash_kb": 256,
+        "sram_kb": 32,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "micro_b",
+        "gpio_count": 25,
+        "analog_inputs": 6,
+        "pwm_pins": 9,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "6-12",
+        "power_pins": [
+          "3v3",
+          "5v",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "uno",
+        "price_usd": 24.95,
+        "price_source": "Adafruit retail",
+        "note": "UNO footprint but 3.3V logic. Most UNO shields work; any shield that drives a 5V signal into a Metro pin will damage it. Always check shield logic level first.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "adafruit_metro_m4_airlift_lite",
+      "type": "microcontroller_board",
+      "name": "Adafruit Metro M4 AirLift Lite",
+      "sku": "adafruit_metro_m4_airlift_lite",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "4000",
+        "mcu_chip": "atsamd51",
+        "clock_mhz": 120,
+        "flash_kb": 512,
+        "sram_kb": 192,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "none",
+        "usb": "micro_b",
+        "gpio_count": 25,
+        "analog_inputs": 6,
+        "pwm_pins": 16,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "6-12",
+        "power_pins": [
+          "3v3",
+          "5v",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "circuitpython",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "uno",
+        "price_usd": 39.95,
+        "price_source": "Adafruit retail",
+        "note": "M4 + onboard ESP32 acting as a WiFi co-processor over SPI. The ESP32 here is *not* programmed as a main MCU \u2014 flash AirLift firmware, not Arduino sketches.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "sparkfun_redboard_qwiic",
+      "type": "microcontroller_board",
+      "name": "SparkFun RedBoard Qwiic",
+      "sku": "sparkfun_redboard_qwiic",
+      "attributes": {
+        "brand": "sparkfun",
+        "model": "DEV-15123",
+        "mcu_chip": "atmega328p",
+        "clock_mhz": 16,
+        "flash_kb": 32,
+        "sram_kb": 2,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "type_c",
+        "gpio_count": 14,
+        "analog_inputs": 6,
+        "pwm_pins": 6,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 5.0,
+        "input_voltage_range_v": "7-15",
+        "power_pins": [
+          "3v3",
+          "5v",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "uno",
+        "price_usd": 22.5,
+        "price_source": "SparkFun retail",
+        "note": "UNO clone with USB-C and an onboard Qwiic (JST SH I2C) connector. Drop-in replacement for any UNO R3 sketch.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "teensy_4_0",
+      "type": "microcontroller_board",
+      "name": "PJRC Teensy 4.0",
+      "sku": "teensy_4_0",
+      "attributes": {
+        "brand": "pjrc",
+        "model": "Teensy 4.0",
+        "mcu_chip": "imxrt1062",
+        "clock_mhz": 600,
+        "flash_kb": 2048,
+        "sram_kb": 1024,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "micro_b",
+        "gpio_count": 40,
+        "analog_inputs": 14,
+        "pwm_pins": 31,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 7,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "teensy",
+        "price_usd": 23.8,
+        "price_source": "SparkFun retail",
+        "note": "600 MHz Cortex-M7 \u2014 fastest Arduino-compatible MCU on the market. Picked for audio synthesis, fast DSP, and high-channel-count motor control. 3.3V GPIO not 5V tolerant.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "teensy_4_1",
+      "type": "microcontroller_board",
+      "name": "PJRC Teensy 4.1",
+      "sku": "teensy_4_1",
+      "attributes": {
+        "brand": "pjrc",
+        "model": "Teensy 4.1",
+        "mcu_chip": "imxrt1062",
+        "clock_mhz": 600,
+        "flash_kb": 8192,
+        "sram_kb": 1024,
+        "wifi": false,
+        "wifi_band": "none",
+        "bluetooth": "none",
+        "usb": "micro_b",
+        "gpio_count": 55,
+        "analog_inputs": 18,
+        "pwm_pins": 35,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 8,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "vin"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "teensy",
+        "price_usd": 31.5,
+        "price_source": "SparkFun retail",
+        "note": "Teensy 4.0 + onboard Ethernet PHY pads, SD slot, and PSRAM/flash footprints. Pick 4.1 over 4.0 when you need Ethernet or microSD without a shield.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "particle_argon",
+      "type": "microcontroller_board",
+      "name": "Particle Argon",
+      "sku": "particle_argon",
+      "attributes": {
+        "brand": "particle",
+        "model": "ARGN",
+        "mcu_chip": "nrf52840",
+        "clock_mhz": 64,
+        "flash_kb": 1024,
+        "sram_kb": 256,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "ble",
+        "usb": "micro_b",
+        "gpio_count": 20,
+        "analog_inputs": 6,
+        "pwm_pins": 8,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "3.6-12",
+        "power_pins": [
+          "3v3",
+          "vusb",
+          "li_bat"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "feather",
+        "price_usd": 36.0,
+        "price_source": "Adafruit retail",
+        "note": "Feather-format nRF52840 + ESP32 (WiFi co-processor) with first-class Particle Cloud OTA. Worth the markup only if you actually use Particle Cloud \u2014 otherwise an ESP32 Feather is half the price.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "particle_photon_2",
+      "type": "microcontroller_board",
+      "name": "Particle Photon 2",
+      "sku": "particle_photon_2",
+      "attributes": {
+        "brand": "particle",
+        "model": "PHOTON2",
+        "mcu_chip": "rtl8721dm",
+        "clock_mhz": 200,
+        "flash_kb": 4096,
+        "sram_kb": 512,
+        "wifi": true,
+        "wifi_band": "2_4ghz_5ghz_dualband",
+        "bluetooth": "ble",
+        "usb": "micro_b",
+        "gpio_count": 20,
+        "analog_inputs": 6,
+        "pwm_pins": 8,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "3.6-12",
+        "power_pins": [
+          "3v3",
+          "vusb",
+          "li_bat"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "platformio"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "feather",
+        "price_usd": 18.0,
+        "price_source": "Adafruit retail",
+        "note": "Realtek RTL8721 dual-band WiFi in Feather form factor. Replaces the older Photon (P0/P1) \u2014 sketches written for old Particle Photons need a recompile.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "m5stack_core2",
+      "type": "microcontroller_board",
+      "name": "M5Stack Core2 ESP32",
+      "sku": "m5stack_core2",
+      "attributes": {
+        "brand": "m5stack",
+        "model": "K010",
+        "mcu_chip": "esp32_d0wdq6_v3",
+        "clock_mhz": 240,
+        "flash_kb": 16384,
+        "sram_kb": 520,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "dual_mode",
+        "usb": "type_c",
+        "gpio_count": 14,
+        "analog_inputs": 4,
+        "pwm_pins": 8,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 2,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "esp_idf",
+          "platformio",
+          "uiflow"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "m5",
+        "price_usd": 49.9,
+        "price_source": "Adafruit retail",
+        "note": "ESP32 in a finished plastic case with a 2.0\" capacitive touch screen, speaker, IMU, RTC and 390 mAh LiPo. Picked when you need a demo enclosure on day one and don't want to 3D-print anything.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "m5stack_stickc_plus2",
+      "type": "microcontroller_board",
+      "name": "M5Stack StickC Plus 2",
+      "sku": "m5stack_stickc_plus2",
+      "attributes": {
+        "brand": "m5stack",
+        "model": "K016-P",
+        "mcu_chip": "esp32_pico_v3_02",
+        "clock_mhz": 240,
+        "flash_kb": 8192,
+        "sram_kb": 520,
+        "wifi": true,
+        "wifi_band": "2_4ghz",
+        "bluetooth": "dual_mode",
+        "usb": "type_c",
+        "gpio_count": 8,
+        "analog_inputs": 2,
+        "pwm_pins": 4,
+        "i2c": true,
+        "spi": true,
+        "uart_count": 1,
+        "operating_voltage_v": 3.3,
+        "input_voltage_range_v": "5",
+        "power_pins": [
+          "3v3",
+          "5v"
+        ],
+        "firmware_compat": [
+          "arduino_ide",
+          "esp_idf",
+          "platformio",
+          "uiflow"
+        ],
+        "ai_accelerator": "none",
+        "form_factor": "m5",
+        "price_usd": 19.9,
+        "price_source": "Adafruit retail",
+        "note": "Pocket-size ESP32 in a finished case with a 1.14\" LCD, IMU, IR transmitter, and 200 mAh battery. Grove ports for sensors \u2014 Grove cables are 4-pin JST 2.0 mm, not the same as Adafruit STEMMA QT.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "dht11",
+      "type": "sensor_module",
+      "name": "DHT11 Temperature/Humidity Sensor",
+      "sku": "dht11",
+      "attributes": {
+        "brand": "aosong",
+        "model": "DHT11",
+        "interface": "digital_1wire",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": null,
+        "library_arduino": "DHT_sensor_library",
+        "accuracy": "+/-2C, +/-5%RH",
+        "range": "0-50C, 20-90%RH",
+        "pin_count": 3,
+        "price_usd": 3.5,
+        "price_source": "Adafruit retail",
+        "note": "Cheapest temp/humidity sensor and the worst quality. Use for learning only \u2014 DHT22 is double the price and twice the accuracy. Single-wire protocol; no I2C.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "dht22",
+      "type": "sensor_module",
+      "name": "DHT22 Temperature/Humidity Sensor",
+      "sku": "dht22",
+      "attributes": {
+        "brand": "aosong",
+        "model": "AM2302/DHT22",
+        "interface": "digital_1wire",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": null,
+        "library_arduino": "DHT_sensor_library",
+        "accuracy": "+/-0.5C, +/-2%RH",
+        "range": "-40-80C, 0-100%RH",
+        "pin_count": 3,
+        "price_usd": 9.95,
+        "price_source": "Adafruit retail",
+        "note": "Common upgrade from DHT11. Read interval is once every 2 seconds \u2014 sample faster and the library returns NaN. Single-wire protocol with internal pull-up needed (10k to VCC).",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "ds18b20",
+      "type": "sensor_module",
+      "name": "Maxim DS18B20 1-Wire Temperature",
+      "sku": "ds18b20",
+      "attributes": {
+        "brand": "maxim",
+        "model": "DS18B20",
+        "interface": "1wire",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": null,
+        "library_arduino": "OneWire+DallasTemperature",
+        "accuracy": "+/-0.5C",
+        "range": "-55-125C",
+        "pin_count": 3,
+        "price_usd": 9.95,
+        "price_source": "Adafruit retail",
+        "note": "Each unit has a unique 64-bit ROM ID \u2014 bus several on a single GPIO. Waterproof variant with stainless probe is the standard choice for outdoor / immersion. 4.7 kohm pull-up required.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "bmp280",
+      "type": "sensor_module",
+      "name": "Bosch BMP280 Barometric Pressure",
+      "sku": "bmp280",
+      "attributes": {
+        "brand": "bosch",
+        "model": "BMP280",
+        "interface": "i2c_or_spi",
+        "voltage_v": "3v3",
+        "i2c_address": "0x76",
+        "library_arduino": "Adafruit_BMP280",
+        "accuracy": "+/-1hPa, +/-1C",
+        "range": "300-1100hPa, -40-85C",
+        "pin_count": 6,
+        "price_usd": 9.95,
+        "price_source": "Adafruit retail",
+        "note": "Barometric pressure + temperature, no humidity. Most breakouts include a 3.3V regulator and level shifters so they are 5V-bus-tolerant despite the 3.3V die.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "bme280",
+      "type": "sensor_module",
+      "name": "Bosch BME280 T/H/P Sensor",
+      "sku": "bme280",
+      "attributes": {
+        "brand": "bosch",
+        "model": "BME280",
+        "interface": "i2c_or_spi",
+        "voltage_v": "3v3",
+        "i2c_address": "0x77",
+        "library_arduino": "Adafruit_BME280",
+        "accuracy": "+/-1hPa, +/-1C, +/-3%RH",
+        "range": "300-1100hPa, -40-85C, 0-100%RH",
+        "pin_count": 6,
+        "price_usd": 14.95,
+        "price_source": "Adafruit retail",
+        "note": "Full environment sensor (T/H/P) on I2C. Default address is 0x77 on Adafruit, 0x76 on most generic boards \u2014 collisions with BMP280 (0x76) are common.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "bme680",
+      "type": "sensor_module",
+      "name": "Bosch BME680 Air Quality Sensor",
+      "sku": "bme680",
+      "attributes": {
+        "brand": "bosch",
+        "model": "BME680",
+        "interface": "i2c_or_spi",
+        "voltage_v": "3v3",
+        "i2c_address": "0x77",
+        "library_arduino": "Adafruit_BME680",
+        "accuracy": "+/-1hPa, +/-1C, +/-3%RH, IAQ index",
+        "range": "300-1100hPa, -40-85C, 0-100%RH, gas index 0-500",
+        "pin_count": 6,
+        "price_usd": 22.5,
+        "price_source": "Adafruit retail",
+        "note": "BME280 + a metal-oxide gas sensor. 'IAQ' index requires Bosch's closed-source BSEC library \u2014 open-source code only gets you raw resistance, not air quality numbers.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mpu6050",
+      "type": "sensor_module",
+      "name": "InvenSense MPU-6050 6DOF IMU",
+      "sku": "mpu6050",
+      "attributes": {
+        "brand": "invensense",
+        "model": "MPU-6050",
+        "interface": "i2c",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": "0x68",
+        "library_arduino": "Adafruit_MPU6050",
+        "accuracy": "+/-2-16g, +/-250-2000dps",
+        "range": "see accuracy",
+        "pin_count": 8,
+        "price_usd": 4.95,
+        "price_source": "Amazon retail",
+        "note": "Cheapest 6-DOF IMU but officially EOL \u2014 many breakouts are clones. New designs should prefer MPU-9250 (9-DOF) or BNO055 (sensor fusion onboard).",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mpu9250",
+      "type": "sensor_module",
+      "name": "InvenSense MPU-9250 9DOF IMU",
+      "sku": "mpu9250",
+      "attributes": {
+        "brand": "invensense",
+        "model": "MPU-9250",
+        "interface": "i2c_or_spi",
+        "voltage_v": "3v3",
+        "i2c_address": "0x68",
+        "library_arduino": "MPU9250_asukiaaa",
+        "accuracy": "+/-2-16g, +/-250-2000dps, +/-4800uT",
+        "range": "see accuracy",
+        "pin_count": 10,
+        "price_usd": 14.95,
+        "price_source": "SparkFun retail",
+        "note": "9-DOF (gyro + accel + magnetometer) on a single chip. Magnetometer (AK8963) shares the I2C bus through an internal master and needs special init \u2014 don't expect it to 'just work' from the I2C scanner.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "bno055",
+      "type": "sensor_module",
+      "name": "Bosch BNO055 IMU with Fusion",
+      "sku": "bno055",
+      "attributes": {
+        "brand": "bosch",
+        "model": "BNO055",
+        "interface": "i2c",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": "0x28",
+        "library_arduino": "Adafruit_BNO055",
+        "accuracy": "+/-2.5deg fused yaw/pitch/roll",
+        "range": "+/-2-16g, +/-2000dps",
+        "pin_count": 7,
+        "price_usd": 34.95,
+        "price_source": "Adafruit retail",
+        "note": "Onboard ARM core runs the sensor fusion \u2014 outputs absolute orientation as Euler angles or quaternions, no host math needed. Costs more but skips the I2 nightmare of calibrating MPU-9250 by hand.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "hcsr04",
+      "type": "sensor_module",
+      "name": "HC-SR04 Ultrasonic Distance Sensor",
+      "sku": "hcsr04",
+      "attributes": {
+        "brand": "generic",
+        "model": "HC-SR04",
+        "interface": "digital",
+        "voltage_v": "5v",
+        "i2c_address": null,
+        "library_arduino": "NewPing",
+        "accuracy": "+/-3mm",
+        "range": "2-400cm",
+        "pin_count": 4,
+        "price_usd": 3.95,
+        "price_source": "Amazon retail",
+        "note": "Echo pin outputs 5V \u2014 a 3.3V board (ESP32, Pico, Feather M0) needs a level shifter or a voltage divider on echo. The HC-SR04P variant is 3-5V and is the right pick for 3.3V projects.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "vl53l0x",
+      "type": "sensor_module",
+      "name": "ST VL53L0X Time-of-Flight Distance",
+      "sku": "vl53l0x",
+      "attributes": {
+        "brand": "stmicro",
+        "model": "VL53L0X",
+        "interface": "i2c",
+        "voltage_v": "3v3",
+        "i2c_address": "0x29",
+        "library_arduino": "Adafruit_VL53L0X",
+        "accuracy": "+/-3%",
+        "range": "30-2000mm",
+        "pin_count": 7,
+        "price_usd": 14.95,
+        "price_source": "Adafruit retail",
+        "note": "Laser ToF (940 nm IR), works in the dark unlike ultrasonic. Multiple sensors share I2C address 0x29 \u2014 to use more than one on the same bus, toggle XSHUT pins and remap addresses at boot.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "vl53l1x",
+      "type": "sensor_module",
+      "name": "ST VL53L1X Long-Range ToF",
+      "sku": "vl53l1x",
+      "attributes": {
+        "brand": "stmicro",
+        "model": "VL53L1X",
+        "interface": "i2c",
+        "voltage_v": "3v3",
+        "i2c_address": "0x29",
+        "library_arduino": "Adafruit_VL53L1X",
+        "accuracy": "+/-1mm typical",
+        "range": "40-4000mm",
+        "pin_count": 7,
+        "price_usd": 14.95,
+        "price_source": "Adafruit retail",
+        "note": "4-meter range vs 2-meter for the L0X. Same 0x29 default address quirk applies. Higher idle current (~20 mA) \u2014 not great on coin-cell.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "tcs34725",
+      "type": "sensor_module",
+      "name": "AMS TCS34725 RGB Color Sensor",
+      "sku": "tcs34725",
+      "attributes": {
+        "brand": "ams",
+        "model": "TCS34725",
+        "interface": "i2c",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": "0x29",
+        "library_arduino": "Adafruit_TCS34725",
+        "accuracy": "16-bit per channel",
+        "range": "color temp 2500-7000K",
+        "pin_count": 7,
+        "price_usd": 7.95,
+        "price_source": "Adafruit retail",
+        "note": "Same I2C address as VL53L0X/L1X (0x29) \u2014 never put both on one bus. Has a built-in white LED for consistent illumination; pull-down to disable when reading ambient.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "max9814",
+      "type": "sensor_module",
+      "name": "Maxim MAX9814 Auto-Gain Microphone",
+      "sku": "max9814",
+      "attributes": {
+        "brand": "maxim",
+        "model": "MAX9814",
+        "interface": "analog",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": null,
+        "library_arduino": "none (analogRead)",
+        "accuracy": "20-20kHz, gain 40/50/60dB",
+        "range": "audio",
+        "pin_count": 5,
+        "price_usd": 7.95,
+        "price_source": "Adafruit retail",
+        "note": "Analog electret mic with auto-gain \u2014 better for unknown sound levels than fixed-gain MAX4466. Output is biased at VCC/2; subtract DC offset in software for FFT.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "max30102",
+      "type": "sensor_module",
+      "name": "MAX30102 Heart-Rate / SpO2",
+      "sku": "max30102",
+      "attributes": {
+        "brand": "maxim",
+        "model": "MAX30102",
+        "interface": "i2c",
+        "voltage_v": "3v3",
+        "i2c_address": "0x57",
+        "library_arduino": "SparkFun_MAX3010x_Sensor_Library",
+        "accuracy": "raw IR/red samples",
+        "range": "see SparkFun example for HR algo",
+        "pin_count": 5,
+        "price_usd": 11.95,
+        "price_source": "SparkFun retail",
+        "note": "Reports raw red+IR samples \u2014 heart-rate and SpO2 are calculated by the host. SparkFun's algorithm code is GPL; check licensing if you redistribute firmware.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "rcwl_0516",
+      "type": "sensor_module",
+      "name": "RCWL-0516 Microwave Radar Motion",
+      "sku": "rcwl_0516",
+      "attributes": {
+        "brand": "generic",
+        "model": "RCWL-0516",
+        "interface": "digital",
+        "voltage_v": "4v_to_28v",
+        "i2c_address": null,
+        "library_arduino": "none (digitalRead)",
+        "accuracy": "binary motion",
+        "range": "5-7m",
+        "pin_count": 3,
+        "price_usd": 2.5,
+        "price_source": "Amazon retail",
+        "note": "Sees through plastic enclosures unlike PIR \u2014 useful for hidden-presence projects. Not FCC-tested; not legal for commercial sale in the US/EU without an antenna-tuned re-cert.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "ldr_breakout",
+      "type": "sensor_module",
+      "name": "LDR Light-Dependent Resistor Breakout",
+      "sku": "ldr_breakout",
+      "attributes": {
+        "brand": "generic",
+        "model": "GL5528",
+        "interface": "analog",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": null,
+        "library_arduino": "none (analogRead)",
+        "accuracy": "indicative only",
+        "range": "1k-1Mohm 1lux-100lux",
+        "pin_count": 2,
+        "price_usd": 1.95,
+        "price_source": "Amazon retail",
+        "note": "Cheap, reliable, but just a relative reading \u2014 for actual lux use a TSL2591 or BH1750. Pair with a 10k pull-down resistor.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mq2_gas",
+      "type": "sensor_module",
+      "name": "MQ-2 Combustible Gas / Smoke Sensor",
+      "sku": "mq2_gas",
+      "attributes": {
+        "brand": "generic",
+        "model": "MQ-2",
+        "interface": "analog_or_digital",
+        "voltage_v": "5v",
+        "i2c_address": null,
+        "library_arduino": "none (analogRead)",
+        "accuracy": "200-10000ppm LPG/butane/methane/smoke",
+        "range": "see accuracy",
+        "pin_count": 4,
+        "price_usd": 4.95,
+        "price_source": "Amazon retail",
+        "note": "Heater pulls ~150 mA at 5V \u2014 too much for an ESP32 USB rail without external power. Needs a 24-hour burn-in to stabilize before any calibration is meaningful.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mq7_co",
+      "type": "sensor_module",
+      "name": "MQ-7 Carbon Monoxide Sensor",
+      "sku": "mq7_co",
+      "attributes": {
+        "brand": "generic",
+        "model": "MQ-7",
+        "interface": "analog",
+        "voltage_v": "5v",
+        "i2c_address": null,
+        "library_arduino": "none (analogRead)",
+        "accuracy": "10-500ppm CO",
+        "range": "see accuracy",
+        "pin_count": 4,
+        "price_usd": 4.95,
+        "price_source": "Amazon retail",
+        "note": "Requires a duty-cycled heater (5V/1.4V at 60s/90s) to read CO correctly. Wiring it to a fixed 5V will return junk numbers \u2014 don't ship a CO alarm built on it.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mq135",
+      "type": "sensor_module",
+      "name": "MQ-135 Air-Quality Gas Sensor",
+      "sku": "mq135",
+      "attributes": {
+        "brand": "generic",
+        "model": "MQ-135",
+        "interface": "analog_or_digital",
+        "voltage_v": "5v",
+        "i2c_address": null,
+        "library_arduino": "MQ135",
+        "accuracy": "indicative ppm of NH3/NOx/CO2/alcohol",
+        "range": "10-1000ppm",
+        "pin_count": 4,
+        "price_usd": 4.95,
+        "price_source": "Amazon retail",
+        "note": "Marketed as 'air quality' but it's a single MOX sensor that responds to many gases at once. Not a CO2 sensor. For CO2 use SCD41 or SCD30.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "tgs2600",
+      "type": "sensor_module",
+      "name": "Figaro TGS2600 Air Contaminant Sensor",
+      "sku": "tgs2600",
+      "attributes": {
+        "brand": "figaro",
+        "model": "TGS2600",
+        "interface": "analog",
+        "voltage_v": "5v",
+        "i2c_address": null,
+        "library_arduino": "none (analogRead)",
+        "accuracy": "1-30ppm methane/iso-butane/H2",
+        "range": "see accuracy",
+        "pin_count": 4,
+        "price_usd": 16.95,
+        "price_source": "SparkFun retail",
+        "note": "Higher-quality MOX gas sensor than MQ-series but only available as bare TO-5 \u2014 most projects buy the SparkFun breakout. Heater is 5V/40 mA.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "capacitive_soil",
+      "type": "sensor_module",
+      "name": "Capacitive Soil Moisture Sensor v1.2",
+      "sku": "capacitive_soil",
+      "attributes": {
+        "brand": "generic",
+        "model": "v1.2",
+        "interface": "analog",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": null,
+        "library_arduino": "none (analogRead)",
+        "accuracy": "indicative",
+        "range": "wet/dry/in-between",
+        "pin_count": 3,
+        "price_usd": 4.5,
+        "price_source": "Amazon retail",
+        "note": "Capacitive type doesn't corrode like the resistive ones. Calibrate dry/wet at install \u2014 every soil mix has a different curve. PCB coating fails after ~6 months in soil; expect to replace yearly.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "ina219",
+      "type": "sensor_module",
+      "name": "TI INA219 Current/Voltage Monitor",
+      "sku": "ina219",
+      "attributes": {
+        "brand": "ti",
+        "model": "INA219",
+        "interface": "i2c",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": "0x40",
+        "library_arduino": "Adafruit_INA219",
+        "accuracy": "+/-0.5%",
+        "range": "0-26V, +/-3.2A",
+        "pin_count": 6,
+        "price_usd": 9.95,
+        "price_source": "Adafruit retail",
+        "note": "0.1 ohm shunt onboard \u2014 burden voltage caps usable current at 3.2 A. For higher current (motors, batteries) use INA226 with an external shunt.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "ina226",
+      "type": "sensor_module",
+      "name": "TI INA226 Bidirectional Current Monitor",
+      "sku": "ina226",
+      "attributes": {
+        "brand": "ti",
+        "model": "INA226",
+        "interface": "i2c",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": "0x40",
+        "library_arduino": "INA226",
+        "accuracy": "+/-0.1%",
+        "range": "0-36V, depends on shunt",
+        "pin_count": 6,
+        "price_usd": 14.95,
+        "price_source": "Amazon retail",
+        "note": "External shunt resistor \u2014 pick one to set the current range yourself (typical 10 mohm for 8 A). Same I2C address space as INA219 \u2014 collision if both on one bus, change addresses with the A0/A1 pads.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "hx711",
+      "type": "sensor_module",
+      "name": "Avia HX711 Load-Cell ADC",
+      "sku": "hx711",
+      "attributes": {
+        "brand": "avia",
+        "model": "HX711",
+        "interface": "digital_2wire",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": null,
+        "library_arduino": "HX711_ADC",
+        "accuracy": "24-bit",
+        "range": "depends on load cell",
+        "pin_count": 5,
+        "price_usd": 9.95,
+        "price_source": "SparkFun retail",
+        "note": "Bit-banged 2-wire protocol (data + clock) \u2014 not I2C, not SPI. Pair with a 4-wire load cell (typical 1 kg / 5 kg / 20 kg / 50 kg modules). Tare in software at boot.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "neo_6m_gps",
+      "type": "sensor_module",
+      "name": "u-blox NEO-6M GPS Module",
+      "sku": "neo_6m_gps",
+      "attributes": {
+        "brand": "u_blox",
+        "model": "NEO-6M",
+        "interface": "uart",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": null,
+        "library_arduino": "TinyGPSPlus",
+        "accuracy": "2.5m CEP",
+        "range": "global",
+        "pin_count": 4,
+        "price_usd": 12.95,
+        "price_source": "Amazon retail",
+        "note": "9600 baud NMEA over UART. First fix takes 30-60 seconds outdoors; cold-start indoors can fail entirely. The patch antenna's ground plane matters \u2014 mount on a metal surface for better fix.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "neo_m9n_gps",
+      "type": "sensor_module",
+      "name": "u-blox NEO-M9N GPS",
+      "sku": "neo_m9n_gps",
+      "attributes": {
+        "brand": "u_blox",
+        "model": "NEO-M9N",
+        "interface": "uart_or_i2c_or_spi",
+        "voltage_v": "3v3",
+        "i2c_address": "0x42",
+        "library_arduino": "SparkFun_u-blox_GNSS",
+        "accuracy": "1.5m CEP",
+        "range": "global, 4 constellations",
+        "pin_count": 8,
+        "price_usd": 64.95,
+        "price_source": "SparkFun retail",
+        "note": "GPS+GLONASS+Galileo+BeiDou concurrent. ~5x faster cold-start than NEO-6M, sub-meter when paired with RTK. Picked for vehicle tracking or any moving project.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "scd41_co2",
+      "type": "sensor_module",
+      "name": "Sensirion SCD41 CO2 Sensor",
+      "sku": "scd41_co2",
+      "attributes": {
+        "brand": "sensirion",
+        "model": "SCD41",
+        "interface": "i2c",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": "0x62",
+        "library_arduino": "Sensirion_I2C_SCD4x",
+        "accuracy": "+/-40ppm + 5%",
+        "range": "400-5000ppm CO2",
+        "pin_count": 6,
+        "price_usd": 49.95,
+        "price_source": "Adafruit retail",
+        "note": "True NDIR-class CO2 (photoacoustic). The right answer when 'air quality' actually means CO2 ppm. Auto-calibrates on the assumption it sees outdoor air (~420 ppm) once a week \u2014 disable ASC if the device lives in a sealed room.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "sht40",
+      "type": "sensor_module",
+      "name": "Sensirion SHT40 T/H Sensor",
+      "sku": "sht40",
+      "attributes": {
+        "brand": "sensirion",
+        "model": "SHT40",
+        "interface": "i2c",
+        "voltage_v": "3v3",
+        "i2c_address": "0x44",
+        "library_arduino": "Adafruit_SHT4x",
+        "accuracy": "+/-0.2C, +/-1.8%RH",
+        "range": "-40-125C, 0-100%RH",
+        "pin_count": 4,
+        "price_usd": 5.95,
+        "price_source": "Adafruit retail",
+        "note": "More accurate than DHT22 and physically smaller. Default address 0x44 collides with HTU21D \u2014 pick one or the other on a shared bus.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "pir_hcsr501",
+      "type": "sensor_module",
+      "name": "HC-SR501 Adjustable PIR Motion",
+      "sku": "pir_hcsr501",
+      "attributes": {
+        "brand": "generic",
+        "model": "HC-SR501",
+        "interface": "digital",
+        "voltage_v": "5v_to_20v",
+        "i2c_address": null,
+        "library_arduino": "none (digitalRead)",
+        "accuracy": "binary motion",
+        "range": "3-7m, 110deg cone",
+        "pin_count": 3,
+        "price_usd": 2.5,
+        "price_source": "Amazon retail",
+        "note": "Output is 3.3V regardless of supply \u2014 safe for ESP32/Pico. Two trim pots: sensitivity and re-trigger time. Settles ~30 seconds after power-on; ignore the first reading.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "tsl2591",
+      "type": "sensor_module",
+      "name": "ams TSL2591 High-Range Lux Sensor",
+      "sku": "tsl2591",
+      "attributes": {
+        "brand": "ams",
+        "model": "TSL2591",
+        "interface": "i2c",
+        "voltage_v": "3v3_or_5v",
+        "i2c_address": "0x29",
+        "library_arduino": "Adafruit_TSL2591",
+        "accuracy": "+/-15%",
+        "range": "188 microlux to 88000 lux",
+        "pin_count": 5,
+        "price_usd": 6.95,
+        "price_source": "Adafruit retail",
+        "note": "True lux readings 188 microlux to 88,000 lux \u2014 works in moonlight to direct sun. Address 0x29 collides with VL53L0X/L1X and TCS34725 \u2014 keep these off the same bus or use an I2C multiplexer.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "oled_096_ssd1306_i2c",
+      "type": "display_module",
+      "name": "0.96\" OLED 128x64 SSD1306 I2C",
+      "sku": "oled_096_ssd1306_i2c",
+      "attributes": {
+        "brand": "generic",
+        "model": "SSD1306",
+        "interface": "i2c",
+        "resolution_px": "128x64",
+        "controller_chip": "ssd1306",
+        "voltage_v": "3v3_or_5v",
+        "touchscreen": "none",
+        "price_usd": 5.95,
+        "price_source": "Amazon retail",
+        "note": "The default tutorial OLED. Default I2C address is 0x3C \u2014 collides with another SSD1306. Adafruit and U8g2 both have drivers; U8g2 supports both 128x64 and 128x32 variants.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "oled_13_sh1106_i2c",
+      "type": "display_module",
+      "name": "1.3\" OLED 128x64 SH1106 I2C",
+      "sku": "oled_13_sh1106_i2c",
+      "attributes": {
+        "brand": "generic",
+        "model": "SH1106",
+        "interface": "i2c",
+        "resolution_px": "128x64",
+        "controller_chip": "sh1106",
+        "voltage_v": "3v3_or_5v",
+        "touchscreen": "none",
+        "price_usd": 9.95,
+        "price_source": "Amazon retail",
+        "note": "Looks like an SSD1306 but is NOT \u2014 using the SSD1306 driver gives garbled output with a grey 4-pixel offset. Use U8g2 with the SH1106 constructor.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "tft_18_st7735",
+      "type": "display_module",
+      "name": "1.8\" TFT 128x160 ST7735 SPI",
+      "sku": "tft_18_st7735",
+      "attributes": {
+        "brand": "generic",
+        "model": "ST7735",
+        "interface": "spi",
+        "resolution_px": "128x160",
+        "controller_chip": "st7735",
+        "voltage_v": "3v3_or_5v",
+        "touchscreen": "none",
+        "price_usd": 9.95,
+        "price_source": "Amazon retail",
+        "note": "Cheap colour TFT, ~30 fps over hardware SPI on UNO. Adafruit_ST7735 + Adafruit_GFX. Beware: 5V VCC is regulated onboard, but logic pins are 3.3V \u2014 needs level-shift on UNO/Mega for clean signals at high SPI speeds.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "tft_28_ili9341_resistive",
+      "type": "display_module",
+      "name": "2.8\" TFT Touch 320x240 ILI9341",
+      "sku": "tft_28_ili9341_resistive",
+      "attributes": {
+        "brand": "generic",
+        "model": "ILI9341",
+        "interface": "spi",
+        "resolution_px": "320x240",
+        "controller_chip": "ili9341",
+        "voltage_v": "3v3",
+        "touchscreen": "resistive",
+        "price_usd": 24.95,
+        "price_source": "Adafruit retail",
+        "note": "Resistive touch needs a separate XPT2046 SPI controller chip. Adafruit's breakout includes an SD slot on the same SPI bus \u2014 share CS pins carefully.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "tft_35_ili9488",
+      "type": "display_module",
+      "name": "3.5\" TFT 480x320 ILI9488",
+      "sku": "tft_35_ili9488",
+      "attributes": {
+        "brand": "generic",
+        "model": "ILI9488",
+        "interface": "spi",
+        "resolution_px": "480x320",
+        "controller_chip": "ili9488",
+        "voltage_v": "3v3",
+        "touchscreen": "resistive",
+        "price_usd": 21.95,
+        "price_source": "Amazon retail",
+        "note": "18-bit colour, runs on hardware SPI but slow on UNO/Nano. Use TFT_eSPI on ESP32 for full 60 fps. UNO shield variants exist that wire as 8-bit parallel \u2014 much faster but burns 16 GPIOs.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "eink_154_ssd1681",
+      "type": "display_module",
+      "name": "1.54\" e-Paper 200x200 SSD1681",
+      "sku": "eink_154_ssd1681",
+      "attributes": {
+        "brand": "good_display",
+        "model": "SSD1681",
+        "interface": "spi",
+        "resolution_px": "200x200",
+        "controller_chip": "ssd1681",
+        "voltage_v": "3v3",
+        "touchscreen": "none",
+        "price_usd": 19.95,
+        "price_source": "Adafruit retail",
+        "note": "Black/white e-paper. Refreshes once every ~3 seconds for full-screen redraw. Picked for low-power signage that updates rarely. Don't refresh more than once per minute or the panel ghosts permanently.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "eink_213_ssd1675",
+      "type": "display_module",
+      "name": "2.13\" e-Paper 250x122 SSD1675",
+      "sku": "eink_213_ssd1675",
+      "attributes": {
+        "brand": "good_display",
+        "model": "SSD1675",
+        "interface": "spi",
+        "resolution_px": "250x122",
+        "controller_chip": "ssd1675",
+        "voltage_v": "3v3",
+        "touchscreen": "none",
+        "price_usd": 24.95,
+        "price_source": "Adafruit retail",
+        "note": "Common badge / room-display size. Tri-colour (B/W/red) variant exists at the same SKU footprint \u2014 confirm which one you ordered before flashing the driver.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "eink_29_ssd1680",
+      "type": "display_module",
+      "name": "2.9\" e-Paper 296x128 SSD1680",
+      "sku": "eink_29_ssd1680",
+      "attributes": {
+        "brand": "good_display",
+        "model": "SSD1680",
+        "interface": "spi",
+        "resolution_px": "296x128",
+        "controller_chip": "ssd1680",
+        "voltage_v": "3v3",
+        "touchscreen": "none",
+        "price_usd": 29.95,
+        "price_source": "Adafruit retail",
+        "note": "Picked for shelf labels and IoT dashboards. Adafruit FeatherWing form factor exists \u2014 drop on a Feather and you get an SD slot too.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "eink_42_uc8176",
+      "type": "display_module",
+      "name": "4.2\" e-Paper 400x300 UC8176",
+      "sku": "eink_42_uc8176",
+      "attributes": {
+        "brand": "good_display",
+        "model": "UC8176",
+        "interface": "spi",
+        "resolution_px": "400x300",
+        "controller_chip": "uc8176",
+        "voltage_v": "3v3",
+        "touchscreen": "none",
+        "price_usd": 49.95,
+        "price_source": "Adafruit retail",
+        "note": "Bigger than the 2.9 \u2014 full screen refresh ~4 seconds. Frame buffer is 15 KB so an UNO can't hold it; use ESP32, Feather M4, Pico, or stream from external SRAM.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "eink_75_uc8179",
+      "type": "display_module",
+      "name": "7.5\" e-Paper 800x480 UC8179",
+      "sku": "eink_75_uc8179",
+      "attributes": {
+        "brand": "good_display",
+        "model": "UC8179",
+        "interface": "spi",
+        "resolution_px": "800x480",
+        "controller_chip": "uc8179",
+        "voltage_v": "3v3",
+        "touchscreen": "none",
+        "price_usd": 69.95,
+        "price_source": "Adafruit retail",
+        "note": "Largest mainstream e-paper. 48 KB frame buffer \u2014 needs a board with PSRAM (ESP32-S3 with PSRAM, Teensy 4.x, Portenta) for double-buffering. Refresh ~5 seconds.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "matrix_max7219",
+      "type": "display_module",
+      "name": "MAX7219 8-Digit 7-Segment / 8x8 LED",
+      "sku": "matrix_max7219",
+      "attributes": {
+        "brand": "maxim",
+        "model": "MAX7219",
+        "interface": "spi",
+        "resolution_px": "8x8 or 8 digits",
+        "controller_chip": "max7219",
+        "voltage_v": "5v",
+        "touchscreen": "none",
+        "price_usd": 4.95,
+        "price_source": "Amazon retail",
+        "note": "Daisy-chainable \u2014 4 modules at 60 fps is fine on Arduino UNO. 5V logic; 3.3V boards work with most modules but signal margin is tight, level-shift if you see flicker.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "lcd_1602_hd44780",
+      "type": "display_module",
+      "name": "16x2 LCD HD44780 I2C",
+      "sku": "lcd_1602_hd44780",
+      "attributes": {
+        "brand": "generic",
+        "model": "HD44780+PCF8574",
+        "interface": "i2c",
+        "resolution_px": "16x2 char",
+        "controller_chip": "hd44780",
+        "voltage_v": "5v",
+        "touchscreen": "none",
+        "price_usd": 7.95,
+        "price_source": "Amazon retail",
+        "note": "I2C backpack uses a PCF8574 expander at 0x27 or 0x3F. Native HD44780 needs 5V \u2014 most 'I2C LCD' boards do work at 3.3V signal but the contrast pot needs adjustment for low-VCC operation.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "neopixel_ring_24",
+      "type": "display_module",
+      "name": "Adafruit NeoPixel Ring 24-LED",
+      "sku": "neopixel_ring_24",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "1586",
+        "interface": "digital",
+        "resolution_px": "24 RGB LEDs",
+        "controller_chip": "ws2812b",
+        "voltage_v": "5v",
+        "touchscreen": "none",
+        "price_usd": 16.95,
+        "price_source": "Adafruit retail",
+        "note": "Each LED draws up to 60 mA at full white \u2014 24 LEDs full-white = 1.4 A from the 5V rail. A 3.3V board signal can drive WS2812B if the first LED is close (within ~30 cm) and the 5V rail is clean; otherwise add a 74AHCT125 level shifter.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "neopixel_strip_5m",
+      "type": "display_module",
+      "name": "Adafruit NeoPixel Strip 5m 60/m",
+      "sku": "neopixel_strip_5m",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "1138",
+        "interface": "digital",
+        "resolution_px": "300 RGB LEDs",
+        "controller_chip": "ws2812b",
+        "voltage_v": "5v",
+        "touchscreen": "none",
+        "price_usd": 124.95,
+        "price_source": "Adafruit retail",
+        "note": "Full white draws 18 A \u2014 needs a separate 5V/20A PSU, not USB. Inject 5V every 1 m to avoid voltage droop at the strip end.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "matrix_5x7_led",
+      "type": "display_module",
+      "name": "5x7 LED Dot Matrix Display",
+      "sku": "matrix_5x7_led",
+      "attributes": {
+        "brand": "generic",
+        "model": "TA07-11SRWA",
+        "interface": "digital_parallel",
+        "resolution_px": "5x7",
+        "controller_chip": "none_direct_drive",
+        "voltage_v": "5v",
+        "touchscreen": "none",
+        "price_usd": 1.95,
+        "price_source": "Amazon retail",
+        "note": "Direct-drive 5x7 needs 12 GPIOs and Charlieplexing for brightness \u2014 most projects pair it with a MAX7219 or shift register instead. Listed for retro builds.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "servo_sg90",
+      "type": "motor_actuator",
+      "name": "Tower Pro SG90 9g Micro Servo",
+      "sku": "servo_sg90",
+      "attributes": {
+        "brand": "tower_pro",
+        "model": "SG90",
+        "interface_type": "pwm",
+        "voltage_range_v": "4.8-6",
+        "current_amps": 0.65,
+        "torque_kgcm": 1.8,
+        "step_angle_deg": null,
+        "price_usd": 5.95,
+        "price_source": "Adafruit retail",
+        "note": "Cheapest hobby servo \u2014 0.65 A stall. Don't power from a UNO 5V pin (max ~500 mA) or you'll brown-out the MCU. Use a separate 5V/2A supply and tie grounds.",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "servo_mg996r",
+      "type": "motor_actuator",
+      "name": "Tower Pro MG996R Metal-Gear Servo",
+      "sku": "servo_mg996r",
+      "attributes": {
+        "brand": "tower_pro",
+        "model": "MG996R",
+        "interface_type": "pwm",
+        "voltage_range_v": "4.8-7.2",
+        "current_amps": 2.5,
+        "torque_kgcm": 11.0,
+        "step_angle_deg": null,
+        "price_usd": 12.95,
+        "price_source": "Amazon retail",
+        "note": "11 kg/cm at 6V. Stall current can hit 2.5 A \u2014 needs a real PSU. Common counterfeits ship with plastic gears despite metal-gear branding.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "stepper_nema17",
+      "type": "motor_actuator",
+      "name": "NEMA17 Bipolar Stepper Motor",
+      "sku": "stepper_nema17",
+      "attributes": {
+        "brand": "generic",
+        "model": "17HS19-2004S1",
+        "interface_type": "step_dir_via_driver",
+        "voltage_range_v": "12-24",
+        "current_amps": 2.0,
+        "torque_kgcm": 4.4,
+        "step_angle_deg": 1.8,
+        "price_usd": 14.95,
+        "price_source": "Amazon retail",
+        "note": "Standard 3D printer / CNC stepper. 1.8 deg per full step (200 steps/rev). Always pair with a chopper driver (A4988/DRV8825/TMC2208) \u2014 direct H-bridge will cook the windings.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "stepper_28byj48",
+      "type": "motor_actuator",
+      "name": "28BYJ-48 5V Geared Stepper",
+      "sku": "stepper_28byj48",
+      "attributes": {
+        "brand": "generic",
+        "model": "28BYJ-48",
+        "interface_type": "uln2003_4wire",
+        "voltage_range_v": "5",
+        "current_amps": 0.25,
+        "torque_kgcm": 0.34,
+        "step_angle_deg": 0.087890625,
+        "price_usd": 6.95,
+        "price_source": "Amazon retail",
+        "note": "5V geared stepper bundled with a ULN2003 driver board. Slow (max ~15 rpm) but tiny torque is fine for a clock movement, blind-rotator, or robot eye. 0.088 deg per step thanks to the 1:64 gear box.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "driver_a4988",
+      "type": "motor_actuator",
+      "name": "Pololu A4988 Stepper Driver",
+      "sku": "driver_a4988",
+      "attributes": {
+        "brand": "pololu",
+        "model": "A4988",
+        "interface_type": "step_dir",
+        "voltage_range_v": "8-35",
+        "current_amps": 2.0,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 5.95,
+        "price_source": "Amazon retail",
+        "note": "Up to 1/16 microstepping with the MS1/MS2/MS3 jumpers. 2 A peak with a heatsink \u2014 without one, derate to 1.2 A. Cheap and noisy compared to TMC2208.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "driver_drv8825",
+      "type": "motor_actuator",
+      "name": "Pololu DRV8825 Stepper Driver",
+      "sku": "driver_drv8825",
+      "attributes": {
+        "brand": "pololu",
+        "model": "DRV8825",
+        "interface_type": "step_dir",
+        "voltage_range_v": "8.2-45",
+        "current_amps": 2.2,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 7.95,
+        "price_source": "Amazon retail",
+        "note": "1/32 microstepping, higher voltage than A4988 (good for fast NEMA17 moves). Pin-compatible with A4988 boards but the Vref formula is different \u2014 Vref = 1.0 * I_max, not 0.5.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "driver_tmc2208",
+      "type": "motor_actuator",
+      "name": "TMC2208 Silent Stepper Driver",
+      "sku": "driver_tmc2208",
+      "attributes": {
+        "brand": "trinamic",
+        "model": "TMC2208",
+        "interface_type": "step_dir_or_uart",
+        "voltage_range_v": "5.5-36",
+        "current_amps": 2.0,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 9.95,
+        "price_source": "Amazon retail",
+        "note": "Near-silent stepper driver \u2014 picked for any 3D printer, blind/curtain motor, or fume-hood robot where noise matters. UART mode lets you set current/microsteps in software, not by jumpers.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "l298n_h_bridge",
+      "type": "motor_actuator",
+      "name": "L298N Dual H-Bridge Motor Driver",
+      "sku": "l298n_h_bridge",
+      "attributes": {
+        "brand": "generic",
+        "model": "L298N",
+        "interface_type": "pwm",
+        "voltage_range_v": "5-35",
+        "current_amps": 2.0,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 4.95,
+        "price_source": "Amazon retail",
+        "note": "Old-school BJT-based driver \u2014 1.5 V drop per leg. Wastes power as heat; modern designs prefer DRV8871 (TI) or TB6612FNG. Still fine for hobby 6 V DC motors.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "bts7960_43a_driver",
+      "type": "motor_actuator",
+      "name": "BTS7960 43A H-Bridge Driver",
+      "sku": "bts7960_43a_driver",
+      "attributes": {
+        "brand": "generic",
+        "model": "BTS7960",
+        "interface_type": "pwm",
+        "voltage_range_v": "6-27",
+        "current_amps": 43.0,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 14.95,
+        "price_source": "Amazon retail",
+        "note": "43 A peak, 30 A continuous with proper heatsinking. Picked for ebike / cordless power-tool projects. Logic side is 3.3-5V tolerant.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "dc_motor_6v",
+      "type": "motor_actuator",
+      "name": "Yellow Hobby Gear DC Motor 6V",
+      "sku": "dc_motor_6v",
+      "attributes": {
+        "brand": "generic",
+        "model": "TT-Motor-1:48",
+        "interface_type": "h_bridge",
+        "voltage_range_v": "3-6",
+        "current_amps": 0.2,
+        "torque_kgcm": 0.8,
+        "step_angle_deg": null,
+        "price_usd": 2.95,
+        "price_source": "Amazon retail",
+        "note": "The yellow plastic gearbox motor every 'Arduino car' kit ships. 1:48 reduction, ~200 rpm at 6V no-load. Pair two with an L298N.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "brushless_2204_2300kv",
+      "type": "motor_actuator",
+      "name": "EMAX RS2204 Brushless Drone Motor",
+      "sku": "brushless_2204_2300kv",
+      "attributes": {
+        "brand": "emax",
+        "model": "RS2204-2300KV",
+        "interface_type": "esc_pwm",
+        "voltage_range_v": "11.1-14.8",
+        "current_amps": 25.0,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 16.95,
+        "price_source": "Amazon retail",
+        "note": "5\" quadcopter-class brushless. Needs a separate ESC (BLHeli32 / BLHeli_S). Direct PWM from Arduino is 50 Hz hobby pulse \u2014 works but most racing ESCs prefer DShot, which an UNO can't generate.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "solenoid_5v_push",
+      "type": "motor_actuator",
+      "name": "Adafruit 5V Push-Pull Solenoid",
+      "sku": "solenoid_5v_push",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "412",
+        "interface_type": "logic_level_mosfet",
+        "voltage_range_v": "5",
+        "current_amps": 1.1,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 5.95,
+        "price_source": "Adafruit retail",
+        "note": "1.1 A at 5V \u2014 well above any MCU GPIO. Drive with a logic-level N-MOSFET (e.g. AOI518) and a flyback diode (1N4001) across the coil.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "solenoid_12v_water_valve",
+      "type": "motor_actuator",
+      "name": "12V Solenoid Water Valve 1/2\"",
+      "sku": "solenoid_12v_water_valve",
+      "attributes": {
+        "brand": "generic",
+        "model": "U.S. Solid 1/2\"",
+        "interface_type": "relay_or_mosfet",
+        "voltage_range_v": "12",
+        "current_amps": 0.5,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 14.95,
+        "price_source": "Amazon retail",
+        "note": "Common irrigation valve. Normally closed \u2014 fail-safe for plant-watering. Drive with a mechanical relay or a 12V-tolerant MOSFET; MUST add a flyback diode across the coil or the back-EMF will kill the driver.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "vibration_motor_3v",
+      "type": "motor_actuator",
+      "name": "Coin Vibration Motor 3V",
+      "sku": "vibration_motor_3v",
+      "attributes": {
+        "brand": "generic",
+        "model": "10mm coin",
+        "interface_type": "logic_level_mosfet",
+        "voltage_range_v": "2-5",
+        "current_amps": 0.075,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 2.95,
+        "price_source": "Amazon retail",
+        "note": "75 mA \u2014 borderline for direct GPIO drive. Always use a small-signal NPN or N-MOSFET with a flyback diode. Don't drive from a Pico GP pin directly even though the math says it fits.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "relay_module_5v_4ch",
+      "type": "motor_actuator",
+      "name": "5V 4-Channel Relay Module (opto-isolated)",
+      "sku": "relay_module_5v_4ch",
+      "attributes": {
+        "brand": "generic",
+        "model": "SRD-05VDC-SL-C 4ch",
+        "interface_type": "digital_active_low",
+        "voltage_range_v": "5 logic, 250VAC switched",
+        "current_amps": 10.0,
+        "torque_kgcm": null,
+        "step_angle_deg": null,
+        "price_usd": 8.95,
+        "price_source": "Amazon retail",
+        "note": "Active-LOW input \u2014 pulling a pin to GND closes the relay, which surprises new users. Each relay coil pulls ~70 mA from 5V, four = 280 mA \u2014 Arduino USB rail can't drive all four hot, use external 5V.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "lipo_1s_1000mah",
+      "type": "power_module",
+      "name": "LiPo 1S 1000mAh JST-PH Cell",
+      "sku": "lipo_1s_1000mah",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "1781",
+        "voltage_in_v": null,
+        "voltage_out_v": "3.7nominal_4.2max",
+        "current_max_ma": 2000,
+        "chemistry": "lipo_1s",
+        "protection": "full_bms",
+        "price_usd": 9.95,
+        "price_source": "Adafruit retail",
+        "note": "Standard JST-PH 2.0 mm connector for Adafruit Feather and Arduino MKR boards. Includes a tiny PCB BMS \u2014 overcharge and over-discharge protected, but NOT short-circuit. Don't reverse polarity, the BMS won't save you.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "lipo_1s_2000mah",
+      "type": "power_module",
+      "name": "LiPo 1S 2000mAh JST-PH Cell",
+      "sku": "lipo_1s_2000mah",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "2011",
+        "voltage_in_v": null,
+        "voltage_out_v": "3.7nominal_4.2max",
+        "current_max_ma": 4000,
+        "chemistry": "lipo_1s",
+        "protection": "full_bms",
+        "price_usd": 12.5,
+        "price_source": "Adafruit retail",
+        "note": "Same connector as 1000 mAh, double capacity. Fits behind most Feather PCBs with double-stick foam. Charge rate cap: most Feather chargers do 100-500 mA \u2014 full charge takes ~5 hours.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "lipo_1s_3000mah",
+      "type": "power_module",
+      "name": "LiPo 1S 3000mAh JST-PH Cell",
+      "sku": "lipo_1s_3000mah",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "5036",
+        "voltage_in_v": null,
+        "voltage_out_v": "3.7nominal_4.2max",
+        "current_max_ma": 6000,
+        "chemistry": "lipo_1s",
+        "protection": "full_bms",
+        "price_usd": 19.95,
+        "price_source": "Adafruit retail",
+        "note": "Big enough for ESP32 always-on projects with deep-sleep duty cycle (months runtime). Too thick to fit behind a Feather; mount externally.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "li_ion_18650_3500mah",
+      "type": "power_module",
+      "name": "Panasonic NCR18650B Li-Ion Cell",
+      "sku": "li_ion_18650_3500mah",
+      "attributes": {
+        "brand": "panasonic",
+        "model": "NCR18650B",
+        "voltage_in_v": null,
+        "voltage_out_v": "3.7nominal_4.2max",
+        "current_max_ma": 6800,
+        "chemistry": "li_ion_18650",
+        "protection": "none",
+        "price_usd": 8.95,
+        "price_source": "Amazon retail",
+        "note": "Bare 18650 with NO protection circuit \u2014 needs a TP4056 + DW01 protection board, or it will catch fire on overcharge. Picked over LiPo when cycle life and energy density matter (solar / off-grid).",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "holder_18650_single",
+      "type": "power_module",
+      "name": "18650 Battery Holder Single Cell",
+      "sku": "holder_18650_single",
+      "attributes": {
+        "brand": "generic",
+        "model": "1x18650 PCB-mount",
+        "voltage_in_v": null,
+        "voltage_out_v": null,
+        "current_max_ma": 5000,
+        "chemistry": "none",
+        "protection": "none",
+        "price_usd": 1.95,
+        "price_source": "Amazon retail",
+        "note": "PCB-pin or wire-leaded variants. Pair with TP4056 + DW01 boards to add protection. Don't trust generic holders to hold a button-top cell securely under vibration \u2014 solder tabs to a flat-top instead.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "tp4056_charger",
+      "type": "power_module",
+      "name": "TP4056 1A LiPo Charger Module",
+      "sku": "tp4056_charger",
+      "attributes": {
+        "brand": "generic",
+        "model": "TP4056+DW01 USB-C",
+        "voltage_in_v": "5",
+        "voltage_out_v": "3.7-4.2",
+        "current_max_ma": 1000,
+        "chemistry": "lipo_1s",
+        "protection": "full_bms",
+        "price_usd": 1.95,
+        "price_source": "Amazon retail",
+        "note": "$2 LiPo charger with USB-C input. The version with DW01 + dual MOSFET adds protection \u2014 buy that one, not the bare TP4056. Charge rate set by an R3 resistor; 1 A by default.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "ams1117_3v3",
+      "type": "power_module",
+      "name": "AMS1117-3.3 LDO Regulator",
+      "sku": "ams1117_3v3",
+      "attributes": {
+        "brand": "generic",
+        "model": "AMS1117-3.3",
+        "voltage_in_v": "4.7-15",
+        "voltage_out_v": "3.3",
+        "current_max_ma": 800,
+        "chemistry": "none",
+        "protection": "overvoltage_only",
+        "price_usd": 0.95,
+        "price_source": "Amazon retail",
+        "note": "1.2 V dropout \u2014 running it from a 3.7V LiPo cell does NOT give a clean 3.3V. Use an MCP1700/MCP1702 (low-dropout) on battery designs.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mcp1702_3v3",
+      "type": "power_module",
+      "name": "Microchip MCP1702-3302 LDO",
+      "sku": "mcp1702_3v3",
+      "attributes": {
+        "brand": "microchip",
+        "model": "MCP1702T-3302E",
+        "voltage_in_v": "2.7-13.2",
+        "voltage_out_v": "3.3",
+        "current_max_ma": 250,
+        "chemistry": "none",
+        "protection": "overvoltage_only",
+        "price_usd": 0.55,
+        "price_source": "Adafruit retail",
+        "note": "Ultra-low-dropout (~625 mV) and quiescent of 2 microamps \u2014 the right LDO for a coin-cell or 3.7V LiPo project. 250 mA cap; not for ESP32 transmit peaks.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mt3608_boost",
+      "type": "power_module",
+      "name": "MT3608 2A DC-DC Boost Converter",
+      "sku": "mt3608_boost",
+      "attributes": {
+        "brand": "generic",
+        "model": "MT3608",
+        "voltage_in_v": "2-24",
+        "voltage_out_v": "5-28adjustable",
+        "current_max_ma": 2000,
+        "chemistry": "none",
+        "protection": "none",
+        "price_usd": 1.95,
+        "price_source": "Amazon retail",
+        "note": "Boost from 1S LiPo (3.7V) to 5V or 9V. Adjust output via the trim pot \u2014 turn it BEFORE wiring the load or you might dump 28V into your sensor. Output ripple ~50 mV; not great for analog.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "lm2596_buck",
+      "type": "power_module",
+      "name": "LM2596 3A DC-DC Buck Converter",
+      "sku": "lm2596_buck",
+      "attributes": {
+        "brand": "generic",
+        "model": "LM2596",
+        "voltage_in_v": "4-40",
+        "voltage_out_v": "1.25-37adjustable",
+        "current_max_ma": 3000,
+        "chemistry": "none",
+        "protection": "none",
+        "price_usd": 2.5,
+        "price_source": "Amazon retail",
+        "note": "Workhorse adjustable buck. Quiescent current is high (~5 mA) \u2014 kills coin-cell projects. Adjust output before connecting load.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mp1584_buck",
+      "type": "power_module",
+      "name": "MP1584 3A Mini Buck Converter",
+      "sku": "mp1584_buck",
+      "attributes": {
+        "brand": "generic",
+        "model": "MP1584EN",
+        "voltage_in_v": "4.5-28",
+        "voltage_out_v": "0.8-20adjustable",
+        "current_max_ma": 3000,
+        "chemistry": "none",
+        "protection": "none",
+        "price_usd": 2.5,
+        "price_source": "Amazon retail",
+        "note": "Higher switching frequency (1.5 MHz) than LM2596 \u2014 smaller inductor, tighter output ripple. Pick this over LM2596 for new designs.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "usb_c_pd_trigger",
+      "type": "power_module",
+      "name": "USB-C PD Trigger Board (5/9/12/15/20V)",
+      "sku": "usb_c_pd_trigger",
+      "attributes": {
+        "brand": "generic",
+        "model": "ZY12PDN",
+        "voltage_in_v": "5-20pd",
+        "voltage_out_v": "5/9/12/15/20",
+        "current_max_ma": 5000,
+        "chemistry": "none",
+        "protection": "overvoltage_only",
+        "price_usd": 4.95,
+        "price_source": "Amazon retail",
+        "note": "Negotiates PD from any USB-C laptop charger. Set output voltage with a button. Picked for projects needing 12V/3A from a USB-C wall brick \u2014 no barrel adapter needed.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "ams1117_5v0",
+      "type": "power_module",
+      "name": "AMS1117-5.0 LDO Regulator",
+      "sku": "ams1117_5v0",
+      "attributes": {
+        "brand": "generic",
+        "model": "AMS1117-5.0",
+        "voltage_in_v": "6.5-15",
+        "voltage_out_v": "5.0",
+        "current_max_ma": 800,
+        "chemistry": "none",
+        "protection": "overvoltage_only",
+        "price_usd": 0.95,
+        "price_source": "Amazon retail",
+        "note": "5V LDO \u2014 used onboard most cheap UNO clones. Drops up to 8V to heat at 800 mA \u2014 needs heatsinking or copper pour above ~250 mA.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "wall_9v_2a",
+      "type": "power_module",
+      "name": "9V 2A Barrel-Jack Wall Adapter",
+      "sku": "wall_9v_2a",
+      "attributes": {
+        "brand": "generic",
+        "model": "9V 2A 5.5x2.1mm",
+        "voltage_in_v": "100-240ac",
+        "voltage_out_v": "9.0",
+        "current_max_ma": 2000,
+        "chemistry": "none",
+        "protection": "overvoltage_only",
+        "price_usd": 7.95,
+        "price_source": "Adafruit retail",
+        "note": "Standard Arduino UNO power supply. 5.5/2.1 mm centre-positive barrel jack. Not regulated to 5V \u2014 the UNO's onboard linear regulator does the conversion (and gets hot above 1A draw).",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "powerboost_500c",
+      "type": "power_module",
+      "name": "Adafruit PowerBoost 500C",
+      "sku": "powerboost_500c",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "1944",
+        "voltage_in_v": "3-5.5",
+        "voltage_out_v": "5.2",
+        "current_max_ma": 500,
+        "chemistry": "lipo_1s_charger_built_in",
+        "protection": "full_bms",
+        "price_usd": 14.95,
+        "price_source": "Adafruit retail",
+        "note": "1S LiPo charger + 5V boost in one PCB. 500 mA out at 5V (peak 1A). Picked for portable projects where you want 5V regardless of the cell's state of charge.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "uno_protoshield",
+      "type": "carrier_breakout",
+      "name": "Arduino UNO ProtoShield",
+      "sku": "uno_protoshield",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "2077",
+        "compatible_boards": [
+          "arduino_uno_r3",
+          "arduino_uno_r4_minima",
+          "arduino_uno_r4_wifi",
+          "adafruit_metro_express",
+          "sparkfun_redboard_qwiic"
+        ],
+        "pin_passthrough": true,
+        "holes": "uno_shield",
+        "price_usd": 17.5,
+        "price_source": "Adafruit retail",
+        "note": "Solder-able prototyping shield with mini breadboard. Stacks onto any UNO-footprint board. Watch the IOREF pin \u2014 your shield logic level follows it.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "breadboard_830tp",
+      "type": "carrier_breakout",
+      "name": "Solderless Breadboard 830 Tie-Point",
+      "sku": "breadboard_830tp",
+      "attributes": {
+        "brand": "generic",
+        "model": "MB-102",
+        "compatible_boards": [
+          "any"
+        ],
+        "pin_passthrough": true,
+        "holes": "0.1in_2.54mm",
+        "price_usd": 5.95,
+        "price_source": "Amazon retail",
+        "note": "Standard half-size breadboard. Power rails split mid-board on most cheap clones \u2014 bridge them with jumpers if you need a continuous rail.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "perfboard_double_side",
+      "type": "carrier_breakout",
+      "name": "Double-Sided Perfboard 70x90mm",
+      "sku": "perfboard_double_side",
+      "attributes": {
+        "brand": "generic",
+        "model": "70x90 2.54mm",
+        "compatible_boards": [
+          "any"
+        ],
+        "pin_passthrough": true,
+        "holes": "0.1in_2.54mm",
+        "price_usd": 4.95,
+        "price_source": "Amazon retail",
+        "note": "Plated through-holes both sides \u2014 essential for SOIC adapters. Solder cleanly with 350 C iron; cheap perfboards lift pads above that.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "featherwing_oled_128x32",
+      "type": "carrier_breakout",
+      "name": "Adafruit FeatherWing OLED 128x32",
+      "sku": "featherwing_oled_128x32",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "2900",
+        "compatible_boards": [
+          "adafruit_feather_m0_wifi",
+          "adafruit_feather_m4_express",
+          "adafruit_feather_esp32_v2",
+          "adafruit_feather_rp2040",
+          "particle_argon",
+          "particle_photon_2"
+        ],
+        "pin_passthrough": true,
+        "holes": "feather",
+        "price_usd": 14.95,
+        "price_source": "Adafruit retail",
+        "note": "Drops on any Feather. SSD1306 controller, I2C address 0x3C. Three side buttons map to user GPIOs. Doesn't fit MKR or Nano \u2014 Feather pinout only.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "featherwing_data_logger",
+      "type": "carrier_breakout",
+      "name": "Adafruit Adalogger FeatherWing",
+      "sku": "featherwing_data_logger",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "2922",
+        "compatible_boards": [
+          "adafruit_feather_m0_wifi",
+          "adafruit_feather_m4_express",
+          "adafruit_feather_esp32_v2",
+          "adafruit_feather_rp2040"
+        ],
+        "pin_passthrough": true,
+        "holes": "feather",
+        "price_usd": 8.95,
+        "price_source": "Adafruit retail",
+        "note": "PCF8523 RTC + microSD on a single Wing. SD shares SPI with the Feather radio FeatherWings (LoRa, RFM69) \u2014 pick CS pins carefully when stacking.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "featherwing_neopixel_4x8",
+      "type": "carrier_breakout",
+      "name": "Adafruit NeoPixel FeatherWing 4x8",
+      "sku": "featherwing_neopixel_4x8",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "2945",
+        "compatible_boards": [
+          "adafruit_feather_m0_wifi",
+          "adafruit_feather_m4_express",
+          "adafruit_feather_esp32_v2",
+          "adafruit_feather_rp2040"
+        ],
+        "pin_passthrough": true,
+        "holes": "feather",
+        "price_usd": 14.95,
+        "price_source": "Adafruit retail",
+        "note": "32 NeoPixels at full brightness can pull 1.9 A \u2014 way over the Feather USB rail. Power the Wing's 5V pad from an external supply, not USB.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "featherwing_rfm69_915",
+      "type": "carrier_breakout",
+      "name": "Adafruit Radio FeatherWing RFM69HCW 915MHz",
+      "sku": "featherwing_rfm69_915",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "3231",
+        "compatible_boards": [
+          "adafruit_feather_m0_wifi",
+          "adafruit_feather_m4_express",
+          "adafruit_feather_esp32_v2",
+          "adafruit_feather_rp2040"
+        ],
+        "pin_passthrough": true,
+        "holes": "feather",
+        "price_usd": 11.95,
+        "price_source": "Adafruit retail",
+        "note": "Sub-GHz packet radio (not LoRa). 200 m line-of-sight typical. Solder a wire antenna or you'll get 5 m range. License-free in the US for the 915 MHz ISM band; EU variant uses 433/868 MHz.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "featherwing_rfm95_lora",
+      "type": "carrier_breakout",
+      "name": "Adafruit LoRa FeatherWing RFM95 915MHz",
+      "sku": "featherwing_rfm95_lora",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "3231",
+        "compatible_boards": [
+          "adafruit_feather_m0_wifi",
+          "adafruit_feather_m4_express",
+          "adafruit_feather_esp32_v2",
+          "adafruit_feather_rp2040"
+        ],
+        "pin_passthrough": true,
+        "holes": "feather",
+        "price_usd": 19.95,
+        "price_source": "Adafruit retail",
+        "note": "Real LoRa modulation \u2014 1-2 km outdoors with a wire antenna, 10+ km with a Yagi. Software is RadioHead or LMIC for The Things Network. Same Wing PCB as RFM69; different chip.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "featherwing_motor_dc_stepper",
+      "type": "carrier_breakout",
+      "name": "Adafruit Motor FeatherWing DC+Stepper",
+      "sku": "featherwing_motor_dc_stepper",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "2927",
+        "compatible_boards": [
+          "adafruit_feather_m0_wifi",
+          "adafruit_feather_m4_express",
+          "adafruit_feather_esp32_v2",
+          "adafruit_feather_rp2040"
+        ],
+        "pin_passthrough": false,
+        "holes": "feather",
+        "price_usd": 19.95,
+        "price_source": "Adafruit retail",
+        "note": "PCA9685 + dual TB6612FNG. 4 DC motors or 2 steppers. Logic level 5V \u2014 works with all Feathers. Doesn't free-pass GPIOs through; you can't stack another Wing on top.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "featherwing_latching_relay",
+      "type": "carrier_breakout",
+      "name": "Adafruit Latching-Relay FeatherWing",
+      "sku": "featherwing_latching_relay",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "2923",
+        "compatible_boards": [
+          "adafruit_feather_m0_wifi",
+          "adafruit_feather_m4_express",
+          "adafruit_feather_esp32_v2",
+          "adafruit_feather_rp2040"
+        ],
+        "pin_passthrough": true,
+        "holes": "feather",
+        "price_usd": 7.5,
+        "price_source": "Adafruit retail",
+        "note": "Latching relay only draws power during state change \u2014 perfect for battery projects. 2A 240VAC contact rating.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mkr_iot_carrier",
+      "type": "carrier_breakout",
+      "name": "Arduino MKR IoT Carrier",
+      "sku": "mkr_iot_carrier",
+      "attributes": {
+        "brand": "arduino",
+        "model": "ASX00018",
+        "compatible_boards": [
+          "arduino_mkr_wifi_1010",
+          "arduino_mkr_zero"
+        ],
+        "pin_passthrough": false,
+        "holes": "mkr",
+        "price_usd": 60.5,
+        "price_source": "Arduino official MSRP",
+        "note": "MKR-board carrier with screen, IMU, RGBs, 5 capacitive touch pads, 2 relays, and Grove ports. Picked for any 'put together a demo in a day' project on MKR. Doesn't fit UNO/Nano.",
+        "source_ids": [
+          2
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "perma_proto_quarter_size",
+      "type": "carrier_breakout",
+      "name": "Adafruit Perma-Proto Quarter-size",
+      "sku": "perma_proto_quarter_size",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "1608",
+        "compatible_boards": [
+          "any"
+        ],
+        "pin_passthrough": true,
+        "holes": "0.1in_2.54mm",
+        "price_usd": 2.95,
+        "price_source": "Adafruit retail",
+        "note": "PCB clone of the half-size breadboard layout \u2014 solder once, never re-wire. Perfect for shipping a one-off project without going to PCB fab.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "nano_screw_terminal_shield",
+      "type": "carrier_breakout",
+      "name": "Nano Screw-Terminal Adapter",
+      "sku": "nano_screw_terminal_shield",
+      "attributes": {
+        "brand": "generic",
+        "model": "Nano Terminal Adapter",
+        "compatible_boards": [
+          "arduino_nano",
+          "arduino_nano_33_iot",
+          "arduino_nano_33_ble"
+        ],
+        "pin_passthrough": true,
+        "holes": "0.1in_2.54mm",
+        "price_usd": 5.95,
+        "price_source": "Amazon retail",
+        "note": "Slot the Nano in, get screw terminals on every pin. Lifesaver for industrial wiring \u2014 but the BLE/IoT variants are 3.3V; don't feed 5V from a relay coil straight in.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "esp32_devkit_breakout_30pin",
+      "type": "carrier_breakout",
+      "name": "ESP32 30-pin DevKit Expansion Board",
+      "sku": "esp32_devkit_breakout_30pin",
+      "attributes": {
+        "brand": "generic",
+        "model": "ESP32-30P-Carrier",
+        "compatible_boards": [
+          "esp32_devkitc_v4"
+        ],
+        "pin_passthrough": true,
+        "holes": "0.1in_2.54mm",
+        "price_usd": 6.95,
+        "price_source": "Amazon retail",
+        "note": "Slots a 30-pin ESP32 DevKitC into a screw-terminal carrier with onboard 5V/3V3 regulators and a barrel jack. 38-pin variants don't fit; verify pin count before buying.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "featherwing_proto_doubler",
+      "type": "carrier_breakout",
+      "name": "Adafruit FeatherWing Doubler",
+      "sku": "featherwing_proto_doubler",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "2890",
+        "compatible_boards": [
+          "adafruit_feather_m0_wifi",
+          "adafruit_feather_m4_express",
+          "adafruit_feather_esp32_v2",
+          "adafruit_feather_rp2040",
+          "particle_argon",
+          "particle_photon_2"
+        ],
+        "pin_passthrough": true,
+        "holes": "feather",
+        "price_usd": 7.5,
+        "price_source": "Adafruit retail",
+        "note": "PCB that takes 2 Feathers side by side or 1 Feather + 1 Wing in landscape. Lets you mount a battery-charging Feather and a radio Feather without stacking.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "rfm69hcw_915",
+      "type": "connectivity_module",
+      "name": "Adafruit RFM69HCW 915MHz Packet Radio",
+      "sku": "rfm69hcw_915",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "3070",
+        "protocol": "fsk_sub_ghz_915mhz",
+        "interface_to_mcu": "spi",
+        "voltage_v": "3v3",
+        "range_m": 200,
+        "power_consumption_ma": 130,
+        "price_usd": 9.95,
+        "price_source": "Adafruit retail",
+        "note": "Bare RFM69 module \u2014 solder a 7.8 cm wire antenna to ANT for full 915 MHz range. NOT 5V tolerant; use only with 3.3V boards or level shifters.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "rfm95_lora_915",
+      "type": "connectivity_module",
+      "name": "Adafruit RFM95W LoRa 915MHz",
+      "sku": "rfm95_lora_915",
+      "attributes": {
+        "brand": "adafruit",
+        "model": "3072",
+        "protocol": "lora_915mhz",
+        "interface_to_mcu": "spi",
+        "voltage_v": "3v3",
+        "range_m": 2000,
+        "power_consumption_ma": 120,
+        "price_usd": 19.95,
+        "price_source": "Adafruit retail",
+        "note": "Real LoRa, kilometre range outdoors. Compatible with The Things Network. 915 MHz US, RFM95-868 for EU, RFM96-433 elsewhere \u2014 wrong-region modules can be confiscated by the FCC.",
+        "source_ids": [
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "esp01s_wifi",
+      "type": "connectivity_module",
+      "name": "ESP-01S WiFi Module",
+      "sku": "esp01s_wifi",
+      "attributes": {
+        "brand": "ai_thinker",
+        "model": "ESP-01S",
+        "protocol": "wifi_2_4ghz",
+        "interface_to_mcu": "uart",
+        "voltage_v": "3v3",
+        "range_m": 50,
+        "power_consumption_ma": 170,
+        "price_usd": 2.95,
+        "price_source": "Amazon retail",
+        "note": "Cheapest way to add WiFi to a UNO via AT commands at 9600 baud. CH_PD pin must be HIGH or it sleeps; many tutorials forget this. Hot \u2014 pulls 170 mA TX peak.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "nrf24l01_pa_lna",
+      "type": "connectivity_module",
+      "name": "nRF24L01+ PA/LNA 2.4GHz Module",
+      "sku": "nrf24l01_pa_lna",
+      "attributes": {
+        "brand": "generic",
+        "model": "nRF24L01+PA+LNA",
+        "protocol": "proprietary_2_4ghz",
+        "interface_to_mcu": "spi",
+        "voltage_v": "3v3",
+        "range_m": 1000,
+        "power_consumption_ma": 115,
+        "price_usd": 6.95,
+        "price_source": "Amazon retail",
+        "note": "1 km outdoor with the antenna variant. NOT WiFi \u2014 it's Nordic's proprietary 2.4 GHz. Decoupling cap (10 microfarad) right next to the module is mandatory; without it, packets drop randomly.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "hc05_bluetooth_classic",
+      "type": "connectivity_module",
+      "name": "HC-05 Bluetooth Classic Module",
+      "sku": "hc05_bluetooth_classic",
+      "attributes": {
+        "brand": "generic",
+        "model": "HC-05",
+        "protocol": "bluetooth_classic_2_1",
+        "interface_to_mcu": "uart",
+        "voltage_v": "3v3_or_5v",
+        "range_m": 10,
+        "power_consumption_ma": 40,
+        "price_usd": 6.95,
+        "price_source": "Amazon retail",
+        "note": "Bluetooth Classic SPP \u2014 pairs as a serial port to Android. iOS rejects HC-05; for iPhone projects use BLE (HM-10 or onboard ESP32 BLE).",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "hm10_ble",
+      "type": "connectivity_module",
+      "name": "HM-10 BLE 4.0 Module",
+      "sku": "hm10_ble",
+      "attributes": {
+        "brand": "generic",
+        "model": "HM-10",
+        "protocol": "ble_4_0",
+        "interface_to_mcu": "uart",
+        "voltage_v": "3v3",
+        "range_m": 10,
+        "power_consumption_ma": 20,
+        "price_usd": 7.95,
+        "price_source": "Amazon retail",
+        "note": "Cheap BLE serial bridge. Works with iOS and Android. Many AT firmware versions exist \u2014 buy from a vendor that publishes which firmware ships, or you'll fight the AT command set.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "sim800l_gsm",
+      "type": "connectivity_module",
+      "name": "SIM800L 2G GSM/GPRS Module",
+      "sku": "sim800l_gsm",
+      "attributes": {
+        "brand": "generic",
+        "model": "SIM800L",
+        "protocol": "gsm_2g_gprs",
+        "interface_to_mcu": "uart",
+        "voltage_v": "3.4-4.4",
+        "range_m": 35000,
+        "power_consumption_ma": 2000,
+        "price_usd": 11.95,
+        "price_source": "Amazon retail",
+        "note": "2G is shutdown in the US/AU/SG/NZ \u2014 do NOT pick this for new US projects. Pulls 2 A peaks during transmit; needs a 4.7V/2A supply with bulk caps, not USB.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "a7670_lte_cat1",
+      "type": "connectivity_module",
+      "name": "A7670G LTE Cat 1 Module",
+      "sku": "a7670_lte_cat1",
+      "attributes": {
+        "brand": "simcom",
+        "model": "A7670G",
+        "protocol": "lte_cat_1",
+        "interface_to_mcu": "uart",
+        "voltage_v": "3.4-4.2",
+        "range_m": 35000,
+        "power_consumption_ma": 1500,
+        "price_usd": 39.95,
+        "price_source": "Amazon retail",
+        "note": "LTE Cat 1 \u2014 global rollout, including post-2G US. Picked over LTE Cat-M (LTE-M) when you need 10 Mbps for camera streams. Same 2 A peak power gotcha as SIM800L.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "mfrc522_rfid",
+      "type": "connectivity_module",
+      "name": "MFRC522 13.56MHz RFID Reader",
+      "sku": "mfrc522_rfid",
+      "attributes": {
+        "brand": "nxp",
+        "model": "MFRC522",
+        "protocol": "rfid_13_56mhz",
+        "interface_to_mcu": "spi",
+        "voltage_v": "3v3",
+        "range_m": 0.05,
+        "power_consumption_ma": 30,
+        "price_usd": 5.95,
+        "price_source": "Amazon retail",
+        "note": "Reads MIFARE Classic / Ultralight cards. NOT 5V tolerant \u2014 use only with 3.3V boards or level-shift. Picked for door locks, attendance systems, badge scanners.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "pn532_nfc",
+      "type": "connectivity_module",
+      "name": "Adafruit PN532 NFC/RFID Breakout",
+      "sku": "pn532_nfc",
+      "attributes": {
+        "brand": "nxp",
+        "model": "PN532",
+        "protocol": "nfc_a_b_f",
+        "interface_to_mcu": "i2c_or_spi_or_uart",
+        "voltage_v": "3v3_or_5v",
+        "range_m": 0.1,
+        "power_consumption_ma": 100,
+        "price_usd": 39.95,
+        "price_source": "Adafruit retail",
+        "note": "Reads/writes ISO14443A/B and FeliCa, plus card emulation and peer-to-peer NFC. Picked over MFRC522 when you need iPhone NFC interaction (only some iOS apps support reader mode).",
+        "source_ids": [
+          0,
+          1
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "enc28j60_ethernet",
+      "type": "connectivity_module",
+      "name": "ENC28J60 Ethernet Module",
+      "sku": "enc28j60_ethernet",
+      "attributes": {
+        "brand": "microchip",
+        "model": "ENC28J60",
+        "protocol": "ethernet_10mbit",
+        "interface_to_mcu": "spi",
+        "voltage_v": "3v3",
+        "range_m": 100,
+        "power_consumption_ma": 180,
+        "price_usd": 6.95,
+        "price_source": "Amazon retail",
+        "note": "10 Mbps only \u2014 slow, no hardware TCP offload. EtherCard or UIP libraries on Arduino. Don't pick for new designs; W5500 is faster and the same price.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    },
+    {
+      "id": "w5500_ethernet",
+      "type": "connectivity_module",
+      "name": "WIZnet W5500 Ethernet Module",
+      "sku": "w5500_ethernet",
+      "attributes": {
+        "brand": "wiznet",
+        "model": "W5500",
+        "protocol": "ethernet_100mbit",
+        "interface_to_mcu": "spi",
+        "voltage_v": "3v3",
+        "range_m": 100,
+        "power_consumption_ma": 130,
+        "price_usd": 9.95,
+        "price_source": "Amazon retail",
+        "note": "100 Mbps with hardware TCP/IP offload \u2014 runs 8 sockets in parallel without the MCU. Stock Ethernet library on Arduino works directly. Picked over ENC28J60 for any new Ethernet design.",
+        "source_ids": [
+          0
+        ],
+        "price_as_of": "2026-05-06"
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "C1_logic_voltage_match",
+      "kind": "requires",
+      "when": {
+        "sensor.voltage_v": "5v_only",
+        "board.operating_voltage_v": 3.3
+      },
+      "then": {
+        "add": "logic_level_shifter_4_channel"
+      },
+      "rationale": "A 3.3V MCU GPIO is not 5V tolerant on most modern parts (ESP32, RP2040, SAMD21/51, nRF52). Driving 5V into a 3.3V input damages the chip \u2014 sometimes immediately, more often a slow degradation that shows as random resets weeks later.",
+      "source_id": 1
+    },
+    {
+      "id": "C2_i2c_address_collision",
+      "kind": "implies",
+      "when": {
+        "two_or_more_entities.attributes.i2c_address": "equal"
+      },
+      "then": {
+        "add": "tca9548a_i2c_multiplexer_or_relocate_address"
+      },
+      "rationale": "Two I2C devices with the same 7-bit address can't coexist on a single bus. Common collision pairs: BMP280/BME280 (0x76/0x77), VL53L0X/VL53L1X/TCS34725/TSL2591 (all 0x29). Resolve with an I2C mux or by toggling XSHUT/ADDR pins at boot.",
+      "source_id": 1
+    },
+    {
+      "id": "C3_motor_current_must_not_exceed_driver_max",
+      "kind": "requires",
+      "when": {
+        "motor.current_amps": "greater_than",
+        "driver.current_amps": "value"
+      },
+      "then": {
+        "reject": true
+      },
+      "rationale": "Stall current of the motor must be below the driver's continuous rating, not its peak. A2.5 A NEMA17 paired with a 1.2 A A4988 (de-rated, no heatsink) skips steps and overheats. Pick TMC2208/DRV8825 for 2 A NEMA17, BTS7960 for high-current DC.",
+      "source_id": 0
+    },
+    {
+      "id": "C4_feather_carrier_only_compatible_with_feather_boards",
+      "kind": "requires",
+      "when": {
+        "carrier.holes": "feather"
+      },
+      "then": {
+        "board.form_factor": "feather"
+      },
+      "rationale": "Feather Wings have a 16+12 pin header pattern that matches Feather boards (and Particle Argon/Photon 2). They do NOT fit UNO, MKR, Nano, Pico, QT Py, or M5 form factors. Carriers and boards must share form factor.",
+      "source_id": 1
+    },
+    {
+      "id": "C5_pico_firmware_compat",
+      "kind": "implies",
+      "when": {
+        "board.mcu_chip": "rp2040_or_rp2350"
+      },
+      "then": {
+        "firmware_compat": [
+          "arduino_pico_third_party_core",
+          "circuitpython",
+          "micropython"
+        ]
+      },
+      "rationale": "Raspberry Pi Pico boards do not run the official Arduino core. They use Earle Philhower's arduino-pico (a third-party core) for Arduino IDE support, plus CircuitPython and MicroPython. Sketches that depend on Arduino-AVR-specific includes (avr/io.h) won't compile.",
+      "source_id": 1
+    },
+    {
+      "id": "C6_boards_above_threshold_need_external_power",
+      "kind": "requires",
+      "when": {
+        "actuator.current_amps": "greater_than_0_5"
+      },
+      "then": {
+        "add": "external_power_supply_separate_from_mcu_usb"
+      },
+      "rationale": "Board USB rails (UNO, ESP32 DevKit, Feather USB) deliver about 500 mA before brown-outs. Servos, NeoPixel rings, MQ-2 heaters, and 12V solenoids all draw more than that \u2014 needs an external supply with a common ground.",
+      "source_id": 1
+    },
+    {
+      "id": "C7_battery_powered_needs_lipo_charger",
+      "kind": "requires",
+      "when": {
+        "power.chemistry": "lipo_1s_or_li_ion_18650",
+        "user_intent": "battery_powered"
+      },
+      "then": {
+        "board_form_factor_in": [
+          "feather",
+          "mkr",
+          "qt_py",
+          "m5"
+        ]
+      },
+      "rationale": "Boards with onboard LiPo charging (Feather, MKR, QT Py via add-on, M5 series) skip the external TP4056. UNO/Nano/Mega have no battery support and require an external charger + boost converter, which most makers underspec.",
+      "source_id": 1
+    },
+    {
+      "id": "C8_lora_frequency_must_match_region",
+      "kind": "requires",
+      "when": {
+        "connectivity.protocol": "lora",
+        "user_region": "value"
+      },
+      "then": {
+        "frequency_band": "regional_match"
+      },
+      "rationale": "915 MHz is licence-free in the US; in the EU it's 868 MHz; in Asia 433 MHz. A wrong-region LoRa module is illegal to operate and can be seized. Verify region before recommending RFM95 / RFM69 variants.",
+      "source_id": 1
+    },
+    {
+      "id": "C9_2g_modem_dead_in_us",
+      "kind": "rejects",
+      "when": {
+        "connectivity.protocol": "gsm_2g_gprs",
+        "user_region": "us_or_au_or_sg_or_nz"
+      },
+      "then": {
+        "reject": true
+      },
+      "rationale": "AT&T shut down 2G in 2017, T-Mobile in 2022, Telstra/Optus/Vodafone AU 2017, Singapore 2017. SIM800L cannot connect on a US/AU/SG SIM today. Pick LTE-M (A7670G/SIM7080) or NB-IoT.",
+      "source_id": 0
+    },
+    {
+      "id": "C10_battery_capacity_must_meet_runtime",
+      "kind": "implies",
+      "when": {
+        "sketch.power_profile": "always_on",
+        "battery.capacity_mah": "less_than_required"
+      },
+      "then": {
+        "add": "deep_sleep_or_larger_cell"
+      },
+      "rationale": "ESP32 awake pulls 80-240 mA. A 1000 mAh LiPo lasts 4-12 hours in always-on mode. Battery projects must use deep-sleep duty cycling (sub-10 microamp idle) or accept the runtime \u2014 there's no third option.",
+      "source_id": 1
+    }
+  ],
+  "goals": [
+    {
+      "id": "G1_match_logic_voltage",
+      "prompt": "Prefer entities whose voltage matches the chosen board's logic level so no level shifter is required.",
+      "objective": "maximize",
+      "target": "sensor.voltage_v == board.operating_voltage_v"
+    },
+    {
+      "id": "G2_minimize_external_supplies",
+      "prompt": "Across all selected entities, minimize the number of distinct external power supplies the user has to provide.",
+      "objective": "minimize",
+      "target": "distinct(entity.requires_external_supply) excluding 'usb'"
+    },
+    {
+      "id": "G3_prefer_open_libraries",
+      "prompt": "When two sensors are equally compatible, prefer the one with an open-source Arduino/CircuitPython library (Adafruit, SparkFun, U8g2). Avoid closed BSEC-style stacks unless explicitly asked.",
+      "objective": "maximize",
+      "target": "entity.attributes.library_arduino in OSS_LIBRARIES"
+    },
+    {
+      "id": "G4_prefer_stemma_qt_or_qwiic",
+      "prompt": "Prefer sensors with STEMMA QT or Qwiic connectors when the board supports them \u2014 solder-free assembly survives more breadboard accidents.",
+      "objective": "maximize",
+      "target": "entity.attributes.connector in ['stemma_qt', 'qwiic']"
+    }
+  ]
+}

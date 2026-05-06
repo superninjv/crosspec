@@ -3,6 +3,7 @@ import type { KnowledgeBase } from "../../engine/solver/types.js";
 import smartHomeKb from "../../verticals/smart-home/kb.json";
 import solarKb from "../../verticals/solar/kb.json";
 import keyboardsKb from "../../verticals/keyboards/kb.json";
+import arduinoKb from "../../verticals/arduino/kb.json";
 
 const SITE = "https://crosspec.com";
 
@@ -13,6 +14,7 @@ export const GET: APIRoute = () => {
     { loc: `${SITE}/smart-home/`, priority: "1.0" },
     { loc: `${SITE}/solar/`, priority: "1.0" },
     { loc: `${SITE}/keyboards/`, priority: "1.0" },
+    { loc: `${SITE}/arduino/`, priority: "1.0" },
     { loc: `${SITE}/about/`, priority: "0.4" },
   ];
 
@@ -30,6 +32,11 @@ export const GET: APIRoute = () => {
   for (const e of keyboards.entities) {
     const sku = e.sku ?? e.id;
     urls.push({ loc: `${SITE}/keyboards/devices/${sku}/`, priority: "0.7" });
+  }
+  const arduino = arduinoKb as KnowledgeBase;
+  for (const e of arduino.entities) {
+    const sku = e.sku ?? e.id;
+    urls.push({ loc: `${SITE}/arduino/devices/${sku}/`, priority: "0.7" });
   }
 
   // Comparison pages: same pair-selection rules as src/pages/smart-home/compare/[pair].astro
