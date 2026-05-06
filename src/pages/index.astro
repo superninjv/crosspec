@@ -91,15 +91,15 @@ const totalLive = verticals.filter((v) => v.status === "live").reduce((a, v) => 
 const liveCount = verticals.filter((v) => v.status === "live").length;
 ---
 <Layout
-  title="crosspec — configurators that pick parts that actually work together"
-  description={`${liveCount} configurators across ${totalLive}+ products. Smart home, solar, keyboards, Arduino — every compatibility claim cited. No signup, no ads, no bullshit.`}
+  title="crosspec · configurators that pick parts that actually work together"
+  description={`${totalLive.toLocaleString()}+ products with sourced compatibility data across smart home, solar, keyboards, and Arduino. No signup, no ads, no tracking.`}
   kbStatus={`${totalLive}+ products · ${liveCount} live verticals`}
 >
   <section class="home-hero">
     <div class="hero-inner">
-      <p class="eyebrow">crosspec — configurators</p>
+      <p class="eyebrow">crosspec · configurators</p>
       <h1>Pick parts that <em>actually work together.</em></h1>
-      <p class="lede">Free constraint solvers across {liveCount} verticals so far. {totalLive.toLocaleString()}+ products with sourced compatibility claims, hub auto-include, and a per-pick build total. No signup, no ads, no email capture, no cookies. Survives off Amazon affiliate clicks.</p>
+      <p class="lede">{totalLive.toLocaleString()} products with sourced compatibility data. No signup, no ads, no tracking.</p>
       <div class="hero-meta">
         <span><strong>{totalLive.toLocaleString()}</strong> products</span>
         <span class="dot" aria-hidden="true">·</span>

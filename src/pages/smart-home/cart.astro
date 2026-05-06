@@ -26,7 +26,7 @@ const slimJSON = JSON.stringify(slim);
 ---
 
 <Layout
-  title="Your build — crosspec smart home"
+  title="Your build · crosspec smart home"
   description="Open each selected product on Amazon to add it to your cart. crosspec earns a commission at no extra cost to you."
 >
   <main class="cart-wrap">
@@ -125,7 +125,7 @@ const slimJSON = JSON.stringify(slim);
       const haveCount = found.filter((s) => s.asin).length;
       return `<div class="bulk-banner partial">
         <div class="bb-info">
-          ${haveCount > 0 ? `${haveCount} of ${found.length} products have a direct Amazon match — ` : ""}use the per-product buttons below. Each opens that exact item on Amazon for you to add.
+          ${haveCount > 0 ? `${haveCount} of ${found.length} products have a direct Amazon match. ` : ""}Use the per-product buttons below. Each opens that exact item on Amazon for you to add.
         </div>
       </div>`;
     })();

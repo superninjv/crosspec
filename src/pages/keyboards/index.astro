@@ -16,7 +16,7 @@ const TYPE_LABEL: Record<string, { label: string; blurb: string }> = {
   },
   keycap_set: {
     label: "Keycap sets",
-    blurb: "GMK / Cherry profile, MT3, KAT, OEM, XDA, DSA — including Choc-compatible sets.",
+    blurb: "GMK / Cherry profile, MT3, KAT, OEM, XDA, DSA, plus Choc-compatible sets.",
   },
   keyboard_stabilizer: {
     label: "Stabilizers",
@@ -45,7 +45,7 @@ for (const e of kb.entities) {
 }
 ---
 <Layout
-  title="Mechanical keyboard component compatibility — kits, switches, keycaps, plates | crosspec"
+  title="Mechanical keyboard component compatibility · kits, switches, keycaps, plates | crosspec"
   description="Pick a keyboard kit + switches + keycaps + plate that all actually fit. 149 components with sourced compat info from keebfol.io and r/MechanicalKeyboards."
   crumbs={["keyboards"]}
   kbStatus={`keyboards v0.1 · ${kb.entities.length} entities`}
@@ -54,7 +54,7 @@ for (const e of kb.entities) {
     <div class="kb-hero-inner">
       <p class="eyebrow">crosspec / keyboards</p>
       <h1>Pick keyboard parts that <em>actually fit together.</em></h1>
-      <p class="lede">{kb.entities.length} components across {TYPE_ORDER.length} categories. Stabs that match your PCB cutout, keycap sets that cover your layout, switches that fit your hotswap sockets — without the &quot;wait, do these go together?&quot; surprise on assembly day.</p>
+      <p class="lede">{kb.entities.length} components across {TYPE_ORDER.length} categories. Stabs that match your PCB cutout, keycap sets that cover your layout, switches that fit your hotswap sockets, all without the &quot;wait, do these go together?&quot; surprise on assembly day.</p>
       <p class="cta-row">
         <a class="cta-primary" href="#keyboard_kit">Browse kits</a>
         <a class="cta-secondary" href="#switch">Browse switches</a>

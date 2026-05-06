@@ -97,7 +97,7 @@ const bPrice = typeof bAttrs.price_usd === "number" ? (bAttrs.price_usd as numbe
 const aAsin = aff.products[a.id]?.asin ?? aff.products[aSku]?.asin ?? null;
 const bAsin = aff.products[b.id]?.asin ?? aff.products[bSku]?.asin ?? null;
 
-const pageTitle = `${a.name} vs ${b.name} — compatibility, hub, price | crosspec`;
+const pageTitle = `${a.name} vs ${b.name} · compatibility, hub, price | crosspec`;
 const description = `Side-by-side comparison of the ${a.name} and ${b.name} ${typeLabel}s: ecosystem support, hub requirements, price, and protocol differences. Sourced from vendor catalogs and the Home Assistant integrations registry.`;
 
 const specs: Array<{ k: string; aV: string; bV: string }> = [
@@ -210,13 +210,13 @@ const compareJsonLd = {
       <div class="cmp-notes">
         {aAttrs.note && (
           <div class="cmp-note">
-            <h3>{a.name} — what to know</h3>
+            <h3>{a.name} · what to know</h3>
             <p>{aAttrs.note}</p>
           </div>
         )}
         {bAttrs.note && (
           <div class="cmp-note">
-            <h3>{b.name} — what to know</h3>
+            <h3>{b.name} · what to know</h3>
             <p>{bAttrs.note}</p>
           </div>
         )}
@@ -235,7 +235,7 @@ const compareJsonLd = {
     </div>
 
     <p class="disclosure">
-      crosspec is an Amazon Associate. Prices last verified 2026-05-05. Compatibility claims sourced from each vendor's product catalog and the Home Assistant integrations registry — see the device pages above for full citations.
+      crosspec is an Amazon Associate. Prices last verified 2026-05-05. Compatibility claims sourced from each vendor's product catalog and the Home Assistant integrations registry; see the device pages above for full citations.
     </p>
   </section>
 </Layout>

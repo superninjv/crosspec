@@ -95,7 +95,7 @@ const productJsonLd = {
 <script type="application/ld+json" is:inline set:html={JSON.stringify(productJsonLd)} />
 
 <Layout
-  title={`${entity.name} — ${typeLabel} specs, compatibility, price | crosspec`}
+  title={`${entity.name} · ${typeLabel} specs, compatibility, price | crosspec`}
   description={(attrs.note as string) ?? `${entity.name} (${brand} ${attrs.model ?? ""}). Specs sourced from keebfol.io + r/MechanicalKeyboards.`}
   crumbs={["keyboards", "devices", String(sku)]}
   kbStatus={`keyboards v0.1 · ${kb.entities.length} entities`}
