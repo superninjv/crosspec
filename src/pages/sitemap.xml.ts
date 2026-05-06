@@ -17,6 +17,31 @@ export const GET: APIRoute = () => {
     urls.push({ loc: `${SITE}/smart-home/devices/${sku}/`, priority: "0.7" });
   }
 
+  // Comparison pages: same pair-selection rules as src/pages/smart-home/compare/[pair].astro
+  const TOP_N: Record<string, number> = {
+    smart_bulb: 10, smart_plug: 9, camera: 10, doorbell: 8, smart_switch: 8,
+    smart_lock: 9, thermostat: 8, smart_shade: 7, motion_sensor: 7,
+    contact_sensor: 7, temperature_sensor: 7, leak_sensor: 6, hub: 12,
+  };
+  const byType = new Map<string, typeof kb.entities>();
+  for (const e of kb.entities) {
+    if (!byType.has(e.type)) byType.set(e.type, []);
+    byType.get(e.type)!.push(e);
+  }
+  for (const [type, ents] of byType) {
+    const top = ents.slice(0, TOP_N[type] ?? 6);
+    for (let i = 0; i < top.length; i++) {
+      for (let j = i + 1; j < top.length; j++) {
+        const aSku = top[i].sku ?? top[i].id;
+        const bSku = top[j].sku ?? top[j].id;
+        urls.push({
+          loc: `${SITE}/smart-home/compare/${aSku}-vs-${bSku}/`,
+          priority: "0.5",
+        });
+      }
+    }
+  }
+
   const body =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +

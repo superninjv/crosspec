@@ -1,0 +1,325 @@
+---
+import Layout from "@engine/ui/Layout.astro";
+import type { Entity, KnowledgeBase } from "@engine/solver";
+import { protocolLabel, hubLabel } from "@engine/ui/labels";
+import kbRaw from "@verticals/smart-home/kb.json";
+import affiliatesRaw from "@verticals/smart-home/affiliates.json";
+
+const kb = kbRaw as KnowledgeBase;
+
+interface ProductMap {
+  products: Record<string, { merchant: string; asin?: string }>;
+}
+const aff = affiliatesRaw as ProductMap;
+
+const ECOSYSTEM_LABEL: Record<string, string> = {
+  homekit: "Apple HomeKit",
+  alexa: "Amazon Alexa",
+  google_home: "Google Home",
+  home_assistant: "Home Assistant",
+  samsung_smartthings: "SmartThings",
+};
+const TYPE_LABEL: Record<string, string> = {
+  motion_sensor: "motion sensor",
+  smart_bulb: "smart bulb",
+  smart_plug: "smart plug",
+  smart_lock: "smart lock",
+  temperature_sensor: "temperature sensor",
+  contact_sensor: "contact sensor",
+  smart_switch: "smart switch",
+  leak_sensor: "leak sensor",
+  thermostat: "thermostat",
+  smart_shade: "smart shade",
+  camera: "security camera",
+  doorbell: "video doorbell",
+  hub: "smart home hub",
+};
+
+export async function getStaticPaths() {
+  const k = kbRaw as KnowledgeBase;
+  const TOP_N: Record<string, number> = {
+    smart_bulb: 10, smart_plug: 9, camera: 10, doorbell: 8, smart_switch: 8,
+    smart_lock: 9, thermostat: 8, smart_shade: 7, motion_sensor: 7,
+    contact_sensor: 7, temperature_sensor: 7, leak_sensor: 6, hub: 12,
+  };
+  const byType = new Map<string, Entity[]>();
+  for (const e of k.entities) {
+    if (!byType.has(e.type)) byType.set(e.type, []);
+    byType.get(e.type)!.push(e);
+  }
+  const out: Array<{ params: { pair: string }; props: { aId: string; bId: string } }> = [];
+  for (const [type, ents] of byType) {
+    const top = ents.slice(0, TOP_N[type] ?? 6);
+    for (let i = 0; i < top.length; i++) {
+      for (let j = i + 1; j < top.length; j++) {
+        const a = top[i];
+        const b = top[j];
+        const aSku = a.sku ?? a.id;
+        const bSku = b.sku ?? b.id;
+        const pair = `${aSku}-vs-${bSku}`;
+        out.push({ params: { pair }, props: { aId: a.id, bId: b.id } });
+      }
+    }
+  }
+  return out;
+}
+
+interface PageProps { aId: string; bId: string }
+const { aId, bId } = Astro.props as PageProps;
+const a = kb.entities.find((e) => e.id === aId)! as Entity;
+const b = kb.entities.find((e) => e.id === bId)! as Entity;
+const aSku = a.sku ?? a.id;
+const bSku = b.sku ?? b.id;
+const aAttrs = a.attributes;
+const bAttrs = b.attributes;
+
+type Attrs = Record<string, unknown>;
+function ecoStatus(attrs: Attrs, eco: string): "native" | "bridge" | "no" {
+  const supported = (attrs.ecosystems ?? []) as string[];
+  const unsupported = (attrs.ecosystems_unsupported ?? []) as string[];
+  if (unsupported.includes(eco)) return "no";
+  if (!supported.includes(eco)) return "no";
+  for (const k of Object.keys(attrs)) {
+    if (k.startsWith("ecosystems_via_")) {
+      const v = (attrs[k] as string[]) ?? [];
+      if (v.includes(eco)) return "bridge";
+    }
+  }
+  return "native";
+}
+
+const ecosystemKeys = ["homekit", "google_home", "alexa", "home_assistant"];
+const aAttrsT = aAttrs as Attrs;
+const bAttrsT = bAttrs as Attrs;
+const typeLabel = TYPE_LABEL[a.type] ?? a.type;
+const aPrice = typeof aAttrs.price_usd === "number" ? (aAttrs.price_usd as number) : null;
+const bPrice = typeof bAttrs.price_usd === "number" ? (bAttrs.price_usd as number) : null;
+const aAsin = aff.products[a.id]?.asin ?? aff.products[aSku]?.asin ?? null;
+const bAsin = aff.products[b.id]?.asin ?? aff.products[bSku]?.asin ?? null;
+
+const pageTitle = `${a.name} vs ${b.name} — compatibility, hub, price | crosspec`;
+const description = `Side-by-side comparison of the ${a.name} and ${b.name} ${typeLabel}s: ecosystem support, hub requirements, price, and protocol differences. Sourced from vendor catalogs and the Home Assistant integrations registry.`;
+
+const specs: Array<{ k: string; aV: string; bV: string }> = [
+  { k: "Brand", aV: String(aAttrs.brand ?? "—"), bV: String(bAttrs.brand ?? "—") },
+  { k: "Model", aV: String(aAttrs.model ?? "—"), bV: String(bAttrs.model ?? "—") },
+  { k: "Protocol", aV: aAttrs.protocol ? protocolLabel(aAttrs.protocol as string) : "—", bV: bAttrs.protocol ? protocolLabel(bAttrs.protocol as string) : "—" },
+  { k: "Hub required", aV: hubLabel((aAttrs.requires_hub as string) ?? "none"), bV: hubLabel((bAttrs.requires_hub as string) ?? "none") },
+  { k: "Price (last verified 2026-05-05)", aV: aPrice != null ? `$${aPrice}` : "—", bV: bPrice != null ? `$${bPrice}` : "—" },
+];
+
+// Pull a few extra type-specific spec rows if both have them
+const extraKeys: [string, string][] = [
+  ["lumens", "Lumens"],
+  ["color", "Color"],
+  ["base", "Base"],
+  ["form_factor", "Form factor"],
+  ["power", "Power"],
+  ["indoor_outdoor", "Indoor/outdoor"],
+  ["max_load_watts", "Max load (W)"],
+  ["measures", "Measures"],
+];
+for (const [k, niceK] of extraKeys) {
+  const av = aAttrs[k];
+  const bv = bAttrs[k];
+  if (av != null || bv != null) {
+    specs.push({
+      k: niceK,
+      aV: Array.isArray(av) ? av.join(", ") : av != null ? String(av) : "—",
+      bV: Array.isArray(bv) ? bv.join(", ") : bv != null ? String(bv) : "—",
+    });
+  }
+}
+
+function buyHref(sku: string, asin: string | null): string {
+  if (asin) return `https://www.amazon.com/dp/${asin}/?tag=crosspec20-20&ascsubtag=compare`;
+  return `/go/smart-home/${sku}?ref=compare`;
+}
+const aBuyHref = buyHref(aSku, aAsin);
+const bBuyHref = buyHref(bSku, bAsin);
+
+const compareJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "ItemList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: a.name, url: `https://crosspec.com/smart-home/devices/${aSku}/` },
+    { "@type": "ListItem", position: 2, name: b.name, url: `https://crosspec.com/smart-home/devices/${bSku}/` },
+  ],
+};
+---
+<script type="application/ld+json" is:inline set:html={JSON.stringify(compareJsonLd)} />
+
+<Layout
+  title={pageTitle}
+  description={description}
+  crumbs={["smart-home", "compare", `${aSku}-vs-${bSku}`]}
+  kbStatus={`kb v0.1 · ${kb.entities.length} entities`}
+>
+  <section class="cmp-page">
+    <p class="eyebrow">
+      <a href="/smart-home/">smart home</a>
+      <span class="sep">›</span>
+      <span>compare</span>
+    </p>
+    <h1 class="cmp-title">{a.name} <span class="vs">vs</span> {b.name}</h1>
+    <p class="lede">Quick side-by-side: protocol, hub, ecosystem support, and price. Both are {typeLabel}s; we cite the vendor catalog + Home Assistant integrations registry for compatibility claims.</p>
+
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>
+            <a class="cmp-col-link" href={`/smart-home/devices/${aSku}/`}>{a.name}</a>
+          </th>
+          <th>
+            <a class="cmp-col-link" href={`/smart-home/devices/${bSku}/`}>{b.name}</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="ecorow">
+          <th class="rkey">Ecosystem support</th>
+          <td>
+            <ul class="ecolist">
+              {ecosystemKeys.map((eco) => {
+                const s = ecoStatus(aAttrsT, eco);
+                return <li class={`s-${s}`}>{ECOSYSTEM_LABEL[eco]}: <span>{s === "native" ? "native" : s === "bridge" ? "via bridge" : "—"}</span></li>;
+              })}
+            </ul>
+          </td>
+          <td>
+            <ul class="ecolist">
+              {ecosystemKeys.map((eco) => {
+                const s = ecoStatus(bAttrsT, eco);
+                return <li class={`s-${s}`}>{ECOSYSTEM_LABEL[eco]}: <span>{s === "native" ? "native" : s === "bridge" ? "via bridge" : "—"}</span></li>;
+              })}
+            </ul>
+          </td>
+        </tr>
+        {specs.map((row) => (
+          <tr>
+            <th class="rkey">{row.k}</th>
+            <td>{row.aV}</td>
+            <td>{row.bV}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    {(aAttrs.note || bAttrs.note) && (
+      <div class="cmp-notes">
+        {aAttrs.note && (
+          <div class="cmp-note">
+            <h3>{a.name} — what to know</h3>
+            <p>{aAttrs.note}</p>
+          </div>
+        )}
+        {bAttrs.note && (
+          <div class="cmp-note">
+            <h3>{b.name} — what to know</h3>
+            <p>{bAttrs.note}</p>
+          </div>
+        )}
+      </div>
+    )}
+
+    <div class="cmp-cta">
+      <a class="cta" href={aBuyHref} target="_blank" rel="sponsored nofollow noopener">
+        <span>Open {a.name} on Amazon</span>
+        <span class="arr" aria-hidden="true">→</span>
+      </a>
+      <a class="cta" href={bBuyHref} target="_blank" rel="sponsored nofollow noopener">
+        <span>Open {b.name} on Amazon</span>
+        <span class="arr" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <p class="disclosure">
+      crosspec is an Amazon Associate. Prices last verified 2026-05-05. Compatibility claims sourced from each vendor's product catalog and the Home Assistant integrations registry — see the device pages above for full citations.
+    </p>
+  </section>
+</Layout>
+
+<style is:global>
+  .cmp-page { max-width: 940px; margin: 0 auto; padding: 28px 24px 80px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin: 0 0 12px; }
+  .eyebrow a { color: var(--ink-2); text-decoration: none; }
+  .eyebrow a:hover { color: var(--ink-0); text-decoration: underline; }
+  .eyebrow .sep { margin: 0 6px; opacity: 0.5; }
+  .cmp-title {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+  .cmp-title .vs {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--ink-3);
+    font-weight: 500;
+    margin: 0 6px;
+    text-transform: lowercase;
+  }
+  .lede { color: var(--ink-2); font-size: 15px; line-height: 1.55; max-width: 720px; margin: 0 0 22px; }
+  .cmp-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--paper-0);
+    border: 1px solid var(--paper-edge);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .cmp-table th, .cmp-table td {
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid var(--paper-edge);
+    font-size: 14px;
+  }
+  .cmp-table thead th { font-size: 14.5px; background: var(--paper-1); }
+  .cmp-table thead th:first-child { width: 18%; }
+  .cmp-col-link { color: var(--ink-0); text-decoration: none; }
+  .cmp-col-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .rkey { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-2); font-weight: 600; }
+  .ecolist { margin: 0; padding: 0; list-style: none; }
+  .ecolist li { font-family: var(--mono); font-size: 12.5px; padding: 3px 0; color: var(--ink-2); }
+  .ecolist li span { font-weight: 600; color: var(--ink-1); }
+  .ecolist li.s-native span { color: var(--ok-dark); }
+  .ecolist li.s-bridge span { color: var(--warn-dark); }
+  .ecolist li.s-no { opacity: 0.55; }
+  .cmp-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 700px) { .cmp-notes { grid-template-columns: 1fr; } }
+  .cmp-note { background: var(--paper-1); border: 1px solid var(--paper-edge); border-radius: 8px; padding: 14px 16px; }
+  .cmp-note h3 { font-size: 14px; margin: 0 0 6px; color: var(--ink-0); }
+  .cmp-note p { font-size: 13.5px; line-height: 1.55; color: var(--ink-1); margin: 0; }
+  .cmp-cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 700px) { .cmp-cta { grid-template-columns: 1fr; } }
+  .cmp-cta .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 22px;
+    background: oklch(0.62 0.18 35);
+    color: var(--paper-0);
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 14.5px;
+    text-decoration: none;
+    box-shadow: 0 2px 0 oklch(0.45 0.18 35);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .cmp-cta .cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 0 oklch(0.45 0.18 35), 0 6px 14px -4px oklch(0.40 0.15 35 / 0.55);
+  }
+  .disclosure { font-size: 12px; color: var(--ink-3); line-height: 1.5; margin-top: 24px; border-top: 1px solid var(--paper-edge); padding-top: 14px; }
+</style>
