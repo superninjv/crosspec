@@ -825,6 +825,940 @@
         "price_usd": 599.99,
         "source_ids": [6]
       }
+    },
+    {
+      "id": "synology_ds424_plus",
+      "type": "nas_unit",
+      "name": "Synology DS424+",
+      "sku": "synology_ds424plus",
+      "attributes": {
+        "brand": "synology",
+        "model": "DS424+",
+        "drive_bays": 4,
+        "m2_slots": 2,
+        "cpu": "Intel Celeron J4125",
+        "ecc_ram_supported": false,
+        "ram_max_gb": 6,
+        "network": "2x_1GbE",
+        "lan_aggregation": true,
+        "btrfs_or_zfs": "btrfs",
+        "price_usd": 399.99,
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "synology_ds1823xs_plus",
+      "type": "nas_unit",
+      "name": "Synology DS1823xs+",
+      "sku": "synology_ds1823xsplus",
+      "attributes": {
+        "brand": "synology",
+        "model": "DS1823xs+",
+        "drive_bays": 8,
+        "m2_slots": 2,
+        "cpu": "AMD Ryzen V1780B",
+        "ecc_ram_supported": true,
+        "ram_max_gb": 32,
+        "network": "2x_10GbE + 4x_1GbE",
+        "lan_aggregation": true,
+        "btrfs_or_zfs": "btrfs",
+        "price_usd": 1999.99,
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "qnap_ts_h973ax",
+      "type": "nas_unit",
+      "name": "QNAP TS-h973AX",
+      "sku": "qnap_tsh973ax",
+      "attributes": {
+        "brand": "qnap",
+        "model": "TS-h973AX",
+        "drive_bays": 9,
+        "m2_slots": 2,
+        "cpu": "AMD Ryzen V1500B",
+        "ecc_ram_supported": true,
+        "ram_max_gb": 64,
+        "network": "1x_10GbE + 2x_2.5GbE",
+        "lan_aggregation": true,
+        "btrfs_or_zfs": "zfs",
+        "price_usd": 1299.0,
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "terramaster_f4_424_pro",
+      "type": "nas_unit",
+      "name": "TerraMaster F4-424 Pro",
+      "sku": "terramaster_f4_424_pro",
+      "attributes": {
+        "brand": "terramaster",
+        "model": "F4-424 Pro",
+        "drive_bays": 4,
+        "m2_slots": 2,
+        "cpu": "Intel Core i3-N305",
+        "ecc_ram_supported": false,
+        "ram_max_gb": 32,
+        "network": "2x_2.5GbE",
+        "lan_aggregation": true,
+        "btrfs_or_zfs": "btrfs",
+        "price_usd": 649.99,
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "ugreen_dxp6800_pro",
+      "type": "nas_unit",
+      "name": "UGREEN DXP6800 Pro",
+      "sku": "ugreen_dxp6800pro",
+      "attributes": {
+        "brand": "ugreen",
+        "model": "DXP6800 Pro",
+        "drive_bays": 6,
+        "m2_slots": 2,
+        "cpu": "Intel Core i5-1235U",
+        "ecc_ram_supported": false,
+        "ram_max_gb": 64,
+        "network": "2x_2.5GbE",
+        "lan_aggregation": true,
+        "btrfs_or_zfs": "btrfs",
+        "price_usd": 799.99,
+        "source_ids": [0, 2]
+      }
+    },
+    {
+      "id": "hp_microserver_gen11",
+      "type": "diy_nas_platform",
+      "name": "HP MicroServer Gen11",
+      "sku": "hp_microserver_gen11",
+      "attributes": {
+        "brand": "hp",
+        "model": "MicroServer Gen11",
+        "kind": "barebone",
+        "bays": 4,
+        "m2_slots": 1,
+        "max_drive_size_mm": "3.5in",
+        "cpu_socket": "soldered_intel_n100",
+        "price_usd": 449.0,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "topton_n305_6bay_mobo",
+      "type": "diy_nas_platform",
+      "name": "Topton N305 6-bay NAS motherboard",
+      "sku": "topton_n305_6bay_mobo",
+      "attributes": {
+        "brand": "topton",
+        "model": "N305 NAS Board (8x SATA, 2x M.2)",
+        "kind": "motherboard",
+        "bays": 6,
+        "m2_slots": 2,
+        "max_drive_size_mm": "3.5in",
+        "cpu_socket": "soldered_n305",
+        "price_usd": 269.0,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "jonsbo_n4_case",
+      "type": "diy_nas_platform",
+      "name": "JONSBO N4 NAS case",
+      "sku": "jonsbo_n4",
+      "attributes": {
+        "brand": "jonsbo",
+        "model": "N4",
+        "kind": "case",
+        "bays": 4,
+        "m2_slots": 0,
+        "max_drive_size_mm": "3.5in",
+        "cpu_socket": "ITX",
+        "price_usd": 79.99,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "silverstone_cs381",
+      "type": "diy_nas_platform",
+      "name": "Silverstone CS381 8-bay NAS case",
+      "sku": "silverstone_cs381",
+      "attributes": {
+        "brand": "silverstone",
+        "model": "CS381",
+        "kind": "case",
+        "bays": 8,
+        "m2_slots": 0,
+        "max_drive_size_mm": "3.5in",
+        "cpu_socket": "Mini-ITX",
+        "price_usd": 349.99,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "asrock_b550_itx_ax",
+      "type": "diy_nas_platform",
+      "name": "ASRock B550 ITX/AC",
+      "sku": "asrock_b550_itx_ax",
+      "attributes": {
+        "brand": "asrock",
+        "model": "B550 ITX/AC",
+        "kind": "motherboard",
+        "bays": 0,
+        "m2_slots": 2,
+        "max_drive_size_mm": "M.2",
+        "cpu_socket": "AM4",
+        "price_usd": 159.99,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "wd_red_plus_6tb",
+      "type": "hdd",
+      "name": "WD Red Plus 6TB CMR (WD60EFPX)",
+      "sku": "wd60efpx",
+      "attributes": {
+        "brand": "western_digital",
+        "model": "WD60EFPX",
+        "capacity_tb": 6,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 5400,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 180,
+        "warranty_years": 3,
+        "price_usd": 129.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "wd_red_plus_12tb",
+      "type": "hdd",
+      "name": "WD Red Plus 12TB CMR (WD120EFBX)",
+      "sku": "wd120efbx",
+      "attributes": {
+        "brand": "western_digital",
+        "model": "WD120EFBX",
+        "capacity_tb": 12,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 7200,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 180,
+        "warranty_years": 3,
+        "price_usd": 239.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "wd_red_pro_8tb",
+      "type": "hdd",
+      "name": "WD Red Pro 8TB (WD8003FFBX)",
+      "sku": "wd8003ffbx",
+      "attributes": {
+        "brand": "western_digital",
+        "model": "WD8003FFBX",
+        "capacity_tb": 8,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 7200,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 300,
+        "warranty_years": 5,
+        "price_usd": 179.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "wd_red_pro_14tb",
+      "type": "hdd",
+      "name": "WD Red Pro 14TB (WD141KFGX)",
+      "sku": "wd141kfgx",
+      "attributes": {
+        "brand": "western_digital",
+        "model": "WD141KFGX",
+        "capacity_tb": 14,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 7200,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 300,
+        "warranty_years": 5,
+        "price_usd": 259.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "seagate_ironwolf_4tb",
+      "type": "hdd",
+      "name": "Seagate IronWolf 4TB (ST4000VN006)",
+      "sku": "st4000vn006",
+      "attributes": {
+        "brand": "seagate",
+        "model": "ST4000VN006",
+        "capacity_tb": 4,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 5400,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 180,
+        "warranty_years": 3,
+        "price_usd": 89.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "seagate_ironwolf_6tb",
+      "type": "hdd",
+      "name": "Seagate IronWolf 6TB (ST6000VN006)",
+      "sku": "st6000vn006",
+      "attributes": {
+        "brand": "seagate",
+        "model": "ST6000VN006",
+        "capacity_tb": 6,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 5400,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 180,
+        "warranty_years": 3,
+        "price_usd": 119.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "seagate_ironwolf_pro_12tb",
+      "type": "hdd",
+      "name": "Seagate IronWolf Pro 12TB (ST12000NE0008)",
+      "sku": "st12000ne0008",
+      "attributes": {
+        "brand": "seagate",
+        "model": "ST12000NE0008",
+        "capacity_tb": 12,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 7200,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 300,
+        "warranty_years": 5,
+        "price_usd": 249.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "toshiba_n300_8tb",
+      "type": "hdd",
+      "name": "Toshiba N300 8TB (HDWG480XZSTA)",
+      "sku": "hdwg480xzsta",
+      "attributes": {
+        "brand": "toshiba",
+        "model": "HDWG480XZSTA",
+        "capacity_tb": 8,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 7200,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 180,
+        "warranty_years": 3,
+        "price_usd": 149.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "toshiba_n300_16tb",
+      "type": "hdd",
+      "name": "Toshiba N300 16TB (HDWG31GXZSTA)",
+      "sku": "hdwg31gxzsta",
+      "attributes": {
+        "brand": "toshiba",
+        "model": "HDWG31GXZSTA",
+        "capacity_tb": 16,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 7200,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 180,
+        "warranty_years": 3,
+        "price_usd": 289.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "toshiba_mg09_18tb",
+      "type": "hdd",
+      "name": "Toshiba MG09 18TB enterprise (MG09ACA18TE)",
+      "sku": "mg09aca18te",
+      "attributes": {
+        "brand": "toshiba",
+        "model": "MG09ACA18TE",
+        "capacity_tb": 18,
+        "form_factor": "3.5in",
+        "interface": "SATA III",
+        "rpm": 7200,
+        "recording_tech": "CMR",
+        "workload_rating_tb_per_year": 550,
+        "warranty_years": 5,
+        "price_usd": 319.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "samsung_870_evo_4tb",
+      "type": "ssd_cache",
+      "name": "Samsung 870 EVO 4TB SATA",
+      "sku": "mz_77e4t0b",
+      "attributes": {
+        "brand": "samsung",
+        "model": "MZ-77E4T0B",
+        "capacity_tb": 4,
+        "form_factor": "2.5in_SATA",
+        "endurance_tbw": 2400,
+        "dwpd": 0.33,
+        "price_usd": 299.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "wd_red_sa500_2tb",
+      "type": "ssd_cache",
+      "name": "WD Red SA500 2TB NAS SATA SSD",
+      "sku": "wds200t1r0a",
+      "attributes": {
+        "brand": "western_digital",
+        "model": "WDS200T1R0A",
+        "capacity_tb": 2,
+        "form_factor": "2.5in_SATA",
+        "endurance_tbw": 500,
+        "dwpd": 0.14,
+        "price_usd": 169.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "crucial_t500_2tb_nvme",
+      "type": "ssd_cache",
+      "name": "Crucial T500 2TB NVMe",
+      "sku": "ct2000t500ssd8",
+      "attributes": {
+        "brand": "crucial",
+        "model": "CT2000T500SSD8",
+        "capacity_tb": 2,
+        "form_factor": "M.2_NVMe",
+        "endurance_tbw": 1200,
+        "dwpd": 0.33,
+        "price_usd": 139.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "samsung_990_pro_4tb_nvme",
+      "type": "ssd_cache",
+      "name": "Samsung 990 Pro 4TB NVMe",
+      "sku": "mz_v9p4t0bw",
+      "attributes": {
+        "brand": "samsung",
+        "model": "MZ-V9P4T0BW",
+        "capacity_tb": 4,
+        "form_factor": "M.2_NVMe",
+        "endurance_tbw": 2400,
+        "dwpd": 0.33,
+        "price_usd": 349.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "wd_ultrastar_dc_sn630_192tb",
+      "type": "ssd_cache",
+      "name": "Western Digital Ultrastar DC SN630 1.92TB NVMe",
+      "sku": "wus4ba119c7p3e3",
+      "attributes": {
+        "brand": "western_digital",
+        "model": "WUS4BA119C7P3E3",
+        "capacity_tb": 1.92,
+        "form_factor": "U.2_NVMe",
+        "endurance_tbw": 3500,
+        "dwpd": 1.0,
+        "price_usd": 349.0,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "intel_optane_905p_reference",
+      "type": "ssd_cache",
+      "name": "Intel Optane 905P (reference for ZFS SLOG)",
+      "sku": "ssdpe21d480gax1",
+      "attributes": {
+        "brand": "intel",
+        "model": "SSDPE21D480GA",
+        "capacity_tb": 0.48,
+        "form_factor": "U.2_NVMe",
+        "endurance_tbw": 27375,
+        "dwpd": 30.0,
+        "note": "Discontinuted. Reference only — best-in-class SLOG durability; used in comparisons to illustrate ZIL/SLOG requirements.",
+        "price_usd": 399.0,
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "crucial_16gb_ddr4_2666_ecc_sodimm",
+      "type": "ram",
+      "name": "Crucial 16GB DDR4-2666 ECC SODIMM",
+      "sku": "ct16g4tfd8266",
+      "attributes": {
+        "brand": "crucial",
+        "model": "CT16G4TFD8266",
+        "capacity_gb": 16,
+        "type": "DDR4_ECC_SODIMM",
+        "speed_mt_s": 2666,
+        "price_usd": 69.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "synology_d4ecso_2666_4g",
+      "type": "ram",
+      "name": "Synology D4ECSO-2666-4G",
+      "sku": "d4ecso_2666_4g",
+      "attributes": {
+        "brand": "synology",
+        "model": "D4ECSO-2666-4G",
+        "capacity_gb": 4,
+        "type": "DDR4_ECC_SODIMM",
+        "speed_mt_s": 2666,
+        "price_usd": 69.99,
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "kingston_64gb_ddr4_3200_ecc_udimm_kit",
+      "type": "ram",
+      "name": "Kingston 64GB (2x32GB) DDR4-3200 ECC UDIMM kit",
+      "sku": "ksm32ed8_32me",
+      "attributes": {
+        "brand": "kingston",
+        "model": "KSM32ED8/32ME",
+        "capacity_gb": 64,
+        "type": "DDR4_ECC_UDIMM",
+        "speed_mt_s": 3200,
+        "price_usd": 219.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "crucial_32gb_ddr5_4800_ecc_sodimm",
+      "type": "ram",
+      "name": "Crucial 32GB DDR5-4800 ECC SODIMM",
+      "sku": "ct32g48c40s5",
+      "attributes": {
+        "brand": "crucial",
+        "model": "CT32G48C40S5",
+        "capacity_gb": 32,
+        "type": "DDR5_ECC_SODIMM",
+        "speed_mt_s": 4800,
+        "price_usd": 129.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "samsung_16gb_ddr4_3200_ecc_udimm",
+      "type": "ram",
+      "name": "Samsung 16GB DDR4-3200 ECC UDIMM",
+      "sku": "m391a2k43db1_cwe",
+      "attributes": {
+        "brand": "samsung",
+        "model": "M391A2K43DB1-CWE",
+        "capacity_gb": 16,
+        "type": "DDR4_ECC_UDIMM",
+        "speed_mt_s": 3200,
+        "price_usd": 59.99,
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "lsi_9211_4i",
+      "type": "hba_card",
+      "name": "LSI 9211-4i IT mode HBA (4-port)",
+      "sku": "lsi_9211_4i",
+      "attributes": {
+        "brand": "broadcom_lsi",
+        "model": "9211-4i",
+        "ports": 4,
+        "interface": "SAS2 6Gb/s",
+        "flashed_to_it_mode": true,
+        "pcie_lanes": "x4 PCIe 2.0",
+        "price_usd": 49.0,
+        "source_ids": [6, 1]
+      }
+    },
+    {
+      "id": "broadcom_9400_8i_trimode",
+      "type": "hba_card",
+      "name": "Broadcom 9400-8i Tri-Mode HBA",
+      "sku": "broadcom_9400_8i",
+      "attributes": {
+        "brand": "broadcom",
+        "model": "9400-8i",
+        "ports": 8,
+        "interface": "SAS3 Tri-Mode 12Gb/s",
+        "flashed_to_it_mode": true,
+        "pcie_lanes": "x8 PCIe 3.0",
+        "price_usd": 299.0,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "broadcom_9305_24i",
+      "type": "hba_card",
+      "name": "Broadcom 9305-24i HBA",
+      "sku": "broadcom_9305_24i",
+      "attributes": {
+        "brand": "broadcom",
+        "model": "9305-24i",
+        "ports": 24,
+        "interface": "SAS3 12Gb/s",
+        "flashed_to_it_mode": true,
+        "pcie_lanes": "x8 PCIe 3.0",
+        "price_usd": 499.0,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "ibm_m1015",
+      "type": "hba_card",
+      "name": "IBM M1015 (flash to IT mode)",
+      "sku": "ibm_m1015",
+      "attributes": {
+        "brand": "ibm",
+        "model": "M1015",
+        "ports": 8,
+        "interface": "SAS2 6Gb/s",
+        "flashed_to_it_mode": true,
+        "pcie_lanes": "x8 PCIe 2.0",
+        "note": "Rebadge of LSI 9220-8i; popular IT-mode flash target for budget ZFS builds.",
+        "price_usd": 45.0,
+        "source_ids": [6, 1, 2]
+      }
+    },
+    {
+      "id": "lenovo_03x3834_24port",
+      "type": "sas_expander",
+      "name": "Lenovo 03X3834 24-port SAS expander",
+      "sku": "lenovo_03x3834",
+      "attributes": {
+        "brand": "lenovo",
+        "ports_total": 24,
+        "ports_uplink": 4,
+        "supports_pcie_powered": true,
+        "price_usd": 79.0,
+        "source_ids": [6, 1]
+      }
+    },
+    {
+      "id": "ibm_46m0997",
+      "type": "sas_expander",
+      "name": "IBM 46M0997 SAS expander",
+      "sku": "ibm_46m0997",
+      "attributes": {
+        "brand": "ibm",
+        "ports_total": 36,
+        "ports_uplink": 4,
+        "supports_pcie_powered": true,
+        "price_usd": 69.0,
+        "source_ids": [6, 1]
+      }
+    },
+    {
+      "id": "hp_h241_expander",
+      "type": "sas_expander",
+      "name": "HP H241 SAS expander",
+      "sku": "hp_h241",
+      "attributes": {
+        "brand": "hp",
+        "ports_total": 28,
+        "ports_uplink": 4,
+        "supports_pcie_powered": true,
+        "price_usd": 89.0,
+        "source_ids": [6, 1]
+      }
+    },
+    {
+      "id": "intel_x520_da2",
+      "type": "nic_card",
+      "name": "Intel X520-DA2 SFP+",
+      "sku": "intel_x520_da2",
+      "attributes": {
+        "brand": "intel",
+        "model": "X520-DA2",
+        "ports": 2,
+        "port_type": "SFP+",
+        "speed_gbps": 10,
+        "pcie_lanes": "x8 PCIe 2.0",
+        "price_usd": 149.0,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "mellanox_connectx4_lx_25gbe",
+      "type": "nic_card",
+      "name": "Mellanox ConnectX-4 LX 25GbE",
+      "sku": "mcx4121a_acat",
+      "attributes": {
+        "brand": "mellanox",
+        "model": "MCX4121A-ACAT",
+        "ports": 2,
+        "port_type": "SFP28",
+        "speed_gbps": 25,
+        "pcie_lanes": "x8 PCIe 3.0",
+        "price_usd": 189.0,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "intel_i350_t4",
+      "type": "nic_card",
+      "name": "Intel I350-T4 quad gigabit",
+      "sku": "intel_i350_t4",
+      "attributes": {
+        "brand": "intel",
+        "model": "I350-T4",
+        "ports": 4,
+        "port_type": "RJ45",
+        "speed_gbps": 1,
+        "pcie_lanes": "x4 PCIe 2.1",
+        "price_usd": 159.0,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "mikrotik_10g_nic",
+      "type": "nic_card",
+      "name": "MikroTik 10G NIC (M4L-10G-SFP+)",
+      "sku": "mikrotik_m4l_10g",
+      "attributes": {
+        "brand": "mikrotik",
+        "model": "M4L-10G-SFP+",
+        "ports": 1,
+        "port_type": "SFP+",
+        "speed_gbps": 10,
+        "pcie_lanes": "x4 PCIe 3.0",
+        "price_usd": 45.0,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "asus_xg_c100c",
+      "type": "nic_card",
+      "name": "ASUS XG-C100C 10GbE",
+      "sku": "asus_xgc100c",
+      "attributes": {
+        "brand": "asus",
+        "model": "XG-C100C",
+        "ports": 1,
+        "port_type": "RJ45",
+        "speed_gbps": 10,
+        "pcie_lanes": "x4 PCIe 3.0",
+        "price_usd": 99.0,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "tplink_tx401",
+      "type": "nic_card",
+      "name": "TP-Link TX401 10GbE",
+      "sku": "tx401",
+      "attributes": {
+        "brand": "tp_link",
+        "model": "TX401",
+        "ports": 1,
+        "port_type": "RJ45",
+        "speed_gbps": 10,
+        "pcie_lanes": "x4 PCIe 3.0",
+        "price_usd": 59.99,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "apc_smart_ups_1500_smt1500",
+      "type": "ups",
+      "name": "APC Smart-UPS 1500VA (SMT1500)",
+      "sku": "smt1500",
+      "attributes": {
+        "brand": "apc",
+        "model": "SMT1500",
+        "va_rating": 1500,
+        "watts": 1000,
+        "runtime_at_50pct_min": 14,
+        "network_card_slot": true,
+        "price_usd": 549.99,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "eaton_5p_1550",
+      "type": "ups",
+      "name": "Eaton 5P 1550VA",
+      "sku": "eaton_5p1550",
+      "attributes": {
+        "brand": "eaton",
+        "model": "5P1550",
+        "va_rating": 1550,
+        "watts": 1100,
+        "runtime_at_50pct_min": 15,
+        "network_card_slot": true,
+        "price_usd": 499.99,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "cyberpower_cp1500pfclcd",
+      "type": "ups",
+      "name": "CyberPower CP1500PFCLCD",
+      "sku": "cp1500pfclcd",
+      "attributes": {
+        "brand": "cyberpower",
+        "model": "CP1500PFCLCD",
+        "va_rating": 1500,
+        "watts": 1000,
+        "runtime_at_50pct_min": 12,
+        "network_card_slot": false,
+        "price_usd": 249.99,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "tripplite_smart1500lcd",
+      "type": "ups",
+      "name": "Tripp Lite SMART1500LCD",
+      "sku": "smart1500lcd",
+      "attributes": {
+        "brand": "tripp_lite",
+        "model": "SMART1500LCD",
+        "va_rating": 1500,
+        "watts": 900,
+        "runtime_at_50pct_min": 11,
+        "network_card_slot": false,
+        "price_usd": 219.99,
+        "source_ids": [6]
+      }
+    },
+    {
+      "id": "noctua_nh_l9i",
+      "type": "cooling",
+      "name": "Noctua NH-L9i Low-profile ITX cooler",
+      "sku": "noctua_nh_l9i",
+      "attributes": {
+        "brand": "noctua",
+        "model": "NH-L9i",
+        "kind": "cpu_cooler",
+        "height_mm": 37,
+        "fan_size_mm": 92,
+        "tdp_rating_w": 65,
+        "noise_dba": 23.6,
+        "price_usd": 44.99,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "noctua_nf_a14_pwm",
+      "type": "cooling",
+      "name": "Noctua NF-A14 PWM 140mm fan",
+      "sku": "noctua_nf_a14_pwm",
+      "attributes": {
+        "brand": "noctua",
+        "model": "NF-A14 PWM",
+        "kind": "case_fan",
+        "fan_size_mm": 140,
+        "max_rpm": 1500,
+        "max_cfm": 82.5,
+        "noise_dba": 24.6,
+        "price_usd": 24.99,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "noctua_nf_s12a_pwm",
+      "type": "cooling",
+      "name": "Noctua NF-S12A PWM 120mm fan",
+      "sku": "noctua_nf_s12a_pwm",
+      "attributes": {
+        "brand": "noctua",
+        "model": "NF-S12A PWM",
+        "kind": "case_fan",
+        "fan_size_mm": 120,
+        "max_rpm": 1200,
+        "max_cfm": 63.3,
+        "noise_dba": 17.8,
+        "price_usd": 22.99,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "phanteks_t30_120mm",
+      "type": "cooling",
+      "name": "Phanteks T30 120mm fan",
+      "sku": "ph_f120t30",
+      "attributes": {
+        "brand": "phanteks",
+        "model": "PH-F120T30",
+        "kind": "case_fan",
+        "fan_size_mm": 120,
+        "max_rpm": 2500,
+        "max_cfm": 101.0,
+        "noise_dba": 34.0,
+        "price_usd": 29.99,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "nzxt_kraken_240",
+      "type": "cooling",
+      "name": "NZXT Kraken 240 AIO liquid cooler",
+      "sku": "rl_krn240_b1",
+      "attributes": {
+        "brand": "nzxt",
+        "model": "Kraken 240",
+        "kind": "aio_liquid",
+        "radiator_mm": 240,
+        "fan_size_mm": 120,
+        "tdp_rating_w": 250,
+        "noise_dba": 33.0,
+        "note": "For high-TDP CPU NAS builds (e.g., i5/i7 DIY); overkill for most NAS workloads.",
+        "price_usd": 79.99,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "coolermaster_masterfan_sf120r",
+      "type": "cooling",
+      "name": "Cooler Master MasterFan SF120R 120mm fan",
+      "sku": "mfy_b2dn_18nyk_r1",
+      "attributes": {
+        "brand": "cooler_master",
+        "model": "MasterFan SF120R",
+        "kind": "case_fan",
+        "fan_size_mm": 120,
+        "max_rpm": 1800,
+        "max_cfm": 56.0,
+        "noise_dba": 27.0,
+        "price_usd": 14.99,
+        "source_ids": [1, 2]
+      }
+    },
+    {
+      "id": "bequiet_silent_wings3_140mm",
+      "type": "cooling",
+      "name": "Be Quiet Silent Wings 3 140mm fan",
+      "sku": "bl071",
+      "attributes": {
+        "brand": "be_quiet",
+        "model": "Silent Wings 3 140mm",
+        "kind": "case_fan",
+        "fan_size_mm": 140,
+        "max_rpm": 1000,
+        "max_cfm": 59.5,
+        "noise_dba": 15.5,
+        "price_usd": 22.99,
+        "source_ids": [1, 2]
+      }
     }
   ],
   "constraints": [
