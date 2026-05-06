@@ -2,11 +2,16 @@
 import Layout from "@engine/ui/Layout.astro";
 import type { KnowledgeBase } from "@engine/solver";
 import kbRaw from "@verticals/smart-home/kb.json";
+import affiliatesRaw from "@verticals/smart-home/affiliates.json";
 
 const kb = kbRaw as KnowledgeBase;
 const VERTICAL = "smart-home";
 
-// Embed a slim id → {name, brand, model, price} index for client-side lookup.
+interface ProductMap {
+  products: Record<string, { merchant: string; asin?: string }>;
+}
+const aff = affiliatesRaw as ProductMap;
+
 const slim = kb.entities.map((e) => ({
   id: e.id,
   sku: e.sku ?? e.id,
@@ -15,6 +20,7 @@ const slim = kb.entities.map((e) => ({
   brand: (e.attributes.brand ?? "") as string,
   model: (e.attributes.model ?? "") as string,
   price: typeof e.attributes.price_usd === "number" ? (e.attributes.price_usd as number) : null,
+  asin: aff.products[e.id]?.asin ?? aff.products[e.sku ?? e.id]?.asin ?? null,
 }));
 const slimJSON = JSON.stringify(slim);
 ---
@@ -56,6 +62,7 @@ const slimJSON = JSON.stringify(slim);
     brand: string;
     model: string;
     price: number | null;
+    asin: string | null;
   };
 
   const VERTICAL = "smart-home";
@@ -93,17 +100,50 @@ const slimJSON = JSON.stringify(slim);
     amountEl.textContent = total > 0 ? `$${Math.round(total)}` : "no price tracked";
     metaEl.textContent = `${found.length} ${found.length === 1 ? "pick" : "picks"}`;
 
-    list.innerHTML = found
+    // If every selected product has an ASIN, offer one-click bulk-cart.
+    const allHaveAsins = found.length > 0 && found.every((s) => s.asin);
+    const bulkBanner = (() => {
+      if (allHaveAsins) {
+        const params = new URLSearchParams();
+        params.set("AssociateTag", "crosspec20-20");
+        found.forEach((s, i) => {
+          params.set(`ASIN.${i + 1}`, s.asin!);
+          params.set(`Quantity.${i + 1}`, "1");
+        });
+        params.set("ascsubtag", ref);
+        const bulkURL = `https://www.amazon.com/gp/aws/cart/add.html?${params.toString()}`;
+        return `<div class="bulk-banner">
+          <div class="bb-info">
+            <strong>One-click cart:</strong> all ${found.length} products have a direct Amazon match.
+          </div>
+          <a class="bb-cta" href="${bulkURL}" target="_blank" rel="sponsored nofollow noopener">
+            <span>Add ${found.length} to Amazon cart</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>`;
+      }
+      const haveCount = found.filter((s) => s.asin).length;
+      return `<div class="bulk-banner partial">
+        <div class="bb-info">
+          ${haveCount > 0 ? `${haveCount} of ${found.length} products have a direct Amazon match — ` : ""}use the per-product buttons below. Each opens that exact item on Amazon for you to add.
+        </div>
+      </div>`;
+    })();
+
+    list.innerHTML = bulkBanner + found
       .map((s) => {
         const refQs = `?ref=${encodeURIComponent(ref)}`;
-        const goHref = `/go/${VERTICAL}/${s.sku}${refQs}`;
+        const goHref = s.asin
+          ? `https://www.amazon.com/dp/${s.asin}/?tag=crosspec20-20&ascsubtag=${encodeURIComponent(ref)}`
+          : `/go/${VERTICAL}/${s.sku}${refQs}`;
         const detailHref = `/${VERTICAL}/devices/${s.sku}/`;
         const sub = [s.brand, s.model].filter(Boolean).join(" · ");
         const priceTxt = s.price != null ? `$${s.price}` : "&mdash;";
+        const matchTag = s.asin ? `<span class="match-tag exact">exact match</span>` : `<span class="match-tag search">via search</span>`;
         return `<article class="cart-row">
         <div class="cart-info">
           <a class="cart-title" href="${detailHref}">${escapeHtml(s.name)}</a>
-          <div class="cart-sub">${escapeHtml(sub)}</div>
+          <div class="cart-sub">${escapeHtml(sub)} ${matchTag}</div>
         </div>
         <div class="cart-price">${priceTxt}</div>
         <a class="cart-buy" href="${goHref}" target="_blank" rel="sponsored nofollow noopener">
@@ -187,6 +227,54 @@ const slimJSON = JSON.stringify(slim);
     flex-direction: column;
     gap: 12px;
   }
+  .bulk-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    background: var(--ok-soft);
+    border: 1px solid var(--ok);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .bulk-banner.partial {
+    background: var(--paper-1);
+    border-color: var(--paper-edge);
+  }
+  .bb-info { font-size: 14px; color: var(--ink-1); flex: 1 1 280px; }
+  .bb-info strong { color: var(--ok-dark); margin-right: 6px; }
+  .bb-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: var(--ok);
+    color: var(--paper-0);
+    font-weight: 700;
+    font-size: 14.5px;
+    border-radius: 7px;
+    text-decoration: none;
+    box-shadow: 0 2px 0 var(--ok-dark);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .bb-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 0 var(--ok-dark), 0 6px 14px -4px oklch(0.45 0.15 145 / 0.45);
+  }
+  .match-tag {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 99px;
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .match-tag.exact { background: var(--ok-soft); color: var(--ok-dark); }
+  .match-tag.search { background: var(--paper-1); color: var(--ink-3); }
   .cart-empty {
     text-align: center;
     color: var(--ink-3);
