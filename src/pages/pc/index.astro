@@ -221,7 +221,7 @@ for (const e of kb.entities) {
         html += `<section class="res-section"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2></header><p class="picker-empty">No matches for the selected use case.</p></section>`;
         continue;
       }
-      html += `<section class="res-section"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2><span class="res-ct">${ofType.length}</span></header><div class="card-grid">`;
+      html += `<section class="res-section" data-type="${wantType}"><header class="res-head"><h2>${TYPE_LABEL[wantType] ?? wantType}</h2><span class="res-ct">${ofType.length}</span><label class="res-sort"><span class="res-sort-lbl">Sort</span><select class="res-sort-sel" data-type="${wantType}"><option value="default">Featured</option><option value="price-asc">Price · low to high</option><option value="price-desc">Price · high to low</option></select></label></header><div class="card-grid">`;
       for (const d of ofType) {
         const isSelected = selected.has(d.sku);
         const detailHref = `/${VERTICAL}/devices/${d.sku}/`;
@@ -345,6 +345,25 @@ for (const e of kb.entities) {
       }
     }
     return reasons;
+  }
+
+  if (resultEl) {
+    resultEl.addEventListener("change", (e) => {
+      const t = e.target as HTMLElement;
+      if (!t.matches(".res-sort-sel")) return;
+      const sel = t as HTMLSelectElement;
+      const grid = sel.closest<HTMLElement>(".res-section")?.querySelector<HTMLElement>(".card-grid");
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>(".pcard"));
+      const order = sel.value;
+      const priced = cards.filter((c) => parseFloat(c.dataset.price ?? "0") > 0);
+      const unpriced = cards.filter((c) => !(parseFloat(c.dataset.price ?? "0") > 0));
+      if (order === "price-asc") priced.sort((a, b) => parseFloat(a.dataset.price ?? "0") - parseFloat(b.dataset.price ?? "0"));
+      else if (order === "price-desc") priced.sort((a, b) => parseFloat(b.dataset.price ?? "0") - parseFloat(a.dataset.price ?? "0"));
+      else { renderPicker(); return; }
+      for (const c of priced) grid.appendChild(c);
+      for (const c of unpriced) grid.appendChild(c);
+    });
   }
 
   if (form) {
