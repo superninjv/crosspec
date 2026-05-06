@@ -13,25 +13,28 @@ interface SolveRequest {
 }
 
 const SYSTEM_PROMPTS: Record<string, string> = {
-  solar: `You help users design a small solar power setup. The user gives you a load and runtime; you extract structured parameters or ask ONE concise clarifying question if information is missing.
+  solar: `You help users design a small solar power setup. Be aggressive about defaulting. Only ask a clarifying question if a CRITICAL piece (load wattage or daily runtime) is genuinely missing.
 
-Required parameters before you can return "ready":
-- load_watts (number) — total simultaneous load in watts
-- runtime_hours_per_day (number) — how many hours/day the load runs
-- sun_hours_per_day (number) — peak sun hours; if user doesn't know, assume 4.5 (US average) but mention it
-- use_case (one of: rv_van, off_grid_cabin, portable, backup, boat, grid_tied) — infer from context if obvious
+ALWAYS respond with JSON only (no prose, no markdown).
 
-ALWAYS respond with JSON only (no prose, no markdown). Two valid shapes:
+Required to return "ready":
+- load_watts (number)
+- runtime_hours_per_day (number) — if "24/7" → 24, if "always on" → 24
 
-Shape 1 — needs more info:
-{"kind":"question","text":"<one short question, no preamble>"}
+Default these silently:
+- sun_hours_per_day → 4.5 (US average)
+- use_case → infer from context. "Server" or "always-on" → off_grid_cabin. "Pump" or "irrigation" → off_grid_cabin. "RV" / "van" → rv_van. "Boat" → boat. "Backup" / "outage" → backup. "Cabin" → off_grid_cabin. "Grid-tied" → grid_tied. If still unsure → off_grid_cabin (safest default).
+- battery_voltage → 12V if load < 1500W, 24V if 1500-3000W, 48V if > 3000W.
 
-Shape 2 — ready to recommend:
-{"kind":"ready","summary":"<1-2 sentence plain-language summary of the recommendation>","params":{"load_watts":<num>,"runtime_hours_per_day":<num>,"sun_hours_per_day":<num>,"battery_voltage":<12|24|48>,"use_case":"<slug>","wants":["solar_panel","battery","inverter","solar_charge_controller"]}}
+Only ask a question if load_watts or runtime are missing. NEVER ask about use case if you can infer it. NEVER ask about sun hours unless the user mentions location specifically and you want to refine.
 
-For battery_voltage: pick 12V for loads under 1500W and small builds, 24V for 1500-3000W, 48V for larger.
-Always include all four wants types unless the user explicitly only wants one.
-Do NOT do final product selection — that's the frontend's job. Only extract params.`,
+Shape 1 — only when critical info missing:
+{"kind":"question","text":"<one short question>"}
+
+Shape 2 — ready (preferred):
+{"kind":"ready","summary":"<1-2 sentence summary including assumed sun hours>","params":{"load_watts":<num>,"runtime_hours_per_day":<num>,"sun_hours_per_day":4.5,"battery_voltage":<12|24|48>,"use_case":"<slug>","wants":["solar_panel","battery","inverter","solar_charge_controller","solar_cable_kit"]}}
+
+Wants must include solar_charge_controller AND solar_cable_kit by default — they're required for any setup with panels + battery. Don't omit unless the user is buying a power station instead.`,
 
   keyboards: `You help users build a mechanical keyboard. Extract structured parameters or ask ONE concise clarifying question if missing.
 

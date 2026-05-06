@@ -359,11 +359,70 @@ for (const e of kb.entities) {
     sizingEl.appendChild(gapDiv);
   }
 
+  // Solar dependency rules: which extra wants are needed when X is picked.
+  const SOLAR_DEPS: Record<string, string[]> = {
+    solar_panel: ["solar_charge_controller", "solar_cable_kit"],
+    battery: ["solar_charge_controller", "solar_cable_kit"],
+    inverter: ["solar_cable_kit"],
+  };
+
+  function enforceDependencies(): { added: string[]; reason: string[] } {
+    if (!form) return { added: [], reason: [] };
+    const checked = new Set(
+      Array.from(form.querySelectorAll<HTMLInputElement>('input[name="want"]:checked')).map((i) => i.value),
+    );
+    const required = new Set<string>();
+    const reasons: string[] = [];
+    for (const [trigger, deps] of Object.entries(SOLAR_DEPS)) {
+      if (checked.has(trigger)) {
+        for (const dep of deps) {
+          if (!checked.has(dep) && !required.has(dep)) {
+            required.add(dep);
+            reasons.push(`${trigger.replace(/_/g, " ")} needs a ${dep.replace(/_/g, " ")}`);
+          }
+        }
+      }
+    }
+    const added: string[] = [];
+    for (const dep of required) {
+      const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${dep}"]`);
+      if (cb && !cb.checked) {
+        cb.checked = true;
+        added.push(dep);
+        // Mark its tile as required-styled
+        const tile = cb.closest<HTMLElement>(".want-tile");
+        if (tile) tile.classList.add("want-required");
+      }
+    }
+    return { added, reason: reasons };
+  }
+
+  function renderDepsBanner(reasons: string[]) {
+    let banner = document.getElementById("deps-banner");
+    if (reasons.length === 0) {
+      if (banner) banner.remove();
+      return;
+    }
+    if (!banner) {
+      banner = document.createElement("div");
+      banner.id = "deps-banner";
+      banner.className = "deps-banner";
+      const pickerForm = document.getElementById("picker-form");
+      pickerForm?.parentNode?.insertBefore(banner, pickerForm.nextSibling);
+    }
+    banner.innerHTML = `<strong>Auto-added:</strong> ${reasons.join("; ")}. Untick to opt out.`;
+  }
+
   if (form) {
     form.addEventListener("change", (e) => {
       const t = e.target as HTMLElement;
-      if (t.matches('input[name="want"]')) renderPicker();
-      else if (t.classList.contains("pick-cb")) syncBuildSummary();
+      if (t.matches('input[name="want"]')) {
+        const { reason } = enforceDependencies();
+        renderDepsBanner(reason);
+        renderPicker();
+      } else if (t.classList.contains("pick-cb")) {
+        syncBuildSummary();
+      }
     });
   }
 
@@ -462,6 +521,9 @@ for (const e of kb.entities) {
         const cb = form.querySelector<HTMLInputElement>(`input[name="want"][value="${want}"]`);
         if (cb) cb.checked = true;
       }
+      // Enforce dependencies even if LLM forgot one
+      const { reason } = enforceDependencies();
+      renderDepsBanner(reason);
     }
     // Compute sizing
     const dailyKwh = (p.load_watts * p.runtime_hours_per_day) / 1000;
