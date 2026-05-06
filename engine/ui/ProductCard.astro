@@ -82,9 +82,13 @@ for (const [k, niceK] of [
 
 const pinNum = String(idx + 1).padStart(2, "0");
 ---
-<article class={`pcard${attrs.featured ? " featured" : ""}`}>
+<article class={`pcard${attrs.featured ? " featured" : ""}`} data-sku={String(sku)} data-price={typeof priceUsd === "number" ? String(priceUsd) : "0"} data-selected="1">
   <div class="topline">
     <span class="left">
+      <label class="pick-toggle" title="Include in build total + Amazon cart">
+        <input type="checkbox" class="pick-checkbox" checked />
+        <span class="pick-box" aria-hidden="true"></span>
+      </label>
       <span class="mono pid">{entity.id}</span>
       {native_in_ecosystem ? (
         <span class="badge-native">native</span>
@@ -175,6 +179,41 @@ const pinNum = String(idx + 1).padStart(2, "0");
     font-weight: 600;
   }
   .topline .left { display: flex; align-items: center; gap: 8px; }
+  .pick-toggle {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .pick-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+  .pick-box {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--ink-3);
+    border-radius: 4px;
+    background: var(--paper-0);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .12s, border-color .12s;
+  }
+  .pick-toggle:hover .pick-box { border-color: var(--ink-1); }
+  .pick-toggle input:checked + .pick-box {
+    background: var(--ink-0);
+    border-color: var(--ink-0);
+  }
+  .pick-toggle input:checked + .pick-box::after {
+    content: "";
+    width: 8px;
+    height: 4px;
+    border-left: 2px solid var(--paper-0);
+    border-bottom: 2px solid var(--paper-0);
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
+  .pcard[data-selected="0"] {
+    opacity: 0.55;
+    background: var(--paper-1);
+  }
   .topline .pid { color: var(--ink-3); }
   .badge-native, .badge-bridge {
     display: inline-flex;

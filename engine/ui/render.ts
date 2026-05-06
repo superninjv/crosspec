@@ -139,9 +139,13 @@ function renderProductCard(
 
   const why = attrs.note ? `<p class="why">${esc(attrs.note)}</p>` : "";
 
-  return `<article class="pcard${featured ? " featured" : ""}">
+  return `<article class="pcard${featured ? " featured" : ""}" data-sku="${esc(String(sku))}" data-price="${typeof priceUsd === "number" ? priceUsd : 0}" data-selected="1">
     <div class="topline">
       <span class="left">
+        <label class="pick-toggle" title="Include in build total + Amazon cart">
+          <input type="checkbox" class="pick-checkbox" checked />
+          <span class="pick-box" aria-hidden="true"></span>
+        </label>
         <span class="mono pid">${esc(entity.id)}</span>
         ${native_in_ecosystem ? `<span class="badge-native">native</span>` : `<span class="badge-bridge">via bridge</span>`}
       </span>
@@ -252,6 +256,7 @@ export function renderSolutionHTML(solution: Solution, vertical: string): string
   }
 
   const sectionDefs: { type: string; label: string }[] = [
+    { type: "hub", label: "Hubs & controllers" },
     { type: "smart_bulb", label: "Smart bulbs" },
     { type: "smart_plug", label: "Smart plugs" },
     { type: "smart_lock", label: "Smart locks" },

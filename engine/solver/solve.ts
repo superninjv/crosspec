@@ -136,6 +136,32 @@ export function solve(kb: KnowledgeBase, inputs: UserInputs): Solution[] {
     );
   }
 
+  // Auto-include matching hub products so they roll into build total + cart.
+  const hubEntitiesByProvides = new Map<string, Entity>();
+  for (const e of kb.entities) {
+    if (e.type !== "hub") continue;
+    const provides = (e.attributes.provides_hub ?? "") as string;
+    const aliases = (e.attributes.provides_hub_aliases ?? []) as string[];
+    for (const key of [provides, ...aliases]) {
+      if (!key) continue;
+      // First-match wins; cheaper hubs typically appear first in catalog order
+      if (!hubEntitiesByProvides.has(key)) hubEntitiesByProvides.set(key, e);
+    }
+  }
+  const hubsAlreadyPicked = new Set(allPicks.map((p) => p.entity.id));
+  for (const hub of hubs) {
+    const hubEntity = hubEntitiesByProvides.get(hub);
+    if (!hubEntity) continue;
+    if (hubsAlreadyPicked.has(hubEntity.id)) continue;
+    hubsAlreadyPicked.add(hubEntity.id);
+    allPicks.push({
+      entity: hubEntity,
+      fired_constraints: [],
+      hub_required: "none",
+      native_in_ecosystem: entityNativelySupports(hubEntity, inputs.ecosystem),
+    });
+  }
+
   const totalScore = allPicks.reduce(
     (acc, p) => acc + score(p.entity, inputs.ecosystem),
     0,
