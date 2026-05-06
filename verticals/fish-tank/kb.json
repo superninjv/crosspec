@@ -1640,6 +1640,4198 @@
         "notes": "Notorious jumper — tight lid mandatory. Reef-safe; skittish around aggressive tankmates (wrasses, dottybacks).",
         "source_ids": [0, 4, 3]
       }
+    },
+    {
+      "id": "chili_rasbora",
+      "type": "fish_species",
+      "name": "Chili Rasbora (Boraras brigittae)",
+      "sku": "fish_chili_rasbora",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 0.7,
+        "temperature_range_f": "75-82",
+        "ph_range": "4.0-7.0",
+        "gh_range_dgh": "1-8",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 8,
+        "diet": "omnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "mid",
+        "notes": "Tiny blackwater nano fish — needs mature tank, soft acidic water, and dense planting; outcompeted by anything larger.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "lambchop_rasbora",
+      "type": "fish_species",
+      "name": "Lambchop Rasbora (Trigonostigma espei)",
+      "sku": "fish_lambchop_rasbora",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 1.4,
+        "temperature_range_f": "73-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "mid",
+        "notes": "Slimmer cousin of Harlequin; tighter schooling display when kept 8+; soft water shows best color.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "dwarf_rasbora",
+      "type": "fish_species",
+      "name": "Dwarf Rasbora (Boraras maculatus)",
+      "sku": "fish_dwarf_rasbora",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 0.8,
+        "temperature_range_f": "73-82",
+        "ph_range": "5.0-7.0",
+        "gh_range_dgh": "1-8",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 8,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Blackwater nano — needs tannins and zero current; ideal Walstad/scaped 10-20gal subject.",
+        "source_ids": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "id": "glowlight_tetra",
+      "type": "fish_species",
+      "name": "Glowlight Tetra (Hemigrammus erythrozonus)",
+      "sku": "fish_glowlight_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 1.5,
+        "temperature_range_f": "74-82",
+        "ph_range": "5.5-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "4-5",
+        "tank_zone": "mid",
+        "notes": "Calm schooler with copper-orange stripe; good companion for shy species like Apistos.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "black_neon_tetra",
+      "type": "fish_species",
+      "name": "Black Neon Tetra (Hyphessobrycon herbertaxelrodi)",
+      "sku": "fish_black_neon_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 1.5,
+        "temperature_range_f": "73-81",
+        "ph_range": "5.5-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5",
+        "tank_zone": "mid",
+        "notes": "Hardier than true neons; tolerates wider parameters and pairs well with cories.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "lemon_tetra",
+      "type": "fish_species",
+      "name": "Lemon Tetra (Hyphessobrycon pulchripennis)",
+      "sku": "fish_lemon_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "73-82",
+        "ph_range": "5.5-7.5",
+        "gh_range_dgh": "3-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "mid",
+        "notes": "Yellow-finned schooler; males show black-edged anal fin when conditioned. Wants planted cover.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "serpae_tetra",
+      "type": "fish_species",
+      "name": "Serpae Tetra (Hyphessobrycon eques)",
+      "sku": "fish_serpae_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 1.7,
+        "temperature_range_f": "72-79",
+        "ph_range": "5.0-7.5",
+        "gh_range_dgh": "5-25",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 8,
+        "diet": "omnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "mid",
+        "notes": "Notorious fin-nipper — keep in 8+ to diffuse aggression; do NOT mix with angels, bettas, or longfins.",
+        "source_ids": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "id": "bloodfin_tetra",
+      "type": "fish_species",
+      "name": "Bloodfin Tetra (Aphyocharax anisitsi)",
+      "sku": "fish_bloodfin_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "64-82",
+        "ph_range": "6.0-8.0",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "mid",
+        "notes": "Cool-tolerant schooler — works in unheated room-temp tanks; active swimmer in upper third.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "diamond_tetra",
+      "type": "fish_species",
+      "name": "Diamond Tetra (Moenkhausia pittieri)",
+      "sku": "fish_diamond_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "72-82",
+        "ph_range": "5.5-7.5",
+        "gh_range_dgh": "4-12",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-6",
+        "tank_zone": "mid",
+        "notes": "Mature males develop iridescent silver scales and trailing fins; soft water + driftwood deepens color.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "black_skirt_tetra",
+      "type": "fish_species",
+      "name": "Black Skirt Tetra (Gymnocorymbus ternetzi)",
+      "sku": "fish_black_skirt_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "70-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Mild fin-nipper — avoid with bettas/angels; long-fin and GloFish variants common in big-box stores.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "von_rio_tetra",
+      "type": "fish_species",
+      "name": "Von Rio Flame Tetra (Hyphessobrycon flammeus)",
+      "sku": "fish_von_rio_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 1.0,
+        "temperature_range_f": "72-82",
+        "ph_range": "5.5-7.5",
+        "gh_range_dgh": "3-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Compact flame-red schooler from Rio de Janeiro; cool-tolerant down to 72F.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "x_ray_tetra",
+      "type": "fish_species",
+      "name": "X-Ray Tetra (Pristella maxillaris)",
+      "sku": "fish_x_ray_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 1.8,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-8.0",
+        "gh_range_dgh": "8-20",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "4-5",
+        "tank_zone": "mid",
+        "notes": "Tolerates slightly brackish water; pristine glassy body with yellow-and-black tipped fins.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "head_and_taillight_tetra",
+      "type": "fish_species",
+      "name": "Head-and-Taillight Tetra (Hemigrammus ocellifer)",
+      "sku": "fish_headtail_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "73-82",
+        "ph_range": "5.5-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "mid",
+        "notes": "Two glowing copper spots head and tail; calm schooler that mixes well with rasboras and corys.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "blue_tetra",
+      "type": "fish_species",
+      "name": "Blue Tetra (Boehlkea fredcochui)",
+      "sku": "fish_blue_tetra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 8,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Bright steel-blue but nips fins — keep 8+ in long tank; not for slow-finned tankmates.",
+        "source_ids": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "id": "cherry_barb",
+      "type": "fish_species",
+      "name": "Cherry Barb (Puntius titteya)",
+      "sku": "fish_cherry_barb",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "73-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "mid",
+        "notes": "One of the few peaceful barbs; males flush deep red when conditioned. Good for community 20gal.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "gold_barb",
+      "type": "fish_species",
+      "name": "Gold Barb (Barbodes semifasciolatus)",
+      "sku": "fish_gold_barb",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "64-75",
+        "ph_range": "6.0-8.0",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "mid",
+        "notes": "Cool-water barb — great for unheated rooms; compatible with white clouds and dojos.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "tiger_barb",
+      "type": "fish_species",
+      "name": "Tiger Barb (Puntigrus tetrazona)",
+      "sku": "fish_tiger_barb",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "74-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "4-15",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 8,
+        "diet": "omnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "mid",
+        "notes": "Aggressive nipper — never with angels, gouramis, or bettas; school of 8+ redirects intra-group aggression.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "rosy_barb",
+      "type": "fish_species",
+      "name": "Rosy Barb (Pethia conchonius)",
+      "sku": "fish_rosy_barb",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "64-77",
+        "ph_range": "6.0-8.0",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "mid",
+        "notes": "Cool-tolerant; males flush rose-red. Active swimmer needs 36in+ footprint.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "denison_barb",
+      "type": "fish_species",
+      "name": "Denison Barb (Sahyadria denisonii)",
+      "sku": "fish_denison_barb",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "60-77",
+        "ph_range": "6.5-7.8",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "mid",
+        "notes": "Active schooler from Indian highland streams — needs cool, fast-flowing 75gal+ with strong filtration.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "zebra_danio",
+      "type": "fish_species",
+      "name": "Zebra Danio (Danio rerio)",
+      "sku": "fish_zebra_danio",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "64-77",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "top",
+        "notes": "Hardy unheated-tank workhorse; very fast — outcompetes shy species at feeding time.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "leopard_danio",
+      "type": "fish_species",
+      "name": "Leopard Danio (Danio rerio var.)",
+      "sku": "fish_leopard_danio",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "64-77",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "top",
+        "notes": "Spotted morph of zebra danio; same care, identical schooling needs.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "glowlight_danio",
+      "type": "fish_species",
+      "name": "Glowlight Danio (Celestichthys choprae)",
+      "sku": "fish_glowlight_danio",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.3,
+        "temperature_range_f": "73-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "top",
+        "notes": "Smaller than zebra danio with neon-orange band; quieter swimmer suited to nano scapes.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "celestial_pearl_danio",
+      "type": "fish_species",
+      "name": "Celestial Pearl Danio (Celestichthys margaritatus)",
+      "sku": "fish_cpd",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.0,
+        "temperature_range_f": "73-79",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "2-10",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Galaxy/CPD — needs heavily planted nano with little current; outcompeted by faster fish.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "scarlet_badis",
+      "type": "fish_species",
+      "name": "Scarlet Badis (Dario dario)",
+      "sku": "fish_scarlet_badis",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 0.8,
+        "temperature_range_f": "71-79",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "8-15",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "bottom",
+        "notes": "Tiny micropredator — needs live/frozen foods only; 1 male per 10gal with 2-3 females.",
+        "source_ids": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "id": "endler_livebearer",
+      "type": "fish_species",
+      "name": "Endler's Livebearer (Poecilia wingei)",
+      "sku": "fish_endler",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.2,
+        "temperature_range_f": "72-82",
+        "ph_range": "7.0-8.5",
+        "gh_range_dgh": "8-20",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "2-3",
+        "tank_zone": "top",
+        "notes": "Mini-guppy cousin — males-only avoids breeding swarm; needs harder alkaline water.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "platy",
+      "type": "fish_species",
+      "name": "Southern Platy (Xiphophorus maculatus)",
+      "sku": "fish_platy",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "70-80",
+        "ph_range": "7.0-8.2",
+        "gh_range_dgh": "10-25",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "3-4",
+        "tank_zone": "mid",
+        "notes": "Hardy livebearer — will breed prolifically; mixed-sex setup overflows within 6 months.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "mickey_mouse_platy",
+      "type": "fish_species",
+      "name": "Mickey Mouse Platy (Xiphophorus maculatus var.)",
+      "sku": "fish_mickey_platy",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "70-80",
+        "ph_range": "7.0-8.2",
+        "gh_range_dgh": "10-25",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "3-4",
+        "tank_zone": "mid",
+        "notes": "Same care as platy with Mickey-shaped tail spot — common in big-box stores.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "swordtail",
+      "type": "fish_species",
+      "name": "Swordtail (Xiphophorus hellerii)",
+      "sku": "fish_swordtail",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 29,
+        "adult_size_in": 5.5,
+        "temperature_range_f": "72-79",
+        "ph_range": "7.0-8.4",
+        "gh_range_dgh": "12-25",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Active livebearer — needs 30in+ footprint; males develop the tail-sword extension at maturity.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "sailfin_molly",
+      "type": "fish_species",
+      "name": "Sailfin Molly (Poecilia latipinna)",
+      "sku": "fish_sailfin_molly",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-82",
+        "ph_range": "7.5-8.5",
+        "gh_range_dgh": "15-30",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Hard alkaline water mandatory; thrives at low-end brackish (1.005). Males show large dorsal sail.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "dalmatian_molly",
+      "type": "fish_species",
+      "name": "Dalmatian Molly (Poecilia latipinna var.)",
+      "sku": "fish_dalmatian_molly",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-82",
+        "ph_range": "7.5-8.5",
+        "gh_range_dgh": "15-30",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Spotted morph of sailfin; same hard-water + brackish-tolerant needs.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "threadfin_rainbowfish",
+      "type": "fish_species",
+      "name": "Threadfin Rainbowfish (Iriatherina werneri)",
+      "sku": "fish_threadfin_rainbow",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 1.5,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "8-15",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-4",
+        "tank_zone": "mid",
+        "notes": "Delicate trailing fins — never mix with nippers; tiny mouth needs powdered/micro foods.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "boesemani_rainbowfish",
+      "type": "fish_species",
+      "name": "Boesemani Rainbowfish (Melanotaenia boesemani)",
+      "sku": "fish_boesemani_rainbow",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 4.5,
+        "temperature_range_f": "75-82",
+        "ph_range": "7.0-8.0",
+        "gh_range_dgh": "10-20",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "mid",
+        "notes": "Half-yellow half-blue adults — color develops only in groups of 6+ with both sexes.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "dwarf_neon_rainbowfish",
+      "type": "fish_species",
+      "name": "Dwarf Neon Rainbowfish (Melanotaenia praecox)",
+      "sku": "fish_dwarf_neon_rainbow",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "73-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "8-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Compact rainbow — males flash electric blue against red fins; great mid-size schooler.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "asian_stone_catfish",
+      "type": "fish_species",
+      "name": "Asian Stone Catfish (Hara jerdoni)",
+      "sku": "fish_asian_stone_cat",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.3,
+        "temperature_range_f": "64-75",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "carnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "bottom",
+        "notes": "Tiny cool-water cat — easily lost in tank; needs gentle current and live/frozen feed.",
+        "source_ids": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "id": "hatchetfish_marbled",
+      "type": "fish_species",
+      "name": "Marbled Hatchetfish (Carnegiella strigata)",
+      "sku": "fish_hatchet_marbled",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 1.5,
+        "temperature_range_f": "75-82",
+        "ph_range": "5.5-7.0",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "carnivore",
+        "lifespan_years": "2-5",
+        "tank_zone": "top",
+        "notes": "Notorious jumper — tight lid mandatory; surface dweller eating only floating foods.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "corydoras_panda",
+      "type": "fish_species",
+      "name": "Panda Corydoras (Corydoras panda)",
+      "sku": "fish_cory_panda",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "68-77",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "bottom",
+        "notes": "Cool-temp Cory — DO NOT keep above 78F long-term; school of 6+ on sand only (gravel shreds barbels).",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "corydoras_sterbai",
+      "type": "fish_species",
+      "name": "Sterba's Corydoras (Corydoras sterbai)",
+      "sku": "fish_cory_sterbai",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.7,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "bottom",
+        "notes": "One of the few warm-tolerant Cories — pairs with Discus and rams. Sand substrate mandatory.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "corydoras_peppered",
+      "type": "fish_species",
+      "name": "Peppered Corydoras (Corydoras paleatus)",
+      "sku": "fish_cory_peppered",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "64-75",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "bottom",
+        "notes": "Cool-water classic — great for unheated tanks with white clouds and danios.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "corydoras_albino",
+      "type": "fish_species",
+      "name": "Albino Corydoras (Corydoras aeneus var.)",
+      "sku": "fish_cory_albino",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "72-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "bottom",
+        "notes": "Albino bronze cory — same care as bronze, sand substrate, 6+ school.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "corydoras_pygmy",
+      "type": "fish_species",
+      "name": "Pygmy Corydoras (Corydoras pygmaeus)",
+      "sku": "fish_cory_pygmy",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.0,
+        "temperature_range_f": "72-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 8,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Unique among Cories — schools mid-water; 8+ group needed for natural shoaling display.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "corydoras_habrosus",
+      "type": "fish_species",
+      "name": "Salt and Pepper Cory (Corydoras habrosus)",
+      "sku": "fish_cory_habrosus",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.0,
+        "temperature_range_f": "72-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "bottom",
+        "notes": "Smallest Cory species — perfect for nano/CPD scapes with sand substrate.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "hillstream_loach",
+      "type": "fish_species",
+      "name": "Reticulated Hillstream Loach (Sewellia lineolata)",
+      "sku": "fish_hillstream_loach",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "68-75",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "6-15",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "omnivore",
+        "lifespan_years": "6-10",
+        "tank_zone": "bottom",
+        "notes": "Cool, oxygen-rich, fast flow mandatory — wants 10x turnover and biofilm-covered rocks. NO planted/Discus tanks.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "yoyo_loach",
+      "type": "fish_species",
+      "name": "YoYo Loach (Botia almorhae)",
+      "sku": "fish_yoyo_loach",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 5.5,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "3-12",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "bottom",
+        "notes": "Active group loach — keep 5+ to spread aggression. Eats snails; not for shrimp tanks.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "clown_loach",
+      "type": "fish_species",
+      "name": "Clown Loach (Chromobotia macracanthus)",
+      "sku": "fish_clown_loach",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 12.0,
+        "temperature_range_f": "77-86",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-12",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "15-25",
+        "tank_zone": "bottom",
+        "notes": "Long-lived schooler that grows to 12in — needs 6ft+ tank and group of 5+ permanently.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "dojo_loach",
+      "type": "fish_species",
+      "name": "Dojo Loach / Weather Loach (Misgurnus anguillicaudatus)",
+      "sku": "fish_dojo_loach",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "50-77",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "5-12",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "omnivore",
+        "lifespan_years": "8-12",
+        "tank_zone": "bottom",
+        "notes": "Cold-water loach — great for room-temp tanks; will jump, tight lid required.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "zebra_otocinclus",
+      "type": "fish_species",
+      "name": "Zebra Oto (Otocinclus cocama)",
+      "sku": "fish_oto_zebra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "72-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "herbivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Premium oto with zebra striping; same fragility — must go into mature, biofilm-rich tank only.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "bristlenose_pleco_albino",
+      "type": "fish_species",
+      "name": "Albino Bristlenose Pleco (Ancistrus sp. var.)",
+      "sku": "fish_bn_pleco_albino",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-20",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "8-12",
+        "tank_zone": "bottom",
+        "notes": "Albino morph of bristlenose; same algae-grazing role with driftwood needed for fiber.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "clown_pleco",
+      "type": "fish_species",
+      "name": "Clown Pleco (Panaqolus maccus)",
+      "sku": "fish_clown_pleco",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "73-82",
+        "ph_range": "6.5-7.8",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "8-12",
+        "tank_zone": "bottom",
+        "notes": "Driftwood-obligate — must have wood to rasp; algae wafers alone will not sustain.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "royal_pleco",
+      "type": "fish_species",
+      "name": "Royal Pleco (Panaque nigrolineatus)",
+      "sku": "fish_royal_pleco",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 17.0,
+        "temperature_range_f": "72-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "10-20",
+        "tank_zone": "bottom",
+        "notes": "Massive wood-eater — needs 6ft tank, multiple driftwood structures, heavy filtration for waste load.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "sailfin_pleco",
+      "type": "fish_species",
+      "name": "Sailfin Pleco (Pterygoplichthys gibbiceps)",
+      "sku": "fish_sailfin_pleco",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 18.0,
+        "temperature_range_f": "73-82",
+        "ph_range": "6.5-7.8",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "15-20",
+        "tank_zone": "bottom",
+        "notes": "Common pet-store mistake — sold as cleaner but reaches 18in and outgrows almost every tank in stores.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "rubber_lip_pleco",
+      "type": "fish_species",
+      "name": "Rubber Lip Pleco (Chaetostoma milesi)",
+      "sku": "fish_rubberlip_pleco",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 4.5,
+        "temperature_range_f": "68-78",
+        "ph_range": "6.5-7.8",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "8-12",
+        "tank_zone": "bottom",
+        "notes": "Cooler-water alternative to bristlenose; better algae grazer in unheated planted tanks.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "mystery_snail",
+      "type": "fish_species",
+      "name": "Mystery Snail (Pomacea bridgesii)",
+      "sku": "fish_mystery_snail",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "68-82",
+        "ph_range": "7.0-8.0",
+        "gh_range_dgh": "8-18",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Calcium-dependent — needs hard water (8+ dGH) for shell integrity; will starve in soft acidic Discus tanks.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "nerite_snail_zebra",
+      "type": "fish_species",
+      "name": "Zebra Nerite Snail (Neritina natalensis)",
+      "sku": "fish_nerite_zebra",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 1.0,
+        "temperature_range_f": "68-82",
+        "ph_range": "7.0-8.5",
+        "gh_range_dgh": "6-12",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Best algae-eating snail; can't reproduce in freshwater (eggs need brackish), so no population explosion.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "ramshorn_snail",
+      "type": "fish_species",
+      "name": "Ramshorn Snail (Planorbarius sp.)",
+      "sku": "fish_ramshorn",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 2,
+        "adult_size_in": 1.0,
+        "temperature_range_f": "65-82",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Hitchhiker species — population scales to food; great cleanup but multiplies in overfed tanks.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "malaysian_trumpet_snail",
+      "type": "fish_species",
+      "name": "Malaysian Trumpet Snail (Melanoides tuberculata)",
+      "sku": "fish_mts",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 2,
+        "adult_size_in": 1.0,
+        "temperature_range_f": "70-82",
+        "ph_range": "7.0-8.0",
+        "gh_range_dgh": "8-25",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Substrate aerator — burrows day, surfaces night; livebearer, will multiply but rarely overpopulates.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "amano_shrimp",
+      "type": "fish_species",
+      "name": "Amano Shrimp (Caridina multidentata)",
+      "sku": "fish_amano_shrimp",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "65-80",
+        "ph_range": "6.0-7.6",
+        "gh_range_dgh": "6-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "omnivore",
+        "lifespan_years": "2-3",
+        "tank_zone": "bottom",
+        "notes": "Premier algae-eating shrimp; cannot breed in freshwater (larvae need brackish). Group of 3+ for natural behavior.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "ghost_shrimp",
+      "type": "fish_species",
+      "name": "Ghost Shrimp (Palaemonetes paludosus)",
+      "sku": "fish_ghost_shrimp",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 1.5,
+        "temperature_range_f": "65-82",
+        "ph_range": "7.0-8.0",
+        "gh_range_dgh": "3-12",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Cheap feeder/cleanup; transparent body; some individuals predatory toward small shrimp at night.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "blue_dream_shrimp",
+      "type": "fish_species",
+      "name": "Blue Dream Shrimp (Neocaridina davidi var.)",
+      "sku": "fish_blue_dream_shrimp",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 1.4,
+        "temperature_range_f": "65-78",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "6-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Selectively-bred Neocaridina — same care as cherries; deep blue color stable across generations.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "blue_velvet_shrimp",
+      "type": "fish_species",
+      "name": "Blue Velvet Shrimp (Neocaridina davidi var.)",
+      "sku": "fish_blue_velvet_shrimp",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 1.4,
+        "temperature_range_f": "65-78",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "6-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Less intense blue than Blue Dream; hardy Neocaridina tolerant of beginner water.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "bamboo_shrimp",
+      "type": "fish_species",
+      "name": "Bamboo Shrimp (Atyopsis moluccensis)",
+      "sku": "fish_bamboo_shrimp",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "6-15",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "filter_feeder",
+        "lifespan_years": "2-3",
+        "tank_zone": "bottom",
+        "notes": "Filter feeder — needs strong current and suspended food (powder/algae); will starve in still tanks.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "vampire_shrimp",
+      "type": "fish_species",
+      "name": "Vampire Shrimp (Atya gabonensis)",
+      "sku": "fish_vampire_shrimp",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "75-84",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "6-15",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "filter_feeder",
+        "lifespan_years": "5-10",
+        "tank_zone": "bottom",
+        "notes": "Massive filter-feeder; nocturnal; needs current + powdered foods. Can change color over years.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "crystal_red_shrimp",
+      "type": "fish_species",
+      "name": "Crystal Red Shrimp (Caridina cantonensis var.)",
+      "sku": "fish_crs",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.2,
+        "temperature_range_f": "68-76",
+        "ph_range": "5.8-6.8",
+        "gh_range_dgh": "2-6",
+        "care_difficulty": "advanced",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Caridina-grade water mandatory — RO + remineralizer, low TDS, stable temp. Not for tap-water tanks.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "sulawesi_shrimp",
+      "type": "fish_species",
+      "name": "Sulawesi Cardinal Shrimp (Caridina dennerli)",
+      "sku": "fish_sulawesi_shrimp",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.0,
+        "temperature_range_f": "79-86",
+        "ph_range": "7.8-8.4",
+        "gh_range_dgh": "6-12",
+        "care_difficulty": "advanced",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Hard alkaline + warm — opposite of CRS chemistry; species-only tanks recommended.",
+        "source_ids": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "id": "blue_diamond_shrimp",
+      "type": "fish_species",
+      "name": "Blue Diamond Shrimp (Neocaridina davidi var.)",
+      "sku": "fish_blue_diamond_shrimp",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 1.4,
+        "temperature_range_f": "65-78",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "6-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "1-2",
+        "tank_zone": "bottom",
+        "notes": "Deepest-blue Neocaridina line; slightly more sensitive to swings than wild cherry.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "ram_electric_blue",
+      "type": "fish_species",
+      "name": "Electric Blue Ram (Mikrogeophagus ramirezi var.)",
+      "sku": "fish_eb_ram",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "82-86",
+        "ph_range": "5.5-7.0",
+        "gh_range_dgh": "6-12",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "2-3",
+        "tank_zone": "bottom",
+        "notes": "Selectively-bred from German Blue Ram — same warm-soft-water needs; pair-only or single in 20gal.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "ram_gold",
+      "type": "fish_species",
+      "name": "Gold Ram (Mikrogeophagus ramirezi var.)",
+      "sku": "fish_gold_ram",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "82-86",
+        "ph_range": "5.5-7.0",
+        "gh_range_dgh": "6-12",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "2-3",
+        "tank_zone": "bottom",
+        "notes": "Yellow morph of M. ramirezi; same sensitivity to nitrates and temperature swings.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "bolivian_ram",
+      "type": "fish_species",
+      "name": "Bolivian Ram (Mikrogeophagus altispinosus)",
+      "sku": "fish_bolivian_ram",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "73-79",
+        "ph_range": "6.0-7.8",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "4-5",
+        "tank_zone": "bottom",
+        "notes": "Hardier and cooler-water than blue ram; tolerates beginner water and pairs well with tetras and cories.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "apistogramma_agassizii",
+      "type": "fish_species",
+      "name": "Apistogramma agassizii",
+      "sku": "fish_apisto_agassizii",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "75-84",
+        "ph_range": "5.5-7.0",
+        "gh_range_dgh": "2-10",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "bottom",
+        "notes": "Soft-acidic dwarf cichlid; harem (1M:3F); needs caves and low-current planted setup.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "apistogramma_borellii",
+      "type": "fish_species",
+      "name": "Apistogramma borellii (Umbrella Cichlid)",
+      "sku": "fish_apisto_borellii",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "68-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "bottom",
+        "notes": "One of the more peaceful Apistos — tolerates wider parameters than agassizii; pair-bonded.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "pearl_gourami",
+      "type": "fish_species",
+      "name": "Pearl Gourami (Trichopodus leerii)",
+      "sku": "fish_pearl_gourami",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 4.5,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "top",
+        "notes": "Calmest large gourami; pearl-spotted body and trailing pectoral filaments. Avoid with fin-nippers.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "blue_gourami",
+      "type": "fish_species",
+      "name": "Three-Spot / Blue Gourami (Trichopodus trichopterus)",
+      "sku": "fish_blue_gourami",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "73-82",
+        "ph_range": "6.0-8.0",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "top",
+        "notes": "Males get aggressive at maturity — keep 1 male per tank, or solo. Avoid mixing with bettas.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "honey_gourami",
+      "type": "fish_species",
+      "name": "Honey Gourami (Trichogaster chuna)",
+      "sku": "fish_honey_gourami",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "72-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "4-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "4-7",
+        "tank_zone": "top",
+        "notes": "Best beginner gourami — shy, peaceful, smaller than dwarf gourami; tolerates community tanks.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "dwarf_gourami_cobalt",
+      "type": "fish_species",
+      "name": "Cobalt Blue Dwarf Gourami (Trichogaster lalius var.)",
+      "sku": "fish_dwarf_gourami_cobalt",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 15,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "72-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "4-10",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "3-4",
+        "tank_zone": "top",
+        "notes": "Bright blue morph of dwarf gourami; same iridovirus susceptibility — buy from reputable breeder.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "sparkling_gourami",
+      "type": "fish_species",
+      "name": "Sparkling Gourami (Trichopsis pumila)",
+      "sku": "fish_sparkling_gourami",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 1.5,
+        "temperature_range_f": "77-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "4-10",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "omnivore",
+        "lifespan_years": "4-5",
+        "tank_zone": "top",
+        "notes": "Tiny labyrinth fish — produces audible 'croaking' sound; perfect 10gal nano alternative to bettas.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "kissing_gourami",
+      "type": "fish_species",
+      "name": "Kissing Gourami (Helostoma temminckii)",
+      "sku": "fish_kissing_gourami",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 12.0,
+        "temperature_range_f": "72-82",
+        "ph_range": "6.5-8.5",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "7-15",
+        "tank_zone": "top",
+        "notes": "Reaches 12in; the 'kiss' is a rivalry display, not affection. Outgrows almost all community tanks.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "paradise_fish",
+      "type": "fish_species",
+      "name": "Paradise Fish (Macropodus opercularis)",
+      "sku": "fish_paradise_fish",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "61-79",
+        "ph_range": "5.8-8.0",
+        "gh_range_dgh": "5-30",
+        "care_difficulty": "beginner",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "6-8",
+        "tank_zone": "top",
+        "notes": "Cool-tolerant labyrinth fish — but very aggressive; species-only or solitary recommended.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "betta_female",
+      "type": "fish_species",
+      "name": "Female Betta (Betta splendens)",
+      "sku": "fish_betta_female",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 2.0,
+        "temperature_range_f": "76-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "top",
+        "notes": "Single female works in community; sorority groups (5+) require 30gal+ and constant monitoring.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "plakat_betta",
+      "type": "fish_species",
+      "name": "Plakat Betta (Betta splendens var.)",
+      "sku": "fish_plakat_betta",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "76-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "top",
+        "notes": "Short-finned betta morph — closest to wild form; faster, more aggressive than longfin variants.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "halfmoon_betta",
+      "type": "fish_species",
+      "name": "Halfmoon Betta (Betta splendens var.)",
+      "sku": "fish_halfmoon_betta",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "76-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "top",
+        "notes": "Long-finned halfmoon spread; finrot-prone in dirty water — gentle filtration mandatory.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "crowntail_betta",
+      "type": "fish_species",
+      "name": "Crowntail Betta (Betta splendens var.)",
+      "sku": "fish_crowntail_betta",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 5,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "76-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "top",
+        "notes": "Spiked-fin morph — fragile rays prone to curling in stagnant water; keep current low.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "angelfish_koi",
+      "type": "fish_species",
+      "name": "Koi Angelfish (Pterophyllum scalare var.)",
+      "sku": "fish_angel_koi",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "3-12",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "8-12",
+        "tank_zone": "mid",
+        "notes": "Orange-and-black variant of P. scalare; same tall body needs 18in+ tank height. Pair-bonded breeders get aggressive.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "angelfish_marble",
+      "type": "fish_species",
+      "name": "Marble Angelfish (Pterophyllum scalare var.)",
+      "sku": "fish_angel_marble",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "3-12",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "8-12",
+        "tank_zone": "mid",
+        "notes": "Black-and-white marbled morph; will eat neon tetras at maturity (mouth-fits).",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "angelfish_gold",
+      "type": "fish_species",
+      "name": "Gold Angelfish (Pterophyllum scalare var.)",
+      "sku": "fish_angel_gold",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "3-12",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "8-12",
+        "tank_zone": "mid",
+        "notes": "Solid yellow-gold morph; same care as silver angel — community compatible above tetra-size mouthful.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "angelfish_altum",
+      "type": "fish_species",
+      "name": "Altum Angelfish (Pterophyllum altum)",
+      "sku": "fish_angel_altum",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 7.0,
+        "temperature_range_f": "82-86",
+        "ph_range": "4.5-6.0",
+        "gh_range_dgh": "1-5",
+        "care_difficulty": "advanced",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "8-15",
+        "tank_zone": "mid",
+        "notes": "Wild-caught Orinoco species — needs blackwater (pH<6, TDS<50) and 24in+ tank height. Not for beginners.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "oscar_albino",
+      "type": "fish_species",
+      "name": "Albino Oscar (Astronotus ocellatus var.)",
+      "sku": "fish_oscar_albino",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 13.0,
+        "temperature_range_f": "74-81",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "10-18",
+        "tank_zone": "mid",
+        "notes": "Same care as tiger oscar — eats tankmates that fit in mouth, redecorates, requires 75gal minimum and 1in/2gal stocking.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "severum_red_shoulder",
+      "type": "fish_species",
+      "name": "Red Shoulder Severum (Heros efasciatus)",
+      "sku": "fish_severum_red_shoulder",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "75-84",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Vegetarian-leaning cichlid — eats most plants. Breeds in pairs; peaceful for SA cichlid scale.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "jack_dempsey",
+      "type": "fish_species",
+      "name": "Jack Dempsey (Rocio octofasciata)",
+      "sku": "fish_jack_dempsey",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "72-86",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "9-20",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "8-15",
+        "tank_zone": "mid",
+        "notes": "Classic CA cichlid — territorial, will redecorate; species-only or with similarly sized aggressive tankmates.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "electric_blue_jack_dempsey",
+      "type": "fish_species",
+      "name": "Electric Blue Jack Dempsey (Rocio octofasciata var.)",
+      "sku": "fish_eb_jd",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 7.0,
+        "temperature_range_f": "72-86",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "9-20",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "8-15",
+        "tank_zone": "mid",
+        "notes": "Recessive-gene morph — slightly less hardy than wild type; smaller adult size. Same aggression profile.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "convict_cichlid",
+      "type": "fish_species",
+      "name": "Convict Cichlid (Amatitlania nigrofasciata)",
+      "sku": "fish_convict",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "68-82",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "9-20",
+        "care_difficulty": "beginner",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "8-10",
+        "tank_zone": "mid",
+        "notes": "Hardy beginner cichlid but breeds nonstop in pairs — single-sex or species-only tank recommended.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "green_terror",
+      "type": "fish_species",
+      "name": "Green Terror (Andinoacara rivulatus)",
+      "sku": "fish_green_terror",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "68-77",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "7-10",
+        "tank_zone": "mid",
+        "notes": "Cool-water SA cichlid — males develop golden head crest. Aggressive at breeding; not community-safe.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "discus_red_turquoise",
+      "type": "fish_species",
+      "name": "Red Turquoise Discus (Symphysodon aequifasciatus var.)",
+      "sku": "fish_discus_red_turq",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "82-86",
+        "ph_range": "5.5-6.5",
+        "gh_range_dgh": "1-8",
+        "care_difficulty": "advanced",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Same advanced care as blue discus — pristine water, daily WCs, group of 6+ for confidence; no neons (heat).",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "discus_pigeon_blood",
+      "type": "fish_species",
+      "name": "Pigeon Blood Discus (Symphysodon var.)",
+      "sku": "fish_discus_pb",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "82-86",
+        "ph_range": "5.5-6.5",
+        "gh_range_dgh": "1-8",
+        "care_difficulty": "advanced",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Light orange morph; advanced care identical to other discus — heat, soft water, daily 50% water changes.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "peacock_cichlid_assorted",
+      "type": "fish_species",
+      "name": "Assorted Peacock Cichlid (Aulonocara sp.)",
+      "sku": "fish_peacock_assorted",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "7.8-8.6",
+        "gh_range_dgh": "10-25",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "6-10",
+        "tank_zone": "mid",
+        "notes": "Lake Malawi rift cichlid — hard alkaline water mandatory; males need 1M:3F ratio in 75gal+ rocky setup.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "electric_yellow_cichlid",
+      "type": "fish_species",
+      "name": "Electric Yellow Cichlid (Labidochromis caeruleus)",
+      "sku": "fish_electric_yellow",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "7.8-8.6",
+        "gh_range_dgh": "10-25",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 4,
+        "diet": "omnivore",
+        "lifespan_years": "6-10",
+        "tank_zone": "mid",
+        "notes": "One of the most peaceful mbuna — bright yellow stays through life; needs hard alkaline rock-pile setup.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "demasoni_cichlid",
+      "type": "fish_species",
+      "name": "Demasoni Cichlid (Chindongo demasoni)",
+      "sku": "fish_demasoni",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "7.8-8.6",
+        "gh_range_dgh": "10-25",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 12,
+        "diet": "omnivore",
+        "lifespan_years": "6-10",
+        "tank_zone": "mid",
+        "notes": "Aggressive mbuna — must keep 12+ to spread aggression; species-only tank or with very different mbuna.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "silver_arowana",
+      "type": "fish_species",
+      "name": "Silver Arowana (Osteoglossum bicirrhosum)",
+      "sku": "fish_silver_arowana",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 240,
+        "adult_size_in": 36.0,
+        "temperature_range_f": "75-86",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "advanced",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "top",
+        "notes": "Reaches 3ft — needs 8ft+ tank with 240gal min; tight lid mandatory (jumper). Common pet-store outgrow tragedy.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "asian_arowana_red",
+      "type": "fish_species",
+      "name": "Red Asian Arowana (Scleropages formosus)",
+      "sku": "fish_red_arowana",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 250,
+        "adult_size_in": 30.0,
+        "temperature_range_f": "75-86",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "advanced",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "15-20",
+        "tank_zone": "top",
+        "notes": "CITES-protected, microchipped specimens only — luxury fish, $1000+. Same 8ft+ tank requirement as silver.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "red_tail_catfish",
+      "type": "fish_species",
+      "name": "Red Tail Catfish (Phractocephalus hemioliopterus)",
+      "sku": "fish_rtc",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 1500,
+        "adult_size_in": 48.0,
+        "temperature_range_f": "68-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "advanced",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "20-25",
+        "tank_zone": "bottom",
+        "notes": "Reaches 4ft and 80lbs — needs pond or 1500gal+ aquarium. Most common 'pet-store mistake' for monster keepers.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "tigrinus_catfish",
+      "type": "fish_species",
+      "name": "Tiger Shovelnose Catfish (Pseudoplatystoma tigrinum)",
+      "sku": "fish_tigrinus_cat",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 300,
+        "adult_size_in": 36.0,
+        "temperature_range_f": "73-79",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "advanced",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "18-25",
+        "tank_zone": "bottom",
+        "notes": "Reaches 3ft — 8ft+ tank required; pairs with arowana in monster builds. Will eat anything mouth-sized.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "freshwater_stingray",
+      "type": "fish_species",
+      "name": "Freshwater Stingray (Potamotrygon sp.)",
+      "sku": "fish_fw_stingray",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 240,
+        "adult_size_in": 18.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "advanced",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "15-25",
+        "tank_zone": "bottom",
+        "notes": "Sand substrate mandatory — gravel cuts the disc. 8ft tank with 4ft+ width. Venomous tail spine.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "motoro_stingray",
+      "type": "fish_species",
+      "name": "Motoro Stingray (Potamotrygon motoro)",
+      "sku": "fish_motoro_ray",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 180,
+        "adult_size_in": 18.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "advanced",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "15-20",
+        "tank_zone": "bottom",
+        "notes": "Most common keeper ray; same sand + width requirements as other Potamotrygon. Spine venom serious.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "datnoid_indo",
+      "type": "fish_species",
+      "name": "Indonesian Tigerfish / Datnoid (Datnioides microlepis)",
+      "sku": "fish_datnoid",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 180,
+        "adult_size_in": 18.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "advanced",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "12-18",
+        "tank_zone": "mid",
+        "notes": "Slow-moving ambush predator — pairs with arowana in monster scapes. Eats any mouth-fit fish.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "clown_knifefish",
+      "type": "fish_species",
+      "name": "Clown Knifefish (Chitala ornata)",
+      "sku": "fish_clown_knife",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 240,
+        "adult_size_in": 40.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "advanced",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "8-15",
+        "tank_zone": "mid",
+        "notes": "Reaches 40in — nocturnal predator; eats anything mouth-fits. 8ft tank minimum, dim lighting.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "ghost_knifefish",
+      "type": "fish_species",
+      "name": "Black Ghost Knifefish (Apteronotus albifrons)",
+      "sku": "fish_ghost_knife",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 20.0,
+        "temperature_range_f": "73-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Reaches 20in — needs 6ft+ tank, dim lighting, slow current. Electrosensitive: don't pair with electric eels.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "bichir_senegalus",
+      "type": "fish_species",
+      "name": "Senegal Bichir (Polypterus senegalus)",
+      "sku": "fish_bichir_senegalus",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 14.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "bottom",
+        "notes": "Air-breather (labyrinth-like) — must have surface access; tight lid mandatory (escape artist). Eats small fish.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "bichir_ornate",
+      "type": "fish_species",
+      "name": "Ornate Bichir (Polypterus ornatipinnis)",
+      "sku": "fish_bichir_ornate",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 24.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "15-20",
+        "tank_zone": "bottom",
+        "notes": "Reaches 24in — needs 6ft tank; spotted pattern; same air-breather and escape-artist behavior as Senegal.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "peacock_bass",
+      "type": "fish_species",
+      "name": "Peacock Bass (Cichla sp.)",
+      "sku": "fish_peacock_bass",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 240,
+        "adult_size_in": 24.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "advanced",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "8-12",
+        "tank_zone": "mid",
+        "notes": "Reaches 2ft — needs 8ft+ tank; ambush predator that eats anything mouth-fits. Top-tier monster cichlid.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "rope_fish",
+      "type": "fish_species",
+      "name": "Rope Fish (Erpetoichthys calabaricus)",
+      "sku": "fish_rope_fish",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 16.0,
+        "temperature_range_f": "72-82",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "carnivore",
+        "lifespan_years": "15-22",
+        "tank_zone": "bottom",
+        "notes": "Eel-like air-breather; will escape any opening larger than its head — seal lid completely. Eats small fish.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "african_butterflyfish",
+      "type": "fish_species",
+      "name": "African Butterflyfish (Pantodon buchholzi)",
+      "sku": "fish_african_butterfly",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "73-86",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "2-12",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "top",
+        "notes": "Surface ambush predator with wing-like pectorals; eats insects/small fish. Tight lid (jumper).",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "flagtail_prochilodus",
+      "type": "fish_species",
+      "name": "Flagtail Prochilodus (Semaprochilodus insignis)",
+      "sku": "fish_flagtail_proch",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 12.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "2-15",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "herbivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "bottom",
+        "notes": "Active swimmer — needs 6ft tank; algae grazer; striking yellow-and-black tail. Schooling preferred.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "silver_dollar",
+      "type": "fish_species",
+      "name": "Silver Dollar (Metynnis argenteus)",
+      "sku": "fish_silver_dollar",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "5.5-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "herbivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Shoaling herbivore — eats most plants; pair only with hardy plants like Anubias on hardscape.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "bala_shark",
+      "type": "fish_species",
+      "name": "Bala Shark (Balantiocheilos melanopterus)",
+      "sku": "fish_bala_shark",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 14.0,
+        "temperature_range_f": "72-82",
+        "ph_range": "6.0-8.0",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Reaches 14in — common pet-store outgrow tragedy. Schooling, needs 6ft+ tank with lid (jumper).",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "rainbow_shark",
+      "type": "fish_species",
+      "name": "Rainbow Shark (Epalzeorhynchos frenatum)",
+      "sku": "fish_rainbow_shark",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "72-79",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-11",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "bottom",
+        "notes": "Solo only — territorial against own species. Tolerates community if larger fast tankmates present.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "redtail_shark",
+      "type": "fish_species",
+      "name": "Redtail Shark (Epalzeorhynchos bicolor)",
+      "sku": "fish_redtail_shark",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-79",
+        "ph_range": "6.5-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "bottom",
+        "notes": "Same species-aggression rule as rainbow shark — solo only; territorial bottom-dweller.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "siamese_algae_eater",
+      "type": "fish_species",
+      "name": "Siamese Algae Eater (Crossocheilus oblongus)",
+      "sku": "fish_sae",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-15",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "omnivore",
+        "lifespan_years": "8-10",
+        "tank_zone": "bottom",
+        "notes": "Best black-beard-algae control fish. Group of 3-5 better than solo; gentle in community.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "chinese_algae_eater",
+      "type": "fish_species",
+      "name": "Chinese Algae Eater (Gyrinocheilus aymonieri)",
+      "sku": "fish_cae",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 11.0,
+        "temperature_range_f": "77-82",
+        "ph_range": "6.0-8.0",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "beginner",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "bottom",
+        "notes": "Sucks slime coat off larger fish at maturity — common stocking mistake. Avoid; use SAE instead.",
+        "source_ids": [
+          1,
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "sajica_cichlid",
+      "type": "fish_species",
+      "name": "T-Bar Cichlid / Sajica (Cryptoheros sajica)",
+      "sku": "fish_sajica",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "9-20",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Compact CA cichlid — pair-bonded; less destructive than convicts; works in 30gal pair tank.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "firemouth_cichlid",
+      "type": "fish_species",
+      "name": "Firemouth Cichlid (Thorichthys meeki)",
+      "sku": "fish_firemouth",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "8-15",
+        "care_difficulty": "beginner",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "8-10",
+        "tank_zone": "mid",
+        "notes": "Bluffer — flares red throat to seem larger. Generally peaceful for CA cichlid; works with similar-size tankmates.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "salvini_cichlid",
+      "type": "fish_species",
+      "name": "Salvini Cichlid (Trichromis salvini)",
+      "sku": "fish_salvini",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "7.0-8.0",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "10-13",
+        "tank_zone": "mid",
+        "notes": "Aggressive CA cichlid — pair-bonded but territorial; do not mix with peaceful fish.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "texas_cichlid",
+      "type": "fish_species",
+      "name": "Texas Cichlid (Herichthys cyanoguttatus)",
+      "sku": "fish_texas_cichlid",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 12.0,
+        "temperature_range_f": "68-79",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "5-19",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Cool-tolerant northernmost cichlid; aggressive and reaches 12in — 75gal+ minimum.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "midas_cichlid",
+      "type": "fish_species",
+      "name": "Midas Cichlid (Amphilophus citrinellus)",
+      "sku": "fish_midas_cichlid",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 14.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "6.5-8.0",
+        "gh_range_dgh": "6-15",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Forehead-hump CA cichlid — reaches 14in. Ancestor of flowerhorn. 6ft+ tank for solo or bonded pair.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "flowerhorn_cichlid",
+      "type": "fish_species",
+      "name": "Flowerhorn Cichlid (hybrid)",
+      "sku": "fish_flowerhorn",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 12.0,
+        "temperature_range_f": "75-86",
+        "ph_range": "7.0-8.0",
+        "gh_range_dgh": "9-20",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "10-12",
+        "tank_zone": "mid",
+        "notes": "Hybrid show cichlid with kok (forehead bump); solo only in 75gal+. Will attack anything that fits.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "oscar_tiger_red",
+      "type": "fish_species",
+      "name": "Tiger Red Oscar (Astronotus ocellatus var.)",
+      "sku": "fish_oscar_tiger_red",
+      "attributes": {
+        "ecosystem": "freshwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 13.0,
+        "temperature_range_f": "74-81",
+        "ph_range": "6.0-7.5",
+        "gh_range_dgh": "5-20",
+        "care_difficulty": "intermediate",
+        "aggression": "aggressive",
+        "community_compatible": false,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "10-18",
+        "tank_zone": "mid",
+        "notes": "Same care as tiger oscar — common color morph in pet stores; messy eater, needs canister or sump.",
+        "source_ids": [
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "percula_clownfish",
+      "type": "fish_species",
+      "name": "True Percula Clownfish (Amphiprion percula)",
+      "sku": "fish_percula_clown",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 4.3,
+        "temperature_range_f": "75-82",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "6-10",
+        "tank_zone": "mid",
+        "notes": "True percula has 11 dorsal spines vs ocellaris 10; slightly thicker black margins. Reef-safe nano staple.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "snowflake_clownfish",
+      "type": "fish_species",
+      "name": "Snowflake Ocellaris Clownfish (Amphiprion ocellaris var.)",
+      "sku": "fish_snowflake_clown",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "75-82",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "6-10",
+        "tank_zone": "mid",
+        "notes": "Designer ocellaris with irregular white pattern; same care, captive-bred and hardy.",
+        "source_ids": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "id": "picasso_clownfish",
+      "type": "fish_species",
+      "name": "Picasso Clownfish (Amphiprion percula var.)",
+      "sku": "fish_picasso_clown",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "75-82",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "6-10",
+        "tank_zone": "mid",
+        "notes": "Designer percula with broken/connected white bands; premium captive-bred line, $60-150 each.",
+        "source_ids": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "id": "firefish_red",
+      "type": "fish_species",
+      "name": "Red Firefish / Helfrichi (Nemateleotris magnifica)",
+      "sku": "fish_firefish_red",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "bottom",
+        "notes": "Tight lid mandatory — notorious jumper. Skittish; needs peaceful tankmates only.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "tailspot_blenny",
+      "type": "fish_species",
+      "name": "Tailspot Blenny (Ecsenius stigmatura)",
+      "sku": "fish_tailspot_blenny",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 10,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "2-4",
+        "tank_zone": "bottom",
+        "notes": "Best nano algae-grazing blenny — peaceful, reef-safe, 10gal+ works. Watch for film algae control.",
+        "source_ids": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bicolor_blenny",
+      "type": "fish_species",
+      "name": "Bicolor Blenny (Ecsenius bicolor)",
+      "sku": "fish_bicolor_blenny",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "2-4",
+        "tank_zone": "bottom",
+        "notes": "Reef-safe but may nip at LPS/zoa polyps as it ages; monitor frags during introduction.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "yellow_watchman_goby",
+      "type": "fish_species",
+      "name": "Yellow Watchman Goby (Cryptocentrus cinctus)",
+      "sku": "fish_watchman_goby",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 20,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "bottom",
+        "notes": "Pair with pistol shrimp for symbiotic burrow display — classic reef showpiece. Sand bed mandatory.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "diamond_goby",
+      "type": "fish_species",
+      "name": "Diamond Watchman Goby (Valenciennea puellaris)",
+      "sku": "fish_diamond_goby",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 5.5,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "bottom",
+        "notes": "Sand-sifting goby — keeps DSB clean but starves in sterile tanks; needs mature pod-rich substrate.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "pajama_cardinal",
+      "type": "fish_species",
+      "name": "Pajama Cardinalfish (Sphaeramia nematoptera)",
+      "sku": "fish_pj_cardinal",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "carnivore",
+        "lifespan_years": "5-8",
+        "tank_zone": "mid",
+        "notes": "Schools loosely; mouthbreeder like Banggai. Reef-safe, peaceful staple of 30gal+ reef.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "midas_blenny",
+      "type": "fish_species",
+      "name": "Midas Blenny (Ecsenius midas)",
+      "sku": "fish_midas_blenny",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "mid",
+        "notes": "Atypical blenny — swims mid-water like an anthias. Reef-safe, hovers in current, mimics yellow tangs.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "pink_streaked_wrasse",
+      "type": "fish_species",
+      "name": "Pink Streaked Wrasse (Pseudocheilinops ataenia)",
+      "sku": "fish_pink_streaked_wrasse",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "mid",
+        "notes": "Tiny reef-safe wrasse; one of the few that work in 30gal nano reefs. Tight lid (jumper).",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "melanurus_wrasse",
+      "type": "fish_species",
+      "name": "Melanurus Wrasse (Halichoeres melanurus)",
+      "sku": "fish_melanurus_wrasse",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "mid",
+        "notes": "Pest-control wrasse — eats flatworms, pyramidellids, bristleworms. Sand bed mandatory (sleeps buried).",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "fairy_wrasse_carpenter",
+      "type": "fish_species",
+      "name": "Carpenter's Flasher Wrasse (Paracheilinus carpenteri)",
+      "sku": "fish_carpenter_wrasse",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "4-6",
+        "tank_zone": "mid",
+        "notes": "Reef-safe flasher wrasse; males flash neon colors during display. Tight lid (jumper).",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "blue_chromis",
+      "type": "fish_species",
+      "name": "Blue Reef Chromis (Chromis cyanea)",
+      "sku": "fish_blue_chromis",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "6-10",
+        "tank_zone": "mid",
+        "notes": "Caribbean blue chromis; schools of 6+ stay together longer than green; same in-group attrition issue.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "green_chromis",
+      "type": "fish_species",
+      "name": "Green Chromis (Chromis viridis)",
+      "sku": "fish_green_chromis",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 6,
+        "diet": "omnivore",
+        "lifespan_years": "6-10",
+        "tank_zone": "mid",
+        "notes": "Cheap reef schooler — but in-group aggression usually leaves 1-2 survivors after 6mo. Buy 8+ to start.",
+        "source_ids": [
+          0,
+          4,
+          3,
+          2
+        ]
+      }
+    },
+    {
+      "id": "sunburst_anthias",
+      "type": "fish_species",
+      "name": "Sunburst Anthias (Serranocirrhitus latus)",
+      "sku": "fish_sunburst_anthias",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "mid",
+        "notes": "Calmest anthias — accepts pellet, single specimen workable. Less demanding than lyretail.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "lyretail_anthias",
+      "type": "fish_species",
+      "name": "Lyretail Anthias (Pseudanthias squamipinnis)",
+      "sku": "fish_lyretail_anthias",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Harem (1M:4F) needs 125gal+; multiple feedings/day; harder than sunburst. Showpiece reef school.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "dispar_anthias",
+      "type": "fish_species",
+      "name": "Dispar Anthias (Pseudanthias dispar)",
+      "sku": "fish_dispar_anthias",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 5,
+        "diet": "carnivore",
+        "lifespan_years": "3-5",
+        "tank_zone": "mid",
+        "notes": "Most peaceful anthias — works in mixed reefs. Same multiple-feedings/day requirement.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "yellow_assessor",
+      "type": "fish_species",
+      "name": "Yellow Assessor (Assessor flavissimus)",
+      "sku": "fish_yellow_assessor",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 2.5,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "mid",
+        "notes": "Hovers upside-down under overhangs; reef-safe, peaceful, beautiful electric yellow. Cave-required.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "swissguard_basslet",
+      "type": "fish_species",
+      "name": "Swissguard Basslet (Liopropoma rubre)",
+      "sku": "fish_swissguard_basslet",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 3.5,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "bottom",
+        "notes": "Cryptic Caribbean basslet — hides in caves; reef-safe. Premium peaceful nano predator.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "blue_eye_kole_tang",
+      "type": "fish_species",
+      "name": "Blue-Eye Kole Tang (Ctenochaetus strigosus)",
+      "sku": "fish_blueye_kole",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "8-15",
+        "tank_zone": "mid",
+        "notes": "Hawaiian endemic; one of best film-algae grazers. Smallest reasonable tang for 75gal+.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "kole_tang",
+      "type": "fish_species",
+      "name": "Yellow Eye Kole Tang (Ctenochaetus strigosus var.)",
+      "sku": "fish_kole_tang",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 75,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "8-15",
+        "tank_zone": "mid",
+        "notes": "Same species variant; reef-safe detritivore that grazes film algae from rock. 75gal+ tang minimum.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "bristletooth_tomini_tang",
+      "type": "fish_species",
+      "name": "Tomini Tang (Ctenochaetus tominiensis)",
+      "sku": "fish_tomini_tang",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 90,
+        "adult_size_in": 6.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "8-15",
+        "tank_zone": "mid",
+        "notes": "One of the smaller bristletooth tangs; reef-safe, grazes film algae; needs 4ft+ tank for sustained swimming.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "butterflyfish_pyramid",
+      "type": "fish_species",
+      "name": "Pyramid Butterflyfish (Hemitaurichthys polylepis)",
+      "sku": "fish_pyramid_bf",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 7.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 3,
+        "diet": "omnivore",
+        "lifespan_years": "8-12",
+        "tank_zone": "mid",
+        "notes": "One of few reef-safe butterflyfish — pelagic schooler; will not eat coral. Needs strong flow.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "butterflyfish_copperband",
+      "type": "fish_species",
+      "name": "Copperband Butterflyfish (Chelmon rostratus)",
+      "sku": "fish_copperband_bf",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 8.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "advanced",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "mid",
+        "notes": "Aiptasia-eater but notoriously hard to feed — many starve. Buy only when actively eating frozen mysis at LFS.",
+        "source_ids": [
+          0,
+          4,
+          3,
+          2
+        ]
+      }
+    },
+    {
+      "id": "hippo_tang",
+      "type": "fish_species",
+      "name": "Hippo Tang / Blue Tang (Paracanthurus hepatus)",
+      "sku": "fish_hippo_tang",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 12.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "12-20",
+        "tank_zone": "mid",
+        "notes": "Reaches 12in — needs 6ft+ tank. Disney 'Dory' fish; very ich-prone, requires QT and pristine water.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "sailfin_tang",
+      "type": "fish_species",
+      "name": "Sailfin Tang (Zebrasoma veliferum)",
+      "sku": "fish_sailfin_tang",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 180,
+        "adult_size_in": 15.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Reaches 15in with massive sail dorsal — needs 6ft+ tank. Reef-safe; territorial against same-genus tangs.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "foxface_lo",
+      "type": "fish_species",
+      "name": "Foxface Lo (Siganus vulpinus)",
+      "sku": "fish_foxface_lo",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 125,
+        "adult_size_in": 9.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "7-10",
+        "tank_zone": "mid",
+        "notes": "Venomous dorsal spines — handle with care. Reef-safe usually but may nip soft corals/zoas.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "dwarf_angelfish_flame",
+      "type": "fish_species",
+      "name": "Flame Angelfish (Centropyge loricula)",
+      "sku": "fish_flame_angel",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 70,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "mid",
+        "notes": "Reef-safe with caution — may nip LPS/clams. Stunning red with black bars; one fish per tank.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "dwarf_angelfish_coral_beauty",
+      "type": "fish_species",
+      "name": "Coral Beauty Angelfish (Centropyge bispinosa)",
+      "sku": "fish_coral_beauty",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 70,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "beginner",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "5-10",
+        "tank_zone": "mid",
+        "notes": "Most beginner-friendly dwarf angel; reef-safe with caution; widely available and hardy.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "dwarf_angelfish_lemonpeel",
+      "type": "fish_species",
+      "name": "Lemonpeel Angelfish (Centropyge flavissima)",
+      "sku": "fish_lemonpeel_angel",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 90,
+        "adult_size_in": 5.5,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "mid",
+        "notes": "Bright yellow with blue eye-ring; less reef-safe than coral beauty — often nips clams and SPS.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "dwarf_angelfish_cherub",
+      "type": "fish_species",
+      "name": "Cherub Angelfish (Centropyge argi)",
+      "sku": "fish_cherub_angel",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 55,
+        "adult_size_in": 3.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "mid",
+        "notes": "Smallest dwarf angel; works in 55gal+; reef-safe with caution. Caribbean species, less aggressive.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "dwarf_angelfish_potter",
+      "type": "fish_species",
+      "name": "Potter's Angelfish (Centropyge potteri)",
+      "sku": "fish_potter_angel",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 70,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "advanced",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "omnivore",
+        "lifespan_years": "5-7",
+        "tank_zone": "mid",
+        "notes": "Hawaiian endemic — finicky eater; many starve at first. Established mature systems only.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "longnose_hawkfish",
+      "type": "fish_species",
+      "name": "Longnose Hawkfish (Oxycirrhites typus)",
+      "sku": "fish_longnose_hawk",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 5.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "8-10",
+        "tank_zone": "mid",
+        "notes": "Reef-safe but eats small shrimp/snails; perches on coral/branches. Tight lid (jumper).",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "flame_hawkfish",
+      "type": "fish_species",
+      "name": "Flame Hawkfish (Neocirrhites armatus)",
+      "sku": "fish_flame_hawk",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 30,
+        "adult_size_in": 4.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "semi_aggressive",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "carnivore",
+        "lifespan_years": "8-10",
+        "tank_zone": "mid",
+        "notes": "Bright red perching predator; eats small inverts but coral-safe. Tight lid mandatory.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "naso_tang",
+      "type": "fish_species",
+      "name": "Naso Tang / Lipstick Tang (Naso lituratus)",
+      "sku": "fish_naso_tang",
+      "attributes": {
+        "ecosystem": "saltwater",
+        "min_tank_gallons": 180,
+        "adult_size_in": 18.0,
+        "temperature_range_f": "72-78",
+        "ph_range": "8.1-8.4",
+        "salinity_sg": "1.024-1.026",
+        "care_difficulty": "intermediate",
+        "aggression": "peaceful",
+        "community_compatible": true,
+        "schooling_min_count": 1,
+        "diet": "herbivore",
+        "lifespan_years": "10-15",
+        "tank_zone": "mid",
+        "notes": "Reaches 18in — needs 6ft+ tank with strong flow. Reef-safe; one of the most peaceful large tangs.",
+        "source_ids": [
+          0,
+          4,
+          3
+        ]
+      }
     }
   ],
   "constraints": [
