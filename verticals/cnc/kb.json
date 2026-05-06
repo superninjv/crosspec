@@ -1,0 +1,846 @@
+{
+  "version": "0.1",
+  "vertical": "cnc",
+  "data_quality": "v0.1 best-effort seed populated from cited public sources. Each entity's compatibility claims trace to source_ids on its attributes. Verification pass required before production launch; this dataset is sized to prove the configurator engine end-to-end, not for general consumer trust.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "Carbide 3D / Shapeoko product pages and docs",
+      "url": "https://shop.carbide3d.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Shapeoko 4 Standard / XL / Pro machine specs, work envelope, spindle mount diameter, feed rates, controller details."
+    },
+    {
+      "id": 1,
+      "name": "Onefinity CNC product pages",
+      "url": "https://www.onefinitycnc.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Woodworker and Journeyman machine specs, work envelope, ballscrew details, spindle mount, controller."
+    },
+    {
+      "id": 2,
+      "name": "Avid CNC / Pro 4x4 product pages",
+      "url": "https://www.avidcnc.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "PRO4824 and 4x4 machine specs, linear rails, drive system, work envelope, spindle mount options."
+    },
+    {
+      "id": 3,
+      "name": "CNCzone.com public forums",
+      "url": "https://www.cnczone.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Community-sourced real-world feed rates, bit performance reports, compatibility caveats for spindles and fixtures, collet size gotchas."
+    },
+    {
+      "id": 4,
+      "name": "V1 Engineering and OpenBuilds community docs",
+      "url": "https://docs.v1engineering.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "DIY CNC build guidance, controller recommendations, Buildbotics and GRBL controller specs, fixture approaches for spoilboards."
+    },
+    {
+      "id": 5,
+      "name": "Harvey Tool and Destiny Tool public catalog (bits)",
+      "url": "https://www.harveytool.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Bit geometry definitions, O-flute aluminum endmill specs, compression bit geometry, micro endmill diameter ranges, carbide grades for fiberglass."
+    },
+    {
+      "id": 6,
+      "name": "Manufacturer spec sheets (Makita, DeWalt, Mafell, VFD spindle vendors)",
+      "url": "",
+      "ingest_date": "2026-05-06",
+      "scope": "Router HP, RPM ranges, collet sizes, base diameter, cooling type for VFD spindles. Vendors: Makita, DeWalt, Mafell, generic 65 mm and 80 mm VFD spindles."
+    },
+    {
+      "id": 7,
+      "name": "Genmitsu / Sainsmart product pages and Inventables X-Carve Pro page",
+      "url": "https://www.sainsmart.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "PROVerXL 4030 and X-Carve Pro machine specs, work envelope, spindle mount, included controller, feed rate ratings."
+    }
+  ],
+  "entities": [
+    {
+      "id": "shapeoko4_standard",
+      "type": "cnc_machine",
+      "name": "Carbide 3D Shapeoko 4 Standard",
+      "sku": "shapeoko4_std",
+      "attributes": {
+        "brand": "Carbide 3D",
+        "model": "Shapeoko 4 Standard",
+        "work_envelope_mm": "425x425x95",
+        "spindle_mount_diameter_mm": 65,
+        "controller_included": true,
+        "controller_name": "Carbide Motion v5 (GRBL-based)",
+        "max_feed_mm_min": 5000,
+        "ballscrews_or_belts": "belts",
+        "frame": "aluminum extrusion with steel Z-plate",
+        "price_usd": 1499,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Entry-level desktop CNC; belt-drive X/Y; includes BitSetter and BitRunner relay. Ships with Makita RT0701C router mount (65 mm).",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "shapeoko4_xl",
+      "type": "cnc_machine",
+      "name": "Carbide 3D Shapeoko 4 XL",
+      "sku": "shapeoko4_xl",
+      "attributes": {
+        "brand": "Carbide 3D",
+        "model": "Shapeoko 4 XL",
+        "work_envelope_mm": "838x425x95",
+        "spindle_mount_diameter_mm": 65,
+        "controller_included": true,
+        "controller_name": "Carbide Motion v5 (GRBL-based)",
+        "max_feed_mm_min": 5000,
+        "ballscrews_or_belts": "belts",
+        "frame": "aluminum extrusion with steel Z-plate",
+        "price_usd": 1799,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Extended X-axis; same Z and Y travel as Standard. Suitable for 32-inch signs. 65 mm spindle mount.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "shapeoko4_pro",
+      "type": "cnc_machine",
+      "name": "Carbide 3D Shapeoko 4 Pro (4x4)",
+      "sku": "shapeoko4_pro",
+      "attributes": {
+        "brand": "Carbide 3D",
+        "model": "Shapeoko 4 Pro",
+        "work_envelope_mm": "838x838x95",
+        "spindle_mount_diameter_mm": 65,
+        "controller_included": true,
+        "controller_name": "Carbide Motion v5 (GRBL-based)",
+        "max_feed_mm_min": 5000,
+        "ballscrews_or_belts": "belts",
+        "frame": "aluminum extrusion, wider gantry",
+        "price_usd": 2299,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Full 4x4 envelope; same 65 mm router mount. Popular for tiled sign work and medium cabinet parts.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "carvera",
+      "type": "cnc_machine",
+      "name": "Makera Carvera",
+      "sku": "makera_carvera",
+      "attributes": {
+        "brand": "Makera",
+        "model": "Carvera",
+        "work_envelope_mm": "400x300x60",
+        "spindle_mount_diameter_mm": 52,
+        "controller_included": true,
+        "controller_name": "Makera proprietary (Wi-Fi, touchscreen)",
+        "max_feed_mm_min": 4000,
+        "ballscrews_or_belts": "ballscrews",
+        "frame": "enclosed cast aluminum",
+        "spindle_integrated_rpm_max": 24000,
+        "spindle_integrated_watt": 300,
+        "price_usd": 1999,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Integrated 300W spindle, automatic tool changer (ATC) with 4-tool carousel. Enclosed; quieter than open routers. Not a 65 mm router mount machine.",
+        "source_ids": [3, 6]
+      }
+    },
+    {
+      "id": "onefinity_woodworker",
+      "type": "cnc_machine",
+      "name": "Onefinity Woodworker X-35",
+      "sku": "onefinity_woodworker",
+      "attributes": {
+        "brand": "Onefinity",
+        "model": "Woodworker X-35",
+        "work_envelope_mm": "812x812x102",
+        "spindle_mount_diameter_mm": 80,
+        "controller_included": true,
+        "controller_name": "Onefinity (Buildbotics-derived, touchscreen)",
+        "max_feed_mm_min": 7500,
+        "ballscrews_or_belts": "ballscrews",
+        "frame": "steel rail, modular",
+        "price_usd": 1999,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Ballscrew X/Y/Z; 80 mm spindle mount — fits 80 mm VFD spindles directly. High-rigidity for its price class.",
+        "source_ids": [1, 3]
+      }
+    },
+    {
+      "id": "onefinity_journeyman",
+      "type": "cnc_machine",
+      "name": "Onefinity Journeyman X-50",
+      "sku": "onefinity_journeyman",
+      "attributes": {
+        "brand": "Onefinity",
+        "model": "Journeyman X-50",
+        "work_envelope_mm": "1219x812x102",
+        "spindle_mount_diameter_mm": 80,
+        "controller_included": true,
+        "controller_name": "Onefinity (Buildbotics-derived, touchscreen)",
+        "max_feed_mm_min": 7500,
+        "ballscrews_or_belts": "ballscrews",
+        "frame": "steel rail, modular, extended X",
+        "price_usd": 2499,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Extended X (50-inch rail); same 80 mm mount. Targets door panels, long cabinet rails.",
+        "source_ids": [1, 3]
+      }
+    },
+    {
+      "id": "avid_pro_4x4",
+      "type": "cnc_machine",
+      "name": "Avid CNC PRO4824",
+      "sku": "avid_pro4824",
+      "attributes": {
+        "brand": "Avid CNC",
+        "model": "PRO4824 (4x2 table)",
+        "work_envelope_mm": "1219x610x152",
+        "spindle_mount_diameter_mm": 80,
+        "controller_included": false,
+        "controller_name": null,
+        "max_feed_mm_min": 15000,
+        "ballscrews_or_belts": "rack-and-pinion",
+        "frame": "welded steel + aluminum extrusion hybrid",
+        "price_usd": 3995,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Semi-pro rack-and-pinion gantry. Controller sold separately (Masso G3 or Avid AVID-CNC board). 80 mm spindle mount; designed for 2.2 kW VFD spindle.",
+        "source_ids": [2, 3]
+      }
+    },
+    {
+      "id": "genmitsu_proverxl4030",
+      "type": "cnc_machine",
+      "name": "Genmitsu PROVerXL 4030",
+      "sku": "genmitsu_proverxl4030",
+      "attributes": {
+        "brand": "Genmitsu",
+        "model": "PROVerXL 4030",
+        "work_envelope_mm": "400x300x70",
+        "spindle_mount_diameter_mm": 52,
+        "controller_included": true,
+        "controller_name": "Sainsmart GRBL v1.1",
+        "max_feed_mm_min": 4000,
+        "ballscrews_or_belts": "ballscrews",
+        "frame": "aluminum extrusion",
+        "spindle_integrated_rpm_max": 10000,
+        "spindle_integrated_watt": 300,
+        "price_usd": 499,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Budget ballscrew desktop CNC. Integrated 300 W spindle. Good for wood signs and soft plastics. 52 mm spindle mount limits router upgrades.",
+        "source_ids": [7, 3]
+      }
+    },
+    {
+      "id": "xcarve_pro",
+      "type": "cnc_machine",
+      "name": "Inventables X-Carve Pro 4x4",
+      "sku": "inventables_xcarve_pro_4x4",
+      "attributes": {
+        "brand": "Inventables",
+        "model": "X-Carve Pro 4x4",
+        "work_envelope_mm": "1030x1030x110",
+        "spindle_mount_diameter_mm": 65,
+        "controller_included": true,
+        "controller_name": "Inventables proprietary (Easel-connected)",
+        "max_feed_mm_min": 6000,
+        "ballscrews_or_belts": "belts",
+        "frame": "aluminum extrusion",
+        "price_usd": 3999,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Subscription CAM (Easel Pro) baked in. Large belt-drive machine. 65 mm router mount; ships with DeWalt DWP611.",
+        "source_ids": [7, 3]
+      }
+    },
+    {
+      "id": "bobscnc_e4",
+      "type": "cnc_machine",
+      "name": "BobsCNC Evolution 4 (E4)",
+      "sku": "bobscnc_e4",
+      "attributes": {
+        "brand": "BobsCNC",
+        "model": "Evolution 4",
+        "work_envelope_mm": "610x610x85",
+        "spindle_mount_diameter_mm": 65,
+        "controller_included": true,
+        "controller_name": "GRBL v1.1 (Arduino UNO shield)",
+        "max_feed_mm_min": 3000,
+        "ballscrews_or_belts": "belts",
+        "frame": "laser-cut birch plywood",
+        "price_usd": 699,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Plywood frame; entry-level hobbyist. Ships with DeWalt DWP611 or Makita RT0701C (65 mm). Slowest max feed in class.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "spindle_makita_rt0701c",
+      "type": "spindle",
+      "name": "Makita RT0701C Compact Router",
+      "sku": "makita_rt0701c",
+      "attributes": {
+        "brand": "Makita",
+        "model": "RT0701C",
+        "hp": 1.25,
+        "max_rpm": 30000,
+        "min_rpm": 10000,
+        "collet_size": "1/4 inch",
+        "base_diameter_mm": 65,
+        "cooling": "air",
+        "er_collet_compatible": false,
+        "note": "Most common router for Shapeoko / BobsCNC 65 mm mounts. Variable speed dial. 1/4 inch collet only; no 1/8 inch collet without adapter.",
+        "source_ids": [0, 6, 3]
+      }
+    },
+    {
+      "id": "spindle_dewalt_dwp611",
+      "type": "spindle",
+      "name": "DeWalt DWP611 Compact Router",
+      "sku": "dewalt_dwp611",
+      "attributes": {
+        "brand": "DeWalt",
+        "model": "DWP611",
+        "hp": 1.25,
+        "max_rpm": 27000,
+        "min_rpm": 16000,
+        "collet_size": "1/4 inch",
+        "base_diameter_mm": 65,
+        "cooling": "air",
+        "er_collet_compatible": false,
+        "note": "Ships with X-Carve Pro and BobsCNC E4. Variable speed. 65 mm base; 1/4 inch collet only. LED ring useful for visibility.",
+        "source_ids": [7, 6, 3]
+      }
+    },
+    {
+      "id": "spindle_mafell_fm1000",
+      "type": "spindle",
+      "name": "Mafell FM 1000 WSJ CNC Router",
+      "sku": "mafell_fm1000",
+      "attributes": {
+        "brand": "Mafell",
+        "model": "FM 1000 WSJ",
+        "hp": 1.34,
+        "max_rpm": 24000,
+        "min_rpm": 6000,
+        "collet_size": "1/4 inch and 1/8 inch (included)",
+        "base_diameter_mm": 65,
+        "cooling": "air",
+        "er_collet_compatible": false,
+        "note": "German-made; CNC-optimized motor winding (low runout). Wider RPM range than Makita. 65 mm base; direct drop-in for Shapeoko / Onefinity 65 mm mounts.",
+        "source_ids": [6, 3]
+      }
+    },
+    {
+      "id": "spindle_vfd_15kw_air",
+      "type": "spindle",
+      "name": "Generic 1.5 kW 65 mm Air-Cooled VFD Spindle",
+      "sku": "vfd_65mm_15kw_air",
+      "attributes": {
+        "brand": "Generic (HY / VEVOR / Huanyang)",
+        "model": "1.5 kW ER11 air-cooled",
+        "hp": 2.0,
+        "max_rpm": 24000,
+        "min_rpm": 6000,
+        "collet_size": "ER11 (1/4 inch, 1/8 inch, 1/16 inch)",
+        "base_diameter_mm": 65,
+        "cooling": "air",
+        "er_collet_compatible": true,
+        "note": "VFD-driven; quieter than trim routers under load. Requires separate VFD drive and 220 V or 110 V wiring. ER11 collet spans 1/16–1/4 inch shanks. 65 mm body fits Shapeoko / BobsCNC mounts.",
+        "source_ids": [6, 3, 4]
+      }
+    },
+    {
+      "id": "spindle_vfd_22kw_water",
+      "type": "spindle",
+      "name": "Generic 2.2 kW 80 mm Water-Cooled VFD Spindle",
+      "sku": "vfd_80mm_22kw_water",
+      "attributes": {
+        "brand": "Generic (HY / VEVOR / Huanyang)",
+        "model": "2.2 kW ER20 water-cooled",
+        "hp": 3.0,
+        "max_rpm": 24000,
+        "min_rpm": 6000,
+        "collet_size": "ER20 (up to 13 mm / 1/2 inch)",
+        "base_diameter_mm": 80,
+        "cooling": "water",
+        "er_collet_compatible": true,
+        "note": "Standard upgrade for Onefinity / Avid 80 mm mounts. Needs water pump + radiator. ER20 collet accepts 1/4, 3/8, 1/2 inch shanks. Near-silent in operation.",
+        "source_ids": [6, 3, 2]
+      }
+    },
+    {
+      "id": "spindle_mafell_fm2700",
+      "type": "spindle",
+      "name": "Mafell FM 2700 CNC Spindle",
+      "sku": "mafell_fm2700",
+      "attributes": {
+        "brand": "Mafell",
+        "model": "FM 2700",
+        "hp": 3.6,
+        "max_rpm": 25000,
+        "min_rpm": 8000,
+        "collet_size": "ER16 (up to 10 mm / 3/8 inch)",
+        "base_diameter_mm": 80,
+        "cooling": "air",
+        "er_collet_compatible": true,
+        "note": "High-end German air-cooled CNC spindle; no external water system needed. 80 mm body. ER16 collet; lower max shank than ER20 water-cooled but no plumbing required.",
+        "source_ids": [6, 3]
+      }
+    },
+    {
+      "id": "bit_1_4_downcut",
+      "type": "bit",
+      "name": "1/4\" 2-Flute Downcut Endmill (solid carbide)",
+      "sku": "bit_downcut_25_2fl",
+      "attributes": {
+        "brand": "Amana Tool / Whiteside (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 1.0,
+        "flutes": 2,
+        "geometry": "downcut",
+        "material_target": ["wood", "plywood", "mdf", "softwood"],
+        "note": "Downcut shear keeps top face clean; chips push into material. Best for shallow pockets and sign faces where tearout matters.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_1_4_upcut",
+      "type": "bit",
+      "name": "1/4\" 2-Flute Upcut Endmill (solid carbide)",
+      "sku": "bit_upcut_25_2fl",
+      "attributes": {
+        "brand": "Amana Tool / Whiteside (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 1.0,
+        "flutes": 2,
+        "geometry": "upcut",
+        "material_target": ["wood", "plywood", "mdf", "hdpe", "acrylic"],
+        "note": "Upcut pulls chips out of slot; prevents recutting. Standard for through-cuts and deep pockets. Bottom face may show tearout on veneered plywood.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_1_4_compression",
+      "type": "bit",
+      "name": "1/4\" 3-Flute Compression Bit (solid carbide)",
+      "sku": "bit_compression_25_3fl",
+      "attributes": {
+        "brand": "Amana Tool / Onsrud (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 3.0,
+        "length_cutting_inch": 1.25,
+        "flutes": 3,
+        "geometry": "compression",
+        "material_target": ["plywood", "melamine", "laminated_panels"],
+        "note": "Upcut lower flutes + downcut upper flutes; clean top and bottom face simultaneously. Ideal for cabinet sheet goods.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_1_8_2fl",
+      "type": "bit",
+      "name": "1/8\" 2-Flute Upcut Endmill (solid carbide)",
+      "sku": "bit_upcut_125_2fl",
+      "attributes": {
+        "brand": "Amana Tool / Kodiak (typical)",
+        "diameter_inch": 0.125,
+        "shank_diameter_inch": 0.125,
+        "length_overall_inch": 1.5,
+        "length_cutting_inch": 0.5,
+        "flutes": 2,
+        "geometry": "upcut",
+        "material_target": ["wood", "mdf", "acrylic", "pcb"],
+        "note": "Standard small-detail bit. Lower feed rates than 1/4 inch. 1/8 inch shank; requires 1/8 inch collet or ER11/ER16 reducer.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_1_16_micro",
+      "type": "bit",
+      "name": "1/16\" 2-Flute Micro Endmill (solid carbide)",
+      "sku": "bit_micro_0625_2fl",
+      "attributes": {
+        "brand": "Harvey Tool (typical)",
+        "diameter_inch": 0.0625,
+        "shank_diameter_inch": 0.125,
+        "length_overall_inch": 1.5,
+        "length_cutting_inch": 0.1875,
+        "flutes": 2,
+        "geometry": "upcut",
+        "material_target": ["wood", "acrylic", "pcb", "wax"],
+        "note": "Micro endmill for fine detail; 1/8 inch shank (necked down). Fragile — requires rigid machine and low feed rates. Not for belt-drive machines at high speeds.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_60deg_vbit",
+      "type": "bit",
+      "name": "60° V-Bit (solid carbide)",
+      "sku": "bit_vbit_60deg",
+      "attributes": {
+        "brand": "Amana Tool / Whiteside (typical)",
+        "diameter_inch": 0.5,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.0,
+        "length_cutting_inch": null,
+        "flutes": 2,
+        "geometry": "vbit",
+        "included_angle_deg": 60,
+        "material_target": ["wood", "mdf", "foam", "hdpe"],
+        "note": "Narrow 60° angle; sharper letterforms, tighter serifs. V-carving and inlay clearance.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_90deg_vbit",
+      "type": "bit",
+      "name": "90° V-Bit (solid carbide)",
+      "sku": "bit_vbit_90deg",
+      "attributes": {
+        "brand": "Amana Tool / Whiteside (typical)",
+        "diameter_inch": 0.5,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.0,
+        "length_cutting_inch": null,
+        "flutes": 2,
+        "geometry": "vbit",
+        "included_angle_deg": 90,
+        "material_target": ["wood", "mdf", "foam", "soft_metal"],
+        "note": "Wide 90° angle; bold shallow V-carve, chamfers, and inlay pockets. Most common V-bit for sign work.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_1_4_ballnose",
+      "type": "bit",
+      "name": "1/4\" Ballnose Endmill (solid carbide)",
+      "sku": "bit_ballnose_25",
+      "attributes": {
+        "brand": "Amana Tool / Destiny (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 1.0,
+        "flutes": 2,
+        "geometry": "ballnose",
+        "material_target": ["wood", "mdf", "foam", "wax", "soft_metal"],
+        "note": "3D contour finishing; scallop height depends on stepover. Typical 3D finishing: 10–15% stepover.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_1_8_ballnose",
+      "type": "bit",
+      "name": "1/8\" Ballnose Endmill (solid carbide)",
+      "sku": "bit_ballnose_125",
+      "attributes": {
+        "brand": "Amana Tool / Destiny (typical)",
+        "diameter_inch": 0.125,
+        "shank_diameter_inch": 0.125,
+        "length_overall_inch": 1.5,
+        "length_cutting_inch": 0.5,
+        "flutes": 2,
+        "geometry": "ballnose",
+        "material_target": ["wood", "wax", "foam", "acrylic"],
+        "note": "Fine 3D detail finishing pass. 1/8 inch shank; needs ER11 or collet adapter.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_ofluteAlum",
+      "type": "bit",
+      "name": "Single-Flute O-Flute Endmill for Aluminum (solid carbide)",
+      "sku": "bit_oflute_al_25",
+      "attributes": {
+        "brand": "Amana Tool / Harvey Tool (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 0.75,
+        "flutes": 1,
+        "geometry": "upcut",
+        "material_target": ["aluminum", "soft_metal", "acrylic"],
+        "note": "Single O-flute maximizes chip clearance in aluminum and acrylic. Run with lubricant (WD-40 mist for Al). Low chip recutting risk.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_diamond_fiberglass",
+      "type": "bit",
+      "name": "Diamond-Pattern Carbide Endmill for Fiberglass/PCB",
+      "sku": "bit_diamond_fg_25",
+      "attributes": {
+        "brand": "Amana Tool / SpeTool (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 0.75,
+        "flutes": 2,
+        "geometry": "upcut",
+        "material_target": ["fiberglass", "carbon_fiber", "pcb", "composite"],
+        "note": "Knurl/diamond pattern on cutting edge reduces delamination in abrasive composite materials. Wear dust mask; use dust collection.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_drag_knife",
+      "type": "bit",
+      "name": "Drag Knife Tangential Cutting Tool",
+      "sku": "bit_drag_knife_25shk",
+      "attributes": {
+        "brand": "Donek Tools (typical)",
+        "diameter_inch": null,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 3.0,
+        "length_cutting_inch": null,
+        "flutes": null,
+        "geometry": "drag_knife",
+        "material_target": ["vinyl", "cardstock", "thin_leather", "foam_sheet", "craft_film"],
+        "note": "Passive drag knife held in 1/4 inch collet. No spindle rotation needed. Cuts sheet material by dragging a swiveling blade. CNC must support tangential knife offsets in CAM.",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "fixture_miteebite_clamps",
+      "type": "fixture",
+      "name": "Mitee-Bite Low-Profile CNC Clamps (set)",
+      "sku": "miteebite_lowprofile_set",
+      "attributes": {
+        "brand": "Mitee-Bite",
+        "type": "mechanical_clamp",
+        "holds_workpiece_max_mm": "305x305",
+        "t_slot_compatible": true,
+        "note": "Ultra-low profile; tool path can pass over clamp body. Wedge-action grips workpiece edge. Compatible with 3/4 inch T-track.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "fixture_ttrack_kit",
+      "type": "fixture",
+      "name": "T-Track + Hold-Down Clamps Kit",
+      "sku": "ttrack_holddown_kit",
+      "attributes": {
+        "brand": "Kreg / Rockler (typical)",
+        "type": "t_track_system",
+        "holds_workpiece_max_mm": "610x610",
+        "t_slot_compatible": true,
+        "note": "Router table-style T-track routed or embedded in spoilboard. T-bolts + toggle clamps or step clamps slide freely. Most flexible workholding for varied stock sizes.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "fixture_mdf_spoilboard",
+      "type": "fixture",
+      "name": "MDF Spoilboard (tooling plate)",
+      "sku": "fixture_mdf_spoilboard",
+      "attributes": {
+        "brand": "DIY / shop-cut",
+        "type": "spoilboard",
+        "holds_workpiece_max_mm": "838x838",
+        "t_slot_compatible": false,
+        "material": "MDF 3/4 inch",
+        "note": "Sacrificial waste board surfaced flat with CNC's own spindle. Provides consistent Z reference and protects machine bed. Must be resurfaced periodically.",
+        "source_ids": [4, 3]
+      }
+    },
+    {
+      "id": "fixture_vacuum_table",
+      "type": "fixture",
+      "name": "DIY Vacuum Table Kit",
+      "sku": "fixture_vac_table_diy",
+      "attributes": {
+        "brand": "DIY (OpenBuilds community design)",
+        "type": "vacuum_table",
+        "holds_workpiece_max_mm": "600x600",
+        "t_slot_compatible": false,
+        "vacuum_source": "shop vac or dedicated vacuum pump",
+        "note": "Grid of vacuum zones milled into MDF or HDPE plate; sealed with gasket tape. Best for thin sheet stock. Requires airtight perimeter.",
+        "source_ids": [4, 3]
+      }
+    },
+    {
+      "id": "fixture_mft_dogs",
+      "type": "fixture",
+      "name": "Festool MFT Dogs + F-Clamps Set",
+      "sku": "fixture_mft_dogs_clamps",
+      "attributes": {
+        "brand": "Festool / Parf Guide compatible",
+        "type": "dog_clamp_system",
+        "holds_workpiece_max_mm": "1200x600",
+        "t_slot_compatible": false,
+        "peg_diameter_mm": 20,
+        "note": "20 mm dog holes drilled in spoilboard via Parf Guide jig. Bench dogs + F-clamps for quick registration. Useful for repeat production runs.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "fixture_edge_stops",
+      "type": "fixture",
+      "name": "CNC Edge Stop / Corner Stops",
+      "sku": "fixture_edge_stops",
+      "attributes": {
+        "brand": "Various (Carbide 3D, generic)",
+        "type": "edge_stop",
+        "holds_workpiece_max_mm": "610x610",
+        "t_slot_compatible": true,
+        "note": "L-shaped stop blocks fixed to T-track or bed. Repeatable XY zero for production runs without re-probing. Works with T-track kits.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "dust_suckit",
+      "type": "dust_shoe",
+      "name": "SuckIt Dust Boot",
+      "sku": "suckit_dust_boot",
+      "attributes": {
+        "brand": "SuckIt",
+        "fits_router_diameter_mm": 65,
+        "hose_diameter_mm": 57,
+        "magnetic_brush": true,
+        "note": "Magnetic brush skirt for easy bit changes. Designed for Shapeoko (65 mm router). Mounts to Z carriage. Works with Makita RT0701C and DeWalt DWP611.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "dust_makita_soft_brush",
+      "type": "dust_shoe",
+      "name": "Makita-Fit Soft Brush Dust Shoe",
+      "sku": "dust_makita_soft_brush",
+      "attributes": {
+        "brand": "Various (generic)",
+        "fits_router_diameter_mm": 65,
+        "hose_diameter_mm": 38,
+        "magnetic_brush": false,
+        "note": "Simple slip-over brush collar for 65 mm routers. Connects to standard 1.5 inch shop vac hose. Low-cost entry option; less effective at high spindle speeds.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "dust_rockler",
+      "type": "dust_shoe",
+      "name": "Rockler CNC Dust Shoe",
+      "sku": "rockler_cnc_dust_shoe",
+      "attributes": {
+        "brand": "Rockler",
+        "fits_router_diameter_mm": 65,
+        "hose_diameter_mm": 57,
+        "magnetic_brush": true,
+        "note": "Rigid body with adjustable brush height. Fits 65 mm router collar. Compatible with Shapeoko and X-Carve 65 mm mounts.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "dust_generic_65mm",
+      "type": "dust_shoe",
+      "name": "Generic 65 mm CNC Dust Shoe",
+      "sku": "dust_generic_65mm",
+      "attributes": {
+        "brand": "Generic / 3D-printed community designs",
+        "fits_router_diameter_mm": 65,
+        "hose_diameter_mm": 38,
+        "magnetic_brush": false,
+        "note": "Wide category; many open-source STL designs for 3D printing. Connects to 38 mm shop vac hose. Effectiveness varies by print quality and brush type.",
+        "source_ids": [4, 3]
+      }
+    },
+    {
+      "id": "controller_buildbotics",
+      "type": "controller",
+      "name": "Buildbotics CNC Controller",
+      "sku": "buildbotics_controller",
+      "attributes": {
+        "brand": "Buildbotics",
+        "controller_kind": "external_box",
+        "grbl_compatible": false,
+        "num_axes_supported": 4,
+        "stepper_driver": "Trinamic TMC2660",
+        "web_interface": true,
+        "note": "Linux-based (Raspberry Pi). Web UI + touchscreen optional. Used in Onefinity machines. Not GRBL — uses own G-code dialect; most CAM software targets it fine. Supports 4-axis (A-axis rotary).",
+        "source_ids": [1, 4]
+      }
+    },
+    {
+      "id": "controller_masso_g3",
+      "type": "controller",
+      "name": "Masso G3 CNC Controller",
+      "sku": "masso_g3",
+      "attributes": {
+        "brand": "Masso",
+        "controller_kind": "external_box",
+        "grbl_compatible": false,
+        "num_axes_supported": 5,
+        "touchscreen_included": true,
+        "pc_required": false,
+        "note": "Standalone industrial-grade controller. No PC needed; runs from internal flash. Supports spindle VFD control via RS485/Modbus, probing, tool length sensor. Preferred for Avid PRO4824 semi-pro builds.",
+        "source_ids": [2, 3]
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "c1",
+      "rule": "spindle_mount_fit",
+      "description": "A router or VFD spindle can only be mounted on a machine whose spindle_mount_diameter_mm matches the spindle's base_diameter_mm. 65 mm mounts (Shapeoko, X-Carve, BobsCNC, Genmitsu) accept 65 mm body routers/spindles. 80 mm mounts (Onefinity, Avid) accept 80 mm body spindles. 52 mm mounts (Carvera, PROVerXL 4030) use integrated spindles only.",
+      "applies_to_types": ["cnc_machine", "spindle"]
+    },
+    {
+      "id": "c2",
+      "rule": "collet_shank_fit",
+      "description": "A bit's shank_diameter_inch must be <= the collet's maximum capacity. Makita RT0701C and DeWalt DWP611 accept only 1/4 inch shank natively. 1/8 inch shank bits require a 1/4-to-1/8 inch precision reducer sleeve (not recommended for production) OR an ER11/ER16 collet set on a VFD spindle. Never force a 1/4 inch shank into an ER11 (max 7 mm ≈ 0.276 inch — fits, but tight; verify collet rating).",
+      "applies_to_types": ["spindle", "bit"]
+    },
+    {
+      "id": "c3",
+      "rule": "er_collet_range",
+      "description": "ER11 collet accepts 1/16 to 1/4 inch shanks. ER16 collet accepts 1/16 to 3/8 inch shanks. ER20 collet accepts 1/16 to 1/2 inch shanks. Bit shank_diameter_inch must fall within the spindle's ER collet range when er_collet_compatible is true.",
+      "applies_to_types": ["spindle", "bit"]
+    },
+    {
+      "id": "c4",
+      "rule": "dust_shoe_router_diameter",
+      "description": "A dust shoe's fits_router_diameter_mm must match the mounted spindle's base_diameter_mm. 65 mm dust shoes (SuckIt, Rockler, generic) only fit 65 mm body routers. They do NOT fit 80 mm VFD spindles without an 80-to-65 mm adapter ring.",
+      "applies_to_types": ["dust_shoe", "spindle"]
+    },
+    {
+      "id": "c5",
+      "rule": "drag_knife_spindle_off",
+      "description": "The drag knife bit must be used with spindle not rotating (S0 in G-code or relay off). Using a drag knife in a spinning collet will destroy the tool and workpiece. CAM must output tangential knife offsets, not a rotating toolpath.",
+      "applies_to_types": ["bit", "spindle"]
+    },
+    {
+      "id": "c6",
+      "rule": "micro_endmill_rigidity",
+      "description": "The 1/16 inch micro endmill is unsuitable for belt-drive machines (Shapeoko 4, BobsCNC E4, X-Carve Pro) at feeds above 500 mm/min due to deflection amplified by belt compliance. Ballscrew machines (Onefinity, Avid, Carvera, Genmitsu PROVerXL) are required for micro endmill work.",
+      "applies_to_types": ["cnc_machine", "bit"]
+    },
+    {
+      "id": "c7",
+      "rule": "vfd_spindle_requires_separate_controller_wiring",
+      "description": "VFD spindles (1.5 kW air-cooled, 2.2 kW water-cooled) require a separate VFD drive unit wired between the controller and spindle. Machines with integrated spindles (Carvera, Genmitsu PROVerXL) cannot accept VFD spindle upgrades without significant electrical modification. Masso G3 and Buildbotics both support VFD RS485/Modbus spindle control.",
+      "applies_to_types": ["cnc_machine", "spindle", "controller"]
+    },
+    {
+      "id": "c8",
+      "rule": "vacuum_table_airtight_perimeter",
+      "description": "The DIY vacuum table fixture only holds stock that fully covers at least one vacuum zone and forms an airtight perimeter seal. Stock with large through-holes or irregular perimeters will not hold. Works best with sheet stock 300x300 mm or larger with flat underside.",
+      "applies_to_types": ["fixture"]
+    }
+  ]
+}

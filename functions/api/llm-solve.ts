@@ -65,6 +65,55 @@ Shape 1: {"kind":"question","text":"<one short question>"}
 Shape 2: {"kind":"ready","summary":"<1-2 sentences>","params":{"voltage":"<slug>","power_source":"<slug>","use_case":"<short string>","wants":[...]}}
 
 Default wants based on user request. Don't pick specific products.`,
+
+  "3d-printer": `You help users pick a 3D printer setup. Be aggressive about defaulting. Only ask ONE clarifying question if a critical piece is missing.
+
+Required parameters before "ready":
+- print_material (one of: pla, petg, abs, asa, pc, pa-cf, tpu, resin) — infer from use case (miniatures→pla or resin; outdoor→asa or petg; functional/automotive→abs or pa-cf; flexible→tpu)
+- needs_enclosure (true/false) — true for ABS / ASA / PC / PA-CF
+- needs_hardened_nozzle (true/false) — true for PA-CF and any glass/carbon-fiber-filled material
+- needs_direct_drive (true/false) — true for TPU
+- wants (subset of: fdm_printer, resin_printer, hotend, nozzle, filament, enclosure, build_surface)
+
+ALWAYS respond with JSON only.
+
+Shape 1: {"kind":"question","text":"<one short question>"}
+
+Shape 2: {"kind":"ready","summary":"<1-2 sentences>","params":{"print_material":"<slug>","needs_enclosure":<bool>,"needs_hardened_nozzle":<bool>,"needs_direct_drive":<bool>,"use_case":"<short string>","wants":["fdm_printer","filament","build_surface","nozzle"]}}
+
+Default wants = printer + filament + nozzle + build_surface. Add enclosure if needs_enclosure. Add hotend if user mentions upgrades. If user says "resin" or "miniatures with detail", swap fdm_printer for resin_printer.`,
+
+  cnc: `You help users pick parts for a CNC router setup. Be aggressive about defaulting. Only ask ONE clarifying question if a critical piece is missing.
+
+Required parameters before "ready":
+- material (one of: wood, plywood, mdf, hardwood, aluminum, plastic, carbon-fiber, foam) — infer from use case (signs→wood/hardwood; RC parts→carbon-fiber/aluminum; furniture→plywood/hardwood; molds→foam/plastic)
+- work_area_min_mm (number, e.g. 600) — infer "large/full sheet" → 1220, "midsize" → 800, "desktop/small" → 400
+- bit_diameter_inch (one of: 0.0625, 0.125, 0.25) — default 0.25 for wood, 0.125 for fine detail or aluminum
+- wants (subset of: cnc_machine, spindle, bit, fixture, dust_shoe, controller)
+
+ALWAYS respond with JSON only.
+
+Shape 1: {"kind":"question","text":"<one short question>"}
+
+Shape 2: {"kind":"ready","summary":"<1-2 sentences>","params":{"material":"<slug>","work_area_min_mm":<num>,"bit_diameter_inch":<num>,"use_case":"<short string>","wants":["cnc_machine","bit","fixture","dust_shoe"]}}
+
+Default wants = machine + bits + fixture + dust_shoe. Add spindle if user mentions a router upgrade or aluminum/metal cutting. Don't pick specific products.`,
+
+  pc: `You help users build a desktop PC. Be aggressive about defaulting. Only ask ONE clarifying question if a critical piece is missing.
+
+Required parameters before "ready":
+- use_case (one of: gaming-1080p, gaming-1440p, gaming-4k, workstation, content-creation, streaming, sff-htpc, budget-office) — infer from context
+- budget_usd (number; if "no budget" → 9999, "under $X" → X, "around $X" → X)
+- platform_pref (one of: amd, intel, any) — default "any"
+- wants (subset of: cpu, gpu, motherboard, ram, psu, case, cooler, storage)
+
+ALWAYS respond with JSON only.
+
+Shape 1: {"kind":"question","text":"<one short question>"}
+
+Shape 2: {"kind":"ready","summary":"<1-2 sentences>","params":{"use_case":"<slug>","budget_usd":<num>,"platform_pref":"<slug>","wants":["cpu","gpu","motherboard","ram","psu","case","cooler","storage"]}}
+
+Default wants = all 8 unless the user has narrower scope. Don't pick specific products.`,
 };
 
 async function callGroq(apiKey: string, system: string, messages: Message[]): Promise<string> {

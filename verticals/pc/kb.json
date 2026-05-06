@@ -1,0 +1,897 @@
+{
+  "version": "0.1",
+  "vertical": "pc",
+  "data_quality": "v0.1 best-effort population from cited public sources. Each entity's compat claims trace to source_ids on its attributes. Verification pass required before production launch; this dataset is sized to prove the engine end-to-end, not for general consumer trust.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "AMD product pages (public spec sheets)",
+      "url": "https://www.amd.com/en/products/processors/desktops/ryzen.html",
+      "ingest_date": "2026-05-06",
+      "scope": "CPU specs: base/boost clocks, TDP, socket, memory support, iGPU. GPU specs: VRAM, TDP, recommended PSU, dimensions."
+    },
+    {
+      "id": 1,
+      "name": "Intel ARK / product pages (public spec sheets)",
+      "url": "https://ark.intel.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "CPU specs: base/boost clocks, TDP, socket, memory support, iGPU presence."
+    },
+    {
+      "id": 2,
+      "name": "NVIDIA product pages (public spec sheets)",
+      "url": "https://www.nvidia.com/en-us/geforce/graphics-cards/",
+      "ingest_date": "2026-05-06",
+      "scope": "GPU specs: VRAM, VRAM type, TDP, recommended PSU wattage, card length, power connector requirements, PCIe generation."
+    },
+    {
+      "id": 3,
+      "name": "Motherboard manufacturer product pages — ASUS, MSI, Gigabyte, ASRock",
+      "url": "https://www.asus.com/motherboards-components/motherboards/",
+      "ingest_date": "2026-05-06",
+      "scope": "Motherboard specs: chipset, socket, form factor, memory slots, max memory speed, M.2 slot count, WiFi generation."
+    },
+    {
+      "id": 4,
+      "name": "Memory/PSU/storage manufacturer pages — Corsair, Kingston, Samsung, G.Skill, Crucial, Seasonic, be quiet!, MSI PSU",
+      "url": "https://www.corsair.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "RAM specs: capacity, speed, CAS latency, voltage. PSU specs: wattage, efficiency, modularity, ATX revision, connector count. Storage specs: capacity, interface, sequential read speed."
+    },
+    {
+      "id": 5,
+      "name": "PCPartPicker public component database",
+      "url": "https://pcpartpicker.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Cross-reference for form factor compatibility, dimensions, compatibility flags. Public specs only — no scraping of pricing engine."
+    },
+    {
+      "id": 6,
+      "name": "r/buildapc wiki + Tom's Hardware spec articles (public)",
+      "url": "https://www.tomshardware.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Community-validated compatibility notes, recommended PSU headroom conventions, cooler TDP rating methodology."
+    },
+    {
+      "id": 7,
+      "name": "Hardware Unboxed + Gamers Nexus benchmark data summaries (public YouTube descriptions and written articles)",
+      "url": "https://gamersnexus.net/",
+      "ingest_date": "2026-05-06",
+      "scope": "Real-world TDP / power draw cross-check, cooler performance tier rankings, GPU real-world length measurements."
+    }
+  ],
+  "entities": [
+    {
+      "id": "amd_ryzen7_7800x3d",
+      "type": "cpu",
+      "name": "AMD Ryzen 7 7800X3D",
+      "sku": "amd_100-100000910wof",
+      "attributes": {
+        "brand": "amd",
+        "socket": "AM5",
+        "tdp_w": 120,
+        "base_clock_ghz": 4.2,
+        "boost_clock_ghz": 5.0,
+        "cores": 8,
+        "threads": 16,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5200,
+        "igpu": "rdna2_2cu",
+        "source_ids": [0, 5, 6, 7]
+      }
+    },
+    {
+      "id": "amd_ryzen9_7950x3d",
+      "type": "cpu",
+      "name": "AMD Ryzen 9 7950X3D",
+      "sku": "amd_100-100000514wof",
+      "attributes": {
+        "brand": "amd",
+        "socket": "AM5",
+        "tdp_w": 120,
+        "base_clock_ghz": 4.2,
+        "boost_clock_ghz": 5.7,
+        "cores": 16,
+        "threads": 32,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5200,
+        "igpu": "rdna2_2cu",
+        "source_ids": [0, 5, 6, 7]
+      }
+    },
+    {
+      "id": "amd_ryzen5_7600x",
+      "type": "cpu",
+      "name": "AMD Ryzen 5 7600X",
+      "sku": "amd_100-100000593wof",
+      "attributes": {
+        "brand": "amd",
+        "socket": "AM5",
+        "tdp_w": 105,
+        "base_clock_ghz": 4.7,
+        "boost_clock_ghz": 5.3,
+        "cores": 6,
+        "threads": 12,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5200,
+        "igpu": "rdna2_2cu",
+        "source_ids": [0, 5, 6]
+      }
+    },
+    {
+      "id": "amd_ryzen9_9900x",
+      "type": "cpu",
+      "name": "AMD Ryzen 9 9900X",
+      "sku": "amd_100-100001353wof",
+      "attributes": {
+        "brand": "amd",
+        "socket": "AM5",
+        "tdp_w": 120,
+        "base_clock_ghz": 4.4,
+        "boost_clock_ghz": 5.6,
+        "cores": 12,
+        "threads": 24,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5600,
+        "igpu": "rdna2_2cu",
+        "source_ids": [0, 5, 6]
+      }
+    },
+    {
+      "id": "intel_core_ultra9_285k",
+      "type": "cpu",
+      "name": "Intel Core Ultra 9 285K",
+      "sku": "intel_bx80768285k",
+      "attributes": {
+        "brand": "intel",
+        "socket": "LGA1851",
+        "tdp_w": 125,
+        "base_clock_ghz": 3.7,
+        "boost_clock_ghz": 5.7,
+        "cores": 24,
+        "threads": 24,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 6400,
+        "igpu": "intel_uhd770",
+        "source_ids": [1, 5, 6, 7]
+      }
+    },
+    {
+      "id": "intel_core_ultra7_265k",
+      "type": "cpu",
+      "name": "Intel Core Ultra 7 265K",
+      "sku": "intel_bx80768265k",
+      "attributes": {
+        "brand": "intel",
+        "socket": "LGA1851",
+        "tdp_w": 125,
+        "base_clock_ghz": 3.9,
+        "boost_clock_ghz": 5.5,
+        "cores": 20,
+        "threads": 20,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 6400,
+        "igpu": "intel_uhd770",
+        "source_ids": [1, 5, 6]
+      }
+    },
+    {
+      "id": "intel_core_i5_14600k",
+      "type": "cpu",
+      "name": "Intel Core i5-14600K",
+      "sku": "intel_bx8071514600k",
+      "attributes": {
+        "brand": "intel",
+        "socket": "LGA1700",
+        "tdp_w": 125,
+        "base_clock_ghz": 3.5,
+        "boost_clock_ghz": 5.3,
+        "cores": 14,
+        "threads": 20,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5600,
+        "igpu": "intel_uhd770",
+        "source_ids": [1, 5, 6]
+      }
+    },
+    {
+      "id": "amd_ryzen5_9600x",
+      "type": "cpu",
+      "name": "AMD Ryzen 5 9600X",
+      "sku": "amd_100-100001352wof",
+      "attributes": {
+        "brand": "amd",
+        "socket": "AM5",
+        "tdp_w": 65,
+        "base_clock_ghz": 3.9,
+        "boost_clock_ghz": 5.4,
+        "cores": 6,
+        "threads": 12,
+        "memory_type": "DDR5",
+        "max_memory_mt_s": 5600,
+        "igpu": "rdna2_2cu",
+        "source_ids": [0, 5, 6]
+      }
+    },
+    {
+      "id": "nvidia_rtx5090",
+      "type": "gpu",
+      "name": "NVIDIA GeForce RTX 5090",
+      "sku": "nvidia_rtx5090_fe",
+      "attributes": {
+        "brand": "nvidia",
+        "vram_gb": 32,
+        "vram_type": "GDDR7",
+        "tdp_w": 575,
+        "recommended_psu_w": 1000,
+        "length_mm": 336,
+        "slot_width": 3,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 5,
+        "source_ids": [2, 5, 7]
+      }
+    },
+    {
+      "id": "nvidia_rtx5080",
+      "type": "gpu",
+      "name": "NVIDIA GeForce RTX 5080",
+      "sku": "nvidia_rtx5080_fe",
+      "attributes": {
+        "brand": "nvidia",
+        "vram_gb": 16,
+        "vram_type": "GDDR7",
+        "tdp_w": 360,
+        "recommended_psu_w": 850,
+        "length_mm": 304,
+        "slot_width": 3,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 5,
+        "source_ids": [2, 5, 7]
+      }
+    },
+    {
+      "id": "nvidia_rtx5070ti",
+      "type": "gpu",
+      "name": "NVIDIA GeForce RTX 5070 Ti",
+      "sku": "nvidia_rtx5070ti_fe",
+      "attributes": {
+        "brand": "nvidia",
+        "vram_gb": 16,
+        "vram_type": "GDDR7",
+        "tdp_w": 300,
+        "recommended_psu_w": 750,
+        "length_mm": 285,
+        "slot_width": 3,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 5,
+        "source_ids": [2, 5, 7]
+      }
+    },
+    {
+      "id": "nvidia_rtx5060",
+      "type": "gpu",
+      "name": "NVIDIA GeForce RTX 5060",
+      "sku": "nvidia_rtx5060_fe",
+      "attributes": {
+        "brand": "nvidia",
+        "vram_gb": 8,
+        "vram_type": "GDDR7",
+        "tdp_w": 150,
+        "recommended_psu_w": 550,
+        "length_mm": 240,
+        "slot_width": 2,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 5,
+        "source_ids": [2, 5, 6]
+      }
+    },
+    {
+      "id": "amd_rx9070xt",
+      "type": "gpu",
+      "name": "AMD Radeon RX 9070 XT",
+      "sku": "amd_rx9070xt_ref",
+      "attributes": {
+        "brand": "amd",
+        "vram_gb": 16,
+        "vram_type": "GDDR6",
+        "tdp_w": 304,
+        "recommended_psu_w": 800,
+        "length_mm": 287,
+        "slot_width": 3,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 5,
+        "source_ids": [0, 5, 7]
+      }
+    },
+    {
+      "id": "amd_rx9070",
+      "type": "gpu",
+      "name": "AMD Radeon RX 9070",
+      "sku": "amd_rx9070_ref",
+      "attributes": {
+        "brand": "amd",
+        "vram_gb": 16,
+        "vram_type": "GDDR6",
+        "tdp_w": 220,
+        "recommended_psu_w": 700,
+        "length_mm": 267,
+        "slot_width": 2,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 5,
+        "source_ids": [0, 5, 7]
+      }
+    },
+    {
+      "id": "intel_arc_b580",
+      "type": "gpu",
+      "name": "Intel Arc B580",
+      "sku": "intel_arc_b580_12g",
+      "attributes": {
+        "brand": "intel",
+        "vram_gb": 12,
+        "vram_type": "GDDR6",
+        "tdp_w": 190,
+        "recommended_psu_w": 550,
+        "length_mm": 272,
+        "slot_width": 2,
+        "power_connectors": "1x_16pin_12v2x6",
+        "pci_gen": 4,
+        "source_ids": [5, 6, 7]
+      }
+    },
+    {
+      "id": "asus_rog_strix_x870e_e",
+      "type": "motherboard",
+      "name": "ASUS ROG Strix X870E-E Gaming WiFi",
+      "sku": "asus_rog_strix_x870e_e_gaming_wifi",
+      "attributes": {
+        "brand": "asus",
+        "chipset": "X870E",
+        "socket": "AM5",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 8000,
+        "memory_slots": 4,
+        "max_memory_gb": 256,
+        "m2_slots": 5,
+        "wifi": "wifi7",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "msi_mpg_b850_tomahawk",
+      "type": "motherboard",
+      "name": "MSI MPG B850 Tomahawk WiFi",
+      "sku": "msi_mpg_b850_tomahawk_wifi",
+      "attributes": {
+        "brand": "msi",
+        "chipset": "B850",
+        "socket": "AM5",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 8000,
+        "memory_slots": 4,
+        "max_memory_gb": 256,
+        "m2_slots": 4,
+        "wifi": "wifi7",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "gigabyte_x870_aorus_elite_wifi7",
+      "type": "motherboard",
+      "name": "Gigabyte X870 Aorus Elite WiFi7",
+      "sku": "gigabyte_x870_aorus_elite_wifi7",
+      "attributes": {
+        "brand": "gigabyte",
+        "chipset": "X870",
+        "socket": "AM5",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 8000,
+        "memory_slots": 4,
+        "max_memory_gb": 256,
+        "m2_slots": 4,
+        "wifi": "wifi7",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "asus_proart_z890_creator",
+      "type": "motherboard",
+      "name": "ASUS ProArt Z890 Creator WiFi",
+      "sku": "asus_proart_z890_creator_wifi",
+      "attributes": {
+        "brand": "asus",
+        "chipset": "Z890",
+        "socket": "LGA1851",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 9200,
+        "memory_slots": 4,
+        "max_memory_gb": 256,
+        "m2_slots": 5,
+        "wifi": "wifi7",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "msi_z890_carbon_wifi",
+      "type": "motherboard",
+      "name": "MSI MEG Z890 Carbon WiFi",
+      "sku": "msi_meg_z890_carbon_wifi",
+      "attributes": {
+        "brand": "msi",
+        "chipset": "Z890",
+        "socket": "LGA1851",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 9200,
+        "memory_slots": 4,
+        "max_memory_gb": 256,
+        "m2_slots": 5,
+        "wifi": "wifi7",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "asrock_b650m_pro_rs",
+      "type": "motherboard",
+      "name": "ASRock B650M Pro RS",
+      "sku": "asrock_b650m_pro_rs",
+      "attributes": {
+        "brand": "asrock",
+        "chipset": "B650",
+        "socket": "AM5",
+        "form_factor": "mATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 6400,
+        "memory_slots": 4,
+        "max_memory_gb": 128,
+        "m2_slots": 2,
+        "wifi": "none",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "asus_tuf_b760_plus",
+      "type": "motherboard",
+      "name": "ASUS TUF Gaming B760-Plus WiFi",
+      "sku": "asus_tuf_gaming_b760_plus_wifi_d4",
+      "attributes": {
+        "brand": "asus",
+        "chipset": "B760",
+        "socket": "LGA1700",
+        "form_factor": "ATX",
+        "memory_type": "DDR5",
+        "max_memory_speed_mt_s": 7200,
+        "memory_slots": 4,
+        "max_memory_gb": 192,
+        "m2_slots": 3,
+        "wifi": "wifi6e",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "gskill_trident_z5_rgb_32gb_ddr5_6000_cl30",
+      "type": "ram",
+      "name": "G.Skill Trident Z5 RGB 32GB DDR5-6000 CL30",
+      "sku": "gskill_f5_6000j3040f16gx2_tz5rk",
+      "attributes": {
+        "brand": "gskill",
+        "capacity_gb_per_kit": 32,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 16,
+        "ddr_gen": 5,
+        "speed_mt_s": 6000,
+        "cas_latency": 30,
+        "voltage_v": 1.35,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "corsair_vengeance_64gb_ddr5_6000_cl30",
+      "type": "ram",
+      "name": "Corsair Vengeance 64GB DDR5-6000 CL30",
+      "sku": "corsair_cmk64gx5m2b6000c30",
+      "attributes": {
+        "brand": "corsair",
+        "capacity_gb_per_kit": 64,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 32,
+        "ddr_gen": 5,
+        "speed_mt_s": 6000,
+        "cas_latency": 30,
+        "voltage_v": 1.35,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "kingston_fury_beast_32gb_ddr5_6400",
+      "type": "ram",
+      "name": "Kingston Fury Beast 32GB DDR5-6400",
+      "sku": "kingston_kf564c32bbk2_32",
+      "attributes": {
+        "brand": "kingston",
+        "capacity_gb_per_kit": 32,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 16,
+        "ddr_gen": 5,
+        "speed_mt_s": 6400,
+        "cas_latency": 32,
+        "voltage_v": 1.35,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "gskill_flare_x5_32gb_ddr5_5600",
+      "type": "ram",
+      "name": "G.Skill Flare X5 32GB DDR5-5600 CL36",
+      "sku": "gskill_f5_5600j3636f16gx2_fx5",
+      "attributes": {
+        "brand": "gskill",
+        "capacity_gb_per_kit": 32,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 16,
+        "ddr_gen": 5,
+        "speed_mt_s": 5600,
+        "cas_latency": 36,
+        "voltage_v": 1.10,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "crucial_pro_32gb_ddr5_5600",
+      "type": "ram",
+      "name": "Crucial Pro 32GB DDR5-5600 CL46",
+      "sku": "crucial_cp2k16g56c46u5",
+      "attributes": {
+        "brand": "crucial",
+        "capacity_gb_per_kit": 32,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 16,
+        "ddr_gen": 5,
+        "speed_mt_s": 5600,
+        "cas_latency": 46,
+        "voltage_v": 1.10,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "corsair_dominator_96gb_ddr5_6400",
+      "type": "ram",
+      "name": "Corsair Dominator Platinum RGB 96GB DDR5-6400 CL32",
+      "sku": "corsair_cmdk96gx5m2b6400c32",
+      "attributes": {
+        "brand": "corsair",
+        "capacity_gb_per_kit": 96,
+        "sticks_in_kit": 2,
+        "capacity_per_stick_gb": 48,
+        "ddr_gen": 5,
+        "speed_mt_s": 6400,
+        "cas_latency": 32,
+        "voltage_v": 1.40,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "corsair_rm1000x_shift",
+      "type": "psu",
+      "name": "Corsair RM1000x SHIFT ATX 3.1 1000W",
+      "sku": "corsair_cp_9020254_na",
+      "attributes": {
+        "brand": "corsair",
+        "wattage_w": 1000,
+        "efficiency": "80plus_gold",
+        "modularity": "full",
+        "form_factor": "ATX 3.1",
+        "connectors_12v2x6": 2,
+        "length_mm": 160,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "bequiet_pure_power_12m_850w",
+      "type": "psu",
+      "name": "be quiet! Pure Power 12 M 850W",
+      "sku": "bequiet_bn343",
+      "attributes": {
+        "brand": "be quiet!",
+        "wattage_w": 850,
+        "efficiency": "80plus_gold",
+        "modularity": "full",
+        "form_factor": "ATX 3.1",
+        "connectors_12v2x6": 1,
+        "length_mm": 150,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "seasonic_focus_gx_1000",
+      "type": "psu",
+      "name": "Seasonic Focus GX-1000 ATX 3.1",
+      "sku": "seasonic_focus_gx_1000_atx3",
+      "attributes": {
+        "brand": "seasonic",
+        "wattage_w": 1000,
+        "efficiency": "80plus_gold",
+        "modularity": "full",
+        "form_factor": "ATX 3.1",
+        "connectors_12v2x6": 2,
+        "length_mm": 140,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "corsair_rm850e_atx31",
+      "type": "psu",
+      "name": "Corsair RM850e ATX 3.1 850W",
+      "sku": "corsair_cp_9020264_na",
+      "attributes": {
+        "brand": "corsair",
+        "wattage_w": 850,
+        "efficiency": "80plus_gold",
+        "modularity": "full",
+        "form_factor": "ATX 3.1",
+        "connectors_12v2x6": 1,
+        "length_mm": 150,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "msi_mag_a1250gl_atx31",
+      "type": "psu",
+      "name": "MSI MAG A1250GL ATX 3.1 1250W",
+      "sku": "msi_mag_a1250gl_pcie5",
+      "attributes": {
+        "brand": "msi",
+        "wattage_w": 1250,
+        "efficiency": "80plus_gold",
+        "modularity": "full",
+        "form_factor": "ATX 3.1",
+        "connectors_12v2x6": 2,
+        "length_mm": 160,
+        "source_ids": [4, 5]
+      }
+    },
+    {
+      "id": "fractal_north_xl",
+      "type": "case",
+      "name": "Fractal Design North XL",
+      "sku": "fractal_fd_c_nor1x_01",
+      "attributes": {
+        "brand": "fractal",
+        "form_factors_supported": ["ATX", "mATX", "ITX", "E-ATX"],
+        "max_gpu_length_mm": 420,
+        "max_cpu_cooler_height_mm": 185,
+        "max_radiator_top_mm": 420,
+        "included_fans": 3,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "lian_li_o11d_evo_xl",
+      "type": "case",
+      "name": "Lian Li O11D EVO XL",
+      "sku": "lian_li_g99_o11dexl_x",
+      "attributes": {
+        "brand": "lian li",
+        "form_factors_supported": ["ATX", "mATX", "E-ATX"],
+        "max_gpu_length_mm": 446,
+        "max_cpu_cooler_height_mm": 167,
+        "max_radiator_top_mm": 420,
+        "included_fans": 0,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "phanteks_nv9",
+      "type": "case",
+      "name": "Phanteks NV9",
+      "sku": "phanteks_ph_nv923tg_dbk01",
+      "attributes": {
+        "brand": "phanteks",
+        "form_factors_supported": ["ATX", "mATX", "E-ATX"],
+        "max_gpu_length_mm": 503,
+        "max_cpu_cooler_height_mm": 185,
+        "max_radiator_top_mm": 480,
+        "included_fans": 3,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "nzxt_h7_elite",
+      "type": "case",
+      "name": "NZXT H7 Elite",
+      "sku": "nzxt_cc_h71eg_01",
+      "attributes": {
+        "brand": "nzxt",
+        "form_factors_supported": ["ATX", "mATX", "ITX"],
+        "max_gpu_length_mm": 400,
+        "max_cpu_cooler_height_mm": 185,
+        "max_radiator_top_mm": 360,
+        "included_fans": 3,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "corsair_5000d_airflow",
+      "type": "case",
+      "name": "Corsair 5000D Airflow",
+      "sku": "corsair_cc_9011210_ww",
+      "attributes": {
+        "brand": "corsair",
+        "form_factors_supported": ["ATX", "mATX", "ITX"],
+        "max_gpu_length_mm": 420,
+        "max_cpu_cooler_height_mm": 170,
+        "max_radiator_top_mm": 360,
+        "included_fans": 3,
+        "source_ids": [5, 6]
+      }
+    },
+    {
+      "id": "noctua_nh_d15_g2",
+      "type": "cooler",
+      "name": "Noctua NH-D15 G2",
+      "sku": "noctua_nh_d15_g2",
+      "attributes": {
+        "brand": "noctua",
+        "kind": "air",
+        "height_mm": 168,
+        "radiator_size_mm": null,
+        "sockets_supported": ["AM5", "LGA1700", "LGA1851"],
+        "tdp_rating_w": 320,
+        "source_ids": [5, 6, 7]
+      }
+    },
+    {
+      "id": "arctic_liquid_freezer_iii_360",
+      "type": "cooler",
+      "name": "Arctic Liquid Freezer III 360",
+      "sku": "arctic_acfre00137a",
+      "attributes": {
+        "brand": "arctic",
+        "kind": "aio",
+        "height_mm": null,
+        "radiator_size_mm": 360,
+        "sockets_supported": ["AM5", "LGA1700", "LGA1851"],
+        "tdp_rating_w": 350,
+        "source_ids": [5, 6, 7]
+      }
+    },
+    {
+      "id": "corsair_icue_h170i_elite_lcd_420",
+      "type": "cooler",
+      "name": "Corsair iCUE H170i Elite LCD 420mm",
+      "sku": "corsair_cw_9060074_ww",
+      "attributes": {
+        "brand": "corsair",
+        "kind": "aio",
+        "height_mm": null,
+        "radiator_size_mm": 420,
+        "sockets_supported": ["AM5", "LGA1700", "LGA1851"],
+        "tdp_rating_w": 400,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "thermalright_peerless_assassin_120_se",
+      "type": "cooler",
+      "name": "Thermalright Peerless Assassin 120 SE",
+      "sku": "thermalright_pa120_se_d3",
+      "attributes": {
+        "brand": "thermalright",
+        "kind": "air",
+        "height_mm": 157,
+        "radiator_size_mm": null,
+        "sockets_supported": ["AM5", "LGA1700", "LGA1851"],
+        "tdp_rating_w": 260,
+        "source_ids": [5, 6, 7]
+      }
+    },
+    {
+      "id": "samsung_990_pro_2tb",
+      "type": "storage",
+      "name": "Samsung 990 Pro 2TB NVMe",
+      "sku": "samsung_mz_v9p2t0bam",
+      "attributes": {
+        "brand": "samsung",
+        "capacity_tb": 2,
+        "interface": "PCIe 4.0 x4",
+        "form_factor": "M.2 2280",
+        "read_seq_mb_s": 7450,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "wd_sn850x_4tb",
+      "type": "storage",
+      "name": "WD Black SN850X 4TB NVMe",
+      "sku": "wd_wds400t2x0e",
+      "attributes": {
+        "brand": "wd",
+        "capacity_tb": 4,
+        "interface": "PCIe 4.0 x4",
+        "form_factor": "M.2 2280",
+        "read_seq_mb_s": 7300,
+        "source_ids": [4, 5, 6]
+      }
+    },
+    {
+      "id": "crucial_t705_2tb_gen5",
+      "type": "storage",
+      "name": "Crucial T705 2TB Gen5 NVMe",
+      "sku": "crucial_ct2000t705ssd3",
+      "attributes": {
+        "brand": "crucial",
+        "capacity_tb": 2,
+        "interface": "PCIe 5.0 x4",
+        "form_factor": "M.2 2280",
+        "read_seq_mb_s": 14100,
+        "source_ids": [4, 5, 7]
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "cpu_socket_matches_motherboard",
+      "description": "CPU socket must match motherboard socket exactly.",
+      "rule": "cpu.attributes.socket == motherboard.attributes.socket",
+      "error_message": "CPU socket {cpu.socket} is incompatible with motherboard socket {motherboard.socket}."
+    },
+    {
+      "id": "ram_speed_within_cpu_max",
+      "description": "RAM speed (MT/s) must not exceed CPU's maximum supported memory speed.",
+      "rule": "ram.attributes.speed_mt_s <= cpu.attributes.max_memory_mt_s",
+      "error_message": "RAM speed {ram.speed_mt_s} MT/s exceeds CPU max of {cpu.max_memory_mt_s} MT/s; XMP profile will be capped or may not post."
+    },
+    {
+      "id": "ram_speed_within_motherboard_max",
+      "description": "RAM speed (MT/s) must not exceed motherboard's maximum supported memory speed.",
+      "rule": "ram.attributes.speed_mt_s <= motherboard.attributes.max_memory_speed_mt_s",
+      "error_message": "RAM speed {ram.speed_mt_s} MT/s exceeds motherboard max of {motherboard.max_memory_speed_mt_s} MT/s."
+    },
+    {
+      "id": "motherboard_fits_case",
+      "description": "Motherboard form factor must be in the list of form factors supported by the case.",
+      "rule": "motherboard.attributes.form_factor in case.attributes.form_factors_supported",
+      "error_message": "Motherboard form factor {motherboard.form_factor} is not supported by case {case.name} (supports: {case.form_factors_supported})."
+    },
+    {
+      "id": "gpu_length_fits_case",
+      "description": "GPU length must not exceed case's maximum GPU clearance.",
+      "rule": "gpu.attributes.length_mm <= case.attributes.max_gpu_length_mm",
+      "error_message": "GPU length {gpu.length_mm}mm exceeds case max GPU clearance of {case.max_gpu_length_mm}mm."
+    },
+    {
+      "id": "cpu_cooler_height_fits_case",
+      "description": "Air cooler height must not exceed case's maximum CPU cooler height clearance. Constraint skipped for AIO coolers.",
+      "rule": "cooler.attributes.kind == 'aio' OR cooler.attributes.height_mm <= case.attributes.max_cpu_cooler_height_mm",
+      "error_message": "Air cooler height {cooler.height_mm}mm exceeds case max CPU cooler height of {case.max_cpu_cooler_height_mm}mm."
+    },
+    {
+      "id": "cooler_supports_cpu_socket",
+      "description": "CPU cooler must explicitly list the CPU's socket in its supported sockets.",
+      "rule": "cpu.attributes.socket in cooler.attributes.sockets_supported",
+      "error_message": "Cooler {cooler.name} does not list support for socket {cpu.socket}."
+    },
+    {
+      "id": "psu_wattage_covers_system",
+      "description": "PSU wattage must be >= GPU recommended PSU wattage and >= cpu_tdp + gpu_tdp + 100W headroom.",
+      "rule": "psu.attributes.wattage_w >= gpu.attributes.recommended_psu_w AND psu.attributes.wattage_w >= (cpu.attributes.tdp_w + gpu.attributes.tdp_w + 100)",
+      "error_message": "PSU {psu.wattage_w}W is insufficient. GPU recommends {gpu.recommended_psu_w}W; system draw estimate is {cpu.tdp_w + gpu.tdp_w + 100}W."
+    },
+    {
+      "id": "psu_has_12v2x6_if_gpu_requires",
+      "description": "If GPU requires a 12V-2x6 (16-pin) connector, PSU must have at least one native 12V-2x6 connector.",
+      "rule": "gpu.attributes.power_connectors != '1x_16pin_12v2x6' OR psu.attributes.connectors_12v2x6 >= 1",
+      "error_message": "GPU requires a 12V-2x6 (16-pin) connector but PSU {psu.name} has none natively. An adapter can be used but is not recommended for high-TDP cards."
+    },
+    {
+      "id": "m2_slots_cover_storage_drives",
+      "description": "Motherboard must have at least as many M.2 slots as the number of M.2 NVMe drives selected.",
+      "rule": "motherboard.attributes.m2_slots >= count(storage where storage.attributes.form_factor == 'M.2 2280')",
+      "error_message": "Motherboard has only {motherboard.m2_slots} M.2 slot(s) but {storage_count} M.2 NVMe drive(s) selected."
+    }
+  ]
+}

@@ -1,0 +1,623 @@
+{
+  "version": "0.1",
+  "vertical": "3d-printer",
+  "data_quality": "v0.1 best-effort seed populated from cited public sources. Each entity's compat claims trace to source_ids on its attributes. Verification pass required before production launch; this dataset is sized to prove the engine end-to-end, not for general consumer trust.",
+  "sources": [
+    {
+      "id": 0,
+      "name": "Bambu Lab official product pages and spec sheets",
+      "url": "https://bambulab.com/en/compare/printer",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for Bambu printer build volumes, hotend temps, bed temps, enclosure status, multi-material capability, and motion system details."
+    },
+    {
+      "id": 1,
+      "name": "Prusa Research product pages and online manuals",
+      "url": "https://www.prusa3d.com/category/original-prusa-mk4s/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for Prusa MK4S, Mini+, and Core One build volumes, temps, direct-drive status, and Klipper/Marlin configuration."
+    },
+    {
+      "id": 2,
+      "name": "Voron Design wiki and public build documentation",
+      "url": "https://docs.vorondesign.com/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for hotend compatibility tables (E3D, Phaetus, Slice Engineering, Triangle Labs), fits_printers arrays, and abrasive-path ratings."
+    },
+    {
+      "id": 3,
+      "name": "E3D / Slice Engineering / Phaetus public spec sheets",
+      "url": "https://e3d-online.com/products/revo-six",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for hotend max temps, all-metal status, hardened-path ratings, and nozzle thread / diameter specs."
+    },
+    {
+      "id": 4,
+      "name": "RepRap.org wiki",
+      "url": "https://reprap.org/wiki/Main_Page",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for community-maintained compatibility tables for nozzle standards (M6 thread, diameter conventions), filament processing temps, and enclosure requirements."
+    },
+    {
+      "id": 5,
+      "name": "Polymaker and Hatchbox public spec PDFs and product pages",
+      "url": "https://www.polymaker.com/products/polyterra-pla/",
+      "ingest_date": "2026-05-06",
+      "scope": "Used for filament min/max processing temps, enclosure requirements, hardened nozzle requirements, and direct-drive requirements."
+    }
+  ],
+  "entities": [
+    {
+      "id": "bambu_a1",
+      "type": "fdm_printer",
+      "name": "Bambu Lab A1",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "A1",
+        "build_volume_mm": "256x256x256",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 100,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_a1_mini",
+      "type": "fdm_printer",
+      "name": "Bambu Lab A1 Mini",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "A1 Mini",
+        "build_volume_mm": "180x180x180",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 100,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_p1p",
+      "type": "fdm_printer",
+      "name": "Bambu Lab P1P",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "P1P",
+        "build_volume_mm": "256x256x256",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 120,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_p1s",
+      "type": "fdm_printer",
+      "name": "Bambu Lab P1S",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "P1S",
+        "build_volume_mm": "256x256x256",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": false,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_x1c",
+      "type": "fdm_printer",
+      "name": "Bambu Lab X1 Carbon",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "X1C",
+        "build_volume_mm": "256x256x256",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": false,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_h2d",
+      "type": "fdm_printer",
+      "name": "Bambu Lab H2D",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "H2D",
+        "build_volume_mm": "350x320x325",
+        "direct_drive": true,
+        "max_hotend_temp_c": 320,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": true,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_p2s",
+      "type": "fdm_printer",
+      "name": "Bambu Lab P2S",
+      "attributes": {
+        "brand": "bambu_lab",
+        "model": "P2S",
+        "build_volume_mm": "256x256x256",
+        "direct_drive": true,
+        "max_hotend_temp_c": 320,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": false,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "prusa_mk4s",
+      "type": "fdm_printer",
+      "name": "Prusa MK4S",
+      "attributes": {
+        "brand": "prusa_research",
+        "model": "MK4S",
+        "build_volume_mm": "250x210x220",
+        "direct_drive": true,
+        "max_hotend_temp_c": 290,
+        "max_bed_temp_c": 120,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "marlin",
+        "source_ids": [1]
+      }
+    },
+    {
+      "id": "prusa_mini_plus",
+      "type": "fdm_printer",
+      "name": "Prusa Mini+",
+      "attributes": {
+        "brand": "prusa_research",
+        "model": "Mini+",
+        "build_volume_mm": "180x180x180",
+        "direct_drive": false,
+        "max_hotend_temp_c": 280,
+        "max_bed_temp_c": 100,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "marlin",
+        "source_ids": [1]
+      }
+    },
+    {
+      "id": "prusa_core_one",
+      "type": "fdm_printer",
+      "name": "Prusa Core One",
+      "attributes": {
+        "brand": "prusa_research",
+        "model": "Core One",
+        "build_volume_mm": "250x220x270",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": false,
+        "klipper_or_marlin": "klipper",
+        "source_ids": [1]
+      }
+    },
+    {
+      "id": "creality_k1c",
+      "type": "fdm_printer",
+      "name": "Creality K1C",
+      "attributes": {
+        "brand": "creality",
+        "model": "K1C",
+        "build_volume_mm": "220x220x250",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 100,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "klipper",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "sovol_sv08",
+      "type": "fdm_printer",
+      "name": "Sovol SV08",
+      "attributes": {
+        "brand": "sovol",
+        "model": "SV08",
+        "build_volume_mm": "350x350x350",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 110,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "klipper",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "elegoo_saturn4_ultra",
+      "type": "resin_printer",
+      "name": "Elegoo Saturn 4 Ultra",
+      "attributes": {
+        "brand": "elegoo",
+        "model": "Saturn 4 Ultra",
+        "build_volume_mm": "218x123x220",
+        "lcd_resolution": "12K",
+        "lcd_size_inch": 10.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "anycubic_photon_m7_pro",
+      "type": "resin_printer",
+      "name": "Anycubic Photon Mono M7 Pro",
+      "attributes": {
+        "brand": "anycubic",
+        "model": "Photon Mono M7 Pro",
+        "build_volume_mm": "200x126x235",
+        "lcd_resolution": "14K",
+        "lcd_size_inch": 10.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "phrozen_sonic_mighty_14k",
+      "type": "resin_printer",
+      "name": "Phrozen Sonic Mighty 14K",
+      "attributes": {
+        "brand": "phrozen",
+        "model": "Sonic Mighty 14K",
+        "build_volume_mm": "218x123x235",
+        "lcd_resolution": "14K",
+        "lcd_size_inch": 9.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "e3d_revo_six",
+      "type": "hotend",
+      "name": "E3D Revo Six",
+      "attributes": {
+        "brand": "e3d",
+        "max_temp_c": 300,
+        "fits_printers": ["voron", "ender3", "prusa_mk4s", "generic_v6_mount"],
+        "all_metal": false,
+        "hardened_path_for_abrasive": false,
+        "note": "Tool-free nozzle swaps; standard 60W heater block; not all-metal — max 300 C practical limit. Revo nozzles are proprietary thread.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "phaetus_dragon_hf",
+      "type": "hotend",
+      "name": "Phaetus Dragon HF",
+      "attributes": {
+        "brand": "phaetus",
+        "max_temp_c": 500,
+        "fits_printers": ["voron", "ratrig", "generic_v6_mount"],
+        "all_metal": true,
+        "hardened_path_for_abrasive": true,
+        "note": "High-flow variant; all-metal stainless melt zone; handles abrasive and high-temp filaments. Popular Voron 2.4 / Trident hotend.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "slice_mosquito_magnum",
+      "type": "hotend",
+      "name": "Slice Engineering Mosquito Magnum",
+      "attributes": {
+        "brand": "slice_engineering",
+        "max_temp_c": 500,
+        "fits_printers": ["voron", "ender3", "generic_v6_mount"],
+        "all_metal": true,
+        "hardened_path_for_abrasive": true,
+        "note": "High-flow all-metal design; titanium heat break standard; hardened-safe liner; suits PA-CF and engineering filaments.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "bondtech_lgx_lite",
+      "type": "hotend",
+      "name": "Bondtech LGX Lite",
+      "attributes": {
+        "brand": "bondtech",
+        "max_temp_c": 300,
+        "fits_printers": ["voron", "ender3", "generic_lgx_mount"],
+        "all_metal": false,
+        "hardened_path_for_abrasive": false,
+        "note": "Compact dual-drive extruder/hotend combo; low-friction PTFE-lined at standard temps; not rated for abrasive filaments without hardened upgrade.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "triangle_labs_volcano_clone",
+      "type": "hotend",
+      "name": "Triangle Labs Volcano Clone",
+      "attributes": {
+        "brand": "triangle_labs",
+        "max_temp_c": 300,
+        "fits_printers": ["ender3", "cr10", "generic_v6_mount"],
+        "all_metal": false,
+        "hardened_path_for_abrasive": false,
+        "note": "Budget Volcano-footprint hotend; longer melt zone for high-flow printing; PTFE-lined — not suitable for abrasive filaments above 240 C.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_cht_brass_0_4",
+      "type": "nozzle",
+      "name": "Bondtech CHT Brass 0.4mm",
+      "attributes": {
+        "brand": "bondtech",
+        "diameter_mm": 0.4,
+        "material": "brass",
+        "abrasive_safe": false,
+        "thread": "M6",
+        "note": "Three-channel CHT insert for 2-3× volumetric throughput vs standard brass; brass only — not for abrasive filaments.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "nozzle_hardened_steel_0_4",
+      "type": "nozzle",
+      "name": "Hardened Steel 0.4mm Nozzle",
+      "attributes": {
+        "brand": "e3d",
+        "diameter_mm": 0.4,
+        "material": "hardened_steel",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "Standard M6 hardened steel nozzle; compatible with abrasive filaments (PA-CF, PC-CF, glow). Higher wear resistance than brass; slight conductivity loss vs brass.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "nozzle_ruby_0_4",
+      "type": "nozzle",
+      "name": "Ruby-Tipped 0.4mm Nozzle",
+      "attributes": {
+        "brand": "olsson_ruby",
+        "diameter_mm": 0.4,
+        "material": "ruby",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "Brass body with synthetic ruby insert; essentially zero wear from abrasive filaments; premium price; suits continuous production with carbon fiber or glass-filled materials.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_tungsten_carbide_0_6",
+      "type": "nozzle",
+      "name": "Tungsten Carbide 0.6mm Nozzle",
+      "attributes": {
+        "brand": "e3d",
+        "diameter_mm": 0.6,
+        "material": "tungsten_carbide",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "0.6mm orifice for high-flow abrasive printing; tungsten carbide insert resists PA-CF and chopped glass indefinitely; oversized diameter reduces constraint 6 severity (slows detail, not speed).",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "polymaker_polyterra_pla",
+      "type": "filament",
+      "name": "Polymaker PolyTerra PLA",
+      "attributes": {
+        "brand": "polymaker",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 190,
+        "bed_min_temp_c": 25,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Matte PLA with low warp; beginner-friendly; no heated bed required but 25-60 C improves adhesion. Safe for all extruder types.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "bambu_pla_basic",
+      "type": "filament",
+      "name": "Bambu PLA Basic",
+      "attributes": {
+        "brand": "bambu_lab",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 190,
+        "bed_min_temp_c": 35,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Calibrated for Bambu printers; low stringing; works well in open-frame machines. RFID chip for auto-calibration on Bambu AMS.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "hatchbox_petg",
+      "type": "filament",
+      "name": "Hatchbox PETG",
+      "attributes": {
+        "brand": "hatchbox",
+        "material": "PETG",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 230,
+        "bed_min_temp_c": 70,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Good chemical resistance; slight moisture sensitivity — dry before use. Open-frame printing fine with enclosure-optional practice.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "polymaker_polymax_pc",
+      "type": "filament",
+      "name": "Polymaker PolyMax PC",
+      "attributes": {
+        "brand": "polymaker",
+        "material": "PC",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 260,
+        "bed_min_temp_c": 100,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Polycarbonate with high impact strength; requires enclosed chamber ≥45 C ambient to prevent layer delamination. Heated bed mandatory.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "bambu_abs",
+      "type": "filament",
+      "name": "Bambu ABS",
+      "attributes": {
+        "brand": "bambu_lab",
+        "material": "ABS",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 240,
+        "bed_min_temp_c": 100,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "ABS requires enclosed chamber to prevent warping and delamination. Fumes — ventilate or use HEPA filter.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "esun_epa_cf",
+      "type": "filament",
+      "name": "eSun ePA-CF Carbon Fiber Nylon",
+      "attributes": {
+        "brand": "esun",
+        "material": "PA-CF",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 260,
+        "bed_min_temp_c": 70,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": true,
+        "requires_direct_drive": true,
+        "note": "Chopped carbon fiber in nylon matrix; extremely abrasive — mandatory hardened or ruby nozzle. High moisture absorption; dry 8–12 h at 80 C before printing. Flexible filament path benefits strongly from direct drive.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "sunlu_tpu_95a",
+      "type": "filament",
+      "name": "SunLu TPU 95A",
+      "attributes": {
+        "brand": "sunlu",
+        "material": "TPU",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 220,
+        "bed_min_temp_c": 30,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": true,
+        "note": "Shore 95A flexible; Bowden printing prone to buckling — direct drive strongly recommended. Slow print speeds (20-40 mm/s) for best results.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "creality_k1_enclosure",
+      "type": "enclosure",
+      "name": "Creality Enclosure for K1 Series",
+      "attributes": {
+        "brand": "creality",
+        "fits_printer_models": ["k1", "k1c", "k1_max"],
+        "internal_volume_mm": "530x490x470",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "ikea_lack_mod_kit",
+      "type": "enclosure",
+      "name": "IKEA Lack Table Mod Kit",
+      "attributes": {
+        "brand": "generic",
+        "fits_printer_models": ["ender3", "prusa_mk4s", "prusa_mk3s", "cr10"],
+        "internal_volume_mm": "500x500x500",
+        "note": "DIY enclosure using two IKEA LACK side tables with 3D-printed corner brackets; panels are acrylic or polycarbonate cut-to-fit. Community maintained — RepRap wiki documents the standard build.",
+        "source_ids": [2, 4]
+      }
+    },
+    {
+      "id": "bambu_textured_pei_plate",
+      "type": "build_surface",
+      "name": "Bambu Textured PEI Plate",
+      "attributes": {
+        "brand": "bambu_lab",
+        "surface": "textured_pei",
+        "magnetic": true,
+        "fits_size_mm": "257x257",
+        "note": "OEM spring-steel magnetic plate; textured surface aids first-layer adhesion for PLA/PETG/TPU; not ideal for ABS without glue stick. Bambu-proprietary clip points.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "wham_bam_flexi_smooth_pei",
+      "type": "build_surface",
+      "name": "Wham Bam Flexi Smooth PEI",
+      "attributes": {
+        "brand": "wham_bam",
+        "surface": "smooth_pei",
+        "magnetic": true,
+        "fits_size_mm": "various — order to printer bed size",
+        "note": "Universal spring-steel flex plate with smooth PEI; pop prints off when cooled; available in common sizes for Prusa, Ender, Voron beds. ABS/ASA adhesion improved with PEI spray.",
+        "source_ids": [4]
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": 1,
+      "rule": "filament.hotend_min_temp_c <= printer.max_hotend_temp_c",
+      "description": "Filament minimum processing temperature must not exceed the printer's rated hotend maximum. Pairing e.g. PC (260 C min) with Prusa Mini+ (280 C max) is fine; pairing with a printer capped at 250 C is not."
+    },
+    {
+      "id": 2,
+      "rule": "filament.bed_min_temp_c <= printer.max_bed_temp_c",
+      "description": "Filament minimum bed temperature must not exceed the printer's heated-bed maximum. ABS (100 C bed min) requires a printer with ≥100 C bed capability."
+    },
+    {
+      "id": 3,
+      "rule": "filament.requires_enclosure == true -> printer.enclosed == true OR enclosure present in build",
+      "description": "Engineering filaments (ABS, PC, PA-CF) require an enclosed chamber to prevent warping and delamination. An open-frame printer must be paired with a compatible enclosure entity."
+    },
+    {
+      "id": 4,
+      "rule": "filament.requires_hardened_nozzle == true -> nozzle.abrasive_safe == true",
+      "description": "Abrasive filaments (PA-CF, PC-CF, glow) require a hardened steel, ruby, or tungsten carbide nozzle. Brass nozzles wear within a few hundred grams of abrasive material."
+    },
+    {
+      "id": 5,
+      "rule": "filament.requires_direct_drive == true -> printer.direct_drive == true",
+      "description": "Flexible and fiber-reinforced filaments (TPU, PA-CF) require direct-drive extruders to prevent buckling and inconsistent extrusion in long Bowden paths."
+    },
+    {
+      "id": 6,
+      "rule": "nozzle.diameter_mm > 0.4 is acceptable but reduces detail resolution",
+      "description": "Oversized nozzles (0.6 mm, 0.8 mm) increase volumetric flow rate and reduce print time for functional parts but limit minimum feature size. Default recommendation is 0.4 mm; escalate to 0.6 mm for structural or draft prints only."
+    }
+  ]
+}

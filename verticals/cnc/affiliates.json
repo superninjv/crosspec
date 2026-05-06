@@ -1,0 +1,13 @@
+{
+  "version": "0.1",
+  "vertical": "cnc",
+  "default_provider": "amazon",
+  "fallback_provider": null,
+  "providers": {
+    "amazon": {
+      "tag_env_var": "MERCHANT_TAG_AMAZON",
+      "search_template": "https://www.amazon.com/s?k={query}&tag={tag}"
+    }
+  },
+  "skus": {}
+}
