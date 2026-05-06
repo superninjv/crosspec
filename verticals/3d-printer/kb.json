@@ -1264,6 +1264,860 @@
         "note": "Nylon-specific bed adhesive; water-soluble for easy removal. Apply thin coat to PEI or glass before printing PA or PA-CF. Dramatically reduces warping and delamination on first layer.",
         "source_ids": [4]
       }
+    },
+    {
+      "id": "bambu_a1_mini_combo",
+      "type": "fdm_printer",
+      "name": "Bambu Lab A1 Mini Combo",
+      "attributes": {
+        "price_usd": 499,
+        "brand": "bambu_lab",
+        "model": "A1 Mini Combo",
+        "build_volume_mm": "180x180x180",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 80,
+        "enclosed": false,
+        "multi_material": true,
+        "klipper_or_marlin": "bambu_custom",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "prusa_mini_plus_kit",
+      "type": "fdm_printer",
+      "name": "Prusa Mini+ (Kit)",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "prusa_research",
+        "model": "Mini+ Kit",
+        "build_volume_mm": "180x180x180",
+        "direct_drive": true,
+        "max_hotend_temp_c": 280,
+        "max_bed_temp_c": 100,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "marlin",
+        "source_ids": [1]
+      }
+    },
+    {
+      "id": "voron_02_r1",
+      "type": "fdm_printer",
+      "name": "Voron 0.2 R1",
+      "attributes": {
+        "price_usd": 650,
+        "brand": "voron_design",
+        "model": "0.2 R1",
+        "build_volume_mm": "120x120x120",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 120,
+        "enclosed": true,
+        "multi_material": false,
+        "klipper_or_marlin": "klipper",
+        "source_ids": [2]
+      }
+    },
+    {
+      "id": "sovol_sv07",
+      "type": "fdm_printer",
+      "name": "Sovol SV07",
+      "attributes": {
+        "price_usd": 299,
+        "brand": "sovol",
+        "model": "SV07",
+        "build_volume_mm": "220x220x250",
+        "direct_drive": true,
+        "max_hotend_temp_c": 300,
+        "max_bed_temp_c": 110,
+        "enclosed": false,
+        "multi_material": false,
+        "klipper_or_marlin": "klipper",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "anycubic_kobra3_combo",
+      "type": "fdm_printer",
+      "name": "Anycubic Kobra 3 Combo",
+      "attributes": {
+        "price_usd": 599,
+        "brand": "anycubic",
+        "model": "Kobra 3 Combo",
+        "build_volume_mm": "220x220x250",
+        "direct_drive": true,
+        "max_hotend_temp_c": 260,
+        "max_bed_temp_c": 90,
+        "enclosed": false,
+        "multi_material": true,
+        "klipper_or_marlin": "klipper",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "flashforge_ad5m_pro",
+      "type": "fdm_printer",
+      "name": "FlashForge AD5M Pro",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "flashforge",
+        "model": "AD5M Pro",
+        "build_volume_mm": "220x220x220",
+        "direct_drive": true,
+        "max_hotend_temp_c": 320,
+        "max_bed_temp_c": 110,
+        "enclosed": true,
+        "multi_material": false,
+        "klipper_or_marlin": "klipper",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "anycubic_photon_m5",
+      "type": "resin_printer",
+      "name": "Anycubic Photon M5",
+      "attributes": {
+        "price_usd": 299,
+        "brand": "anycubic",
+        "model": "Photon M5",
+        "build_volume_mm": "218x123x220",
+        "lcd_resolution": "12K",
+        "lcd_size_inch": 10.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "elegoo_saturn3_ultra",
+      "type": "resin_printer",
+      "name": "Elegoo Saturn 3 Ultra",
+      "attributes": {
+        "price_usd": 449,
+        "brand": "elegoo",
+        "model": "Saturn 3 Ultra",
+        "build_volume_mm": "218x123x260",
+        "lcd_resolution": "12K",
+        "lcd_size_inch": 10.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "phrozen_sonic_mini_8k_s",
+      "type": "resin_printer",
+      "name": "Phrozen Sonic Mini 8K S",
+      "attributes": {
+        "price_usd": 249,
+        "brand": "phrozen",
+        "model": "Sonic Mini 8K S",
+        "build_volume_mm": "165x72x180",
+        "lcd_resolution": "8K",
+        "lcd_size_inch": 7.1,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "creality_halot_mage_pro",
+      "type": "resin_printer",
+      "name": "Creality Halot Mage Pro",
+      "attributes": {
+        "price_usd": 399,
+        "brand": "creality",
+        "model": "Halot Mage Pro",
+        "build_volume_mm": "228x128x230",
+        "lcd_resolution": "14K",
+        "lcd_size_inch": 10.3,
+        "light_source": "monochrome_lcd",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "bondtech_lgx_lite_pro",
+      "type": "hotend",
+      "name": "Bondtech LGX Lite Pro",
+      "attributes": {
+        "price_usd": 85,
+        "brand": "bondtech",
+        "max_temp_c": 300,
+        "fits_printers": ["generic_v6_mount", "voron", "ender3"],
+        "all_metal": false,
+        "hardened_path_for_abrasive": false,
+        "note": "Compact dual-drive extruder + hotend combo; high-grip LGX gears reduce skipping on flexible filaments. Not all-metal — PTFE-lined to 240 C.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "e3d_revo_hemera_xs",
+      "type": "hotend",
+      "name": "E3D Revo HemeraXS",
+      "attributes": {
+        "price_usd": 139,
+        "brand": "e3d",
+        "max_temp_c": 300,
+        "fits_printers": ["generic_v6_mount", "ender3"],
+        "all_metal": false,
+        "hardened_path_for_abrasive": false,
+        "note": "Compact all-in-one direct-drive extruder + Revo hotend. Tool-free nozzle changes. PTFE-lined; 300 C practical max.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "triangle_labs_volcano_clone",
+      "type": "hotend",
+      "name": "Triangle Labs Volcano Clone",
+      "attributes": {
+        "price_usd": 18,
+        "brand": "triangle_labs",
+        "max_temp_c": 300,
+        "fits_printers": ["generic_v6_mount", "ender3", "voron"],
+        "all_metal": false,
+        "hardened_path_for_abrasive": false,
+        "note": "Budget Volcano-format hotend; longer melt zone for high-flow printing. Standard M6 nozzle thread; not all-metal.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "phaetus_rapido_uhf",
+      "type": "hotend",
+      "name": "Phaetus Rapido UHF",
+      "attributes": {
+        "price_usd": 85,
+        "brand": "phaetus",
+        "max_temp_c": 500,
+        "fits_printers": ["voron", "ratrig", "generic_v6_mount"],
+        "all_metal": true,
+        "hardened_path_for_abrasive": true,
+        "note": "Ultra-high-flow variant; up to 100 mm³/s. All-metal; rated to 500 C. Uses Volcano-format nozzles. Ideal for high-speed printing of engineering materials.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "slice_mosquito_magnum",
+      "type": "hotend",
+      "name": "Slice Engineering Mosquito Magnum",
+      "attributes": {
+        "price_usd": 199,
+        "brand": "slice_engineering",
+        "max_temp_c": 500,
+        "fits_printers": ["voron", "prusa_mk4s", "generic_v6_mount"],
+        "all_metal": true,
+        "hardened_path_for_abrasive": true,
+        "note": "High-flow all-metal hotend; plated copper block for fast heat response. Rated to 500 C; handles PEEK and PEI. Proprietary mounting — check carriage compatibility.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "trianglelab_dragon_standard",
+      "type": "hotend",
+      "name": "Trianglelab Dragon Standard Flow",
+      "attributes": {
+        "price_usd": 39,
+        "brand": "triangle_labs",
+        "max_temp_c": 500,
+        "fits_printers": ["voron", "ratrig", "generic_v6_mount"],
+        "all_metal": true,
+        "hardened_path_for_abrasive": true,
+        "note": "All-metal Dragon hotend; budget alternative to Phaetus Rapido. Standard V6 mounting. 500 C rated; handles engineering filaments.",
+        "source_ids": [2]
+      }
+    },
+    {
+      "id": "nozzle_v6_brass_06",
+      "type": "nozzle",
+      "name": "V6 Brass 0.6mm",
+      "attributes": {
+        "price_usd": 4,
+        "brand": "generic_v6",
+        "diameter_mm": 0.6,
+        "material": "brass",
+        "abrasive_safe": false,
+        "thread": "M6",
+        "note": "High-flow brass nozzle for fast functional prints. Not suitable for abrasive filaments. Good for PLA/PETG draft and structural prints.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_v6_brass_08",
+      "type": "nozzle",
+      "name": "V6 Brass 0.8mm",
+      "attributes": {
+        "price_usd": 4,
+        "brand": "generic_v6",
+        "diameter_mm": 0.8,
+        "material": "brass",
+        "abrasive_safe": false,
+        "thread": "M6",
+        "note": "Max-flow brass nozzle; excellent for large structural prints. Resolution limited — not for detailed parts. Replace frequently with abrasive materials.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_v6_brass_10",
+      "type": "nozzle",
+      "name": "V6 Brass 1.0mm",
+      "attributes": {
+        "price_usd": 5,
+        "brand": "generic_v6",
+        "diameter_mm": 1.0,
+        "material": "brass",
+        "abrasive_safe": false,
+        "thread": "M6",
+        "note": "Very high throughput; suited to vase-mode and large rapid-prototype prints. Minimum feature size ~2 mm. Brass only — no abrasive filaments.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_hardened_steel_06",
+      "type": "nozzle",
+      "name": "Hardened Steel 0.6mm",
+      "attributes": {
+        "price_usd": 10,
+        "brand": "generic_hardened",
+        "diameter_mm": 0.6,
+        "material": "hardened_steel",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "Abrasive-safe high-flow nozzle. Suitable for PA-CF, PC-CF, and glow filaments at 0.6 mm resolution. Standard M6 V6 thread.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_hardened_steel_08b",
+      "type": "nozzle",
+      "name": "Hardened Steel 0.8mm",
+      "attributes": {
+        "price_usd": 11,
+        "brand": "generic_hardened",
+        "diameter_mm": 0.8,
+        "material": "hardened_steel",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "High-flow abrasive-safe nozzle for bulk engineering prints. PA-CF and carbon-filled PETG at speed. Reduced detail vs 0.4 mm.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_ruby_04",
+      "type": "nozzle",
+      "name": "Ruby-Tipped 0.4mm",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "olsson_ruby",
+        "diameter_mm": 0.4,
+        "material": "brass_ruby_tip",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "Ruby tip embedded in brass body; excellent thermal conductivity + abrasion resistance. Long-life nozzle for high-volume abrasive printing.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "nozzle_ruby_08",
+      "type": "nozzle",
+      "name": "Ruby-Tipped 0.8mm",
+      "attributes": {
+        "price_usd": 115,
+        "brand": "olsson_ruby",
+        "diameter_mm": 0.8,
+        "material": "brass_ruby_tip",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "High-flow ruby-tipped nozzle for abrasive structural prints. Ideal for PA-CF and PC-CF bulk printing with extended nozzle life.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "nozzle_tungsten_carbide_06",
+      "type": "nozzle",
+      "name": "Tungsten Carbide 0.6mm",
+      "attributes": {
+        "price_usd": 45,
+        "brand": "generic_tc",
+        "diameter_mm": 0.6,
+        "material": "tungsten_carbide",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "Highest wear resistance of any consumer nozzle material. Suitable for the most abrasive composites including metal-fill and ceramic-fill. Brittle — avoid thermal shock.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_bondtech_cht_06_hardened",
+      "type": "nozzle",
+      "name": "Bondtech CHT 0.6mm Hardened Steel",
+      "attributes": {
+        "price_usd": 19,
+        "brand": "bondtech",
+        "diameter_mm": 0.6,
+        "material": "hardened_steel",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "CHT tri-channel insert in hardened steel body; combines high volumetric flow with abrasive resistance. Best of both worlds for PA-CF draft prints.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "nozzle_olsson_ruby_04_m6",
+      "type": "nozzle",
+      "name": "Olsson Ruby 0.4mm M6",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "olsson_ruby",
+        "diameter_mm": 0.4,
+        "material": "brass_ruby_tip",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "Original Olsson Ruby; ruby insert in brass body machined to M6 standard. Industry benchmark for abrasion resistance at 0.4 mm detail.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "nozzle_zs_cht_hardened",
+      "type": "nozzle",
+      "name": "ZS Hardened CHT 0.4mm",
+      "attributes": {
+        "price_usd": 16,
+        "brand": "zs_tech",
+        "diameter_mm": 0.4,
+        "material": "hardened_steel",
+        "abrasive_safe": true,
+        "thread": "M6",
+        "note": "Budget CHT-style tri-channel hardened steel nozzle. Good abrasion resistance at low cost; slight print-quality penalty vs premium CHT brands.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "nozzle_plated_copper_04",
+      "type": "nozzle",
+      "name": "Plated Copper 0.4mm",
+      "attributes": {
+        "price_usd": 22,
+        "brand": "generic_plated",
+        "diameter_mm": 0.4,
+        "material": "plated_copper",
+        "abrasive_safe": false,
+        "thread": "M6",
+        "note": "Nickel-plated copper nozzle; superior thermal conductivity to brass for high-speed printing. Not abrasive-safe — plating wears rapidly with filled filaments.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "polymaker_polylite_asa",
+      "type": "filament",
+      "name": "Polymaker PolyLite ASA",
+      "attributes": {
+        "price_usd": 24,
+        "brand": "polymaker",
+        "material": "ASA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 240,
+        "bed_min_temp_c": 90,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "UV-resistant outdoor-grade ASA; lower warp than ABS. Enclosure required to prevent warping and layer splitting. Moderate fumes — ventilate.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "polymaker_polymax_tough_pla",
+      "type": "filament",
+      "name": "Polymaker PolyMax Tough PLA",
+      "attributes": {
+        "price_usd": 26,
+        "brand": "polymaker",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 200,
+        "bed_min_temp_c": 25,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Impact-modified PLA; 9× toughness vs standard PLA per Polymaker. Matte finish; beginner-friendly printing. Not for high-temp applications.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "polymaker_fiberon_pa612_cf",
+      "type": "filament",
+      "name": "Polymaker Fiberon PA612-CF",
+      "attributes": {
+        "price_usd": 55,
+        "brand": "polymaker",
+        "material": "PA612-CF",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 260,
+        "bed_min_temp_c": 70,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": true,
+        "requires_direct_drive": true,
+        "note": "Carbon-fiber-reinforced PA612 nylon; exceptional stiffness-to-weight. Requires enclosure, hardened nozzle, and direct-drive. Dry filament before use.",
+        "source_ids": [5]
+      }
+    },
+    {
+      "id": "bambu_pla_galaxy",
+      "type": "filament",
+      "name": "Bambu PLA Galaxy",
+      "attributes": {
+        "price_usd": 20,
+        "brand": "bambu_lab",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 190,
+        "bed_min_temp_c": 35,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Glitter-effect PLA with metallic sparkle particles. Compatible with all Bambu AMS units. Not abrasive; standard brass nozzle safe.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_petg_hf",
+      "type": "filament",
+      "name": "Bambu PETG-HF",
+      "attributes": {
+        "price_usd": 22,
+        "brand": "bambu_lab",
+        "material": "PETG",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 230,
+        "bed_min_temp_c": 70,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "High-flow PETG formulated for Bambu high-speed printers; up to 600 mm/s tested on X1C. Slightly stringing vs standard PETG — tune retraction.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "bambu_support_w",
+      "type": "filament",
+      "name": "Bambu Support W",
+      "attributes": {
+        "price_usd": 25,
+        "brand": "bambu_lab",
+        "material": "Support_W",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 220,
+        "bed_min_temp_c": 35,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Water-soluble support filament for AMS multi-material setups. Dissolves in warm water; designed for use with PLA models on Bambu printers.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "prusament_pc_blend",
+      "type": "filament",
+      "name": "Prusament PC Blend",
+      "attributes": {
+        "price_usd": 35,
+        "brand": "prusa_research",
+        "material": "PC",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 260,
+        "bed_min_temp_c": 100,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Polycarbonate blend with improved processability over pure PC. Enclosure required; excellent impact and heat resistance. Dry before use.",
+        "source_ids": [1]
+      }
+    },
+    {
+      "id": "prusament_asa",
+      "type": "filament",
+      "name": "Prusament ASA",
+      "attributes": {
+        "price_usd": 30,
+        "brand": "prusa_research",
+        "material": "ASA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 240,
+        "bed_min_temp_c": 100,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Prusa-branded ASA; UV-stable outdoor filament. Enclosure mandatory. Available in 50+ colors. Verified on MK4S and Core One profiles.",
+        "source_ids": [1]
+      }
+    },
+    {
+      "id": "esun_petg_carbon",
+      "type": "filament",
+      "name": "eSun PETG-Carbon",
+      "attributes": {
+        "price_usd": 30,
+        "brand": "esun",
+        "material": "PETG-CF",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 240,
+        "bed_min_temp_c": 70,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": true,
+        "requires_direct_drive": false,
+        "note": "Carbon-fiber-reinforced PETG; stiff, low-warp, no enclosure needed. Hardened nozzle required — abrasive fibers destroy brass in <100 g.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "esun_abs_plus",
+      "type": "filament",
+      "name": "eSun ABS+",
+      "attributes": {
+        "price_usd": 22,
+        "brand": "esun",
+        "material": "ABS",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 230,
+        "bed_min_temp_c": 100,
+        "requires_enclosure": true,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Impact-modified ABS with reduced warp vs standard ABS. Still requires enclosure. Acetone-smoothable. Popular choice for functional hobby parts.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "atomic_glow_pla",
+      "type": "filament",
+      "name": "Atomic Filament Glow PLA",
+      "attributes": {
+        "price_usd": 28,
+        "brand": "atomic_filament",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 195,
+        "bed_min_temp_c": 25,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": true,
+        "requires_direct_drive": false,
+        "note": "Glow-in-the-dark PLA with strontium aluminate phosphors. Abrasive — requires hardened nozzle. Strong glow output; recharges under any UV or visible light.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "hatchbox_pla_silk",
+      "type": "filament",
+      "name": "Hatchbox PLA Silk",
+      "attributes": {
+        "price_usd": 23,
+        "brand": "hatchbox",
+        "material": "PLA",
+        "diameter_mm": 1.75,
+        "hotend_min_temp_c": 200,
+        "bed_min_temp_c": 25,
+        "requires_enclosure": false,
+        "requires_hardened_nozzle": false,
+        "requires_direct_drive": false,
+        "note": "Silk-sheen PLA with metallic appearance. Easy to print; no special hardware required. Not food-safe. Popular for decorative and cosplay prints.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "creality_enclosure_ender3v3",
+      "type": "enclosure",
+      "name": "Creality Enclosure for Ender 3 V3",
+      "attributes": {
+        "price_usd": 79,
+        "brand": "creality",
+        "fits_printer_models": ["ender3_v3", "ender3_v3_se", "ender3_v3_ke"],
+        "internal_volume_mm": "430x390x450",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "sovol_enclosure_sv08",
+      "type": "enclosure",
+      "name": "Sovol Enclosure for SV08",
+      "attributes": {
+        "price_usd": 109,
+        "brand": "sovol",
+        "fits_printer_models": ["sv08"],
+        "internal_volume_mm": "530x530x580",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "bambu_a1_enclosure_diy",
+      "type": "enclosure",
+      "name": "Bambu A1 DIY Enclosure Kit",
+      "attributes": {
+        "price_usd": 89,
+        "brand": "third_party",
+        "fits_printer_models": ["bambu_a1", "bambu_a1_mini"],
+        "internal_volume_mm": "480x420x450",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "voron_enclosure_panels_generic",
+      "type": "enclosure",
+      "name": "Voron Enclosure Panels Generic",
+      "attributes": {
+        "price_usd": 65,
+        "brand": "third_party",
+        "fits_printer_models": ["voron_trident", "voron_2_4"],
+        "internal_volume_mm": "350x350x350",
+        "source_ids": [2]
+      }
+    },
+    {
+      "id": "biqu_enclosure_600",
+      "type": "enclosure",
+      "name": "BIQU Enclosure 600x600x650",
+      "attributes": {
+        "price_usd": 139,
+        "brand": "biqu",
+        "fits_printer_models": ["generic_large_format", "voron_2_4_350"],
+        "internal_volume_mm": "600x600x650",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "energetic_pei_black_220",
+      "type": "build_surface",
+      "name": "Energetic PEI Black 220x220",
+      "attributes": {
+        "price_usd": 18,
+        "brand": "energetic",
+        "surface": "textured_pei",
+        "magnetic": true,
+        "fits_size_mm": "220x220",
+        "note": "Spring-steel magnetic PEI sheet for Ender 3 / Sovol SV07 class printers. Textured surface aids PLA/PETG adhesion; pops off easily when cool.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "wham_bam_hot_shoe",
+      "type": "build_surface",
+      "name": "Wham Bam Hot Shoe Flex Plate",
+      "attributes": {
+        "price_usd": 35,
+        "brand": "wham_bam",
+        "surface": "smooth_pei",
+        "magnetic": true,
+        "fits_size_mm": "235x235",
+        "note": "Smooth PEI surface on flexible spring-steel plate. Easy part removal — flex to pop prints off. Compatible with Ender 3 Pro / V2 magnetic bed.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "fysetc_pei_235",
+      "type": "build_surface",
+      "name": "FYSETC PEI 235x235",
+      "attributes": {
+        "price_usd": 22,
+        "brand": "fysetc",
+        "surface": "textured_pei",
+        "magnetic": true,
+        "fits_size_mm": "235x235",
+        "note": "Dual-sided textured/smooth PEI flex plate. Compatible with Ender 3 V2/S1. Textured side for PLA/PETG/TPU; smooth side for tricky first layers.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "octopus_diy_glass_plate",
+      "type": "build_surface",
+      "name": "Octopus DIY Glass Plate",
+      "attributes": {
+        "price_usd": 16,
+        "brand": "octopus",
+        "surface": "borosilicate_glass",
+        "magnetic": false,
+        "fits_size_mm": "235x235",
+        "note": "Borosilicate glass plate with carborundum coating for improved adhesion. Flat and thermally stable; heavier than PEI — slower temp changes.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "buildtak_flexplate",
+      "type": "build_surface",
+      "name": "BuildTak FlexPlate System",
+      "attributes": {
+        "price_usd": 40,
+        "brand": "buildtak",
+        "surface": "buildtak",
+        "magnetic": true,
+        "fits_size_mm": "235x235",
+        "note": "Original flex-plate system with BuildTak adhesive surface. High grip at temp — some materials require glue stick for release. PEI upgrade available.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "goprint_magnetic_flex",
+      "type": "build_surface",
+      "name": "GoPrint Magnetic Flex Plate",
+      "attributes": {
+        "price_usd": 20,
+        "brand": "goprint",
+        "surface": "textured_pei",
+        "magnetic": true,
+        "fits_size_mm": "220x220",
+        "note": "Budget magnetic flex-plate for Ender 3 class printers. Textured PEI surface. Good value; adequate adhesion for PLA and PETG.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "bambu_high_temp_build_plate",
+      "type": "build_surface",
+      "name": "BambuLab High-Temp Build Plate",
+      "attributes": {
+        "price_usd": 59,
+        "brand": "bambu_lab",
+        "surface": "high_temp_pei",
+        "magnetic": true,
+        "fits_size_mm": "257x257",
+        "note": "Bambu OEM high-temp plate; rated for ABS, ASA, PC, and PA. Smooth matte surface; part release when cooled to ambient. Bambu-proprietary clip points.",
+        "source_ids": [0]
+      }
+    },
+    {
+      "id": "wham_bam_textured_pei_256",
+      "type": "build_surface",
+      "name": "Wham Bam Textured PEI 256x256",
+      "attributes": {
+        "price_usd": 42,
+        "brand": "wham_bam",
+        "surface": "textured_pei",
+        "magnetic": true,
+        "fits_size_mm": "256x256",
+        "note": "High-temp textured PEI flex plate sized for Bambu A1 / A1 Mini. Excellent adhesion for engineering filaments; glue stick recommended for ASA.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "slicer_orcaslicer",
+      "type": "slicer",
+      "name": "OrcaSlicer",
+      "attributes": {
+        "price_usd": 0,
+        "brand": "orcaslicer_community",
+        "license": "open_source",
+        "platforms": ["windows", "macos", "linux"],
+        "supported_printer_brands": ["bambu_lab", "prusa_research", "creality", "voron_design", "sovol", "anycubic", "generic_klipper"],
+        "note": "Community fork of BambuStudio with first-class support for non-Bambu printers. Excellent calibration tools; best-in-class Klipper profile support. Free and open source.",
+        "source_ids": [4]
+      }
+    },
+    {
+      "id": "slicer_cura_pro",
+      "type": "slicer",
+      "name": "UltiMaker Cura",
+      "attributes": {
+        "price_usd": 0,
+        "brand": "ultimaker",
+        "license": "open_source",
+        "platforms": ["windows", "macos", "linux"],
+        "supported_printer_brands": ["creality", "prusa_research", "anycubic", "sovol", "elegoo", "generic_fdm"],
+        "note": "Industry-standard open-source slicer; largest plugin ecosystem. Market-leader for generic FDM printers. Bambu support is community-contributed and lags official BambuStudio.",
+        "source_ids": [4]
+      }
     }
   ],
   "constraints": [

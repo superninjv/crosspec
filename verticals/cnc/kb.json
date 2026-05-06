@@ -1543,6 +1543,914 @@
         "source_ids": [7, 3]
       }
     }
+    ,
+    {
+      "id": "shapeoko5_pro_4x4",
+      "type": "cnc_machine",
+      "name": "Carbide 3D Shapeoko 5 Pro 4x4",
+      "sku": "shapeoko5_pro_4x4",
+      "attributes": {
+        "brand": "Carbide 3D",
+        "model": "Shapeoko 5 Pro 4x4",
+        "work_envelope_mm": "838x838x105",
+        "spindle_mount_diameter_mm": 65,
+        "controller_included": true,
+        "controller_name": "Carbide Motion v6 (GRBL-based)",
+        "max_feed_mm_min": 7000,
+        "ballscrews_or_belts": "belts",
+        "frame": "aluminum extrusion, reinforced HDZ Z-axis",
+        "price_usd": 2799,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "5th-gen Shapeoko; stiffer extrusion, improved HDZ Z-axis with ballscrew Z. 65 mm mount; ships without router (Makita or Carbide Compact Router sold separately). Includes BitSetter and BitRunner v2.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "onefinity_foreman_elite",
+      "type": "cnc_machine",
+      "name": "Onefinity Foreman Elite",
+      "sku": "onefinity_foreman_elite",
+      "attributes": {
+        "brand": "Onefinity",
+        "model": "Foreman Elite",
+        "work_envelope_mm": "1295x1295x152",
+        "spindle_mount_diameter_mm": 80,
+        "controller_included": true,
+        "controller_name": "Onefinity Elite (Buildbotics-derived, touchscreen)",
+        "max_feed_mm_min": 10000,
+        "ballscrews_or_belts": "ballscrews",
+        "frame": "steel rail, modular, dual-rail Y",
+        "price_usd": 4999,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Largest Onefinity; dual-rail Y for improved rigidity. ~50x50 inch cutting envelope. 80 mm spindle mount; targets semi-pro shop use. Includes Masso G3 Touch controller option.",
+        "source_ids": [1, 3]
+      }
+    },
+    {
+      "id": "sienci_longmill_mk2_48",
+      "type": "cnc_machine",
+      "name": "Sienci LongMill MK2 48x30",
+      "sku": "sienci_longmill_mk2_48",
+      "attributes": {
+        "brand": "Sienci Labs",
+        "model": "LongMill MK2 48x30",
+        "work_envelope_mm": "1219x762x114",
+        "spindle_mount_diameter_mm": 65,
+        "controller_included": true,
+        "controller_name": "SLB (Sienci Labs Board, GRBL-based)",
+        "max_feed_mm_min": 4000,
+        "ballscrews_or_belts": "leadscrews",
+        "frame": "aluminum extrusion, anti-backlash leadscrew",
+        "price_usd": 1599,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Canadian-made; anti-backlash leadscrew drive (between belts and ballscrews in rigidity). 65 mm router mount; ships with Makita RT0701C. Open-source SLB controller compatible with gSender.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "avid_pro_nyc_4x8",
+      "type": "cnc_machine",
+      "name": "Avid CNC PRO 4x8 (PRO4896)",
+      "sku": "avid_pro4896",
+      "attributes": {
+        "brand": "Avid CNC",
+        "model": "PRO4896 (4x8 table)",
+        "work_envelope_mm": "1219x2438x203",
+        "spindle_mount_diameter_mm": 80,
+        "controller_included": false,
+        "controller_name": null,
+        "max_feed_mm_min": 15000,
+        "ballscrews_or_belts": "rack-and-pinion",
+        "frame": "welded steel + aluminum extrusion hybrid",
+        "price_usd": 6495,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Full-sheet 4x8 production table. Rack-and-pinion; 80 mm spindle mount for 2.2 kW VFD spindle. Controller sold separately (Masso G3 or Avid AVID-CNC board). Handles full 4x8 sheet goods.",
+        "source_ids": [2, 3]
+      }
+    },
+    {
+      "id": "inventables_xcarve_xl",
+      "type": "cnc_machine",
+      "name": "Inventables X-Carve XL (1000mm Extended)",
+      "sku": "inventables_xcarve_xl",
+      "attributes": {
+        "brand": "Inventables",
+        "model": "X-Carve XL",
+        "work_envelope_mm": "1000x1000x75",
+        "spindle_mount_diameter_mm": 65,
+        "controller_included": true,
+        "controller_name": "X-Controller (GRBL-based)",
+        "max_feed_mm_min": 5000,
+        "ballscrews_or_belts": "belts",
+        "frame": "aluminum extrusion, makerslide rails, extended gantry",
+        "price_usd": 1799,
+        "price_source": "vendor MSRP",
+        "price_as_of": "2026-05-06",
+        "note": "Extended version of X-Carve with larger 1000x1000 mm work area. Belt-drive; 65 mm router mount. Ships with DeWalt DWP611. Easel CAM integration.",
+        "source_ids": [7, 3]
+      }
+    },
+    {
+      "id": "spindle_mafell_fm1000ws",
+      "type": "spindle",
+      "name": "Mafell FM 1000 WS CNC Router",
+      "sku": "mafell_fm1000ws",
+      "attributes": {
+        "price_usd": 649,
+        "brand": "Mafell",
+        "model": "FM 1000 WS",
+        "hp": 1.34,
+        "max_rpm": 24000,
+        "min_rpm": 6000,
+        "collet_size": "1/4 inch and 1/8 inch (included)",
+        "base_diameter_mm": 65,
+        "cooling": "air",
+        "er_collet_compatible": false,
+        "note": "Soft-start variant of FM 1000 series; electronic speed control with slow ramp-up reduces belt/drive stress on start. German-made CNC-optimized winding. 65 mm base; direct drop-in for Shapeoko / Onefinity 65 mm mounts.",
+        "source_ids": [6, 3]
+      }
+    },
+    {
+      "id": "spindle_hitachi_m12vc_v2",
+      "type": "spindle",
+      "name": "Metabo HPT M12VC Fixed-Base Router (current)",
+      "sku": "metabo_hpt_m12vc",
+      "attributes": {
+        "price_usd": 219,
+        "brand": "Metabo HPT",
+        "model": "M12VC",
+        "hp": 2.25,
+        "max_rpm": 23000,
+        "min_rpm": 8000,
+        "collet_size": "1/4 inch and 1/2 inch (included)",
+        "base_diameter_mm": 65,
+        "cooling": "air",
+        "er_collet_compatible": false,
+        "note": "Rebranded Hitachi M12VC; identical internals. Higher power than Makita RT0701C; both 1/4 and 1/2 inch collets included. 65 mm base fits Shapeoko and X-Carve mounts. Preferred when 1/2 inch shank bits are needed without a VFD spindle.",
+        "source_ids": [6, 3]
+      }
+    },
+    {
+      "id": "spindle_bosch_gkf12v_08",
+      "type": "spindle",
+      "name": "Bosch GKF12V-08N Palm Router (bare tool)",
+      "sku": "bosch_gkf12v_08n",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "Bosch",
+        "model": "GKF12V-08N",
+        "hp": 1.0,
+        "max_rpm": 32000,
+        "min_rpm": 16000,
+        "collet_size": "1/4 inch",
+        "base_diameter_mm": 65,
+        "cooling": "air",
+        "er_collet_compatible": false,
+        "note": "Bare tool (no battery) Bosch 12V palm router; highest RPM in class at 32,000. Lightweight; suited for foam, thin wood, and soft plastics on desktop CNCs. 65 mm base. Sustained CNC use limited by battery runtime.",
+        "source_ids": [6, 3]
+      }
+    },
+    {
+      "id": "spindle_er25_15kw_air",
+      "type": "spindle",
+      "name": "ER25 1.5 kW 80 mm Air-Cooled VFD Spindle",
+      "sku": "vfd_80mm_15kw_er25_air",
+      "attributes": {
+        "price_usd": 389,
+        "brand": "Generic (HY / VEVOR / Huanyang)",
+        "model": "1.5 kW ER25 air-cooled",
+        "hp": 2.0,
+        "max_rpm": 24000,
+        "min_rpm": 6000,
+        "collet_size": "ER25 (up to 16 mm / 5/8 inch)",
+        "base_diameter_mm": 80,
+        "cooling": "air",
+        "er_collet_compatible": true,
+        "note": "ER25 collet extends shank capacity to 5/8 inch — accepts 1/2 inch shank bits comfortably. 80 mm body for Onefinity / Avid mounts. Air-cooled; no external water system. Requires VFD drive and 220 V wiring.",
+        "source_ids": [6, 3]
+      }
+    },
+    {
+      "id": "spindle_er32_4kw_water",
+      "type": "spindle",
+      "name": "ER32 4 kW 80 mm Water-Cooled VFD Spindle",
+      "sku": "vfd_80mm_4kw_er32_water",
+      "attributes": {
+        "price_usd": 899,
+        "brand": "Generic (HY / Guangzhou Jianken)",
+        "model": "4 kW ER32 water-cooled",
+        "hp": 5.4,
+        "max_rpm": 18000,
+        "min_rpm": 3000,
+        "collet_size": "ER32 (up to 20 mm / 3/4 inch)",
+        "base_diameter_mm": 80,
+        "cooling": "water",
+        "er_collet_compatible": true,
+        "note": "High-power industrial-class spindle; ER32 collet accepts up to 3/4 inch shank. Lower max RPM than 2.2 kW models — suited for large-diameter bits and heavy cuts in hardwood or aluminum. Requires 3-phase VFD or single-phase 220 V VFD rated ≥4 kW.",
+        "source_ids": [6, 3]
+      }
+    },
+    {
+      "id": "bit_whiteside_ru2100",
+      "type": "bit",
+      "name": "Whiteside RU2100 Spiral Upcut 1/4\" (solid carbide)",
+      "sku": "whiteside_ru2100",
+      "attributes": {
+        "price_usd": 23,
+        "brand": "Whiteside",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 1.0,
+        "flutes": 2,
+        "geometry": "upcut",
+        "material_target": ["wood", "plywood", "mdf", "hdpe", "acrylic"],
+        "note": "Whiteside RU2100: US-made solid carbide upcut spiral. Consistent grind tolerance; popular benchmark for sign and cabinet work. Ships in individual packaging with specs card.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_whiteside_rd2200",
+      "type": "bit",
+      "name": "Whiteside RD2200 Down Compression 1/4\" (solid carbide)",
+      "sku": "whiteside_rd2200",
+      "attributes": {
+        "price_usd": 41,
+        "brand": "Whiteside",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 3.0,
+        "length_cutting_inch": 1.25,
+        "flutes": 2,
+        "geometry": "compression",
+        "material_target": ["plywood", "melamine", "laminated_panels"],
+        "note": "Whiteside RD2200: compression spiral with downcut top flute and upcut bottom flute. Clean top and bottom simultaneously. US-made; tighter runout spec than generic compression bits.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_amana_51404",
+      "type": "bit",
+      "name": "Amana Tool 51404 Aluminum Single-Flute 1/4\"",
+      "sku": "amana_51404",
+      "attributes": {
+        "price_usd": 31,
+        "brand": "Amana Tool",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 0.75,
+        "flutes": 1,
+        "geometry": "upcut",
+        "material_target": ["aluminum", "soft_metal", "acrylic"],
+        "note": "Amana 51404 ZrN-coated single O-flute for aluminum; polished flute reduces built-up edge. Run with lubricant mist (WD-40 or Tap Magic). Low chip recutting risk. 1/4 inch shank.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_amana_45776",
+      "type": "bit",
+      "name": "Amana Tool 45776 V-Bit 60° 1/4\" Shank",
+      "sku": "amana_45776",
+      "attributes": {
+        "price_usd": 22,
+        "brand": "Amana Tool",
+        "diameter_inch": 0.5,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.0,
+        "length_cutting_inch": null,
+        "flutes": 2,
+        "geometry": "vbit",
+        "included_angle_deg": 60,
+        "material_target": ["wood", "mdf", "foam", "hdpe"],
+        "note": "Amana 45776: 60° solid carbide V-bit for tight serif letterforms and thin V-carve lines. 1/4 inch shank; universal mount. Sharp tip for fine detail inlay clearance.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_amana_46479",
+      "type": "bit",
+      "name": "Amana Tool 46479 Ballnose 1/4\" (solid carbide)",
+      "sku": "amana_46479",
+      "attributes": {
+        "price_usd": 26,
+        "brand": "Amana Tool",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 1.0,
+        "flutes": 2,
+        "geometry": "ballnose",
+        "material_target": ["wood", "mdf", "foam", "wax", "soft_metal"],
+        "note": "Amana 46479: 3D finishing ballnose; consistent radius ground to ±0.001 inch. Standard 3D relief finishing pass at 10–15% stepover in wood and MDF.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_amana_51425",
+      "type": "bit",
+      "name": "Amana Tool 51425 Single-Flute Aluminum 1/4\" (ZrN)",
+      "sku": "amana_51425",
+      "attributes": {
+        "price_usd": 35,
+        "brand": "Amana Tool",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 3.0,
+        "length_cutting_inch": 1.0,
+        "flutes": 1,
+        "geometry": "upcut",
+        "material_target": ["aluminum", "soft_metal", "brass"],
+        "note": "Amana 51425: longer LOC variant of the aluminum O-flute series. ZrN coating for extended tool life in aluminum. Extra flute length allows deeper single-pass cuts. Requires VFD spindle or router with ER collet.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_zrn_4fl_eighth",
+      "type": "bit",
+      "name": "ZrN-Coated 4-Flute 1/8\" Endmill (solid carbide)",
+      "sku": "bit_zrn_4fl_125",
+      "attributes": {
+        "price_usd": 19,
+        "brand": "SpeTool / Generic coated (typical)",
+        "diameter_inch": 0.125,
+        "shank_diameter_inch": 0.125,
+        "length_overall_inch": 1.5,
+        "length_cutting_inch": 0.5,
+        "flutes": 4,
+        "geometry": "upcut",
+        "material_target": ["wood", "mdf", "acrylic", "hdpe", "soft_metal"],
+        "note": "ZrN (Zirconium Nitride) coating improves wear resistance vs uncoated carbide; suited for hardwood and HDPE detail passes. 4-flute reduces chip load per tooth; requires good chip evacuation in deep pockets.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_spektra_1fl_quarter",
+      "type": "bit",
+      "name": "Amana Tool Spektra 1/4\" Single-Flute (coated)",
+      "sku": "amana_spektra_1fl_25",
+      "attributes": {
+        "price_usd": 38,
+        "brand": "Amana Tool (Spektra line)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 0.875,
+        "flutes": 1,
+        "geometry": "upcut",
+        "material_target": ["wood", "mdf", "plywood", "acrylic", "hdpe"],
+        "note": "Spektra is Amana's multi-layer nano-coating line; improved edge retention vs uncoated. Single O-flute geometry for excellent chip evacuation. Best-in-class for plywood and acrylic in one tool.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_yonico_14982_dovetail",
+      "type": "bit",
+      "name": "Yonico 14982 Dovetail 14° 1/4\" Shank",
+      "sku": "yonico_14982",
+      "attributes": {
+        "price_usd": 18,
+        "brand": "Yonico",
+        "diameter_inch": 0.5,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.0,
+        "length_cutting_inch": 0.5,
+        "flutes": 2,
+        "geometry": "dovetail",
+        "included_angle_deg": 14,
+        "material_target": ["wood", "mdf", "hdpe"],
+        "note": "Budget 14° dovetail undercut bit; 1/4 inch shank. Suited for T-slot spoilboard cutting and dovetail joint pockets. Lower runout spec than Amana — acceptable for wood joinery, not recommended for tight-tolerance jig making.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_bits_and_bits_micro",
+      "type": "bit",
+      "name": "Bits and Bits 1/8\" Micro Endmill 0.0625\" (solid carbide)",
+      "sku": "bits_and_bits_micro_0625",
+      "attributes": {
+        "price_usd": 22,
+        "brand": "Bits and Bits",
+        "diameter_inch": 0.0625,
+        "shank_diameter_inch": 0.125,
+        "length_overall_inch": 1.5,
+        "length_cutting_inch": 0.1875,
+        "flutes": 2,
+        "geometry": "upcut",
+        "material_target": ["wood", "acrylic", "pcb", "wax"],
+        "note": "Bits and Bits micro endmill with 1/8 inch shank (necked to 1/16 inch cutting diameter). US-sourced; tighter diameter tolerance than generic imports. Requires ballscrew machine; feed ≤500 mm/min.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_yonico_31002q_surfacer",
+      "type": "bit",
+      "name": "Yonico 31002q Surface Planer 1/2\" Dia",
+      "sku": "yonico_31002q",
+      "attributes": {
+        "price_usd": 29,
+        "brand": "Yonico",
+        "diameter_inch": 0.5,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 0.25,
+        "flutes": 2,
+        "geometry": "facing",
+        "material_target": ["wood", "mdf", "spoilboard"],
+        "note": "Budget spoilboard surfacing / slab flattening bit; 1/2 inch cutting diameter, 1/4 inch shank. Lower cost than 1.5 inch surfacing bits; requires more passes but fits any router with 1/4 inch collet.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_donek_d2_drag_knife",
+      "type": "bit",
+      "name": "Donek D2 Drag Knife (1/4\" shank)",
+      "sku": "donek_d2",
+      "attributes": {
+        "price_usd": 89,
+        "brand": "Donek Tools",
+        "diameter_inch": null,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 3.0,
+        "length_cutting_inch": null,
+        "flutes": null,
+        "geometry": "drag_knife",
+        "material_target": ["vinyl", "cardstock", "thin_leather", "foam_sheet", "craft_film"],
+        "note": "Donek D2: improved blade holder with replaceable Dexter blade cartridge. Tangential drag knife; spindle must not rotate during use. Compatible with any 1/4 inch collet. Tangential knife offset required in CAM.",
+        "source_ids": [3, 5]
+      }
+    },
+    {
+      "id": "bit_foam_cutter_quarter",
+      "type": "bit",
+      "name": "Foam Cutter 1/4\" Polystyrene Bit (solid carbide)",
+      "sku": "bit_foam_cutter_25",
+      "attributes": {
+        "price_usd": 15,
+        "brand": "Generic / SpeTool (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 3.0,
+        "length_cutting_inch": 1.5,
+        "flutes": 1,
+        "geometry": "upcut",
+        "material_target": ["foam", "eps", "xps", "polystyrene"],
+        "note": "Single-flute long LOC bit optimized for EPS/XPS foam sign blanks and prop making. High RPM + low feed recommended to prevent foam smear. No coolant needed.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_plywood_long_quarter",
+      "type": "bit",
+      "name": "Plywood-Rated Upcut 1/4\" Long (solid carbide)",
+      "sku": "bit_plywood_lc_25",
+      "attributes": {
+        "price_usd": 27,
+        "brand": "Amana Tool / Onsrud (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 3.5,
+        "length_cutting_inch": 1.75,
+        "flutes": 2,
+        "geometry": "upcut",
+        "material_target": ["plywood", "mdf", "wood"],
+        "note": "Extended LOC (1.75 inch) for full-depth single-pass cuts in 3/4 inch plywood. Rated for plywood gummy glue lines. Extra reach for deep pocket work in cabinet panels.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_brass_engrave_60deg",
+      "type": "bit",
+      "name": "Brass Engraving V-Bit 60° 1/4\" Shank (solid carbide)",
+      "sku": "bit_brass_engrave_60deg",
+      "attributes": {
+        "price_usd": 24,
+        "brand": "SpeTool / Amana Tool (typical)",
+        "diameter_inch": 0.375,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.0,
+        "length_cutting_inch": null,
+        "flutes": 2,
+        "geometry": "vbit",
+        "included_angle_deg": 60,
+        "material_target": ["brass", "soft_metal", "aluminum", "wood"],
+        "note": "60° solid carbide V-bit suitable for engraving soft metals (brass, aluminum) at low depth-of-cut. Ground to sharp tip for hairline engraving. Run with cutting oil on metals.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_fiberglass_quarter",
+      "type": "bit",
+      "name": "Fiberglass-Coated Carbide Upcut 1/4\" (solid carbide)",
+      "sku": "bit_fiberglass_coated_25",
+      "attributes": {
+        "price_usd": 33,
+        "brand": "SpeTool / Harvey Tool (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 0.75,
+        "flutes": 2,
+        "geometry": "upcut",
+        "material_target": ["fiberglass", "carbon_fiber", "pcb", "composite"],
+        "note": "Diamond-pattern or DLC-coated endmill for abrasive composite materials. Wear dust mask and use dust collection — fiberglass dust is hazardous. Low DOC per pass to minimize heat.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_polycarbonate_1fl",
+      "type": "bit",
+      "name": "Polycarbonate Single-Flute 1/4\" (solid carbide)",
+      "sku": "bit_pc_1fl_25",
+      "attributes": {
+        "price_usd": 26,
+        "brand": "Amana Tool / SpeTool (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 0.875,
+        "flutes": 1,
+        "geometry": "upcut",
+        "material_target": ["polycarbonate", "acrylic", "hdpe", "soft_plastic"],
+        "note": "Single O-flute geometry for thermoplastics; maximizes chip clearance and prevents melt/reweld. Run at moderate RPM (18,000–22,000) to stay below plastic melting threshold. Suitable for Lexan and cast acrylic sheet.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "bit_ceramic_tip_quarter",
+      "type": "bit",
+      "name": "Ceramic-Tipped 1/4\" Endmill (ceramic insert)",
+      "sku": "bit_ceramic_tip_25",
+      "attributes": {
+        "price_usd": 68,
+        "brand": "SpeTool / generic ceramic (typical)",
+        "diameter_inch": 0.25,
+        "shank_diameter_inch": 0.25,
+        "length_overall_inch": 2.5,
+        "length_cutting_inch": 0.75,
+        "flutes": 2,
+        "geometry": "upcut",
+        "material_target": ["hardened_steel", "cast_iron", "ceramic", "composite"],
+        "note": "Ceramic-tipped endmill; extremely hard edge retains sharpness in abrasive or hard materials. Brittle — not for interrupted cuts or plunge entry. Requires high RPM and flood/mist cooling. Not suited for wood or plastics.",
+        "source_ids": [5, 3]
+      }
+    },
+    {
+      "id": "fixture_kreg_track_wood",
+      "type": "fixture",
+      "name": "Kreg CNC Routing Table Track System (wood spoilboard)",
+      "sku": "kreg_cnc_track_wood",
+      "attributes": {
+        "price_usd": 79,
+        "brand": "Kreg",
+        "type": "t_track_system",
+        "holds_workpiece_max_mm": "762x762",
+        "t_slot_compatible": true,
+        "note": "Kreg-branded aluminum T-track sections for embedding in wood/MDF spoilboards. Accepts Kreg's quick-release clamps and F-clamps. Easy router or dado installation into a custom spoilboard.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "fixture_bessey_kbody_24",
+      "type": "fixture",
+      "name": "Bessey K-Body REVO 24\" Parallel Clamp",
+      "sku": "bessey_kbody_24",
+      "attributes": {
+        "price_usd": 49,
+        "brand": "Bessey",
+        "type": "mechanical_clamp",
+        "holds_workpiece_max_mm": "610x100",
+        "t_slot_compatible": false,
+        "note": "Parallel-jaw bar clamp; used off-machine for glue-up and panel lamination before CNC fixturing. Not a T-slot clamp. Best paired with spoilboard dog-hole system for edge clamping irregular stock.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "fixture_miteebite_2piece",
+      "type": "fixture",
+      "name": "Mitee-Bite 2-Piece Clamp Set (10-pack)",
+      "sku": "miteebite_2piece_10pk",
+      "attributes": {
+        "price_usd": 85,
+        "brand": "Mitee-Bite",
+        "type": "mechanical_clamp",
+        "holds_workpiece_max_mm": "300x300",
+        "t_slot_compatible": true,
+        "note": "Two-piece wedge clamp: base seats in T-slot, wedge drives against workpiece edge. Ultra-low profile (clears most toolpaths). Sold in 10-pack; sufficient for a 4x4 spoilboard perimeter fixture.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "fixture_lowprofile_cam",
+      "type": "fixture",
+      "name": "Low-Profile CNC Cam Clamps (set of 6)",
+      "sku": "fixture_lp_cam_6pk",
+      "attributes": {
+        "price_usd": 42,
+        "brand": "Various (generic CNC)",
+        "type": "mechanical_clamp",
+        "holds_workpiece_max_mm": "500x500",
+        "t_slot_compatible": true,
+        "note": "Quarter-turn cam-action T-bolt clamps; tool-free swap. Low-profile head clears most router toolpaths. Best for production runs with frequent stock swaps. Fits standard 3/4 inch T-track.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "fixture_mft_vise_dogs",
+      "type": "fixture",
+      "name": "MFT Vise Dogs + Clamping Kit (20 mm)",
+      "sku": "fixture_mft_vise_dogs_20mm",
+      "attributes": {
+        "price_usd": 55,
+        "brand": "Festool / Parf-compatible (typical)",
+        "type": "dog_clamp_system",
+        "holds_workpiece_max_mm": "1200x600",
+        "t_slot_compatible": false,
+        "peg_diameter_mm": 20,
+        "note": "20 mm dog system with vise-style clamping dogs; workpiece registers against fixed dog and is clamped by threaded vise dog. Ideal for repeat production where XY zero must be repeatable. Requires Parf Guide jig to drill 96 mm grid dog-hole pattern.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "dust_sweepy2_carbide3d",
+      "type": "dust_shoe",
+      "name": "Carbide 3D Sweepy 2.0 Dust Boot",
+      "sku": "carbide3d_sweepy2",
+      "attributes": {
+        "price_usd": 75,
+        "brand": "Carbide 3D",
+        "fits_router_diameter_mm": 65,
+        "hose_diameter_mm": 57,
+        "magnetic_brush": true,
+        "note": "Sweepy 2.0: redesigned Z-height adjustment and magnetic brush skirt swap. Mounts directly to Shapeoko Z-carriage without tools. Fits 65 mm routers (Makita RT0701C, DeWalt DWP611). 2.25 inch hose port.",
+        "source_ids": [0, 3]
+      }
+    },
+    {
+      "id": "dust_pwncnc_65mm",
+      "type": "dust_shoe",
+      "name": "Pwncnc Dust Boot 65 mm",
+      "sku": "pwncnc_dust_boot_65mm",
+      "attributes": {
+        "price_usd": 99,
+        "brand": "Pwncnc",
+        "fits_router_diameter_mm": 65,
+        "hose_diameter_mm": 57,
+        "magnetic_brush": true,
+        "note": "Pwncnc 65 mm dust boot; polycarbonate body with magnetic brush skirt. Adjustable Z-height clearance. Fits Shapeoko, X-Carve, LongMill (65 mm mount). Compatible with Makita RT0701C and DeWalt DWP611.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "dust_onefinity_mk3",
+      "type": "dust_shoe",
+      "name": "Onefinity Dust Shoe Mk3",
+      "sku": "onefinity_dust_shoe_mk3",
+      "attributes": {
+        "price_usd": 119,
+        "brand": "Onefinity",
+        "fits_router_diameter_mm": 80,
+        "hose_diameter_mm": 57,
+        "magnetic_brush": true,
+        "note": "OEM Onefinity dust shoe for 80 mm spindle body (VFD spindle or Mafell FM 2700). Mk3 revision adds improved brush retention and 2.25 inch hose port. Does not fit 65 mm routers without adapter.",
+        "source_ids": [1, 3]
+      }
+    },
+    {
+      "id": "dust_mafell_brush_attach",
+      "type": "dust_shoe",
+      "name": "Mafell Brush Attachment for FM series",
+      "sku": "mafell_brush_attach",
+      "attributes": {
+        "price_usd": 89,
+        "brand": "Mafell",
+        "fits_router_diameter_mm": 65,
+        "hose_diameter_mm": 27,
+        "magnetic_brush": false,
+        "note": "OEM Mafell dust extraction brush collar; clips onto FM 1000 / FM 2700 router body. 27 mm hose port — requires Festool CT dust extractor or adapter to standard shop vac hose. Not compatible with generic 65 mm dust shoes.",
+        "source_ids": [6, 3]
+      }
+    },
+    {
+      "id": "controller_centroid_acorn_v2",
+      "type": "controller",
+      "name": "Centroid Acorn V2 CNC Controller",
+      "sku": "centroid_acorn_v2",
+      "attributes": {
+        "price_usd": 445,
+        "brand": "Centroid",
+        "controller_kind": "external_box",
+        "grbl_compatible": false,
+        "num_axes_supported": 4,
+        "touchscreen_included": false,
+        "pc_required": true,
+        "note": "Centroid Acorn V2: updated Acorn board with improved USB isolation and onboard relay for spindle. Runs CNC12 software on connected Windows PC. Supports ATC, probing, VFD spindle via RS485. Popular retrofit controller for router tables and custom builds.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "controller_linuxcnc_mesa7i97t",
+      "type": "controller",
+      "name": "LinuxCNC + Mesa 7i97T Ethernet Controller",
+      "sku": "linuxcnc_mesa_7i97t",
+      "attributes": {
+        "price_usd": 249,
+        "brand": "Mesa Electronics (hardware) + LinuxCNC (software)",
+        "controller_kind": "external_box",
+        "grbl_compatible": false,
+        "num_axes_supported": 5,
+        "touchscreen_included": false,
+        "pc_required": true,
+        "note": "Mesa 7i97T: Ethernet motion card with onboard analog spindle output (0–10 V) for direct VFD speed control. LinuxCNC on RT-patched Linux PC. Open-source; highest flexibility. Requires RT kernel and HAL configuration — significant setup effort.",
+        "source_ids": [4, 3]
+      }
+    },
+    {
+      "id": "controller_mach4_ess",
+      "type": "controller",
+      "name": "Mach4 + Ethernet SmoothStepper (ESS) Bundle",
+      "sku": "mach4_ess_v2",
+      "attributes": {
+        "price_usd": 529,
+        "brand": "Newfangled Solutions (Mach4) + Warp9 Tech Design (ESS)",
+        "controller_kind": "pc_plugin",
+        "grbl_compatible": false,
+        "num_axes_supported": 6,
+        "touchscreen_included": false,
+        "pc_required": true,
+        "note": "Current Mach4 + ESS pairing; ESS handles real-time pulse generation over Ethernet, offloading timing from PC. Windows-only. Supports VFD spindle via Modbus, probing, rigid tapping. Industry-standard for semi-pro custom router builds.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "controller_buildbotics_2025",
+      "type": "controller",
+      "name": "Buildbotics CNC Controller (2025 revision)",
+      "sku": "buildbotics_2025",
+      "attributes": {
+        "price_usd": 779,
+        "brand": "Buildbotics",
+        "controller_kind": "external_box",
+        "grbl_compatible": false,
+        "num_axes_supported": 4,
+        "stepper_driver": "Trinamic TMC2660 (upgraded firmware)",
+        "web_interface": true,
+        "note": "2025 firmware revision adds improved VFD RS485 spindle control and expanded probe input support. Linux-based (RPi); web UI + optional touchscreen. Used in Onefinity machines. Not GRBL — uses own G-code dialect; most CAM post-processors support it.",
+        "source_ids": [1, 4]
+      }
+    },
+    {
+      "id": "cam_aspire_13_vectric",
+      "type": "cam_software",
+      "name": "Vectric Aspire 13",
+      "sku": "vectric_aspire_13",
+      "attributes": {
+        "price_usd": 1995,
+        "brand": "Vectric",
+        "license": "perpetual",
+        "price_usd_per_year": 1995,
+        "os_support": ["windows"],
+        "controller_target": ["grbl", "mach4", "mach3", "linuxcnc", "centroid", "buildbotics"],
+        "supports_3d_toolpaths": true,
+        "note": "Aspire 13: full 3D relief carving, V-carving, and nesting. Superset of VCarve Pro with sculpting, texture, and two-sided machining. Perpetual license; huge post-processor library. Industry-standard for sign shops and 3D carving.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "cam_carveco_maker",
+      "type": "cam_software",
+      "name": "Carveco Maker",
+      "sku": "carveco_maker",
+      "attributes": {
+        "price_usd": 192,
+        "brand": "Carveco",
+        "license": "subscription",
+        "price_usd_per_year": 192,
+        "os_support": ["windows"],
+        "controller_target": ["grbl", "mach4", "mach3", "linuxcnc", "centroid"],
+        "supports_3d_toolpaths": true,
+        "note": "Carveco Maker: subscription-based 3D relief CAM. ArtCAM heritage; good for artistic 3D carving. Lower entry cost than Aspire. Monthly or annual subscription. Windows-only.",
+        "source_ids": [3]
+      }
+    },
+    {
+      "id": "cam_simplycam",
+      "type": "cam_software",
+      "name": "SimplyCam",
+      "sku": "simplycam",
+      "attributes": {
+        "price_usd": 149,
+        "brand": "SimplyCam Ltd",
+        "license": "perpetual",
+        "price_usd_per_year": 149,
+        "os_support": ["windows", "macos"],
+        "controller_target": ["grbl", "mach4", "mach3", "linuxcnc"],
+        "supports_3d_toolpaths": false,
+        "note": "Simple 2.5D DXF/SVG-to-G-code workflow; minimal learning curve. Perpetual license. Suited for sign work, pockets, and profiles. No 3D relief capability. Cross-platform (Windows + macOS).",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "cam_freecad_path",
+      "type": "cam_software",
+      "name": "FreeCAD Path Workbench (free)",
+      "sku": "freecad_path_workbench",
+      "attributes": {
+        "price_usd": 0,
+        "brand": "FreeCAD Community",
+        "license": "open_source",
+        "price_usd_per_year": 0,
+        "os_support": ["windows", "macos", "linux"],
+        "controller_target": ["grbl", "linuxcnc", "mach4"],
+        "supports_3d_toolpaths": true,
+        "note": "FreeCAD Path (formerly Path workbench): open-source parametric CAD + CAM. Full 3D toolpath support including adaptive clearing. Cross-platform. Steeper learning curve than commercial tools; active community. No subscription cost.",
+        "source_ids": [4, 3]
+      }
+    },
+    {
+      "id": "tooling_accessory_mdf_spoilboard_4x4",
+      "type": "tooling_accessory",
+      "name": "MDF Spoilboard 4x4 (pre-cut)",
+      "sku": "toolacc_mdf_spoilboard_4x4",
+      "attributes": {
+        "price_usd": 35,
+        "brand": "DIY / local lumber yard",
+        "subtype": "spoilboard",
+        "size_mm": "1219x1219",
+        "thickness_inch": 0.75,
+        "material": "MDF",
+        "note": "Pre-cut 4x4 MDF sheet for use as a CNC spoilboard. Must be surfaced flat with the machine's own spindle before use to establish Z-plane coplanarity. Replace when surface material loss exceeds 3–4 mm. Low-cost consumable.",
+        "source_ids": [4, 3]
+      }
+    },
+    {
+      "id": "tooling_accessory_vacuum_manifold_4x4",
+      "type": "tooling_accessory",
+      "name": "Vacuum Manifold 4x4 (zoned HDPE)",
+      "sku": "toolacc_vacuum_manifold_4x4",
+      "attributes": {
+        "price_usd": 219,
+        "brand": "Frogmill / generic",
+        "subtype": "vacuum_table",
+        "size_mm": "1219x1219",
+        "thickness_inch": 0.75,
+        "material": "HDPE",
+        "note": "Pre-drilled HDPE manifold plate with zone isolation valves for 4x4 table. Zones allow partial-sheet hold without covering full surface. Requires ≥100 CFM vacuum pump for reliable hold on full-size sheet stock.",
+        "source_ids": [4, 3]
+      }
+    },
+    {
+      "id": "tooling_accessory_ttrack_spoilboard_4x4",
+      "type": "tooling_accessory",
+      "name": "T-Track Spoilboard 4x4 (aluminum inlay)",
+      "sku": "toolacc_ttrack_spoilboard_4x4",
+      "attributes": {
+        "price_usd": 129,
+        "brand": "Kreg / Rockler (typical)",
+        "subtype": "t_track_spoilboard",
+        "size_mm": "1219x1219",
+        "thickness_inch": 0.75,
+        "material": "MDF with aluminum T-track inlays",
+        "note": "MDF spoilboard with pre-routed slots and aluminum T-track sections embedded for hold-down clamp flexibility. Allows T-bolt clamps and step clamps to slide freely anywhere on the surface.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "tooling_accessory_levelling_kit",
+      "type": "tooling_accessory",
+      "name": "CNC Machine Levelling Kit",
+      "sku": "toolacc_levelling_kit",
+      "attributes": {
+        "price_usd": 45,
+        "brand": "Generic / Onefinity (typical)",
+        "subtype": "levelling_hardware",
+        "size_mm": null,
+        "thickness_inch": null,
+        "material": "steel levelling feet + shims",
+        "note": "Adjustable levelling feet and precision shims for CNC machine base plates. Critical for machines on non-flat benchtops; ensures gantry tramming and Z-axis perpendicularity. Compatible with most router table and CNC stand leg configurations.",
+        "source_ids": [3, 4]
+      }
+    },
+    {
+      "id": "tooling_accessory_antivib_feet",
+      "type": "tooling_accessory",
+      "name": "Anti-Vibration Feet Kit (set of 4)",
+      "sku": "toolacc_antivib_feet_4pk",
+      "attributes": {
+        "price_usd": 29,
+        "brand": "Generic rubber isolation mount",
+        "subtype": "vibration_isolation",
+        "size_mm": null,
+        "thickness_inch": null,
+        "material": "rubber-steel sandwich mount",
+        "note": "Rubber-isolated levelling feet for CNC machine bases. Reduce transmitted vibration to bench and floor; reduce noise by 3–6 dB in typical shop environments. Load rating: 50–150 kg per foot depending on variant. Improves surface finish at high feed rates.",
+        "source_ids": [3, 4]
+      }
+    }
   ],
   "constraints": [
     {
